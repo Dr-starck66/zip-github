@@ -1,0 +1,1 @@
+{"version":2,"rewrites":[{"source":"/api/:path*","destination":"/api/index.mjs"},{"source":"/health","destination":"/api/index.mjs"},{"source":"/v1/:path*","destination":"/api/index.mjs"}],"functions":{"api/index.mjs":{"maxDuration":10}}}
