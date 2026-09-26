@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "policy": {
+    "failClosed": true,
+    "defaultStatus": "draft",
+    "neverClaimDiscoverWithoutGsc": true,
+    "requireLargeImage": true,
+    "requireSourceTraceability": true
+  },
+  "sites": [
+    {
+      "id": "betgpt",
+      "name": "BetGPT",
+      "domain": "betgpt.live",
+      "adapter": "webhook",
+      "configured": false,
+      "autoPublishWhenGreen": true,
+      "quality": {"minWords":{"reactive":700,"pillar":1500},"maxWords":{"reactive":1200,"pillar":3000},"minSources":2}
+    },
+    {
+      "id": "freehotels",
+      "name": "FreeHotels",
+      "domain": "freehotels.info",
+      "adapter": "webhook",
+      "configured": false,
+      "autoPublishWhenGreen": true,
+      "quality": {"minWords":{"reactive":700,"pillar":1500},"maxWords":{"reactive":1200,"pillar":3000},"minSources":2}
+    },
+    {
+      "id": "pulsoplaneta",
+      "name": "PulsoPlaneta",
+      "domain": "pulsoplaneta.es",
+      "adapter": "webhook",
+      "configured": false,
+      "autoPublishWhenGreen": true,
+      "quality": {"minWords":{"reactive":700,"pillar":1500},"maxWords":{"reactive":1200,"pillar":3000},"minSources":2}
+    }
+  ]
+}

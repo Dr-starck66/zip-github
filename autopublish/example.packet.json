@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "siteId": "betgpt",
+  "title": "Real Madrid - PSG : les faits clés et ce qu'il faut surveiller",
+  "slug": "real-madrid-psg-faits-cles",
+  "mode": "DISCOVER / NEWS RÉACTIF",
+  "schemaType": "NewsArticle",
+  "evidence": "CONFIRMED NEWS",
+  "confirmedDiscover": false,
+  "opportunityScore": 86,
+  "discoverSignal": 78,
+  "excerpt": "Synthèse factuelle, mise à jour et sourcée.",
+  "canonical": "https://betgpt.live/news/real-madrid-psg-faits-cles",
+  "author": {"name": "Rédaction BetGPT"},
+  "image": {
+    "url": "https://betgpt.live/media/real-madrid-psg-1200.jpg",
+    "width": 1200,
+    "height": 675,
+    "alt": "Joueurs du Real Madrid et du PSG avant le match"
+  },
+  "sources": [
+    {"title":"Source primaire","url":"https://example.com/source-1"},
+    {"title":"Deuxième source","url":"https://example.com/source-2"}
+  ],
+  "originality": {"duplicateRisk":"low"},
+  "bodyHtml": "<p>Fixture de test. Le vrai article doit dépasser le seuil de mots avant publication automatique.</p>"
+}

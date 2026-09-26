@@ -1,0 +1,19 @@
+name: ASTRA AUTOPUBLISH VALIDATION
+on:
+  push:
+    branches: [astra-news-radar]
+    paths:
+      - 'autopublish/**'
+      - 'tests/autopublish.test.mjs'
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node tests/autopublish.test.mjs

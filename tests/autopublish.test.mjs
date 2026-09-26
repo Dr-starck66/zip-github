@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import {preflight,slugify,buildWordPressPayload,publishPacket} from '../autopublish/engine.mjs';
+
+const site={id:'betgpt',adapter:'webhook',autoPublishWhenGreen:true,quality:{minWords:{reactive:700,pillar:1500},maxWords:{reactive:1200,pillar:3000},minSources:2}};
+const base={siteId:'betgpt',title:'Un titre suffisamment long pour passer le contrôle',mode:'DISCOVER / NEWS RÉACTIF',schemaType:'NewsArticle',evidence:'CONFIRMED NEWS',confirmedDiscover:false,canonical:'https://betgpt.live/x',author:{name:'Rédaction BetGPT'},image:{url:'https://betgpt.live/a.jpg',width:1200,alt:'Image éditoriale pertinente pour le sujet traité'},sources:[{title:'A',url:'https://a.test/x'},{title:'B',url:'https://b.test/y'}],originality:{duplicateRisk:'low'}};
+assert.equal(slugify('Été PSG & Real !'),'ete-psg-real');
+let p=preflight({...base,bodyHtml:'<p>court</p>'},site);
+assert.equal(p.ok,false);assert.ok(p.blocking.includes('bodyMin'));
+const words=Array.from({length:750},(_,i)=>'mot'+i).join(' ');
+p=preflight({...base,bodyHtml:'<p>'+words+'</p>'},site);
+assert.equal(p.ok,true);assert.equal(p.recommendedStatus,'publish');
+const unsafe=preflight({...base,bodyHtml:'<p>'+words+'</p>',confirmedDiscover:true},site);
+assert.equal(unsafe.ok,false);assert.ok(unsafe.blocking.includes('discoverClaimSafe'));
+const badimg=preflight({...base,bodyHtml:'<p>'+words+'</p>',image:{url:'https://betgpt.live/a.jpg',width:900,alt:'Image éditoriale pertinente pour le sujet traité'}},site);
+assert.equal(badimg.ok,false);assert.ok(badimg.blocking.includes('image'));
+const wp=buildWordPressPayload({...base,bodyHtml:'<p>'+words+'</p>'},'draft');
+assert.equal(wp.status,'draft');assert.equal(wp.title,base.title);
+const ready=await publishPacket({...base,bodyHtml:'<p>'+words+'</p>'},site,{send:false});
+assert.equal(ready.ok,true);assert.equal(ready.state,'READY');
+console.log('AUTOPUBLISH_TEST_PASS');
