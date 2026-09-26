@@ -82,9 +82,17 @@ export default async (req:Request,context:Context)=>{
         ON CONFLICT (id) DO UPDATE SET task=EXCLUDED.task,checks=EXCLUDED.checks,score=100,verdict='PASS',fingerprint=EXCLUDED.fingerprint,created_at=NOW()`;
       return json({ok:true,phase:"write",nonce,persistence:"netlify-database"});
     }
+    if(phase==="security"){
+      const http=await verifyUrl("https://example.com");
+      let privateBlocked=false;
+      try{await safeHttpUrl("http://127.0.0.1:80")}catch(e:any){privateBlocked=e?.message==="private_target"}
+      const gh=await fetch("https://api.github.com/repos/Dr-starck66/zip-github/commits/ebea0621761ef825e97e6f6f641e456665696b27",{headers:{"accept":"application/vnd.github+json","user-agent":"EvidenLock-Gateway/3.1"}});
+      return json({ok:http.status==="VERIFIED"&&privateBlocked&&gh.ok,phase:"security",http,privateNetworkBlocked:privateBlocked,github:{verified:gh.ok,status:gh.status,commit:"ebea0621761ef825e97e6f6f641e456665696b27"}});
+    }
     const rows=await db.sql`SELECT task AS nonce,score,verdict,created_at FROM audits WHERE id='EL-SELFTEST' LIMIT 1`;
     if(!(rows as any[]).length)return json({ok:false,phase:"read",error:"selftest_not_written"},404);
-    return json({ok:true,phase:"read",record:(rows as any[])[0],persistence:"netlify-database"});
+    const keyCount=await db.sql`SELECT COUNT(*)::int AS count FROM api_keys WHERE active=TRUE`;
+    return json({ok:true,phase:"read",record:(rows as any[])[0],activeApiKeys:Number((keyCount as any[])[0]?.count||0),persistence:"netlify-database"});
   }
 
   if(method==="POST"&&path==="/v1/admin/bootstrap"){
