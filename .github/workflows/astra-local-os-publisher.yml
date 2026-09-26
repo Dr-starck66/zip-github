@@ -1,6 +1,10 @@
 name: ASTRA Local OS Publisher
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "astra-local-os/publish.trigger"
   schedule:
     - cron: "17 * * * *"
 permissions:
