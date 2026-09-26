@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "generatedAt": null,
+  "policy": {
+    "confirmedDiscover": "Only pages from our own Search Console data with Discover impressions > 0 are confirmed.",
+    "competitorDiscover": "Never confirmed from public competitor data.",
+    "staleAfterHours": 36
+  },
+  "sites": {
+    "betgpt": {
+      "domain": "betgpt.live",
+      "property": null,
+      "status": "not_connected",
+      "window": null,
+      "discover": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0
+      },
+      "pages": []
+    },
+    "freehotels": {
+      "domain": "freehotels.info",
+      "property": null,
+      "status": "not_connected",
+      "window": null,
+      "discover": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0
+      },
+      "pages": []
+    },
+    "pulsoplaneta": {
+      "domain": "pulsoplaneta.es",
+      "property": null,
+      "status": "not_connected",
+      "window": null,
+      "discover": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0
+      },
+      "pages": []
+    }
+  }
+}
