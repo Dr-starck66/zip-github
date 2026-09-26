@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://photovoltaicbulgaria.com/sitemap.xml
+Sitemap: https://photovoltaicbulgaria.com/news-sitemap.xml

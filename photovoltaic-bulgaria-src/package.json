@@ -1,0 +1,13 @@
+{
+  "name": "photovoltaic-bulgaria",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "scout": "node scripts/scout.mjs",
+    "import": "node scripts/import-article.mjs"
+  },
+  "engines": {"node": ">=20"}
+}
