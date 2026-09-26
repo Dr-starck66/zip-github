@@ -1,7 +1,7 @@
-# TrustLoom V3 — Buyer Proof Pack
+# EvidenLock V3 — Buyer Proof Pack
 
 ## Implemented asset
-TrustLoom is a provider-independent reliability gateway around AI/agent outputs.
+EvidenLock is a provider-independent reliability gateway around AI/agent outputs.
 
 ### Executable controls
 - three policy profiles;
