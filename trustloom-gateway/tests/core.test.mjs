@@ -1,0 +1,6 @@
+import test from "node:test";import assert from "node:assert/strict";import {audit,policies} from "../src/core.mjs";
+test("policies exist",()=>assert.deepEqual(Object.keys(policies),["strict","balanced","exploratory"]));
+test("unsupported certainty fails",()=>{const r=audit({task:"Vérifier",answer:"C'est garanti à 100% et parfaitement validé.",evidence:""},"balanced");assert.equal(r.verdict,"FAIL");assert.equal(r.fingerprint.length,64)});
+test("robust evidence passes balanced",()=>{const r=audit({task:"PASS si tests, source et second run indépendant.",answer:"Tests validés. Red Team exécutée. Résultat reproduit sur un second run indépendant.",evidence:"https://example.com source\nPlaywright test PASS\ncommit SHA abc"},"balanced");assert.equal(r.verdict,"PASS")});
+test("strict requires red team and repro",()=>{const r=audit({task:"PASS si test.",answer:"Le test passe.",evidence:"Playwright test PASS"},"strict");assert.notEqual(r.verdict,"PASS")});
+test("fingerprint changes with evidence",()=>{const a=audit({answer:"x",evidence:"one"}),b=audit({answer:"x",evidence:"two"});assert.notEqual(a.fingerprint,b.fingerprint)});
