@@ -94,6 +94,7 @@ export async function publishPacket(packet,site,{send=false}={}){
   const pf=preflight(packet,site);
   if(!pf.ok)return {ok:false,state:'BLOCKED_BY_PREFLIGHT',preflight:pf};
   if(!send)return {ok:true,state:'READY',preflight:pf,payload:site.adapter==='wordpress'?buildWordPressPayload(packet,pf.recommendedStatus):buildWebhookPayload(packet,pf)};
+  if(site.configured!==true)return {ok:false,state:'BLOCKED',reason:'site_adapter_not_configured',preflight:pf};
   if(site.adapter==='wordpress')return {...await publishWordPress(packet,site,pf),preflight:pf};
   if(site.adapter==='webhook')return {...await publishWebhook(packet,site,pf),preflight:pf};
   return {ok:false,state:'BLOCKED',reason:'adapter_not_configured',preflight:pf};
