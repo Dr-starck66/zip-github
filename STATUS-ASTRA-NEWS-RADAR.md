@@ -39,3 +39,38 @@ Use an authorized Google Search Console connection to populate `evidence/search-
 - No guarantee of Google News / Discover distribution is generated: PASS
 
 Latest implementation commit: 5bdf864cf68975ca84cc2f354dcc656155ccfe02
+
+
+## V0.4 ASTRA AUTOPUBLISH
+
+- Multi-site publication engine: PASS
+- Word-count gates by editorial mode: PASS
+- Source traceability gate: PASS
+- Canonical gate: PASS
+- 1200px+ image gate: PASS
+- Schema / author gates: PASS
+- False CONFIRMED DISCOVER claim blocked: PASS
+- High duplicate-risk flag blocked: PASS
+- Unconfigured destination adapter blocks real send: PASS
+- Publication ledger creation: PASS
+- Editorial generation job per site: PASS
+- PulsoPlaneta es-ES generation contract: PASS
+- Dashboard AUTOPUBLISH job button syntax: PASS
+- Static deployment fallback queues locally instead of claiming publication: PASS
+- GitHub workflow definition updated to run both AUTOPUBLISH tests: PASS
+- GitHub hosted workflow execution observed: NOT YET OBSERVED
+
+Evidence from executable VM tests:
+- AUTOPUBLISH_TEST_PASS
+- FAIL_CLOSED_FIXTURE_PASS
+- HEALTH_PASS
+- PREFLIGHT_BLOCK_PASS
+- PREFLIGHT_READY_PASS
+- SEND_FAIL_CLOSED_PASS
+- LEDGER_PASS
+- GENERATION_JOB_TEST_PASS
+- JOB_API_PASS
+- DASHBOARD_SYNTAX_PASS
+
+Current production gate:
+All three destination adapters remain configured=false. No production publication is claimed until a real destination endpoint or authenticated WordPress connection is wired and verified.
