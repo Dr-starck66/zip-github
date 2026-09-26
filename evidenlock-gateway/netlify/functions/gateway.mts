@@ -4,6 +4,7 @@ import dns from "node:dns/promises";
 import net from "node:net";
 import crypto from "node:crypto";
 import { audit, policies, hashApiKey, createApiKey, hasScope } from "../../src/core.mjs";
+import { verifyGithubOidc } from "../../src/github-oidc.mjs";
 
 function json(data:unknown,status=200){
   return new Response(JSON.stringify(data),{status,headers:{"content-type":"application/json; charset=utf-8","cache-control":"no-store"}});
@@ -132,6 +133,55 @@ export default async (req:Request,context:Context)=>{
     return json({results});
   }
 
+  if(method==="POST"&&path==="/v1/github/attest"){
+    const header=req.headers.get("authorization")||"";
+    if(!header.startsWith("Bearer "))return json({error:"unauthorized"},401);
+    const token=header.slice(7).trim();
+    let claims:any;
+    try{
+      claims=await verifyGithubOidc(token,{
+        audience:"evidenlock",
+        trustResolver:async(repository:string)=>{
+          const rows=await db.sql`SELECT repository,enabled,allowed_events,required_ref FROM github_trust_policies WHERE repository=${repository} LIMIT 1`;
+          const row=(rows as any[])[0];
+          if(!row)return null;
+          return {enabled:row.enabled,allowedEvents:row.allowed_events,requiredRef:row.required_ref};
+        }
+      });
+    }catch(e:any){
+      return json({error:"oidc_rejected",reason:String(e?.message||"verification_failed")},401);
+    }
+    const b:any=await body(req);
+    const evidence=[
+      String(b.evidence||"").trim(),
+      "GitHub OIDC verified",
+      "repository "+claims.repository,
+      "commit SHA "+claims.sha,
+      "workflow "+String(claims.workflow||"unknown"),
+      "run "+String(claims.runId||"unknown"),
+      "independent GitHub Actions attestation"
+    ].filter(Boolean).join("\n");
+    const r=audit({task:String(b.task||""),answer:String(b.answer||""),evidence},String(b.policy||"strict"));
+    const metadata=JSON.stringify({
+      repository:claims.repository,
+      repositoryId:claims.repositoryId,
+      sha:claims.sha,
+      ref:claims.ref,
+      eventName:claims.eventName,
+      actor:claims.actor,
+      workflow:claims.workflow,
+      workflowRef:claims.workflowRef,
+      jobWorkflowRef:claims.jobWorkflowRef,
+      runId:claims.runId,
+      runNumber:claims.runNumber,
+      runAttempt:claims.runAttempt,
+      subject:claims.subject
+    });
+    await db.sql`INSERT INTO audits(id,api_key_id,policy,task,answer,evidence,checks,score,verdict,fingerprint,created_at,principal_type,principal_id,metadata)
+      VALUES (${r.id},NULL,${r.policy},${r.task},${r.answer},${JSON.stringify(r.evidence)}::jsonb,${JSON.stringify(r.checks)}::jsonb,${r.score},${r.verdict},${r.fingerprint},${r.createdAt},'github_oidc',${claims.repository+":"+claims.runId},${metadata}::jsonb)`;
+    return json({...r,principal:{type:"github_oidc",repository:claims.repository,runId:claims.runId,sha:claims.sha}},201);
+  }
+
   if(method==="POST"&&path==="/v1/evidence/github"){
     const auth=await authenticate(req,"evidence:verify");if(!auth.ok)return auth.response;
     const b:any=await body(req),repository=String(b.repository||""),sha=String(b.sha||"");
@@ -144,5 +194,5 @@ export default async (req:Request,context:Context)=>{
 };
 
 export const config:Config={
-  path:["/health","/v1/policies","/v1/selftest","/v1/admin/bootstrap","/v1/api-keys","/v1/audits","/v1/evidence/verify","/v1/evidence/github"]
+  path:["/health","/v1/policies","/v1/selftest","/v1/admin/bootstrap","/v1/api-keys","/v1/audits","/v1/evidence/verify","/v1/evidence/github","/v1/github/attest"]
 };
