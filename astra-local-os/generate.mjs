@@ -73,7 +73,7 @@ for(const f of fs.readdirSync(articlesDir).filter(x=>x.endsWith(".html")).sort()
   const html=fs.readFileSync(path.join(articlesDir,f),"utf8");
   const title=(html.match(/<h1>(.*?)<\/h1>/)||[])[1]||f;
   const date=f.slice(0,10);
-  all.push({file,title,date});
+  all.push({file:f,title,date});
 }
 fs.writeFileSync(path.join(root,"articles.json"),JSON.stringify(all.slice(0,120),null,2));
 fs.writeFileSync(path.join(root,"sitemap.xml"),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${BASE}/</loc></url>${all.map(a=>`<url><loc>${BASE}/articles/${a.file}</loc><lastmod>${a.date}</lastmod></url>`).join("")}</urlset>`);
