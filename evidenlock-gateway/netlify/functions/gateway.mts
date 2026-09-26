@@ -71,6 +71,22 @@ export default async (req:Request,context:Context)=>{
   if(method==="GET"&&path==="/health")return json({ok:true,service:"evidenlock-gateway",version:"3.1.0",persistence:"netlify-database"});
   if(method==="GET"&&path==="/v1/policies")return json({policies});
 
+  if(method==="GET"&&path==="/v1/selftest"){
+    const phase=u.searchParams.get("phase")||"read";
+    if(phase==="write"){
+      const nonce=crypto.randomBytes(12).toString("hex");
+      const fingerprint=crypto.createHash("sha256").update("EL-SELFTEST:"+nonce).digest("hex");
+      const checks=JSON.stringify([{id:"database",score:100,ok:true}]);
+      await db.sql`INSERT INTO audits(id,api_key_id,policy,task,answer,evidence,checks,score,verdict,fingerprint,created_at)
+        VALUES ('EL-SELFTEST',NULL,'selftest',${nonce},'database self-test','[]'::jsonb,${checks}::jsonb,100,'PASS',${fingerprint},NOW())
+        ON CONFLICT (id) DO UPDATE SET task=EXCLUDED.task,checks=EXCLUDED.checks,score=100,verdict='PASS',fingerprint=EXCLUDED.fingerprint,created_at=NOW()`;
+      return json({ok:true,phase:"write",nonce,persistence:"netlify-database"});
+    }
+    const rows=await db.sql`SELECT task AS nonce,score,verdict,created_at FROM audits WHERE id='EL-SELFTEST' LIMIT 1`;
+    if(!(rows as any[]).length)return json({ok:false,phase:"read",error:"selftest_not_written"},404);
+    return json({ok:true,phase:"read",record:(rows as any[])[0],persistence:"netlify-database"});
+  }
+
   if(method==="POST"&&path==="/v1/admin/bootstrap"){
     const secret=req.headers.get("x-bootstrap-secret")||"";
     const expected=Netlify.env.get("EVIDENLOCK_BOOTSTRAP_SECRET")||"";
@@ -120,5 +136,5 @@ export default async (req:Request,context:Context)=>{
 };
 
 export const config:Config={
-  path:["/health","/v1/policies","/v1/admin/bootstrap","/v1/api-keys","/v1/audits","/v1/evidence/verify","/v1/evidence/github"]
+  path:["/health","/v1/policies","/v1/selftest","/v1/admin/bootstrap","/v1/api-keys","/v1/audits","/v1/evidence/verify","/v1/evidence/github"]
 };
