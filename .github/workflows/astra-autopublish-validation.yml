@@ -17,3 +17,4 @@ jobs:
         with:
           node-version: 20
       - run: node tests/autopublish.test.mjs
+      - run: node tests/generation-job.test.mjs
