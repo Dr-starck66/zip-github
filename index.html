@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>ASTRA NEWS RADAR</title>
+<style>
+:root{--b:#071019;--p:#0d1823;--l:#203347;--t:#edf6ff;--m:#8da4b9;--g:#49e19a;--a:#ffc766;--c:#4fd9ff;--r:#ff7181}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0,#0d2740 0,transparent 32%),var(--b);color:var(--t);font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{max-width:1450px;margin:auto;padding:26px}.top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.ey{font-size:11px;color:var(--c);font-weight:900;letter-spacing:.18em}.title{font-size:clamp(30px,5vw,58px);letter-spacing:-.05em;margin:4px 0}.sub{color:var(--m);max-width:840px}.live{border:1px solid #24563e;color:var(--g);padding:8px 11px;border-radius:999px;font-size:12px}
+.panel{background:rgba(13,24,35,.92);border:1px solid var(--l);border-radius:18px}
+.controls{display:grid;grid-template-columns:repeat(3,1fr) auto;gap:12px;padding:14px;margin:20px 0}
+label{font-size:12px;color:var(--m)}select,button{width:100%;margin-top:5px;border-radius:10px;border:1px solid var(--l);background:#07131e;color:var(--t);padding:11px}
+button{background:linear-gradient(135deg,#2456ff,#0ea5c6);font-weight:850;cursor:pointer}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:12px 0}
+.metric{padding:15px}.metric span{display:block;color:var(--m);font-size:12px}.metric b{font-size:27px}
+.legend{padding:13px 15px;color:var(--m);font-size:12px}.legend b{color:var(--t)}
+.err{margin:12px 0;padding:12px 14px;border:1px solid #5e3237;color:#ff9ca6;border-radius:12px;background:#1a0e12}
+.list{overflow:hidden;margin-top:15px}.opp{display:grid;grid-template-columns:76px 1fr;gap:15px;padding:18px;border-bottom:1px solid #17293a}.opp:last-child{border:0}
+.score{width:62px;height:62px;display:grid;place-items:center;border:1px solid var(--l);border-radius:16px;background:#09141e;font-size:23px;font-weight:950}.hot .score{border-color:#2d7c54;color:var(--g)}
+.meta{display:flex;flex-wrap:wrap;gap:7px;color:var(--m);font-size:11px}.badge{border:1px solid #2f5b4b;color:var(--g);padding:3px 7px;border-radius:999px}.sig{border-color:#66552d;color:var(--a)}.site{border-color:#284a69;color:#8fdcff}
+h3{font-size:20px;margin:7px 0}.angle{margin:0 0 9px;color:#d0deea}.stats{display:flex;flex-wrap:wrap;gap:12px;color:var(--m);font-size:12px}
+.links a{display:block;color:#87d9ff;text-decoration:none;font-size:12px;margin-top:5px}.empty{padding:24px;color:var(--m)}
+footer{text-align:center;color:#516b82;padding:22px;font-size:11px;letter-spacing:.08em}
+@media(max-width:760px){.wrap{padding:14px}.top{display:block}.live{display:inline-block;margin-top:10px}.controls,.metrics{grid-template-columns:1fr 1fr}.controls button{grid-column:1/-1}.opp{grid-template-columns:52px 1fr;padding:14px}.score{width:48px;height:48px;font-size:18px}}
+@media(max-width:480px){.controls,.metrics{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="top"><div><div class="ey">MYTHOS ASTRA Ω · EVIDENCE-FIRST</div><h1 class="title">ASTRA NEWS RADAR</h1><div class="sub">Radar éditorial mutualisé pour détecter les sujets Google News en accélération, croiser Google Trends, mesurer l'adéquation à chaque site et proposer un angle original.</div></div><div class="live">● LIVE PUBLIC SIGNALS</div></section>
+<section class="panel controls">
+<label>Pays<select id="country"><option>FR</option><option>ES</option><option>BE</option><option>CH</option><option>DE</option><option>IT</option><option>GB</option><option>US</option></select></label>
+<label>Langue<select id="lang"><option>fr</option><option>es</option><option>en</option><option>de</option><option>it</option></select></label>
+<label>Site<select id="site"><option value="all">Tous les sites</option></select></label>
+<button id="go">Scanner maintenant</button>
+</section>
+<section class="metrics">
+<div class="panel metric"><span>Articles News analysés</span><b id="news">—</b></div>
+<div class="panel metric"><span>Tendances</span><b id="trends">—</b></div>
+<div class="panel metric"><span>Opportunités ≥ 80</span><b id="hot">—</b></div>
+<div class="panel metric"><span>Dernier scan</span><b id="when">—</b></div>
+</section>
+<section class="panel legend"><b>CONFIRMED NEWS</b> = observé dans un flux Google News public. · <b>NEWS + TREND SIGNAL</b> = sujet News qui recoupe une tendance. · <b>DISCOVER SIGNAL</b> = score heuristique, jamais une preuve. <b>CONFIRMED DISCOVER</b> sera réservé aux données Search Console des domaines que nous contrôlons.</section>
+<div id="errors"></div><section id="list" class="panel list"><div class="empty">Initialisation du radar…</div></section>
+<footer>OBSERVE → CLUSTER → SCORE → MATCH SITE → FIND GAP → PUBLISH → MEASURE → LEARN</footer>
+</main>
+<script>
+const PROXY='https://api.rss2json.com/v1/api.json?rss_url=';
+const topics=['','WORLD','BUSINESS','TECHNOLOGY','SCIENCE','HEALTH','SPORTS','ENTERTAINMENT'];
+const sites=[
+{id:'betgpt',name:'BetGPT',domain:'betgpt.live',keys:['football','match','ligue','champions','équipe','equipe','joueur','score','résultat','resultat','coupe','fifa','uefa','liga','premier league','serie a']},
+{id:'freehotels',name:'FreeHotels',domain:'freehotels.info',keys:['voyage','hôtel','hotel','tourisme','destination','vol','train','aéroport','aeroport','plage','vacances','airbnb','compagnie aérienne','aerienne']},
+{id:'pulsoplaneta',name:'PulsoPlaneta',domain:'pulsoplaneta.es',keys:['tecnología','tecnologia','consumo','actualidad','sociedad','móvil','movil','internet','empleo','dinero','viajes','salud','españa','espana']}
+];
+const stop=new Set('le la les de des du un une et en au aux pour sur avec dans par est sont ce ces cette son sa ses qui que quoi dont ou se il elle ils elles plus moins tres vers apres avant tout tous toute toutes the a an and of to in on for with from is are was were this that these those as at by'.split(' '));
+const norm=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+const toks=s=>norm(s).split(/\s+/).filter(w=>w.length>2&&!stop.has(w));
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+function similarity(a,b){const A=new Set(toks(a)),B=new Set(toks(b));if(!A.size||!B.size)return 0;let n=0;A.forEach(x=>{if(B.has(x))n++});return n/Math.max(1,Math.min(A.size,B.size))}
+function freshness(d){const t=Date.parse((d||'').replace(' ','T')+'Z')||Date.parse(d);if(!Number.isFinite(t))return 25;const h=Math.max(0,(Date.now()-t)/36e5);return h<1?100:h<3?90:h<6?80:h<12?65:h<24?50:h<48?30:10}
+function fit(title,s){const h=norm(title);return Math.min(100,s.keys.filter(k=>h.includes(norm(k))).length*28)}
+function cluster(items){const out=[];for(const it of items){let best=null,bs=0;for(const c of out){const x=similarity(it.title,c.title);if(x>bs){best=c;bs=x}}if(best&&bs>=.42)best.items.push(it);else out.push({title:it.title,date:it.pubDate,items:[it]})}return out}
+function angle(site,n){if(site.id==='betgpt')return 'Traiter l’impact sportif concret : chiffres, calendrier, scores/conséquences et ce que les premiers articles ne comparent pas encore.';if(site.id==='freehotels')return 'Traiter la conséquence pratique pour le voyageur : prix, dates, destinations, alternatives et tableau comparatif sourcé.';if(site.id==='pulsoplaneta')return 'Explicar qué cambia para el lector, con datos verificables, contexto local y preguntas que los primeros artículos todavía no resuelven.';return 'Chercher la conséquence concrète, la donnée vérifiable ou l’angle encore absent des premiers articles.'}
+function newsUrl(country,lang,topic){const base=topic?'https://news.google.com/rss/headlines/section/topic/'+topic:'https://news.google.com/rss';return base+'?hl='+encodeURIComponent(lang)+'&gl='+country+'&ceid='+country+':'+encodeURIComponent(lang)}
+function trendsUrl(country){return 'https://trends.google.com/trending/rss?geo='+country}
+async function feed(url){const r=await fetch(PROXY+encodeURIComponent(url)+'&_='+Math.floor(Date.now()/300000));if(!r.ok)throw new Error('HTTP '+r.status);const x=await r.json();if(x.status!=='ok')throw new Error(x.message||'flux indisponible');return x.items||[]}
+async function scan(){
+const btn=document.querySelector('#go'),errors=[];btn.disabled=true;btn.textContent='Scan en cours…';document.querySelector('#list').innerHTML='<div class="empty">Collecte de Google News et Google Trends…</div>';
+const country=document.querySelector('#country').value,lang=document.querySelector('#lang').value,site=document.querySelector('#site').value;
+try{
+ const calls=await Promise.allSettled([...topics.map(t=>feed(newsUrl(country,lang,t))),feed(trendsUrl(country))]);
+ let news=[];for(let i=0;i<topics.length;i++){if(calls[i].status==='fulfilled')news.push(...calls[i].value.map(x=>({...x,section:topics[i]||'TOP'})));else errors.push('News '+(topics[i]||'TOP')+': '+calls[i].reason.message)}
+ const tr=calls[calls.length-1].status==='fulfilled'?calls[calls.length-1].value:(errors.push('Trends: '+calls[calls.length-1].reason.message),[]);
+ const seen=new Set();news=news.filter(x=>{const k=norm(x.title);if(!k||seen.has(k))return false;seen.add(k);return true});
+ const rows=[];
+ for(const c of cluster(news)){
+   const sources=[...new Set(c.items.map(x=>{const m=(x.title||'').match(/ - ([^-]+)$/);return m?m[1]:'Google News'}))];
+   const trend=tr.find(t=>similarity(t.title,c.title)>=.34);
+   for(const s of sites.filter(x=>site==='all'||x.id===site)){
+     const f=fit(c.title,s);if(site==='all'&&!f)continue;
+     const fr=freshness(c.date),sat=Math.min(100,c.items.length*16+sources.length*8),ts=trend?80:0;
+     const score=Math.round(Math.min(100,fr*.32+f*.32+ts*.20+Math.min(100,sources.length*20)*.08+Math.max(0,100-sat)*.08));
+     const discover=Math.round(Math.min(99,score*.82+f*.12));
+     rows.push({score,title:c.title,site:s,evidence:trend?'NEWS + TREND SIGNAL':'CONFIRMED NEWS',discover,fr,f,ts,sources:sources.length||c.items.length,date:c.date,trend:trend?.title||'',angle:angle(s,sources.length),action:score>=80?'PUBLIER':score>=65?'PRÉPARER':score>=50?'SURVEILLER':'IGNORER',links:c.items.slice(0,3).map(x=>({title:x.title,link:x.link,section:x.section}))});
+   }
+ }
+ rows.sort((a,b)=>b.score-a.score);
+ document.querySelector('#news').textContent=news.length;document.querySelector('#trends').textContent=tr.length;document.querySelector('#hot').textContent=rows.filter(x=>x.score>=80).length;document.querySelector('#when').textContent=new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+ document.querySelector('#errors').innerHTML=errors.length?'<div class="err">Mode dégradé : '+esc(errors.join(' · '))+'</div>':'';
+ document.querySelector('#list').innerHTML=rows.length?rows.slice(0,80).map(o=>'<article class="opp '+(o.score>=80?'hot':'')+'"><div class="score">'+o.score+'</div><div><div class="meta"><span class="site">'+esc(o.site.name)+' · '+esc(o.site.domain)+'</span><span class="badge">'+esc(o.evidence)+'</span><span class="badge sig">DISCOVER SIGNAL '+o.discover+'</span><span>'+o.action+'</span></div><h3>'+esc(o.title)+'</h3><p class="angle">'+esc(o.angle)+'</p><div class="stats"><span>Fraîcheur <b>'+o.fr+'</b></span><span>Fit <b>'+o.f+'</b></span><span>Trend <b>'+o.ts+'</b></span><span>Sources/variantes <b>'+o.sources+'</b></span></div>'+(o.trend?'<p class="angle">↗ Tendance associée : '+esc(o.trend)+'</p>':'')+'<div class="links">'+o.links.map(l=>'<a target="_blank" rel="noopener" href="'+esc(l.link)+'">'+esc(l.section)+' — '+esc(l.title)+'</a>').join('')+'</div></div></article>').join(''):'<div class="empty">Aucun faux positif : rien d’assez pertinent pour ce profil lors de ce scan.</div>';
+}catch(e){document.querySelector('#list').innerHTML='<div class="err">Échec du scan : '+esc(e.message)+'</div>'}
+finally{btn.disabled=false;btn.textContent='Scanner maintenant'}
+}
+sites.forEach(s=>document.querySelector('#site').insertAdjacentHTML('beforeend','<option value="'+s.id+'">'+s.name+' · '+s.domain+'</option>'));
+document.querySelector('#go').onclick=scan;document.querySelector('#country').onchange=scan;document.querySelector('#lang').onchange=scan;document.querySelector('#site').onchange=scan;scan();
+</script>
+</body></html>
