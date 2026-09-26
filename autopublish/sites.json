@@ -12,28 +12,61 @@
       "id": "betgpt",
       "name": "BetGPT",
       "domain": "betgpt.live",
-      "adapter": "webhook",
+      "adapter": "wordpress",
       "configured": false,
       "autoPublishWhenGreen": true,
-      "quality": {"minWords":{"reactive":700,"pillar":1500},"maxWords":{"reactive":1200,"pillar":3000},"minSources":2}
+      "quality": {
+        "minWords": {
+          "reactive": 700,
+          "pillar": 1500
+        },
+        "maxWords": {
+          "reactive": 1200,
+          "pillar": 3000
+        },
+        "minSources": 2
+      },
+      "connectionState": "approval_pending"
     },
     {
       "id": "freehotels",
       "name": "FreeHotels",
       "domain": "freehotels.info",
-      "adapter": "webhook",
+      "adapter": "wordpress",
       "configured": false,
       "autoPublishWhenGreen": true,
-      "quality": {"minWords":{"reactive":700,"pillar":1500},"maxWords":{"reactive":1200,"pillar":3000},"minSources":2}
+      "quality": {
+        "minWords": {
+          "reactive": 700,
+          "pillar": 1500
+        },
+        "maxWords": {
+          "reactive": 1200,
+          "pillar": 3000
+        },
+        "minSources": 2
+      },
+      "connectionState": "approval_pending"
     },
     {
       "id": "pulsoplaneta",
       "name": "PulsoPlaneta",
       "domain": "pulsoplaneta.es",
-      "adapter": "webhook",
+      "adapter": "wordpress",
       "configured": false,
       "autoPublishWhenGreen": true,
-      "quality": {"minWords":{"reactive":700,"pillar":1500},"maxWords":{"reactive":1200,"pillar":3000},"minSources":2}
+      "quality": {
+        "minWords": {
+          "reactive": 700,
+          "pillar": 1500
+        },
+        "maxWords": {
+          "reactive": 1200,
+          "pillar": 3000
+        },
+        "minSources": 2
+      },
+      "connectionState": "approval_pending"
     }
   ]
 }
