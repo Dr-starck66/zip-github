@@ -12,9 +12,9 @@
 .panel{background:rgba(13,24,35,.92);border:1px solid var(--l);border-radius:18px}
 .controls{display:grid;grid-template-columns:repeat(3,1fr) auto;gap:12px;padding:14px;margin:20px 0}
 label{font-size:12px;color:var(--m)}select,button{width:100%;margin-top:5px;border-radius:10px;border:1px solid var(--l);background:#07131e;color:var(--t);padding:11px}
-button{background:linear-gradient(135deg,#2456ff,#0ea5c6);font-weight:850;cursor:pointer}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:12px 0}
+button{background:linear-gradient(135deg,#2456ff,#0ea5c6);font-weight:850;cursor:pointer}.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:12px 0}
 .metric{padding:15px}.metric span{display:block;color:var(--m);font-size:12px}.metric b{font-size:27px}
-.legend{padding:13px 15px;color:var(--m);font-size:12px}.legend b{color:var(--t)}
+.legend{padding:13px 15px;color:var(--m);font-size:12px}.proof{margin-top:12px;padding:14px}.proof h2{font-size:13px;margin:0 0 10px;letter-spacing:.08em}.proofgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.proofcard{border:1px solid var(--l);border-radius:12px;padding:11px;background:#09141e}.proofcard b{display:block;font-size:13px}.proofcard span{color:var(--m);font-size:11px}.proofcard.ok{border-color:#2d7c54}.proofcard.stale{border-color:#66552d}.legend b{color:var(--t)}
 .err{margin:12px 0;padding:12px 14px;border:1px solid #5e3237;color:#ff9ca6;border-radius:12px;background:#1a0e12}
 .list{overflow:hidden;margin-top:15px}.opp{display:grid;grid-template-columns:76px 1fr;gap:15px;padding:18px;border-bottom:1px solid #17293a}.opp:last-child{border:0}
 .score{width:62px;height:62px;display:grid;place-items:center;border:1px solid var(--l);border-radius:16px;background:#09141e;font-size:23px;font-weight:950}.hot .score{border-color:#2d7c54;color:var(--g)}
@@ -22,8 +22,8 @@ button{background:linear-gradient(135deg,#2456ff,#0ea5c6);font-weight:850;cursor
 h3{font-size:20px;margin:7px 0}.angle{margin:0 0 9px;color:#d0deea}.stats{display:flex;flex-wrap:wrap;gap:12px;color:var(--m);font-size:12px}
 .links a{display:block;color:#87d9ff;text-decoration:none;font-size:12px;margin-top:5px}.empty{padding:24px;color:var(--m)}
 footer{text-align:center;color:#516b82;padding:22px;font-size:11px;letter-spacing:.08em}
-@media(max-width:760px){.wrap{padding:14px}.top{display:block}.live{display:inline-block;margin-top:10px}.controls,.metrics{grid-template-columns:1fr 1fr}.controls button{grid-column:1/-1}.opp{grid-template-columns:52px 1fr;padding:14px}.score{width:48px;height:48px;font-size:18px}}
-@media(max-width:480px){.controls,.metrics{grid-template-columns:1fr}}
+@media(max-width:760px){.wrap{padding:14px}.top{display:block}.live{display:inline-block;margin-top:10px}.controls,.metrics,.proofgrid{grid-template-columns:1fr 1fr}.controls button{grid-column:1/-1}.opp{grid-template-columns:52px 1fr;padding:14px}.score{width:48px;height:48px;font-size:18px}}
+@media(max-width:480px){.controls,.metrics,.proofgrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -40,8 +40,9 @@ footer{text-align:center;color:#516b82;padding:22px;font-size:11px;letter-spacin
 <div class="panel metric"><span>Tendances</span><b id="trends">—</b></div>
 <div class="panel metric"><span>Opportunités ≥ 80</span><b id="hot">—</b></div>
 <div class="panel metric"><span>Dernier scan</span><b id="when">—</b></div>
+<div class="panel metric"><span>Preuve Search Console</span><b id="gsc">0/3</b></div>
 </section>
-<section class="panel legend"><b>CONFIRMED NEWS</b> = observé dans un flux Google News public. · <b>NEWS + TREND SIGNAL</b> = sujet News qui recoupe une tendance. · <b>DISCOVER SIGNAL</b> = score heuristique, jamais une preuve. <b>CONFIRMED DISCOVER</b> sera réservé aux données Search Console des domaines que nous contrôlons.</section>
+<section class="panel legend"><b>CONFIRMED NEWS</b> = observé dans un flux Google News public. · <b>NEWS + TREND SIGNAL</b> = sujet News qui recoupe une tendance. · <b>DISCOVER SIGNAL</b> = score heuristique, jamais une preuve. <b>CONFIRMED DISCOVER</b> est réservé aux URLs de nos propres domaines ayant des impressions Discover vérifiées dans Search Console.</section><section id="proof" class="panel proof"><h2>SEARCH CONSOLE EVIDENCE LAYER</h2><div id="proofgrid" class="proofgrid"><div class="proofcard"><b>Fail-closed</b><span>Aucune confirmation Discover sans donnée GSC fraîche et impressions &gt; 0.</span></div></div></section>
 <div id="errors"></div><section id="list" class="panel list"><div class="empty">Initialisation du radar…</div></section>
 <footer>OBSERVE → CLUSTER → SCORE → MATCH SITE → FIND GAP → PUBLISH → MEASURE → LEARN</footer>
 </main>
@@ -53,6 +54,12 @@ const sites=[
 {id:'freehotels',name:'FreeHotels',domain:'freehotels.info',keys:['voyage','hôtel','hotel','tourisme','destination','vol','train','aéroport','aeroport','plage','vacances','airbnb','compagnie aérienne','aerienne']},
 {id:'pulsoplaneta',name:'PulsoPlaneta',domain:'pulsoplaneta.es',keys:['tecnología','tecnologia','consumo','actualidad','sociedad','móvil','movil','internet','empleo','dinero','viajes','salud','españa','espana']}
 ];
+let evidenceStore={version:1,generatedAt:null,sites:{}};
+async function loadEvidence(){try{const r=await fetch('/evidence/search-console.json?_='+Math.floor(Date.now()/300000));if(!r.ok)throw new Error('HTTP '+r.status);evidenceStore=await r.json()}catch(e){evidenceStore={version:1,generatedAt:null,sites:{}}}return evidenceStore}
+function evidenceAgeHours(){const t=Date.parse(evidenceStore.generatedAt||'');return Number.isFinite(t)?Math.max(0,(Date.now()-t)/36e5):Infinity}
+function validSiteEvidence(id){const e=evidenceStore.sites?.[id],fresh=evidenceAgeHours()<=Number(evidenceStore.policy?.staleAfterHours||36);return !!(e&&e.status==='connected'&&fresh&&Number(e.discover?.impressions)>0)?e:null}
+function discoverPrior(title,id){const e=validSiteEvidence(id);if(!e||!Array.isArray(e.pages))return{score:0,count:0,best:null};let best=0,count=0,bestPage=null;for(const p of e.pages){if(!(Number(p.impressions)>0))continue;let s=similarity(title,p.title||'');for(const q of (p.queries||[]))s=Math.max(s,similarity(title,q));if(s>=.28){count++;if(s>best){best=s;bestPage=p}}}return{score:Math.round(Math.min(100,best*100)),count,best:bestPage}}
+function renderEvidence(){const age=evidenceAgeHours(),cards=sites.map(s=>{const raw=evidenceStore.sites?.[s.id],ok=validSiteEvidence(s.id),stale=raw?.status==='connected'&&!ok;const imp=Number(raw?.discover?.impressions||0),clk=Number(raw?.discover?.clicks||0),ctr=Number(raw?.discover?.ctr||0);return '<div class="proofcard '+(ok?'ok':stale?'stale':'')+'"><b>'+esc(s.name)+' — '+(ok?'CONFIRMED DISCOVER DATA':stale?'STALE / FAIL-CLOSED':'NOT CONNECTED')+'</b><span>'+esc(s.domain)+' · '+imp.toLocaleString('fr-FR')+' impressions · '+clk.toLocaleString('fr-FR')+' clics · CTR '+(ctr*100).toFixed(2)+'%'+(Number.isFinite(age)?' · sync '+age.toFixed(1)+'h':'')+'</span></div>'});document.querySelector('#proofgrid').innerHTML=cards.join('');document.querySelector('#gsc').textContent=sites.filter(s=>validSiteEvidence(s.id)).length+'/'+sites.length}
 const stop=new Set('le la les de des du un une et en au aux pour sur avec dans par est sont ce ces cette son sa ses qui que quoi dont ou se il elle ils elles plus moins tres vers apres avant tout tous toute toutes the a an and of to in on for with from is are was were this that these those as at by'.split(' '));
 const norm=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 const toks=s=>norm(s).split(/\s+/).filter(w=>w.length>2&&!stop.has(w));
@@ -66,7 +73,7 @@ function newsUrl(country,lang,topic){const base=topic?'https://news.google.com/r
 function trendsUrl(country){return 'https://trends.google.com/trending/rss?geo='+country}
 async function feed(url){const r=await fetch(PROXY+encodeURIComponent(url)+'&_='+Math.floor(Date.now()/300000));if(!r.ok)throw new Error('HTTP '+r.status);const x=await r.json();if(x.status!=='ok')throw new Error(x.message||'flux indisponible');return x.items||[]}
 async function scan(){
-const btn=document.querySelector('#go'),errors=[];btn.disabled=true;btn.textContent='Scan en cours…';document.querySelector('#list').innerHTML='<div class="empty">Collecte de Google News et Google Trends…</div>';
+const btn=document.querySelector('#go'),errors=[];await loadEvidence();renderEvidence();btn.disabled=true;btn.textContent='Scan en cours…';document.querySelector('#list').innerHTML='<div class="empty">Collecte de Google News et Google Trends…</div>';
 const country=document.querySelector('#country').value,lang=document.querySelector('#lang').value,site=document.querySelector('#site').value;
 try{
  const calls=await Promise.allSettled([...topics.map(t=>feed(newsUrl(country,lang,t))),feed(trendsUrl(country))]);
@@ -79,16 +86,16 @@ try{
    const trend=tr.find(t=>similarity(t.title,c.title)>=.34);
    for(const s of sites.filter(x=>site==='all'||x.id===site)){
      const f=fit(c.title,s);if(site==='all'&&!f)continue;
-     const fr=freshness(c.date),sat=Math.min(100,c.items.length*16+sources.length*8),ts=trend?80:0;
-     const score=Math.round(Math.min(100,fr*.32+f*.32+ts*.20+Math.min(100,sources.length*20)*.08+Math.max(0,100-sat)*.08));
-     const discover=Math.round(Math.min(99,score*.82+f*.12));
-     rows.push({score,title:c.title,site:s,evidence:trend?'NEWS + TREND SIGNAL':'CONFIRMED NEWS',discover,fr,f,ts,sources:sources.length||c.items.length,date:c.date,trend:trend?.title||'',angle:angle(s,sources.length),action:score>=80?'PUBLIER':score>=65?'PRÉPARER':score>=50?'SURVEILLER':'IGNORER',links:c.items.slice(0,3).map(x=>({title:x.title,link:x.link,section:x.section}))});
+     const fr=freshness(c.date),sat=Math.min(100,c.items.length*16+sources.length*8),ts=trend?80:0,prior=discoverPrior(c.title,s.id);
+     const baseScore=Math.min(100,fr*.32+f*.32+ts*.20+Math.min(100,sources.length*20)*.08+Math.max(0,100-sat)*.08),score=Math.round(Math.min(100,baseScore+prior.score*.10));
+     const discover=Math.round(Math.min(99,score*.78+f*.12+prior.score*.10));
+     rows.push({score,title:c.title,site:s,evidence:trend?'NEWS + TREND SIGNAL':'CONFIRMED NEWS',discover,discoverPrior:prior.score,discoverPriorCount:prior.count,discoverPriorBest:prior.best?.url||'',fr,f,ts,sources:sources.length||c.items.length,date:c.date,trend:trend?.title||'',angle:angle(s,sources.length),action:score>=80?'PUBLIER':score>=65?'PRÉPARER':score>=50?'SURVEILLER':'IGNORER',links:c.items.slice(0,3).map(x=>({title:x.title,link:x.link,section:x.section}))});
    }
  }
  rows.sort((a,b)=>b.score-a.score);
  document.querySelector('#news').textContent=news.length;document.querySelector('#trends').textContent=tr.length;document.querySelector('#hot').textContent=rows.filter(x=>x.score>=80).length;document.querySelector('#when').textContent=new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
  document.querySelector('#errors').innerHTML=errors.length?'<div class="err">Mode dégradé : '+esc(errors.join(' · '))+'</div>':'';
- document.querySelector('#list').innerHTML=rows.length?rows.slice(0,80).map(o=>'<article class="opp '+(o.score>=80?'hot':'')+'"><div class="score">'+o.score+'</div><div><div class="meta"><span class="site">'+esc(o.site.name)+' · '+esc(o.site.domain)+'</span><span class="badge">'+esc(o.evidence)+'</span><span class="badge sig">DISCOVER SIGNAL '+o.discover+'</span><span>'+o.action+'</span></div><h3>'+esc(o.title)+'</h3><p class="angle">'+esc(o.angle)+'</p><div class="stats"><span>Fraîcheur <b>'+o.fr+'</b></span><span>Fit <b>'+o.f+'</b></span><span>Trend <b>'+o.ts+'</b></span><span>Sources/variantes <b>'+o.sources+'</b></span></div>'+(o.trend?'<p class="angle">↗ Tendance associée : '+esc(o.trend)+'</p>':'')+'<div class="links">'+o.links.map(l=>'<a target="_blank" rel="noopener" href="'+esc(l.link)+'">'+esc(l.section)+' — '+esc(l.title)+'</a>').join('')+'</div></div></article>').join(''):'<div class="empty">Aucun faux positif : rien d’assez pertinent pour ce profil lors de ce scan.</div>';
+ document.querySelector('#list').innerHTML=rows.length?rows.slice(0,80).map(o=>'<article class="opp '+(o.score>=80?'hot':'')+'"><div class="score">'+o.score+'</div><div><div class="meta"><span class="site">'+esc(o.site.name)+' · '+esc(o.site.domain)+'</span><span class="badge">'+esc(o.evidence)+'</span><span class="badge sig">DISCOVER SIGNAL '+o.discover+'</span>'+(o.discoverPriorCount?'<span class="badge">LEARNED FROM CONFIRMED DISCOVER '+o.discoverPrior+'</span>':'')+'<span>'+o.action+'</span></div><h3>'+esc(o.title)+'</h3><p class="angle">'+esc(o.angle)+'</p><div class="stats"><span>Fraîcheur <b>'+o.fr+'</b></span><span>Fit <b>'+o.f+'</b></span><span>Trend <b>'+o.ts+'</b></span><span>Discover prior <b>'+o.discoverPrior+'</b></span><span>Sources/variantes <b>'+o.sources+'</b></span></div>'+(o.trend?'<p class="angle">↗ Tendance associée : '+esc(o.trend)+'</p>':'')+'<div class="links">'+o.links.map(l=>'<a target="_blank" rel="noopener" href="'+esc(l.link)+'">'+esc(l.section)+' — '+esc(l.title)+'</a>').join('')+'</div></div></article>').join(''):'<div class="empty">Aucun faux positif : rien d’assez pertinent pour ce profil lors de ce scan.</div>';
 }catch(e){document.querySelector('#list').innerHTML='<div class="err">Échec du scan : '+esc(e.message)+'</div>'}
 finally{btn.disabled=false;btn.textContent='Scanner maintenant'}
 }
