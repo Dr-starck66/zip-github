@@ -137,6 +137,7 @@ export default async (req:Request,context:Context)=>{
     const header=req.headers.get("authorization")||"";
     if(!header.startsWith("Bearer "))return json({error:"unauthorized"},401);
     const token=header.slice(7).trim();
+
     let claims:any;
     try{
       claims=await verifyGithubOidc(token,{
@@ -145,41 +146,80 @@ export default async (req:Request,context:Context)=>{
           const rows=await db.sql`SELECT repository,enabled,allowed_events,required_ref FROM github_trust_policies WHERE repository=${repository} LIMIT 1`;
           const row=(rows as any[])[0];
           if(!row)return null;
-          return {enabled:row.enabled,allowedEvents:row.allowed_events,requiredRef:row.required_ref};
+          const allowedEvents=Array.isArray(row.allowed_events)
+            ? row.allowed_events
+            : typeof row.allowed_events==="string"
+              ? JSON.parse(row.allowed_events)
+              : [];
+          return {enabled:row.enabled,allowedEvents,requiredRef:row.required_ref};
         }
       });
     }catch(e:any){
-      return json({error:"oidc_rejected",reason:String(e?.message||"verification_failed")},401);
+      return json({error:"oidc_rejected",stage:"verify_identity",reason:String(e?.message||"verification_failed").slice(0,180)},401);
     }
-    const b:any=await body(req);
-    const evidence=[
-      String(b.evidence||"").trim(),
-      "GitHub OIDC verified",
-      "repository "+claims.repository,
-      "commit SHA "+claims.sha,
-      "workflow "+String(claims.workflow||"unknown"),
-      "run "+String(claims.runId||"unknown"),
-      "independent GitHub Actions attestation"
-    ].filter(Boolean).join("\n");
-    const r=audit({task:String(b.task||""),answer:String(b.answer||""),evidence},String(b.policy||"strict"));
-    const metadata=JSON.stringify({
-      repository:claims.repository,
-      repositoryId:claims.repositoryId,
-      sha:claims.sha,
-      ref:claims.ref,
-      eventName:claims.eventName,
-      actor:claims.actor,
-      workflow:claims.workflow,
-      workflowRef:claims.workflowRef,
-      jobWorkflowRef:claims.jobWorkflowRef,
-      runId:claims.runId,
-      runNumber:claims.runNumber,
-      runAttempt:claims.runAttempt,
-      subject:claims.subject
-    });
-    await db.sql`INSERT INTO audits(id,api_key_id,policy,task,answer,evidence,checks,score,verdict,fingerprint,created_at,principal_type,principal_id,metadata)
-      VALUES (${r.id},NULL,${r.policy},${r.task},${r.answer},${JSON.stringify(r.evidence)}::jsonb,${JSON.stringify(r.checks)}::jsonb,${r.score},${r.verdict},${r.fingerprint},${r.createdAt},'github_oidc',${claims.repository+":"+claims.runId},${metadata}::jsonb)`;
-    return json({...r,principal:{type:"github_oidc",repository:claims.repository,runId:claims.runId,sha:claims.sha}},201);
+
+    let b:any;
+    try{
+      b=await body(req);
+    }catch(e:any){
+      return json({error:"invalid_attestation_body",stage:"parse_body",reason:String(e?.message||"invalid_json").slice(0,180)},400);
+    }
+
+    try{
+      const evidence=[
+        String(b.evidence||"").trim(),
+        "GitHub OIDC verified",
+        "repository "+claims.repository,
+        "commit SHA "+claims.sha,
+        "workflow "+String(claims.workflow||"unknown"),
+        "run "+String(claims.runId||"unknown"),
+        "independent GitHub Actions attestation"
+      ].filter(Boolean).join("\n");
+
+      const r=audit(
+        {task:String(b.task||""),answer:String(b.answer||""),evidence},
+        String(b.policy||"strict")
+      );
+
+      const metadata={
+        repository:claims.repository,
+        repositoryId:claims.repositoryId??null,
+        sha:claims.sha,
+        ref:claims.ref??null,
+        eventName:claims.eventName??null,
+        actor:claims.actor??null,
+        workflow:claims.workflow??null,
+        workflowRef:claims.workflowRef??null,
+        jobWorkflowRef:claims.jobWorkflowRef??null,
+        runId:claims.runId??null,
+        runNumber:claims.runNumber??null,
+        runAttempt:claims.runAttempt??null,
+        subject:claims.subject??null
+      };
+
+      await db.sql`INSERT INTO audits(
+        id,api_key_id,policy,task,answer,evidence,checks,score,verdict,fingerprint,created_at,
+        principal_type,principal_id,metadata
+      ) VALUES (
+        ${r.id},NULL,${r.policy},${r.task},${r.answer},
+        ${JSON.stringify(r.evidence)}::jsonb,${JSON.stringify(r.checks)}::jsonb,
+        ${r.score},${r.verdict},${r.fingerprint},${r.createdAt},
+        'github_oidc',${claims.repository+":"+String(claims.runId||"unknown")},
+        ${JSON.stringify(metadata)}::jsonb
+      )`;
+
+      return json({
+        ...r,
+        principal:{type:"github_oidc",repository:claims.repository,runId:claims.runId,sha:claims.sha}
+      },201);
+    }catch(e:any){
+      console.error("EVIDENLOCK_ATTEST_PERSIST_FAILED",e);
+      return json({
+        error:"attestation_persist_failed",
+        stage:"persist_audit",
+        reason:String(e?.message||"database_write_failed").slice(0,220)
+      },500);
+    }
   }
 
   if(method==="POST"&&path==="/v1/evidence/github"){
