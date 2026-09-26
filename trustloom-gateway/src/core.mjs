@@ -29,7 +29,7 @@ export function audit(input,policyName="balanced"){
  let verdict=hardFail||score<p.partial?"FAIL":score<p.pass?"PARTIAL":"PASS";
  if(p.requireRedTeam&&!checks[2].ok&&verdict==="PASS")verdict="PARTIAL";
  if(p.requireRepro&&!checks[4].ok&&verdict==="PASS")verdict="PARTIAL";
- const canonical={schema:"trustloom/audit@3",policy:p.id,task,answer,evidence,checks,score,verdict};
+ const canonical={schema:"evidenlock/audit@3",policy:p.id,task,answer,evidence,checks,score,verdict};
  const fingerprint=crypto.createHash("sha256").update(JSON.stringify(canonical)).digest("hex");
  return {...canonical,id:"TL-"+Date.now().toString(36).toUpperCase()+"-"+crypto.randomBytes(3).toString("hex").toUpperCase(),createdAt:new Date().toISOString(),fingerprint};
 }
@@ -40,13 +40,13 @@ export async function verifyEvidence(items,{timeoutMs=3500}={}){
   if(!/^https?:\/\//i.test(url||"")){results.push({url,status:"SKIPPED",reason:"not_http_url"});continue}
   try{
    const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),timeoutMs);
-   const res=await fetch(url,{method:"HEAD",redirect:"follow",signal:ctrl.signal,headers:{"user-agent":"TrustLoom-Gateway/3.0"}});
+   const res=await fetch(url,{method:"HEAD",redirect:"follow",signal:ctrl.signal,headers:{"user-agent":"EvidenLock-Gateway/3.0"}});
    clearTimeout(timer);results.push({url,status:res.ok?"VERIFIED":"UNREACHABLE",httpStatus:res.status,finalUrl:res.url});
   }catch(e){results.push({url,status:"ERROR",reason:e.name==="AbortError"?"timeout":"fetch_failed"})}
  }
  return results;
 }
 export function githubCommitEvidence({repository,sha,token}){
- const headers={"accept":"application/vnd.github+json","user-agent":"TrustLoom-Gateway/3.0"};if(token)headers.authorization="Bearer "+token;
+ const headers={"accept":"application/vnd.github+json","user-agent":"EvidenLock-Gateway/3.0"};if(token)headers.authorization="Bearer "+token;
  return fetch("https://api.github.com/repos/"+repository+"/commits/"+sha,{headers}).then(async r=>({ok:r.ok,status:r.status,data:r.ok?await r.json():null}));
 }
