@@ -3,7 +3,7 @@
 const VERSION="2.0.0";
 const HIGH_CERTAINTY=["100%","garanti","certain","toujours","jamais","aucune erreur","parfaitement","irréfutable","terminé","fini","validé","pass","déployé","fonctionne"];
 const PROOF_TERMS=["http 200","status 200","test","tests","log","preuve","evidence","mesure","benchmark","capture","screenshot","commit","curl","playwright","pytest","source","citation","vérifié","verifie","reprodu","sha","hash"];
-const COUNTER_TERMS=["contre-test","countertest","red team","false-pass","false pass","faux pass","adversarial","réfut","refut","attaque"];
+const COUNTER_TERMS=["contre-test","countertest","red team","false-pass","false pass","faux pass","adversarial","tentative de réfutation","tentative de refutation","counterexample","contre-exemple"];
 const REPRO_TERMS=["reprodu","seconde exécution","second run","clean run","fresh run","indépendant","independent","repeat","répété","repete"];
 const PRIMARY_TERMS=["source primaire","primary source","documentation officielle","official docs","journal","dataset","mesure brute","raw log"];
 function norm(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
@@ -13,7 +13,7 @@ function urls(text){return String(text||"").match(/https?:\/\/[^\s)\]}>,]+/g)||[
 function evidenceLines(text){return String(text||"").split(/\n+/).map(x=>x.trim()).filter(Boolean)}
 function classifyClaim(s){const t=norm(s);if(/\b(est|sont|a|ont|fait|fonctionne|deploy|valide|prouve|montre|confirme|atteint)\b/.test(t))return "assertion";if(/\b(devrait|pourrait|peut|probable|semble|suggere)\b/.test(t))return "qualified";return "statement"}
 function extractClaims(answer){return sentences(answer).slice(0,40).map((text,i)=>({id:"C"+(i+1),text,type:classifyClaim(text),risk:countHits(text,HIGH_CERTAINTY)}))}
-function parseEvidence(text){return evidenceLines(text).slice(0,40).map((raw,i)=>{const u=urls(raw)[0]||null,low=norm(raw);let type=u?"url":/http\s*200|status\s*200/.test(low)?"http":/test|pytest|playwright|spec/.test(low)?"test":/commit|sha|hash/.test(low)?"artifact":/source|citation|doc/.test(low)?"source":"note";return {id:"E"+(i+1),text:raw,type,url:u,independent:/indep|seconde|second|autre source|third.party|externe/.test(low),primary:countHits(raw,PRIMARY_TERMS)>0}})}
+function parseEvidence(text){return evidenceLines(text).slice(0,40).map((raw,i)=>{const u=urls(raw)[0]||null,low=norm(raw);let type=u?"url":/http\s*200|status\s*200/.test(low)?"http":/test|pytest|playwright|spec/.test(low)?"test":/commit|sha|hash|log/.test(low)?"artifact":/source|citation|doc|dataset/.test(low)?"source":"note";return {id:"E"+(i+1),text:raw,type,url:u,independent:/indep|seconde|second|autre source|third.party|externe/.test(low),primary:countHits(raw,PRIMARY_TERMS)>0}})}
 function tokenSet(s){return new Set(norm(s).replace(/https?:\/\/\S+/g," ").replace(/[^a-z0-9 ]/g," ").split(/\s+/).filter(x=>x.length>4))}
 function overlap(a,b){const A=tokenSet(a),B=tokenSet(b);if(!A.size||!B.size)return 0;let n=0;A.forEach(x=>{if(B.has(x))n++});return n/Math.min(A.size,B.size)}
 function linkGraph(claims,evidence){const edges=[];claims.forEach(c=>evidence.forEach(e=>{const o=overlap(c.text,e.text);if(o>=.18)edges.push({from:c.id,to:e.id,weight:+o.toFixed(2)})}));return {nodes:[...claims.map(c=>({id:c.id,kind:"claim",label:c.text.slice(0,72)})),...evidence.map(e=>({id:e.id,kind:"evidence",label:e.text.slice(0,72)}))],edges}}
