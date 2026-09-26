@@ -1,0 +1,32 @@
+name: Deploy FreeHotels V3 to Netlify
+on:
+  push:
+    branches: [freehotels-deploy]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout deploy branch
+        uses: actions/checkout@v4
+      - name: Rebuild static bundle
+        run: |
+          rm -rf site-src site.zip
+          mkdir -p site-src
+          base64 -d freehotels-site.zip.b64 > site.zip
+          unzip -q site.zip -d site-src
+          test -f site-src/index.html
+          test -f site-src/news/index.html
+          test -f site-src/sitemap-news.xml
+          test -f site-src/feed.xml
+      - name: Deploy to existing Netlify site
+        working-directory: site-src
+        run: >
+          npx -y @netlify/mcp@latest
+          --site-id 0d941ca4-e9b1-49cd-b90e-4b96994362fa
+          --proxy-path "https://netlify-mcp.netlify.app/proxy/eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..CWCqgSuzR6UlDb0N.JyyWgg1oUXn0SQ4Ay7WfGh20KjKlZtC9ck-wQWk8NuORK3VZBieM-sbrSs6-DzBdFGWdpAfWdv6xY6L6UyKpsuCS_c6ZoTMOEiIf_g8nQC4wVrUqCrcxuEJUXQ1EJ8ntkbBMwUJ6Aj8Bcnj_TrFvmwGG3NAwI2XTx6QVMAXveOQhcpYYzdKAQTiZCjToPWtJHVteJGsQaanItXAY5H03PQCR_oOgmUWyj5WWFi4Y9EQJFvGZRDLpoGNx6MGSkp4EJ8n_4VlPIafP6teh2KCr6nNQNAvTO3-nmn4pw1zFqGYGoyB9Hbhrw5vs8U7wWK2yw5U7Bh1JiJKFIlNt7icKTGSmh30rmJeK3Kt9zln2cz0_FOQG7L9tnj-fiV1YUXO4AVop9qAK.N6v3x_K_3foAqH42NcSjfQ"
