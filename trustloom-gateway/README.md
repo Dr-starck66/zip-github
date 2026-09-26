@@ -1,4 +1,4 @@
-# TrustLoom Gateway v3
+# EvidenLock Gateway v3
 
 Evidence-first reliability gateway for AI agents. Internal method: Mythos Astra Ω.
 
@@ -24,6 +24,6 @@ POST /v1/audits
 {"policy":"strict","task":"PASS if deployment and independent verification succeed","answer":"...","evidence":"https://... HTTP 200\nPlaywright test PASS independent\nRed Team counter-test PASS\nsecond run reproduced"}
 
 ## Architecture
-Client/agent -> TrustLoom Gateway -> policy engine -> evidence verifiers -> audit report -> ledger
+Client/agent -> EvidenLock Gateway -> policy engine -> evidence verifiers -> audit report -> ledger
 
 The gateway does not call an LLM. It evaluates the evidence discipline around LLM/agent outputs, keeping the control layer provider-independent.
