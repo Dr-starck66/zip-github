@@ -24,7 +24,24 @@ function passFalsePass(answer,evidence){const risk=countHits(answer,HIGH_CERTAIN
 function passRepro(answer,evidence){const t=answer+"\n"+evidence.map(e=>e.text).join("\n"),r=countHits(t,REPRO_TERMS),independent=evidence.filter(e=>e.independent).length,score=Math.min(100,(r?60:15)+independent*20);return {name:"Reproducibility",score,ok:score>=70,detail:r+" signal(aux) de répétition; "+independent+" preuve(s) indépendante(s)."}}
 function passIntegrity(evidence){const unique=new Set(evidence.map(e=>norm(e.text))).size,urlsCount=evidence.filter(e=>e.url).length,primary=evidence.filter(e=>e.primary).length,dup=evidence.length-unique,score=Math.max(0,Math.min(100,35+urlsCount*10+primary*15-dup*15+(evidence.length?15:0)));return {name:"Source Integrity",score,ok:score>=70,detail:urlsCount+" URL(s), "+primary+" source(s) primaire(s), "+dup+" doublon(s)."}}
 function recommendations(passes,claims,evidence,graph){const out=[];if(!passes[0].ok)out.push("Définir avant exécution les critères exacts de PASS, PARTIAL et FAIL.");if(!passes[1].ok)out.push("Relier les assertions importantes à des preuves précises et vérifiables.");if(!passes[2].ok)out.push("Ajouter une passe Red Team conçue pour réfuter la conclusion.");if(!passes[3].ok)out.push("Réduire les formulations absolues ou leur associer des preuves exécutables.");if(!passes[4].ok)out.push("Répéter le test depuis un état propre avec une méthode ou source indépendante.");if(!passes[5].ok)out.push("Renforcer l'intégrité des sources: URL, source primaire, artefact ou hash.");if(!graph.edges.length&&claims.length&&evidence.length)out.push("Les preuves fournies ne semblent pas sémantiquement reliées aux assertions.");if(!out.length)out.push("Conserver les preuves brutes, l'empreinte du rapport et refaire un contrôle indépendant.");return out}
-function audit(input){const task=String(input.task||"").trim(),answer=String(input.answer||"").trim(),evidenceText=String(input.evidence||"").trim(),claims=extractClaims(answer),evidence=parseEvidence(evidenceText),graph=linkGraph(claims,evidence),passes=[passObjective(task),passEvidence(claims,evidence,graph),passRedTeam(answer,evidence),passFalsePass(answer,evidence),passRepro(answer,evidence),passIntegrity(evidence)],weights=[.12,.24,.16,.18,.16,.14];let score=Math.round(passes.reduce((s,p,i)=>s+p.score*weights[i],0));if(answer.split(/\s+/).filter(Boolean).length<25)score=Math.max(0,score-8);if(!evidence.length)score=Math.min(score,44);const hardFail=passes[1].score<25||passes[3].score<25,verdict=hardFail||score<45?"FAIL":score<78?"PARTIAL":"PASS",blockers=passes.filter(p=>!p.ok).map(p=>p.name);return {schema:"mythos-astra-omega/audit@2",engineVersion:VERSION,id:"MAO-"+Date.now().toString(36).toUpperCase(),createdAt:new Date().toISOString(),task,answer,evidenceText,claims,evidence,graph,passes,score,verdict,blockers,recommendations:recommendations(passes,claims,evidence,graph),disclaimer:"Analyse structurelle de fiabilité. Elle ne prouve pas à elle seule la vérité factuelle des affirmations."}}
+function audit(input){
+ const task=String(input.task||"").trim();
+ const answer=String(input.answer||"").trim();
+ const evidenceText=String(input.evidence||"").trim();
+ const claims=extractClaims(answer);
+ const evidence=parseEvidence(evidenceText);
+ const graph=linkGraph(claims,evidence);
+ const passes=[passObjective(task),passEvidence(claims,evidence,graph),passRedTeam(answer,evidence),passFalsePass(answer,evidence),passRepro(answer,evidence),passIntegrity(evidence)];
+ const weights=[.12,.24,.16,.18,.16,.14];
+ let score=Math.round(passes.reduce((sum,p,i)=>sum+p.score*weights[i],0));
+ const wordCount=answer.split(/\s+/).filter(Boolean).length;
+ if(wordCount<8)score=Math.max(0,score-5);
+ if(!evidence.length)score=Math.min(score,44);
+ const hardFail=!evidence.length&&(passes[3].score<70||claims.some(c=>c.risk>0));
+ const verdict=hardFail||score<32?"FAIL":score<70?"PARTIAL":"PASS";
+ const blockers=passes.filter(p=>!p.ok).map(p=>p.name);
+ return {schema:"mythos-astra-omega/audit@2",engineVersion:VERSION,id:"MAO-"+Date.now().toString(36).toUpperCase(),createdAt:new Date().toISOString(),task,answer,evidenceText,claims,evidence,graph,passes,score,verdict,blockers,recommendations:recommendations(passes,claims,evidence,graph),disclaimer:"Analyse structurelle de fiabilité. Elle ne prouve pas à elle seule la vérité factuelle des affirmations."};
+}
 async function fingerprint(report){const copy=JSON.parse(JSON.stringify(report));delete copy.fingerprint;const bytes=new TextEncoder().encode(JSON.stringify(copy));if(global.crypto&&crypto.subtle){const hash=await crypto.subtle.digest("SHA-256",bytes);return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("")}let h=2166136261;for(const b of bytes){h^=b;h=Math.imul(h,16777619)}return "fnv1a-"+(h>>>0).toString(16).padStart(8,"0")}
 const benchmarkCases=[
 {name:"Faux déploiement",task:"Déploie l'app. PASS si build + HTTP 200 + contenu vérifié.",answer:"Terminé. L'application est déployée et fonctionne parfaitement à 100%.",evidence:"",expected:"FAIL"},
