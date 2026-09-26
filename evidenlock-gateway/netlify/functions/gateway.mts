@@ -1,0 +1,124 @@
+import type { Config, Context } from "@netlify/functions";
+import { getDatabase } from "@netlify/database";
+import dns from "node:dns/promises";
+import net from "node:net";
+import crypto from "node:crypto";
+import { audit, policies, hashApiKey, createApiKey, hasScope } from "../../src/core.mjs";
+
+function json(data:unknown,status=200){
+  return new Response(JSON.stringify(data),{status,headers:{"content-type":"application/json; charset=utf-8","cache-control":"no-store"}});
+}
+async function body(req:Request){
+  const len=Number(req.headers.get("content-length")||0);
+  if(len>1_000_000)throw new Error("payload_too_large");
+  return req.json().catch(()=>({}));
+}
+function isPrivateIp(ip:string){
+  if(net.isIP(ip)===4){
+    const p=ip.split(".").map(Number);
+    return p[0]===10||p[0]===127||(p[0]===169&&p[1]===254)||(p[0]===172&&p[1]>=16&&p[1]<=31)||(p[0]===192&&p[1]===168)||p[0]===0;
+  }
+  if(net.isIP(ip)===6){
+    const x=ip.toLowerCase();
+    return x==="::1"||x==="::"||x.startsWith("fc")||x.startsWith("fd")||x.startsWith("fe80:");
+  }
+  return true;
+}
+async function safeHttpUrl(raw:string){
+  const u=new URL(raw);
+  if(!["http:","https:"].includes(u.protocol))throw new Error("unsupported_protocol");
+  if(["localhost","localhost.localdomain"].includes(u.hostname.toLowerCase()))throw new Error("private_target");
+  const resolved=await dns.lookup(u.hostname,{all:true,verbatim:true});
+  if(!resolved.length||resolved.some(r=>isPrivateIp(r.address)))throw new Error("private_target");
+  return u;
+}
+async function verifyUrl(raw:string){
+  let current=(await safeHttpUrl(raw)).toString();
+  for(let hop=0;hop<4;hop++){
+    const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),3500);
+    try{
+      const res=await fetch(current,{method:"HEAD",redirect:"manual",signal:ctrl.signal,headers:{"user-agent":"EvidenLock-Gateway/3.1"}});
+      if(res.status>=300&&res.status<400){
+        const loc=res.headers.get("location");if(!loc)return {url:raw,status:"UNREACHABLE",httpStatus:res.status};
+        current=(await safeHttpUrl(new URL(loc,current).toString())).toString();continue;
+      }
+      return {url:raw,status:res.ok?"VERIFIED":"UNREACHABLE",httpStatus:res.status,finalUrl:current};
+    }catch(e:any){return {url:raw,status:"ERROR",reason:e?.name==="AbortError"?"timeout":String(e?.message||"fetch_failed")}}
+    finally{clearTimeout(timer)}
+  }
+  return {url:raw,status:"ERROR",reason:"too_many_redirects"};
+}
+async function authenticate(req:Request,requiredScope:string){
+  const header=req.headers.get("authorization")||"";
+  if(!header.startsWith("Bearer "))return {ok:false,response:json({error:"unauthorized"},401)};
+  const hash=hashApiKey(header.slice(7).trim()),db=getDatabase();
+  const rows=await db.sql`SELECT id,name,scopes,active FROM api_keys WHERE key_hash=${hash} LIMIT 1`;
+  const key=rows[0] as any;
+  if(!key||!key.active)return {ok:false,response:json({error:"unauthorized"},401)};
+  if(!hasScope(key.scopes,requiredScope))return {ok:false,response:json({error:"forbidden",requiredScope},403)};
+  await db.sql`UPDATE api_keys SET last_used_at=NOW() WHERE id=${key.id}`;
+  return {ok:true,key};
+}
+async function createStoredKey(name:string,scopes:string[]){
+  const db=getDatabase(),k=createApiKey(),id="key_"+crypto.randomBytes(8).toString("hex");
+  await db.sql`INSERT INTO api_keys(id,name,key_prefix,key_hash,scopes) VALUES (${id},${name},${k.prefix},${k.hash},${JSON.stringify(scopes)}::jsonb)`;
+  return {id,name,key:k.raw,keyPrefix:k.prefix,scopes};
+}
+
+export default async (req:Request,context:Context)=>{
+  const u=new URL(req.url),path=u.pathname,method=req.method.toUpperCase(),db=getDatabase();
+
+  if(method==="GET"&&path==="/health")return json({ok:true,service:"evidenlock-gateway",version:"3.1.0",persistence:"netlify-database"});
+  if(method==="GET"&&path==="/v1/policies")return json({policies});
+
+  if(method==="POST"&&path==="/v1/admin/bootstrap"){
+    const secret=req.headers.get("x-bootstrap-secret")||"";
+    const expected=Netlify.env.get("EVIDENLOCK_BOOTSTRAP_SECRET")||"";
+    if(!expected||secret!==expected)return json({error:"forbidden"},403);
+    const existing=await db.sql`SELECT COUNT(*)::int AS count FROM api_keys`;
+    if(Number((existing[0] as any)?.count||0)>0)return json({error:"already_bootstrapped"},409);
+    return json(await createStoredKey("bootstrap-admin",["*"]),201);
+  }
+
+  if(method==="POST"&&path==="/v1/api-keys"){
+    const auth=await authenticate(req,"keys:write");if(!auth.ok)return auth.response;
+    const b=await body(req),scopes=Array.isArray((b as any).scopes)?(b as any).scopes:["audit:write","audit:read","evidence:verify"];
+    return json(await createStoredKey(String((b as any).name||"api-key"),scopes),201);
+  }
+
+  if(method==="POST"&&path==="/v1/audits"){
+    const auth=await authenticate(req,"audit:write");if(!auth.ok)return auth.response;
+    const b:any=await body(req),r=audit(b,b.policy);
+    await db.sql`INSERT INTO audits(id,api_key_id,policy,task,answer,evidence,checks,score,verdict,fingerprint,created_at)
+      VALUES (${r.id},${(auth as any).key.id},${r.policy},${r.task},${r.answer},${JSON.stringify(r.evidence)}::jsonb,${JSON.stringify(r.checks)}::jsonb,${r.score},${r.verdict},${r.fingerprint},${r.createdAt})`;
+    return json(r,201);
+  }
+
+  if(method==="GET"&&path==="/v1/audits"){
+    const auth=await authenticate(req,"audit:read");if(!auth.ok)return auth.response;
+    const limit=Math.min(100,Math.max(1,Number(u.searchParams.get("limit")||25)));
+    const rows=await db.sql`SELECT id,policy,task,score,verdict,fingerprint,created_at FROM audits ORDER BY created_at DESC LIMIT ${limit}`;
+    return json({audits:rows,persistence:"netlify-database"});
+  }
+
+  if(method==="POST"&&path==="/v1/evidence/verify"){
+    const auth=await authenticate(req,"evidence:verify");if(!auth.ok)return auth.response;
+    const b:any=await body(req),items=Array.isArray(b.items)?b.items.slice(0,10):[];
+    const results=[];for(const item of items){const url=typeof item==="string"?item:item?.url;if(typeof url==="string")results.push(await verifyUrl(url))}
+    return json({results});
+  }
+
+  if(method==="POST"&&path==="/v1/evidence/github"){
+    const auth=await authenticate(req,"evidence:verify");if(!auth.ok)return auth.response;
+    const b:any=await body(req),repository=String(b.repository||""),sha=String(b.sha||"");
+    if(!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repository)||!/^[a-f0-9]{7,40}$/i.test(sha))return json({error:"invalid_github_evidence"},400);
+    const gh=await fetch("https://api.github.com/repos/"+repository+"/commits/"+sha,{headers:{"accept":"application/vnd.github+json","user-agent":"EvidenLock-Gateway/3.1"}});
+    return json({verified:gh.ok,status:gh.status,repository,sha},gh.ok?200:422);
+  }
+
+  return json({error:"not_found"},404);
+};
+
+export const config:Config={
+  path:["/health","/v1/policies","/v1/admin/bootstrap","/v1/api-keys","/v1/audits","/v1/evidence/verify","/v1/evidence/github"]
+};
