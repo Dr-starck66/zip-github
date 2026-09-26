@@ -20,13 +20,24 @@ jobs:
           mkdir -p site-src
           base64 -d freehotels-site.zip.b64 > site.zip
           unzip -q site.zip -d site-src
+      - name: Enforce strict language separation
+        run: |
+          python3 fix_languages_deploy.py site-src
           test -f site-src/index.html
+          test -f site-src/fr/index.html
+          test -f site-src/de/index.html
+          test -f site-src/en/index.html
           test -f site-src/news/index.html
+          test -f site-src/sitemap-fr.xml
+          test -f site-src/sitemap-de.xml
+          test -f site-src/sitemap-en.xml
           test -f site-src/sitemap-news.xml
-          test -f site-src/feed.xml
+          ! grep -R 'href="/de/' site-src/fr site-src/news
+          ! grep -R 'href="/fr/' site-src/de
+          ! grep -R 'href="/de/' site-src/index.html
       - name: Deploy to existing Netlify site
         working-directory: site-src
         run: >
           npx -y @netlify/mcp@latest
           --site-id 0d941ca4-e9b1-49cd-b90e-4b96994362fa
-          --proxy-path "https://netlify-mcp.netlify.app/proxy/eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..CWCqgSuzR6UlDb0N.JyyWgg1oUXn0SQ4Ay7WfGh20KjKlZtC9ck-wQWk8NuORK3VZBieM-sbrSs6-DzBdFGWdpAfWdv6xY6L6UyKpsuCS_c6ZoTMOEiIf_g8nQC4wVrUqCrcxuEJUXQ1EJ8ntkbBMwUJ6Aj8Bcnj_TrFvmwGG3NAwI2XTx6QVMAXveOQhcpYYzdKAQTiZCjToPWtJHVteJGsQaanItXAY5H03PQCR_oOgmUWyj5WWFi4Y9EQJFvGZRDLpoGNx6MGSkp4EJ8n_4VlPIafP6teh2KCr6nNQNAvTO3-nmn4pw1zFqGYGoyB9Hbhrw5vs8U7wWK2yw5U7Bh1JiJKFIlNt7icKTGSmh30rmJeK3Kt9zln2cz0_FOQG7L9tnj-fiV1YUXO4AVop9qAK.N6v3x_K_3foAqH42NcSjfQ"
+          --proxy-path "https://netlify-mcp.netlify.app/proxy/eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..yTROys0M06wby3RJ.tDQmCNOO6l7LK9J27A3q_G1UTiuvTI8zXMj2QSvG8YvQkcpNr31m4JtyeomOI0yFdZmln8aqfB_e7-E8EdINQbbypKd9mhrxWVUQENb2G8SArasxhZeIQsHLgeTdi5vSTwdPqcobwRQskOY84w9F2BBeXOVXJhzfsW7fZxDxvzUL0NvnMnLjzzD5d74-qI4YkYdjgJTAXRKmRhLJbNr824Jx9gk6FMO776t_EVjvocLQBFUUr1VpXqfnKlBJB5K9ZOeI6RkHnK0J2X4FhCoKDx9GGplAy88sC6og2lxVpPE9wj2YhgTBQgFtDcezV1qZXeF0AxcysKm8oVnTBB3Zg2we6sjsILGaURxKB2_EIXK2h_Y_O-nFarTZYIPl9BWm655lLzwU.EATwxiEsq1RCOyXPgSt6Mg"
