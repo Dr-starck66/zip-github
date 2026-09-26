@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {buildGenerationJob} from '../autopublish/job.mjs';
+const site={id:'pulsoplaneta',name:'PulsoPlaneta',domain:'pulsoplaneta.es',adapter:'webhook',configured:false,quality:{minWords:{reactive:700,pillar:1500},maxWords:{reactive:1200,pillar:3000}}};
+const job=buildGenerationJob({title:'Nueva función móvil que cambia la experiencia diaria',mode:'DISCOVER / NEWS RÉACTIF',schemaType:'NewsArticle',evidence:'NEWS + TREND SIGNAL',opportunityScore:84,discoverSignal:76,angle:'Explicar impacto práctico',sources:[{title:'Fuente',url:'https://example.com'}]},site);
+assert.equal(job.state,'NEEDS_CONTENT_GENERATION');
+assert.equal(job.editorial.language,'es-ES');
+assert.equal(job.editorial.confirmedDiscover,false);
+assert.equal(job.editorial.minWords,700);
+assert.ok(job.articleContract.forbidden.some(x=>x.includes('Google News')));
+assert.equal(job.outputContract.nextEndpoint,'/api/autopublish/preflight');
+console.log('GENERATION_JOB_TEST_PASS');
