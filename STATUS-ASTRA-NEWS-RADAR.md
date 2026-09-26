@@ -74,3 +74,31 @@ Evidence from executable VM tests:
 
 Current production gate:
 All three destination adapters remain configured=false. No production publication is claimed until a real destination endpoint or authenticated WordPress connection is wired and verified.
+
+
+## Destination audit — FreeHotels / WordPress
+
+FreeHotels Vercel project discovered:
+- project: freehotels-info
+- project id: prj_CRcKh820D2Sm3h9eFS2SkdNtPVcA
+- framework: Next.js
+- older production deployment dpl_83pisPge7tQCBRiDoCxtdQ5KQU3a: READY
+- newer production deployment dpl_DhVKAw3WizFCogF33fULa8RmHxQE: ERROR
+- error: NEXT_NO_ROUTES_MANIFEST
+
+Policy decision:
+- FreeHotels AUTOPUBLISH adapter remains configured=false.
+- Do not automate production writes into a project whose current deployment path is failing.
+- No writable source repository for FreeHotels was found in the connected GitHub account by domain search.
+
+WordPress integration state:
+- WPWriter installation is present.
+- No callable site-management tools were surfaced in the current tool session, so no WordPress destination is claimed as connected.
+
+Latest AUTOPUBLISH implementation commits include:
+- e4c959cedcbc8ee7d87afd237b9425335f467f5d — core engine
+- 73f650631c5f732d9962853ac853ec1af3cf36f6 — API + ledger
+- 9728e0c2e0c6a418dca1fdd35f16df0946706dde — generation jobs
+- 576fa57ceb2cb25129f5c3147604d04bd62e030b — generation-job API
+- 4f3aaeff2059950ed181d2afe92b00ab2429a009 — dashboard button
+- eab6ae6a3f4bdd62896c852d85ee091bb5715ca3 — CI definition
