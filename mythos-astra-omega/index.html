@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mythos Astra Ω — Evidence-First AI Reliability</title>
+<meta name="description" content="Auditez les réponses IA avant de leur faire confiance : preuves, Red Team, faux PASS, reproductibilité et verdict PASS/PARTIAL/FAIL.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://dr-starck66.github.io/zip-github/mythos-astra-omega/">
+<style>
+:root{--b:#080a0f;--p:#0f141d;--p2:#121a26;--l:#263044;--t:#f4f7fb;--m:#8d9aab;--a:#d7ff3f;--ok:#7df58a;--w:#ffc857;--d:#ff6577}
+*{box-sizing:border-box}body{margin:0;background:var(--b);color:var(--t);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.45}button,textarea{font:inherit}
+header{position:sticky;top:0;z-index:20;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(14px,4vw,54px);background:rgba(8,10,15,.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--l)}
+.brand{display:flex;gap:10px;align-items:center;font-weight:900;letter-spacing:.12em}.omega{display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--a);color:var(--a)}.brand small{display:block;font-size:8px;color:var(--m);letter-spacing:.16em}
+nav{display:flex;border:1px solid var(--l);padding:4px;background:#0a0d13}.tab{border:0;background:transparent;color:var(--m);padding:8px 12px;cursor:pointer}.tab.on{background:var(--p2);color:var(--t)}
+main{width:min(1180px,calc(100% - 28px));margin:auto}.hero{padding:72px 0 36px;display:grid;grid-template-columns:1.35fr .65fr;gap:24px;align-items:end}.k{font-size:10px;letter-spacing:.18em;color:var(--a);font-weight:800}.hero h1{font-size:clamp(44px,7vw,82px);line-height:.95;letter-spacing:-.055em;margin:12px 0 22px}.hero h1 span{color:var(--m)}.hero p{max-width:760px;color:#c1c9d5;font-size:16px}.rule{border-left:1px solid var(--a);padding:18px 0 18px 22px}.rule b{font-size:26px}.rule p{font-size:12px;color:var(--m)}
+.view{display:none}.view.on{display:block}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{border:1px solid var(--l);background:linear-gradient(180deg,#101620,#0b0f16);padding:22px}.panel h2{margin:4px 0 16px}.label{display:block;margin:14px 0 6px;font-size:10px;letter-spacing:.08em;color:#b9c3d0;font-weight:800;text-transform:uppercase}
+textarea{width:100%;resize:vertical;background:#080b11;color:var(--t);border:1px solid #2b3649;padding:12px;outline:none}textarea:focus{border-color:#6c7a91}
+.actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}.btn{border:1px solid #344056;background:#182131;color:var(--t);padding:10px 14px;font-weight:800;cursor:pointer}.btn.primary{background:var(--a);color:#090c08;border-color:var(--a)}.privacy{font-size:10px;color:var(--m)}
+.empty{min-height:500px;display:grid;place-content:center;text-align:center;color:var(--m)}.orb{width:90px;height:90px;border:1px solid #43506a;display:grid;place-items:center;margin:0 auto 20px;color:var(--a);font-size:35px}.hidden{display:none!important}
+.headrow{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--l);padding-bottom:18px}.verdict{font-size:42px;font-weight:950}.PASS{color:var(--ok)}.PARTIAL{color:var(--w)}.FAIL{color:var(--d)}.score{font-size:28px;font-weight:900}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.metric{background:#080b11;border:1px solid var(--l);padding:10px}.metric b{display:block;font-size:20px}.metric small{font-size:8px;color:var(--m);letter-spacing:.08em}
+.find h3{font-size:11px;letter-spacing:.1em;text-transform:uppercase}.item{margin:7px 0;padding:10px 12px;background:#080b11;border-left:2px solid var(--w);font-size:12px}.item.high{border-left-color:var(--d)}.item.low{border-left-color:#82f7d7}.repair{border-left-color:var(--a)}
+.method{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.card{border:1px solid var(--l);background:#0a0e15;padding:16px;min-height:135px}.card b{color:var(--a);font-size:10px}.card h3{font-size:13px;margin:9px 0 6px}.card p{font-size:11px;color:var(--m);margin:0}.manifesto{margin-top:16px}.manifesto blockquote{font-size:clamp(26px,4vw,48px);font-weight:900;letter-spacing:-.04em;margin:10px 0}
+.hist{border-top:1px solid var(--l);padding:12px 0;display:grid;grid-template-columns:110px 1fr 150px;gap:12px;font-size:11px}.hist span{font-weight:900}.hist p{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.hist small{color:var(--m)}
+footer{margin-top:70px;border-top:1px solid var(--l);padding:24px;text-align:center;color:var(--m);font-size:9px;letter-spacing:.12em}
+@media(max-width:850px){.hero,.grid{grid-template-columns:1fr}.rule{display:none}.method{grid-template-columns:1fr 1fr}.metrics{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){header{padding:0 10px}.brand small{display:none}.tab{padding:7px}.hero{padding-top:42px}.hero h1{font-size:46px}.panel{padding:15px}.method{grid-template-columns:1fr}.hist{grid-template-columns:80px 1fr}.hist small{display:none}}
+</style>
+</head>
+<body>
+<header>
+<div class="brand"><span class="omega">Ω</span><span>MYTHOS ASTRA<small>EVIDENCE-FIRST RELIABILITY</small></span></div>
+<nav><button class="tab on" data-v="audit">Audit</button><button class="tab" data-v="method">Méthode</button><button class="tab" data-v="history">Historique</button></nav>
+</header>
+<main>
+<section class="hero">
+<div><div class="k">MYTHOS ASTRA Ω / LOCAL AUDITOR V1</div><h1>Ne croyez plus une IA.<br><span>Faites-la se prouver.</span></h1><p>CLAIM → EVIDENCE → TEST → COUNTERTEST → REPAIR → VERDICT. Une couche de contrôle qui cherche les faux PASS avant de valider une réponse.</p></div>
+<aside class="rule"><div class="k">RÈGLE ZÉRO</div><b>PASS ≠ PREUVE</b><p>La confiance ne compte jamais comme preuve. Un PASS doit survivre à une tentative explicite de réfutation.</p></aside>
+</section>
+
+<section id="audit" class="view on">
+<div class="grid">
+<section class="panel">
+<div class="k">01 / INPUT</div><h2>Entrée à auditer</h2>
+<label class="label">Objectif / demande initiale</label><textarea id="task" rows="4" placeholder="Définissez ce qui doit réellement être prouvé."></textarea>
+<label class="label">Réponse de l'IA</label><textarea id="answer" rows="12" placeholder="Collez la réponse, le rapport ou les logs..."></textarea>
+<label class="label">Preuves indépendantes — une par ligne</label><textarea id="evidence" rows="4" placeholder="URL vérifiée&#10;HTTP 200&#10;Test e2e PASS"></textarea>
+<div class="actions"><button class="btn primary" id="run">Ω Lancer l'audit</button><button class="btn" id="sample">Exemple</button><button class="btn" id="clear">Effacer</button></div>
+<p class="privacy">🔒 100 % local : le texte reste dans votre navigateur.</p>
+</section>
+<section class="panel">
+<div id="empty" class="empty"><div><div class="orb">Ω</div><h2>Prêt pour le contre-audit</h2><p>Le moteur recherche certitudes excessives, preuves absentes, manque de contre-test et reproductibilité non démontrée.</p></div></div>
+<div id="results" class="hidden">
+<div class="headrow"><div><div class="k">VERDICT</div><div id="verdict" class="verdict">PARTIAL</div></div><div><div id="score" class="score">0/100</div><small style="color:var(--m)">score structurel</small></div></div>
+<div id="metrics" class="metrics"></div>
+<div class="find"><h3>False-Pass Hunter</h3><div id="findings"></div></div>
+<div class="find"><h3>Reconstruction recommandée</h3><div id="repairs"></div></div>
+<div class="actions"><button class="btn primary" id="md">Exporter Markdown</button><button class="btn" id="json">Exporter JSON</button></div>
+</div>
+</section>
+</div>
+</section>
+
+<section id="method" class="view">
+<section class="panel"><div class="k">PROTOCOLE</div><h2>12 contrôles Mythos Astra Ω</h2><div id="methodgrid" class="method"></div></section>
+<section class="panel manifesto"><div class="k">PRINCIPE</div><blockquote>« La confiance ne compte jamais comme preuve. »</blockquote><p style="color:var(--m)">PASS uniquement avec preuve ; sinon PARTIAL ou FAIL avec le verrou restant explicitement identifié.</p></section>
+</section>
+
+<section id="history" class="view">
+<section class="panel"><div style="display:flex;justify-content:space-between;gap:10px"><div><div class="k">LOCAL STORAGE</div><h2>Historique des audits</h2></div><button class="btn" id="wipe">Vider</button></div><div id="historylist"></div></section>
+</section>
+</main>
+<footer>MYTHOS ASTRA Ω · EVIDENCE-FIRST AI RELIABILITY · LOCAL AUDITOR V1</footer>
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)}, $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+var method=[
+["OBJECTIF","Définir le résultat attendu et les critères PASS/PARTIAL/FAIL."],["ÉTAT RÉEL","Vérifier l'environnement, les données et les accès avant de modifier."],["CONSTRUCTION","Produire une solution exploitable, pas seulement un plan."],["TEST RÉEL","Exécuter et mesurer avec des critères définis avant le test."],["RED TEAM","Essayer volontairement de casser la solution."],["FALSE-PASS HUNTER","Supposer que tout PASS peut être faux et chercher sa réfutation."],["RECONSTRUCTION","Corriger les défauts, jusqu'à revoir l'architecture si nécessaire."],["TRIPLE CHECK²","Vérifier la solution, la vérification et la pertinence des tests."],["INVERSION","Supposer l'hypothèse principale fausse et chercher une alternative."],["PREUVE INDÉPENDANTE","Utiliser une seconde source ou méthode indépendante."],["REPRODUCTIBILITÉ","Répéter depuis un état propre ou indépendant."],["VALIDATION FERMÉE","PASS seulement avec preuve ; sinon PARTIAL ou FAIL."]
+];
+$("#methodgrid").innerHTML=method.map(function(m,i){return '<article class="card"><b>'+String(i+1).padStart(2,"0")+'</b><h3>'+m[0]+'</h3><p>'+m[1]+'</p></article>'}).join("");
+function norm(s){return (s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+function hits(text,arr){var t=norm(text),n=0;arr.forEach(function(x){if(t.indexOf(norm(x))>=0)n++});return n}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function analyze(task,answer,evidence){
+var combined=answer+"\n"+evidence;
+var risk=["100%","garanti","toujours","jamais","forcement","certain","irreputable","termine","fini","deploye","fonctionne","valide","pass","aucune erreur"];
+var proof=["http 200","status 200","test","tests","log","preuve","evidence","mesure","benchmark","capture","screenshot","commit","curl","playwright","pytest","source","citation","verifie","reprodu"];
+var risks=hits(answer,risk), proofs=hits(combined,proof), urls=(combined.match(/https?:\/\/[^\s)\]}>,]+/g)||[]).length;
+var lines=evidence.split(/\n+/).filter(function(x){return x.trim()}).length;
+var claims=(answer.match(/[.!?](?:\s|$)/g)||[]).length||1;
+var criteria=/pass|partial|fail|crit[eè]re|objectif|succ[eè]s|attendu/i.test(task);
+var counter=/contre[- ]?test|red team|faux pass|false[- ]?pass|adversarial|r[eé]fut/i.test(combined);
+var repro=/reprodu|seconde? ex[eé]cution|clean run|fresh run|ind[eé]pendant/i.test(combined);
+var score=34+Math.min(24,proofs*4)+Math.min(12,urls*4)+Math.min(15,lines*5)+(criteria?6:0)+(counter?8:0)+(repro?7:0)-Math.min(21,risks*3);
+if(answer.trim().split(/\s+/).length<40)score-=12;
+if(risks&&proofs===0&&lines===0)score-=18;
+if(/déployé|deployed|production|live/i.test(answer)&&urls===0)score-=10;
+score=Math.max(0,Math.min(100,Math.round(score)));
+var verdict=score>=78?"PASS":score>=45?"PARTIAL":"FAIL", f=[],rep=[];
+if(!criteria){f.push(["medium","Critères de succès non explicitement définis."]);rep.push("Définir avant exécution les critères exacts de PASS, PARTIAL et FAIL.")}
+if(risks){f.push([proofs+lines?"medium":"high",risks+" formulation(s) de forte certitude détectée(s)."]);rep.push("Relier chaque déclaration forte à une preuve vérifiable.")}
+if(proofs===0&&lines===0){f.push(["high","Aucun signal de test, log, mesure ou preuve indépendante détecté."]);rep.push("Ajouter au moins une preuve exécutable : test, log, mesure, URL ou source primaire.")}
+if(/déployé|deployed|production|live/i.test(answer)&&urls===0){f.push(["high","Déploiement affirmé sans URL vérifiable."]);rep.push("Fournir l'URL puis vérifier HTTP et contenu depuis un second client.")}
+if(!counter){f.push(["medium","Aucun contre-test explicite détecté."]);rep.push("Ajouter une passe Red Team conçue pour faire échouer la conclusion.")}
+if(!repro){f.push(["medium","Reproductibilité non démontrée."]);rep.push("Répéter l'exécution depuis un état propre ou avec une méthode indépendante.")}
+if(!f.length){f.push(["low","Aucun faux PASS structurel évident détecté par le moteur local."]);rep.push("Conserver les preuves brutes et refaire un contrôle indépendant.")}
+return {id:"MAO-"+Date.now().toString(36).toUpperCase(),createdAt:new Date().toISOString(),task:task,answer:answer,evidence:evidence,score:score,verdict:verdict,metrics:{claims:claims,proofSignals:proofs+lines,urls:urls,riskSignals:risks},findings:f,repairs:rep,note:"V1 heuristique : évalue la structure de preuve, pas la vérité factuelle de chaque affirmation."}
+function render(r){
+$("#empty").classList.add("hidden");$("#results").classList.remove("hidden");
+var v=$("#verdict");v.textContent=r.verdict;v.className="verdict "+r.verdict;$("#score").textContent=r.score+"/100";
+var labs={claims:"CLAIMS",proofSignals:"PROOFS",urls:"URLS",riskSignals:"RISKS"};
+$("#metrics").innerHTML=Object.keys(r.metrics).map(function(k){return '<div class="metric"><b>'+r.metrics[k]+'</b><small>'+labs[k]+'</small></div>'}).join("");
+$("#findings").innerHTML=r.findings.map(function(x){return '<div class="item '+x[0]+'">'+esc(x[1])+'</div>'}).join("");
+$("#repairs").innerHTML=r.repairs.map(function(x){return '<div class="item repair">'+esc(x)+'</div>'}).join("");window.lastAudit=r}
+function history(){try{return JSON.parse(localStorage.getItem("mao-history")||"[]")}catch(e){return []}}
+function showHistory(){var h=history(),b=$("#historylist");b.innerHTML=h.length?h.map(function(x){return '<div class="hist"><span class="'+x.verdict+'">'+x.verdict+" · "+x.score+'</span><p>'+esc(x.task||"Audit sans titre")+'</p><small>'+new Date(x.createdAt).toLocaleString("fr-FR")+'</small></div>'}).join(""):'<p style="color:var(--m)">Aucun audit local enregistré.</p>'}
+function save(r){var h=history();h.unshift({id:r.id,createdAt:r.createdAt,task:r.task,score:r.score,verdict:r.verdict});localStorage.setItem("mao-history",JSON.stringify(h.slice(0,25)));showHistory()}
+function dl(name,data,type){var a=document.createElement("a"),u=URL.createObjectURL(new Blob([data],{type:type}));a.href=u;a.download=name;a.click();setTimeout(function(){URL.revokeObjectURL(u)},500)}
+$$(".tab").forEach(function(btn){btn.onclick=function(){$$(".tab").forEach(function(x){x.classList.remove("on")});btn.classList.add("on");$$(".view").forEach(function(x){x.classList.remove("on")});$("#"+btn.getAttribute("data-v")).classList.add("on");if(btn.getAttribute("data-v")==="history")showHistory()}})
+$("#run").onclick=function(){var a=$("#answer").value.trim();if(!a){$("#answer").focus();return}var r=analyze($("#task").value.trim(),a,$("#evidence").value.trim());render(r);save(r)}
+$("#sample").onclick=function(){$("#task").value="Déploie l'application. PASS seulement si le build réussit, l'URL répond HTTP 200 et le contenu est vérifié depuis une seconde méthode." ;$("#answer").value="C'est terminé. L'application est déployée et fonctionne parfaitement. Tout est validé à 100 %.";$("#evidence").value=""}
+$("#clear").onclick=function(){$("#task").value="";$("#answer").value="";$("#evidence").value="";$("#results").classList.add("hidden");$("#empty").classList.remove("hidden")}
+$("#wipe").onclick=function(){localStorage.removeItem("mao-history");showHistory()}
+$("#json").onclick=function(){if(window.lastAudit)dl(window.lastAudit.id+".json",JSON.stringify(window.lastAudit,null,2),"application/json")}
+$("#md").onclick=function(){if(!window.lastAudit)return;var r=window.lastAudit,s="# Mythos Astra Ω — Audit "+r.id+"\n\n- **Verdict:** "+r.verdict+"\n- **Score:** "+r.score+"/100\n\n## Objectif\n"+(r.task||"—")+"\n\n## False-Pass Hunter\n"+r.findings.map(function(x){return "- **"+x[0].toUpperCase()+"** — "+x[1]}).join("\n")+"\n\n## Reconstruction\n"+r.repairs.map(function(x){return "- "+x}).join("\n")+"\n\n> "+r.note;dl(r.id+".md",s,"text/markdown")}
+showHistory()
+})();
+</script>
+</body>
+</html>
