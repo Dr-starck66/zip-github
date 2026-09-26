@@ -6,7 +6,7 @@ export async function handler(req,res){
  if(req.method==="OPTIONS")return json(res,204,{});
  const u=new URL(req.url,"http://localhost");
  try{
-  if(req.method==="GET"&&u.pathname==="/health")return json(res,200,{ok:true,service:"trustloom-gateway",version:"3.0.0"});
+  if(req.method==="GET"&&u.pathname==="/health")return json(res,200,{ok:true,service:"evidenlock-gateway",version:"3.0.0"});
   if(req.method==="GET"&&u.pathname==="/v1/policies")return json(res,200,{policies});
   if(req.method==="GET"&&u.pathname==="/v1/audits")return json(res,200,{audits:ledger.slice(-100).reverse(),persistence:"process-local"});
   if(req.method==="POST"&&u.pathname==="/v1/audits"){const b=await body(req),r=audit(b,b.policy);ledger.push(r);return json(res,200,r)}
@@ -15,4 +15,4 @@ export async function handler(req,res){
   return json(res,404,{error:"not_found"});
  }catch(e){return json(res,400,{error:e.message||"bad_request"})}
 }
-if(process.env.VERCEL!== "1"){http.createServer(handler).listen(process.env.PORT||8787,()=>console.log("TrustLoom Gateway on :"+(process.env.PORT||8787)))}
+if(process.env.VERCEL!== "1"){http.createServer(handler).listen(process.env.PORT||8787,()=>console.log("EvidenLock Gateway on :"+(process.env.PORT||8787)))}
