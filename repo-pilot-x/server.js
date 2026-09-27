@@ -12,6 +12,7 @@ app.set("trust proxy", 1);
 app.use(express.json({ limit: "64kb" }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
+app.use("/aureus", express.static("public/aureus-x"));
 
 app.get("/api/config", aureusConfig);
 app.get("/api/geocode", aureusGeocode);
