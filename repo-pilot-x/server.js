@@ -691,51 +691,6 @@ app.use((err, _req, res, _next) => {
 });
 
 
-async function ensureAureusRepoOnce() {
-  const markerPath = "/data/aureus-x-created.json";
-  try {
-    if (fs.existsSync(markerPath)) return;
-
-    const session = await validAutomationSession();
-    if (!session) {
-      console.log("AUREUS_BOOTSTRAP=NO_SESSION");
-      return;
-    }
-
-    let repo = null;
-    try {
-      repo = await githubRequest(session.access_token, "/user/repos", {
-        method: "POST",
-        body: JSON.stringify({
-          name: "aureus-x",
-          description: "AUREUS-X — Deep Archive Treasure Intelligence: geohistorical research map using Google Maps, Gallica/BnF, Internet Archive and Wikisource.",
-          private: false,
-          auto_init: true,
-          has_issues: true,
-          delete_branch_on_merge: true
-        })
-      });
-    } catch (error) {
-      if (error.status === 422) {
-        repo = await githubRequest(session.access_token, `/repos/${encodeURIComponent(TARGET_LOGIN)}/aureus-x`);
-      } else {
-        throw error;
-      }
-    }
-
-    fs.writeFileSync(markerPath, JSON.stringify({
-      full_name: repo.full_name,
-      html_url: repo.html_url,
-      created_at: Date.now()
-    }), { encoding: "utf8", mode: 0o600 });
-
-    console.log(`AUREUS_BOOTSTRAP=SUCCESS ${repo.full_name} ${repo.html_url}`);
-  } catch (error) {
-    console.error("AUREUS_BOOTSTRAP=FAIL", error?.message || error);
-  }
-}
-
 app.listen(PORT, () => {
   console.log(`RepoPilot X listening on ${PORT}`);
-  ensureAureusRepoOnce();
 });
