@@ -13,6 +13,9 @@ const API = "https://api.github.com";
 const API_VERSION = "2026-03-10";
 const BASE_URL = (process.env.PUBLIC_BASE_URL || "https://repo-pilot-x-production.up.railway.app").replace(/\/$/, "");
 const SESSION_SECRET = process.env.SESSION_SECRET || "";
+const AUTOMATION_KEY = process.env.AUTOMATION_KEY || "";
+const AUTOMATION_SESSION_ENV = process.env.AUTOMATION_SESSION || "";
+let automationSessionSealed = AUTOMATION_SESSION_ENV;
 const COOKIE_SESSION = "rp_session";
 const COOKIE_FLOW = "rp_flow";
 const key = crypto.createHash("sha256").update(SESSION_SECRET || "missing-secret").digest();
@@ -147,6 +150,42 @@ function sessionFromRequest(req) {
 
 function writeSession(res, session) {
   setSecureCookie(res, COOKIE_SESSION, seal(session), 180 * 24 * 60 * 60 * 1000);
+}
+
+function setAutomationSession(session) {
+  automationSessionSealed = seal(session);
+}
+
+function automationAuthorized(req) {
+  const supplied = String(req.headers["x-automation-key"] || "");
+  if (!AUTOMATION_KEY || supplied.length !== AUTOMATION_KEY.length) return false;
+  return crypto.timingSafeEqual(Buffer.from(supplied), Buffer.from(AUTOMATION_KEY));
+}
+
+async function validAutomationSession() {
+  let session = unseal(automationSessionSealed);
+  if (!session?.access_token || !session?.client_id || !session?.client_secret) return null;
+  const expiresAt = Number(session.access_expires_at || 0);
+  if (expiresAt && expiresAt <= Date.now() + 120000) {
+    if (!session.refresh_token) return null;
+    const refreshed = await exchangeOAuth({
+      client_id: session.client_id,
+      client_secret: session.client_secret,
+      grant_type: "refresh_token",
+      refresh_token: session.refresh_token
+    });
+    session = {
+      ...session,
+      access_token: refreshed.access_token,
+      refresh_token: refreshed.refresh_token || session.refresh_token,
+      access_expires_at: refreshed.expires_in ? Date.now() + refreshed.expires_in * 1000 : 0,
+      refresh_expires_at: refreshed.refresh_token_expires_in
+        ? Date.now() + refreshed.refresh_token_expires_in * 1000
+        : session.refresh_expires_at || 0
+    };
+    setAutomationSession(session);
+  }
+  return session;
 }
 
 async function validSession(req, res) {
@@ -334,6 +373,7 @@ app.get("/auth/github/oauth/callback", async (req, res) => {
     };
 
     writeSession(res, session);
+    setAutomationSession(session);
     clearCookie(res, COOKIE_FLOW);
 
     const query = selftest.ok
@@ -346,6 +386,84 @@ app.get("/auth/github/oauth/callback", async (req, res) => {
 });
 
 app.post("/github/events", (_req, res) => res.status(204).end());
+
+app.post("/api/bridge/activate", async (req, res) => {
+  try {
+    const session = await validSession(req, res);
+    if (!session) return res.status(401).json({ ok:false, error:"GITHUB_AUTH_REQUIRED" });
+    setAutomationSession(session);
+    return res.json({ ok:true, bridge:true, login:session.login || null });
+  } catch (error) {
+    return res.status(500).json({ ok:false, error:"BRIDGE_ACTIVATION_FAILED", message:error.message });
+  }
+});
+
+app.get("/api/automation/status", async (req, res) => {
+  if (!automationAuthorized(req)) return res.status(403).json({ ok:false, error:"FORBIDDEN" });
+  try {
+    const session = await validAutomationSession();
+    if (!session) return res.json({ ok:true, ready:false });
+    const me = await githubRequest(session.access_token, "/user");
+    return res.json({ ok:true, ready:true, login:me.login, selftest:Boolean(session.selftest_ok) });
+  } catch (error) {
+    return res.status(error.status || 500).json({ ok:false, ready:false, error:error.message });
+  }
+});
+
+app.get("/api/automation/session-export", async (req, res) => {
+  if (!automationAuthorized(req)) return res.status(403).json({ ok:false, error:"FORBIDDEN" });
+  if (!automationSessionSealed) return res.status(404).json({ ok:false, error:"NO_AUTOMATION_SESSION" });
+  return res.json({ ok:true, sealed_session:automationSessionSealed });
+});
+
+app.post("/api/automation/repos", async (req, res) => {
+  if (!automationAuthorized(req)) return res.status(403).json({ ok:false, error:"FORBIDDEN" });
+  const session = await validAutomationSession();
+  if (!session) return res.status(401).json({ ok:false, error:"AUTOMATION_NOT_READY" });
+
+  const name = normalizeName(req.body?.name);
+  if (!name) return res.status(400).json({ ok:false, error:"INVALID_NAME" });
+
+  const payload = {
+    name,
+    description:sanitizeText(req.body?.description),
+    private:Boolean(req.body?.private),
+    auto_init:req.body?.auto_init !== false,
+    has_issues:req.body?.has_issues !== false,
+    delete_branch_on_merge:true
+  };
+  const gitignore = sanitizeText(req.body?.gitignore_template, 64);
+  const license = sanitizeText(req.body?.license_template, 64);
+  if (gitignore && gitignore !== "none") payload.gitignore_template = gitignore;
+  if (license && license !== "none") payload.license_template = license;
+
+  try {
+    const repo = await githubRequest(session.access_token, "/user/repos", {
+      method:"POST",
+      body:JSON.stringify(payload)
+    });
+    return res.status(201).json({
+      ok:true,
+      repo:{
+        id:repo.id,
+        name:repo.name,
+        full_name:repo.full_name,
+        html_url:repo.html_url,
+        private:repo.private,
+        default_branch:repo.default_branch
+      },
+      session_rotated:Boolean(session.access_expires_at)
+    });
+  } catch (error) {
+    return res.status(error.status || 500).json({
+      ok:false,
+      error:"GITHUB_CREATE_FAILED",
+      message:error.message,
+      details:error.details || null
+    });
+  }
+});
+
 
 app.post("/api/logout", (_req, res) => {
   clearCookie(res, COOKIE_SESSION);
