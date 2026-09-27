@@ -48,9 +48,17 @@ async function checkHealth() {
       health.textContent = `GitHub connecté : @${data.login}${data.selftest ? " · création vérifiée" : ""}`;
       hideAuth();
     } else {
-      health.className = "status warn";
-      health.textContent = "GitHub : autorisation unique requise";
-      showAuth();
+      const ar = await fetch("/api/automation/public-status");
+      const automation = await ar.json();
+      if (automation.ready) {
+        health.className = "status ok";
+        health.textContent = `GitHub automatisation active : @${automation.login}`;
+        hideAuth();
+      } else {
+        health.className = "status warn";
+        health.textContent = "GitHub : autorisation requise";
+        showAuth();
+      }
     }
   } catch {
     health.className = "status bad";
@@ -71,8 +79,17 @@ function maybeReportCallback() {
   }
 }
 
-function handleAuthRequired(data) {
-  if (data?.authorize_url) location.href = data.authorize_url;
+async function handleAuthRequired(data) {
+  try {
+    const r = await fetch("/api/automation/public-status");
+    const automation = await r.json();
+    if (automation.ready) {
+      addLog("Automatisation GitHub active. Aucune nouvelle autorisation navigateur n’est nécessaire.", "ok");
+      hideAuth();
+      return;
+    }
+  } catch {}
+  addLog("Session navigateur absente. Le pont d’automatisation reste la voie recommandée.", "info");
 }
 
 document.querySelectorAll(".tab").forEach((btn) => {
