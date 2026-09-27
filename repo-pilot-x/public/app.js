@@ -41,6 +41,9 @@ async function checkHealth() {
     const r = await fetch("/api/health", { credentials: "same-origin" });
     const data = await r.json();
     if (data.github) {
+      try {
+        await fetch("/api/bridge/activate", { method:"POST", credentials:"same-origin" });
+      } catch {}
       health.className = "status ok";
       health.textContent = `GitHub connecté : @${data.login}${data.selftest ? " · création vérifiée" : ""}`;
       hideAuth();
