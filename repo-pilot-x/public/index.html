@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>RepoPilot X — Créateur automatique de repositories GitHub</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow">MYTHOS ASTRA Ω · ZERO-ACTION</div>
+      <h1>RepoPilot X</h1>
+      <p>Crée des repositories GitHub propres, initialisés et prêts à l’emploi en un clic — ou par lots.</p>
+      <div id="health" class="status">Vérification GitHub…</div>
+    </section>
+
+    <section class="card">
+      <div class="tabs">
+        <button class="tab active" data-tab="single">1 repository</button>
+        <button class="tab" data-tab="batch">Création en lot</button>
+      </div>
+
+      <form id="singleForm" class="panel active">
+        <label>Nom du repository
+          <input id="name" name="name" placeholder="mon-nouveau-projet" required autocomplete="off">
+        </label>
+        <label>Description
+          <textarea id="description" name="description" placeholder="Description courte du projet"></textarea>
+        </label>
+        <div class="grid">
+          <label>Visibilité
+            <select id="visibility">
+              <option value="public">Public</option>
+              <option value="private">Privé</option>
+            </select>
+          </label>
+          <label>.gitignore
+            <select id="gitignore">
+              <option value="Node">Node</option>
+              <option value="Python">Python</option>
+              <option value="VisualStudio">VisualStudio</option>
+              <option value="none">Aucun</option>
+            </select>
+          </label>
+          <label>Licence
+            <select id="license">
+              <option value="mit">MIT</option>
+              <option value="apache-2.0">Apache-2.0</option>
+              <option value="gpl-3.0">GPL-3.0</option>
+              <option value="none">Aucune</option>
+            </select>
+          </label>
+        </div>
+        <label class="check"><input id="autoInit" type="checkbox" checked> Initialiser avec README</label>
+        <button class="primary" type="submit">Créer maintenant</button>
+      </form>
+
+      <form id="batchForm" class="panel">
+        <label>Un repository par ligne
+          <textarea id="batchNames" class="batch" placeholder="site-news-1&#10;site-news-2&#10;outil-seo-3"></textarea>
+        </label>
+        <div class="grid">
+          <label>Visibilité
+            <select id="batchVisibility">
+              <option value="public">Public</option>
+              <option value="private">Privé</option>
+            </select>
+          </label>
+          <label>.gitignore
+            <select id="batchGitignore">
+              <option value="Node">Node</option>
+              <option value="Python">Python</option>
+              <option value="none">Aucun</option>
+            </select>
+          </label>
+        </div>
+        <button class="primary" type="submit">Créer toute la série</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="cardTitle">
+        <h2>Journal d’exécution</h2>
+        <button id="clear" class="ghost">Effacer</button>
+      </div>
+      <div id="log" class="log"><div class="muted">Aucune création pour l’instant.</div></div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
