@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ASTRA-1000</title>
+<meta name="description" content="ASTRA-1000 — architecture cognitive distribuée expérimentale.">
+<style>
+:root{color-scheme:dark;--bg:#05070b;--panel:#0d121b;--line:#253248;--text:#edf4ff;--muted:#91a2ba;--accent:#78e6ff;--good:#8bffb0;--warn:#ffd27a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0,#10213a 0,#05070b 40%);font:15px/1.5 Inter,ui-sans-serif,system-ui;color:var(--text)}
+main{max-width:1180px;margin:auto;padding:28px}.hero{display:grid;grid-template-columns:1.4fr .6fr;gap:18px;align-items:stretch}
+.card{background:linear-gradient(180deg,rgba(17,24,36,.96),rgba(8,12,19,.96));border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 20px 70px rgba(0,0,0,.28)}
+h1{font-size:clamp(40px,8vw,88px);line-height:.9;margin:4px 0 18px;letter-spacing:-.06em}h1 span{color:var(--accent)}
+.kicker{font-size:12px;letter-spacing:.24em;color:var(--accent);text-transform:uppercase}
+p{color:var(--muted)}textarea{width:100%;min-height:130px;background:#070b12;border:1px solid #2a3850;border-radius:14px;padding:16px;color:var(--text);resize:vertical;font:inherit}
+button{border:0;border-radius:12px;padding:13px 18px;background:var(--accent);color:#031016;font-weight:800;cursor:pointer}button:disabled{opacity:.5}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}.agent{padding:14px;border:1px solid var(--line);border-radius:14px;background:#0a0f17}.agent b{display:block;color:#dff8ff;font-size:13px}.agent small{color:var(--muted)}
+.status{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.pill{border:1px solid #2d405a;border-radius:999px;padding:5px 9px;font-size:11px;color:#bdd3ef}
+#output{margin-top:18px;white-space:pre-wrap}.hyp{padding:14px;margin:10px 0;border-left:3px solid var(--warn);background:#090e16;border-radius:8px}.meta{font-size:12px;color:var(--muted)}
+.metric{font-size:42px;font-weight:850}.metric small{display:block;font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){main{padding:14px}.grid{grid-template-columns:1fr}h1{font-size:54px}}
+</style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div class="card">
+      <div class="kicker">Experimental cognitive architecture · v0.1.0</div>
+      <h1>ASTRA<span>-1000</span></h1>
+      <p>Rétro-ingénierie conceptuelle d'une intelligence ayant mille ans d'avance : plusieurs agents, critique contradictoire, protocoles falsifiables et mémoire cumulative — sans confondre imagination et preuve.</p>
+      <div class="status">
+        <span class="pill">OBSERVED</span><span class="pill">SUPPORTED</span><span class="pill">EXPERIMENTAL</span><span class="pill">SPECULATIVE</span><span class="pill">FALSIFIED</span>
+      </div>
+      <textarea id="q" placeholder="Donnez un problème scientifique, technique ou stratégique à ASTRA-1000…">Comment une civilisation disposant de mille ans d'avance en IA pourrait-elle améliorer une architecture multi-agents sans violer les lois physiques connues ?</textarea>
+      <div style="margin-top:12px"><button id="run">Lancer une campagne cognitive</button></div>
+    </div>
+    <div class="card">
+      <div class="metric" id="agentCount">8<small>agents spécialisés</small></div>
+      <div class="metric" id="memoryCount">0<small>campagnes en mémoire</small></div>
+      <p>Cette v0 est volontairement fail-closed : aucune source externe n'est simulée. Les affirmations non vérifiées restent explicitement spéculatives.</p>
+    </div>
+  </section>
+
+  <section class="grid" id="agents"></section>
+  <section class="card" id="output" style="display:none"></section>
+</main>
+<script>
+const qs=s=>document.querySelector(s);
+async function load(){
+  const [a,h]=await Promise.all([fetch('/api/architecture').then(r=>r.json()),fetch('/api/health').then(r=>r.json())]);
+  qs('#agentCount').childNodes[0].nodeValue=a.agents.length;
+  qs('#memoryCount').childNodes[0].nodeValue=h.memory_runs;
+  qs('#agents').innerHTML=a.agents.map(x=>`<div class="agent"><b>${x.id}</b><small>${x.role}</small></div>`).join('');
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+qs('#run').onclick=async()=>{
+  const b=qs('#run'), out=qs('#output'); b.disabled=true;b.textContent='Campagne en cours…';out.style.display='block';out.innerHTML='Analyse multi-agents…';
+  try{
+    const r=await fetch('/api/run',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:qs('#q').value})});
+    const j=await r.json(); if(!j.ok) throw new Error(j.error||'Erreur');
+    const x=j.result;
+    out.innerHTML=`<div class="kicker">Campaign ${esc(x.id)}</div><h2>Synthèse de l'arbitre</h2><p>${esc(x.agents.ARBITER.synthesis)}</p><h3>Hypothèses concurrentes</h3>`+
+      x.agents.HYPOTHESIS.map(h=>`<div class="hyp"><b>${h.id} · ${h.state}</b><div>${esc(h.statement)}</div><div class="meta">Confiance initiale: ${Math.round(h.confidence*100)}% · Risque: ${h.critic.severity}<br>Test: ${esc(h.experiment.protocol)}</div></div>`).join('')+
+      `<h3>Action suivante</h3><p>${esc(x.agents.ARBITER.next_action)}</p><div class="meta">Sources externes vérifiées : ${x.agents.EVIDENCE.verified_external_sources}</div>`;
+    const h=await fetch('/api/health').then(r=>r.json());qs('#memoryCount').childNodes[0].nodeValue=h.memory_runs;
+  }catch(e){out.innerHTML='<b>FAIL:</b> '+esc(e.message)}finally{b.disabled=false;b.textContent='Lancer une campagne cognitive'}
+};
+load();
+</script>
+</body>
+</html>
