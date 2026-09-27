@@ -1,5 +1,9 @@
 import express from "express";
 import crypto from "node:crypto";
+import aureusConfig from "./aureus-api/config.js";
+import aureusGeocode from "./aureus-api/geocode.js";
+import aureusHealth from "./aureus-api/health.js";
+import aureusResearch from "./aureus-api/research.js";
 
 const app = express();
 app.disable("x-powered-by");
@@ -7,6 +11,11 @@ app.set("trust proxy", 1);
 app.use(express.json({ limit: "64kb" }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
+
+app.get("/api/config", aureusConfig);
+app.get("/api/geocode", aureusGeocode);
+app.get("/aureus-api/health", aureusHealth);
+app.get("/api/research", aureusResearch);
 
 const PORT = process.env.PORT || 3000;
 const API = "https://api.github.com";
