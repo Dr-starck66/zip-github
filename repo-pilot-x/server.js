@@ -13,6 +13,7 @@ const API = "https://api.github.com";
 const API_VERSION = "2026-03-10";
 const BASE_URL = (process.env.PUBLIC_BASE_URL || "https://repo-pilot-x-production.up.railway.app").replace(/\/$/, "");
 const SESSION_SECRET = process.env.SESSION_SECRET || "";
+const TARGET_LOGIN = process.env.TARGET_GITHUB_LOGIN || "Dr-starck66";
 const AUTOMATION_KEY = process.env.AUTOMATION_KEY || "";
 const AUTOMATION_SESSION_ENV = process.env.AUTOMATION_SESSION || "";
 let automationSessionSealed = AUTOMATION_SESSION_ENV;
@@ -264,7 +265,7 @@ app.get("/auth/github/start", (req, res) => {
     },
     redirect_url: `${BASE_URL}/auth/github/manifest/callback`,
     callback_urls: [`${BASE_URL}/auth/github/oauth/callback`],
-    public: false,
+    public: true,
     default_permissions: {
       administration: "write"
     },
@@ -355,7 +356,15 @@ app.get("/auth/github/oauth/callback", async (req, res) => {
     });
 
     const me = await githubRequest(tokenData.access_token, "/user");
+    if (String(me.login || "").toLowerCase() !== TARGET_LOGIN.toLowerCase()) {
+      clearCookie(res, COOKIE_FLOW);
+      return res.status(409).type("html").send(`Compte GitHub incorrect : <strong>${htmlEscape(me.login || "inconnu")}</strong>. RepoPilot attend <strong>${htmlEscape(TARGET_LOGIN)}</strong>. <a href="/auth/github/start">Recommencer</a>.`);
+    }
     const selftest = await githubSelfTest(tokenData.access_token, me.login);
+    if (!selftest.ok) {
+      clearCookie(res, COOKIE_FLOW);
+      return res.status(409).type("html").send(`Autorisation reçue pour <strong>${htmlEscape(me.login)}</strong>, mais le test réel de création a échoué : ${htmlEscape(selftest.message || "erreur inconnue")}. <a href="/auth/github/start">Recommencer</a>.`);
+    }
 
     const session = {
       client_id: flow.client_id,
