@@ -407,6 +407,17 @@ app.post("/api/bridge/activate", async (req, res) => {
   }
 });
 
+app.get("/api/automation/public-status", async (_req, res) => {
+  try {
+    const session = await validAutomationSession();
+    if (!session) return res.json({ ok:true, ready:false });
+    const me = await githubRequest(session.access_token, "/user");
+    return res.json({ ok:true, ready:true, login:me.login, selftest:Boolean(session.selftest_ok) });
+  } catch {
+    return res.json({ ok:true, ready:false });
+  }
+});
+
 app.get("/api/automation/status", async (req, res) => {
   if (!automationAuthorized(req)) return res.status(403).json({ ok:false, error:"FORBIDDEN" });
   try {
