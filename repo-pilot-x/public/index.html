@@ -13,7 +13,11 @@
       <div class="eyebrow">MYTHOS ASTRA Ω · ZERO-ACTION</div>
       <h1>RepoPilot X</h1>
       <p>Crée des repositories GitHub propres, initialisés et prêts à l’emploi en un clic — ou par lots.</p>
-      <div id="health" class="status">Vérification GitHub…</div>
+      <div class="connection">
+        <div id="health" class="status">Vérification GitHub…</div>
+        <a id="connectBtn" class="connectBtn hidden" href="/auth/github/start">Autoriser GitHub une fois</a>
+      </div>
+      <p id="authNote" class="authNote hidden">Aucun token à créer ou copier. GitHub vous demandera seulement de valider ses écrans de sécurité.</p>
     </section>
 
     <section class="card">
