@@ -1,5 +1,6 @@
 import express from "express";
 import crypto from "node:crypto";
+import fs from "node:fs";
 import aureusConfig from "./aureus-api/config.js";
 import aureusGeocode from "./aureus-api/geocode.js";
 import aureusHealth from "./aureus-api/health.js";
@@ -25,7 +26,18 @@ const SESSION_SECRET = process.env.SESSION_SECRET || "";
 const TARGET_LOGIN = process.env.TARGET_GITHUB_LOGIN || "Dr-starck66";
 const AUTOMATION_KEY = process.env.AUTOMATION_KEY || "";
 const AUTOMATION_SESSION_ENV = process.env.AUTOMATION_SESSION || "";
-let automationSessionSealed = AUTOMATION_SESSION_ENV;
+const AUTOMATION_SESSION_PATH = process.env.AUTOMATION_SESSION_PATH || "/data/automation-session.sealed";
+
+function readPersistentAutomationSession() {
+  try {
+    const value = fs.readFileSync(AUTOMATION_SESSION_PATH, "utf8").trim();
+    return value || "";
+  } catch {
+    return "";
+  }
+}
+
+let automationSessionSealed = AUTOMATION_SESSION_ENV || readPersistentAutomationSession();
 const COOKIE_SESSION = "rp_session";
 const COOKIE_FLOW = "rp_flow";
 const key = crypto.createHash("sha256").update(SESSION_SECRET || "missing-secret").digest();
@@ -164,6 +176,14 @@ function writeSession(res, session) {
 
 function setAutomationSession(session) {
   automationSessionSealed = seal(session);
+  try {
+    fs.mkdirSync("/data", { recursive: true });
+    const tempPath = AUTOMATION_SESSION_PATH + ".tmp";
+    fs.writeFileSync(tempPath, automationSessionSealed, { encoding: "utf8", mode: 0o600 });
+    fs.renameSync(tempPath, AUTOMATION_SESSION_PATH);
+  } catch (error) {
+    console.error("RepoPilot X persistent automation session write failed:", error?.message || error);
+  }
 }
 
 function automationAuthorized(req) {
