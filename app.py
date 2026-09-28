@@ -359,7 +359,14 @@ def autodns_key_diagnostic():
     key = os.getenv("DYNADOT_API_KEY", "")
     domain = os.getenv("AUTODNS_DOMAIN", "betgpt.live")
     if not key:
-        return {"ok": False, "error": "DYNADOT_API_KEY missing"}
+        result = {"ok": False, "error": "DYNADOT_API_KEY missing", "results": []}
+        try:
+            with open("/tmp/autodns_key_diagnostic.json", "w", encoding="utf-8") as fh:
+                json.dump(result, fh, sort_keys=True)
+        except Exception:
+            pass
+        print("AUTODNS_KEY_DIAGNOSTIC", json.dumps(result, sort_keys=True), flush=True)
+        return result
     candidates = [
         ("plain", key),
         ("leading_apostrophe", "'" + key),
