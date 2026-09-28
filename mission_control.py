@@ -131,13 +131,34 @@ def selftest():
         )
         if not ok:
             raise HTTPException(503, "Bell self-test failed evidence checks")
+        root_html = dashboard_html()
+        lab_response = ui_lab()
+        lab_html = lab_response.body.decode("utf-8") if hasattr(lab_response, "body") else str(lab_response)
+        required_root = [
+            'href="/mission/ui/lab"',
+            'href="/mission/ui/history"',
+            'href="/mission/ui/compare"',
+            'href="/mission/ui/projects"',
+            'href="/mission/ui/verify"',
+        ]
+        required_lab = [
+            'method="post"',
+            'action="/mission/ui/run"',
+            'type="submit"',
+            'Exécuter et enregistrer',
+        ]
+        ui_contract_ok = all(x in root_html for x in required_root) and all(x in lab_html for x in required_lab)
+        if not ui_contract_ok:
+            raise HTTPException(503, "Mission Control frontend contract self-test failed")
         return {
             "ok": True,
-            "version": "0.7.0",
-            "test": "bell-100-seed-7",
+            "version": "0.7.1",
+            "test": "bell-100-seed-7 + frontend-contract",
             "counts": counts,
             "evidence_sha256": result["evidence_sha256"],
             "mission_control": True,
+            "ui_contract_ok": True,
+            "critical_actions_require_javascript": False,
         }
     except HTTPException:
         raise
