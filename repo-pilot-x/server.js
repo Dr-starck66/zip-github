@@ -755,6 +755,39 @@ async function runBetgptRepoBootstrap() {
 
 runBetgptRepoBootstrap();
 
+async function runPantomimeDnsRepoBootstrap() {
+  if (process.env.PANTOMIME_DNS_REPO_BOOTSTRAP !== "1") return;
+  try {
+    const session = await validAutomationSession();
+    if (!session) {
+      console.error("PANTOMIME_DNS_REPO_BOOTSTRAP: automation session unavailable");
+      return;
+    }
+    const repoName = "pantomime-dns-fix";
+    try {
+      await githubRequest(session.access_token, "/user/repos", {
+        method:"POST",
+        body:JSON.stringify({
+          name:repoName,
+          description:"Pantomime.org Dynadot to Railway DNS repair",
+          private:false,
+          auto_init:true,
+          has_issues:true,
+          delete_branch_on_merge:true
+        })
+      });
+      console.log("PANTOMIME_DNS_REPO_CREATED", repoName);
+    } catch (error) {
+      if (error.status === 422) console.log("PANTOMIME_DNS_REPO_EXISTS", repoName);
+      else throw error;
+    }
+  } catch (error) {
+    console.error("PANTOMIME_DNS_REPO_FAILED", error?.message || error);
+  }
+}
+
+runPantomimeDnsRepoBootstrap();
+
 app.listen(PORT, () => {
   console.log(`RepoPilot X listening on ${PORT}`);
 });
