@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-import hashlib, json, math, os, subprocess
+import hashlib, json, math, subprocess
 from typing import Literal
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 import numpy as np
 
@@ -29,12 +30,9 @@ class StateVector:
                 i0=base+off; i1=i0+stride; a,b=self.s[i0],self.s[i1]
                 out[i0]=g[0,0]*a+g[0,1]*b; out[i1]=g[1,0]*a+g[1,1]*b
         self.s=out
-    def h(self,q):
-        self.gate(np.array([[1,1],[1,-1]],complex)/math.sqrt(2),q)
-    def x(self,q):
-        self.gate(np.array([[0,1],[1,0]],complex),q)
-    def rz(self,q,t):
-        self.gate(np.array([[np.exp(-.5j*t),0],[0,np.exp(.5j*t)]],complex),q)
+    def h(self,q): self.gate(np.array([[1,1],[1,-1]],complex)/math.sqrt(2),q)
+    def x(self,q): self.gate(np.array([[0,1],[1,0]],complex),q)
+    def rz(self,q,t): self.gate(np.array([[np.exp(-.5j*t),0],[0,np.exp(.5j*t)]],complex),q)
     def cnot(self,c,t):
         if c==t: raise ValueError("control and target must differ")
         out=self.s.copy()
@@ -118,6 +116,7 @@ class LabMetric(BaseModel):
     metric_value:float
     result_digest:str=Field(min_length=32)
     environment_digest:str=Field(min_length=32)
+
 class FederationRequest(BaseModel):
     metric_name:str
     tolerance:float=Field(ge=0)
@@ -156,8 +155,7 @@ def zero_trust(req:WorkloadRequest):
       "clearance_sufficient":req.clearance>=req.classification,
       "attestation_present":bool(req.attestation_digest) if req.require_attestation else True
     }
-    allowed=all(checks.values())
-    return evidence({"allowed":allowed,"checks":checks,"policy":"deny-by-default"})
+    return evidence({"allowed":all(checks.values()),"checks":checks,"policy":"deny-by-default"})
 
 def pqc_status():
     try:
@@ -169,11 +167,149 @@ def pqc_status():
     except Exception as e:
         return {"openssl_available":False,"algorithms":{},"error":str(e)}
 
-@app.get("/")
-def root():
+DASHBOARD = r"""<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ASTRA QUANTUM — Sovereign Research Console</title>
+<style>
+:root{--bg:#060913;--panel:#0d1321;--panel2:#101a2b;--line:#1e3153;--txt:#eef5ff;--muted:#8fa5c3;--cyan:#58e7ff;--green:#62f5a4;--amber:#ffd36a;--red:#ff7185;--violet:#a98cff}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 15% -10%,#16345d 0,transparent 28%),radial-gradient(circle at 90% 0,#2c1752 0,transparent 25%),var(--bg);color:var(--txt);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{max-width:1280px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0 26px}.brand{display:flex;align-items:center;gap:14px}.orb{width:44px;height:44px;border-radius:14px;background:conic-gradient(from 40deg,var(--cyan),var(--violet),var(--green),var(--cyan));box-shadow:0 0 38px #58e7ff55;position:relative}.orb:after{content:"";position:absolute;inset:7px;border-radius:10px;background:#07101d}.brand h1{font-size:20px;margin:0;letter-spacing:.08em}.brand small{display:block;color:var(--muted);margin-top:3px}.status{display:flex;gap:8px;align-items:center;border:1px solid #214533;background:#0b1d18;padding:8px 12px;border-radius:999px;color:var(--green);font-size:13px}.dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 12px var(--green)}
+.hero{display:grid;grid-template-columns:1.45fr .8fr;gap:18px}.card{background:linear-gradient(180deg,#0e1727dd,#0a101ddd);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 20px 50px #0005}.hero h2{font-size:42px;line-height:1.05;margin:0 0 14px;max-width:760px}.accent{color:var(--cyan)}.lead{color:#b8c7da;line-height:1.65;max-width:790px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}button,.btn{border:0;border-radius:12px;padding:11px 15px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px}.primary{background:linear-gradient(135deg,var(--cyan),#6aa8ff);color:#03111a}.ghost{background:#111c2f;color:#dceaff;border:1px solid #263b60}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{padding:15px;border-radius:14px;background:#091321;border:1px solid #1c2d49}.stat b{font-size:24px;display:block}.stat span{color:var(--muted);font-size:12px}.section-title{display:flex;justify-content:space-between;align-items:end;margin:30px 0 12px}.section-title h3{margin:0;font-size:17px;letter-spacing:.04em}.section-title span{font-size:12px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.mini{min-height:144px}.mini .kicker{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}.mini h4{margin:8px 0 7px;font-size:16px}.pill{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:700}.pass{background:#113125;color:var(--green)}.locked{background:#322615;color:var(--amber)}.verify{background:#1a2743;color:#86b9ff}
+.workspace{display:grid;grid-template-columns:.85fr 1.15fr;gap:16px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}label{font-size:12px;color:#9cb0ca}select,input,textarea{width:100%;margin-top:6px;background:#07111f;border:1px solid #243856;color:white;border-radius:10px;padding:10px;outline:none}select:focus,input:focus,textarea:focus{border-color:var(--cyan)}.full{grid-column:1/-1}.console{background:#050a12;border:1px solid #1a2a42;border-radius:14px;padding:14px;min-height:250px;overflow:auto;max-height:430px}.console pre{margin:0;color:#bcd6f5;white-space:pre-wrap;word-break:break-word;font:12px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace}.bars{display:grid;gap:8px;margin-top:14px}.barrow{display:grid;grid-template-columns:90px 1fr 54px;gap:8px;align-items:center;font-size:12px}.track{height:8px;background:#101a2a;border-radius:999px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--violet),var(--cyan));border-radius:999px}
+.audit{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.audit .card{padding:17px}.audit b{display:block;margin-top:8px}.footer{color:#6f86a5;font-size:12px;padding:30px 4px 15px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+@media(max-width:900px){.hero,.workspace{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.hero h2{font-size:34px}} @media(max-width:580px){.wrap{padding:14px}.grid,.audit,.formgrid{grid-template-columns:1fr}.top{align-items:flex-start}.status{font-size:11px}.hero h2{font-size:29px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand"><div class="orb"></div><div><h1>ASTRA QUANTUM</h1><small>Sovereign Research Console · v0.6.0</small></div></div>
+    <div class="status"><span class="dot"></span><span id="liveStatus">RAILWAY · OPÉRATIONNEL</span></div>
+  </div>
+
+  <section class="hero">
+    <div class="card">
+      <div class="pill verify">MYTHOS ASTRA Ω · EVIDENCE-FIRST</div>
+      <h2>Quantum research, <span class="accent">sans faux PASS.</span></h2>
+      <p class="lead">Console publique du noyau ASTRA QUANTUM : expériences Bell/GHZ/random, preuves SHA-256, IV&V statistique, fédération inter-labs, politique Zero Trust et backends matériels maintenus en fail-closed jusqu’à preuve d’accès réel.</p>
+      <div class="actions">
+        <button class="primary" onclick="runExperiment()">▶ Lancer l’expérience</button>
+        <a class="btn ghost" href="/docs" target="_blank">API /docs ↗</a>
+        <button class="ghost" onclick="loadAll()">↻ Re-vérifier</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="stats">
+        <div class="stat"><b id="runtimeV">0.6.0</b><span>Runtime</span></div>
+        <div class="stat"><b id="backendCount">—</b><span>Backends déclarés</span></div>
+        <div class="stat"><b id="pqcCount">—</b><span>Signatures PQC dispo</span></div>
+        <div class="stat"><b>0</b><span>QPU falsifiés comme PASS</span></div>
+      </div>
+      <div style="margin-top:15px;color:var(--muted);font-size:12px;line-height:1.6">La console distingue explicitement simulation, provenance distante et matériel réellement vérifié.</div>
+    </div>
+  </section>
+
+  <div class="section-title"><h3>TRUST FABRIC</h3><span>état du runtime public</span></div>
+  <section class="grid">
+    <div class="card mini"><div class="kicker">Compute</div><h4>NumPy Statevector</h4><span class="pill pass">AVAILABLE</span><p class="lead" style="font-size:12px">Simulateur exact de référence jusqu’à 20 qubits.</p></div>
+    <div class="card mini"><div class="kicker">QPU</div><h4>Google QCS</h4><span class="pill locked">FAIL-CLOSED</span><p class="lead" style="font-size:12px">Aucune exécution matérielle déclarée sans accès authentifié.</p></div>
+    <div class="card mini"><div class="kicker">QPU</div><h4>IBM Quantum</h4><span class="pill locked">FAIL-CLOSED</span><p class="lead" style="font-size:12px">Job ID ≠ preuve matérielle ; binding exact requis.</p></div>
+    <div class="card mini"><div class="kicker">Federation</div><h4>Research Grid</h4><span class="pill pass">CORE READY</span><p class="lead" style="font-size:12px">Quorum, reproductibilité croisée et payload minimization.</p></div>
+  </section>
+
+  <div class="section-title"><h3>QUANTUM LAB</h3><span>exécution réelle du backend public</span></div>
+  <section class="workspace">
+    <div class="card">
+      <div class="formgrid">
+        <label>Expérience<select id="experiment"><option value="bell">Bell pair</option><option value="ghz">GHZ</option><option value="random">Random circuit</option></select></label>
+        <label>Qubits<input id="qubits" type="number" value="5" min="2" max="20"></label>
+        <label>Shots<input id="shots" type="number" value="2000" min="1" max="1000000"></label>
+        <label>Profondeur<input id="depth" type="number" value="6" min="1" max="100"></label>
+        <label class="full">Seed reproductible<input id="seed" type="number" value="42"></label>
+      </div>
+      <div class="actions"><button class="primary" onclick="runExperiment()">Exécuter maintenant</button><button class="ghost" onclick="runIVV()">Tester IV&V</button><button class="ghost" onclick="runFederation()">Tester fédération</button></div>
+      <div id="bars" class="bars"></div>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px"><b>EVIDENCE CONSOLE</b><span id="verdict" class="pill verify">READY</span></div>
+      <div class="console"><pre id="output">Initialisation de la console ASTRA QUANTUM…</pre></div>
+    </div>
+  </section>
+
+  <div class="section-title"><h3>INSTITUTIONAL CONTROLS</h3><span>défense en profondeur</span></div>
+  <section class="audit">
+    <div class="card"><span class="kicker">IV&V</span><b>Paired statistical verification</b><p class="lead" style="font-size:12px">VERIFIED_IMPROVEMENT / NOT_VERIFIED / INCONCLUSIVE avec seuil explicite.</p></div>
+    <div class="card"><span class="kicker">Zero Trust</span><b>Deny by default</b><p class="lead" style="font-size:12px">Identité workload, lab, action, clearance et attestation contrôlés séparément.</p></div>
+    <div class="card"><span class="kicker">PQC</span><b id="pqcLabel">Inspection…</b><p class="lead" style="font-size:12px">ML-DSA/SLH-DSA détectés via OpenSSL lorsque disponibles. Disponibilité ≠ certification FIPS.</p></div>
+  </section>
+
+  <div class="footer"><span>ASTRA QUANTUM v0.6.0 · Railway production</span><span>Truth mode: evidence-first · Hardware QPU: fail-closed</span></div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+async function api(path, options={}){
+  const r=await fetch(path,{headers:{'Content-Type':'application/json'},...options});
+  const data=await r.json();
+  if(!r.ok) throw new Error(data.detail||JSON.stringify(data));
+  return data;
+}
+function show(data, verdict){
+  $('output').textContent=JSON.stringify(data,null,2);
+  $('verdict').textContent=verdict||data.verdict||data.status||'PASS';
+}
+function renderBars(counts){
+  const entries=Object.entries(counts||{}).sort((a,b)=>b[1]-a[1]).slice(0,12);
+  const max=Math.max(...entries.map(x=>x[1]),1);
+  $('bars').innerHTML=entries.map(([k,v])=>`<div class="barrow"><span>${k}</span><div class="track"><div class="fill" style="width:${(100*v/max).toFixed(1)}%"></div></div><b>${v}</b></div>`).join('');
+}
+async function runExperiment(){
+  $('verdict').textContent='RUNNING';
+  try{
+    const payload={experiment:$('experiment').value,qubits:+$('qubits').value,depth:+$('depth').value,shots:+$('shots').value,seed:+$('seed').value};
+    const d=await api('/run',{method:'POST',body:JSON.stringify(payload)}); show(d,'EVIDENCE HASHED'); renderBars(d.counts);
+  }catch(e){show({error:e.message},'FAIL')}
+}
+async function runIVV(){
+  try{
+    const d=await api('/ivv/paired',{method:'POST',body:JSON.stringify({candidate_scores:[.91,.93,.92,.94,.95,.93],baseline_scores:[.86,.87,.88,.88,.89,.87],min_delta:.02,higher_is_better:true})});
+    show(d,d.verdict);
+  }catch(e){show({error:e.message},'FAIL')}
+}
+async function runFederation(){
+  const h='a'.repeat(64), e='b'.repeat(64);
+  try{
+    const d=await api('/federation/reproducibility',{method:'POST',body:JSON.stringify({metric_name:'fidelity',tolerance:.02,min_labs:3,submissions:[
+      {lab_id:'lab-alpha',metric_value:.982,result_digest:h,environment_digest:e},
+      {lab_id:'lab-beta',metric_value:.989,result_digest:h,environment_digest:e},
+      {lab_id:'lab-gamma',metric_value:.985,result_digest:h,environment_digest:e}
+    ]})}); show(d,d.verdict);
+  }catch(err){show({error:err.message},'FAIL')}
+}
+async function loadAll(){
+  try{
+    const [health,backends,pqc,cap]=await Promise.all([api('/health'),api('/backends'),api('/security/pqc'),api('/federation/capabilities')]);
+    $('runtimeV').textContent=health.version;
+    $('backendCount').textContent=Object.keys(backends).filter(k=>k!=='claim_boundary').length;
+    const available=Object.entries(pqc.algorithms||{}).filter(x=>x[1]).length;
+    $('pqcCount').textContent=available;
+    $('pqcLabel').textContent=pqc.openssl_available?available+' algorithmes détectés':'OpenSSL PQC non détecté';
+    show({health,backends,pqc,federation:cap},'LIVE VERIFIED');
+  }catch(e){$('liveStatus').textContent='CHECK FAILED';show({error:e.message},'FAIL')}
+}
+loadAll();
+</script>
+</body></html>"""
+
+@app.get("/", response_class=HTMLResponse)
+def dashboard():
+    return HTMLResponse(DASHBOARD)
+
+@app.get("/api/status")
+def api_status():
     return {"name":"ASTRA QUANTUM","version":VERSION,"status":"operational","platform":"Railway",
-            "truth_mode":"evidence-first","runtime_scope":"public validated core",
-            "docs":"/docs"}
+            "truth_mode":"evidence-first","runtime_scope":"public validated core","docs":"/docs"}
 
 @app.get("/health")
 def health(): return {"ok":True,"version":VERSION}
