@@ -352,6 +352,47 @@ def autodns_dynadot_zone():
         raise HTTPException(502, f"Dynadot API request failed: {exc}")
 
 
+
+@app.get("/autodns/key-diagnostic")
+@app.get("/autodns/key_diagnostic")
+def autodns_key_diagnostic():
+    key = os.getenv("DYNADOT_API_KEY", "")
+    domain = os.getenv("AUTODNS_DOMAIN", "betgpt.live")
+    if not key:
+        return {"ok": False, "error": "DYNADOT_API_KEY missing"}
+    candidates = [
+        ("plain", key),
+        ("leading_apostrophe", "'" + key),
+        ("trailing_apostrophe", key + "'"),
+        ("wrapped_apostrophes", "'" + key + "'"),
+    ]
+    out = []
+    for label, candidate in candidates:
+        params = urllib.parse.urlencode({"key": candidate, "command": "get_dns", "domain": domain})
+        url = "https://api.dynadot.com/api3.json?" + params
+        try:
+            with urllib.request.urlopen(url, timeout=20) as response:
+                raw = response.read().decode("utf-8", errors="replace")
+                http_status = response.status
+            try:
+                payload = json.loads(raw)
+            except Exception:
+                payload = {"raw_prefix": raw[:200]}
+            code = None
+            status = None
+            if isinstance(payload, dict):
+                code = payload.get("ResponseCode") or payload.get("response_code") or payload.get("code")
+                status = payload.get("Status") or payload.get("status")
+            out.append({"candidate": label, "http_status": http_status, "api_code": code, "api_status": status})
+        except urllib.error.HTTPError as exc:
+            out.append({"candidate": label, "http_status": exc.code, "api_code": None, "api_status": "HTTPError"})
+        except Exception as exc:
+            out.append({"candidate": label, "http_status": None, "api_code": None, "api_status": type(exc).__name__})
+    result = {"domain": domain, "results": out}
+    print("AUTODNS_KEY_DIAGNOSTIC", json.dumps(result, sort_keys=True), flush=True)
+    return result
+
+
 @app.get("/autodns/dynadot-zone-rest")
 @app.get("/autodns/dynadot_zone_rest")
 def autodns_dynadot_zone_rest():
