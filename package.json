@@ -1,6 +1,8 @@
 {
-  "name":"pantomime-dns-fix",
-  "version":"1.0.0",
-  "private":true,
-  "scripts":{"start":"node index.js"}
+  "name": "pantomime-dns-fix",
+  "version": "1.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  }
 }
