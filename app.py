@@ -353,6 +353,7 @@ def autodns_dynadot_zone():
 
 
 @app.get("/autodns/dynadot-zone-rest")
+@app.get("/autodns/dynadot_zone_rest")
 def autodns_dynadot_zone_rest():
     key = os.getenv("DYNADOT_API_KEY")
     secret = os.getenv("DYNADOT_API_SECRET")
