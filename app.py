@@ -428,6 +428,15 @@ def autodns_startup_key_diagnostic():
         autodns_dynadot_zone_rest()
     except Exception as exc:
         print("AUTODNS_ZONE_REST_STARTUP_ERROR", type(exc).__name__, str(exc), flush=True)
+    for _dns_name in ("_railway-verify.betgpt.live", "_railway-verify.www.betgpt.live"):
+        try:
+            _url = "https://dns.google/resolve?" + urllib.parse.urlencode({"name": _dns_name, "type": "TXT"})
+            _req = urllib.request.Request(_url, headers={"Accept": "application/dns-json"})
+            with urllib.request.urlopen(_req, timeout=10) as _resp:
+                _payload = json.loads(_resp.read().decode("utf-8", errors="replace"))
+            print("BETGPT_PUBLIC_TXT", json.dumps({"name": _dns_name, "status": _payload.get("Status"), "answers": _payload.get("Answer") or []}, sort_keys=True), flush=True)
+        except Exception as exc:
+            print("BETGPT_PUBLIC_TXT_ERROR", _dns_name, type(exc).__name__, str(exc), flush=True)
     for _host in ("betgpt.live", "www.betgpt.live"):
         try:
             print("BETGPT_PUBLIC_RESOLVE", json.dumps({"host": _host, "result": socket.gethostbyname_ex(_host)}, sort_keys=True), flush=True)
