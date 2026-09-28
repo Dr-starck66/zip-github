@@ -1,0 +1,16 @@
+{
+  "name": "betgpt-railway-live",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node bootstrap.mjs && npm --prefix app ci --include=dev",
+    "start": "npm --prefix app run dev"
+  },
+  "dependencies": {
+    "extract-zip": "^2.0.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
