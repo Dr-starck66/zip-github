@@ -5,7 +5,7 @@ from typing import Literal
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
-import numpy as np
+import numpy as np\nimport mission_control
 
 VERSION="0.6.0"
 app=FastAPI(
@@ -14,7 +14,7 @@ app=FastAPI(
     description="Evidence-first public runtime for ASTRA QUANTUM v0.6.0"
 )
 
-def evidence(payload:dict)->dict:
+mission_control.bind_runner(run_quantum if 'run_quantum' in globals() else None, RunRequest if 'RunRequest' in globals() else None)\n\ndef evidence(payload:dict)->dict:
     body=json.dumps(payload,sort_keys=True,separators=(",",":"))
     return {**payload,"evidence_sha256":hashlib.sha256(body.encode()).hexdigest()}
 
@@ -304,7 +304,7 @@ loadAll();
 
 @app.get("/", response_class=HTMLResponse)
 def dashboard():
-    return HTMLResponse(DASHBOARD)
+    return HTMLResponse(mission_control.dashboard_html())
 
 @app.get("/api/status")
 def api_status():
