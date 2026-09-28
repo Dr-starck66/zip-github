@@ -1,0 +1,13 @@
+{
+  "name": "betgpt-railway-bootstrap",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node bootstrap.mjs && npm --prefix app ci --include=dev",
+    "start": "npm --prefix app run dev"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
