@@ -139,7 +139,7 @@ def selftest():
             'href="/mission/ui/history"',
             'href="/mission/ui/compare"',
             'href="/mission/ui/projects"',
-            'href="/mission/ui/verify"',
+            'href="/mission/ui/verify"',\n            'href="/mission/ui/qpu"',
         ]
         required_lab = [
             'method="post"',
@@ -430,7 +430,7 @@ def _shell(title:str, body:str) -> str:
       <a class="btn" href="/mission/ui/history">History</a>
       <a class="btn" href="/mission/ui/compare">Compare</a>
       <a class="btn" href="/mission/ui/projects">Projects</a>
-      <a class="btn" href="/mission/ui/verify">Verify</a>
+      <a class="btn" href="/mission/ui/qpu">QPU Gateway</a>\n      <a class="btn" href="/mission/ui/verify">Verify</a>
       <a class="btn" href="/docs" target="_blank">API /docs ↗</a>
     </div>
     """
@@ -538,3 +538,135 @@ def ui_verify():
     raw=json.dumps(result,indent=2)
     body=f"""<div class="card"><span class="pill pass">LIVE SELF-TEST PASS</span><h2>Mission Control vérifié</h2><p class="lead">Bell-100, seed 7, evidence hash présent. Ce contrôle est aussi le healthcheck Railway.</p><pre class="pre">{_esc(raw)}</pre><div class="actions"><a class="btn primary" href="/mission/ui/lab">Quantum Lab</a><a class="btn" href="/">Mission</a></div></div>"""
     return HTMLResponse(_shell("Verify · ASTRA",body))
+
+
+# ---------------------------------------------------------------------------
+# v0.8 QPU Evidence Gateway + external laboratory onboarding registry.
+# ---------------------------------------------------------------------------
+from pydantic import BaseModel as _BaseModel
+
+QPU_PROVIDER_REGISTRY = {
+    "quantum_inspire": {
+        "institution": "QuTech",
+        "founders": ["TU Delft", "TNO"],
+        "platform": "Quantum Inspire",
+        "reference_type": "external quantum research platform",
+        "official_home": "https://www.quantum-inspire.com/",
+        "official_api_docs": "https://api.quantum-inspire.com/docs",
+        "published_hardware": ["Tuna-17", "Tuna-9", "Tuna-5"],
+        "published_simulators": ["QX"],
+        "public_reference_registered": True,
+        "authenticated_account_connected": False,
+        "signed_lab_federation_connected": False,
+        "verified_hardware_jobs": 0,
+        "connection_grade": "PENDING_EXTERNAL_SIGNATURE",
+        "partnership_claimed": False,
+    },
+    "ibm_quantum": {
+        "institution": "IBM Quantum",
+        "reference_type": "QPU provider",
+        "official_home": "https://quantum.cloud.ibm.com/",
+        "authenticated_account_connected": False,
+        "verified_hardware_jobs": 0,
+        "connection_grade": "CREDENTIALS_REQUIRED",
+    },
+    "google_qcs": {
+        "institution": "Google Quantum AI",
+        "reference_type": "QPU provider",
+        "official_home": "https://quantumai.google/",
+        "authenticated_account_connected": False,
+        "verified_hardware_jobs": 0,
+        "connection_grade": "APPROVAL_REQUIRED",
+    },
+}
+
+@router.get("/qpu/providers")
+def qpu_providers():
+    return {
+        "version": "0.8.0",
+        "providers": QPU_PROVIDER_REGISTRY,
+        "evidence_levels": [
+            "PUBLIC_REFERENCE_REGISTERED",
+            "PENDING_EXTERNAL_SIGNATURE",
+            "AUTHENTICATED_PROVIDER_CONNECTED",
+            "REMOTE_JOB_PROVENANCE_VERIFIED",
+            "VERIFIED_HARDWARE_RESULT",
+        ],
+        "claim_boundary": (
+            "Public institutional references are not partnerships. A lab/provider is not considered "
+            "federated or hardware-verified until independent authentication/signature/job evidence exists."
+        ),
+    }
+
+@router.get("/qpu/external-lab/challenge")
+def external_lab_challenge():
+    challenge = {
+        "format": "astra-external-lab-challenge-v1",
+        "challenge_id": "lab-" + uuid.uuid4().hex,
+        "issued_at_utc": now(),
+        "astra_instance": "ASTRA QUANTUM v0.8",
+        "candidate": {
+            "institution": "QuTech",
+            "platform": "Quantum Inspire",
+        },
+        "requested_response": {
+            "lab_id": "stable external laboratory identifier",
+            "organization": "legal/research organization name",
+            "trust_domain": "institution trust domain",
+            "public_key_pem": "ML-DSA-65 public key",
+            "challenge_id": "exact challenge id above",
+            "challenge_sha256": "sha256 of canonical challenge",
+            "signature_base64": "ML-DSA-65 signature over canonical challenge bytes",
+        },
+        "purpose": "independent cross-laboratory evidence federation",
+    }
+    raw = json.dumps(challenge, sort_keys=True, separators=(",", ":")).encode()
+    return {
+        "challenge": challenge,
+        "challenge_sha256": hashlib.sha256(raw).hexdigest(),
+        "astra_signature": sign_bytes(raw),
+        "status": "PENDING_EXTERNAL_SIGNATURE",
+        "claim_boundary": "Challenge issuance does not imply that QuTech/TU Delft/TNO has accepted, endorsed, or partnered with ASTRA QUANTUM.",
+    }
+
+class _ExternalLabResponse(_BaseModel):
+    lab_id: str
+    organization: str
+    trust_domain: str
+    challenge_id: str
+    challenge_sha256: str
+    signature_base64: str
+    public_key_pem: str
+
+@router.post("/qpu/external-lab/inspect-response")
+def inspect_external_lab_response(req: _ExternalLabResponse):
+    fingerprint = hashlib.sha256(req.public_key_pem.encode()).hexdigest()
+    return {
+        "received": True,
+        "lab_id": req.lab_id,
+        "organization": req.organization,
+        "trust_domain": req.trust_domain,
+        "public_key_sha256": fingerprint,
+        "status": "RESPONSE_RECEIVED_NOT_TRUSTED",
+        "next_gate": "Operator must pin the external laboratory public key and cryptographically verify the challenge signature before federation becomes connected.",
+        "claim_boundary": "Receipt alone cannot create trust or partnership.",
+    }
+
+@router.get("/ui/qpu", response_class=HTMLResponse)
+def ui_qpu_gateway():
+    qi = QPU_PROVIDER_REGISTRY["quantum_inspire"]
+    ibm = QPU_PROVIDER_REGISTRY["ibm_quantum"]
+    google = QPU_PROVIDER_REGISTRY["google_qcs"]
+    body = f"""
+    <div class="section"><h3>QPU Evidence Gateway · v0.8</h3><span>provider + external-lab evidence gates</span></div>
+    <div class="grid4">
+      <div class="card"><span class="label">External research center</span><h3>QuTech / Quantum Inspire</h3><span class="pill warn">{_esc(qi['connection_grade'])}</span><p class="lead">Public reference registered. Hardware catalog: {_esc(', '.join(qi['published_hardware']))}.</p><div class="actions"><a class="btn" href="{_esc(qi['official_home'])}" target="_blank">Quantum Inspire ↗</a><a class="btn" href="/mission/qpu/external-lab/challenge">Lab challenge JSON</a></div></div>
+      <div class="card"><span class="label">QPU provider</span><h3>IBM Quantum</h3><span class="pill warn">{_esc(ibm['connection_grade'])}</span><p class="lead">REST/QPU evidence adapter prepared. No credential is present in Railway today.</p></div>
+      <div class="card"><span class="label">QPU provider</span><h3>Google Quantum AI</h3><span class="pill warn">{_esc(google['connection_grade'])}</span><p class="lead">Quantum Engine hardware access requires approved access.</p></div>
+      <div class="card"><span class="label">Truth boundary</span><h3>Verified hardware</h3><span class="pill pass">0 FAKE PASS</span><p class="lead">No simulator, public webpage, or mere Job ID can be promoted to verified QPU hardware.</p></div>
+    </div>
+    <div class="section"><h3>External laboratory onboarding</h3><span>cryptographic hand-off</span></div>
+    <div class="card"><p class="lead">ASTRA generates a signed ML-DSA challenge for an independent laboratory. Federation becomes connected only after the external lab signs the exact challenge with a pinned institutional key and that signature is verified.</p>
+    <div class="actions"><a class="btn primary" href="/mission/qpu/external-lab/challenge">Generate signed challenge</a><a class="btn" href="/mission/qpu/providers">Provider registry JSON</a></div></div>
+    """
+    return HTMLResponse(_shell("QPU Evidence Gateway · ASTRA", body))
