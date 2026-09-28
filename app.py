@@ -10,6 +10,7 @@ import os
 import urllib.parse
 import urllib.request
 import subprocess
+import socket
 from typing import Literal
 
 import numpy as np
@@ -425,6 +426,11 @@ def autodns_startup_key_diagnostic():
         autodns_dynadot_zone_rest()
     except Exception as exc:
         print("AUTODNS_ZONE_REST_STARTUP_ERROR", type(exc).__name__, str(exc), flush=True)
+    for _host in ("betgpt.live", "www.betgpt.live"):
+        try:
+            print("BETGPT_PUBLIC_RESOLVE", json.dumps({"host": _host, "result": socket.gethostbyname_ex(_host)}, sort_keys=True), flush=True)
+        except Exception as exc:
+            print("BETGPT_PUBLIC_RESOLVE_ERROR", _host, type(exc).__name__, str(exc), flush=True)
 
 
 @app.get("/autodns/dynadot-zone-rest")
