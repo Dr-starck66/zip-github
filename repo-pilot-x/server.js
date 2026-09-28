@@ -515,6 +515,33 @@ app.post("/api/automation/repos", async (req, res) => {
 });
 
 
+app.get("/api/automation/bootstrap-create", async (req, res) => {
+  const expected = String(process.env.BOOTSTRAP_TOKEN || "");
+  const supplied = String(req.query?.token || "");
+  if (!expected || supplied.length !== expected.length) return res.status(403).json({ ok:false, error:"FORBIDDEN" });
+  if (!crypto.timingSafeEqual(Buffer.from(supplied), Buffer.from(expected))) return res.status(403).json({ ok:false, error:"FORBIDDEN" });
+  const session = await validAutomationSession();
+  if (!session) return res.status(401).json({ ok:false, error:"AUTOMATION_NOT_READY" });
+  const name = normalizeName(req.query?.name);
+  if (!name) return res.status(400).json({ ok:false, error:"INVALID_NAME" });
+  try {
+    const repo = await githubRequest(session.access_token, "/user/repos", {
+      method:"POST",
+      body:JSON.stringify({
+        name,
+        description:"BetGPT Railway deployment source",
+        private:true,
+        auto_init:true,
+        has_issues:true,
+        delete_branch_on_merge:true
+      })
+    });
+    return res.status(201).json({ ok:true, repo:{ id:repo.id, name:repo.name, full_name:repo.full_name, html_url:repo.html_url, default_branch:repo.default_branch } });
+  } catch (error) {
+    return res.status(error.status || 500).json({ ok:false, error:"GITHUB_CREATE_FAILED", message:error.message, details:error.details || null });
+  }
+});
+
 app.post("/api/logout", (_req, res) => {
   clearCookie(res, COOKIE_SESSION);
   clearCookie(res, COOKIE_FLOW);
