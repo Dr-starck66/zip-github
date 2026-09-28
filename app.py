@@ -7,7 +7,7 @@ from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 import numpy as np\nimport mission_control
 
-VERSION="0.6.0"
+VERSION="0.7.0"
 app=FastAPI(
     title="ASTRA QUANTUM — Federated Research Grid",
     version=VERSION,
