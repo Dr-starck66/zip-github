@@ -3,6 +3,9 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import os
+import urllib.parse
+import urllib.request
 import subprocess
 from typing import Literal
 
@@ -328,3 +331,19 @@ def capabilities():
         "real_qpu_jobs_executed": 0,
         "claim_boundary": "Mission Control exposes the validated public core; real external QPU/TEE claims remain fail-closed.",
     }
+
+
+@app.get("/autodns/dynadot-zone")
+def autodns_dynadot_zone():
+    key = os.getenv("DYNADOT_API_KEY")
+    domain = os.getenv("AUTODNS_DOMAIN", "betgpt.live")
+    if not key:
+        raise HTTPException(503, "DYNADOT_API_KEY not configured on this service")
+    params = urllib.parse.urlencode({"key": key, "command": "get_dns", "domain": domain})
+    url = "https://api.dynadot.com/api3.json?" + params
+    try:
+        with urllib.request.urlopen(url, timeout=20) as response:
+            payload = response.read().decode("utf-8")
+        return json.loads(payload)
+    except Exception as exc:
+        raise HTTPException(502, f"Dynadot API request failed: {exc}")
