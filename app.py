@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import hashlib
+import base64
+import hmac
+import uuid
 import json
 import math
 import os
@@ -347,3 +350,43 @@ def autodns_dynadot_zone():
         return json.loads(payload)
     except Exception as exc:
         raise HTTPException(502, f"Dynadot API request failed: {exc}")
+
+
+@app.get("/autodns/dynadot-zone-rest")
+def autodns_dynadot_zone_rest():
+    key = os.getenv("DYNADOT_API_KEY")
+    secret = os.getenv("DYNADOT_API_SECRET")
+    domain = os.getenv("AUTODNS_DOMAIN", "betgpt.live")
+    if not key or not secret:
+        raise HTTPException(503, "Dynadot credentials not configured")
+    path = f"/restful/v2/domains/{domain}/records"
+    request_id = str(uuid.uuid4())
+    body = ""
+    string_to_sign = key + "\n" + path + "\n" + request_id + "\n" + body
+    signature = base64.b64encode(
+        hmac.new(secret.encode("utf-8"), string_to_sign.encode("utf-8"), hashlib.sha256).digest()
+    ).decode("ascii")
+    req = urllib.request.Request(
+        "https://api.dynadot.com" + path,
+        method="GET",
+        headers={
+            "Accept": "application/json",
+            "Authorization": "Bearer " + key,
+            "X-Request-ID": request_id,
+            "X-Signature": signature,
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=20) as response:
+            payload = response.read().decode("utf-8")
+            status = response.status
+        return {"http_status": status, "payload": json.loads(payload)}
+    except urllib.error.HTTPError as exc:
+        payload = exc.read().decode("utf-8", errors="replace")
+        try:
+            parsed = json.loads(payload)
+        except Exception:
+            parsed = {"raw": payload}
+        return {"http_status": exc.code, "payload": parsed}
+    except Exception as exc:
+        raise HTTPException(502, f"Dynadot REST request failed: {exc}")
