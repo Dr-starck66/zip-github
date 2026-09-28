@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "domain": "betgpt.live",
+  "providerDetection": "auto",
+  "railway": {
+    "projectId": "c345f5ea-973c-43f9-afa4-413d27cbc8d1",
+    "environmentId": "122e996d-0281-43c6-9381-1918357bd116",
+    "serviceId": "dd41543b-fe88-469d-b4c8-a82b0a75d9ff",
+    "serviceName": "betgpt",
+    "targetPort": 8080,
+    "routingTarget": "li7rcqpb.up.railway.app"
+  },
+  "desiredDns": [
+    {
+      "host": "www",
+      "type": "CNAME",
+      "value": "li7rcqpb.up.railway.app",
+      "replace": "cname.vercel-dns.com"
+    },
+    {
+      "host": "@",
+      "type": "APEX_ALIAS",
+      "value": "li7rcqpb.up.railway.app",
+      "replace": "216.198.79.1",
+      "note": "Use registrar-supported apex ALIAS/ANAME/CNAME flattening; do not overwrite MX/TXT."
+    }
+  ],
+  "safety": {
+    "preserveMxTxt": true,
+    "preserveUnrelatedRecords": true,
+    "failClosed": true,
+    "verifyHttpsAfterMutation": true
+  },
+  "createdAt": "2026-09-28T13:15:00Z"
+}
