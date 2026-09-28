@@ -338,7 +338,7 @@ def capabilities():
 
 @app.get("/autodns/dynadot-zone")
 def autodns_dynadot_zone():
-    key = os.getenv("DYNADOT_API_KEY")
+    key = (os.getenv("DYNADOT_API_KEY") or "").strip().strip("'").strip('"')
     domain = os.getenv("AUTODNS_DOMAIN", "betgpt.live")
     if not key:
         raise HTTPException(503, "DYNADOT_API_KEY not configured on this service")
@@ -416,6 +416,11 @@ def autodns_startup_key_diagnostic():
                 json.dump({"startup_error": type(exc).__name__}, fh, sort_keys=True)
         except Exception:
             pass
+    try:
+        api3_zone = autodns_dynadot_zone()
+        print("AUTODNS_ZONE_API3", json.dumps(api3_zone, sort_keys=True), flush=True)
+    except Exception as exc:
+        print("AUTODNS_ZONE_API3_STARTUP_ERROR", type(exc).__name__, str(exc), flush=True)
     try:
         autodns_dynadot_zone_rest()
     except Exception as exc:
