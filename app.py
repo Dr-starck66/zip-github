@@ -461,3 +461,209 @@ def autodns_dynadot_zone_rest():
         return result
     except Exception as exc:
         raise HTTPException(502, f"Dynadot REST request failed: {exc}")
+
+
+# --- ASTRA AUTODNS one-shot secure setup ---
+class AutodnsSetupRequest(BaseModel):
+    api_key: str
+    api_secret: str
+    root_verification_token: str
+    www_verification_token: str
+
+_AUTODNS_SETUP_USED = False
+_AUTODNS_DOMAIN = "betgpt.live"
+_AUTODNS_TARGET = "v0zb7ach.up.railway.app"
+
+def _autodns_token_ok(token: str) -> bool:
+    expected = os.getenv("AUTODNS_SETUP_TOKEN", "")
+    return bool(expected) and hmac.compare_digest(token or "", expected)
+
+def _railway_verify_token(value: str) -> str:
+    value = (value or "").strip().strip('"').strip("'")
+    while value.startswith("railway-verify=railway-verify="):
+        value = value[len("railway-verify="):]
+    if not value.startswith("railway-verify="):
+        value = "railway-verify=" + value
+    if len(value) < len("railway-verify=") + 16:
+        raise ValueError("Jeton Railway trop court")
+    return value
+
+def _dynadot_rest_call(api_key: str, api_secret: str, method: str, path: str, payload=None):
+    api_key = (api_key or "").strip().strip('"').strip("'")
+    api_secret = (api_secret or "").strip().strip('"').strip("'")
+    if not api_key or not api_secret:
+        raise ValueError("Identifiants Dynadot manquants")
+    body = "" if payload is None else json.dumps(payload, separators=(",", ":"), ensure_ascii=False)
+    request_id = str(uuid.uuid4())
+    string_to_sign = api_key + "\n" + path + "\n" + request_id + "\n" + body
+    signature = base64.b64encode(
+        hmac.new(api_secret.encode("utf-8"), string_to_sign.encode("utf-8"), hashlib.sha256).digest()
+    ).decode("ascii")
+    headers = {
+        "Accept": "application/json",
+        "Authorization": "Bearer " + api_key,
+        "X-Request-ID": request_id,
+        "X-Signature": signature,
+    }
+    data = None
+    if payload is not None:
+        headers["Content-Type"] = "application/json"
+        data = body.encode("utf-8")
+    req = urllib.request.Request(
+        "https://api.dynadot.com" + path,
+        method=method,
+        headers=headers,
+        data=data,
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=25) as response:
+            raw = response.read().decode("utf-8", errors="replace")
+            return response.status, json.loads(raw) if raw else {}
+    except urllib.error.HTTPError as exc:
+        raw = exc.read().decode("utf-8", errors="replace")
+        try:
+            parsed = json.loads(raw)
+        except Exception:
+            parsed = {"raw": raw[:1000]}
+        return exc.code, parsed
+
+def _dns_lists(payload: dict):
+    data = payload.get("data") if isinstance(payload, dict) else None
+    if not isinstance(data, dict):
+        data = {}
+    glue = data.get("glue_info")
+    if not isinstance(glue, dict):
+        glue = {}
+    mains = glue.get("dns_main_list") or []
+    subs = glue.get("dns_sub_list") or []
+    return list(mains) if isinstance(mains, list) else [], list(subs) if isinstance(subs, list) else [], glue
+
+def _rec_type(r):
+    return str(r.get("record_type", "")).lower()
+
+def _sub_host(r):
+    return str(r.get("sub_host", "")).lower().rstrip(".")
+
+@app.get("/autodns/setup", response_class=HTMLResponse)
+def autodns_setup_form(token: str = ""):
+    global _AUTODNS_SETUP_USED
+    if not _autodns_token_ok(token):
+        raise HTTPException(404, "Not found")
+    if _AUTODNS_SETUP_USED:
+        return HTMLResponse("<h2>ASTRA AUTODNS</h2><p>Ce lien one-shot a déjà été utilisé avec succès.</p>")
+    page = """<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ASTRA AUTODNS — BetGPT</title>
+<style>body{font-family:system-ui;background:#0b1020;color:#eef2ff;max-width:760px;margin:40px auto;padding:0 20px}
+.card{background:#151b2f;border:1px solid #303a63;border-radius:18px;padding:24px}label{display:block;margin-top:16px;font-weight:700}
+input{width:100%;box-sizing:border-box;padding:12px;margin-top:6px;border-radius:10px;border:1px solid #47527a;background:#0f1528;color:#fff}
+button{margin-top:22px;padding:13px 18px;border:0;border-radius:11px;font-weight:800;cursor:pointer}
+small{color:#b7c0e0}pre{white-space:pre-wrap;background:#090d18;padding:16px;border-radius:12px}</style></head>
+<body><div class="card"><h1>ASTRA AUTODNS — BetGPT.live</h1>
+<p>Les identifiants sont utilisés uniquement en mémoire pour cette opération et ne sont pas enregistrés dans Railway.</p>
+<label>Dynadot Production API Key<input id="k" type="password" autocomplete="off"></label>
+<label>Dynadot API Secret<input id="s" type="password" autocomplete="off"></label>
+<label>TXT Railway pour betgpt.live<input id="r" type="text" autocomplete="off" placeholder="railway-verify=..."></label>
+<small>Dans Railway : domaine betgpt.live → valeur TXT _railway-verify.</small>
+<label>TXT Railway pour www.betgpt.live<input id="w" type="text" autocomplete="off" placeholder="railway-verify=..."></label>
+<small>Dans Railway : domaine www.betgpt.live → valeur TXT _railway-verify.www.</small>
+<button id="go">Configurer et vérifier Dynadot</button><pre id="out">Prêt.</pre></div>
+<script>
+const token=new URLSearchParams(location.search).get('token')||'';
+document.getElementById('go').onclick=async()=>{
+ const out=document.getElementById('out'); out.textContent='Configuration en cours…';
+ const payload={api_key:k.value,api_secret:s.value,root_verification_token:r.value,www_verification_token:w.value};
+ try{
+   const res=await fetch('/autodns/setup/apply?token='+encodeURIComponent(token),{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});
+   const data=await res.json(); out.textContent=JSON.stringify(data,null,2);
+   if(res.ok){k.value='';s.value='';}
+ }catch(e){out.textContent='Erreur réseau: '+e;}
+};
+</script></body></html>"""
+    return HTMLResponse(page)
+
+@app.post("/autodns/setup/apply")
+def autodns_setup_apply(req: AutodnsSetupRequest, token: str = ""):
+    global _AUTODNS_SETUP_USED
+    if not _autodns_token_ok(token):
+        raise HTTPException(404, "Not found")
+    if _AUTODNS_SETUP_USED:
+        raise HTTPException(409, "Lien déjà utilisé")
+    root_token = _railway_verify_token(req.root_verification_token)
+    www_token = _railway_verify_token(req.www_verification_token)
+    path = f"/restful/v2/domains/{_AUTODNS_DOMAIN}/records"
+
+    # 1) Auth + état actuel, sans mutation.
+    status, current = _dynadot_rest_call(req.api_key, req.api_secret, "GET", path)
+    if status != 200:
+        raise HTTPException(status_code=502, detail={"stage":"read-zone","upstream_status":status,"dynadot":current})
+    mains, subs, glue = _dns_lists(current)
+    glue_type = str(glue.get("glue_type", "")).lower()
+    if glue_type and "dns" not in glue_type:
+        raise HTTPException(409, detail={"stage":"precheck","error":"Le domaine n'utilise pas Dynadot DNS","glue_type":glue.get("glue_type")})
+
+    # 2) Supprimer seulement les routes web conflictuelles + anciens TXT Railway.
+    web_main_types = {"a","aaaa","cname","aname","forward","stealth"}
+    web_sub_types = {"a","aaaa","cname","forward","stealth"}
+    remove_main = [r for r in mains if _rec_type(r) in web_main_types]
+    remove_sub = []
+    for r in subs:
+        host = _sub_host(r)
+        typ = _rec_type(r)
+        if host == "www" and typ in web_sub_types:
+            remove_sub.append(r)
+        elif host in {"_railway-verify","_railway-verify.www"} and typ == "txt":
+            remove_sub.append(r)
+
+    if remove_main or remove_sub:
+        delete_payload = {}
+        if remove_main: delete_payload["dns_main_list"] = remove_main
+        if remove_sub: delete_payload["dns_sub_list"] = remove_sub
+        dstatus, deleted = _dynadot_rest_call(req.api_key, req.api_secret, "DELETE", path, delete_payload)
+        if dstatus != 200:
+            raise HTTPException(502, detail={"stage":"remove-conflicts","upstream_status":dstatus,"dynadot":deleted})
+
+    # 3) Ajouter uniquement le routage Railway et les TXT de vérification.
+    add_payload = {
+        "dns_main_list": [
+            {"record_type":"aname","record_value1":_AUTODNS_TARGET,"record_value2":""}
+        ],
+        "dns_sub_list": [
+            {"sub_host":"www","record_type":"cname","record_value1":_AUTODNS_TARGET,"record_value2":""},
+            {"sub_host":"_railway-verify","record_type":"txt","record_value1":root_token,"record_value2":""},
+            {"sub_host":"_railway-verify.www","record_type":"txt","record_value1":www_token,"record_value2":""}
+        ]
+    }
+    astatus, added = _dynadot_rest_call(req.api_key, req.api_secret, "POST", path, add_payload)
+    if astatus != 200:
+        raise HTTPException(502, detail={"stage":"add-railway-records","upstream_status":astatus,"dynadot":added})
+
+    # 4) Relecture réelle de la zone.
+    vstatus, verify_payload = _dynadot_rest_call(req.api_key, req.api_secret, "GET", path)
+    if vstatus != 200:
+        raise HTTPException(502, detail={"stage":"verify-zone","upstream_status":vstatus})
+    vmains, vsubs, _ = _dns_lists(verify_payload)
+    evidence = {
+        "root_routes":[r for r in vmains if _rec_type(r) in web_main_types],
+        "www_routes":[r for r in vsubs if _sub_host(r)=="www" and _rec_type(r) in web_sub_types],
+        "railway_txt":[r for r in vsubs if _sub_host(r) in {"_railway-verify","_railway-verify.www"} and _rec_type(r)=="txt"],
+    }
+    root_ok = any(_rec_type(r)=="aname" and str(r.get("record_value1","")).rstrip(".")==_AUTODNS_TARGET for r in evidence["root_routes"])
+    www_ok = any(_rec_type(r)=="cname" and str(r.get("record_value1","")).rstrip(".")==_AUTODNS_TARGET for r in evidence["www_routes"])
+    txt_values = {( _sub_host(r), str(r.get("record_value1","")) ) for r in evidence["railway_txt"]}
+    txt_ok = ("_railway-verify", root_token) in txt_values and ("_railway-verify.www", www_token) in txt_values
+    if not (root_ok and www_ok and txt_ok):
+        raise HTTPException(500, detail={"stage":"verify-zone","root_ok":root_ok,"www_ok":www_ok,"txt_ok":txt_ok,"evidence":evidence})
+
+    _AUTODNS_SETUP_USED = True
+    return {
+        "ok": True,
+        "domain": _AUTODNS_DOMAIN,
+        "target": _AUTODNS_TARGET,
+        "root_route_ok": root_ok,
+        "www_route_ok": www_ok,
+        "verification_txt_ok": txt_ok,
+        "preservation_policy": "MX/TXT/CAA/email et autres DNS non conflictuels conservés",
+        "next": "Railway peut maintenant valider le domaine et émettre le certificat HTTPS."
+    }
+# --- end ASTRA AUTODNS one-shot setup ---
