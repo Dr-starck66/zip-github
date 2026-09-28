@@ -718,6 +718,43 @@ app.use((err, _req, res, _next) => {
 });
 
 
+
+async function runBetgptRepoBootstrap() {
+  if (process.env.BETGPT_REPO_BOOTSTRAP !== "1") return;
+  try {
+    const session = await validAutomationSession();
+    if (!session) {
+      console.error("BETGPT_REPO_BOOTSTRAP: automation session unavailable");
+      return;
+    }
+    const repoName = "betgpt-railway";
+    try {
+      await githubRequest(session.access_token, "/user/repos", {
+        method: "POST",
+        body: JSON.stringify({
+          name: repoName,
+          description: "BetGPT.live Railway production source",
+          private: true,
+          auto_init: true,
+          has_issues: true,
+          delete_branch_on_merge: true
+        })
+      });
+      console.log("BETGPT_REPO_BOOTSTRAP_CREATED", repoName);
+    } catch (error) {
+      if (error.status === 422) {
+        console.log("BETGPT_REPO_BOOTSTRAP_EXISTS", repoName);
+      } else {
+        throw error;
+      }
+    }
+  } catch (error) {
+    console.error("BETGPT_REPO_BOOTSTRAP_FAILED", error?.message || error);
+  }
+}
+
+runBetgptRepoBootstrap();
+
 app.listen(PORT, () => {
   console.log(`RepoPilot X listening on ${PORT}`);
 });
