@@ -139,7 +139,8 @@ def selftest():
             'href="/mission/ui/history"',
             'href="/mission/ui/compare"',
             'href="/mission/ui/projects"',
-            'href="/mission/ui/verify"',\n            'href="/mission/ui/qpu"',
+            'href="/mission/ui/verify"',
+            'href="/mission/ui/qpu"',
         ]
         required_lab = [
             'method="post"',
