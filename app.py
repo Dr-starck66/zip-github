@@ -389,6 +389,11 @@ def autodns_key_diagnostic():
         except Exception as exc:
             out.append({"candidate": label, "http_status": None, "api_code": None, "api_status": type(exc).__name__})
     result = {"domain": domain, "results": out}
+    try:
+        with open("/tmp/autodns_key_diagnostic.json", "w", encoding="utf-8") as fh:
+            json.dump(result, fh, sort_keys=True)
+    except Exception:
+        pass
     print("AUTODNS_KEY_DIAGNOSTIC", json.dumps(result, sort_keys=True), flush=True)
     return result
 
