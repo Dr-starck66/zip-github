@@ -1,7 +1,0 @@
-[
-  {"name":"КЕВР","url":"https://www.dker.bg/bg/nachalo-2.html","type":"regulator","priority":10},
-  {"name":"Министерство на енергетиката","url":"https://www.me.government.bg/bg/news.html","type":"government","priority":10},
-  {"name":"АУЕР","url":"https://www.seea.government.bg/bg/novini","type":"agency","priority":9},
-  {"name":"Европейска комисия — Energy","url":"https://energy.ec.europa.eu/news_en","type":"eu","priority":9},
-  {"name":"БТА — Икономика","url":"https://www.bta.bg/bg/news/economy","type":"news","priority":7}
-]
