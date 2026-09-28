@@ -13,7 +13,7 @@ from pydantic import BaseModel, Field
 
 import mission_control
 
-VERSION = "0.7.0"
+VERSION = "0.7.1"
 app = FastAPI(
     title="ASTRA QUANTUM — Mission Control",
     version=VERSION,
