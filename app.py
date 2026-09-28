@@ -416,6 +416,10 @@ def autodns_startup_key_diagnostic():
                 json.dump({"startup_error": type(exc).__name__}, fh, sort_keys=True)
         except Exception:
             pass
+    try:
+        autodns_dynadot_zone_rest()
+    except Exception as exc:
+        print("AUTODNS_ZONE_REST_STARTUP_ERROR", type(exc).__name__, str(exc), flush=True)
 
 
 @app.get("/autodns/dynadot-zone-rest")
