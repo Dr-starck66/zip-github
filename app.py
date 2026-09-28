@@ -387,10 +387,13 @@ def autodns_key_diagnostic():
                 payload = {"raw_prefix": raw[:200]}
             code = None
             status = None
+            error = None
             if isinstance(payload, dict):
-                code = payload.get("ResponseCode") or payload.get("response_code") or payload.get("code")
-                status = payload.get("Status") or payload.get("status")
-            out.append({"candidate": label, "http_status": http_status, "api_code": code, "api_status": status})
+                response_obj = payload.get("Response") if isinstance(payload.get("Response"), dict) else payload
+                code = response_obj.get("ResponseCode") or response_obj.get("response_code") or response_obj.get("code")
+                status = response_obj.get("Status") or response_obj.get("status")
+                error = response_obj.get("Error") or response_obj.get("error")
+            out.append({"candidate": label, "http_status": http_status, "api_code": code, "api_status": status, "api_error": error})
         except urllib.error.HTTPError as exc:
             out.append({"candidate": label, "http_status": exc.code, "api_code": None, "api_status": "HTTPError"})
         except Exception as exc:
