@@ -380,13 +380,17 @@ def autodns_dynadot_zone_rest():
         with urllib.request.urlopen(req, timeout=20) as response:
             payload = response.read().decode("utf-8")
             status = response.status
-        return {"http_status": status, "payload": json.loads(payload)}
+        result = {"http_status": status, "payload": json.loads(payload)}
+        print("AUTODNS_ZONE_REST", json.dumps(result, sort_keys=True), flush=True)
+        return result
     except urllib.error.HTTPError as exc:
         payload = exc.read().decode("utf-8", errors="replace")
         try:
             parsed = json.loads(payload)
         except Exception:
             parsed = {"raw": payload}
-        return {"http_status": exc.code, "payload": parsed}
+        result = {"http_status": exc.code, "payload": parsed}
+        print("AUTODNS_ZONE_REST", json.dumps(result, sort_keys=True), flush=True)
+        return result
     except Exception as exc:
         raise HTTPException(502, f"Dynadot REST request failed: {exc}")
