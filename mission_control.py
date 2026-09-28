@@ -117,6 +117,33 @@ def bind_runner(runner:Callable, request_model):
     global RUNNER, REQUEST_MODEL
     RUNNER=runner; REQUEST_MODEL=request_model
 
+@router.get("/selftest")
+def selftest():
+    if RUNNER is None or REQUEST_MODEL is None:
+        raise HTTPException(503, "quantum runner is not bound")
+    try:
+        result = RUNNER(REQUEST_MODEL(experiment="bell", qubits=2, depth=1, shots=100, seed=7))
+        counts = result.get("counts", {})
+        ok = (
+            sum(counts.values()) == 100
+            and set(counts).issubset({"00", "11"})
+            and bool(result.get("evidence_sha256"))
+        )
+        if not ok:
+            raise HTTPException(503, "Bell self-test failed evidence checks")
+        return {
+            "ok": True,
+            "version": "0.7.0",
+            "test": "bell-100-seed-7",
+            "counts": counts,
+            "evidence_sha256": result["evidence_sha256"],
+            "mission_control": True,
+        }
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(503, f"Mission Control self-test failed: {exc}")
+
 @router.get("/summary")
 def summary():
     with connect() as c:
