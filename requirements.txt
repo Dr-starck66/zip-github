@@ -1,4 +1,5 @@
 fastapi>=0.115
 uvicorn[standard]>=0.30
 numpy>=1.26
-pydantic>=2.8\nreportlab>=4.2\n
+pydantic>=2.8
+reportlab>=4.2
