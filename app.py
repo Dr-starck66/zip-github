@@ -11,6 +11,8 @@ import urllib.parse
 import urllib.request
 import subprocess
 import socket
+import ssl
+import tempfile
 from typing import Literal
 
 import numpy as np
@@ -431,6 +433,29 @@ def autodns_startup_key_diagnostic():
             print("BETGPT_PUBLIC_RESOLVE", json.dumps({"host": _host, "result": socket.gethostbyname_ex(_host)}, sort_keys=True), flush=True)
         except Exception as exc:
             print("BETGPT_PUBLIC_RESOLVE_ERROR", _host, type(exc).__name__, str(exc), flush=True)
+        try:
+            _ctx = ssl.create_default_context()
+            _ctx.check_hostname = False
+            _ctx.verify_mode = ssl.CERT_NONE
+            with socket.create_connection((_host, 443), timeout=10) as _sock:
+                with _ctx.wrap_socket(_sock, server_hostname=_host) as _tls:
+                    _der = _tls.getpeercert(binary_form=True)
+            _pem = ssl.DER_cert_to_PEM_cert(_der)
+            with tempfile.NamedTemporaryFile("w", delete=False, suffix=".pem") as _tmp:
+                _tmp.write(_pem)
+                _tmp_path = _tmp.name
+            _cert = ssl._ssl._test_decode_cert(_tmp_path)
+            _safe_cert = {
+                "host": _host,
+                "subject": _cert.get("subject"),
+                "issuer": _cert.get("issuer"),
+                "notBefore": _cert.get("notBefore"),
+                "notAfter": _cert.get("notAfter"),
+                "subjectAltName": _cert.get("subjectAltName"),
+            }
+            print("BETGPT_TLS_CERT", json.dumps(_safe_cert, sort_keys=True), flush=True)
+        except Exception as exc:
+            print("BETGPT_TLS_CERT_ERROR", _host, type(exc).__name__, str(exc), flush=True)
 
 
 @app.get("/autodns/dynadot-zone-rest")
