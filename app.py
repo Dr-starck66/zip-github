@@ -10,9 +10,6 @@ import os
 import urllib.parse
 import urllib.request
 import subprocess
-import socket
-import ssl
-import tempfile
 from typing import Literal
 
 import numpy as np
@@ -359,8 +356,9 @@ def autodns_dynadot_zone():
 @app.get("/autodns/key-diagnostic")
 @app.get("/autodns/key_diagnostic")
 def autodns_key_diagnostic():
-    key = os.getenv("DYNADOT_API_KEY", "")
+    raw_key = os.getenv("DYNADOT_API_KEY", "")
     domain = os.getenv("AUTODNS_DOMAIN", "betgpt.live")
+    key = raw_key.strip().strip("'").strip('"')
     if not key:
         result = {"ok": False, "error": "DYNADOT_API_KEY missing", "results": []}
         try:
@@ -370,12 +368,11 @@ def autodns_key_diagnostic():
             pass
         print("AUTODNS_KEY_DIAGNOSTIC", json.dumps(result, sort_keys=True), flush=True)
         return result
-    candidates = [
-        ("plain", key),
-        ("leading_apostrophe", "'" + key),
-        ("trailing_apostrophe", key + "'"),
-        ("wrapped_apostrophes", "'" + key + "'"),
-    ]
+
+    candidates = [("normalized", key)]
+    if raw_key and raw_key != key:
+        candidates.append(("raw", raw_key))
+
     out = []
     for label, candidate in candidates:
         params = urllib.parse.urlencode({"key": candidate, "command": "get_dns", "domain": domain})
@@ -388,17 +385,28 @@ def autodns_key_diagnostic():
                 payload = json.loads(raw)
             except Exception:
                 payload = {"raw_prefix": raw[:200]}
-            code = None
-            status = None
+
+            node = payload
             if isinstance(payload, dict):
-                code = payload.get("ResponseCode") or payload.get("response_code") or payload.get("code")
-                status = payload.get("Status") or payload.get("status")
-            out.append({"candidate": label, "http_status": http_status, "api_code": code, "api_status": status})
+                node = payload.get("GetDnsResponse") or payload.get("Response") or payload
+            code = node.get("ResponseCode") if isinstance(node, dict) else None
+            status = node.get("Status") if isinstance(node, dict) else None
+            error = node.get("Error") if isinstance(node, dict) else None
+            valid = str(code) == "0" and str(status).lower() == "success"
+            out.append({
+                "candidate": label,
+                "http_status": http_status,
+                "api_code": code,
+                "api_status": status,
+                "api_error": error,
+                "valid": valid,
+            })
         except urllib.error.HTTPError as exc:
-            out.append({"candidate": label, "http_status": exc.code, "api_code": None, "api_status": "HTTPError"})
+            out.append({"candidate": label, "http_status": exc.code, "api_code": None, "api_status": "HTTPError", "valid": False})
         except Exception as exc:
-            out.append({"candidate": label, "http_status": None, "api_code": None, "api_status": type(exc).__name__})
-    result = {"domain": domain, "results": out}
+            out.append({"candidate": label, "http_status": None, "api_code": None, "api_status": type(exc).__name__, "valid": False})
+
+    result = {"ok": any(item.get("valid") for item in out), "domain": domain, "results": out}
     try:
         with open("/tmp/autodns_key_diagnostic.json", "w", encoding="utf-8") as fh:
             json.dump(result, fh, sort_keys=True)
@@ -408,7 +416,6 @@ def autodns_key_diagnostic():
     return result
 
 
-
 @app.on_event("startup")
 def autodns_startup_key_diagnostic():
     try:
@@ -416,55 +423,9 @@ def autodns_startup_key_diagnostic():
     except Exception as exc:
         try:
             with open("/tmp/autodns_key_diagnostic.json", "w", encoding="utf-8") as fh:
-                json.dump({"startup_error": type(exc).__name__}, fh, sort_keys=True)
+                json.dump({"ok": False, "startup_error": type(exc).__name__}, fh, sort_keys=True)
         except Exception:
             pass
-    try:
-        api3_zone = autodns_dynadot_zone()
-        print("AUTODNS_ZONE_API3", json.dumps(api3_zone, sort_keys=True), flush=True)
-    except Exception as exc:
-        print("AUTODNS_ZONE_API3_STARTUP_ERROR", type(exc).__name__, str(exc), flush=True)
-    try:
-        autodns_dynadot_zone_rest()
-    except Exception as exc:
-        print("AUTODNS_ZONE_REST_STARTUP_ERROR", type(exc).__name__, str(exc), flush=True)
-    for _dns_name in ("_railway-verify.betgpt.live", "_railway-verify.www.betgpt.live"):
-        try:
-            _url = "https://dns.google/resolve?" + urllib.parse.urlencode({"name": _dns_name, "type": "TXT"})
-            _req = urllib.request.Request(_url, headers={"Accept": "application/dns-json"})
-            with urllib.request.urlopen(_req, timeout=10) as _resp:
-                _payload = json.loads(_resp.read().decode("utf-8", errors="replace"))
-            print("BETGPT_PUBLIC_TXT", json.dumps({"name": _dns_name, "status": _payload.get("Status"), "answers": _payload.get("Answer") or []}, sort_keys=True), flush=True)
-        except Exception as exc:
-            print("BETGPT_PUBLIC_TXT_ERROR", _dns_name, type(exc).__name__, str(exc), flush=True)
-    for _host in ("betgpt.live", "www.betgpt.live"):
-        try:
-            print("BETGPT_PUBLIC_RESOLVE", json.dumps({"host": _host, "result": socket.gethostbyname_ex(_host)}, sort_keys=True), flush=True)
-        except Exception as exc:
-            print("BETGPT_PUBLIC_RESOLVE_ERROR", _host, type(exc).__name__, str(exc), flush=True)
-        try:
-            _ctx = ssl.create_default_context()
-            _ctx.check_hostname = False
-            _ctx.verify_mode = ssl.CERT_NONE
-            with socket.create_connection((_host, 443), timeout=10) as _sock:
-                with _ctx.wrap_socket(_sock, server_hostname=_host) as _tls:
-                    _der = _tls.getpeercert(binary_form=True)
-            _pem = ssl.DER_cert_to_PEM_cert(_der)
-            with tempfile.NamedTemporaryFile("w", delete=False, suffix=".pem") as _tmp:
-                _tmp.write(_pem)
-                _tmp_path = _tmp.name
-            _cert = ssl._ssl._test_decode_cert(_tmp_path)
-            _safe_cert = {
-                "host": _host,
-                "subject": _cert.get("subject"),
-                "issuer": _cert.get("issuer"),
-                "notBefore": _cert.get("notBefore"),
-                "notAfter": _cert.get("notAfter"),
-                "subjectAltName": _cert.get("subjectAltName"),
-            }
-            print("BETGPT_TLS_CERT", json.dumps(_safe_cert, sort_keys=True), flush=True)
-        except Exception as exc:
-            print("BETGPT_TLS_CERT_ERROR", _host, type(exc).__name__, str(exc), flush=True)
 
 
 @app.get("/autodns/dynadot-zone-rest")
