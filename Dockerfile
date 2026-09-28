@@ -1,8 +1,5 @@
-FROM python:3.13-slim
+FROM node:22-alpine
 WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY app.py .
-COPY mission_control.py .
-ENV PYTHONUNBUFFERED=1
-CMD ["sh","-c","uvicorn app:app --host 0.0.0.0 --port ${PORT:-8080}"]
+COPY app.b64 /app/app.b64
+ENV NODE_ENV=production
+CMD ["sh","-c","node -e \"const fs=require('fs'),z=require('zlib');eval(z.gunzipSync(Buffer.from(fs.readFileSync('/app/app.b64','utf8'),'base64')).toString())\""]
