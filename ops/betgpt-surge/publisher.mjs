@@ -5,7 +5,8 @@ import http from "node:http";
 import { execFileSync, execSync } from "node:child_process";
 import extract from "extract-zip";
 
-let state = { phase: "boot", ok: false };\nconsole.log("PUBLISHER_BOOT", JSON.stringify({node: process.version, port: process.env.PORT || 8080}));
+let state = { phase: "boot", ok: false };
+console.log("PUBLISHER_BOOT", JSON.stringify({node: process.version, port: process.env.PORT || 8080}));
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "content-type": "application/json" });
   res.end(JSON.stringify(state));
@@ -46,7 +47,8 @@ async function main() {
   state = { phase: "source-download", ok: false };
   const buffers = [];
   for (const url of parts) {
-    console.log("PUBLISHER_PHASE", "source-fetch", url);\n    const res = await fetch(url, { signal: AbortSignal.timeout(60000) });
+    console.log("PUBLISHER_PHASE", "source-fetch", url);
+    const res = await fetch(url, { signal: AbortSignal.timeout(60000) });
     if (!res.ok) throw new Error("Source download failed: HTTP " + res.status);
     buffers.push(Buffer.from(await res.arrayBuffer()));
   }
