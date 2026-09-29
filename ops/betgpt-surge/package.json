@@ -1,0 +1,16 @@
+{
+  "name": "betgpt-surge-publisher",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node publisher.mjs"
+  },
+  "dependencies": {
+    "extract-zip": "^2.0.1",
+    "surge": "^0.44.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
