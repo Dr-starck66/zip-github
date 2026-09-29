@@ -6,7 +6,7 @@ import { execFileSync, execSync } from "node:child_process";
 import extract from "extract-zip";
 
 let state = { phase: "boot", ok: false };
-console.log("PUBLISHER_BOOT", JSON.stringify({node: process.version, port: process.env.PORT || 8080}));
+console.log("PUBLISHER_BOOT", JSON.stringify({version:"inspect-v2", node: process.version, port: process.env.PORT || 8080}));
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "content-type": "application/json" });
   res.end(JSON.stringify(state));
@@ -66,7 +66,7 @@ async function main() {
   if (!fs.existsSync(packagePath)) throw new Error("BetGPT package.json missing");
 
   const editorialFunctionsPath = path.join(root, "src/lib/editorial.functions.ts");
-  if (fs.existsSync(editorialFunctionsPath)) console.log("EDITORIAL_FUNCTIONS_SOURCE\n" + fs.readFileSync(editorialFunctionsPath, "utf8") + "\nEDITORIAL_FUNCTIONS_END");
+  if (fs.existsSync(editorialFunctionsPath)) console.log("EDITORIAL_B64", Buffer.from(fs.readFileSync(editorialFunctionsPath, "utf8")).toString("base64"));
 
   const pkg = JSON.parse(fs.readFileSync(packagePath, "utf8"));
   log("BETGPT_PACKAGE", { name: pkg.name || null, scripts: pkg.scripts || {} });
