@@ -65,6 +65,9 @@ async function main() {
   const packagePath = path.join(root, "package.json");
   if (!fs.existsSync(packagePath)) throw new Error("BetGPT package.json missing");
 
+  const editorialFunctionsPath = path.join(root, "src/lib/editorial.functions.ts");
+  if (fs.existsSync(editorialFunctionsPath)) console.log("EDITORIAL_FUNCTIONS_SOURCE\n" + fs.readFileSync(editorialFunctionsPath, "utf8") + "\nEDITORIAL_FUNCTIONS_END");
+
   const pkg = JSON.parse(fs.readFileSync(packagePath, "utf8"));
   log("BETGPT_PACKAGE", { name: pkg.name || null, scripts: pkg.scripts || {} });
 
