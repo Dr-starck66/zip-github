@@ -1,0 +1,42 @@
+name: ASTRA BUILDER Omega V2 Pages
+on:
+  push:
+    branches: [astra-builder-omega-v2]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages-astra-builder-v2
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Reconstruct verified V2
+        run: |
+          rm -rf dist
+          mkdir -p dist
+          base64 -d astra-builder-v2/index.html.gz.b64 | gzip -d > dist/index.html
+          base64 -d astra-builder-v2/styles.css.gz.b64 | gzip -d > dist/styles.css
+          cat astra-builder-v2/app.js.gz.b64.part01 astra-builder-v2/app.js.gz.b64.part02 | base64 -d | gzip -d > dist/app.js
+          node --check dist/app.js
+          grep -q 'ASTRA BUILDER Ω V2' dist/index.html
+          grep -q 'openrouter/free' dist/app.js
+          grep -q 'ZERO-COST GATE' dist/app.js
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
