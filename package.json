@@ -1,0 +1,14 @@
+{
+  "name": "astra-crawl",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Self-hosted Playwright scraping and browser automation API",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "express": "5.1.0",
+    "playwright": "1.63.0"
+  }
+}
