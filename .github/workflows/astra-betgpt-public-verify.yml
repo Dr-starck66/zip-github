@@ -19,7 +19,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          TARGET="7c68fe20d0705db1d5432333bc088d944c928cd2"
+          TARGET="b4b66fa63b9cb7ba21ecc07538e81da761116c6f"
 
           echo "== revision =="
           REV="$(curl -fsS --connect-timeout 8 --max-time 25 -H 'cache-control: no-cache' https://betgpt.live/astra-revision.json)"
