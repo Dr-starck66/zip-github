@@ -1,0 +1,24 @@
+name: ASTRA Connector Guard CI
+
+on:
+  push:
+    paths:
+      - "astra-connector-guard/**"
+      - ".github/workflows/astra-connector-guard-ci.yml"
+  pull_request:
+    paths:
+      - "astra-connector-guard/**"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: astra-connector-guard
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm test
