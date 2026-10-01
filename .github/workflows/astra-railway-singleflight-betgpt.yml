@@ -15,10 +15,36 @@ concurrency:
 jobs:
   promote-latest:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 35
     steps:
       - name: Checkout deployment wrapper
         uses: actions/checkout@v4
+
+      - name: Wait for any in-flight manifest to reach production
+        shell: bash
+        run: |
+          set -euo pipefail
+          TARGET="$(python - <<'PY'
+          import json
+          with open("betgpt-railway-live/source-manifest.json", "r", encoding="utf-8") as f:
+              print(json.load(f)["sourceSha"])
+          PY
+          )"
+          [[ "$TARGET" =~ ^[0-9a-fA-F]{40}$ ]]
+
+          for i in $(seq 1 120); do
+            HEALTH="$(curl -fsS -o /dev/null -w '%{http_code}' https://betgpt.live/api/health || true)"
+            PUBLIC_SHA="$(curl -fsS https://betgpt.live/astra-revision.json 2>/dev/null | python -c 'import json,sys; print(json.load(sys.stdin).get("sourceSha",""))' 2>/dev/null || true)"
+            if [[ "$HEALTH" =~ ^2[0-9][0-9]$ ]] && [[ "$(echo "$PUBLIC_SHA" | tr '[:upper:]' '[:lower:]')" == "$(echo "$TARGET" | tr '[:upper:]' '[:lower:]')" ]]; then
+              echo "ASTRA_SINGLEFLIGHT_PROD_CAUGHT_UP $TARGET"
+              exit 0
+            fi
+            echo "ASTRA_SINGLEFLIGHT_HOLD target=$TARGET public=$PUBLIC_SHA health=$HEALTH attempt=$i"
+            sleep 15
+          done
+
+          echo "ASTRA_SINGLEFLIGHT_FAIL: current manifest never reached healthy production"
+          exit 1
 
       - name: Resolve immutable BetGPT SHA
         id: source
@@ -27,7 +53,7 @@ jobs:
           set -euo pipefail
           SHA="$(curl -fsSL \
             -H 'Accept: application/vnd.github+json' \
-            -H 'User-Agent: ASTRA-Railway-SingleFlight/1.0' \
+            -H 'User-Agent: ASTRA-Railway-SingleFlight/2.0' \
             https://api.github.com/repos/Dr-starck66/betgpt-railway/commits/main | \
             python -c 'import json,sys; print(json.load(sys.stdin)["sha"])')"
           [[ "$SHA" =~ ^[0-9a-fA-F]{40}$ ]]
@@ -44,10 +70,12 @@ jobs:
             "${{ steps.source.outputs.sha }}"
 
       - name: Commit only when SHA changed
+        id: commit
         shell: bash
         run: |
           set -euo pipefail
           if git diff --quiet -- betgpt-railway-live/source-manifest.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "ASTRA_SINGLEFLIGHT_NOOP: manifest already points at requested SHA"
             exit 0
           fi
@@ -56,3 +84,24 @@ jobs:
           git add betgpt-railway-live/source-manifest.json
           git commit -m "deploy(betgpt): promote ${{ steps.source.outputs.sha }}"
           git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Hold lock until promoted SHA is healthy in production
+        if: steps.commit.outputs.changed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          TARGET="${{ steps.source.outputs.sha }}"
+          for i in $(seq 1 120); do
+            HEALTH="$(curl -fsS -o /dev/null -w '%{http_code}' https://betgpt.live/api/health || true)"
+            PUBLIC_SHA="$(curl -fsS https://betgpt.live/astra-revision.json 2>/dev/null | python -c 'import json,sys; print(json.load(sys.stdin).get("sourceSha",""))' 2>/dev/null || true)"
+            if [[ "$HEALTH" =~ ^2[0-9][0-9]$ ]] && [[ "$(echo "$PUBLIC_SHA" | tr '[:upper:]' '[:lower:]')" == "$(echo "$TARGET" | tr '[:upper:]' '[:lower:]')" ]]; then
+              echo "ASTRA_SINGLEFLIGHT_PASS $TARGET"
+              exit 0
+            fi
+            echo "ASTRA_SINGLEFLIGHT_LOCKED target=$TARGET public=$PUBLIC_SHA health=$HEALTH attempt=$i"
+            sleep 15
+          done
+
+          echo "ASTRA_SINGLEFLIGHT_FAIL: promoted SHA never reached healthy production"
+          exit 1
