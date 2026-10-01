@@ -1,6 +1,6 @@
 {
-  "sourceSha": "e4a2fecf24fa29f574261e9740d34141fd8abe2a",
-  "workflowRunId": 36941647647,
-  "requestedAt": "2026-10-01T23:37:39.637Z",
-  "reason": "Promote GREEN Search Truth no-fake-score candidate"
+  "sourceSha": "b8648965e298e203fac2be9016064f47281cede2",
+  "workflowRunId": 36943329994,
+  "requestedAt": "2026-10-01T23:56:35.954Z",
+  "reason": "Promote GREEN sitemap/result/prediction durability repair"
 }
