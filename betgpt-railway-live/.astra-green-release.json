@@ -7,5 +7,6 @@
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
   "workflowRunId": 36937076043,
-  "verifiedAt": "2026-10-01T22:49:01.643Z"
+  "verifiedAt": "2026-10-01T22:50:30Z",
+  "note": "Railway webhook transport via PR merge; GREEN source unchanged."
 }
