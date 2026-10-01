@@ -1,0 +1,21 @@
+name: ASTRA Memory Failover
+
+on:
+  push:
+    paths:
+      - "astra-memory-failover/**"
+      - ".github/workflows/astra-memory-failover.yml"
+  pull_request:
+    paths:
+      - "astra-memory-failover/**"
+      - ".github/workflows/astra-memory-failover.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node --test astra-memory-failover/memory-guard.test.mjs
