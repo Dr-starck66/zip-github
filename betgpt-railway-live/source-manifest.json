@@ -8,14 +8,8 @@
     "envSourceOverrides": false,
     "oneManifestChangePerPromotion": true,
     "greenCandidateOnly": true,
-    "promotionController": "ASTRA_SAFE_BETGPT_PROMOTION",
-    "currentHeadOnly": false,
-    "doubleHeadCheck": true,
-    "greenAncestorOfHeadOnly": true,
-    "monotonicPromotionOnly": true,
-    "releaseTrain": true,
-    "doubleLineageCheck": true
+    "promotionController": "ASTRA_SAFE_BETGPT_PROMOTION"
   },
-  "updatedAt": "2026-10-01T23:39:59.642Z",
-  "reason": "Release Train: promote latest immutable GREEN ancestor of current main without rollback starvation"
+  "updatedAt": "2026-10-01T23:39:48Z",
+  "reason": "Promote ASTRA Discover Launchpad Ω with regression-gated PWA/canonical share images and latest GREEN SEO fixes"
 }

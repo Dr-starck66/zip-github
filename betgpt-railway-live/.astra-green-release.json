@@ -1,15 +1,12 @@
 {
-  "schema": "astra-green-release/v2",
+  "schema": "astra-green-release/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
   "sourceSha": "a27a71e9e221d7e459e2e5eece121962f2f136a3",
-  "sourceHeadAtPromotion": "a27a71e9e221d7e459e2e5eece121962f2f136a3",
   "promotionKey": "Dr-starck66/betgpt-railway@a27a71e9e221d7e459e2e5eece121962f2f136a3",
   "greenVerified": true,
-  "lineageVerified": true,
-  "monotonicVerified": true,
-  "releaseTrain": true,
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
   "workflowRunId": 36941882205,
-  "verifiedAt": "2026-10-01T23:39:59.648Z"
+  "verifiedAt": "2026-10-01T23:39:48Z",
+  "note": "Latest HEAD GREEN. Includes Discover Launchpad, ESPN provenance, page-specific OG/Twitter preservation, PWA/canonical regression tests in repair gate, plus current sitemap/canonical fixes."
 }
