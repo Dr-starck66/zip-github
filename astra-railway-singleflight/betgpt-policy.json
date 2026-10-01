@@ -1,0 +1,26 @@
+{
+  "schema": "astra-railway-single-source-guard/v1",
+  "projectName": "BETGPT LIVE",
+  "canonicalService": "betgpt",
+  "allowedSupport": [
+    "betgpt-chat-model",
+    "betgpt-source-inspector",
+    "betgpt-runtime"
+  ],
+  "quarantinePatterns": [
+    "betgpt-complete",
+    "betgpt-complete-v*"
+  ],
+  "required": {
+    "deploymentStatus": "SUCCESS",
+    "healthcheckPath": "/api/health",
+    "sourceRevisionEvidence": true,
+    "customDomainVerification": true,
+    "publicRouteVerification": true
+  },
+  "behavior": {
+    "createVersionedClone": false,
+    "deleteLegacyAutomatically": false,
+    "failClosed": true
+  }
+}
