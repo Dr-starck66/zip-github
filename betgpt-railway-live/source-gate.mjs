@@ -27,7 +27,7 @@ if (!/^[a-f0-9]{40}$/i.test(sha)) {
   throw new Error("ASTRA_SINGLEFLIGHT_BLOCKED: sourceSha must be an immutable 40-char commit SHA");
 }
 
-if (green.schema !== "astra-green-release/v1") {
+if (!["astra-green-release/v1", "astra-green-release/v2"].includes(green.schema)) {
   throw new Error("ASTRA_GREEN_RELEASE_BLOCKED: invalid release marker schema");
 }
 if (green.greenVerified !== true) {
