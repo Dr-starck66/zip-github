@@ -1,0 +1,8 @@
+{
+  "name":"@astra/connector-guard",
+  "version":"1.0.0",
+  "private":true,
+  "type":"module",
+  "scripts":{"test":"node --test connector-guard.test.mjs"},
+  "engines":{"node":">=20"}
+}
