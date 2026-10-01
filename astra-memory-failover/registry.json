@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "brick": "ASTRA MEMORY FAILOVER Ω",
+  "statusVocabulary": [
+    "PASS",
+    "PARTIAL",
+    "FAIL",
+    "UNVERIFIED"
+  ],
+  "policy": {
+    "objective": "Preserve durable project rules even when native ChatGPT memory is unavailable.",
+    "readPriority": [
+      "native_memory",
+      "chatgpt_library",
+      "github_registry",
+      "current_context"
+    ],
+    "writePriority": [
+      "native_memory",
+      "chatgpt_library",
+      "github_registry"
+    ],
+    "verification": "Never declare PASS until at least one durable store has been read back successfully.",
+    "failClosed": true,
+    "doNotClaimNativeMemoryWhenUnavailable": true
+  },
+  "rules": [
+    {
+      "id": "connector-guard",
+      "title": "ASTRA CONNECTOR GUARD Ω",
+      "text": "For Railway and other external connectors, verify real authentication before critical operations, detect expired sessions, use authorized cloud/API fallbacks, revalidate identity and permissions after reconnection, resume interrupted operations from known context, and never declare PASS without real post-action verification."
+    },
+    {
+      "id": "memory-failover",
+      "title": "ASTRA MEMORY FAILOVER Ω",
+      "text": "When native memory is unavailable, persist important long-term rules in an independent durable registry and mirror them; on later recall, prefer persistent sources over guesses. Never claim a rule was saved unless persistence was verified."
+    }
+  ]
+}
