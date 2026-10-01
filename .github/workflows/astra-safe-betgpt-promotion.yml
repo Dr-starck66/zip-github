@@ -126,5 +126,5 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add betgpt-railway-live/source-manifest.json betgpt-railway-live/.astra-green-release.json
           git diff --cached --quiet && exit 0
-          git commit -m "deploy: promote latest GREEN BetGPT candidate [skip ci]"
+          git commit -m "deploy: promote latest GREEN BetGPT candidate"
           git push
