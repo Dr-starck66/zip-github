@@ -8,5 +8,7 @@
   "gateWorkflow": "astra-never-fail.yml",
   "workflowRunId": 36942696474,
   "verifiedAt": "2026-10-01T23:49:31Z",
-  "note": "ASTRA BETGPT LEARNING MEMORY Ω GREEN: causal pre-match snapshots, settlement learning memory, canonical 1X2 ROI isolation and mandatory release test."
+  "note": "ASTRA BETGPT LEARNING MEMORY Ω GREEN: causal pre-match snapshots, settlement learning memory, canonical 1X2 ROI isolation and mandatory release test.",
+  "reemitAt": "2026-10-01T23:52:30Z",
+  "reemitReason": "ASTRA_CONNECTOR_GUARD: re-emit approved GREEN marker because Railway GitHub webhook did not create a deployment for the first promotion commit."
 }
