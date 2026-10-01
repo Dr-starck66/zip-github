@@ -1,0 +1,34 @@
+name: ASTRA Pantomime SELF-HEAL Proof
+
+on:
+  pull_request:
+    branches: [pantomime-railway-prod]
+    paths:
+      - "bundle.part*"
+      - "package.json"
+      - "config/astra-seo-self-heal.json"
+      - "scripts/astra-seo-self-heal.cjs"
+      - "scripts/astra-seo-self-heal.test.cjs"
+      - "scripts/astra-verify-green-token.cjs"
+      - "astra-self-heal-proof.trigger"
+
+permissions:
+  contents: read
+
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Engine regression tests
+        run: npm run test:self-heal
+      - name: Apply deterministic repair in ephemeral workspace
+        run: npm run seo:self-heal
+      - name: Re-audit repaired bundle
+        run: npm run seo:self-heal:audit
+      - name: Proof marker
+        run: echo "ASTRA_PANTOMIME_SELF_HEAL_PROOF_PASS"
