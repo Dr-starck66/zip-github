@@ -54,6 +54,8 @@ export async function assertAuthorizedRailwayTrigger(options = {}) {
 
   const authorizedMessage =
     /^deploy: promote latest GREEN BetGPT candidate(?:\s|$)/i.test(apiMessage) ||
+    /^deploy: release-train latest GREEN BetGPT candidate(?:\s|$)/i.test(apiMessage) ||
+    /^deploy: reemit approved GREEN BetGPT candidate(?:\s|$)/i.test(apiMessage) ||
     /^rollback: restore last GREEN BetGPT release(?:\s|$)/i.test(apiMessage);
 
   if (!authorizedMessage) fail("unauthorized-controller-commit", `message=${JSON.stringify(apiMessage)}`);
