@@ -1,11 +1,11 @@
 {
   "schema": "astra-green-release/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "9f138545be8e67e569a539b4a437fd407fbbb203",
-  "promotionKey": "Dr-starck66/betgpt-railway@9f138545be8e67e569a539b4a437fd407fbbb203",
+  "sourceSha": "64d120d111a79fe21602133cbe371786c4b308bb",
+  "promotionKey": "Dr-starck66/betgpt-railway@64d120d111a79fe21602133cbe371786c4b308bb",
   "greenVerified": true,
-  "controller": "ASTRA_BOOTSTRAP_FROM_SUCCESSFUL_PRODUCTION",
-  "bootstrapFromRailwayDeploymentId": "9c4893da-d45f-494d-bfc7-dcf1d6b1e3c3",
-  "verifiedAt": "2026-10-01T20:43:09.483Z",
-  "note": "Bootstrap marker created from a confirmed SUCCESS production deployment. Future releases require GitHub candidate-gate proof."
+  "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
+  "workflowRunId": 36925746872,
+  "verifiedAt": "2026-10-01T21:02:04Z",
+  "note": "Promote GREEN candidate with chat personality anti-fatigue, native contextual reactions, exact absurd-score handling, resilient flags, and current SEO guards."
 }
