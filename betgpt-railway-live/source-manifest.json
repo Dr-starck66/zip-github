@@ -10,6 +10,6 @@
     "greenCandidateOnly": true,
     "promotionController": "ASTRA_SAFE_BETGPT_PROMOTION"
   },
-  "updatedAt": "2026-10-01T21:05:00Z",
-  "reason": "Automatic promotion of latest GREEN ASTRA Never-Fail candidate"
+  "updatedAt": "2026-10-01T21:06:00.000Z",
+  "reason": "Promote latest GREEN BetGPT candidate after controller re-arm"
 }
