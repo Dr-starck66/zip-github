@@ -3,12 +3,13 @@
   "site": "pantomime.org",
   "canonicalBase": "https://pantomime.org",
   "partPrefix": "bundle.part",
-  "chunkChars": 900000,
+  "chunkChars": 50000,
   "primarySitemap": "sitemap.xml",
   "preferredSitemap": "sitemap.xml",
   "robotsFile": "robots.txt",
   "ignoreHtml": [
     "404.html"
   ],
-  "reportPath": "artifacts/seo/self-heal-pantomime.json"
+  "reportPath": "artifacts/seo/self-heal-pantomime.json",
+  "partDigits": 2
 }
