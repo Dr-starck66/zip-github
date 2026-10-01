@@ -1,6 +1,6 @@
 {
-  "sourceSha": "c90c07f70a37a9fbdd794706daf5fd45631bdcc1",
-  "workflowRunId": null,
-  "requestedAt": "2026-10-01T22:52:30Z",
-  "reason": "ASTRA stale-GREEN promotion guard live verification"
+  "sourceSha": "b4b66fa63b9cb7ba21ecc07538e81da761116c6f",
+  "workflowRunId": 36938023994,
+  "requestedAt": "2026-10-01T22:58:00Z",
+  "reason": "Promote GREEN absurd-score viral punchline fix"
 }
