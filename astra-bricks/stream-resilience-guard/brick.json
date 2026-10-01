@@ -1,0 +1,34 @@
+{
+  "schema": "astra-brick/v1",
+  "id": "stream-resilience-guard",
+  "name": "ASTRA STREAM RESILIENCE GUARD Ω",
+  "version": "1.0.0",
+  "status": "PROVEN",
+  "canonicalRepo": "Dr-starck66/zip-github",
+  "canonicalPath": "astra-bricks/stream-resilience-guard",
+  "installTargets": {
+    "lib/astra-stream-resilience.mjs": "scripts/lib/astra-stream-resilience.mjs",
+    "astra-stream-resilience.test.mjs": "scripts/astra-stream-resilience.test.mjs",
+    "astra-stream-resilience-guard.mjs": "scripts/astra-stream-resilience-guard.mjs",
+    "policy.json": "config/astra-stream-resilience.json"
+  },
+  "requiredScripts": {
+    "test:stream-resilience": "node --test scripts/astra-stream-resilience.test.mjs",
+    "guard:stream-resilience": "node scripts/astra-stream-resilience-guard.mjs"
+  },
+  "requiredGateCommand": "npm run guard:stream-resilience",
+  "guarantees": [
+    "atomic checkpoints",
+    "resume compatible PASS steps",
+    "retry transient stream/cache/network failures",
+    "bounded timeout and exponential backoff",
+    "idempotency requirement for side effects",
+    "fail closed on semantic/business failures"
+  ],
+  "proof": {
+    "sourceRepo": "Dr-starck66/betgpt-railway",
+    "exactRecoveryRunId": 36936238046,
+    "mainNeverFailRunId": 36938023994,
+    "evidence": "ASTRA_STREAM_RESILIENCE_GUARD_PASS status=RESUMED retry_recovered=true checkpoint=true fail_closed=true"
+  }
+}
