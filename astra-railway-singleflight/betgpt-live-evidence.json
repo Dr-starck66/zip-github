@@ -53,27 +53,45 @@
     "markerWritesSkippedDeploys": true
   },
   "domain": {
-    "expected": "betgpt.live",
-    "attachAttempts": [
-      {
-        "domain": "betgpt.live",
-        "targetPort": null,
-        "result": "Failed to create custom domain, please try again"
-      },
-      {
-        "domain": "www.betgpt.live",
-        "targetPort": null,
-        "result": "Failed to create custom domain, please try again"
-      },
-      {
-        "domain": "www.betgpt.live",
-        "targetPort": 8080,
-        "result": "Failed to create custom domain, please try again"
-      }
+    "expected": [
+      "betgpt.live",
+      "www.betgpt.live"
     ],
-    "state": "CLAIM_STUCK_SUSPECTED",
-    "action": "STOP_BLIND_RETRIES_AND_REQUIRE_RAILWAY_DOMAIN_RELEASE_OR_OWNERSHIP_RECOVERY"
+    "binding": {
+      "project": "RepoPilot X",
+      "serviceId": "dd41543b-fe88-469d-b4c8-a82b0a75d9ff",
+      "mode": "ROUTER_ONLY",
+      "canonicalUpstream": "https://betgpt-production-7353.up.railway.app"
+    },
+    "proof": {
+      "workflow": "ASTRA BetGPT Public Alias Proof",
+      "workflowRunId": 36940532955,
+      "publicRevisionEqualsCanonical": true,
+      "requiredHeaders": {
+        "x-astra-router-mode": "ROUTER_ONLY",
+        "x-astra-public-proxy": "betgpt-canonical-alias"
+      },
+      "endpoints": {
+        "/": {
+          "public": 200,
+          "canonical": 200
+        },
+        "/api/health": {
+          "public": 200,
+          "canonical": 200
+        },
+        "/robots.txt": {
+          "public": 200,
+          "canonical": 200
+        },
+        "/sitemap.xml": {
+          "public": 200,
+          "canonical": 200
+        }
+      }
+    },
+    "state": "VERIFIED_ROUTER_ONLY_ALIAS"
   },
-  "status": "PARTIAL",
-  "reason": "Canonical Railway production is verified healthy and legacy services are quarantined, but custom domain claim cannot yet be attached."
+  "status": "PASS",
+  "reason": "One canonical BetGPT application source is live; public custom domains are bound to a routing-only alias that independently proves byte-identical revision metadata and 200 responses against the canonical Railway origin."
 }
