@@ -15,12 +15,25 @@
     "deploymentStatus": "SUCCESS",
     "healthcheckPath": "/api/health",
     "sourceRevisionEvidence": true,
-    "customDomainVerification": true,
+    "customDomainVerification": "direct-on-canonical OR independently-verified ROUTER_ONLY alias",
     "publicRouteVerification": true
   },
   "behavior": {
     "createVersionedClone": false,
     "deleteLegacyAutomatically": false,
-    "failClosed": true
+    "failClosed": true,
+    "routingOnlyAliasAllowed": true,
+    "secondApplicationSourceAllowed": false
+  },
+  "publicAlias": {
+    "serviceProject": "RepoPilot X",
+    "serviceId": "dd41543b-fe88-469d-b4c8-a82b0a75d9ff",
+    "mode": "ROUTER_ONLY",
+    "upstream": "https://betgpt-production-7353.up.railway.app",
+    "domains": [
+      "betgpt.live",
+      "www.betgpt.live"
+    ],
+    "proofWorkflowRunId": 36940532955
   }
 }
