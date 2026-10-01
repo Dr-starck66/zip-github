@@ -30,5 +30,38 @@
     "exactRecoveryRunId": 36936238046,
     "mainNeverFailRunId": 36938023994,
     "evidence": "ASTRA_STREAM_RESILIENCE_GUARD_PASS status=RESUMED retry_recovered=true checkpoint=true fail_closed=true"
+  },
+  "jsonArrayEnsures": [
+    {
+      "path": "config/astra-never-fail-build-guard.json",
+      "pointer": "/requiredChecks",
+      "value": {
+        "id": "stream-resilience",
+        "command": "npm run guard:stream-resilience"
+      },
+      "matchKey": "id",
+      "optional": true
+    },
+    {
+      "path": "config/astra-release-gate.json",
+      "pointer": "/preflightCommands",
+      "value": "npm run guard:stream-resilience",
+      "optional": true
+    },
+    {
+      "path": "config/astra-release-gate.json",
+      "pointer": "/pipelines/editorial/commands",
+      "value": "npm run guard:stream-resilience",
+      "optional": true
+    }
+  ],
+  "injector": {
+    "minVersion": "1.0.0",
+    "commands": {
+      "plan": "node astra-bricks/injector/astra-brick-injector.mjs plan --brick astra-bricks/stream-resilience-guard --target <project>",
+      "apply": "node astra-bricks/injector/astra-brick-injector.mjs apply --brick astra-bricks/stream-resilience-guard --target <project>",
+      "verify": "node astra-bricks/injector/astra-brick-injector.mjs verify --brick astra-bricks/stream-resilience-guard --target <project>",
+      "rollback": "node astra-bricks/injector/astra-brick-injector.mjs rollback --brick astra-bricks/stream-resilience-guard --target <project>"
+    }
   }
 }
