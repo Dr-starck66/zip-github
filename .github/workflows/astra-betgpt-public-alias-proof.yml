@@ -1,0 +1,37 @@
+name: ASTRA BetGPT Public Alias Proof
+
+on:
+  push:
+    paths:
+      - ".github/workflows/astra-betgpt-public-alias-proof.yml"
+
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify public alias and canonical origin
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          PUBLIC="https://betgpt.live"
+          CANONICAL="https://betgpt-production-7353.up.railway.app"
+
+          curl --fail --silent --show-error --location             --connect-timeout 15 --max-time 45             -D /tmp/public.headers             -o /tmp/public.revision             "$PUBLIC/astra-revision.json"
+
+          curl --fail --silent --show-error --location             --connect-timeout 15 --max-time 45             -o /tmp/canonical.revision             "$CANONICAL/astra-revision.json"
+
+          grep -iq '^x-astra-router-mode: ROUTER_ONLY' /tmp/public.headers
+          grep -iq '^x-astra-public-proxy: betgpt-canonical-alias' /tmp/public.headers
+
+          cmp /tmp/public.revision /tmp/canonical.revision
+
+          for path in / /api/health /robots.txt /sitemap.xml; do
+            pub_code="$(curl --silent --show-error --location --output /dev/null --write-out '%{http_code}' --connect-timeout 15 --max-time 45 "$PUBLIC$path")"
+            can_code="$(curl --silent --show-error --location --output /dev/null --write-out '%{http_code}' --connect-timeout 15 --max-time 45 "$CANONICAL$path")"
+            test "$pub_code" = "200"
+            test "$can_code" = "200"
+            echo "PASS $path public=$pub_code canonical=$can_code"
+          done
+
+          echo "ASTRA_BETGPT_PUBLIC_ALIAS_PROOF_PASS"
