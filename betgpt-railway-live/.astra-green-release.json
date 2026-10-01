@@ -7,5 +7,6 @@
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "workflowRunId": 36925746872,
   "verifiedAt": "2026-10-01T21:02:04Z",
-  "note": "Promote GREEN candidate with chat personality anti-fatigue, native contextual reactions, exact absurd-score handling, resilient flags, and current SEO guards."
+  "note": "GREEN candidate verified by ASTRA Never-Fail run 36925746872; source manifest synchronized; production promotion trigger.",
+  "promotionTriggeredAt": "2026-10-01T21:02:30Z"
 }
