@@ -1,0 +1,107 @@
+name: ASTRA Pantomime Self-Heal Release
+
+on:
+  push:
+    branches: [pantomime-railway-prod]
+    paths-ignore:
+      - ".astra-green-release.sha256"
+      - ".astra-green-release.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: astra-pantomime-self-heal
+  cancel-in-progress: false
+
+jobs:
+  validate-repair-promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Prove self-heal engine
+        run: npm run test:self-heal
+
+      - name: Apply deterministic repairs
+        run: npm run seo:self-heal
+
+      - name: Re-audit repaired bundle
+        run: npm run seo:self-heal:audit
+
+      - name: Refuse stale promotion
+        shell: bash
+        env:
+          ORIGINAL_SHA: ${{ github.sha }}
+        run: |
+          git fetch origin pantomime-railway-prod
+          CURRENT="$(git rev-parse origin/pantomime-railway-prod)"
+          if [ "$CURRENT" != "$ORIGINAL_SHA" ]; then
+            echo "ASTRA_PANTOMIME_BLOCKED: branch advanced from $ORIGINAL_SHA to $CURRENT"
+            exit 78
+          fi
+
+      - name: Commit verified bundle repair when needed
+        id: repair
+        shell: bash
+        run: |
+          git config user.name "ASTRA SEO Self-Heal"
+          git config user.email "actions@users.noreply.github.com"
+          if git diff --quiet -- 'bundle.part*'; then
+            echo "repaired=false" >> "$GITHUB_OUTPUT"
+          else
+            git add -A -- 'bundle.part*'
+            git commit -m "seo(self-heal): repair Pantomime indexability bundle"
+            git push origin HEAD:pantomime-railway-prod
+            echo "repaired=true" >> "$GITHUB_OUTPUT"
+          fi
+          echo "source_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Create GREEN checksum
+        shell: bash
+        env:
+          SOURCE_SHA: ${{ steps.repair.outputs.source_sha }}
+        run: |
+          set -euo pipefail
+          sha256sum server.cjs package.json config/astra-seo-self-heal.json scripts/astra-seo-self-heal.cjs bundle.part* > .astra-green-release.sha256
+          node <<'NODE'
+          const fs=require("fs");
+          const marker={
+            schema:"astra-green-release/v1",
+            site:"pantomime.org",
+            sourceSha:process.env.SOURCE_SHA,
+            checksumFile:".astra-green-release.sha256",
+            greenVerified:true,
+            controller:"ASTRA_PANTOMIME_SELF_HEAL",
+            verifiedAt:new Date().toISOString()
+          };
+          fs.writeFileSync(".astra-green-release.json",JSON.stringify(marker,null,2)+"\n");
+          NODE
+
+      - name: Publish GREEN token
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin pantomime-railway-prod
+          CURRENT="$(git rev-parse origin/pantomime-railway-prod)"
+          LOCAL="$(git rev-parse HEAD)"
+          if [ "$CURRENT" != "$LOCAL" ]; then
+            echo "ASTRA_PANTOMIME_BLOCKED: repository race before GREEN token"
+            exit 78
+          fi
+          git add .astra-green-release.sha256 .astra-green-release.json
+          if git diff --cached --quiet; then
+            echo "GREEN token already current."
+            exit 0
+          fi
+          git commit -m "release: GREEN Pantomime self-heal verified"
+          git push origin HEAD:pantomime-railway-prod
