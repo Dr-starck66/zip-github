@@ -6,6 +6,8 @@ on:
     paths:
       - "betgpt-railway-live/.astra-green-release.json"
       - "betgpt-railway-live/source-manifest.json"
+      - "betgpt-railway-live/astra-postflight.mjs"
+      - ".github/workflows/astra-betgpt-postflight.yml"
   workflow_dispatch:
 
 concurrency:
