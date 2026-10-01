@@ -1,8 +1,12 @@
+import { assertAuthorizedRailwayTrigger } from "./astra-deploy-trigger-firewall.mjs";
 import fs from "node:fs";
 import path from "node:path";
 
 const manifestPath = path.resolve("source-manifest.json");
 const greenPath = path.resolve(".astra-green-release.json");
+
+const triggerFirewallConfig = JSON.parse(fs.readFileSync(path.resolve("astra-deploy-trigger-firewall.json"), "utf8"));
+await assertAuthorizedRailwayTrigger(triggerFirewallConfig);
 
 if (!fs.existsSync(manifestPath)) {
   throw new Error("ASTRA_SINGLEFLIGHT_BLOCKED: source-manifest.json missing");
