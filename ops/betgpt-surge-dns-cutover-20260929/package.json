@@ -1,7 +1,0 @@
-{
-  "name": "betgpt-surge-dns-cutover",
-  "private": true,
-  "type": "module",
-  "scripts": { "start": "node index.mjs" },
-  "engines": { "node": ">=22" }
-}
