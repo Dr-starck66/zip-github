@@ -1,0 +1,15 @@
+{
+  "schema": "astra-deploy-trigger-firewall/v1",
+  "controllerRepo": "Dr-starck66/zip-github",
+  "greenPath": "betgpt-railway-live/.astra-green-release.json",
+  "manifestPath": "betgpt-railway-live/source-manifest.json",
+  "publicRevisionUrl": "https://betgpt.live/astra-revision.json",
+  "policy": {
+    "failClosedOnMissingRailwayGitIdentity": true,
+    "mainBranchOnly": true,
+    "greenTokenMustChangeInTriggerCommit": true,
+    "manifestMustChangeInTriggerCommit": true,
+    "authorizedCommitMessagesOnly": true,
+    "blockDuplicateReleaseAlreadyPublic": true
+  }
+}
