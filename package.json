@@ -3,6 +3,10 @@
   "version": "1.0.1",
   "private": true,
   "scripts": {
-    "start": "node server.cjs"
+    "start": "node server.cjs",
+    "seo:self-heal": "node scripts/astra-seo-self-heal.cjs --apply",
+    "seo:self-heal:audit": "node scripts/astra-seo-self-heal.cjs",
+    "test:self-heal": "node --test scripts/astra-seo-self-heal.test.cjs",
+    "build": "sha256sum -c .astra-green-release.sha256 && node scripts/astra-seo-self-heal.cjs"
   }
 }
