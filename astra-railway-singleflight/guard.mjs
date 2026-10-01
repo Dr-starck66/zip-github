@@ -37,8 +37,47 @@ export function classifyInventory({services=[], canonicalService, allowedSupport
   };
 }
 
+export function detectDomainState({
+  expectedDomain,
+  listedCustomDomains=[],
+  createAttempt=null
+}={}) {
+  const wanted = normalizeName(expectedDomain);
+  const listed = listedCustomDomains.map(d => normalizeName(typeof d === "string" ? d : d?.domain));
+  if (wanted && listed.includes(wanted)) {
+    return {state:"ATTACHED", retry:false, reason:"domain listed on canonical service"};
+  }
+
+  const message = String(createAttempt?.error || createAttempt?.message || "");
+  if (
+    wanted &&
+    createAttempt?.attempted === true &&
+    createAttempt?.success === false &&
+    /failed to create custom domain/i.test(message) &&
+    listed.length === 0
+  ) {
+    return {
+      state:"CLAIM_STUCK_SUSPECTED",
+      retry:false,
+      reason:"customDomainCreate failed while canonical list_domains is empty; stop blind retries and escalate release/ownership verification"
+    };
+  }
+
+  if (createAttempt?.attempted === true && createAttempt?.success === false) {
+    return {state:"CREATE_FAILED", retry:false, reason:message || "custom domain create failed"};
+  }
+
+  return {state:"MISSING", retry:true, reason:"domain not attached yet"};
+}
+
 export function releaseGate(input) {
   const inventory = classifyInventory(input);
+  const domain = input.domainState || detectDomainState({
+    expectedDomain: input.expectedDomain,
+    listedCustomDomains: input.listedCustomDomains,
+    createAttempt: input.createAttempt
+  });
+
   const checks = {
     canonicalExactlyOne: inventory.canonicalCount === 1,
     deploymentSuccess: input.latestDeploymentStatus === "SUCCESS",
@@ -47,16 +86,17 @@ export function releaseGate(input) {
     customDomainVerified: input.customDomainVerified === true,
     publicRouteVerified: input.publicRouteVerified === true,
     sourceRevisionVerified: input.sourceRevisionVerified !== false,
-    noUndeclaredClones: inventory.clones.length === 0
+    noUndeclaredClones: inventory.clones.length === 0,
+    noStuckDomainClaim: domain.state !== "CLAIM_STUCK_SUSPECTED"
   };
 
   const hard = ["canonicalExactlyOne","deploymentSuccess","healthcheckConfigured","sourceKnown","sourceRevisionVerified"];
-  if (hard.some(k => !checks[k])) return {state:"FAIL", checks, inventory};
+  if (hard.some(k => !checks[k])) return {state:"FAIL", checks, inventory, domain};
 
-  if (!checks.customDomainVerified || !checks.publicRouteVerified || !checks.noUndeclaredClones || inventory.unknown.length) {
-    return {state:"PARTIAL", checks, inventory};
+  if (!checks.customDomainVerified || !checks.publicRouteVerified || !checks.noUndeclaredClones || inventory.unknown.length || !checks.noStuckDomainClaim) {
+    return {state:"PARTIAL", checks, inventory, domain};
   }
-  return {state:"PASS", checks, inventory};
+  return {state:"PASS", checks, inventory, domain};
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
