@@ -1,0 +1,27 @@
+{
+  "schema": "astra-stream-resilience-policy/v1",
+  "name": "ASTRA STREAM RESILIENCE GUARD Ω",
+  "policy": {
+    "checkpointAfterEverySuccessfulStep": true,
+    "resumeCompletedSteps": true,
+    "sideEffectsRequireIdempotency": true,
+    "retryOnlyTransientFailures": true,
+    "failClosedOnBusinessLogicErrors": true,
+    "boundedTimeouts": true,
+    "atomicCheckpointWrites": true,
+    "maxAttempts": 4,
+    "defaultTimeoutMs": 30000,
+    "backoffBaseMs": 500
+  },
+  "transientExamples": [
+    "Stream cache expired",
+    "stream expired",
+    "ECONNRESET",
+    "ETIMEDOUT",
+    "EAI_AGAIN",
+    "socket hang up",
+    "fetch failed",
+    "temporarily unavailable"
+  ],
+  "states": ["PASS", "RESUMED", "DEGRADED", "FAIL"]
+}
