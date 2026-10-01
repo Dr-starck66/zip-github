@@ -10,6 +10,6 @@
     "greenCandidateOnly": true,
     "promotionController": "ASTRA_SAFE_BETGPT_PROMOTION"
   },
-  "updatedAt": "2026-10-01T22:49:01.638Z",
-  "reason": "Automatic promotion of latest GREEN ASTRA Never-Fail candidate"
+  "updatedAt": "2026-10-01T22:50:30Z",
+  "reason": "Railway webhook transport via PR merge for already-verified GREEN source"
 }
