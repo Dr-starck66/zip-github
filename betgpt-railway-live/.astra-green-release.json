@@ -5,8 +5,7 @@
   "promotionKey": "Dr-starck66/betgpt-railway@64d120d111a79fe21602133cbe371786c4b308bb",
   "greenVerified": true,
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
+  "gateWorkflow": "astra-never-fail.yml",
   "workflowRunId": 36925746872,
-  "verifiedAt": "2026-10-01T21:02:04.000Z",
-  "note": "Validated by ASTRA Never-Fail Candidate Gate before Railway promotion.",
-  "promotionTriggeredAt": "2026-10-01T21:02:30Z"
+  "verifiedAt": "2026-10-01T21:05:00Z"
 }

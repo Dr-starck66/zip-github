@@ -1,14 +1,15 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "9f138545be8e67e569a539b4a437fd407fbbb203",
-  "promotionKey": "Dr-starck66/betgpt-railway@9f138545be8e67e569a539b4a437fd407fbbb203",
+  "sourceSha": "64d120d111a79fe21602133cbe371786c4b308bb",
+  "promotionKey": "Dr-starck66/betgpt-railway@64d120d111a79fe21602133cbe371786c4b308bb",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
     "oneManifestChangePerPromotion": true,
-    "greenCandidateOnly": true
+    "greenCandidateOnly": true,
+    "promotionController": "ASTRA_SAFE_BETGPT_PROMOTION"
   },
-  "updatedAt": "2026-10-01T21:04:00Z",
-  "reason": "Re-arm ASTRA Safe BetGPT Promotion controller; Railway watches only the GREEN token and will not deploy this manifest-only staging commit."
+  "updatedAt": "2026-10-01T21:05:00Z",
+  "reason": "Automatic promotion of latest GREEN ASTRA Never-Fail candidate"
 }
