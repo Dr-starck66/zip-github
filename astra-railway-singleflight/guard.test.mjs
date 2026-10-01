@@ -88,3 +88,37 @@ test("release gate PASS with all evidence", () => {
   });
   assert.equal(r.state,"PASS");
 });
+
+
+test("verified ROUTER_ONLY alias can satisfy domain gate", () => {
+  const r=releaseGate({
+    canonicalService:"betgpt",
+    services:[{name:"betgpt"}],
+    latestDeploymentStatus:"SUCCESS",
+    healthcheckPath:"/api/health",
+    sourceRepo:"Dr-starck66/zip-github",
+    sourceRevisionVerified:true,
+    customDomainVerified:false,
+    verifiedAlias:true,
+    aliasMode:"ROUTER_ONLY",
+    publicRouteVerified:true,
+    domainState:{state:"ATTACHED_VIA_ALIAS"}
+  });
+  assert.equal(r.state,"PASS");
+});
+
+test("verified alias must be routing-only", () => {
+  const r=releaseGate({
+    canonicalService:"betgpt",
+    services:[{name:"betgpt"}],
+    latestDeploymentStatus:"SUCCESS",
+    healthcheckPath:"/api/health",
+    sourceRepo:"Dr-starck66/zip-github",
+    sourceRevisionVerified:true,
+    verifiedAlias:true,
+    aliasMode:"SECOND_APP_SOURCE",
+    publicRouteVerified:true,
+    domainState:{state:"ATTACHED_VIA_ALIAS"}
+  });
+  assert.equal(r.state,"PARTIAL");
+});
