@@ -1,0 +1,21 @@
+name: ASTRA Railway Single-Source Guard
+
+on:
+  push:
+    paths:
+      - "astra-railway-singleflight/**"
+      - ".github/workflows/astra-railway-single-source.yml"
+  pull_request:
+    paths:
+      - "astra-railway-singleflight/**"
+      - ".github/workflows/astra-railway-single-source.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node --test astra-railway-singleflight/guard.test.mjs
