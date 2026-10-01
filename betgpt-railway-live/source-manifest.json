@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "655640bee74fd3ed3171d1498b8e4621eaf6f1a5",
-  "promotionKey": "Dr-starck66/betgpt-railway@655640bee74fd3ed3171d1498b8e4621eaf6f1a5",
+  "sourceSha": "3db7b974502795bc88ca5dbf2fec0b76ff83b961",
+  "promotionKey": "Dr-starck66/betgpt-railway@3db7b974502795bc88ca5dbf2fec0b76ff83b961",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -10,6 +10,6 @@
     "greenCandidateOnly": true,
     "promotionController": "ASTRA_SAFE_BETGPT_PROMOTION"
   },
-  "updatedAt": "2026-10-01T22:39:53Z",
-  "reason": "Promote GREEN results SEO/UX refactor with strengthened date and league pages"
+  "updatedAt": "2026-10-01T22:43:41Z",
+  "reason": "Promote GREEN BetGPT viral social loop and chat personality refinements"
 }

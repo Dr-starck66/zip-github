@@ -1,12 +1,12 @@
 {
   "schema": "astra-green-release/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "655640bee74fd3ed3171d1498b8e4621eaf6f1a5",
-  "promotionKey": "Dr-starck66/betgpt-railway@655640bee74fd3ed3171d1498b8e4621eaf6f1a5",
+  "sourceSha": "3db7b974502795bc88ca5dbf2fec0b76ff83b961",
+  "promotionKey": "Dr-starck66/betgpt-railway@3db7b974502795bc88ca5dbf2fec0b76ff83b961",
   "greenVerified": true,
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
-  "workflowRunId": 36936300701,
-  "verifiedAt": "2026-10-01T22:39:53Z",
-  "note": "Results SEO/UX release GREEN: zero-weak-page guard, heading guard, indexability, typecheck, repair tests, results watchdog and production bundle passed."
+  "workflowRunId": 36936665347,
+  "verifiedAt": "2026-10-01T22:43:41Z",
+  "note": "Promote BetGPT viral social loop: social-native share moments, X/Facebook/Instagram-Story card sharing, roast challenge deep links, share-source attribution, premium native reactions, and absurd-score fallback fix."
 }
