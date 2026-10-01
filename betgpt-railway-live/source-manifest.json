@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "edb30c791c65e4fd613303baf731857842fd14db",
-  "promotionKey": "Dr-starck66/betgpt-railway@edb30c791c65e4fd613303baf731857842fd14db",
+  "sourceSha": "8e9e2a4ee7101c0bbd98425fde3dd6c6bb5d8312",
+  "promotionKey": "Dr-starck66/betgpt-railway@8e9e2a4ee7101c0bbd98425fde3dd6c6bb5d8312",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -10,6 +10,6 @@
     "greenCandidateOnly": true,
     "promotionController": "ASTRA_SAFE_BETGPT_PROMOTION"
   },
-  "updatedAt": "2026-10-01T21:36:00Z",
-  "reason": "Promote ASTRA SERP DOMINATOR V1 plus prediction evidence JSON-LD and sitemap coverage"
+  "updatedAt": "2026-10-01T21:46:51Z",
+  "reason": "Promote ASTRA Editorial Zero Debt and full-corpus fail-closed authority audit"
 }
