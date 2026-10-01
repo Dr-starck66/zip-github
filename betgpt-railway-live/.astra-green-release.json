@@ -1,12 +1,12 @@
 {
   "schema": "astra-green-release/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "18e461f5cace55da82fdeb0ae61265b6e3a8fd79",
-  "promotionKey": "Dr-starck66/betgpt-railway@18e461f5cace55da82fdeb0ae61265b6e3a8fd79",
+  "sourceSha": "4f300961457c5c8e25c19241df1f0da6f6f79941",
+  "promotionKey": "Dr-starck66/betgpt-railway@4f300961457c5c8e25c19241df1f0da6f6f79941",
   "greenVerified": true,
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
-  "workflowRunId": 36942407767,
-  "verifiedAt": "2026-10-01T23:45:48Z",
-  "note": "Site-name disambiguation GREEN: preserve BetGPT brand and expose lowercase domain fallback betgpt.live."
+  "workflowRunId": 36942696474,
+  "verifiedAt": "2026-10-01T23:49:31Z",
+  "note": "ASTRA BETGPT LEARNING MEMORY Ω GREEN: causal pre-match snapshots, settlement learning memory, canonical 1X2 ROI isolation and mandatory release test."
 }

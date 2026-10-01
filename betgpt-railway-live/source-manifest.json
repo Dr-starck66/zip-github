@@ -1,15 +1,17 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "18e461f5cace55da82fdeb0ae61265b6e3a8fd79",
-  "promotionKey": "Dr-starck66/betgpt-railway@18e461f5cace55da82fdeb0ae61265b6e3a8fd79",
+  "sourceSha": "4f300961457c5c8e25c19241df1f0da6f6f79941",
+  "promotionKey": "Dr-starck66/betgpt-railway@4f300961457c5c8e25c19241df1f0da6f6f79941",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
     "oneManifestChangePerPromotion": true,
     "greenCandidateOnly": true,
-    "promotionController": "ASTRA_SAFE_BETGPT_PROMOTION"
+    "promotionController": "ASTRA_SAFE_BETGPT_PROMOTION",
+    "currentHeadOnly": true,
+    "doubleHeadCheck": true
   },
-  "updatedAt": "2026-10-01T23:45:48Z",
-  "reason": "Authorized promotion of GREEN site-name disambiguation after ASTRA Never-Fail Candidate Gate."
+  "updatedAt": "2026-10-01T23:49:31Z",
+  "reason": "Authorized promotion of GREEN ASTRA BETGPT LEARNING MEMORY Ω candidate after Never-Fail gate."
 }
