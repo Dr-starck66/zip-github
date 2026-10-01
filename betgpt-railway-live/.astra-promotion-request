@@ -1,6 +1,6 @@
 {
-  "sourceSha": "55ac9e6e88e6387e97b457548ba634bf7cba3326",
-  "workflowRunId": 36940144525,
-  "requestedAt": "2026-10-01T23:32:29.427Z",
-  "reason": "Promote latest GREEN BetGPT candidate with ASTRA SEARCH TRUTH Ω and National Breakout"
+  "sourceSha": "e4a2fecf24fa29f574261e9740d34141fd8abe2a",
+  "workflowRunId": 36941647647,
+  "requestedAt": "2026-10-01T23:37:39.637Z",
+  "reason": "Promote GREEN Search Truth no-fake-score candidate"
 }
