@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "brick": "ASTRA MEMORY FAILOVER Ω",
   "statusVocabulary": [
     "PASS",
@@ -22,7 +22,13 @@
     ],
     "verification": "Never declare PASS until at least one durable store has been read back successfully.",
     "failClosed": true,
-    "doNotClaimNativeMemoryWhenUnavailable": true
+    "doNotClaimNativeMemoryWhenUnavailable": true,
+    "bootstrapRequiredBeforeToolSelection": true,
+    "continuityPassRequires": [
+      "durable_store_readable",
+      "relevant_rules_retrieved_before_decision"
+    ],
+    "externalToolRule": "Prefer user-built ASTRA bricks over external SaaS/plugins when functionally equivalent; GSC/Ubersuggest are optional supplements, not prerequisites."
   },
   "rules": [
     {
@@ -34,6 +40,11 @@
       "id": "memory-failover",
       "title": "ASTRA MEMORY FAILOVER Ω",
       "text": "When native memory is unavailable, persist important long-term rules in an independent durable registry and mirror them; on later recall, prefer persistent sources over guesses. Never claim a rule was saved unless persistence was verified."
+    },
+    {
+      "id": "memory-bootstrap",
+      "title": "ASTRA BOOTSTRAP Ω",
+      "text": "Before substantial project work or tool selection, retrieve relevant native context, then Library ASTRA Memory and project DNA/registry. Persistence without retrieval is not PASS."
     }
   ]
 }
