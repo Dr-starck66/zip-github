@@ -4,13 +4,18 @@ import path from "node:path";
 import crypto from "node:crypto";
 import extract from "extract-zip";
 
-// Railway watches this path; resolve the exact BetGPT revision before downloading it.
-const revisionRes = await fetch("https://api.github.com/repos/Dr-starck66/betgpt-railway/commits/main", {
-  headers: { "User-Agent": "BetGPT-Railway-Bootstrap/3.0", Accept: "application/vnd.github+json" },
-});
-if (!revisionRes.ok) throw new Error(`BetGPT revision lookup failed: ${revisionRes.status}`);
-const revisionJson = await revisionRes.json();
-const sourceRevision = String(revisionJson.sha || "").trim();
+// Railway watches this path. Prefer an explicitly requested immutable source SHA;
+// only fall back to the current main revision when no valid pin is supplied.
+const requestedRevision = String(process.env.ASTRA_SOURCE_REF || process.env.BETGPT_SOURCE_REF || "").trim();
+let sourceRevision = requestedRevision;
+if (!/^[a-f0-9]{40}$/i.test(sourceRevision)) {
+  const revisionRes = await fetch("https://api.github.com/repos/Dr-starck66/betgpt-railway/commits/main", {
+    headers: { "User-Agent": "BetGPT-Railway-Bootstrap/4.0", Accept: "application/vnd.github+json" },
+  });
+  if (!revisionRes.ok) throw new Error(`BetGPT revision lookup failed: ${revisionRes.status}`);
+  const revisionJson = await revisionRes.json();
+  sourceRevision = String(revisionJson.sha || "").trim();
+}
 if (!/^[a-f0-9]{40}$/i.test(sourceRevision)) throw new Error("BetGPT revision is invalid");
 const sourceUrl = `https://codeload.github.com/Dr-starck66/betgpt-railway/zip/${sourceRevision}`;
 const res = await fetch(sourceUrl, {
