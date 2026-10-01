@@ -6,7 +6,7 @@ import test from "node:test";
 import { runInjector } from "./astra-brick-injector.mjs";
 
 const repoRoot = path.resolve(new URL("../../", import.meta.url).pathname);
-const brickRoot = path.join(repoRoot, "stream-resilience-guard");
+const brickRoot = path.join(repoRoot, "astra-bricks", "stream-resilience-guard");
 
 function fixture() {
   const dir = mkdtempSync(path.join(os.tmpdir(), "astra-brick-injector-"));
