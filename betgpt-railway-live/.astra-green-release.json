@@ -1,12 +1,12 @@
 {
   "schema": "astra-green-release/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "a27a71e9e221d7e459e2e5eece121962f2f136a3",
-  "promotionKey": "Dr-starck66/betgpt-railway@a27a71e9e221d7e459e2e5eece121962f2f136a3",
+  "sourceSha": "61194800b9cf0bb63e2a1b25577e6a893e9bf4ec",
+  "promotionKey": "Dr-starck66/betgpt-railway@61194800b9cf0bb63e2a1b25577e6a893e9bf4ec",
   "greenVerified": true,
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
-  "workflowRunId": 36941882205,
-  "verifiedAt": "2026-10-01T23:39:48Z",
-  "note": "Latest HEAD GREEN. Includes Discover Launchpad, ESPN provenance, page-specific OG/Twitter preservation, PWA/canonical regression tests in repair gate, plus current sitemap/canonical fixes."
+  "workflowRunId": 36942157729,
+  "verifiedAt": "2026-10-01T23:43:00Z",
+  "note": "Affiliate Control Center GREEN: per-book readiness, durable 24h/7d click metrics, safe activation source, immediate status refresh."
 }

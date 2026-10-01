@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "a27a71e9e221d7e459e2e5eece121962f2f136a3",
-  "promotionKey": "Dr-starck66/betgpt-railway@a27a71e9e221d7e459e2e5eece121962f2f136a3",
+  "sourceSha": "61194800b9cf0bb63e2a1b25577e6a893e9bf4ec",
+  "promotionKey": "Dr-starck66/betgpt-railway@61194800b9cf0bb63e2a1b25577e6a893e9bf4ec",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -10,6 +10,6 @@
     "greenCandidateOnly": true,
     "promotionController": "ASTRA_SAFE_BETGPT_PROMOTION"
   },
-  "updatedAt": "2026-10-01T23:39:48Z",
-  "reason": "Promote ASTRA Discover Launchpad Ω with regression-gated PWA/canonical share images and latest GREEN SEO fixes"
+  "updatedAt": "2026-10-01T23:43:00Z",
+  "reason": "Promote GREEN ASTRA Affiliate Control Center Ω"
 }
