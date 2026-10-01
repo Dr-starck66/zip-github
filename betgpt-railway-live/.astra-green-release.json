@@ -1,14 +1,15 @@
 {
-  "schema": "astra-green-release/v1",
+  "schema": "astra-green-release/v2",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "4f300961457c5c8e25c19241df1f0da6f6f79941",
-  "promotionKey": "Dr-starck66/betgpt-railway@4f300961457c5c8e25c19241df1f0da6f6f79941",
+  "sourceSha": "b8648965e298e203fac2be9016064f47281cede2",
+  "sourceHeadAtPromotion": "b8648965e298e203fac2be9016064f47281cede2",
+  "promotionKey": "Dr-starck66/betgpt-railway@b8648965e298e203fac2be9016064f47281cede2",
   "greenVerified": true,
+  "lineageVerified": true,
+  "monotonicVerified": true,
+  "releaseTrain": true,
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
-  "workflowRunId": 36942696474,
-  "verifiedAt": "2026-10-01T23:49:31Z",
-  "note": "ASTRA BETGPT LEARNING MEMORY Ω GREEN: causal pre-match snapshots, settlement learning memory, canonical 1X2 ROI isolation and mandatory release test.",
-  "reemitAt": "2026-10-01T23:52:30Z",
-  "reemitReason": "ASTRA_CONNECTOR_GUARD: re-emit approved GREEN marker because Railway GitHub webhook did not create a deployment for the first promotion commit."
+  "workflowRunId": 36943329994,
+  "verifiedAt": "2026-10-01T23:56:48.806Z"
 }
