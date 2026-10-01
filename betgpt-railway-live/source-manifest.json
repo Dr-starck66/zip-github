@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "61194800b9cf0bb63e2a1b25577e6a893e9bf4ec",
-  "promotionKey": "Dr-starck66/betgpt-railway@61194800b9cf0bb63e2a1b25577e6a893e9bf4ec",
+  "sourceSha": "18e461f5cace55da82fdeb0ae61265b6e3a8fd79",
+  "promotionKey": "Dr-starck66/betgpt-railway@18e461f5cace55da82fdeb0ae61265b6e3a8fd79",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -10,6 +10,6 @@
     "greenCandidateOnly": true,
     "promotionController": "ASTRA_SAFE_BETGPT_PROMOTION"
   },
-  "updatedAt": "2026-10-01T23:46:57.507Z",
-  "reason": "Re-emit approved GREEN release after deploy-firewall contract repair"
+  "updatedAt": "2026-10-01T23:45:48Z",
+  "reason": "Authorized promotion of GREEN site-name disambiguation after ASTRA Never-Fail Candidate Gate."
 }

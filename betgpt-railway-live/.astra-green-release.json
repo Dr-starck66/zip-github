@@ -1,18 +1,12 @@
 {
   "schema": "astra-green-release/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "61194800b9cf0bb63e2a1b25577e6a893e9bf4ec",
-  "promotionKey": "Dr-starck66/betgpt-railway@61194800b9cf0bb63e2a1b25577e6a893e9bf4ec",
+  "sourceSha": "18e461f5cace55da82fdeb0ae61265b6e3a8fd79",
+  "promotionKey": "Dr-starck66/betgpt-railway@18e461f5cace55da82fdeb0ae61265b6e3a8fd79",
   "greenVerified": true,
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
-  "workflowRunId": 36942157729,
-  "verifiedAt": "2026-10-01T23:44:30Z",
-  "note": "Affiliate Control Center GREEN: per-book readiness, durable 24h/7d click metrics, safe activation source, immediate status refresh.",
-  "reemit": {
-    "sourceSha": "61194800b9cf0bb63e2a1b25577e6a893e9bf4ec",
-    "greenWorkflowRunId": 36942157729,
-    "at": "2026-10-01T23:46:57.507Z",
-    "controller": "ASTRA_RAILWAY_GREEN_RECONCILER"
-  }
+  "workflowRunId": 36942407767,
+  "verifiedAt": "2026-10-01T23:45:48Z",
+  "note": "Site-name disambiguation GREEN: preserve BetGPT brand and expose lowercase domain fallback betgpt.live."
 }
