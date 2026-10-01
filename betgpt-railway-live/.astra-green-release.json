@@ -6,7 +6,7 @@
   "greenVerified": true,
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "workflowRunId": 36925746872,
-  "verifiedAt": "2026-10-01T21:02:04Z",
-  "note": "GREEN candidate verified by ASTRA Never-Fail run 36925746872; source manifest synchronized; production promotion trigger.",
+  "verifiedAt": "2026-10-01T21:02:04.000Z",
+  "note": "Validated by ASTRA Never-Fail Candidate Gate before Railway promotion.",
   "promotionTriggeredAt": "2026-10-01T21:02:30Z"
 }
