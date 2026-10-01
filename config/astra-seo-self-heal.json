@@ -1,0 +1,14 @@
+{
+  "schema": "astra-seo-self-heal-bundle/v1",
+  "site": "pantomime.org",
+  "canonicalBase": "https://pantomime.org",
+  "partPrefix": "bundle.part",
+  "chunkChars": 900000,
+  "primarySitemap": "sitemap.xml",
+  "preferredSitemap": "sitemap.xml",
+  "robotsFile": "robots.txt",
+  "ignoreHtml": [
+    "404.html"
+  ],
+  "reportPath": "artifacts/seo/self-heal-pantomime.json"
+}
