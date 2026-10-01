@@ -83,17 +83,18 @@ export function releaseGate(input) {
     deploymentSuccess: input.latestDeploymentStatus === "SUCCESS",
     healthcheckConfigured: Boolean(input.healthcheckPath),
     sourceKnown: Boolean(input.sourceRepo || input.sourceImage),
-    customDomainVerified: input.customDomainVerified === true,
+    customDomainVerified: input.customDomainVerified === true || input.verifiedAlias === true,
     publicRouteVerified: input.publicRouteVerified === true,
     sourceRevisionVerified: input.sourceRevisionVerified !== false,
     noUndeclaredClones: inventory.clones.length === 0,
-    noStuckDomainClaim: domain.state !== "CLAIM_STUCK_SUSPECTED"
+    noStuckDomainClaim: domain.state !== "CLAIM_STUCK_SUSPECTED",
+    aliasIsRoutingOnly: input.verifiedAlias !== true || input.aliasMode === "ROUTER_ONLY"
   };
 
   const hard = ["canonicalExactlyOne","deploymentSuccess","healthcheckConfigured","sourceKnown","sourceRevisionVerified"];
   if (hard.some(k => !checks[k])) return {state:"FAIL", checks, inventory, domain};
 
-  if (!checks.customDomainVerified || !checks.publicRouteVerified || !checks.noUndeclaredClones || inventory.unknown.length || !checks.noStuckDomainClaim) {
+  if (!checks.customDomainVerified || !checks.publicRouteVerified || !checks.noUndeclaredClones || inventory.unknown.length || !checks.noStuckDomainClaim || !checks.aliasIsRoutingOnly) {
     return {state:"PARTIAL", checks, inventory, domain};
   }
   return {state:"PASS", checks, inventory, domain};
