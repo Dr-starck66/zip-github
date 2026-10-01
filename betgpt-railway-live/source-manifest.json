@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "3e3c270e6435d4b899affbd5247795fc575b36ab",
-  "promotionKey": "Dr-starck66/betgpt-railway@3e3c270e6435d4b899affbd5247795fc575b36ab",
+  "sourceSha": "655640bee74fd3ed3171d1498b8e4621eaf6f1a5",
+  "promotionKey": "Dr-starck66/betgpt-railway@655640bee74fd3ed3171d1498b8e4621eaf6f1a5",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -10,6 +10,6 @@
     "greenCandidateOnly": true,
     "promotionController": "ASTRA_SAFE_BETGPT_PROMOTION"
   },
-  "updatedAt": "2026-10-01T22:31:06Z",
-  "reason": "Promote ASTRA Discover Launchpad Ω with ESPN provenance and page-specific Discover share images"
+  "updatedAt": "2026-10-01T22:39:53Z",
+  "reason": "Promote GREEN results SEO/UX refactor with strengthened date and league pages"
 }

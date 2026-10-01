@@ -1,12 +1,12 @@
 {
   "schema": "astra-green-release/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "3e3c270e6435d4b899affbd5247795fc575b36ab",
-  "promotionKey": "Dr-starck66/betgpt-railway@3e3c270e6435d4b899affbd5247795fc575b36ab",
+  "sourceSha": "655640bee74fd3ed3171d1498b8e4621eaf6f1a5",
+  "promotionKey": "Dr-starck66/betgpt-railway@655640bee74fd3ed3171d1498b8e4621eaf6f1a5",
   "greenVerified": true,
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
-  "workflowRunId": 36935400247,
-  "verifiedAt": "2026-10-01T22:31:06Z",
-  "note": "Discover Launchpad GREEN: rendered article-specific OG/Twitter images, ESPN provenance, 1200+ image gate, source strength, indexability, typecheck and regression tests."
+  "workflowRunId": 36936300701,
+  "verifiedAt": "2026-10-01T22:39:53Z",
+  "note": "Results SEO/UX release GREEN: zero-weak-page guard, heading guard, indexability, typecheck, repair tests, results watchdog and production bundle passed."
 }
