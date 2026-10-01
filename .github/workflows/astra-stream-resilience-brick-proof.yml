@@ -1,0 +1,23 @@
+name: ASTRA Stream Resilience Brick Proof
+
+on:
+  push:
+    paths:
+      - "astra-bricks/stream-resilience-guard/**"
+      - ".github/workflows/astra-stream-resilience-brick-proof.yml"
+  workflow_dispatch:
+
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Exact recovery tests
+        run: node --test astra-bricks/stream-resilience-guard/astra-stream-resilience.test.mjs
+      - name: Release guard proof
+        run: node astra-bricks/stream-resilience-guard/astra-stream-resilience-guard.mjs
+      - name: Evidence
+        run: echo "ASTRA_STREAM_RESILIENCE_BRICK_PROOF_PASS"
