@@ -1,12 +1,12 @@
 {
   "schema": "astra-green-release/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "7c68fe20d0705db1d5432333bc088d944c928cd2",
-  "promotionKey": "Dr-starck66/betgpt-railway@7c68fe20d0705db1d5432333bc088d944c928cd2",
+  "sourceSha": "b4b66fa63b9cb7ba21ecc07538e81da761116c6f",
+  "promotionKey": "Dr-starck66/betgpt-railway@b4b66fa63b9cb7ba21ecc07538e81da761116c6f",
   "greenVerified": true,
+  "currentHeadVerified": true,
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
-  "workflowRunId": 36937076043,
-  "verifiedAt": "2026-10-01T22:50:30Z",
-  "note": "Railway webhook transport via PR merge; GREEN source unchanged."
+  "workflowRunId": 36938023994,
+  "verifiedAt": "2026-10-01T22:58:04.334Z"
 }
