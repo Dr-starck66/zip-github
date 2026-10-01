@@ -1,0 +1,147 @@
+name: ASTRA BetGPT Postflight + Auto Rollback
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "betgpt-railway-live/.astra-green-release.json"
+      - "betgpt-railway-live/source-manifest.json"
+  workflow_dispatch:
+
+concurrency:
+  group: astra-betgpt-postflight
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  verify-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout full release history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve expected release
+        id: release
+        shell: bash
+        run: |
+          set -euo pipefail
+          SHA="$(jq -r '.sourceSha // empty' betgpt-railway-live/.astra-green-release.json)"
+          if ! [[ "$SHA" =~ ^[0-9a-fA-F]{40}$ ]]; then
+            echo "Invalid GREEN release SHA" >&2
+            exit 1
+          fi
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          MSG="$(git log -1 --pretty=%s)"
+          if [[ "$MSG" == rollback:* ]]; then
+            echo "rollback_commit=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "rollback_commit=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Wait for exact public revision
+        shell: bash
+        env:
+          EXPECTED_SHA: ${{ steps.release.outputs.sha }}
+        run: |
+          set -euo pipefail
+          matched=0
+          for i in $(seq 1 36); do
+            BODY="$(curl -fsSL --max-time 10 -H 'Cache-Control: no-cache' https://betgpt.live/astra-revision.json 2>/dev/null || true)"
+            ACTUAL="$(printf '%s' "$BODY" | jq -r '.sourceSha // empty' 2>/dev/null || true)"
+            if [ "$ACTUAL" = "$EXPECTED_SHA" ]; then
+              matched=1
+              echo "Public revision converged to $EXPECTED_SHA"
+              break
+            fi
+            sleep 10
+          done
+          test "$matched" -eq 1
+
+      - name: Run public postflight
+        id: postflight
+        shell: bash
+        env:
+          ASTRA_EXPECTED_SHA: ${{ steps.release.outputs.sha }}
+          ASTRA_PUBLIC_BASE: https://betgpt.live
+        run: node betgpt-railway-live/astra-postflight.mjs
+        continue-on-error: true
+
+      - name: Confirm verified production
+        if: steps.postflight.outcome == 'success'
+        shell: bash
+        run: |
+          echo "ASTRA_RELEASE_CONTROL_PLANE_PASS source=${{ steps.release.outputs.sha }}"
+
+      - name: Resolve previous GREEN release
+        if: steps.postflight.outcome != 'success' && steps.release.outputs.rollback_commit != 'true'
+        id: previous
+        shell: bash
+        run: |
+          set -euo pipefail
+          PREV="$(git log --format=%H --skip=1 -- betgpt-railway-live/.astra-green-release.json | head -n1)"
+          if [ -z "$PREV" ]; then
+            echo "No previous GREEN release commit available." >&2
+            exit 1
+          fi
+          git show "$PREV:betgpt-railway-live/.astra-green-release.json" > /tmp/previous-green.json
+          git show "$PREV:betgpt-railway-live/source-manifest.json" > /tmp/previous-manifest.json
+          PREV_SHA="$(jq -r '.sourceSha // empty' /tmp/previous-green.json)"
+          PREV_GREEN="$(jq -r '.greenVerified // false' /tmp/previous-green.json)"
+          if ! [[ "$PREV_SHA" =~ ^[0-9a-fA-F]{40}$ ]] || [ "$PREV_GREEN" != "true" ]; then
+            echo "Previous release is not a valid GREEN token." >&2
+            exit 1
+          fi
+          echo "sha=$PREV_SHA" >> "$GITHUB_OUTPUT"
+
+      - name: Auto rollback to previous GREEN release
+        if: steps.postflight.outcome != 'success' && steps.release.outputs.rollback_commit != 'true'
+        shell: bash
+        env:
+          FAILED_SHA: ${{ steps.release.outputs.sha }}
+          PREVIOUS_SHA: ${{ steps.previous.outputs.sha }}
+        run: |
+          set -euo pipefail
+          cp /tmp/previous-green.json betgpt-railway-live/.astra-green-release.json
+          cp /tmp/previous-manifest.json betgpt-railway-live/source-manifest.json
+          node <<'NODE'
+          const fs = require("fs");
+          const markerPath = "betgpt-railway-live/.astra-green-release.json";
+          const manifestPath = "betgpt-railway-live/source-manifest.json";
+          const marker = JSON.parse(fs.readFileSync(markerPath, "utf8"));
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+          marker.rollback = {
+            automatic: true,
+            failedSourceSha: process.env.FAILED_SHA,
+            restoredSourceSha: process.env.PREVIOUS_SHA,
+            controller: "ASTRA_RELEASE_CONTROL_PLANE",
+            at: new Date().toISOString()
+          };
+          manifest.reason = `Automatic rollback after failed public postflight of ${process.env.FAILED_SHA}`;
+          manifest.updatedAt = new Date().toISOString();
+          fs.writeFileSync(markerPath, JSON.stringify(marker, null, 2) + "\n");
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
+          NODE
+          git config user.name "ASTRA Release Control Plane"
+          git config user.email "actions@users.noreply.github.com"
+          git add betgpt-railway-live/.astra-green-release.json betgpt-railway-live/source-manifest.json
+          git commit -m "rollback: restore last GREEN BetGPT release after postflight failure"
+          git push
+
+      - name: Fail closed after rollback request
+        if: steps.postflight.outcome != 'success' && steps.release.outputs.rollback_commit != 'true'
+        shell: bash
+        run: |
+          echo "Postflight failed. Automatic rollback commit created."
+          exit 1
+
+      - name: Prevent recursive rollback loop
+        if: steps.postflight.outcome != 'success' && steps.release.outputs.rollback_commit == 'true'
+        shell: bash
+        run: |
+          echo "CRITICAL: rollback release did not pass postflight; recursive rollback intentionally blocked."
+          exit 1
