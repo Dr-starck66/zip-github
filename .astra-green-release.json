@@ -1,0 +1,10 @@
+{
+  "schema": "astra-green-release/v1",
+  "site": "pantomime.org",
+  "sourceSha": "a8cd54832a7797826a80c2725ef730073f126a7d",
+  "greenVerified": true,
+  "controller": "ASTRA_PANTOMIME_SELF_HEAL_BOOTSTRAP",
+  "verifiedAt": "2026-10-01T23:36:14.270Z",
+  "verifiedFiles": 14,
+  "note": "Bootstrap token authorizes exact Git blobs for Railway build-time SELF-HEAL validation; production still requires build, audit, runtime and healthcheck success."
+}
