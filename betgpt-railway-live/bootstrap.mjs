@@ -6,7 +6,7 @@ import extract from "extract-zip";
 
 // Railway watches this path. Prefer an explicitly requested immutable source SHA;
 // only fall back to the current main revision when no valid pin is supplied.
-const requestedRevision = String(process.env.ASTRA_SOURCE_REF || process.env.BETGPT_SOURCE_REF || "").trim();
+const requestedRevision = String(process.argv[2] || process.env.ASTRA_SOURCE_REF || process.env.BETGPT_SOURCE_REF || "").trim();
 let sourceRevision = requestedRevision;
 if (!/^[a-f0-9]{40}$/i.test(sourceRevision)) {
   const revisionRes = await fetch("https://api.github.com/repos/Dr-starck66/betgpt-railway/commits/main", {
