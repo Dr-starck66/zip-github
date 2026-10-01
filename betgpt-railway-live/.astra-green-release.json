@@ -8,6 +8,6 @@
   "gateWorkflow": "astra-never-fail.yml",
   "workflowRunId": 36934726758,
   "verifiedAt": "2026-10-01T22:24:08Z",
-  "note": "Results football SEO/UX rebuild verified GREEN; retriggered after fixing Railway watchPatterns to repo-relative paths.",
-  "promotionTriggerAt": "2026-10-01T22:26:00Z"
+  "note": "Atomic GREEN promotion for results football SEO/UX rebuild; manifest and green token changed in the same authorized controller commit.",
+  "promotionTriggerAt": "2026-10-01T22:28:00Z"
 }
