@@ -1,4 +1,4 @@
-import fs from "node:fs";
+// BETGPT_SOURCE_REF 728871e0b37951d27e78ffdba0c03c9bd79f0cab\nimport fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import extract from "extract-zip";
