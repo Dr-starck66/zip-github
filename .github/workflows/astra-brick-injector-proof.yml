@@ -1,0 +1,36 @@
+name: ASTRA Brick Injector Proof
+
+on:
+  push:
+    paths:
+      - "astra-bricks/injector/**"
+      - "astra-bricks/stream-resilience-guard/**"
+      - ".github/workflows/astra-brick-injector-proof.yml"
+  workflow_dispatch:
+
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Injector safety tests
+        run: node --test astra-bricks/injector/astra-brick-injector.test.mjs
+
+      - name: Check BetGPT integration without mutation
+        uses: actions/checkout@v4
+        with:
+          repository: Dr-starck66/betgpt-railway
+          path: betgpt
+          ref: main
+
+      - name: Verify stream brick against BetGPT
+        run: |
+          node astra-bricks/injector/astra-brick-injector.mjs verify             --brick astra-bricks/stream-resilience-guard             --target betgpt
+
+      - name: Evidence
+        run: echo "ASTRA_BRICK_INJECTOR_PROOF_PASS"
