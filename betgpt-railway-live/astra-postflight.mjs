@@ -208,6 +208,58 @@ try {
 assert(healthJson.ok === true, "health endpoint does not report ok=true");
 assert(healthJson.service === "betgpt", "health endpoint does not identify BetGPT");
 
+const searchTruth = await request("/api/search-truth", "application/json");
+assert(searchTruth.status === 200, "search-truth HTTP " + searchTruth.status);
+let searchTruthJson;
+try {
+  searchTruthJson = JSON.parse(searchTruth.body);
+} catch {
+  throw new Error("ASTRA_POSTFLIGHT_FAIL: search-truth endpoint is not valid JSON");
+}
+assert(searchTruthJson.schema === "astra-search-truth/v1", "search-truth schema mismatch");
+assert(searchTruthJson.status === "PASS", "search-truth status is not PASS");
+assert(searchTruthJson.availability?.organicLandings === "MEASURED", "organic landings must be MEASURED");
+assert(searchTruthJson.availability?.sourceEngine === "MEASURED", "source engine must be MEASURED");
+assert(searchTruthJson.availability?.landingPages === "MEASURED", "landing pages must be MEASURED");
+assert(searchTruthJson.availability?.queries === "UNAVAILABLE", "queries must remain UNAVAILABLE without GSC");
+assert(searchTruthJson.availability?.serpImpressions === "UNAVAILABLE", "SERP impressions must remain UNAVAILABLE without GSC");
+assert(searchTruthJson.availability?.serpCtr === "UNAVAILABLE", "SERP CTR must remain UNAVAILABLE without GSC");
+assert(searchTruthJson.availability?.averagePosition === "UNAVAILABLE", "average position must remain UNAVAILABLE without GSC");
+assert(Number.isInteger(searchTruthJson.measured?.organicLandings) && searchTruthJson.measured.organicLandings >= 0, "organic landings must be a real non-negative count");
+assert(Array.isArray(searchTruthJson.measured?.bySource), "search-truth bySource must be an array");
+assert(Array.isArray(searchTruthJson.measured?.topLandingPages), "search-truth topLandingPages must be an array");
+
+const breakout = await request("/api/national-breakout", "application/json");
+assert(breakout.status === 200, "national-breakout HTTP " + breakout.status);
+let breakoutJson;
+try {
+  breakoutJson = JSON.parse(breakout.body);
+} catch {
+  throw new Error("ASTRA_POSTFLIGHT_FAIL: national-breakout endpoint is not valid JSON");
+}
+assert(breakoutJson.health === "PASS", "national-breakout health is not PASS");
+assert(breakoutJson.schema === "astra-national-breakout/v1", "national-breakout schema mismatch");
+
+const behavior = breakoutJson.metrics || {};
+const noBehavioralSignal =
+  Number(behavior.sessions || 0) === 0 &&
+  Number(behavior.previousSessions || 0) === 0 &&
+  Number(behavior.activations || 0) === 0 &&
+  Number(behavior.shares || 0) === 0 &&
+  Number(behavior.returns || 0) === 0 &&
+  Number(behavior.affiliateClicks || 0) === 0 &&
+  Number(behavior.previousAffiliateClicks || 0) === 0;
+
+if (noBehavioralSignal) {
+  assert(breakoutJson.status === "UNVERIFIED", "no-data breakout must be UNVERIFIED");
+  assert(breakoutJson.score === null, "no-data breakout score must be null");
+} else {
+  assert(["FIX", "BUILD", "ACCELERATE"].includes(breakoutJson.status), "measured breakout has invalid status");
+  assert(Number.isInteger(breakoutJson.score), "measured breakout score must be an integer");
+}
+
+assert(breakoutJson.searchTruth?.schema === "astra-search-truth/v1", "national-breakout missing Search Truth evidence");
+
 console.log("ASTRA_RELEASE_CONTROL_PLANE_POSTFLIGHT_PASS", JSON.stringify({
   base,
   sourceSha: expectedSha,
@@ -215,5 +267,9 @@ console.log("ASTRA_RELEASE_CONTROL_PLANE_POSTFLIGHT_PASS", JSON.stringify({
   robots: robots.status,
   sitemap: sitemap.status,
   sitemapUrlsAudited: uniqueUrls.length,
-  health: health.status
+  health: health.status,
+  searchTruth: searchTruthJson.status,
+  organicLandings: searchTruthJson.measured.organicLandings,
+  nationalBreakout: breakoutJson.status,
+  nationalBreakoutScore: breakoutJson.score
 }));
