@@ -1,13 +1,13 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "c03aea1413ae385c4f4f5fb4da3022abd4bafe2c",
-  "promotionKey": "Dr-starck66/betgpt-railway@c03aea1413ae385c4f4f5fb4da3022abd4bafe2c",
+  "sourceSha": "9f138545be8e67e569a539b4a437fd407fbbb203",
+  "promotionKey": "Dr-starck66/betgpt-railway@9f138545be8e67e569a539b4a437fd407fbbb203",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
     "oneManifestChangePerPromotion": true
   },
-  "updatedAt": "2026-10-01T20:36:00Z",
-  "reason": "Promote contextual high-authority editorial citations for Mbappe article"
+  "updatedAt": "2026-10-01T20:41:00Z",
+  "reason": "Promote minimal stable contextual authority citations for Mbappe article"
 }
