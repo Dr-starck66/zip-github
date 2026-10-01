@@ -16,7 +16,7 @@ permissions:
 
 concurrency:
   group: astra-railway-singleflight-betgpt
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   reconcile-approved-release:
