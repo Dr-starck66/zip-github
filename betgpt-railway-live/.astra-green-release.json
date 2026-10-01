@@ -1,12 +1,12 @@
 {
   "schema": "astra-green-release/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "94b8e0be3968e65ac8d0dbc16de2d36c2a1c0e60",
-  "promotionKey": "Dr-starck66/betgpt-railway@94b8e0be3968e65ac8d0dbc16de2d36c2a1c0e60",
+  "sourceSha": "0fde0b0233ebef5e4af70308a83693b7176171fc",
+  "promotionKey": "Dr-starck66/betgpt-railway@0fde0b0233ebef5e4af70308a83693b7176171fc",
   "greenVerified": true,
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
-  "workflowRunId": 36931824992,
-  "verifiedAt": "2026-10-01T21:57:42Z",
-  "note": "Published URL retention verified: daily generation cap cannot evict existing article URLs across inventory overflow or day boundaries."
+  "workflowRunId": 36932651133,
+  "verifiedAt": "2026-10-01T22:04:14Z",
+  "note": "Published URL retention + contextual internal evidence rendering verified GREEN."
 }
