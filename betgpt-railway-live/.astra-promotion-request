@@ -1,6 +1,6 @@
 {
-  "sourceSha": "3db7b974502795bc88ca5dbf2fec0b76ff83b961",
-  "workflowRunId": 36936665347,
-  "requestedAt": "2026-10-01T22:49:30Z",
-  "reason": "Retry GREEN promotion after removing skip-ci tag from deployment commit"
+  "sourceSha": "c90c07f70a37a9fbdd794706daf5fd45631bdcc1",
+  "workflowRunId": null,
+  "requestedAt": "2026-10-01T22:52:30Z",
+  "reason": "ASTRA stale-GREEN promotion guard live verification"
 }
