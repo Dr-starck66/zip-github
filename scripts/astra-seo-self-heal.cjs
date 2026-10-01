@@ -123,7 +123,7 @@ if(apply&&actions.length){
   for(const name of parts) fs.unlinkSync(path.join(root,name));
   let i=0;
   for(let off=0;off<encoded.length;off+=cfg.chunkChars){
-    fs.writeFileSync(path.join(root,cfg.partPrefix+(i++)),encoded.slice(off,off+cfg.chunkChars),"utf8");
+    fs.writeFileSync(path.join(root,cfg.partPrefix+String(i++).padStart(Number(cfg.partDigits||2),"0")),encoded.slice(off,off+cfg.chunkChars),"utf8");
   }
 }
 
