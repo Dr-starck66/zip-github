@@ -7,6 +7,7 @@
     "seo:self-heal": "node scripts/astra-seo-self-heal.cjs --apply",
     "seo:self-heal:audit": "node scripts/astra-seo-self-heal.cjs",
     "test:self-heal": "node --test scripts/astra-seo-self-heal.test.cjs",
-    "build": "sha256sum -c .astra-green-release.sha256 && node scripts/astra-seo-self-heal.cjs"
+    "build": "node scripts/astra-verify-green-token.cjs && node --test scripts/astra-seo-self-heal.test.cjs && node scripts/astra-seo-self-heal.cjs --apply && node scripts/astra-seo-self-heal.cjs",
+    "release:verify-green": "node scripts/astra-verify-green-token.cjs"
   }
 }
