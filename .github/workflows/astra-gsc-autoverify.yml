@@ -1,0 +1,21 @@
+name: ASTRA GSC AUTOVERIFY tests
+on:
+  push:
+    branches: [astra-gsc-autoverify]
+    paths:
+      - "astra-gsc-autoverify/**"
+      - ".github/workflows/astra-gsc-autoverify.yml"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: astra-gsc-autoverify
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm test
