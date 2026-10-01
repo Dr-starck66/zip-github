@@ -1,13 +1,13 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "abd929b1caeaf1d0b1e0fb1088df3df0d5eef95c",
-  "promotionKey": "Dr-starck66/betgpt-railway@abd929b1caeaf1d0b1e0fb1088df3df0d5eef95c",
+  "sourceSha": "264009a6b342ab2cef1acc5b8d8272ada84b3d8e",
+  "promotionKey": "Dr-starck66/betgpt-railway@264009a6b342ab2cef1acc5b8d8272ada84b3d8e",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
     "oneManifestChangePerPromotion": true
   },
-  "updatedAt": "2026-10-01T20:01:25Z",
-  "reason": "Promote complete ASTRA FLAG GUARD including UEFA edge cases"
+  "updatedAt": "2026-10-01T20:11:30Z",
+  "reason": "Promote ASTRA Sentinel V2: rendered flags, real chat links, watchdog flag counting"
 }
