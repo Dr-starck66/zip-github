@@ -1,12 +1,11 @@
 {
   "schema": "astra-green-release/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "3db7b974502795bc88ca5dbf2fec0b76ff83b961",
-  "promotionKey": "Dr-starck66/betgpt-railway@3db7b974502795bc88ca5dbf2fec0b76ff83b961",
+  "sourceSha": "b8d7304698f56d660cfbac6361e40865952cb988",
+  "promotionKey": "Dr-starck66/betgpt-railway@b8d7304698f56d660cfbac6361e40865952cb988",
   "greenVerified": true,
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
-  "workflowRunId": 36936665347,
-  "verifiedAt": "2026-10-01T22:43:41Z",
-  "note": "Retry promotion on latest controller head after repository race. Viral social loop GREEN: X/Facebook/Instagram-Story sharing, 1080x1350 card, roast challenge links, attribution, premium reactions."
+  "workflowRunId": 36937042957,
+  "verifiedAt": "2026-10-01T22:47:36.869Z"
 }
