@@ -8,5 +8,5 @@
   "gateWorkflow": "astra-never-fail.yml",
   "workflowRunId": 36936665347,
   "verifiedAt": "2026-10-01T22:43:41Z",
-  "note": "Promote BetGPT viral social loop: social-native share moments, X/Facebook/Instagram-Story card sharing, roast challenge deep links, share-source attribution, premium native reactions, and absurd-score fallback fix."
+  "note": "Retry promotion on latest controller head after repository race. Viral social loop GREEN: X/Facebook/Instagram-Story sharing, 1080x1350 card, roast challenge links, attribution, premium reactions."
 }
