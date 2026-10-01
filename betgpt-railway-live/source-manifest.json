@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "b8d7304698f56d660cfbac6361e40865952cb988",
-  "promotionKey": "Dr-starck66/betgpt-railway@b8d7304698f56d660cfbac6361e40865952cb988",
+  "sourceSha": "7c68fe20d0705db1d5432333bc088d944c928cd2",
+  "promotionKey": "Dr-starck66/betgpt-railway@7c68fe20d0705db1d5432333bc088d944c928cd2",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -10,6 +10,6 @@
     "greenCandidateOnly": true,
     "promotionController": "ASTRA_SAFE_BETGPT_PROMOTION"
   },
-  "updatedAt": "2026-10-01T22:47:36.865Z",
+  "updatedAt": "2026-10-01T22:49:01.638Z",
   "reason": "Automatic promotion of latest GREEN ASTRA Never-Fail candidate"
 }
