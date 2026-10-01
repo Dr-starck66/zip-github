@@ -1,12 +1,12 @@
 {
   "schema": "astra-green-release/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "48f9c0e652753be12db600887c92f07cf2f4ac7b",
-  "promotionKey": "Dr-starck66/betgpt-railway@48f9c0e652753be12db600887c92f07cf2f4ac7b",
+  "sourceSha": "b507e06626b01a2088a3f2d17c97c63fb3a67b2f",
+  "promotionKey": "Dr-starck66/betgpt-railway@b507e06626b01a2088a3f2d17c97c63fb3a67b2f",
   "greenVerified": true,
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
-  "workflowRunId": 36933655090,
-  "verifiedAt": "2026-10-01T22:13:39Z",
-  "note": "ASTRA Discover Launchpad Ω verified GREEN: publication gate, 1200+ image rules, rendered production watchdog, preferred-image schema, SERP and chat regressions fixed."
+  "workflowRunId": 36934726758,
+  "verifiedAt": "2026-10-01T22:24:08Z",
+  "note": "Results football SEO/UX rebuild verified GREEN: responsive cards, semantic H1/H2/H3, stronger metadata, CollectionPage + ItemList + Breadcrumb JSON-LD, results watchdog and full candidate gate PASS."
 }
