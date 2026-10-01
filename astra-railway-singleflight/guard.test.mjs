@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {classifyInventory, looksLikeClone, releaseGate} from "./guard.mjs";
+import {classifyInventory, looksLikeClone, releaseGate, detectDomainState} from "./guard.mjs";
 
 test("detects numbered clones", () => {
   assert.equal(looksLikeClone("betgpt-v2","betgpt"), true);
@@ -29,6 +29,20 @@ test("clone makes inventory partial, never false PASS", () => {
   assert.equal(r.clones.length,1);
 });
 
+test("domain guard detects stuck/orphaned claim pattern and forbids blind retry", () => {
+  const r=detectDomainState({
+    expectedDomain:"betgpt.live",
+    listedCustomDomains:[],
+    createAttempt:{
+      attempted:true,
+      success:false,
+      error:"Failed to create custom domain, please try again"
+    }
+  });
+  assert.equal(r.state,"CLAIM_STUCK_SUSPECTED");
+  assert.equal(r.retry,false);
+});
+
 test("release gate requires public/domain verification for full PASS", () => {
   const r=releaseGate({
     canonicalService:"betgpt",
@@ -38,9 +52,26 @@ test("release gate requires public/domain verification for full PASS", () => {
     sourceRepo:"Dr-starck66/zip-github",
     sourceRevisionVerified:true,
     customDomainVerified:false,
-    publicRouteVerified:true
+    publicRouteVerified:true,
+    domainState:{state:"MISSING"}
   });
   assert.equal(r.state,"PARTIAL");
+});
+
+test("stuck domain claim keeps release PARTIAL", () => {
+  const r=releaseGate({
+    canonicalService:"betgpt",
+    services:[{name:"betgpt"}],
+    latestDeploymentStatus:"SUCCESS",
+    healthcheckPath:"/api/health",
+    sourceRepo:"Dr-starck66/zip-github",
+    sourceRevisionVerified:true,
+    customDomainVerified:false,
+    publicRouteVerified:true,
+    domainState:{state:"CLAIM_STUCK_SUSPECTED"}
+  });
+  assert.equal(r.state,"PARTIAL");
+  assert.equal(r.checks.noStuckDomainClaim,false);
 });
 
 test("release gate PASS with all evidence", () => {
@@ -52,7 +83,8 @@ test("release gate PASS with all evidence", () => {
     sourceRepo:"Dr-starck66/zip-github",
     sourceRevisionVerified:true,
     customDomainVerified:true,
-    publicRouteVerified:true
+    publicRouteVerified:true,
+    domainState:{state:"ATTACHED"}
   });
   assert.equal(r.state,"PASS");
 });
