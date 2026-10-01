@@ -1,0 +1,5 @@
+BETGPT_FORCE_REBUILD
+source_repo=Dr-starck66/betgpt-railway
+source_sha=728871e0b37951d27e78ffdba0c03c9bd79f0cab
+reason=refresh-chat-daily-pick-runtime
+date=2026-10-01T20:13:00+02:00
