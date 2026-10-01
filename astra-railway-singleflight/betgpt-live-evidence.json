@@ -1,0 +1,79 @@
+{
+  "schema": "astra-railway-single-source-evidence/v1",
+  "capturedAt": "2026-10-01T21:08:00Z",
+  "project": {
+    "id": "d790c503-3c09-4a8e-99d7-d5cab04f5433",
+    "name": "BETGPT LIVE",
+    "environmentId": "9a985832-68fb-4e90-8a0d-441eaf60320a"
+  },
+  "canonicalService": {
+    "id": "9ad5c668-b27c-4b07-a9d6-e030380751d1",
+    "name": "betgpt",
+    "railwayDomain": "betgpt-production-7353.up.railway.app",
+    "customDomains": [],
+    "healthcheckPath": "/api/health",
+    "runtimePort": 8080,
+    "latestDeploymentId": "eed2f835-44d6-45b0-b0ee-52b4f4ea1e65",
+    "latestDeploymentStatus": "SUCCESS",
+    "wrapperCommit": "acc6f96a6d07467e3a17d2025f569934681d0319",
+    "verifiedSourceRepo": "Dr-starck66/betgpt-railway",
+    "verifiedSourceSha": "07a7035b55110dd503ed44a3da6d258cbf1ac155",
+    "greenWorkflowRunId": 36926098183,
+    "publicRailwayChecks": {
+      "root": 200,
+      "robotsTxt": 200,
+      "sitemapXml": 200,
+      "health": 200
+    }
+  },
+  "allowedSupportServices": [
+    "betgpt-runtime",
+    "betgpt-source-inspector",
+    "betgpt-chat-model"
+  ],
+  "quarantinedLegacyServices": [
+    "betgpt-complete",
+    "betgpt-complete-v2",
+    "betgpt-complete-v3",
+    "betgpt-complete-v4",
+    "betgpt-complete-v5",
+    "betgpt-complete-v6"
+  ],
+  "quarantinePolicy": {
+    "sleepApplication": true,
+    "restartPolicyType": "NEVER",
+    "watchPatterns": [
+      "/__ASTRA_QUARANTINE_NEVER_MATCH__/**"
+    ],
+    "markerVariables": [
+      "ASTRA_QUARANTINED",
+      "ASTRA_CANONICAL_SERVICE_ID",
+      "ASTRA_RELEASE_TARGET"
+    ],
+    "markerWritesSkippedDeploys": true
+  },
+  "domain": {
+    "expected": "betgpt.live",
+    "attachAttempts": [
+      {
+        "domain": "betgpt.live",
+        "targetPort": null,
+        "result": "Failed to create custom domain, please try again"
+      },
+      {
+        "domain": "www.betgpt.live",
+        "targetPort": null,
+        "result": "Failed to create custom domain, please try again"
+      },
+      {
+        "domain": "www.betgpt.live",
+        "targetPort": 8080,
+        "result": "Failed to create custom domain, please try again"
+      }
+    ],
+    "state": "CLAIM_STUCK_SUSPECTED",
+    "action": "STOP_BLIND_RETRIES_AND_REQUIRE_RAILWAY_DOMAIN_RELEASE_OR_OWNERSHIP_RECOVERY"
+  },
+  "status": "PARTIAL",
+  "reason": "Canonical Railway production is verified healthy and legacy services are quarantined, but custom domain claim cannot yet be attached."
+}
