@@ -1,6 +1,5 @@
-{
-  "sourceSha": "ea5f7af36bdcc1d80f6d3d191328897f6f2d582e",
-  "workflowRunId": 36943463881,
-  "requestedAt": "2026-10-01T23:58:10Z",
-  "reason": "Promote GREEN ASTRA BETGPT LEARNING MEMORY Ω + durable runtime checkpoint fallback"
-}
+ASTRA_PROMOTION_REQUEST
+sourceRepo=Dr-starck66/betgpt-railway
+requestedGreenSha=ea5f7af36bdcc1d80f6d3d191328897f6f2d582e
+reason=force-production-convergence
+nonce=2026-10-02T01:58:00+02:00
