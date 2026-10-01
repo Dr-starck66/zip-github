@@ -7,5 +7,7 @@
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
   "workflowRunId": 36925746872,
-  "verifiedAt": "2026-10-01T21:05:00Z"
+  "verifiedAt": "2026-10-01T21:02:04.000Z",
+  "note": "Validated by ASTRA Never-Fail Candidate Gate before Railway promotion.",
+  "promotionTriggeredAt": "2026-10-01T21:06:00.000Z"
 }
