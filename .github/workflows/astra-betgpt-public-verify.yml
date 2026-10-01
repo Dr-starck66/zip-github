@@ -1,0 +1,78 @@
+name: ASTRA BetGPT Public Verify Ω
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "betgpt-railway-live/.astra-public-verify-request"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify public revision and chat
+        shell: bash
+        run: |
+          set -euo pipefail
+          TARGET="7c68fe20d0705db1d5432333bc088d944c928cd2"
+
+          echo "== revision =="
+          REV="$(curl -fsS --connect-timeout 8 --max-time 25 -H 'cache-control: no-cache' https://betgpt.live/astra-revision.json)"
+          echo "$REV"
+          PUBLIC_SHA="$(printf '%s' "$REV" | jq -r '.sourceSha // empty')"
+          test "$PUBLIC_SHA" = "$TARGET"
+          echo "PUBLIC_REVISION_PASS=$PUBLIC_SHA"
+
+          echo "== health =="
+          HEALTH="$(curl -sS --connect-timeout 8 --max-time 25 -o /tmp/health -w '%{http_code}' https://betgpt.live/api/health)"
+          cat /tmp/health
+          echo
+          test "$HEALTH" = "200"
+          echo "PUBLIC_HEALTH_PASS"
+
+          echo "== exact absurd-score chat =="
+          python3 - <<'PY'
+          import json,urllib.request
+          payload=json.dumps({
+            "messages":[{"role":"user","content":"LA FRANCE VA PERDRE VINGTS A ZEROS SON PROCHAIN MATCH","timestamp":1}],
+            "requestedMode":"ROAST",
+            "userMemory":{
+              "sarcasticIntensity":100,
+              "blackBook":{
+                "combinésDePlus5Matchs":0,
+                "jaiUnFeeling":0,
+                "parisModifiésDerniereSeconde":0,
+                "matchsImpossiblesAPerdre":0,
+                "matchsEffectivementPerdus":0,
+                "niveauDeConfianceInjustifie":0
+              },
+              "preferences":{"favoriteTeams":[],"favoriteCompetitions":[]}
+            }
+          }).encode()
+          req=urllib.request.Request(
+            "https://betgpt.live/api/chat",
+            data=payload,
+            headers={"content-type":"application/json","user-agent":"ASTRA-Public-Verify/1.0"},
+            method="POST"
+          )
+          with urllib.request.urlopen(req,timeout=30) as r:
+            assert r.status==200
+            data=json.load(r)
+          text=str(data.get("text",""))
+          assert text.strip(), data
+          assert "secours local" not in text.lower(), text
+          assert "poulpe consultant" not in text.lower(), text
+          punch=data.get("punchline") or {}
+          assert str(punch.get("text","")).strip(), data
+          reaction=punch.get("reaction") or {}
+          assert reaction.get("emojis"), data
+          print("ABSURD_SCORE_PUBLIC_PASS")
+          print("TEXT="+text)
+          print("PUNCH="+str(punch.get("text","")))
+          print("REACTION="+json.dumps(reaction,ensure_ascii=False))
+          PY
