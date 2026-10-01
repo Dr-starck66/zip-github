@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "betgpt-railway-live/.astra-promotion-request"
 
 concurrency:
   group: astra-safe-betgpt-promotion
@@ -40,10 +44,14 @@ jobs:
           fi
           CURRENT="$(jq -r '.sourceSha // empty' betgpt-railway-live/source-manifest.json)"
           MARKER="$(jq -r '.sourceSha // empty' betgpt-railway-live/.astra-green-release.json)"
-          if [ "$CURRENT" = "$SHA" ] && [ "$MARKER" = "$SHA" ]; then
-            echo "Production already points to latest GREEN candidate $SHA"
+          PUBLIC_SHA="$(curl -fsS --connect-timeout 8 --max-time 20 https://betgpt.live/astra-revision.json 2>/dev/null | jq -r '.sourceSha // empty' 2>/dev/null || true)"
+          if [ "$CURRENT" = "$SHA" ] && [ "$MARKER" = "$SHA" ] && [ "$PUBLIC_SHA" = "$SHA" ]; then
+            echo "Production already serves latest GREEN candidate $SHA"
             echo "promote=false" >> "$GITHUB_OUTPUT"
             exit 0
+          fi
+          if [ "$CURRENT" = "$SHA" ] && [ "$MARKER" = "$SHA" ] && [ "$PUBLIC_SHA" != "$SHA" ]; then
+            echo "ASTRA_PROMOTION_REEMIT_REQUIRED manifest=$SHA public=$PUBLIC_SHA"
           fi
           echo "sha=$SHA" >> "$GITHUB_OUTPUT"
           echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
