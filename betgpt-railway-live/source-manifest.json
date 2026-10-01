@@ -1,17 +1,21 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "55ac9e6e88e6387e97b457548ba634bf7cba3326",
-  "promotionKey": "Dr-starck66/betgpt-railway@55ac9e6e88e6387e97b457548ba634bf7cba3326",
+  "sourceSha": "a27a71e9e221d7e459e2e5eece121962f2f136a3",
+  "promotionKey": "Dr-starck66/betgpt-railway@a27a71e9e221d7e459e2e5eece121962f2f136a3",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
     "oneManifestChangePerPromotion": true,
     "greenCandidateOnly": true,
     "promotionController": "ASTRA_SAFE_BETGPT_PROMOTION",
-    "currentHeadOnly": true,
-    "doubleHeadCheck": true
+    "currentHeadOnly": false,
+    "doubleHeadCheck": true,
+    "greenAncestorOfHeadOnly": true,
+    "monotonicPromotionOnly": true,
+    "releaseTrain": true,
+    "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-01T23:32:42.157Z",
-  "reason": "Automatic promotion of latest GREEN candidate only when it is still current source HEAD"
+  "updatedAt": "2026-10-01T23:39:59.642Z",
+  "reason": "Release Train: promote latest immutable GREEN ancestor of current main without rollback starvation"
 }
