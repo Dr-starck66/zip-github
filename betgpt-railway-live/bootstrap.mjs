@@ -3,6 +3,7 @@ import path from "node:path";
 import crypto from "node:crypto";
 import extract from "extract-zip";
 
+// Railway watches this path; source is always current BetGPT main.
 const sourceUrl = "https://codeload.github.com/Dr-starck66/betgpt-railway/zip/refs/heads/main";
 const res = await fetch(sourceUrl, {
   headers: {
