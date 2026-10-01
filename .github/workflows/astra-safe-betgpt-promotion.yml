@@ -29,35 +29,54 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          API="https://api.github.com/repos/Dr-starck66/betgpt-railway/actions/workflows/astra-never-fail.yml/runs?branch=main&status=success&per_page=1"
-          JSON="$(curl -fsSL -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "$API")"
-          SHA="$(printf '%s' "$JSON" | jq -r '.workflow_runs[0].head_sha // empty')"
-          RUN_ID="$(printf '%s' "$JSON" | jq -r '.workflow_runs[0].id // empty')"
-          if [ -z "$SHA" ] || [ -z "$RUN_ID" ]; then
-            echo "No GREEN candidate available; production remains unchanged."
+
+          RUNS_API="https://api.github.com/repos/Dr-starck66/betgpt-railway/actions/workflows/astra-never-fail.yml/runs?branch=main&status=success&per_page=1"
+          HEAD_API="https://api.github.com/repos/Dr-starck66/betgpt-railway/commits/main"
+
+          RUNS_JSON="$(curl -fsSL -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "$RUNS_API")"
+          HEAD_JSON="$(curl -fsSL -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "$HEAD_API")"
+
+          SHA="$(printf '%s' "$RUNS_JSON" | jq -r '.workflow_runs[0].head_sha // empty')"
+          RUN_ID="$(printf '%s' "$RUNS_JSON" | jq -r '.workflow_runs[0].id // empty')"
+          SOURCE_HEAD="$(printf '%s' "$HEAD_JSON" | jq -r '.sha // empty')"
+
+          if [ -z "$SHA" ] || [ -z "$RUN_ID" ] || [ -z "$SOURCE_HEAD" ]; then
+            echo "No complete GREEN/head proof available; production remains unchanged."
             echo "promote=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          if ! [[ "$SHA" =~ ^[0-9a-fA-F]{40}$ ]] || ! [[ "$RUN_ID" =~ ^[0-9]+$ ]]; then
-            echo "Invalid candidate proof." >&2
+
+          if ! [[ "$SHA" =~ ^[0-9a-fA-F]{40}$ ]] || ! [[ "$SOURCE_HEAD" =~ ^[0-9a-fA-F]{40}$ ]] || ! [[ "$RUN_ID" =~ ^[0-9]+$ ]]; then
+            echo "Invalid candidate/head proof." >&2
             exit 1
           fi
+
+          if [ "$SHA" != "$SOURCE_HEAD" ]; then
+            echo "ASTRA_PROMOTION_DEFER_STALE_GREEN candidate=$SHA sourceHead=$SOURCE_HEAD"
+            echo "promote=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
           CURRENT="$(jq -r '.sourceSha // empty' betgpt-railway-live/source-manifest.json)"
           MARKER="$(jq -r '.sourceSha // empty' betgpt-railway-live/.astra-green-release.json)"
           PUBLIC_SHA="$(curl -fsS --connect-timeout 8 --max-time 20 https://betgpt.live/astra-revision.json 2>/dev/null | jq -r '.sourceSha // empty' 2>/dev/null || true)"
+
           if [ "$CURRENT" = "$SHA" ] && [ "$MARKER" = "$SHA" ] && [ "$PUBLIC_SHA" = "$SHA" ]; then
-            echo "Production already serves latest GREEN candidate $SHA"
+            echo "Production already serves latest GREEN current HEAD $SHA"
             echo "promote=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
+
           if [ "$CURRENT" = "$SHA" ] && [ "$MARKER" = "$SHA" ] && [ "$PUBLIC_SHA" != "$SHA" ]; then
             echo "ASTRA_PROMOTION_REEMIT_REQUIRED manifest=$SHA public=$PUBLIC_SHA"
           fi
+
           echo "sha=$SHA" >> "$GITHUB_OUTPUT"
           echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+          echo "source_head=$SOURCE_HEAD" >> "$GITHUB_OUTPUT"
           echo "promote=true" >> "$GITHUB_OUTPUT"
 
-      - name: Verify workflow proof again
+      - name: Verify workflow proof and current source HEAD again
         if: steps.candidate.outputs.promote == 'true'
         shell: bash
         env:
@@ -65,9 +84,15 @@ jobs:
           WORKFLOW_RUN_ID: ${{ steps.candidate.outputs.run_id }}
         run: |
           set -euo pipefail
-          API="https://api.github.com/repos/Dr-starck66/betgpt-railway/actions/runs/$WORKFLOW_RUN_ID"
-          JSON="$(curl -fsSL -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "$API")"
-          printf '%s' "$JSON" | jq -e --arg sha "$CANDIDATE_SHA" '
+
+          RUN_API="https://api.github.com/repos/Dr-starck66/betgpt-railway/actions/runs/$WORKFLOW_RUN_ID"
+          HEAD_API="https://api.github.com/repos/Dr-starck66/betgpt-railway/commits/main"
+
+          RUN_JSON="$(curl -fsSL -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "$RUN_API")"
+          HEAD_JSON="$(curl -fsSL -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "$HEAD_API")"
+          SOURCE_HEAD="$(printf '%s' "$HEAD_JSON" | jq -r '.sha // empty')"
+
+          printf '%s' "$RUN_JSON" | jq -e --arg sha "$CANDIDATE_SHA" '
             .head_sha == $sha and
             .head_branch == "main" and
             .status == "completed" and
@@ -75,7 +100,12 @@ jobs:
             (.path | endswith("/astra-never-fail.yml"))
           ' >/dev/null
 
-      - name: Promote immutable GREEN SHA and release token
+          if [ "$SOURCE_HEAD" != "$CANDIDATE_SHA" ]; then
+            echo "ASTRA_PROMOTION_BLOCKED_SOURCE_ADVANCED candidate=$CANDIDATE_SHA sourceHead=$SOURCE_HEAD"
+            exit 78
+          fi
+
+      - name: Promote immutable GREEN current HEAD and release token
         if: steps.candidate.outputs.promote == 'true'
         shell: bash
         env:
@@ -83,6 +113,19 @@ jobs:
           WORKFLOW_RUN_ID: ${{ steps.candidate.outputs.run_id }}
         run: |
           set -euo pipefail
+
+          assert_source_head() {
+            local current
+            current="$(curl -fsSL -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/Dr-starck66/betgpt-railway/commits/main" | jq -r '.sha // empty')"
+            if [ "$current" != "$CANDIDATE_SHA" ]; then
+              echo "ASTRA_PROMOTION_BLOCKED_SOURCE_ADVANCED candidate=$CANDIDATE_SHA sourceHead=$current"
+              exit 78
+            fi
+          }
+
+          assert_source_head
+
           node <<'NODE'
           const fs = require("fs");
           const sha = process.env.CANDIDATE_SHA;
@@ -101,10 +144,12 @@ jobs:
             envSourceOverrides: false,
             oneManifestChangePerPromotion: true,
             greenCandidateOnly: true,
+            currentHeadOnly: true,
+            doubleHeadCheck: true,
             promotionController: "ASTRA_SAFE_BETGPT_PROMOTION"
           };
           m.updatedAt = new Date().toISOString();
-          m.reason = "Automatic promotion of latest GREEN ASTRA Never-Fail candidate";
+          m.reason = "Automatic promotion of latest GREEN candidate only when it is still current source HEAD";
 
           const marker = {
             schema: "astra-green-release/v1",
@@ -112,6 +157,7 @@ jobs:
             sourceSha: sha,
             promotionKey: `Dr-starck66/betgpt-railway@${sha}`,
             greenVerified: true,
+            currentHeadVerified: true,
             controller: "ASTRA_SAFE_BETGPT_PROMOTION",
             gateWorkflow: "astra-never-fail.yml",
             workflowRunId: runId,
@@ -127,4 +173,8 @@ jobs:
           git add betgpt-railway-live/source-manifest.json betgpt-railway-live/.astra-green-release.json
           git diff --cached --quiet && exit 0
           git commit -m "deploy: promote latest GREEN BetGPT candidate"
+
+          git pull --rebase origin main
+          assert_source_head
+
           git push
