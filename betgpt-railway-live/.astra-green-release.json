@@ -1,13 +1,12 @@
 {
   "schema": "astra-green-release/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "b507e06626b01a2088a3f2d17c97c63fb3a67b2f",
-  "promotionKey": "Dr-starck66/betgpt-railway@b507e06626b01a2088a3f2d17c97c63fb3a67b2f",
+  "sourceSha": "3e3c270e6435d4b899affbd5247795fc575b36ab",
+  "promotionKey": "Dr-starck66/betgpt-railway@3e3c270e6435d4b899affbd5247795fc575b36ab",
   "greenVerified": true,
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
-  "workflowRunId": 36934726758,
-  "verifiedAt": "2026-10-01T22:24:08Z",
-  "note": "Atomic GREEN promotion for results football SEO/UX rebuild; manifest and green token changed in the same authorized controller commit.",
-  "promotionTriggerAt": "2026-10-01T22:28:00Z"
+  "workflowRunId": 36935400247,
+  "verifiedAt": "2026-10-01T22:31:06Z",
+  "note": "Discover Launchpad GREEN: rendered article-specific OG/Twitter images, ESPN provenance, 1200+ image gate, source strength, indexability, typecheck and regression tests."
 }
