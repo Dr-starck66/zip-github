@@ -69,9 +69,11 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install browser capture runtime
+      - name: Install video and browser runtimes
         working-directory: astra-library
         run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
 
