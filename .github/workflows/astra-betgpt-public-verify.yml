@@ -44,10 +44,14 @@ jobs:
           ARTICLE_HTML="$(curl --compressed --retry 3 --retry-delay 2 --retry-all-errors -fsSL --connect-timeout 12 --max-time 90 -H 'cache-control: no-cache' "$ARTICLE_URL")"
           echo "PUBLIC_ARTICLE_HTML_BYTES=${#ARTICLE_HTML}"
           printf '%s\n' "$ARTICLE_HTML" | grep -F "À lire aussi" >/dev/null
-          printf '%s\n' "$ARTICLE_HTML" | grep -F "Mbappé à Paris pendant sa récupération" >/dev/null
-          printf '%s\n' "$ARTICLE_HTML" | grep -F "Kylian_Mbappe_France_v_Spain_7.24.26-051.jpg" >/dev/null
-          printf '%s\n' "$ARTICLE_HTML" | grep -F "Affaire Negreira" >/dev/null
-          printf '%s\n' "$ARTICLE_HTML" | grep -F "/blog/discover/inline-flags.jpg" >/dev/null
+          printf '%s\n' "$ARTICLE_HTML" | grep -F "France - Italie, Ligue des nations A, match en direct le 02/10/2026" >/dev/null
+          printf '%s\n' "$ARTICLE_HTML" | grep -F "/blog/discover/inline-night.jpg" >/dev/null
+          printf '%s\n' "$ARTICLE_HTML" | grep -F "Équipe de France : DEMBÉLÉ est-il le LEADER d'attaque ?" >/dev/null
+          printf '%s\n' "$ARTICLE_HTML" | grep -F "/blog/discover/inline-live.jpg" >/dev/null
+          printf '%s\n' "$ARTICLE_HTML" | grep -F "Azerbaijan – Liechtenstein : 0–0, résultat et faits du match" >/dev/null
+          printf '%s\n' "$ARTICLE_HTML" | grep -F "/blog/discover/inline-action.jpg" >/dev/null
+          printf '%s\n' "$ARTICLE_HTML" | grep -F 'width="1200"' >/dev/null
+          printf '%s\n' "$ARTICLE_HTML" | grep -F 'height="675"' >/dev/null
           printf '%s\n' "$ARTICLE_HTML" | grep -F "max-image-preview:large" >/dev/null
           echo "PUBLIC_ARTICLE_SIDEBAR_IMAGE_PASS=$TARGET"
 
