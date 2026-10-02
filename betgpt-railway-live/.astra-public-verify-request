@@ -1,13 +1,14 @@
 {
-  "target": "86a0046d1917e326d8ea3c3fd9e7127f52b2a753",
-  "requestedAt": "2026-10-02T13:13:50.806Z",
+  "target": "a05d36aa842da0e7847a32dfb2fb1ec6614b19a6",
+  "requestedAt": "2026-10-02T13:22:14.575Z",
   "checks": [
     "public-revision",
     "health",
     "article-sidebar-images",
+    "related-specific-images",
     "max-image-preview-large",
     "viral-share-loop",
     "absurd-score-chat-punchline-reaction"
   ],
-  "reason": "Verify France–Italie right-column Discover imagery on the exact GREEN public revision"
+  "reason": "Final public verification of France–Italie Discover-ready right-column imagery"
 }
