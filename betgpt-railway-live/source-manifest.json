@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-02T14:45:17Z",
-  "reason": "Promote GREEN BetGPT chat repair: real Qwen routing and no technical fallback"
+  "updatedAt": "2026-10-02T14:48:59.507Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
