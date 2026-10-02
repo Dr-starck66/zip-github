@@ -1,14 +1,14 @@
 {
-  "target": "a05d36aa842da0e7847a32dfb2fb1ec6614b19a6",
-  "requestedAt": "2026-10-02T13:25:31.580Z",
+  "target": "434bcc50b97a625ddc26b96c9deec33facb6fa8b",
+  "requestedAt": "2026-10-02T14:21:06.967Z",
   "checks": [
     "public-revision",
     "health",
     "article-sidebar-images",
-    "related-specific-images",
+    "public-image-copy-no-jargon",
+    "contextual-seo-caption",
     "max-image-preview-large",
-    "viral-share-loop",
-    "absurd-score-chat-punchline-reaction"
+    "viral-share-loop"
   ],
-  "reason": "Final verify actual recalculated related-story images on France–Italie"
+  "reason": "Verify removal of visible image-production jargon and contextual SEO caption"
 }
