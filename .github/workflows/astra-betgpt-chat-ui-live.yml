@@ -1,0 +1,110 @@
+name: ASTRA BetGPT Chat UI Live
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/astra-betgpt-chat-ui-live.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mobile-chat-ui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install browser harness
+        run: |
+          npm install --no-save --no-package-lock playwright@1.62.0
+          npx playwright install chromium
+
+      - name: Exercise real mobile chat controls
+        shell: bash
+        run: |
+          node <<'NODE'
+          const { chromium } = require("playwright");
+
+          const browser = await chromium.launch({ headless: true });
+          const context = await browser.newContext({
+            viewport: { width: 390, height: 844 },
+            isMobile: true,
+            hasTouch: true,
+            userAgent: "Mozilla/5.0 (Linux; Android 14; SM-A047F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+          });
+
+          await context.addInitScript(() => {
+            localStorage.setItem("betgpt-18", "1");
+            localStorage.setItem("betgpt-consent", "essential");
+          });
+
+          const page = await context.newPage();
+          const consoleLines = [];
+          const pageErrors = [];
+          page.on("console", (m) => consoleLines.push(`${m.type()}: ${m.text()}`));
+          page.on("pageerror", (e) => pageErrors.push(String(e)));
+
+          const response = await page.goto("https://betgpt.live/chat", {
+            waitUntil: "networkidle",
+            timeout: 60000,
+          });
+          console.log("NAV_STATUS", response?.status());
+
+          await page.waitForSelector('textarea[aria-label="Ton message à BetGPT"]', { timeout: 15000 });
+
+          const roast = page.getByRole("button", { name: "Sans filtre", exact: true });
+          const send = page.getByRole("button", { name: "Envoyer", exact: true });
+          const textarea = page.locator('textarea[aria-label="Ton message à BetGPT"]');
+
+          console.log("COUNTS", {
+            roast: await roast.count(),
+            send: await send.count(),
+            textarea: await textarea.count(),
+          });
+
+          console.log("ROAST_BEFORE", await roast.getAttribute("aria-pressed"));
+          await roast.click({ timeout: 10000 });
+          console.log("ROAST_AFTER", await roast.getAttribute("aria-pressed"));
+
+          await textarea.fill("La France va perdre 25-0 son prochain match.");
+          console.log("TEXTAREA_VALUE", await textarea.inputValue());
+
+          const chatResponsePromise = page.waitForResponse(
+            (r) => r.url().includes("/api/chat") && r.request().method() === "POST",
+            { timeout: 20000 },
+          );
+          await send.click({ timeout: 10000 });
+          const chatResponse = await chatResponsePromise;
+          console.log("CHAT_STATUS", chatResponse.status());
+
+          await page.waitForFunction(
+            () => document.body.innerText.includes("tabouret probabiliste") ||
+                  document.body.innerText.includes("CALAMAR") ||
+                  document.body.innerText.includes("score pareil"),
+            null,
+            { timeout: 20000 },
+          );
+
+          console.log("PAGE_ERRORS", JSON.stringify(pageErrors));
+          console.log("CONSOLE", JSON.stringify(consoleLines.slice(-50)));
+
+          if (pageErrors.length) {
+            throw new Error("Browser page errors: " + pageErrors.join(" | "));
+          }
+          if ((await roast.getAttribute("aria-pressed")) !== "true") {
+            throw new Error("Sans filtre click did not change aria-pressed");
+          }
+          if (chatResponse.status() !== 200) {
+            throw new Error("Chat POST status " + chatResponse.status());
+          }
+
+          console.log("ASTRA_CHAT_UI_LIVE_PASS");
+          await browser.close();
+          NODE
