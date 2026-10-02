@@ -59,8 +59,7 @@ export async function assertAuthorizedRailwayTrigger(options = {}) {
   // currently pulled from the control plane. source-gate verifies the exact
   // Never-Fail workflow proof immediately after this firewall.
   if (!releaseFilesChanged) {
-    const deploymentId = String(process.env.RAILWAY_DEPLOYMENT_ID || "").trim();
-    if (!deploymentId) fail("non-release-trigger-without-deployment-id", `commit=${triggerSha}`);
+    const reconcileNonce = String(process.env.ASTRA_CONTROL_PLANE_NONCE || "").trim().toLowerCase();
 
     const localGreenPath = path.resolve(path.basename(greenPath));
     const localManifestPath = path.resolve(path.basename(manifestPath));
@@ -82,6 +81,12 @@ export async function assertAuthorizedRailwayTrigger(options = {}) {
     if (!/^[a-f0-9]{40}$/.test(targetSha) || greenSha !== targetSha) {
       fail("reconcile-marker-manifest-mismatch", `manifest=${targetSha} green=${greenSha}`);
     }
+    if (reconcileNonce !== targetSha) {
+      fail(
+        "reconcile-nonce-mismatch",
+        `expected=${targetSha} actual=${reconcileNonce || "(missing)"}`,
+      );
+    }
     if (green?.greenVerified !== true || green?.controller !== "ASTRA_SAFE_BETGPT_PROMOTION") {
       fail("reconcile-target-not-approved-green", `sourceSha=${targetSha}`);
     }
@@ -93,7 +98,7 @@ export async function assertAuthorizedRailwayTrigger(options = {}) {
         controllerRepo,
         triggerSha,
         triggerBranch,
-        deploymentId,
+        reconcileNonce,
         sourceSha: targetSha,
         message: apiMessage,
       }),
