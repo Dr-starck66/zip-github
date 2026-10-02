@@ -15,8 +15,8 @@
   "reemit": {
     "sourceSha": "ea5f7af36bdcc1d80f6d3d191328897f6f2d582e",
     "greenWorkflowRunId": 36943463881,
-    "at": "2026-10-02T00:01:40Z",
+    "at": "2026-10-02T00:03:00Z",
     "controller": "ASTRA_RAILWAY_GREEN_RECONCILER",
-    "reason": "Re-emit latest approved GREEN token after Single-Flight stale-run guard repair."
+    "reason": "Authorized atomic reemit after deploy-trigger race repair."
   }
 }

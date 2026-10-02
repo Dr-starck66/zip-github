@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-02T00:00:42.394Z",
-  "reason": "Re-emit approved GREEN release because public production had not converged"
+  "updatedAt": "2026-10-02T00:03:00Z",
+  "reason": "Authorized atomic reemit after deploy-trigger race repair"
 }
