@@ -71,6 +71,51 @@ test("profile rollout plans, applies, verifies and writes evidence", () => {
   }
 });
 
+test("launch-ready profile injects and verifies launch-video without provider lock-in", () => {
+  const target = fixture();
+  try {
+    const plan = runRollout({
+      command: "plan",
+      profile: "launch-ready-node-web-v1",
+      target,
+      library,
+      force: false,
+      runGuards: false,
+    });
+    assert.equal(plan.status, "CHANGES_REQUIRED");
+
+    const applied = runRollout({
+      command: "apply",
+      profile: "launch-ready-node-web-v1",
+      target,
+      library,
+      force: false,
+      runGuards: false,
+    });
+    assert.equal(applied.status, "PASS");
+    assert.equal(applied.bricks.length, 2);
+    assert.ok(existsSync(path.join(target, "scripts", "astra-launch-video.mjs")));
+    assert.ok(existsSync(path.join(target, "config", "astra-launch-video.json")));
+
+    const pkg = JSON.parse(readFileSync(path.join(target, "package.json"), "utf8"));
+    assert.equal(pkg.scripts["launch:video"], "node scripts/astra-launch-video.mjs");
+    assert.equal(pkg.scripts["guard:launch-video"], "node scripts/astra-launch-video-guard.mjs");
+
+    const verified = runRollout({
+      command: "verify",
+      profile: "launch-ready-node-web-v1",
+      target,
+      library,
+      force: false,
+      runGuards: false,
+    });
+    assert.equal(verified.status, "PASS");
+    assert.equal(verified.bricks.length, 2);
+  } finally {
+    rmSync(target, { recursive: true, force: true });
+  }
+});
+
 test("profile verify fails closed on drift", () => {
   const target = fixture();
   try {
