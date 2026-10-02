@@ -1,6 +1,6 @@
 {
-  "sourceSha": "aa5bbaa185be2651a36427448c94f509480f1f76",
-  "workflowRunId": 37039494082,
-  "requestedAt": "2026-10-02T17:17:30.000Z",
-  "reason": "Promote GREEN BetGPT mobile diploma fullscreen-on-tap fix"
+  "sourceSha": "7c7fc23a9431593f514ff39d063735ca33ea76ad",
+  "workflowRunId": 37040789813,
+  "requestedAt": "2026-10-02T17:29:00.000Z",
+  "reason": "Fix BetGPT personality enforcement + exact '25 zero ce soir' misrouting regression"
 }
