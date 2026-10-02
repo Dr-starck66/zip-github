@@ -22,6 +22,11 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Install managed brick system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
       - name: Registry rollout unit tests
         working-directory: library
         run: node --test astra-bricks/registry/astra-brick-rollout.test.mjs
