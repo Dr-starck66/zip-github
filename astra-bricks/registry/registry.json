@@ -1,13 +1,14 @@
 {
   "schema": "astra-brick-registry/v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "policy": {
     "safeByDefault": true,
     "blockOnDrift": true,
     "backupBeforeMutation": true,
     "verifyAfterApply": true,
     "rollbackCapable": true,
-    "noCrossRepoWriteWithoutTargetAuthorization": true
+    "noCrossRepoWriteWithoutTargetAuthorization": true,
+    "futureNodeWebDefaultProfile": "launch-ready-node-web-v1"
   },
   "bricks": {
     "stream-resilience-guard": {
@@ -26,6 +27,28 @@
         36940408363
       ]
     },
+    "launch-video": {
+      "version": "1.0.0",
+      "status": "PROVEN",
+      "path": "astra-bricks/launch-video",
+      "manifest": "astra-bricks/launch-video/brick.json",
+      "compatibility": {
+        "runtime": "node",
+        "minNode": "22",
+        "requiresPackageJson": true,
+        "systemDependencies": [
+          "ffmpeg",
+          "ffprobe"
+        ],
+        "optionalDependencies": [
+          "playwright for automatic live-site capture"
+        ]
+      },
+      "proofRuns": [
+        37077054138,
+        37077093105
+      ]
+    },
     "deploy-trigger-firewall": {
       "version": null,
       "status": "UNMANAGED",
@@ -35,9 +58,22 @@
   },
   "profiles": {
     "baseline-node-web-v1": {
-      "description": "Baseline resilience layer for Node-based ASTRA web projects.",
+      "description": "Legacy baseline resilience layer for existing Node-based ASTRA web projects.",
       "bricks": [
         "stream-resilience-guard"
+      ]
+    },
+    "launch-video-global-v1": {
+      "description": "Global ASTRA LAUNCH VIDEO Ω rollout for any Node project with a demonstrable product surface.",
+      "bricks": [
+        "launch-video"
+      ]
+    },
+    "launch-ready-node-web-v1": {
+      "description": "Default profile for future Node web projects: resilience plus proven launch-video generation.",
+      "bricks": [
+        "stream-resilience-guard",
+        "launch-video"
       ]
     },
     "betgpt-v1": {
