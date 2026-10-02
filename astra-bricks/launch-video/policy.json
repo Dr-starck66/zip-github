@@ -1,0 +1,22 @@
+{
+  "schema": "astra-launch-video-policy/v1",
+  "name": "ASTRA LAUNCH VIDEO Ω",
+  "policy": {
+    "scope": "all past present and future projects with a demonstrable product surface",
+    "pipeline": ["BUILD", "TEST", "DEPLOY", "PROOF_GATE", "LAUNCH_VIDEO", "SOCIAL"],
+    "defaultFormats": ["landscape", "vertical", "square"],
+    "defaultDurationSeconds": 18,
+    "realProductCapture": true,
+    "providerIndependent": true,
+    "failClosed": true,
+    "requireAudioStream": true,
+    "maxBlackSeconds": 1.25,
+    "verifyExpectedScenes": true,
+    "falsePassMutationTests": true
+  },
+  "renderers": {
+    "native-ffmpeg": { "status": "ACTIVE", "paidApiRequired": false },
+    "brag-hyperframes": { "status": "OPTIONAL_ADAPTER", "paidApiRequired": "provider-dependent" }
+  },
+  "states": ["PASS", "PARTIAL", "FAIL", "UNVERIFIED"]
+}

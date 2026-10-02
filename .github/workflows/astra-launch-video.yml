@@ -1,0 +1,94 @@
+name: ASTRA Launch Video
+
+on:
+  workflow_call:
+    inputs:
+      project_name:
+        required: true
+        type: string
+      project_url:
+        required: true
+        type: string
+      tagline:
+        required: true
+        type: string
+      duration_seconds:
+        required: false
+        default: 18
+        type: number
+      formats:
+        required: false
+        default: "landscape,vertical,square"
+        type: string
+  workflow_dispatch:
+    inputs:
+      project_name:
+        description: Project name
+        required: true
+        type: string
+      project_url:
+        description: Live URL to capture
+        required: true
+        type: string
+      tagline:
+        description: Launch hook/tagline
+        required: true
+        type: string
+      duration_seconds:
+        description: Total duration
+        required: false
+        default: 18
+        type: number
+      formats:
+        description: Comma-separated formats
+        required: false
+        default: "landscape,vertical,square"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  launch-video:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_NAME: ${{ inputs.project_name }}
+      PROJECT_URL: ${{ inputs.project_url }}
+      TAGLINE: ${{ inputs.tagline }}
+      DURATION: ${{ inputs.duration_seconds }}
+      FORMATS: ${{ inputs.formats }}
+    steps:
+      - name: Checkout ASTRA brick library
+        uses: actions/checkout@v4
+        with:
+          repository: Dr-starck66/zip-github
+          ref: main
+          path: astra-library
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install browser capture runtime
+        working-directory: astra-library
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Generate and prove launch videos
+        run: |
+          node astra-library/astra-bricks/launch-video/astra-launch-video.mjs \
+            --url "$PROJECT_URL" \
+            --name "$PROJECT_NAME" \
+            --tagline "$TAGLINE" \
+            --duration "$DURATION" \
+            --formats "$FORMATS" \
+            --out "$GITHUB_WORKSPACE/dist/astra-launch-video"
+
+      - name: Upload proven videos
+        uses: actions/upload-artifact@v4
+        with:
+          name: astra-launch-video
+          path: dist/astra-launch-video/
+          if-no-files-found: error
+          retention-days: 30
