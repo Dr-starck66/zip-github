@@ -1,0 +1,6 @@
+{
+  "schema": "astra-forum-global-proof/v1",
+  "target": "e33d9510bf446351d971ac1cfff59b19edc7a0e1",
+  "requestedAt": "2026-10-02T19:26:10.000Z",
+  "reason": "Prove Moltbook-style BetGPT forum works globally across multiple public match threads"
+}
