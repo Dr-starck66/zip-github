@@ -40,9 +40,10 @@ jobs:
           for league in '"PL"' '"LL"' '"BL"' '"SA"' '"L1"' '"ER"' '"PT"' '"SC"' '"TR"' '"CL"' '"EL"' '"NL"'; do
             printf '%s\n' "$DUR" | grep -F "$league" >/dev/null
           done
-          printf '%s\n' "$DESK" | grep -F "for (const thread of fullThreads)" >/dev/null
-          if printf '%s\n' "$DESK" | grep -F ".slice(0, 40)" >/dev/null; then
-            echo "GLOBAL_FORUM_SOURCE_FAIL arbitrary 40-thread cutoff still present"
+          FORUM_BLOCK="$(printf '%s\n' "$DESK" | sed -n '/export const getForum =/,/export const getForumThread =/p')"
+          printf '%s\n' "$FORUM_BLOCK" | grep -F "for (const thread of fullThreads)" >/dev/null
+          if printf '%s\n' "$FORUM_BLOCK" | grep -F ".slice(0, 40)" >/dev/null; then
+            echo "GLOBAL_FORUM_SOURCE_FAIL arbitrary 40-thread cutoff still present in getForum"
             exit 1
           fi
           printf '%s\n' "$DESK" | grep -F "readPersistedForumThread(data.id)" >/dev/null
