@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - ".github/workflows/astra-betgpt-chat-live.yml"
+      - "betgpt-railway-live/.astra-green-release.json"
+      - "betgpt-railway-live/source-manifest.json"
   workflow_dispatch:
 
 permissions:
@@ -14,11 +16,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
+      - name: Checkout release controller
+        uses: actions/checkout@v4
+
       - name: Wait for repaired public revision
         shell: bash
         run: |
           set -euo pipefail
-          expected="08b56a4211eb5e869901ee9c4e08470286b00976"
+          expected="$(python3 -c 'import json; print(json.load(open("betgpt-railway-live/.astra-green-release.json",encoding="utf-8"))["sourceSha"])')"
+          echo "expected=$expected"
           for i in $(seq 1 48); do
             body="$(curl -fsS --connect-timeout 6 --max-time 10 https://betgpt.live/astra-revision.json || true)"
             got="$(printf '%s' "$body" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("sourceSha",""))' 2>/dev/null || true)"
@@ -41,7 +47,7 @@ jobs:
 
           URL="https://betgpt.live/api/chat"
 
-          def ask(text, mode="NORMAL"):
+          def ask(text, mode="NORMAL", timeout=35):
               payload=json.dumps({
                   "messages":[{"role":"user","content":text,"timestamp":1}],
                   "requestedMode":mode
@@ -52,11 +58,11 @@ jobs:
                   headers={"content-type":"application/json","user-agent":"ASTRA-BetGPT-Chat-Live-Gate/1.0"},
                   method="POST"
               )
-              with urllib.request.urlopen(req, timeout=40) as r:
+              with urllib.request.urlopen(req, timeout=timeout) as r:
                   assert r.status == 200, r.status
                   return json.load(r)
 
-          normal=ask("La France va perdre son prochain match 25 à 0","NORMAL")
+          normal=ask("La France va perdre son prochain match 25 à 0","NORMAL",12)
           ntext=str(normal.get("text","")).strip()
           nlow=ntext.lower()
           assert ntext, normal
@@ -65,7 +71,7 @@ jobs:
           assert "score pareil" in nlow or "extr" in nlow, ntext
           print("CHAT_25_NORMAL_PASS", ntext)
 
-          roast=ask("La France va perdre son prochain match 25 à 0","ROAST")
+          roast=ask("La France va perdre son prochain match 25 à 0","ROAST",12)
           rtext=str(roast.get("text","")).strip()
           rlow=rtext.lower()
           assert rtext, roast
@@ -74,7 +80,7 @@ jobs:
           print("CHAT_25_ROAST_PASS", rtext)
           print("PUNCH", roast["punchline"]["text"])
 
-          tactical=ask("Pourquoi un 4-4-2 peut souffrir face à un 3-2-5 ?","NORMAL")
+          tactical=ask("Pourquoi un 4-4-2 peut souffrir face à un 3-2-5 ?","NORMAL",35)
           ttext=str(tactical.get("text","")).strip()
           tlow=ttext.lower()
           assert ttext, tactical
