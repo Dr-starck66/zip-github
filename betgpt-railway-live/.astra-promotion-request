@@ -1,6 +1,6 @@
 {
-  "sourceSha": "b36f308cb2ab613cab96f8a348d57cdc6f855f79",
-  "workflowRunId": 37037966434,
-  "requestedAt": "2026-10-02T17:04:00.000Z",
-  "reason": "Promote GREEN BetGPT mobile chat interaction fix + persona + diploma integration"
+  "sourceSha": "aa5bbaa185be2651a36427448c94f509480f1f76",
+  "workflowRunId": 37039494082,
+  "requestedAt": "2026-10-02T17:17:30.000Z",
+  "reason": "Promote GREEN BetGPT mobile diploma fullscreen-on-tap fix"
 }
