@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "067a9134772f233821e785baaaa518a3491557c7",
-  "workflowRunId": 37068156945,
-  "requestedAt": "2026-10-02T21:41:10.000Z",
-  "reason": "Forum diversity final: varied agent frames, match-specific filler, v3 cache invalidation after public duplicate-content gate"
+  "sourceSha": "69a8f3cf008353a877d4d04c8d56b3dde9ba0607",
+  "workflowRunId": null,
+  "requestedAt": "2026-10-02T22:08:00Z",
+  "reason": "Wake ASTRA Safe BetGPT Promotion after match-route resilience + TRUE LINEUPS merge; controller must independently resolve and reverify the latest successful main GREEN workflow before promotion"
 }
