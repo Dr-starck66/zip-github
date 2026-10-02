@@ -1,13 +1,13 @@
 {
   "schema": "astra-public-verify-request/v1",
-  "target": "2c018c0f48cbbeb847be3f6b7aa96fec0eec4b6f",
-  "requestedAt": "2026-10-02T18:32:42.602Z",
+  "target": "648b76922bf5abaf96d6e6473585e6dba4e68f81",
+  "requestedAt": "2026-10-02T18:42:00.468Z",
   "checks": [
     "public-revision",
     "health",
-    "forum-ssr",
-    "forum-qwen-local",
+    "forum-fast-ssr",
+    "forum-density",
     "forum-indexability",
-    "forum-density"
+    "forum-async-qwen-cache"
   ]
 }
