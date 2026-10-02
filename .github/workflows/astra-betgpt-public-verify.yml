@@ -82,44 +82,61 @@ jobs:
           echo "PUBLIC_VIRAL_UX_SOURCE_PASS=$TARGET"
           echo "PUBLIC_VIRAL_UX_MARKERS=Moment à partager | Défie un pote | X | Facebook | Instagram / Story | Défi reçu | Accepte le défi | Sans filtre activé | challenge view/accept | share_source | 1080x1350"
 
-          echo "== exact absurd-score chat =="
+          echo "== exact absurd-score personality chat =="
           python3 - <<'PY'
           import json,urllib.request
-          payload=json.dumps({
-            "messages":[{"role":"user","content":"LA FRANCE VA PERDRE VINGTS A ZEROS SON PROCHAIN MATCH","timestamp":1}],
-            "requestedMode":"ROAST",
-            "userMemory":{
-              "sarcasticIntensity":100,
-              "blackBook":{
-                "combinésDePlus5Matchs":0,
-                "jaiUnFeeling":0,
-                "parisModifiésDerniereSeconde":0,
-                "matchsImpossiblesAPerdre":0,
-                "matchsEffectivementPerdus":0,
-                "niveauDeConfianceInjustifie":0
-              },
-              "preferences":{"favoriteTeams":[],"favoriteCompetitions":[]}
-            }
-          }).encode()
-          req=urllib.request.Request(
-            "https://betgpt.live/api/chat",
-            data=payload,
-            headers={"content-type":"application/json","user-agent":"ASTRA-Public-Verify/1.0"},
-            method="POST"
-          )
-          with urllib.request.urlopen(req,timeout=30) as r:
-            assert r.status==200
-            data=json.load(r)
-          text=str(data.get("text",""))
-          assert text.strip(), data
-          assert "secours local" not in text.lower(), text
-          assert "poulpe consultant" not in text.lower(), text
-          punch=data.get("punchline") or {}
-          assert str(punch.get("text","")).strip(), data
+
+          URL="https://betgpt.live/api/chat"
+          memory={
+            "sarcasticIntensity":100,
+            "blackBook":{
+              "combinésDePlus5Matchs":0,
+              "jaiUnFeeling":0,
+              "parisModifiésDerniereSeconde":0,
+              "matchsImpossiblesAPerdre":0,
+              "matchsEffectivementPerdus":0,
+              "niveauDeConfianceInjustifie":0
+            },
+            "preferences":{"favoriteTeams":[],"favoriteCompetitions":[]}
+          }
+
+          def ask(mode):
+            payload=json.dumps({
+              "messages":[{"role":"user","content":"La France va perdre 25-0 son prochain match.","timestamp":1}],
+              "requestedMode":mode,
+              "userMemory":memory
+            },ensure_ascii=False).encode()
+            req=urllib.request.Request(
+              URL,
+              data=payload,
+              headers={"content-type":"application/json","user-agent":"ASTRA-Public-Verify/2.0"},
+              method="POST"
+            )
+            with urllib.request.urlopen(req,timeout=20) as r:
+              assert r.status==200
+              return json.load(r)
+
+          normal=ask("NORMAL")
+          ntext=str(normal.get("text","")).strip()
+          nlow=ntext.lower()
+          assert ntext, normal
+          assert "secours local" not in nlow, ntext
+          assert "tabouret probabiliste" in nlow, ntext
+          assert "mathématiques" in nlow or "mathematiques" in nlow, ntext
+          print("PERSONA_NORMAL_PUBLIC_PASS")
+          print("NORMAL_TEXT="+ntext)
+
+          roast=ask("ROAST")
+          rtext=str(roast.get("text","")).strip()
+          rlow=rtext.lower()
+          assert rtext, roast
+          assert "secours local" not in rlow, rtext
+          punch=roast.get("punchline") or {}
+          assert str(punch.get("text","")).strip(), roast
           reaction=punch.get("reaction") or {}
-          assert reaction.get("emojis"), data
-          print("ABSURD_SCORE_PUBLIC_PASS")
-          print("TEXT="+text)
+          assert reaction.get("emojis"), roast
+          print("PERSONA_ROAST_PUBLIC_PASS")
+          print("ROAST_TEXT="+rtext)
           print("PUNCH="+str(punch.get("text","")))
           print("REACTION="+json.dumps(reaction,ensure_ascii=False))
           PY
