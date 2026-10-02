@@ -1,6 +1,6 @@
 {
-  "sourceSha": "cab36e1d63750daee0083d225742d797447ec2d4",
-  "workflowRunId": 36945072330,
-  "requestedAt": "2026-10-02T00:16:30Z",
-  "reason": "Promote GREEN forced refresh-settle-learn checkpoint v2"
+  "sourceSha": "7fb220f7b7f089207563140dbbf79ee61cdadacc",
+  "workflowRunId": 36946402751,
+  "requestedAt": "2026-10-02T00:32:10Z",
+  "reason": "Promote GREEN live-betting SEO/UX release"
 }
