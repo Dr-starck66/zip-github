@@ -1,6 +1,8 @@
 {
-  "sourceSha": "a05d36aa842da0e7847a32dfb2fb1ec6614b19a6",
-  "workflowRunId": 37011977296,
-  "requestedAt": "2026-10-02T13:18:43.896Z",
-  "reason": "Promote GREEN BetGPT sidebar imagery with related-article-specific 1200px+ metadata"
+  "schema": "astra-promotion-request/v1",
+  "sourceRepo": "Dr-starck66/betgpt-railway",
+  "sourceSha": "7571b839675da26b13f1da02fbf3a22b583997c1",
+  "workflowRunId": 37015235853,
+  "reason": "Deploy mobile parity fix: restore first-level Chat IA and mobile feature parity guard",
+  "requestedAt": "2026-10-02T13:49:30Z"
 }
