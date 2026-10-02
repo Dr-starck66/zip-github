@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "22b7ce901329a79d074a73681f7e65713245a879",
-  "workflowRunId": 37049347086,
-  "requestedAt": "2026-10-02T19:08:18.644Z",
-  "reason": "Final forum Qwen fix: correct deployed local /chat/completions endpoint, fast async enrichment, dense indexable SSR"
+  "sourceSha": "e33d9510bf446351d971ac1cfff59b19edc7a0e1",
+  "workflowRunId": 37053423431,
+  "requestedAt": "2026-10-02T19:21:10.000Z",
+  "reason": "Global Moltbook football forum: all supported leagues, no 40-thread cutoff, durable 32-48 post match threads, local Qwen async enrichment, throttled persistence"
 }
