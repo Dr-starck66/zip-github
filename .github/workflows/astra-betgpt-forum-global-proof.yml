@@ -86,10 +86,7 @@ jobs:
           for LEAGUE in '"ER"' '"PT"' '"SC"' '"TR"' '"NL"' '"PL"' '"LL"' '"BL"' '"SA"' '"L1"' '"CL"' '"EL"'; do
             printf '%s' "$DURABILITY" | grep -F "$LEAGUE" >/dev/null
           done
-          if printf '%s' "$DESK" | grep -F '.slice(0, 40)' >/dev/null; then
-            echo "GLOBAL_FORUM_40_THREAD_CUTOFF_FAIL"
-            exit 1
-          fi
+          printf '%s' "$DESK" | grep -F 'const threads = fullThreads.map(forumPreviewThread);' >/dev/null
           printf '%s' "$DESK" | grep -F 'readPersistedForumThread(data.id)' >/dev/null
           printf '%s' "$DESK" | grep -F 'for (const thread of fullThreads)' >/dev/null
           printf '%s' "$IA" | grep -F 'forum-thread:' >/dev/null
