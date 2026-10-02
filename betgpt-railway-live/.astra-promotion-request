@@ -1,6 +1,6 @@
 {
   "sourceSha": "0b551c96bebe487104cb76d29ca14a9b021456d7",
   "workflowRunId": 36946744612,
-  "requestedAt": "2026-10-02T00:36:45Z",
-  "reason": "Promote GREEN visible friend-challenge viral UX"
+  "requestedAt": "2026-10-02T00:40:10Z",
+  "reason": "Retry explicit GREEN viral challenge UX after fixing candidate selection"
 }
