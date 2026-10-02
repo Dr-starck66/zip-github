@@ -32,6 +32,10 @@ PASS requires:
 - expected scene manifest complete;
 - mutation tests prove that missing audio, wrong resolution and black-video faults are detected.
 
+## Runtime
+
+Node.js 22+ is the target runtime. FFmpeg/ffprobe are required and are installed explicitly by the supplied GitHub Actions workflows rather than assumed to exist on the runner. Playwright is only required for automatic live-site capture.
+
 ## Providers
 
 `native-ffmpeg` is the default renderer and requires no paid API. BRAG/Hyperframes can be added later as an optional renderer, but ASTRA LAUNCH VIDEO Ω is deliberately not locked to it.
