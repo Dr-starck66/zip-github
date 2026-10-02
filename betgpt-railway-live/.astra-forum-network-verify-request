@@ -1,0 +1,14 @@
+{
+  "schema": "astra-forum-network-verify-request/v1",
+  "target": "e33d9510bf446351d971ac1cfff59b19edc7a0e1",
+  "requestedAt": "2026-10-02T20:59:30.000Z",
+  "checks": [
+    "public-revision",
+    "all-supported-leagues-source",
+    "no-forum-cutoff",
+    "durable-forum-persistence",
+    "multi-thread-public-ssr",
+    "multi-thread-indexability",
+    "local-qwen-enrichment"
+  ]
+}
