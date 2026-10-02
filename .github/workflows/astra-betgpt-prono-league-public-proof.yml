@@ -1,0 +1,82 @@
+name: ASTRA BetGPT Prono League Public Proof Ω
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/astra-betgpt-prono-league-public-proof.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Verify pronostic league pages are substantial and canonical
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BASE="https://betgpt.live"
+
+          fetch_page() {
+            local path="$1"
+            local out="$2"
+            local code
+            code="$(curl --compressed --retry 4 --retry-delay 2 --retry-all-errors               --silent --show-error --location --connect-timeout 12 --max-time 60               -H 'cache-control: no-cache' -o "$out" -w '%{http_code}' "$BASE$path")"
+            test "$code" = "200"
+            local bytes
+            bytes="$(wc -c < "$out")"
+            test "$bytes" -gt 10000
+            echo "HTTP_PASS path=$path code=$code bytes=$bytes"
+          }
+
+          check_canonical() {
+            local slug="$1"
+            local title="$2"
+            local path="/pronostics-football/$slug"
+            local out="/tmp/prono-$slug.html"
+            fetch_page "$path" "$out"
+            grep -F "Pronostic $title" "$out" >/dev/null
+            grep -F "Pronostics $title : la page reste utile même entre deux journées" "$out" >/dev/null
+            grep -F "Comment lire un pronostic $title" "$out" >/dev/null
+            grep -F "$BASE$path" "$out" >/dev/null
+            grep -F 'rel="canonical"' "$out" >/dev/null
+            if grep -Fq "Page /pronostics-football/" "$out"; then
+              echo "RAW_PATH_COPY_FAIL path=$path"
+              exit 1
+            fi
+            echo "CANONICAL_PRONO_PAGE_PASS path=$path title=$title"
+          }
+
+          check_alias() {
+            local alias="$1"
+            local canonical="$2"
+            local title="$3"
+            local path="/pronostics-football/$alias"
+            local out="/tmp/prono-alias-$alias.html"
+            fetch_page "$path" "$out"
+            grep -F "Pronostic $title" "$out" >/dev/null
+            grep -F "Pronostics $title : la page reste utile même entre deux journées" "$out" >/dev/null
+            grep -F "$BASE/pronostics-football/$canonical" "$out" >/dev/null
+            grep -F 'rel="canonical"' "$out" >/dev/null
+            grep -F 'content="noindex, follow"' "$out" >/dev/null
+            echo "ALIAS_PRONO_PAGE_PASS alias=$alias canonical=$canonical"
+          }
+
+          check_canonical "ligue-1" "Ligue 1"
+          check_canonical "premier-league" "Premier League"
+          check_canonical "la-liga" "La Liga"
+          check_canonical "bundesliga" "Bundesliga"
+          check_canonical "serie-a" "Serie A"
+          check_canonical "champions-league" "Ligue des champions"
+          check_canonical "ligue-europa" "Ligue Europa"
+
+          check_alias "l1" "ligue-1" "Ligue 1"
+          check_alias "liga" "la-liga" "La Liga"
+          check_alias "europa-league" "ligue-europa" "Ligue Europa"
+
+          echo "ASTRA_PRONO_LEAGUE_PUBLIC_PROOF_PASS"
