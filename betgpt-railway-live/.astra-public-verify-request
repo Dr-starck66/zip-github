@@ -1,12 +1,13 @@
 {
   "target": "4245bc9402613ab446bd78c8bc8123156bb727ff",
-  "requestedAt": "2026-10-02T16:27:00.000Z",
+  "requestedAt": "2026-10-02T16:28:00.000Z",
   "checks": [
     "public-revision",
     "health",
-    "persona-normal-public",
-    "persona-roast-public",
-    "mascot-source-bound-to-chat"
+    "mascot-asset-200-webp",
+    "mascot-public-chat-markup",
+    "mascot-source-binding",
+    "chat-public-smoke"
   ],
-  "reason": "Final public proof for BetGPT arrogant socially-awkward chatbot persona"
+  "reason": "Final public proof for BetGPT mascot chatbot identity"
 }
