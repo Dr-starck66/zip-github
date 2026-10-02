@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "a05d36aa842da0e7847a32dfb2fb1ec6614b19a6",
-  "promotionKey": "Dr-starck66/betgpt-railway@a05d36aa842da0e7847a32dfb2fb1ec6614b19a6",
+  "sourceSha": "9e9f054e2d52cce6b3f49b45dbdc8e5ce576f533",
+  "promotionKey": "Dr-starck66/betgpt-railway@9e9f054e2d52cce6b3f49b45dbdc8e5ce576f533",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-02T13:19:33.895Z",
-  "reason": "Re-emit approved GREEN release for article-specific sidebar images after prior public fallback verification"
+  "updatedAt": "2026-10-02T13:26:53Z",
+  "reason": "Promote GREEN national-team flag rendering + snapshot coverage guard"
 }
