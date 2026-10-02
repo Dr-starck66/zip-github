@@ -1,6 +1,6 @@
 {
-  "sourceSha": "4245bc9402613ab446bd78c8bc8123156bb727ff",
-  "workflowRunId": 37032792066,
-  "requestedAt": "2026-10-02T16:18:00.000Z",
-  "reason": "Promote GREEN BetGPT mascot identity in chatbot header and assistant replies"
+  "sourceSha": "ae9dd013c72d4b7a7634d748ed968d0b7c948ef8",
+  "workflowRunId": 37036516466,
+  "requestedAt": "2026-10-02T16:51:00.000Z",
+  "reason": "Promote GREEN mobile UX fix: explicit 18+ gate, defer cookie consent, unblock BetGPT chat controls"
 }
