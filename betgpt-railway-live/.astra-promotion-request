@@ -1,6 +1,6 @@
 {
-  "sourceSha": "75b492d1accf4ee48e3c5cca86216f01218145f4",
-  "workflowRunId": 37041953669,
-  "requestedAt": "2026-10-02T17:39:00.000Z",
-  "reason": "Guarantee BetGPT chat GIF reactions and visible emojis with local no-key fallback"
+  "sourceSha": "84bfc43224115911d67e3f3a10d843aad09db1ce",
+  "workflowRunId": 37042745133,
+  "requestedAt": "2026-10-02T17:46:10.000Z",
+  "reason": "Promote final BetGPT persona with useful in-character tactical fallback"
 }
