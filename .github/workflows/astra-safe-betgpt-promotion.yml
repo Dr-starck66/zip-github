@@ -223,3 +223,70 @@ jobs:
           git pull --rebase origin main
           assert_lineage >/dev/null
           git push
+
+      - name: Verify live BetGPT personality after promotion
+        if: steps.candidate.outputs.promote == 'true'
+        shell: bash
+        env:
+          CANDIDATE_SHA: ${{ steps.candidate.outputs.sha }}
+        run: |
+          set -euo pipefail
+
+          echo "Waiting for public BetGPT revision $CANDIDATE_SHA"
+          for i in $(seq 1 60); do
+            body="$(curl -fsS --connect-timeout 6 --max-time 10 https://betgpt.live/astra-revision.json || true)"
+            got="$(printf '%s' "$body" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("sourceSha",""))' 2>/dev/null || true)"
+            echo "postflight revision attempt=$i got=$got"
+            if [ "$got" = "$CANDIDATE_SHA" ]; then
+              echo "ASTRA_POSTDEPLOY_REVISION_PASS $got"
+              break
+            fi
+            if [ "$i" -eq 60 ]; then
+              echo "ASTRA_POSTDEPLOY_REVISION_FAIL expected=$CANDIDATE_SHA got=$got" >&2
+              exit 1
+            fi
+            sleep 5
+          done
+
+          python3 - <<'PY'
+          import json, urllib.request
+
+          URL="https://betgpt.live/api/chat"
+          EXACT="La France va perdre 25 zero ce soir"
+
+          def ask(mode):
+              payload=json.dumps({
+                  "messages":[{"role":"user","content":EXACT,"timestamp":1}],
+                  "requestedMode":mode
+              }, ensure_ascii=False).encode()
+              req=urllib.request.Request(
+                  URL,
+                  data=payload,
+                  headers={"content-type":"application/json","user-agent":"ASTRA-SAFE-PROMOTION-POSTFLIGHT/1.0"},
+                  method="POST"
+              )
+              with urllib.request.urlopen(req, timeout=20) as r:
+                  assert r.status == 200, r.status
+                  return json.load(r)
+
+          normal=ask("NORMAL")
+          ntext=str(normal.get("text","")).strip()
+          nlow=ntext.lower()
+          print("POSTFLIGHT_NORMAL_RESPONSE", ntext)
+          assert ntext
+          assert not any(x in nlow for x in ("ukraine","northern ireland","unibet","le desk a déjà bossé","sélection automatique betgpt"))
+          assert "25-0" in ntext or "25 zero" in nlow
+          assert any(x in nlow for x in ("scénario extrême","justificatif de domicile","intellectuellement","probabilité"))
+
+          roast=ask("ROAST")
+          rtext=str(roast.get("text","")).strip()
+          rlow=rtext.lower()
+          print("POSTFLIGHT_ROAST_RESPONSE", rtext)
+          print("POSTFLIGHT_ROAST_PUNCH", str((roast.get("punchline") or {}).get("text","")).strip())
+          assert rtext
+          assert not any(x in rlow for x in ("ukraine","northern ireland","unibet","le desk a déjà bossé","sélection automatique betgpt"))
+          assert any(x in rlow for x in ("magnifique","grille-pain tactique","autopsie statistique","jeu vidéo"))
+          assert str((roast.get("punchline") or {}).get("text","")).strip()
+
+          print("ASTRA_BETGPT_PERSONALITY_POSTFLIGHT_PASS")
+          PY
