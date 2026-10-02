@@ -1,6 +1,6 @@
 {
   "target": "a05d36aa842da0e7847a32dfb2fb1ec6614b19a6",
-  "requestedAt": "2026-10-02T13:22:14.575Z",
+  "requestedAt": "2026-10-02T13:24:10.131Z",
   "checks": [
     "public-revision",
     "health",
@@ -10,5 +10,5 @@
     "viral-share-loop",
     "absurd-score-chat-punchline-reaction"
   ],
-  "reason": "Final public verification of France–Italie Discover-ready right-column imagery"
+  "reason": "Retry hardened public verification for final France–Italie Discover sidebar images"
 }
