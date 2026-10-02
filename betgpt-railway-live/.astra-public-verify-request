@@ -1,12 +1,13 @@
 {
-  "target": "b49ee92d18262e54f8616e4f22a1d04814325229",
-  "requestedAt": "2026-10-02T01:12:00Z",
+  "target": "86a0046d1917e326d8ea3c3fd9e7127f52b2a753",
+  "requestedAt": "2026-10-02T13:13:50.806Z",
   "checks": [
     "public-revision",
     "health",
-    "challenge-receiver-ux",
+    "article-sidebar-images",
+    "max-image-preview-large",
     "viral-share-loop",
     "absurd-score-chat-punchline-reaction"
   ],
-  "reason": "Verify public one-tap received challenge loop"
+  "reason": "Verify France–Italie right-column Discover imagery on the exact GREEN public revision"
 }
