@@ -19,6 +19,52 @@ jobs:
       - name: Checkout release controller
         uses: actions/checkout@v4
 
+      - name: Probe exact reported phrase immediately
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, urllib.request
+
+          url="https://betgpt.live/api/chat"
+          exact="La France va perdre 25 zero ce soir"
+
+          def ask(mode):
+              payload=json.dumps({
+                  "messages":[{"role":"user","content":exact,"timestamp":1}],
+                  "requestedMode":mode
+              }, ensure_ascii=False).encode()
+              req=urllib.request.Request(
+                  url, data=payload,
+                  headers={"content-type":"application/json","user-agent":"ASTRA-PERSONA-DIRECT/1.0"},
+                  method="POST"
+              )
+              with urllib.request.urlopen(req, timeout=20) as r:
+                  assert r.status == 200, r.status
+                  return json.load(r)
+
+          normal=ask("NORMAL")
+          ntext=str(normal.get("text","")).strip()
+          nlow=ntext.lower()
+          print("DIRECT_NORMAL_RESPONSE=", ntext)
+          assert ntext, normal
+          assert not any(x in nlow for x in ("ukraine","northern ireland","unibet","le desk a déjà bossé","sélection automatique betgpt")), ntext
+          assert "25-0" in ntext or "25 zero" in nlow, ntext
+          assert any(x in nlow for x in ("scénario extrême","justificatif de domicile","intellectuellement","probabilité")), ntext
+          print("DIRECT_NORMAL_PERSONA_PASS")
+
+          roast=ask("ROAST")
+          rtext=str(roast.get("text","")).strip()
+          rlow=rtext.lower()
+          print("DIRECT_ROAST_RESPONSE=", rtext)
+          print("DIRECT_ROAST_PUNCH=", str((roast.get("punchline") or {}).get("text","")).strip())
+          assert rtext, roast
+          assert not any(x in rlow for x in ("ukraine","northern ireland","unibet","le desk a déjà bossé","sélection automatique betgpt")), rtext
+          assert any(x in rlow for x in ("magnifique","grille-pain tactique","autopsie statistique","jeu vidéo")), rtext
+          assert str((roast.get("punchline") or {}).get("text","")).strip(), roast
+          print("DIRECT_ROAST_PERSONA_PASS")
+          PY
+
       - name: Wait for repaired public revision
         shell: bash
         run: |
