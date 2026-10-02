@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-02T12:59:00Z",
-  "reason": "Promote GREEN runtime revision and release-gate repair"
+  "updatedAt": "2026-10-02T12:59:36.655Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
