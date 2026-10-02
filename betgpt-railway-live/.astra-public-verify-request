@@ -1,14 +1,13 @@
 {
-  "target": "434bcc50b97a625ddc26b96c9deec33facb6fa8b",
-  "requestedAt": "2026-10-02T14:21:06.967Z",
+  "target": "6399d8ff45ee83bf4c1467852b02a7db0dafe47b",
+  "requestedAt": "2026-10-02T14:28:08.231Z",
   "checks": [
     "public-revision",
     "health",
-    "article-sidebar-images",
     "public-image-copy-no-jargon",
-    "contextual-seo-caption",
-    "max-image-preview-large",
-    "viral-share-loop"
+    "french-contextual-seo-caption",
+    "article-sidebar-images",
+    "max-image-preview-large"
   ],
-  "reason": "Verify removal of visible image-production jargon and contextual SEO caption"
+  "reason": "Final public proof: no production jargon and clean French SEO image caption"
 }
