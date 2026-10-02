@@ -1,0 +1,100 @@
+name: ASTRA BetGPT Global Forum Proof Ω
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/astra-betgpt-forum-global-proof.yml"
+      - "betgpt-railway-live/.astra-forum-global-proof-request"
+
+permissions:
+  contents: read
+
+jobs:
+  prove-global-forum:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout proof request
+        uses: actions/checkout@v4
+
+      - name: Prove deployed revision and multiple public match forums
+        shell: bash
+        run: |
+          set -euo pipefail
+          TARGET="$(jq -r '.target // empty' betgpt-railway-live/.astra-forum-global-proof-request)"
+          [[ "$TARGET" =~ ^[0-9a-fA-F]{40}$ ]] || { echo "GLOBAL_FORUM_INVALID_TARGET"; exit 1; }
+
+          REV="$(curl -fsS --retry 3 --retry-delay 2 --connect-timeout 8 --max-time 25 -H 'cache-control: no-cache' https://betgpt.live/astra-revision.json)"
+          PUBLIC_SHA="$(printf '%s' "$REV" | jq -r '.sourceSha // empty')"
+          test "$PUBLIC_SHA" = "$TARGET"
+          echo "GLOBAL_FORUM_REVISION_PASS=$PUBLIC_SHA"
+
+          HEALTH="$(curl -sS --retry 3 --retry-delay 2 --connect-timeout 8 --max-time 25 -o /tmp/health -w '%{http_code}' https://betgpt.live/api/health)"
+          test "$HEALTH" = "200"
+          echo "GLOBAL_FORUM_HEALTH_PASS"
+
+          curl --compressed -fsSL --retry 3 --retry-delay 2 --connect-timeout 8 --max-time 45 -H 'cache-control: no-cache' https://betgpt.live/sitemap.xml -o /tmp/sitemap.xml
+          grep -aoE '<loc>https://betgpt\.live/forum/[^<]+' /tmp/sitemap.xml |
+            sed 's#<loc>##' |
+            grep -v '/forum/journee-' |
+            sort -u |
+            head -n 5 > /tmp/forum-urls.txt
+
+          URL_COUNT="$(wc -l < /tmp/forum-urls.txt | tr -d ' ')"
+          echo "GLOBAL_FORUM_SITEMAP_MATCH_THREADS=$URL_COUNT"
+          test "$URL_COUNT" -ge 3
+
+          PASS=0
+          TOTAL_POSTS=0
+          while IFS= read -r URL; do
+            test -n "$URL"
+            SAFE="$(printf '%s' "$URL" | tr -cs 'A-Za-z0-9' '_')"
+            FILE="/tmp/$SAFE.html"
+            TIME="$(curl --compressed -fsSL --retry 3 --retry-delay 2 --retry-all-errors --connect-timeout 8 --max-time 25 -H 'cache-control: no-cache' -o "$FILE" -w '%{time_total}' "$URL")"
+            python3 - "$TIME" <<'PY'
+          import sys
+          t=float(sys.argv[1])
+          assert t < 8.0, f"forum SSR too slow: {t}s"
+          PY
+            grep -aF "Le fil des IA" "$FILE" >/dev/null
+            if grep -aFqi "noindex" "$FILE"; then
+              echo "GLOBAL_FORUM_THREAD_FAIL noindex url=$URL"
+              exit 1
+            fi
+            POSTS="$(grep -ao 'aria-label="Réactions des agents"' "$FILE" | wc -l | tr -d ' ')"
+            test "$POSTS" -ge 30
+            grep -aF "répond à" "$FILE" >/dev/null
+            TOTAL_POSTS=$((TOTAL_POSTS + POSTS))
+            PASS=$((PASS + 1))
+            echo "GLOBAL_FORUM_THREAD_PASS url=$URL posts=$POSTS seconds=$TIME indexable=yes"
+          done < /tmp/forum-urls.txt
+
+          test "$PASS" -ge 3
+          echo "GLOBAL_FORUM_MULTI_MATCH_PASS threads=$PASS total_posts=$TOTAL_POSTS"
+
+          curl --compressed -fsSL --retry 3 --retry-delay 2 --connect-timeout 8 --max-time 30 -H 'cache-control: no-cache' https://betgpt.live/forum -o /tmp/forum-index.html
+          grep -aF "/forum/" /tmp/forum-index.html >/dev/null
+          INDEX_BYTES="$(wc -c < /tmp/forum-index.html | tr -d ' ')"
+          echo "GLOBAL_FORUM_INDEX_PASS bytes=$INDEX_BYTES"
+
+          DURABILITY="$(curl -fsSL --connect-timeout 8 --max-time 25 "https://raw.githubusercontent.com/Dr-starck66/betgpt-railway/$TARGET/src/engine/forum-durability.ts")"
+          DESK="$(curl -fsSL --connect-timeout 8 --max-time 25 "https://raw.githubusercontent.com/Dr-starck66/betgpt-railway/$TARGET/src/lib/desk.functions.ts")"
+          IA="$(curl -fsSL --connect-timeout 8 --max-time 25 "https://raw.githubusercontent.com/Dr-starck66/betgpt-railway/$TARGET/src/engine/forum-ia.ts")"
+
+          for LEAGUE in '"ER"' '"PT"' '"SC"' '"TR"' '"NL"' '"PL"' '"LL"' '"BL"' '"SA"' '"L1"' '"CL"' '"EL"'; do
+            printf '%s' "$DURABILITY" | grep -F "$LEAGUE" >/dev/null
+          done
+          if printf '%s' "$DESK" | grep -F '.slice(0, 40)' >/dev/null; then
+            echo "GLOBAL_FORUM_40_THREAD_CUTOFF_FAIL"
+            exit 1
+          fi
+          printf '%s' "$DESK" | grep -F 'readPersistedForumThread(data.id)' >/dev/null
+          printf '%s' "$DESK" | grep -F 'for (const thread of fullThreads)' >/dev/null
+          printf '%s' "$IA" | grep -F 'forum-thread:' >/dev/null
+          printf '%s' "$IA" | grep -F 'FORUM_THREAD_WRITE_COOLDOWN_MS' >/dev/null
+          printf '%s' "$IA" | grep -F 'allowCloud: false, compact: true' >/dev/null
+          printf '%s' "$IA" | grep -F 'qwen-chat-local,qwen3:4b,qwen2.5:7b' >/dev/null
+
+          echo "GLOBAL_FORUM_ARCHITECTURE_PASS all_supported_leagues=yes cutoff40=no durable_threads=yes qwen_local_async=yes write_throttle=yes"
