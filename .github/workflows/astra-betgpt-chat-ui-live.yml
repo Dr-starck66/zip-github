@@ -70,8 +70,28 @@ jobs:
           });
 
           console.log("ROAST_BEFORE", await roast.getAttribute("aria-pressed"));
+          console.log("PAGE_ERRORS_BEFORE", JSON.stringify(pageErrors));
+          console.log("CONSOLE_BEFORE", JSON.stringify(consoleLines.slice(-100)));
+          const buttonBox = await roast.boundingBox();
+          if (buttonBox) {
+            const cx = buttonBox.x + buttonBox.width / 2;
+            const cy = buttonBox.y + buttonBox.height / 2;
+            const hit = await page.evaluate(({cx,cy}) => document.elementsFromPoint(cx,cy).slice(0,8).map((el) => ({
+              tag: el.tagName,
+              text: (el.textContent || "").trim().slice(0,100),
+              cls: String(el.className || "").slice(0,180),
+            })), {cx,cy});
+            console.log("ROAST_HIT_STACK", JSON.stringify(hit));
+          }
           await roast.click({ timeout: 10000 });
-          console.log("ROAST_AFTER", await roast.getAttribute("aria-pressed"));
+          await page.waitForTimeout(300);
+          const roastAfter = await roast.getAttribute("aria-pressed");
+          console.log("ROAST_AFTER", roastAfter);
+          console.log("PAGE_ERRORS_AFTER_CLICK", JSON.stringify(pageErrors));
+          console.log("CONSOLE_AFTER_CLICK", JSON.stringify(consoleLines.slice(-100)));
+          if (roastAfter !== "true") {
+            throw new Error("HYDRATION_OR_INTERACTION_FAIL: Sans filtre did not change state");
+          }
 
           await textarea.fill("La France va perdre 25-0 son prochain match.");
           console.log("TEXTAREA_VALUE", await textarea.inputValue());
