@@ -1,0 +1,31 @@
+name: ASTRA Launch Video Brick Proof
+
+on:
+  push:
+    paths:
+      - "astra-bricks/launch-video/**"
+      - ".github/workflows/astra-launch-video-brick-proof.yml"
+  workflow_dispatch:
+
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+      - name: Verify FFmpeg
+        run: |
+          ffmpeg -version
+          ffprobe -version
+      - name: Unit tests
+        run: node --test astra-bricks/launch-video/astra-launch-video.test.mjs
+      - name: Adversarial render proof
+        run: node astra-bricks/launch-video/astra-launch-video-guard.mjs
+      - name: Evidence
+        run: echo "ASTRA_LAUNCH_VIDEO_BRICK_PROOF_PASS"

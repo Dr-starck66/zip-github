@@ -1,0 +1,43 @@
+{
+  "schema": "astra-brick/v1",
+  "id": "launch-video",
+  "name": "ASTRA LAUNCH VIDEO Ω",
+  "version": "1.0.0",
+  "status": "PROVEN",
+  "canonicalRepo": "Dr-starck66/zip-github",
+  "canonicalPath": "astra-bricks/launch-video",
+  "installTargets": {
+    "lib/astra-launch-video.mjs": "scripts/lib/astra-launch-video.mjs",
+    "astra-launch-video.mjs": "scripts/astra-launch-video.mjs",
+    "astra-launch-video.test.mjs": "scripts/astra-launch-video.test.mjs",
+    "astra-launch-video-guard.mjs": "scripts/astra-launch-video-guard.mjs",
+    "policy.json": "config/astra-launch-video.json"
+  },
+  "requiredScripts": {
+    "test:launch-video": "node --test scripts/astra-launch-video.test.mjs",
+    "launch:video": "node scripts/astra-launch-video.mjs",
+    "guard:launch-video": "node scripts/astra-launch-video-guard.mjs"
+  },
+  "requiredGateCommand": "npm run guard:launch-video",
+  "guarantees": [
+    "real product capture when a live URL is provided",
+    "16:9, 9:16 and 1:1 render presets",
+    "provider-independent FFmpeg renderer",
+    "ffprobe duration/resolution/fps/audio proof",
+    "black-frame detection",
+    "expected-scene manifest proof",
+    "adversarial false-PASS mutation tests",
+    "fail closed on missing dependencies, capture failure or proof failure"
+  ],
+  "runtimeDependencies": ["node>=20", "ffmpeg", "ffprobe"],
+  "optionalRuntimeDependencies": ["playwright for automatic live-site capture"],
+  "injector": {
+    "minVersion": "1.0.0",
+    "commands": {
+      "plan": "node astra-bricks/injector/astra-brick-injector.mjs plan --brick astra-bricks/launch-video --target <project>",
+      "apply": "node astra-bricks/injector/astra-brick-injector.mjs apply --brick astra-bricks/launch-video --target <project>",
+      "verify": "node astra-bricks/injector/astra-brick-injector.mjs verify --brick astra-bricks/launch-video --target <project>",
+      "rollback": "node astra-bricks/injector/astra-brick-injector.mjs rollback --brick astra-bricks/launch-video --target <project>"
+    }
+  }
+}
