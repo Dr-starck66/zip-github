@@ -68,3 +68,23 @@ test("plan reports changes without mutating target", () => {
     rmSync(target, { recursive: true, force: true });
   }
 });
+
+
+test("adopts an already-compliant legacy integration into the lock", () => {
+  const target = fixture();
+  try {
+    const first = runInjector({ command: "apply", brick: brickRoot, target, force: false });
+    assert.equal(first.status, "INSTALLED");
+
+    rmSync(path.join(target, ".astra", "brick-lock.json"), { force: true });
+
+    const adopted = runInjector({ command: "apply", brick: brickRoot, target, force: false });
+    assert.equal(adopted.status, "ADOPTED");
+
+    const lock = JSON.parse(readFileSync(path.join(target, ".astra", "brick-lock.json"), "utf8"));
+    assert.equal(lock.bricks["stream-resilience-guard"].version, "1.0.0");
+    assert.equal(lock.bricks["stream-resilience-guard"].adopted, true);
+  } finally {
+    rmSync(target, { recursive: true, force: true });
+  }
+});
