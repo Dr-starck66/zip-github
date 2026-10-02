@@ -99,3 +99,5 @@ jobs:
           assert any(x in tlow for x in ("milieu","largeur","ligne","surnombre","piston","demi-espace","bloc","pressing")), ttext
           print("CHAT_REAL_AI_PASS", ttext)
           PY
+
+# ASTRA personality verification nonce: 2026-10-02T17:39Z
