@@ -1,6 +1,6 @@
 {
   "schema": "astra-forum-global-proof/v1",
-  "target": "d73a21ea60de24d457c40470cd90a3342491a223",
-  "requestedAt": "2026-10-02T21:31:40.000Z",
-  "reason": "Verify public forum diversity repair: multi-match SSR uniqueness, density, indexability, reply graph and architecture"
+  "target": "067a9134772f233821e785baaaa518a3491557c7",
+  "requestedAt": "2026-10-02T21:43:25.000Z",
+  "reason": "Final public retest after diverse frames, match-specific filler and v3 cache invalidation"
 }
