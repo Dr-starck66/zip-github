@@ -19,7 +19,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          TARGET="0b551c96bebe487104cb76d29ca14a9b021456d7"
+          TARGET="b49ee92d18262e54f8616e4f22a1d04814325229"
 
           echo "== revision =="
           REV="$(curl -fsS --connect-timeout 8 --max-time 25 -H 'cache-control: no-cache' https://betgpt.live/astra-revision.json)"
@@ -42,12 +42,17 @@ jobs:
           printf '%s\n' "$PANEL" | grep -F "Défie un pote" >/dev/null
           printf '%s\n' "$PANEL" | grep -F "Facebook" >/dev/null
           printf '%s\n' "$PANEL" | grep -F "Instagram / Story" >/dev/null
+          printf '%s\n' "$PANEL" | grep -F "🔥 Défi reçu" >/dev/null
+          printf '%s\n' "$PANEL" | grep -F "Accepte le défi" >/dev/null
+          printf '%s\n' "$PANEL" | grep -F "Sans filtre activé" >/dev/null
           printf '%s\n' "$PANEL" | grep -F 'track("chat_share_offer")' >/dev/null
+          printf '%s\n' "$PANEL" | grep -F 'track("chat_challenge_view", shareSource)' >/dev/null
+          printf '%s\n' "$PANEL" | grep -F 'track("chat_challenge_accept", shareSource)' >/dev/null
           printf '%s\n' "$SHARE" | grep -F 'share_source' >/dev/null
           printf '%s\n' "$SHARE" | grep -F 'canvas.width = 1080' >/dev/null
           printf '%s\n' "$SHARE" | grep -F 'canvas.height = 1350' >/dev/null
           echo "PUBLIC_VIRAL_UX_SOURCE_PASS=$TARGET"
-          echo "PUBLIC_VIRAL_UX_MARKERS=Moment à partager | Défie un pote | X | Facebook | Instagram / Story | share_source | 1080x1350"
+          echo "PUBLIC_VIRAL_UX_MARKERS=Moment à partager | Défie un pote | X | Facebook | Instagram / Story | Défi reçu | Accepte le défi | Sans filtre activé | challenge view/accept | share_source | 1080x1350"
 
           echo "== exact absurd-score chat =="
           python3 - <<'PY'
