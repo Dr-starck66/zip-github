@@ -49,7 +49,7 @@ jobs:
               exit 1
             fi
           done
-          printf '%s\n' "$ARTICLE_HTML" | grep -F "France – Italie en Ligue des nations : informations, contexte et analyse du match." >/dev/null
+          printf '%s\n' "$ARTICLE_HTML" | grep -F "France – Italie en Ligue des nations de l’UEFA : informations, contexte et analyse du match." >/dev/null
           echo "PUBLIC_IMAGE_COPY_PASS=$TARGET"
           printf '%s\n' "$ARTICLE_HTML" | grep -F "À lire aussi" >/dev/null
           printf '%s\n' "$ARTICLE_HTML" | grep -F "France - Italie, Ligue des nations A, match en direct le 02/10/2026" >/dev/null
