@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "08b56a4211eb5e869901ee9c4e08470286b00976",
-  "promotionKey": "Dr-starck66/betgpt-railway@08b56a4211eb5e869901ee9c4e08470286b00976",
+  "sourceSha": "c7793aeaa6e0b5351b0f887b30f3b521d6d6f33f",
+  "promotionKey": "Dr-starck66/betgpt-railway@c7793aeaa6e0b5351b0f887b30f3b521d6d6f33f",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-02T14:48:59.507Z",
-  "reason": "Re-emit approved GREEN release because public production had not converged"
+  "updatedAt": "2026-10-02T14:59:57Z",
+  "reason": "Promote GREEN BetGPT chat fast-path: no live-desk blocking for conversation"
 }
