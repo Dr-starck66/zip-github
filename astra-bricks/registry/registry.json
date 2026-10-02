@@ -1,0 +1,50 @@
+{
+  "schema": "astra-brick-registry/v1",
+  "version": "1.0.0",
+  "policy": {
+    "safeByDefault": true,
+    "blockOnDrift": true,
+    "backupBeforeMutation": true,
+    "verifyAfterApply": true,
+    "rollbackCapable": true,
+    "noCrossRepoWriteWithoutTargetAuthorization": true
+  },
+  "bricks": {
+    "stream-resilience-guard": {
+      "version": "1.0.0",
+      "status": "PROVEN",
+      "path": "astra-bricks/stream-resilience-guard",
+      "manifest": "astra-bricks/stream-resilience-guard/brick.json",
+      "compatibility": {
+        "runtime": "node",
+        "minNode": "20",
+        "requiresPackageJson": true
+      },
+      "proofRuns": [
+        36936238046,
+        36938023994,
+        36940408363
+      ]
+    },
+    "deploy-trigger-firewall": {
+      "version": null,
+      "status": "UNMANAGED",
+      "path": "astra-bricks/deploy-trigger-firewall",
+      "reason": "Legacy reusable brick exists but has no astra-brick/v1 manifest yet."
+    }
+  },
+  "profiles": {
+    "baseline-node-web-v1": {
+      "description": "Baseline resilience layer for Node-based ASTRA web projects.",
+      "bricks": [
+        "stream-resilience-guard"
+      ]
+    },
+    "betgpt-v1": {
+      "description": "Current managed BetGPT brick profile.",
+      "bricks": [
+        "stream-resilience-guard"
+      ]
+    }
+  }
+}
