@@ -1,5 +1,6 @@
-ASTRA_PROMOTION_REQUEST
-sourceRepo=Dr-starck66/betgpt-railway
-requestedGreenSha=ea5f7af36bdcc1d80f6d3d191328897f6f2d582e
-reason=force-production-convergence
-nonce=2026-10-02T01:58:00+02:00
+{
+  "sourceSha": "cab36e1d63750daee0083d225742d797447ec2d4",
+  "workflowRunId": 36945072330,
+  "requestedAt": "2026-10-02T00:16:30Z",
+  "reason": "Promote GREEN forced refresh-settle-learn checkpoint v2"
+}
