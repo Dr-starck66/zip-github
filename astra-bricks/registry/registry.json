@@ -1,6 +1,6 @@
 {
   "schema": "astra-brick-registry/v1",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "policy": {
     "safeByDefault": true,
     "blockOnDrift": true,
@@ -46,7 +46,8 @@
       },
       "proofRuns": [
         37077054138,
-        37077093105
+        37077093105,
+        37077582178
       ]
     },
     "deploy-trigger-firewall": {
@@ -77,9 +78,10 @@
       ]
     },
     "betgpt-v1": {
-      "description": "Current managed BetGPT brick profile.",
+      "description": "Managed BetGPT brick profile with stream resilience and proven launch-video generation.",
       "bricks": [
-        "stream-resilience-guard"
+        "stream-resilience-guard",
+        "launch-video"
       ]
     }
   }
