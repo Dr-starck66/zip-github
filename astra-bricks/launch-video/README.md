@@ -28,13 +28,15 @@ Sites can explicitly declare safe pre-capture actions instead of letting overlay
   "preseedLocalStorage": { "consent-key": "1" },
   "clickSelectors": ["#accept"],
   "clickText": ["Continue"],
+  "optionalClickSelectors": [".cookie-close"],
+  "optionalClickText": ["Essentials only"],
   "forbiddenText": ["Sign in"],
   "requiredText": ["Dashboard"],
   "waitAfterActionsMs": 750
 }
 ```
 
-After actions run, ASTRA inspects the live DOM. Any remaining forbidden text or missing required text fails closed before screenshots are accepted.
+Required click actions fail if the target is missing. Optional click actions run only when their target is visible, which is useful for intermittent cookie/consent banners. After actions run, ASTRA inspects the live DOM. Any remaining forbidden text or missing required text fails closed before screenshots are accepted.
 
 ## Proof gate
 
