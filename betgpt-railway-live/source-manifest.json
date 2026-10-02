@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-02T14:59:57Z",
-  "reason": "Promote GREEN BetGPT chat fast-path: no live-desk blocking for conversation"
+  "updatedAt": "2026-10-02T15:01:14.589Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
