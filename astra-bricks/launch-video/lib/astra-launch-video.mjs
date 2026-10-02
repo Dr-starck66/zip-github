@@ -52,6 +52,16 @@ export function normalizeConfig(input = {}) {
       durationToleranceSeconds: Number(input.proof?.durationToleranceSeconds ?? 1.25),
       minBytes: Number(input.proof?.minBytes ?? 50_000),
     },
+    capture: {
+      preseedLocalStorage: input.capture?.preseedLocalStorage && typeof input.capture.preseedLocalStorage === "object"
+        ? Object.fromEntries(Object.entries(input.capture.preseedLocalStorage).map(([key, value]) => [String(key), String(value)]))
+        : {},
+      clickSelectors: Array.isArray(input.capture?.clickSelectors) ? input.capture.clickSelectors.map(String).filter(Boolean) : [],
+      clickText: Array.isArray(input.capture?.clickText) ? input.capture.clickText.map(String).filter(Boolean) : [],
+      forbiddenText: Array.isArray(input.capture?.forbiddenText) ? input.capture.forbiddenText.map(String).filter(Boolean) : [],
+      requiredText: Array.isArray(input.capture?.requiredText) ? input.capture.requiredText.map(String).filter(Boolean) : [],
+      waitAfterActionsMs: Math.max(0, Math.min(10_000, Number(input.capture?.waitAfterActionsMs ?? 750))),
+    },
   };
 }
 
@@ -99,7 +109,18 @@ export function assertDependencies() {
   return true;
 }
 
-export async function captureWebsite({ url, outDir, sceneCount = 3, viewport = { width: 1440, height: 900 } }) {
+export async function captureWebsite({
+  url,
+  outDir,
+  sceneCount = 3,
+  viewport = { width: 1440, height: 900 },
+  preseedLocalStorage = {},
+  clickSelectors = [],
+  clickText = [],
+  forbiddenText = [],
+  requiredText = [],
+  waitAfterActionsMs = 750,
+}) {
   if (!url) throw new Error("ASTRA_LAUNCH_VIDEO_CAPTURE_URL_REQUIRED");
   let chromium;
   try {
@@ -110,12 +131,54 @@ export async function captureWebsite({ url, outDir, sceneCount = 3, viewport = {
   mkdirSync(outDir, { recursive: true });
   const browser = await chromium.launch({ headless: true });
   try {
-    const page = await browser.newPage({ viewport });
+    const context = await browser.newContext({ viewport });
+    const seedEntries = Object.entries(preseedLocalStorage || {});
+    if (seedEntries.length) {
+      await context.addInitScript((entries) => {
+        try {
+          for (const [key, value] of entries) localStorage.setItem(key, value);
+        } catch {
+          // Fail-safe: DOM proof below still blocks forbidden overlays from passing.
+        }
+      }, seedEntries);
+    }
+    const page = await context.newPage();
     const response = await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45_000 });
     if (!response || response.status() >= 400) {
       throw new Error(`ASTRA_LAUNCH_VIDEO_CAPTURE_HTTP_FAIL status=${response?.status?.() ?? "none"}`);
     }
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(750);
+
+    for (const selector of clickSelectors) {
+      const locator = page.locator(selector).first();
+      if (!(await locator.isVisible().catch(() => false))) {
+        throw new Error(`ASTRA_LAUNCH_VIDEO_CAPTURE_ACTION_MISSING selector=${selector}`);
+      }
+      await locator.click({ timeout: 5_000 });
+    }
+    for (const text of clickText) {
+      const locator = page.getByText(text, { exact: false }).first();
+      if (!(await locator.isVisible().catch(() => false))) {
+        throw new Error(`ASTRA_LAUNCH_VIDEO_CAPTURE_ACTION_MISSING text=${text}`);
+      }
+      await locator.click({ timeout: 5_000 });
+    }
+    if (clickSelectors.length || clickText.length || seedEntries.length) {
+      await page.waitForTimeout(waitAfterActionsMs);
+    }
+
+    const bodyText = await page.locator("body").innerText().catch(() => "");
+    for (const text of forbiddenText) {
+      if (bodyText.includes(text)) {
+        throw new Error(`ASTRA_LAUNCH_VIDEO_CAPTURE_FORBIDDEN_TEXT text=${text}`);
+      }
+    }
+    for (const text of requiredText) {
+      if (!bodyText.includes(text)) {
+        throw new Error(`ASTRA_LAUNCH_VIDEO_CAPTURE_REQUIRED_TEXT_MISSING text=${text}`);
+      }
+    }
+
     const height = await page.evaluate(() => Math.max(document.body.scrollHeight, document.documentElement.scrollHeight));
     const positions = Array.from({ length: sceneCount }, (_, index) => {
       if (sceneCount === 1) return 0;
