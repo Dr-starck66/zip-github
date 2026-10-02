@@ -1,6 +1,6 @@
 {
-  "sourceSha": "86e159b596504763481cbbf42ba74054c6a08afe",
-  "workflowRunId": 37043261245,
-  "requestedAt": "2026-10-02T17:50:15.000Z",
-  "reason": "Promote no-503 browser voice fallback and corrected live voice gate"
+  "sourceSha": "ec5f2b1e0674cb7d16452b8af879ca1ae84327bc",
+  "workflowRunId": 37044358163,
+  "requestedAt": "2026-10-02T18:00:25.000Z",
+  "reason": "Promote one-click zero-cost browser voice test only"
 }
