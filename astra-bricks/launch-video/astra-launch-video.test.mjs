@@ -15,6 +15,25 @@ test("normalizes a global launch-video config", () => {
   assert.equal(config.sceneCount, 3);
 });
 
+test("normalizes explicit capture actions and DOM proof rules", () => {
+  const config = normalizeConfig({
+    capture: {
+      preseedLocalStorage: { accepted: 1 },
+      clickSelectors: ["#accept"],
+      clickText: ["Continue"],
+      forbiddenText: ["Sign in"],
+      requiredText: ["Dashboard"],
+      waitAfterActionsMs: 1200,
+    },
+  });
+  assert.deepEqual(config.capture.preseedLocalStorage, { accepted: "1" });
+  assert.deepEqual(config.capture.clickSelectors, ["#accept"]);
+  assert.deepEqual(config.capture.clickText, ["Continue"]);
+  assert.deepEqual(config.capture.forbiddenText, ["Sign in"]);
+  assert.deepEqual(config.capture.requiredText, ["Dashboard"]);
+  assert.equal(config.capture.waitAfterActionsMs, 1200);
+});
+
 test("rejects unsupported formats and invalid URL schemes", () => {
   assert.throws(() => parseFormats("landscape,hologram"), /FORMAT_INVALID/);
   assert.throws(() => normalizeConfig({ url: "ftp://example.com" }), /URL_INVALID/);
