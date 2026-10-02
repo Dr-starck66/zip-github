@@ -1,0 +1,18 @@
+{
+  "schema": "astra-no-repeat/v1",
+  "name": "ASTRA NO-REPEAT GUARD Ω",
+  "requirements": [
+    {
+      "id": "EXAMPLE_REQUIREMENT",
+      "description": "Replace with an established persistent requirement.",
+      "scope": ["site"],
+      "checks": [
+        {
+          "type": "fileContains",
+          "file": "PATH_TO_FILE",
+          "needles": ["REQUIRED_MARKER"]
+        }
+      ]
+    }
+  ]
+}
