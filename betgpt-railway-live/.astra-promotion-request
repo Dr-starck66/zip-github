@@ -1,6 +1,6 @@
 {
-  "sourceSha": "44eb79d0546b718cea1217da1bffe0401a2ff090",
-  "workflowRunId": 36949131691,
-  "requestedAt": "2026-10-02T01:06:41.595Z",
-  "reason": "Promote GREEN public /health compatibility repair after 1158/0 public indexability PASS"
+  "sourceSha": "b49ee92d18262e54f8616e4f22a1d04814325229",
+  "workflowRunId": 36949416810,
+  "requestedAt": "2026-10-02T01:09:30Z",
+  "reason": "Promote GREEN one-tap received challenge UX"
 }
