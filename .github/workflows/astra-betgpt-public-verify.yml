@@ -42,10 +42,12 @@ jobs:
           import re, urllib.request
           html=open('/tmp/chat.html','r',encoding='utf-8').read()
           srcs=[]
-          for src in re.findall(r'<script[^>]+src=["\\\']([^"\\\']+)["\\\']', html):
-              if src.startswith('/') and src.endswith('.js'):
+          refs=re.findall(r'["\\\']([^"\\\']+\\.js(?:\\?[^"\\\']*)?)["\\\']', html)
+          for src in refs:
+              clean=src.split('?',1)[0]
+              if clean.startswith('/'):
                   srcs.append('https://betgpt.live'+src)
-              elif src.startswith('https://betgpt.live/') and src.endswith('.js'):
+              elif clean.startswith('https://betgpt.live/'):
                   srcs.append(src)
           bundle=html
           for url in dict.fromkeys(srcs):
