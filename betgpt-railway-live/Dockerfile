@@ -6,18 +6,28 @@ ARG RAILWAY_GIT_BRANCH
 ARG RAILWAY_GIT_REPO_OWNER
 ARG RAILWAY_GIT_REPO_NAME
 ARG RAILWAY_GIT_COMMIT_MESSAGE
+ARG RAILWAY_DEPLOYMENT_ID
+ARG ASTRA_CONTROL_PLANE_NONCE
 
 ENV RAILWAY_GIT_COMMIT_SHA=${RAILWAY_GIT_COMMIT_SHA}
 ENV RAILWAY_GIT_BRANCH=${RAILWAY_GIT_BRANCH}
 ENV RAILWAY_GIT_REPO_OWNER=${RAILWAY_GIT_REPO_OWNER}
 ENV RAILWAY_GIT_REPO_NAME=${RAILWAY_GIT_REPO_NAME}
 ENV RAILWAY_GIT_COMMIT_MESSAGE=${RAILWAY_GIT_COMMIT_MESSAGE}
+ENV RAILWAY_DEPLOYMENT_ID=${RAILWAY_DEPLOYMENT_ID}
+ENV ASTRA_CONTROL_PLANE_NONCE=${ASTRA_CONTROL_PLANE_NONCE}
 ENV NITRO_PRESET=node-server
 
 COPY package.json ./
 RUN npm install --omit=dev --no-audit --no-fund
 
-COPY source-manifest.json .astra-green-release.json source-gate.mjs astra-deploy-trigger-firewall.mjs astra-deploy-trigger-firewall.json bootstrap.mjs ./
+COPY control-plane-pull.mjs source-manifest.json .astra-green-release.json source-gate.mjs astra-deploy-trigger-firewall.mjs astra-deploy-trigger-firewall.json bootstrap.mjs ./
+
+# RAILWAY_DEPLOYMENT_ID is unique for every deployment. Referencing it in this
+# RUN makes the control-plane pull non-cacheable across redeployments, while the
+# fetched controller files are all pinned to one zip-github commit SHA.
+RUN echo "ASTRA_CONTROL_PLANE_CACHE_BUST deployment=${RAILWAY_DEPLOYMENT_ID} nonce=${ASTRA_CONTROL_PLANE_NONCE}" \
+ && node control-plane-pull.mjs
 
 RUN node source-gate.mjs
 RUN node bootstrap.mjs
