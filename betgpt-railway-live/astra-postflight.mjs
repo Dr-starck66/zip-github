@@ -273,3 +273,5 @@ console.log("ASTRA_RELEASE_CONTROL_PLANE_POSTFLIGHT_PASS", JSON.stringify({
   nationalBreakout: breakoutJson.status,
   nationalBreakoutScore: breakoutJson.score
 }));
+
+// ASTRA_POSTFLIGHT_CURRENT_RELEASE_PROBE_V2
