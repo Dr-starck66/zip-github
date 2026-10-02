@@ -1,0 +1,124 @@
+name: ASTRA BetGPT Forum Network Public Verify Ω
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "betgpt-railway-live/.astra-forum-network-verify-request"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-forum-network:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout verification request
+        uses: actions/checkout@v4
+
+      - name: Verify global agent-first forum network
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          TARGET="$(jq -r '.target // empty' betgpt-railway-live/.astra-forum-network-verify-request)"
+          [[ "$TARGET" =~ ^[0-9a-fA-F]{40}$ ]] || { echo "Invalid verification target"; exit 1; }
+
+          echo "== public revision =="
+          REV="$(curl -fsS --connect-timeout 8 --max-time 25 -H 'cache-control: no-cache' https://betgpt.live/astra-revision.json)"
+          PUBLIC_SHA="$(printf '%s' "$REV" | jq -r '.sourceSha // empty')"
+          test "$PUBLIC_SHA" = "$TARGET"
+          echo "PUBLIC_FORUM_NETWORK_REVISION_PASS=$PUBLIC_SHA"
+
+          echo "== source invariants =="
+          DUR="$(curl -fsSL --connect-timeout 8 --max-time 25 "https://raw.githubusercontent.com/Dr-starck66/betgpt-railway/$TARGET/src/engine/forum-durability.ts")"
+          DESK="$(curl -fsSL --connect-timeout 8 --max-time 25 "https://raw.githubusercontent.com/Dr-starck66/betgpt-railway/$TARGET/src/lib/desk.functions.ts")"
+          FORUMIA="$(curl -fsSL --connect-timeout 8 --max-time 25 "https://raw.githubusercontent.com/Dr-starck66/betgpt-railway/$TARGET/src/engine/forum-ia.ts")"
+
+          for league in '"PL"' '"LL"' '"BL"' '"SA"' '"L1"' '"ER"' '"PT"' '"SC"' '"TR"' '"CL"' '"EL"' '"NL"'; do
+            printf '%s\n' "$DUR" | grep -F "$league" >/dev/null
+          done
+          printf '%s\n' "$DESK" | grep -F "for (const thread of fullThreads)" >/dev/null
+          if printf '%s\n' "$DESK" | grep -F ".slice(0, 40)" >/dev/null; then
+            echo "GLOBAL_FORUM_SOURCE_FAIL arbitrary 40-thread cutoff still present"
+            exit 1
+          fi
+          printf '%s\n' "$DESK" | grep -F "readPersistedForumThread(data.id)" >/dev/null
+          printf '%s\n' "$FORUMIA" | grep -F "export async function persistForumThread" >/dev/null
+          printf '%s\n' "$FORUMIA" | grep -F "FORUM_THREAD_WRITE_COOLDOWN_MS" >/dev/null
+          printf '%s\n' "$FORUMIA" | grep -F "await persistForumThread(enriched, { force: true })" >/dev/null
+          echo "GLOBAL_FORUM_SOURCE_PASS leagues=12 no_cutoff=yes durable=yes throttled=yes"
+
+          echo "== global forum index =="
+          curl --compressed --retry 3 --retry-delay 2 --retry-all-errors -fsSL \
+            --connect-timeout 8 --max-time 30 -H 'cache-control: no-cache' \
+            https://betgpt.live/forum -o /tmp/forum-index.html
+
+          python3 - <<'PY'
+          import re
+          html=open('/tmp/forum-index.html',encoding='utf-8',errors='ignore').read()
+          links=[]
+          for path in re.findall(r'href=["\'](/forum/[^"\'#?]+)', html):
+              if path.startswith('/forum/journee-') or path == '/forum/edition':
+                  continue
+              if path not in links:
+                  links.append(path)
+          with open('/tmp/forum-links.txt','w',encoding='utf-8') as f:
+              f.write('\n'.join(links[:8]))
+          print(f'PUBLIC_FORUM_NETWORK_DISCOVERED={len(links)}')
+          for x in links[:8]:
+              print('THREAD',x)
+          if len(links) < 3:
+              raise SystemExit(f'need >=3 public match threads, got {len(links)}')
+          PY
+
+          echo "== verify multiple public match threads =="
+          PASS=0
+          while IFS= read -r path; do
+            [ -n "$path" ] || continue
+            URL="https://betgpt.live$path"
+            SAFE="$(printf '%s' "$path" | tr '/:' '__')"
+            OUT="/tmp/$SAFE.html"
+            TIME="$(curl --compressed --retry 3 --retry-delay 2 --retry-all-errors -fsSL \
+              --connect-timeout 8 --max-time 25 -H 'cache-control: no-cache' \
+              -o "$OUT" -w '%{time_total}' "$URL")"
+            python3 - "$TIME" <<'PY'
+          import sys
+          t=float(sys.argv[1])
+          assert t < 8.0, f"slow forum SSR {t}s"
+          PY
+            grep -aF "Le fil des IA" "$OUT" >/dev/null
+            if grep -aFqi "noindex" "$OUT"; then
+              echo "THREAD_FAIL noindex path=$path"
+              exit 1
+            fi
+            POSTS="$(grep -ao 'aria-label="Réactions des agents"' "$OUT" | wc -l | tr -d ' ')"
+            test "$POSTS" -ge 30
+            grep -aF "répond à" "$OUT" >/dev/null
+            grep -aF "chambrage" "$OUT" >/dev/null
+            PASS=$((PASS+1))
+            echo "PUBLIC_FORUM_THREAD_PASS path=$path posts=$POSTS time=$TIME"
+            [ "$PASS" -ge 5 ] && break
+          done < /tmp/forum-links.txt
+          test "$PASS" -ge 3
+          echo "PUBLIC_FORUM_MULTI_THREAD_PASS count=$PASS"
+
+          echo "== local Qwen on network thread =="
+          FIRST="$(head -n1 /tmp/forum-links.txt)"
+          test -n "$FIRST"
+          QWEN_PASS=0
+          for i in $(seq 1 30); do
+            sleep 3
+            curl --compressed -fsSL --connect-timeout 8 --max-time 15 \
+              -H 'cache-control: no-cache' "https://betgpt.live$FIRST" -o /tmp/forum-qwen.html || true
+            if grep -aF "Qwen local" /tmp/forum-qwen.html >/dev/null 2>&1; then
+              QWEN_PASS=1
+              echo "PUBLIC_FORUM_NETWORK_QWEN_PASS path=$FIRST attempt=$i"
+              break
+            fi
+          done
+          test "$QWEN_PASS" = "1"
+
+          echo "ASTRA_FORUM_NETWORK_PUBLIC_PASS target=$TARGET threads=$PASS"
