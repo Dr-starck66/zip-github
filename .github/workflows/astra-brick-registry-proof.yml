@@ -1,0 +1,40 @@
+name: ASTRA Brick Registry Proof
+
+on:
+  push:
+    paths:
+      - "astra-bricks/registry/**"
+      - "astra-bricks/injector/**"
+      - "astra-bricks/stream-resilience-guard/**"
+      - ".github/workflows/astra-brick-registry-proof.yml"
+  workflow_dispatch:
+
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: library
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Registry rollout unit tests
+        working-directory: library
+        run: node --test astra-bricks/registry/astra-brick-rollout.test.mjs
+
+      - name: Checkout BetGPT read-only target
+        uses: actions/checkout@v4
+        with:
+          repository: Dr-starck66/betgpt-railway
+          path: betgpt
+          ref: main
+
+      - name: Verify BetGPT managed profile
+        run: |
+          node library/astra-bricks/registry/astra-brick-rollout.mjs verify             --library library             --profile betgpt-v1             --target betgpt
+
+      - name: Evidence
+        run: echo "ASTRA_BRICK_REGISTRY_PROOF_PASS"
