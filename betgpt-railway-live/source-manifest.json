@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "22b7ce901329a79d074a73681f7e65713245a879",
-  "promotionKey": "Dr-starck66/betgpt-railway@22b7ce901329a79d074a73681f7e65713245a879",
+  "sourceSha": "da5e01655878373e7ae23975dfebfeb17b08c546",
+  "promotionKey": "Dr-starck66/betgpt-railway@da5e01655878373e7ae23975dfebfeb17b08c546",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-02T19:01:15.354Z",
-  "reason": "Re-emit approved GREEN release because public production had not converged"
+  "updatedAt": "2026-10-02T19:06:36.635Z",
+  "reason": "Explicit GREEN forum promotion: async local Qwen with non-blocking SSR"
 }
