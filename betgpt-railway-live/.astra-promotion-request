@@ -3,6 +3,6 @@
   "sourceRepo": "Dr-starck66/betgpt-railway",
   "sourceSha": "648b76922bf5abaf96d6e6473585e6dba4e68f81",
   "workflowRunId": 37048608507,
-  "requestedAt": "2026-10-02T18:38:24.821Z",
-  "reason": "Fix forum SSR latency: immediate 32+ message HTML, local Qwen enrichment off critical path with durable cache"
+  "requestedAt": "2026-10-02T18:39:32.221Z",
+  "reason": "Performance-safe Moltbook-style forum: 32+ SSR posts immediate, Qwen local async durable enrichment, international indexability"
 }
