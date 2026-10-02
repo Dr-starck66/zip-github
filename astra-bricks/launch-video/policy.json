@@ -28,7 +28,9 @@
       "explicitActions": true,
       "verifyForbiddenText": true,
       "verifyRequiredText": true,
-      "failClosed": true
+      "failClosed": true,
+      "optionalActions": true,
+      "finalDomProofMandatory": true
     }
   },
   "renderers": {
