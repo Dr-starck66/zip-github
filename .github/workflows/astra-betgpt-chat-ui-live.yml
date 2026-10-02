@@ -31,6 +31,10 @@ jobs:
         run: |
           node <<'NODE'
           const { chromium } = await import("playwright");
+          const { readFile } = await import("node:fs/promises");
+          const expectedRevision = JSON.parse(
+            await readFile("betgpt-railway-live/source-manifest.json", "utf8")
+          ).sourceSha;
 
           const browser = await chromium.launch({ headless: true });
           const context = await browser.newContext({
@@ -153,8 +157,9 @@ jobs:
             return await r.json();
           });
           console.log("PUBLIC_REVISION", revision.sourceSha);
-          if (revision.sourceSha !== "ae9dd013c72d4b7a7634d748ed968d0b7c948ef8") {
-            throw new Error("Unexpected public revision " + revision.sourceSha);
+          console.log("EXPECTED_REVISION", expectedRevision);
+          if (revision.sourceSha !== expectedRevision) {
+            throw new Error("Unexpected public revision " + revision.sourceSha + " expected " + expectedRevision);
           }
 
           const ageButton = freshPage.getByRole("button", {
