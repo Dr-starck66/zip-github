@@ -39,6 +39,29 @@ jobs:
           SHA="$(printf '%s' "$RUNS_JSON" | jq -r '.workflow_runs[0].head_sha // empty')"
           RUN_ID="$(printf '%s' "$RUNS_JSON" | jq -r '.workflow_runs[0].id // empty')"
           SOURCE_HEAD="$(printf '%s' "$HEAD_JSON" | jq -r '.sha // empty')"
+
+          # Explicit promotion requests take priority when they carry a valid
+          # successful Never-Fail proof. This prevents the release train from
+          # selecting an older GREEN while a newer user-requested GREEN is ready.
+          REQUEST_FILE="betgpt-railway-live/.astra-promotion-request"
+          if [ -f "$REQUEST_FILE" ]; then
+            REQUEST_SHA="$(jq -r '.sourceSha // empty' "$REQUEST_FILE")"
+            REQUEST_RUN_ID="$(jq -r '.workflowRunId // empty' "$REQUEST_FILE")"
+            if [[ "$REQUEST_SHA" =~ ^[0-9a-fA-F]{40}$ ]] && [[ "$REQUEST_RUN_ID" =~ ^[0-9]+$ ]]; then
+              REQUEST_RUN="$(curl -fsSL "${HDR[@]}" "$API/actions/runs/$REQUEST_RUN_ID")"
+              REQUEST_VALID="$(printf '%s' "$REQUEST_RUN" | jq -r --arg sha "$REQUEST_SHA" '
+                (.head_sha == $sha and .head_branch == "main" and .status == "completed" and .conclusion == "success" and (.path | endswith("/astra-never-fail.yml"))) // false
+              ')"
+              if [ "$REQUEST_VALID" = "true" ]; then
+                SHA="$REQUEST_SHA"
+                RUN_ID="$REQUEST_RUN_ID"
+                echo "ASTRA_EXPLICIT_GREEN_REQUEST_ACCEPTED candidate=$SHA run=$RUN_ID"
+              else
+                echo "ASTRA_EXPLICIT_GREEN_REQUEST_IGNORED candidate=$REQUEST_SHA run=$REQUEST_RUN_ID"
+              fi
+            fi
+          fi
+
           CURRENT="$(jq -r '.sourceSha // empty' betgpt-railway-live/source-manifest.json)"
           MARKER="$(jq -r '.sourceSha // empty' betgpt-railway-live/.astra-green-release.json)"
           PUBLIC_SHA="$(curl -fsS --connect-timeout 8 --max-time 20 https://betgpt.live/astra-revision.json 2>/dev/null | jq -r '.sourceSha // empty' 2>/dev/null || true)"
