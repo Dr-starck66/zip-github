@@ -19,6 +19,23 @@ Default outputs:
 - per-video `*.proof.json`
 - `launch-video-report.json`
 
+## Capture preflight
+
+Sites can explicitly declare safe pre-capture actions instead of letting overlays become false-PASS launch footage. The CLI accepts `--capture-json` with provider-neutral rules:
+
+```json
+{
+  "preseedLocalStorage": { "consent-key": "1" },
+  "clickSelectors": ["#accept"],
+  "clickText": ["Continue"],
+  "forbiddenText": ["Sign in"],
+  "requiredText": ["Dashboard"],
+  "waitAfterActionsMs": 750
+}
+```
+
+After actions run, ASTRA inspects the live DOM. Any remaining forbidden text or missing required text fails closed before screenshots are accepted.
+
 ## Proof gate
 
 PASS requires:

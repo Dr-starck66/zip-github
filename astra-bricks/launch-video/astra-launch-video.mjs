@@ -18,6 +18,7 @@ function parseArgs(argv) {
     else if (token === "--tagline") args.tagline = argv[++i];
     else if (token === "--formats") args.formats = argv[++i];
     else if (token === "--duration") args.durationSeconds = Number(argv[++i]);
+    else if (token === "--capture-json") args.captureJson = argv[++i];
     else if (token === "--source-dir") args.sourceDir = argv[++i];
     else if (token === "--out") args.out = argv[++i];
     else if (token === "--json") args.json = true;
@@ -45,6 +46,7 @@ async function main() {
     url: args.url ?? input.url,
     formats: args.formats ?? input.formats,
     durationSeconds: args.durationSeconds ?? input.durationSeconds,
+    capture: args.captureJson ? JSON.parse(args.captureJson) : input.capture,
   };
   const config = normalizeConfig(input);
   const outDir = path.resolve(args.out);
@@ -57,6 +59,7 @@ async function main() {
       url: config.project.url,
       outDir: path.join(outDir, "captures"),
       sceneCount: config.sceneCount,
+      ...config.capture,
     });
   }
   if (!captures.length) throw new Error("ASTRA_LAUNCH_VIDEO_CAPTURE_EMPTY");

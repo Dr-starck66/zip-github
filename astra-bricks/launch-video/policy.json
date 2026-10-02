@@ -3,8 +3,19 @@
   "name": "ASTRA LAUNCH VIDEO Ω",
   "policy": {
     "scope": "all past present and future projects with a demonstrable product surface",
-    "pipeline": ["BUILD", "TEST", "DEPLOY", "PROOF_GATE", "LAUNCH_VIDEO", "SOCIAL"],
-    "defaultFormats": ["landscape", "vertical", "square"],
+    "pipeline": [
+      "BUILD",
+      "TEST",
+      "DEPLOY",
+      "PROOF_GATE",
+      "LAUNCH_VIDEO",
+      "SOCIAL"
+    ],
+    "defaultFormats": [
+      "landscape",
+      "vertical",
+      "square"
+    ],
     "defaultDurationSeconds": 18,
     "realProductCapture": true,
     "providerIndependent": true,
@@ -12,11 +23,28 @@
     "requireAudioStream": true,
     "maxBlackSeconds": 1.25,
     "verifyExpectedScenes": true,
-    "falsePassMutationTests": true
+    "falsePassMutationTests": true,
+    "capturePreflight": {
+      "explicitActions": true,
+      "verifyForbiddenText": true,
+      "verifyRequiredText": true,
+      "failClosed": true
+    }
   },
   "renderers": {
-    "native-ffmpeg": { "status": "ACTIVE", "paidApiRequired": false },
-    "brag-hyperframes": { "status": "OPTIONAL_ADAPTER", "paidApiRequired": "provider-dependent" }
+    "native-ffmpeg": {
+      "status": "ACTIVE",
+      "paidApiRequired": false
+    },
+    "brag-hyperframes": {
+      "status": "OPTIONAL_ADAPTER",
+      "paidApiRequired": "provider-dependent"
+    }
   },
-  "states": ["PASS", "PARTIAL", "FAIL", "UNVERIFIED"]
+  "states": [
+    "PASS",
+    "PARTIAL",
+    "FAIL",
+    "UNVERIFIED"
+  ]
 }
