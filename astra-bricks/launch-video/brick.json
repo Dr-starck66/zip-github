@@ -2,7 +2,7 @@
   "schema": "astra-brick/v1",
   "id": "launch-video",
   "name": "ASTRA LAUNCH VIDEO Ω",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "PROVEN",
   "canonicalRepo": "Dr-starck66/zip-github",
   "canonicalPath": "astra-bricks/launch-video",
@@ -21,7 +21,7 @@
   "requiredGateCommand": "npm run guard:launch-video",
   "guarantees": [
     "real product capture when a live URL is provided",
-    "explicit pre-capture localStorage/click actions with required/forbidden DOM text proof",
+    "explicit required/optional pre-capture actions with required/forbidden DOM text proof",
     "16:9, 9:16 and 1:1 render presets",
     "provider-independent FFmpeg renderer",
     "ffprobe duration/resolution/fps/audio proof",
