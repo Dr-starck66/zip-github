@@ -1,6 +1,6 @@
 {
-  "sourceSha": "be739c3e453d6b532bcede0b138a7be4842c0764",
-  "workflowRunId": 37031528883,
-  "requestedAt": "2026-10-02T16:07:10.000Z",
-  "reason": "Promote GREEN fix for empty pronostic league pages, canonical league slugs, and /l1 alias coverage"
+  "sourceSha": "63d2ea8afbe10fca20b0b4f65aa006cf8eea9f90",
+  "workflowRunId": 37032560436,
+  "requestedAt": "2026-10-02T16:16:00.000Z",
+  "reason": "Promote GREEN BetGPT chatbot persona: arrogant, ultra-rational, socially awkward, surprise absurd insults and punchlines"
 }
