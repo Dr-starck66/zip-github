@@ -49,3 +49,4 @@ COPY --from=builder /wrapper/app/.output ./.output
 RUN test -f .output/server/index.mjs && test -f .output/public/astra-revision.json
 EXPOSE 8080
 CMD ["node", ".output/server/index.mjs"]
+# ASTRA source-refresh trigger for GREEN 69a8f3cf008353a877d4d04c8d56b3dde9ba0607
