@@ -1,6 +1,5 @@
 {
-  "sourceSha": "ae9dd013c72d4b7a7634d748ed968d0b7c948ef8",
-  "workflowRunId": 37036516466,
-  "requestedAt": "2026-10-02T16:51:00.000Z",
-  "reason": "Promote GREEN mobile UX fix: explicit 18+ gate, defer cookie consent, unblock BetGPT chat controls"
+  "sourceSha": "ffbd09b4a5bd330c7ee5db9cb227002a35960d2a",
+  "workflowRunId": 37037326186,
+  "reason": "Promote GREEN BetGPT talking mascot integration after chat browser verification"
 }
