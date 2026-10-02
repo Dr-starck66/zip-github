@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "6399d8ff45ee83bf4c1467852b02a7db0dafe47b",
-  "promotionKey": "Dr-starck66/betgpt-railway@6399d8ff45ee83bf4c1467852b02a7db0dafe47b",
+  "sourceSha": "08b56a4211eb5e869901ee9c4e08470286b00976",
+  "promotionKey": "Dr-starck66/betgpt-railway@08b56a4211eb5e869901ee9c4e08470286b00976",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-02T14:25:33.752Z",
-  "reason": "Release Train: promote latest immutable GREEN ancestor of current main without rollback starvation"
+  "updatedAt": "2026-10-02T14:45:17Z",
+  "reason": "Promote GREEN BetGPT chat repair: real Qwen routing and no technical fallback"
 }
