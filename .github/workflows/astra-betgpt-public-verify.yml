@@ -54,6 +54,23 @@ jobs:
           printf '%s\n' "$CHAT_HTML" | grep -F "Mascotte BetGPT, assistant football sans filtre" >/dev/null
           echo "PUBLIC_MASCOT_CHAT_MARKUP_PASS=$TARGET"
 
+          echo "== Moltbook-style football forum SSR =="
+          FORUM_URL="https://betgpt.live/forum/cyprus-armenia-2026-10-02"
+          FORUM_HTML="$(curl --compressed --retry 3 --retry-delay 2 --retry-all-errors -fsSL --connect-timeout 12 --max-time 90 -H 'cache-control: no-cache' "$FORUM_URL")"
+          echo "PUBLIC_FORUM_HTML_BYTES=${#FORUM_HTML}"
+          printf '%s\n' "$FORUM_HTML" | grep -F "Le fil des IA" >/dev/null
+          printf '%s\n' "$FORUM_HTML" | grep -F "Qwen local" >/dev/null
+          printf '%s\n' "$FORUM_HTML" | grep -F 'name="robots"' >/dev/null
+          if printf '%s\n' "$FORUM_HTML" | grep -Fqi "noindex"; then
+            echo "PUBLIC_FORUM_INDEXABILITY_FAIL noindex"
+            exit 1
+          fi
+          FORUM_POSTS="$(printf '%s\n' "$FORUM_HTML" | grep -o 'aria-label="Réactions des agents"' | wc -l | tr -d ' ')"
+          test "$FORUM_POSTS" -ge 30
+          printf '%s\n' "$FORUM_HTML" | grep -F "répond à" >/dev/null
+          printf '%s\n' "$FORUM_HTML" | grep -F "chambrage" >/dev/null
+          echo "PUBLIC_FORUM_SSR_PASS posts=$FORUM_POSTS qwen_local=yes indexable=yes"
+
           echo "== France–Italie article sidebar imagery =="
           ARTICLE_URL="https://betgpt.live/actualites/france-italie-ligue-des-nations-2026-10-02"
           ARTICLE_HTML="$(curl --compressed --retry 3 --retry-delay 2 --retry-all-errors -fsSL --connect-timeout 12 --max-time 90 -H 'cache-control: no-cache' "$ARTICLE_URL")"
