@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-02T19:22:10.000Z",
-  "reason": "Explicit GREEN single-flight trigger for global BetGPT forum network"
+  "updatedAt": "2026-10-02T19:22:40.120Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
