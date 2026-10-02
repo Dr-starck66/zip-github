@@ -183,10 +183,28 @@ function backupFile(targetRoot, backupRoot, rel, entries) {
 }
 function applyBrick({ manifest, brickRoot, targetRoot, force }) {
   const before = collectPlan(manifest, brickRoot, targetRoot);
-  if (compliant(before)) return { status: "ALREADY_COMPLIANT", plan: before };
-
   const lock = loadLock(targetRoot);
   const previous = lock.bricks[manifest.id] || null;
+
+  if (compliant(before)) {
+    if (!previous) {
+      const files = {};
+      for (const item of before.files) files[item.targetRel] = item.expectedHash;
+      lock.bricks[manifest.id] = {
+        version: manifest.version,
+        installedAt: new Date().toISOString(),
+        adopted: true,
+        canonicalRepo: manifest.canonicalRepo || null,
+        canonicalPath: manifest.canonicalPath || null,
+        files,
+        scripts: manifest.requiredScripts || {},
+        lastBackup: null,
+      };
+      writeJsonAtomic(path.join(targetRoot, ".astra", "brick-lock.json"), lock);
+      return { status: "ADOPTED", plan: before };
+    }
+    return { status: "ALREADY_COMPLIANT", plan: before };
+  }
   const installedHashes = previous?.files || {};
 
   for (const item of before.files) {
