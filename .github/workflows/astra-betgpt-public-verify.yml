@@ -60,9 +60,9 @@ jobs:
           FORUM_BYTES="$(wc -c < /tmp/forum.html | tr -d ' ')"
           echo "PUBLIC_FORUM_HTML_BYTES=$FORUM_BYTES"
           echo "PUBLIC_FORUM_TIME_SECONDS=$FORUM_TIME"
-          python3 - <<'PY'
-          import os
-          t=float(os.environ.get("FORUM_TIME","99"))
+          python3 - "$FORUM_TIME" <<'PY'
+          import sys
+          t=float(sys.argv[1])
           assert t < 8.0, f"forum SSR too slow: {t}s"
           PY
           grep -F "Le fil des IA" /tmp/forum.html >/dev/null
