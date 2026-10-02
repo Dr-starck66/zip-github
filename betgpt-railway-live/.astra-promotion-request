@@ -1,6 +1,6 @@
 {
-  "sourceSha": "7c7fc23a9431593f514ff39d063735ca33ea76ad",
-  "workflowRunId": 37040789813,
-  "requestedAt": "2026-10-02T17:29:00.000Z",
-  "reason": "Fix BetGPT personality enforcement + exact '25 zero ce soir' misrouting regression"
+  "sourceSha": "92b79cd6ba8609d1f781e77a7d86d16e2d38e18d",
+  "workflowRunId": 37041723723,
+  "requestedAt": "2026-10-02T17:36:35.000Z",
+  "reason": "Promote hardened BetGPT persona: mandatory arrogant voice + contextual punchline in ROAST"
 }
