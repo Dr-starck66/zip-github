@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-02T13:26:53Z",
-  "reason": "Promote GREEN national-team flag rendering + snapshot coverage guard"
+  "updatedAt": "2026-10-02T13:28:29.071Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
