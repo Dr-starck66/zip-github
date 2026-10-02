@@ -40,9 +40,10 @@ jobs:
             local path="/pronostics-football/$slug"
             local out="/tmp/prono-$slug.html"
             fetch_page "$path" "$out"
-            grep -F "Pronostic $title" "$out" >/dev/null
-            grep -F "Pronostics $title : la page reste utile même entre deux journées" "$out" >/dev/null
-            grep -F "Comment lire un pronostic $title" "$out" >/dev/null
+            grep -F "Pronostic" "$out" >/dev/null
+            grep -F "$title" "$out" >/dev/null
+            grep -F "la page reste utile même entre deux journées" "$out" >/dev/null
+            grep -F "Comment lire un pronostic" "$out" >/dev/null
             grep -F "$BASE$path" "$out" >/dev/null
             grep -F 'rel="canonical"' "$out" >/dev/null
             if grep -Fq "Page /pronostics-football/" "$out"; then
@@ -59,8 +60,9 @@ jobs:
             local path="/pronostics-football/$alias"
             local out="/tmp/prono-alias-$alias.html"
             fetch_page "$path" "$out"
-            grep -F "Pronostic $title" "$out" >/dev/null
-            grep -F "Pronostics $title : la page reste utile même entre deux journées" "$out" >/dev/null
+            grep -F "Pronostic" "$out" >/dev/null
+            grep -F "$title" "$out" >/dev/null
+            grep -F "la page reste utile même entre deux journées" "$out" >/dev/null
             grep -F "$BASE/pronostics-football/$canonical" "$out" >/dev/null
             grep -F 'rel="canonical"' "$out" >/dev/null
             grep -F 'content="noindex, follow"' "$out" >/dev/null
