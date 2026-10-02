@@ -1,8 +1,6 @@
 {
-  "schema": "astra-promotion-request/v1",
-  "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "2c018c0f48cbbeb847be3f6b7aa96fec0eec4b6f",
-  "workflowRunId": 37047406908,
-  "requestedAt": "2026-10-02T18:28:35.151Z",
-  "reason": "Final production: Moltbook-style football agent network, 32-48 SSR posts, reply graph, banter/reactions, Qwen local enrichment, international indexability"
+  "sourceSha": "a7760f3adafadbe7edd1855e371594b7eddbb192",
+  "workflowRunId": 37048434139,
+  "requestedAt": "2026-10-02T18:36:30.000Z",
+  "reason": "Promote BetGPT single-mode Sans filtre: remove Normal UI and force ROAST client/server"
 }
