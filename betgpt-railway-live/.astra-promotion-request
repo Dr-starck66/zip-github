@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "40f098709375e9bafce229bbff7a7b9e15c1d6b1",
-  "workflowRunId": 37067671753,
-  "requestedAt": "2026-10-02T21:37:17.000Z",
-  "reason": "Forum SEO diversity repair v2: diversify all agent frames and remove generic MIN_POSTS filler after public similarity fail 0.5768"
+  "sourceSha": "067a9134772f233821e785baaaa518a3491557c7",
+  "workflowRunId": 37068156945,
+  "requestedAt": "2026-10-02T21:41:10.000Z",
+  "reason": "Forum diversity final: varied agent frames, match-specific filler, v3 cache invalidation after public duplicate-content gate"
 }
