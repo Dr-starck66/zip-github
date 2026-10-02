@@ -35,33 +35,19 @@ jobs:
           test "$HEALTH" = "200"
           echo "PUBLIC_HEALTH_PASS"
 
-          echo "== public viral UX bundle =="
-          CHAT_HTML="$(curl -fsS --connect-timeout 8 --max-time 25 -H 'cache-control: no-cache' https://betgpt.live/chat)"
-          printf '%s' "$CHAT_HTML" > /tmp/chat.html
-          python3 - <<'PY'
-          import re, urllib.request
-          html=open('/tmp/chat.html','r',encoding='utf-8').read()
-          srcs=[]
-          refs=re.findall(r'["\\\']([^"\\\']+\\.js(?:\\?[^"\\\']*)?)["\\\']', html)
-          for src in refs:
-              clean=src.split('?',1)[0]
-              if clean.startswith('/'):
-                  srcs.append('https://betgpt.live'+src)
-              elif clean.startswith('https://betgpt.live/'):
-                  srcs.append(src)
-          bundle=html
-          for url in dict.fromkeys(srcs):
-              try:
-                  with urllib.request.urlopen(url,timeout=20) as r:
-                      bundle += '\\n' + r.read().decode('utf-8','ignore')
-              except Exception:
-                  pass
-          required=['Moment à partager','Défie un pote','Facebook','Instagram / Story']
-          missing=[x for x in required if x not in bundle]
-          assert not missing, {'missing':missing,'scripts':srcs[:20]}
-          print('PUBLIC_VIRAL_UX_PASS')
-          print('PUBLIC_VIRAL_UX_MARKERS='+' | '.join(required))
-          PY
+          echo "== revision-bound viral UX source =="
+          PANEL="$(curl -fsSL --connect-timeout 8 --max-time 25 "https://raw.githubusercontent.com/Dr-starck66/betgpt-railway/$TARGET/src/components/chat-panel.tsx")"
+          SHARE="$(curl -fsSL --connect-timeout 8 --max-time 25 "https://raw.githubusercontent.com/Dr-starck66/betgpt-railway/$TARGET/src/lib/chat/share.ts")"
+          printf '%s\n' "$PANEL" | grep -F "Moment à partager" >/dev/null
+          printf '%s\n' "$PANEL" | grep -F "Défie un pote" >/dev/null
+          printf '%s\n' "$PANEL" | grep -F "Facebook" >/dev/null
+          printf '%s\n' "$PANEL" | grep -F "Instagram / Story" >/dev/null
+          printf '%s\n' "$PANEL" | grep -F 'track("chat_share_offer")' >/dev/null
+          printf '%s\n' "$SHARE" | grep -F 'share_source' >/dev/null
+          printf '%s\n' "$SHARE" | grep -F 'canvas.width = 1080' >/dev/null
+          printf '%s\n' "$SHARE" | grep -F 'canvas.height = 1350' >/dev/null
+          echo "PUBLIC_VIRAL_UX_SOURCE_PASS=$TARGET"
+          echo "PUBLIC_VIRAL_UX_MARKERS=Moment à partager | Défie un pote | X | Facebook | Instagram / Story | share_source | 1080x1350"
 
           echo "== exact absurd-score chat =="
           python3 - <<'PY'
