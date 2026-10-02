@@ -1,6 +1,6 @@
 {
-  "sourceSha": "6399d8ff45ee83bf4c1467852b02a7db0dafe47b",
-  "workflowRunId": 37019474397,
-  "requestedAt": "2026-10-02T14:25:15.458Z",
-  "reason": "Promote GREEN localized SEO image captions and public-image-copy guard"
+  "sourceSha": "be739c3e453d6b532bcede0b138a7be4842c0764",
+  "workflowRunId": 37031528883,
+  "requestedAt": "2026-10-02T16:07:10.000Z",
+  "reason": "Promote GREEN fix for empty pronostic league pages, canonical league slugs, and /l1 alias coverage"
 }
