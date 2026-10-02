@@ -1,13 +1,13 @@
 {
-  "target": "4245bc9402613ab446bd78c8bc8123156bb727ff",
-  "requestedAt": "2026-10-02T16:28:00.000Z",
+  "schema": "astra-public-verify-request/v1",
+  "target": "2c018c0f48cbbeb847be3f6b7aa96fec0eec4b6f",
+  "requestedAt": "2026-10-02T18:32:42.602Z",
   "checks": [
     "public-revision",
     "health",
-    "mascot-asset-200-webp",
-    "mascot-public-chat-markup",
-    "mascot-source-binding",
-    "chat-public-smoke"
-  ],
-  "reason": "Final public proof for BetGPT mascot chatbot identity"
+    "forum-ssr",
+    "forum-qwen-local",
+    "forum-indexability",
+    "forum-density"
+  ]
 }
