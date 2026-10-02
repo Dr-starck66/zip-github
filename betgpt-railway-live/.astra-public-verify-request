@@ -1,13 +1,11 @@
 {
-  "target": "6399d8ff45ee83bf4c1467852b02a7db0dafe47b",
-  "requestedAt": "2026-10-02T14:28:08.231Z",
+  "target": "4245bc9402613ab446bd78c8bc8123156bb727ff",
+  "requestedAt": "2026-10-02T16:23:30.000Z",
   "checks": [
     "public-revision",
     "health",
-    "public-image-copy-no-jargon",
-    "french-contextual-seo-caption",
-    "article-sidebar-images",
-    "max-image-preview-large"
+    "chat-public-smoke",
+    "mascot-source-bound-to-chat"
   ],
-  "reason": "Final public proof: no production jargon and clean French SEO image caption"
+  "reason": "Final public proof for BetGPT mascot chatbot identity"
 }
