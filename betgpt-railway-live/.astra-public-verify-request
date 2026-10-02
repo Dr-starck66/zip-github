@@ -1,7 +1,7 @@
 {
   "schema": "astra-public-verify-request/v1",
   "target": "da5e01655878373e7ae23975dfebfeb17b08c546",
-  "requestedAt": "2026-10-02T19:08:50.408Z",
+  "requestedAt": "2026-10-02T19:08:58.591Z",
   "checks": [
     "public-revision",
     "health",
