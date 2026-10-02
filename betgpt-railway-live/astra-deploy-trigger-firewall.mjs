@@ -1,4 +1,6 @@
 import process from "node:process";
+import fs from "node:fs";
+import path from "node:path";
 
 function fail(code, details = "") {
   const suffix = details ? ` ${details}` : "";
@@ -49,8 +51,55 @@ export async function assertAuthorizedRailwayTrigger(options = {}) {
   const changed = new Set((commit.files || []).map((f) => String(f.filename || "")));
   const apiMessage = String(commit.commit?.message || triggerMessage || "").split("\n")[0].trim();
 
-  if (!changed.has(greenPath)) fail("green-token-not-changed", `commit=${triggerSha}`);
-  if (!changed.has(manifestPath)) fail("manifest-not-changed", `commit=${triggerSha}`);
+  const releaseFilesChanged = changed.has(greenPath) && changed.has(manifestPath);
+
+  // A normal release must still come from the canonical controller commit.
+  // A Railway config/manual redeploy may use any controller-repo commit, but it
+  // is allowed to do one thing only: rebuild the already-approved GREEN marker
+  // currently pulled from the control plane. source-gate verifies the exact
+  // Never-Fail workflow proof immediately after this firewall.
+  if (!releaseFilesChanged) {
+    const deploymentId = String(process.env.RAILWAY_DEPLOYMENT_ID || "").trim();
+    if (!deploymentId) fail("non-release-trigger-without-deployment-id", `commit=${triggerSha}`);
+
+    const localGreenPath = path.resolve(path.basename(greenPath));
+    const localManifestPath = path.resolve(path.basename(manifestPath));
+    if (!fs.existsSync(localGreenPath) || !fs.existsSync(localManifestPath)) {
+      fail("reconcile-control-plane-files-missing");
+    }
+
+    let green;
+    let manifest;
+    try {
+      green = JSON.parse(fs.readFileSync(localGreenPath, "utf8"));
+      manifest = JSON.parse(fs.readFileSync(localManifestPath, "utf8"));
+    } catch {
+      fail("reconcile-control-plane-json-invalid");
+    }
+
+    const targetSha = String(manifest?.sourceSha || "").trim().toLowerCase();
+    const greenSha = String(green?.sourceSha || "").trim().toLowerCase();
+    if (!/^[a-f0-9]{40}$/.test(targetSha) || greenSha !== targetSha) {
+      fail("reconcile-marker-manifest-mismatch", `manifest=${targetSha} green=${greenSha}`);
+    }
+    if (green?.greenVerified !== true || green?.controller !== "ASTRA_SAFE_BETGPT_PROMOTION") {
+      fail("reconcile-target-not-approved-green", `sourceSha=${targetSha}`);
+    }
+
+    console.log(
+      "ASTRA_DEPLOY_TRIGGER_FIREWALL_PASS",
+      JSON.stringify({
+        mode: "green-reconcile",
+        controllerRepo,
+        triggerSha,
+        triggerBranch,
+        deploymentId,
+        sourceSha: targetSha,
+        message: apiMessage,
+      }),
+    );
+    return { triggerSha, apiMessage, mode: "green-reconcile", sourceSha: targetSha };
+  }
 
   const authorizedMessage =
     /^deploy: promote latest GREEN BetGPT candidate(?:\s|$)/i.test(apiMessage) ||
