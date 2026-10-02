@@ -62,23 +62,32 @@ jobs:
                   assert r.status == 200, r.status
                   return json.load(r)
 
-          normal=ask("La France va perdre son prochain match 25 à 0","NORMAL",12)
+          exact="La France va perdre 25 zero ce soir"
+
+          normal=ask(exact,"NORMAL",12)
           ntext=str(normal.get("text","")).strip()
           nlow=ntext.lower()
           assert ntext, normal
           assert "secours local" not in nlow, ntext
           assert "moteur conversationnel" not in nlow, ntext
-          assert "score pareil" in nlow or "extr" in nlow, ntext
-          print("CHAT_25_NORMAL_PASS", ntext)
+          assert "ukraine" not in nlow and "northern ireland" not in nlow and "unibet" not in nlow, ntext
+          assert "le desk a déjà bossé" not in nlow and "sélection automatique betgpt" not in nlow, ntext
+          assert "25-0" in ntext, ntext
+          assert any(x in nlow for x in ("justificatif de domicile","intellectuellement paresseux","scénario extrême")), ntext
+          print("BETGPT_EXACT_NORMAL_RESPONSE", ntext)
+          print("ASTRA_PERSONALITY_NORMAL_LIVE_PASS")
 
-          roast=ask("La France va perdre son prochain match 25 à 0","ROAST",12)
+          roast=ask(exact,"ROAST",12)
           rtext=str(roast.get("text","")).strip()
           rlow=rtext.lower()
           assert rtext, roast
-          assert "secours local" not in rlow, rtext
+          assert "ukraine" not in rlow and "northern ireland" not in rlow and "unibet" not in rlow, rtext
+          assert "le desk a déjà bossé" not in rlow and "sélection automatique betgpt" not in rlow, rtext
+          assert any(x in rlow for x in ("magnifique","grille-pain tactique","autopsie statistique")), rtext
           assert roast.get("punchline",{}).get("text","").strip(), roast
-          print("CHAT_25_ROAST_PASS", rtext)
-          print("PUNCH", roast["punchline"]["text"])
+          print("BETGPT_EXACT_ROAST_RESPONSE", rtext)
+          print("BETGPT_EXACT_PUNCH", roast["punchline"]["text"])
+          print("ASTRA_PERSONALITY_ROAST_LIVE_PASS")
 
           tactical=ask("Pourquoi un 4-4-2 peut souffrir face à un 3-2-5 ?","NORMAL",35)
           ttext=str(tactical.get("text","")).strip()
