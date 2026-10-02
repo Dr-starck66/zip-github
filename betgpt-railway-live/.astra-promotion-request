@@ -1,6 +1,8 @@
 {
-  "sourceSha": "19eb7cf6d794249f10bb52d11b9cf0be859771e4",
-  "workflowRunId": 37049182369,
-  "requestedAt": "2026-10-02T18:43:30.000Z",
-  "reason": "Promote diversified BetGPT diploma rotation plus portrait mobile fullscreen assets"
+  "schema": "astra-promotion-request/v1",
+  "sourceRepo": "Dr-starck66/betgpt-railway",
+  "sourceSha": "22b7ce901329a79d074a73681f7e65713245a879",
+  "workflowRunId": 37049347086,
+  "requestedAt": "2026-10-02T18:59:47.862Z",
+  "reason": "Final forum fix: fast 32+ SSR posts, indexable internationals, local Qwen async cache using deployed /chat/completions endpoint"
 }
