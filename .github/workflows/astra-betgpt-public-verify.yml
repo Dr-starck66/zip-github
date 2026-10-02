@@ -43,6 +43,14 @@ jobs:
           ARTICLE_URL="https://betgpt.live/actualites/france-italie-ligue-des-nations-2026-10-02"
           ARTICLE_HTML="$(curl --compressed --retry 3 --retry-delay 2 --retry-all-errors -fsSL --connect-timeout 12 --max-time 90 -H 'cache-control: no-cache' "$ARTICLE_URL")"
           echo "PUBLIC_ARTICLE_HTML_BYTES=${#ARTICLE_HTML}"
+          for BAD in "libre de droits" "bibliothèque BetGPT" "recadrée" "photo d’illustration" "photo d'illustration" "Elle n’illustre pas" "Elle n'illustre pas"; do
+            if printf '%s\n' "$ARTICLE_HTML" | grep -Fqi "$BAD"; then
+              echo "PUBLIC_IMAGE_COPY_FAIL forbidden=$BAD"
+              exit 1
+            fi
+          done
+          printf '%s\n' "$ARTICLE_HTML" | grep -F "France – Italie en Ligue des nations : informations, contexte et analyse du match." >/dev/null
+          echo "PUBLIC_IMAGE_COPY_PASS=$TARGET"
           printf '%s\n' "$ARTICLE_HTML" | grep -F "À lire aussi" >/dev/null
           printf '%s\n' "$ARTICLE_HTML" | grep -F "France - Italie, Ligue des nations A, match en direct le 02/10/2026" >/dev/null
           printf '%s\n' "$ARTICLE_HTML" | grep -F "/blog/discover/inline-night.jpg" >/dev/null
