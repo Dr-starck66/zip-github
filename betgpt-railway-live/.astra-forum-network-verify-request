@@ -1,7 +1,7 @@
 {
   "schema": "astra-forum-network-verify-request/v1",
   "target": "e33d9510bf446351d971ac1cfff59b19edc7a0e1",
-  "requestedAt": "2026-10-02T20:59:30.000Z",
+  "requestedAt": "2026-10-02T21:03:20.000Z",
   "checks": [
     "public-revision",
     "all-supported-leagues-source",
@@ -10,5 +10,6 @@
     "multi-thread-public-ssr",
     "multi-thread-indexability",
     "local-qwen-enrichment"
-  ]
+  ],
+  "retryReason": "scope cutoff assertion to getForum only"
 }
