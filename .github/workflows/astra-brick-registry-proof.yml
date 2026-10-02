@@ -6,6 +6,7 @@ on:
       - "astra-bricks/registry/**"
       - "astra-bricks/injector/**"
       - "astra-bricks/stream-resilience-guard/**"
+      - "astra-bricks/launch-video/**"
       - ".github/workflows/astra-brick-registry-proof.yml"
   workflow_dispatch:
 
@@ -34,7 +35,10 @@ jobs:
 
       - name: Verify BetGPT managed profile
         run: |
-          node library/astra-bricks/registry/astra-brick-rollout.mjs verify             --library library             --profile betgpt-v1             --target betgpt
+          node library/astra-bricks/registry/astra-brick-rollout.mjs verify \
+            --library library \
+            --profile betgpt-v1 \
+            --target betgpt
 
       - name: Evidence
         run: echo "ASTRA_BRICK_REGISTRY_PROOF_PASS"
