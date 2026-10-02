@@ -79,7 +79,7 @@ jobs:
 
           echo "== local Qwen enrichment cache =="
           QWEN_PASS=0
-          for i in $(seq 1 10); do
+          for i in $(seq 1 30); do
             sleep 3
             curl --compressed -fsSL --connect-timeout 8 --max-time 12 -H 'cache-control: no-cache' "$FORUM_URL" -o /tmp/forum-qwen.html || true
             if grep -aF "Qwen local" /tmp/forum-qwen.html >/dev/null 2>&1; then
