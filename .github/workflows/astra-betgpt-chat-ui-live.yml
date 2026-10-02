@@ -69,7 +69,14 @@ jobs:
             textarea: await textarea.count(),
           });
 
-          console.log("ROAST_BEFORE", await roast.getAttribute("aria-pressed"));
+          await page.waitForTimeout(12000);
+          const hydrationResources = await page.evaluate(() =>
+            performance.getEntriesByType("resource")
+              .filter((e) => /react|chat-|index-|jsx-runtime/.test(e.name))
+              .map((e) => ({ name: e.name.split("/").pop(), start: Math.round(e.startTime), duration: Math.round(e.duration) }))
+          );
+          console.log("HYDRATION_RESOURCES", JSON.stringify(hydrationResources));
+                    console.log("ROAST_BEFORE", await roast.getAttribute("aria-pressed"));
           console.log("PAGE_ERRORS_BEFORE", JSON.stringify(pageErrors));
           console.log("CONSOLE_BEFORE", JSON.stringify(consoleLines.slice(-100)));
           const buttonBox = await roast.boundingBox();
