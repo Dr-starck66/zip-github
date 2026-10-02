@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "ea5f7af36bdcc1d80f6d3d191328897f6f2d582e",
-  "promotionKey": "Dr-starck66/betgpt-railway@ea5f7af36bdcc1d80f6d3d191328897f6f2d582e",
+  "sourceSha": "cab36e1d63750daee0083d225742d797447ec2d4",
+  "promotionKey": "Dr-starck66/betgpt-railway@cab36e1d63750daee0083d225742d797447ec2d4",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-02T00:10:00Z",
-  "reason": "Force Nitro node-server artifact contract for Railway runtime"
+  "updatedAt": "2026-10-02T00:16:48.688Z",
+  "reason": "Release Train: promote latest immutable GREEN ancestor of current main without rollback starvation"
 }
