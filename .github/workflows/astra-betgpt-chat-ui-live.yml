@@ -107,7 +107,7 @@ jobs:
 
           console.log("ASTRA_CHAT_UI_LIVE_PASS");
 
-          // Fresh-visitor diagnostics: reproduce overlays with no localStorage consent.
+          // Fresh-visitor gate: first visit must be understandable and become fully interactive.
           const fresh = await browser.newContext({
             viewport: { width: 390, height: 844 },
             isMobile: true,
@@ -115,38 +115,71 @@ jobs:
             userAgent: "Mozilla/5.0 (Linux; Android 14; SM-A047F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
           });
           const freshPage = await fresh.newPage();
+          const freshErrors = [];
+          freshPage.on("pageerror", (e) => freshErrors.push(String(e)));
+
           await freshPage.goto("https://betgpt.live/chat", { waitUntil: "domcontentloaded", timeout: 60000 });
           await freshPage.waitForSelector('textarea[aria-label="Ton message à BetGPT"]', { timeout: 15000 });
 
+          const revision = await freshPage.evaluate(async () => {
+            const r = await fetch("/astra-revision.json", { cache: "no-store" });
+            return await r.json();
+          });
+          console.log("PUBLIC_REVISION", revision.sourceSha);
+          if (revision.sourceSha !== "ae9dd013c72d4b7a7634d748ed968d0b7c948ef8") {
+            throw new Error("Unexpected public revision " + revision.sourceSha);
+          }
+
+          const ageButton = freshPage.getByRole("button", {
+            name: "J’ai 18 ans ou plus — accéder au site",
+            exact: true,
+          });
+          const consentButton = freshPage.getByRole("button", { name: "Essentiels seulement", exact: true });
           const freshRoast = freshPage.getByRole("button", { name: "Sans filtre", exact: true });
           const freshSend = freshPage.getByRole("button", { name: "Envoyer", exact: true });
-          const ageButton = freshPage.getByRole("button", { name: "J’ai 18 ans ou plus", exact: true });
-          const consentButton = freshPage.getByRole("button", { name: "Essentiels seulement", exact: true });
+          const freshTextarea = freshPage.locator('textarea[aria-label="Ton message à BetGPT"]');
 
-          console.log("FRESH_OVERLAYS", {
-            ageVisible: await ageButton.isVisible().catch(() => false),
-            consentVisible: await consentButton.isVisible().catch(() => false),
-          });
+          const ageVisibleBefore = await ageButton.isVisible();
+          const consentVisibleBefore = await consentButton.isVisible().catch(() => false);
+          console.log("FRESH_BEFORE", { ageVisibleBefore, consentVisibleBefore });
+          if (!ageVisibleBefore) throw new Error("18+ gate is not visible on first visit");
+          if (consentVisibleBefore) throw new Error("cookie consent is stacked under the 18+ gate");
 
-          for (const [name, locator] of [["roast", freshRoast], ["send", freshSend]]) {
-            const box = await locator.boundingBox();
-            if (!box) continue;
-            const x = box.x + box.width / 2;
-            const y = box.y + box.height / 2;
-            const stack = await freshPage.evaluate(({x,y}) =>
-              document.elementsFromPoint(x,y).slice(0,8).map((el) => ({
-                tag: el.tagName,
-                text: (el.textContent || "").trim().slice(0,80),
-                cls: String(el.className || "").slice(0,160),
-              })), {x,y});
-            console.log("FRESH_HIT_STACK_" + name.toUpperCase(), JSON.stringify(stack));
-            try {
-              await locator.click({ timeout: 2500 });
-              console.log("FRESH_CLICK_" + name.toUpperCase(), "CLICKED");
-            } catch (e) {
-              console.log("FRESH_CLICK_" + name.toUpperCase(), "BLOCKED", String(e).slice(0,1200));
-            }
+          await ageButton.click({ timeout: 10000 });
+          await consentButton.waitFor({ state: "visible", timeout: 10000 });
+          console.log("AGE_GATE_ACCEPT_PASS");
+
+          await consentButton.click({ timeout: 10000 });
+          await consentButton.waitFor({ state: "hidden", timeout: 10000 });
+          console.log("COOKIE_CONSENT_PASS");
+
+          console.log("FRESH_ROAST_BEFORE", await freshRoast.getAttribute("aria-pressed"));
+          await freshRoast.click({ timeout: 10000 });
+          console.log("FRESH_ROAST_AFTER", await freshRoast.getAttribute("aria-pressed"));
+          if ((await freshRoast.getAttribute("aria-pressed")) !== "true") {
+            throw new Error("Sans filtre did not activate after legal gates");
           }
+
+          await freshTextarea.fill("La France va perdre 25-0 son prochain match.");
+          const freshChatResponsePromise = freshPage.waitForResponse(
+            (r) => r.url().includes("/api/chat") && r.request().method() === "POST",
+            { timeout: 20000 },
+          );
+          await freshSend.click({ timeout: 10000 });
+          const freshChatResponse = await freshChatResponsePromise;
+          console.log("FRESH_CHAT_STATUS", freshChatResponse.status());
+          if (freshChatResponse.status() !== 200) {
+            throw new Error("Fresh visitor chat POST status " + freshChatResponse.status());
+          }
+
+          await freshPage.waitForFunction(
+            () => document.body.innerText.includes("CALAMAR") ||
+                  document.body.innerText.includes("score pareil"),
+            null,
+            { timeout: 20000 },
+          );
+          if (freshErrors.length) throw new Error("Fresh visitor page errors: " + freshErrors.join(" | "));
+          console.log("ASTRA_FRESH_VISITOR_CHAT_UI_PASS");
 
           await fresh.close();
           await browser.close();
