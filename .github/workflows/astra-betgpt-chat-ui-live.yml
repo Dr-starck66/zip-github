@@ -30,7 +30,7 @@ jobs:
         shell: bash
         run: |
           node <<'NODE'
-          const { chromium } = require("playwright");
+          const { chromium } = await import("playwright");
 
           const browser = await chromium.launch({ headless: true });
           const context = await browser.newContext({
