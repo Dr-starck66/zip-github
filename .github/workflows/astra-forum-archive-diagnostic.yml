@@ -9,7 +9,7 @@ jobs:
   diagnose:
     runs-on: ubuntu-latest
     steps:
-      - name: Inspect archive coverage for production 404 samples
+      - name: Measure durable archive league coverage
         shell: bash
         run: |
           set -euo pipefail
@@ -18,19 +18,16 @@ jobs:
           node <<'NODE'
           const fs=require('fs');
           const j=JSON.parse(fs.readFileSync('data/archive-history.json','utf8'));
-          const samples=[
-            ['2024-04-13','psv-eindhoven-vitesse-2024-04-13'],
-            ['2023-05-06','sparta-rotterdam-psv-eindhoven-2023-05-06'],
-            ['2026-02-28','falkirk-kilmarnock-2026-02-28'],
-            ['2025-03-16','dundee-united-dundee-2025-03-16'],
-            ['2025-02-16','rio-ave-avs-2025-02-16'],
-            ['2025-05-11','feyenoord-rotterdam-psv-eindhoven-2025-05-11']
-          ];
-          for (const [d,slug] of samples) {
-            const rows=j.matches.filter(m=>String(m.kickoff).startsWith(d));
-            const counts={};
-            for(const m of rows) counts[m.league]=(counts[m.league]||0)+1;
-            console.log('DATE',d,'SLUG',slug,'COUNT',rows.length,'LEAGUES',JSON.stringify(counts));
-            for(const m of rows) console.log('ROW',JSON.stringify({id:m.id,league:m.league,home:m.homeName,away:m.awayName}));
+          const counts={};
+          const range={};
+          for(const m of j.matches){
+            counts[m.league]=(counts[m.league]||0)+1;
+            const d=String(m.kickoff).slice(0,10);
+            range[m.league]=range[m.league]||{min:d,max:d};
+            if(d<range[m.league].min) range[m.league].min=d;
+            if(d>range[m.league].max) range[m.league].max=d;
           }
+          console.log('TOTAL',j.matches.length);
+          console.log('COUNTS',JSON.stringify(counts));
+          console.log('RANGES',JSON.stringify(range));
           NODE
