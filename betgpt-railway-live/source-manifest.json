@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-02T02:43:51Z",
-  "reason": "Release Train: promote exact immutable GREEN candidate after forum durability/crawl contract gate"
+  "updatedAt": "2026-10-02T02:45:26.187Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
