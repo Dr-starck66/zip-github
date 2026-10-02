@@ -106,5 +106,48 @@ jobs:
           }
 
           console.log("ASTRA_CHAT_UI_LIVE_PASS");
+
+          // Fresh-visitor diagnostics: reproduce overlays with no localStorage consent.
+          const fresh = await browser.newContext({
+            viewport: { width: 390, height: 844 },
+            isMobile: true,
+            hasTouch: true,
+            userAgent: "Mozilla/5.0 (Linux; Android 14; SM-A047F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36",
+          });
+          const freshPage = await fresh.newPage();
+          await freshPage.goto("https://betgpt.live/chat", { waitUntil: "domcontentloaded", timeout: 60000 });
+          await freshPage.waitForSelector('textarea[aria-label="Ton message à BetGPT"]', { timeout: 15000 });
+
+          const freshRoast = freshPage.getByRole("button", { name: "Sans filtre", exact: true });
+          const freshSend = freshPage.getByRole("button", { name: "Envoyer", exact: true });
+          const ageButton = freshPage.getByRole("button", { name: "J’ai 18 ans ou plus", exact: true });
+          const consentButton = freshPage.getByRole("button", { name: "Essentiels seulement", exact: true });
+
+          console.log("FRESH_OVERLAYS", {
+            ageVisible: await ageButton.isVisible().catch(() => false),
+            consentVisible: await consentButton.isVisible().catch(() => false),
+          });
+
+          for (const [name, locator] of [["roast", freshRoast], ["send", freshSend]]) {
+            const box = await locator.boundingBox();
+            if (!box) continue;
+            const x = box.x + box.width / 2;
+            const y = box.y + box.height / 2;
+            const stack = await freshPage.evaluate(({x,y}) =>
+              document.elementsFromPoint(x,y).slice(0,8).map((el) => ({
+                tag: el.tagName,
+                text: (el.textContent || "").trim().slice(0,80),
+                cls: String(el.className || "").slice(0,160),
+              })), {x,y});
+            console.log("FRESH_HIT_STACK_" + name.toUpperCase(), JSON.stringify(stack));
+            try {
+              await locator.click({ timeout: 2500 });
+              console.log("FRESH_CLICK_" + name.toUpperCase(), "CLICKED");
+            } catch (e) {
+              console.log("FRESH_CLICK_" + name.toUpperCase(), "BLOCKED", String(e).slice(0,1200));
+            }
+          }
+
+          await fresh.close();
           await browser.close();
           NODE
