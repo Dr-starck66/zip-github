@@ -19,7 +19,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          TARGET="b4b66fa63b9cb7ba21ecc07538e81da761116c6f"
+          TARGET="0b551c96bebe487104cb76d29ca14a9b021456d7"
 
           echo "== revision =="
           REV="$(curl -fsS --connect-timeout 8 --max-time 25 -H 'cache-control: no-cache' https://betgpt.live/astra-revision.json)"
@@ -34,6 +34,32 @@ jobs:
           echo
           test "$HEALTH" = "200"
           echo "PUBLIC_HEALTH_PASS"
+
+          echo "== public viral UX bundle =="
+          CHAT_HTML="$(curl -fsS --connect-timeout 8 --max-time 25 -H 'cache-control: no-cache' https://betgpt.live/chat)"
+          printf '%s' "$CHAT_HTML" > /tmp/chat.html
+          python3 - <<'PY'
+          import re, urllib.request
+          html=open('/tmp/chat.html','r',encoding='utf-8').read()
+          srcs=[]
+          for src in re.findall(r'<script[^>]+src=["\\\']([^"\\\']+)["\\\']', html):
+              if src.startswith('/') and src.endswith('.js'):
+                  srcs.append('https://betgpt.live'+src)
+              elif src.startswith('https://betgpt.live/') and src.endswith('.js'):
+                  srcs.append(src)
+          bundle=html
+          for url in dict.fromkeys(srcs):
+              try:
+                  with urllib.request.urlopen(url,timeout=20) as r:
+                      bundle += '\\n' + r.read().decode('utf-8','ignore')
+              except Exception:
+                  pass
+          required=['Moment à partager','Défie un pote','Facebook','Instagram / Story']
+          missing=[x for x in required if x not in bundle]
+          assert not missing, {'missing':missing,'scripts':srcs[:20]}
+          print('PUBLIC_VIRAL_UX_PASS')
+          print('PUBLIC_VIRAL_UX_MARKERS='+' | '.join(required))
+          PY
 
           echo "== exact absurd-score chat =="
           python3 - <<'PY'
