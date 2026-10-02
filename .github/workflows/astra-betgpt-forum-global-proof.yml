@@ -40,7 +40,7 @@ jobs:
             sed 's#<loc>##' |
             grep -v '/forum/journee-' |
             sort -u |
-            head -n 5 > /tmp/forum-urls.txt
+            awk 'NR <= 5' > /tmp/forum-urls.txt
 
           URL_COUNT="$(wc -l < /tmp/forum-urls.txt | tr -d ' ')"
           echo "GLOBAL_FORUM_SITEMAP_MATCH_THREADS=$URL_COUNT"
