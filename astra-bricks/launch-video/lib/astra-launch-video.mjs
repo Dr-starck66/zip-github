@@ -58,6 +58,8 @@ export function normalizeConfig(input = {}) {
         : {},
       clickSelectors: Array.isArray(input.capture?.clickSelectors) ? input.capture.clickSelectors.map(String).filter(Boolean) : [],
       clickText: Array.isArray(input.capture?.clickText) ? input.capture.clickText.map(String).filter(Boolean) : [],
+      optionalClickSelectors: Array.isArray(input.capture?.optionalClickSelectors) ? input.capture.optionalClickSelectors.map(String).filter(Boolean) : [],
+      optionalClickText: Array.isArray(input.capture?.optionalClickText) ? input.capture.optionalClickText.map(String).filter(Boolean) : [],
       forbiddenText: Array.isArray(input.capture?.forbiddenText) ? input.capture.forbiddenText.map(String).filter(Boolean) : [],
       requiredText: Array.isArray(input.capture?.requiredText) ? input.capture.requiredText.map(String).filter(Boolean) : [],
       waitAfterActionsMs: Math.max(0, Math.min(10_000, Number(input.capture?.waitAfterActionsMs ?? 750))),
@@ -117,6 +119,8 @@ export async function captureWebsite({
   preseedLocalStorage = {},
   clickSelectors = [],
   clickText = [],
+  optionalClickSelectors = [],
+  optionalClickText = [],
   forbiddenText = [],
   requiredText = [],
   waitAfterActionsMs = 750,
@@ -163,7 +167,19 @@ export async function captureWebsite({
       }
       await locator.click({ timeout: 5_000 });
     }
-    if (clickSelectors.length || clickText.length || seedEntries.length) {
+    for (const selector of optionalClickSelectors) {
+      const locator = page.locator(selector).first();
+      if (await locator.isVisible().catch(() => false)) {
+        await locator.click({ timeout: 5_000 });
+      }
+    }
+    for (const text of optionalClickText) {
+      const locator = page.getByText(text, { exact: false }).first();
+      if (await locator.isVisible().catch(() => false)) {
+        await locator.click({ timeout: 5_000 });
+      }
+    }
+    if (clickSelectors.length || clickText.length || optionalClickSelectors.length || optionalClickText.length || seedEntries.length) {
       await page.waitForTimeout(waitAfterActionsMs);
     }
 
