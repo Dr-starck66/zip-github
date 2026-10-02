@@ -1,6 +1,6 @@
 {
-  "sourceSha": "63d2ea8afbe10fca20b0b4f65aa006cf8eea9f90",
-  "workflowRunId": 37032560436,
-  "requestedAt": "2026-10-02T16:16:00.000Z",
-  "reason": "Promote GREEN BetGPT chatbot persona: arrogant, ultra-rational, socially awkward, surprise absurd insults and punchlines"
+  "sourceSha": "4245bc9402613ab446bd78c8bc8123156bb727ff",
+  "workflowRunId": 37032792066,
+  "requestedAt": "2026-10-02T16:18:00.000Z",
+  "reason": "Promote GREEN BetGPT mascot identity in chatbot header and assistant replies"
 }
