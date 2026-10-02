@@ -52,15 +52,15 @@ export async function assertAuthorizedRailwayTrigger(options = {}) {
   const apiMessage = String(commit.commit?.message || triggerMessage || "").split("\n")[0].trim();
 
   const releaseFilesChanged = changed.has(greenPath) && changed.has(manifestPath);
+  const reconcileNonce = String(process.env.ASTRA_CONTROL_PLANE_NONCE || "").trim().toLowerCase();
 
-  // A normal release must still come from the canonical controller commit.
-  // A Railway config/manual redeploy may use any controller-repo commit, but it
-  // is allowed to do one thing only: rebuild the already-approved GREEN marker
-  // currently pulled from the control plane. source-gate verifies the exact
-  // Never-Fail workflow proof immediately after this firewall.
-  if (!releaseFilesChanged) {
-    const reconcileNonce = String(process.env.ASTRA_CONTROL_PLANE_NONCE || "").trim().toLowerCase();
-
+  // Railway's "redeploy" can reuse the Git identity of an older successful
+  // snapshot even after control-plane-pull.mjs has refreshed the local GREEN
+  // manifest. A matching explicit nonce therefore authorizes reconciliation
+  // from the freshly pulled control plane, regardless of what the stale
+  // snapshot commit changed. The nonce is never sufficient by itself:
+  // source-gate immediately re-verifies the exact Never-Fail workflow proof.
+  if (reconcileNonce) {
     const localGreenPath = path.resolve(path.basename(greenPath));
     const localManifestPath = path.resolve(path.basename(manifestPath));
     if (!fs.existsSync(localGreenPath) || !fs.existsSync(localManifestPath)) {
@@ -78,32 +78,50 @@ export async function assertAuthorizedRailwayTrigger(options = {}) {
 
     const targetSha = String(manifest?.sourceSha || "").trim().toLowerCase();
     const greenSha = String(green?.sourceSha || "").trim().toLowerCase();
+    const promotionKey = String(green?.promotionKey || "").trim().toLowerCase();
+    const expectedPromotionKey = `${String(manifest?.sourceRepo || "").trim()}@${targetSha}`.toLowerCase();
+    const workflowRunId = Number(green?.workflowRunId);
+
     if (!/^[a-f0-9]{40}$/.test(targetSha) || greenSha !== targetSha) {
       fail("reconcile-marker-manifest-mismatch", `manifest=${targetSha} green=${greenSha}`);
     }
-    if (reconcileNonce !== targetSha) {
-      fail(
-        "reconcile-nonce-mismatch",
-        `expected=${targetSha} actual=${reconcileNonce || "(missing)"}`,
+
+    if (reconcileNonce === targetSha) {
+      if (
+        green?.greenVerified !== true ||
+        green?.controller !== "ASTRA_SAFE_BETGPT_PROMOTION" ||
+        promotionKey !== expectedPromotionKey ||
+        !Number.isSafeInteger(workflowRunId) ||
+        workflowRunId <= 0
+      ) {
+        fail("reconcile-target-not-approved-green", `sourceSha=${targetSha}`);
+      }
+
+      console.log(
+        "ASTRA_DEPLOY_TRIGGER_FIREWALL_PASS",
+        JSON.stringify({
+          mode: "green-reconcile",
+          controllerRepo,
+          triggerSha,
+          triggerBranch,
+          reconcileNonce,
+          sourceSha: targetSha,
+          workflowRunId,
+          message: apiMessage,
+        }),
       );
-    }
-    if (green?.greenVerified !== true || green?.controller !== "ASTRA_SAFE_BETGPT_PROMOTION") {
-      fail("reconcile-target-not-approved-green", `sourceSha=${targetSha}`);
+      return { triggerSha, apiMessage, mode: "green-reconcile", sourceSha: targetSha };
     }
 
-    console.log(
-      "ASTRA_DEPLOY_TRIGGER_FIREWALL_PASS",
-      JSON.stringify({
-        mode: "green-reconcile",
-        controllerRepo,
-        triggerSha,
-        triggerBranch,
-        reconcileNonce,
-        sourceSha: targetSha,
-        message: apiMessage,
-      }),
-    );
-    return { triggerSha, apiMessage, mode: "green-reconcile", sourceSha: targetSha };
+    // A stale nonce must not block a future ordinary promotion commit. It only
+    // fails closed when reconciliation is the only valid trigger mode.
+    if (!releaseFilesChanged) {
+      fail("reconcile-nonce-mismatch", `expected=${targetSha} actual=${reconcileNonce}`);
+    }
+  }
+
+  if (!releaseFilesChanged) {
+    fail("reconcile-nonce-required", `commit=${triggerSha}`);
   }
 
   const authorizedMessage =

@@ -8,6 +8,7 @@ Reusable fail-closed deployment trigger gate for Railway/GitHub deployments.
 - Deployments from the wrong branch or controller repository.
 - Commits whose message is not an authorized promotion/rollback action.
 - Duplicate redeploys when the same source SHA is already public.
+- Stale Railway snapshot redeploys unless an explicit `ASTRA_CONTROL_PLANE_NONCE` exactly matches the freshly pulled, GREEN-approved source SHA.
 
 ## Required Railway context
 The gate relies on Railway-provided Git variables, especially:
@@ -27,3 +28,9 @@ Each site passes its own:
 - publicRevisionUrl
 
 Policy is fail-closed for missing Git identity or unauthorized trigger commits.
+
+## Stale-snapshot reconciliation
+
+Railway may reuse the Git identity of a previous successful deployment when a service is manually redeployed. The firewall therefore supports a narrow reconciliation mode: after the latest control-plane files are pulled, `ASTRA_CONTROL_PLANE_NONCE` must exactly equal the current manifest source SHA, the GREEN marker must match that SHA, carry the canonical promotion key and a valid Never-Fail workflow run ID, and the next source gate re-verifies that workflow proof against GitHub.
+
+A stale nonce never blocks a later normal release commit; when it does not match the current control-plane target, the normal authorized release path is evaluated instead.

@@ -1,4 +1,6 @@
 import process from "node:process";
+import fs from "node:fs";
+import path from "node:path";
 
 function fail(code, details = "") {
   const suffix = details ? ` ${details}` : "";
@@ -49,11 +51,83 @@ export async function assertAuthorizedRailwayTrigger(options = {}) {
   const changed = new Set((commit.files || []).map((f) => String(f.filename || "")));
   const apiMessage = String(commit.commit?.message || triggerMessage || "").split("\n")[0].trim();
 
-  if (!changed.has(greenPath)) fail("green-token-not-changed", `commit=${triggerSha}`);
-  if (!changed.has(manifestPath)) fail("manifest-not-changed", `commit=${triggerSha}`);
+  const releaseFilesChanged = changed.has(greenPath) && changed.has(manifestPath);
+  const reconcileNonce = String(process.env.ASTRA_CONTROL_PLANE_NONCE || "").trim().toLowerCase();
+
+  // Railway's "redeploy" can reuse the Git identity of an older successful
+  // snapshot even after control-plane-pull.mjs has refreshed the local GREEN
+  // manifest. A matching explicit nonce therefore authorizes reconciliation
+  // from the freshly pulled control plane, regardless of what the stale
+  // snapshot commit changed. The nonce is never sufficient by itself:
+  // source-gate immediately re-verifies the exact Never-Fail workflow proof.
+  if (reconcileNonce) {
+    const localGreenPath = path.resolve(path.basename(greenPath));
+    const localManifestPath = path.resolve(path.basename(manifestPath));
+    if (!fs.existsSync(localGreenPath) || !fs.existsSync(localManifestPath)) {
+      fail("reconcile-control-plane-files-missing");
+    }
+
+    let green;
+    let manifest;
+    try {
+      green = JSON.parse(fs.readFileSync(localGreenPath, "utf8"));
+      manifest = JSON.parse(fs.readFileSync(localManifestPath, "utf8"));
+    } catch {
+      fail("reconcile-control-plane-json-invalid");
+    }
+
+    const targetSha = String(manifest?.sourceSha || "").trim().toLowerCase();
+    const greenSha = String(green?.sourceSha || "").trim().toLowerCase();
+    const promotionKey = String(green?.promotionKey || "").trim().toLowerCase();
+    const expectedPromotionKey = `${String(manifest?.sourceRepo || "").trim()}@${targetSha}`.toLowerCase();
+    const workflowRunId = Number(green?.workflowRunId);
+
+    if (!/^[a-f0-9]{40}$/.test(targetSha) || greenSha !== targetSha) {
+      fail("reconcile-marker-manifest-mismatch", `manifest=${targetSha} green=${greenSha}`);
+    }
+
+    if (reconcileNonce === targetSha) {
+      if (
+        green?.greenVerified !== true ||
+        green?.controller !== "ASTRA_SAFE_BETGPT_PROMOTION" ||
+        promotionKey !== expectedPromotionKey ||
+        !Number.isSafeInteger(workflowRunId) ||
+        workflowRunId <= 0
+      ) {
+        fail("reconcile-target-not-approved-green", `sourceSha=${targetSha}`);
+      }
+
+      console.log(
+        "ASTRA_DEPLOY_TRIGGER_FIREWALL_PASS",
+        JSON.stringify({
+          mode: "green-reconcile",
+          controllerRepo,
+          triggerSha,
+          triggerBranch,
+          reconcileNonce,
+          sourceSha: targetSha,
+          workflowRunId,
+          message: apiMessage,
+        }),
+      );
+      return { triggerSha, apiMessage, mode: "green-reconcile", sourceSha: targetSha };
+    }
+
+    // A stale nonce must not block a future ordinary promotion commit. It only
+    // fails closed when reconciliation is the only valid trigger mode.
+    if (!releaseFilesChanged) {
+      fail("reconcile-nonce-mismatch", `expected=${targetSha} actual=${reconcileNonce}`);
+    }
+  }
+
+  if (!releaseFilesChanged) {
+    fail("reconcile-nonce-required", `commit=${triggerSha}`);
+  }
 
   const authorizedMessage =
     /^deploy: promote latest GREEN BetGPT candidate(?:\s|$)/i.test(apiMessage) ||
+    /^deploy: release-train latest GREEN BetGPT candidate(?:\s|$)/i.test(apiMessage) ||
+    /^deploy: reemit approved GREEN BetGPT candidate(?:\s|$)/i.test(apiMessage) ||
     /^rollback: restore last GREEN BetGPT release(?:\s|$)/i.test(apiMessage);
 
   if (!authorizedMessage) fail("unauthorized-controller-commit", `message=${JSON.stringify(apiMessage)}`);
