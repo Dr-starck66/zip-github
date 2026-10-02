@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-02T13:41:42Z",
-  "reason": "Promote latest GREEN BetGPT candidate after Never-Fail gate success"
+  "updatedAt": "2026-10-02T13:44:09.581Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
