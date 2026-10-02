@@ -80,31 +80,15 @@ jobs:
               .map((e) => ({ name: e.name.split("/").pop(), start: Math.round(e.startTime), duration: Math.round(e.duration) }))
           );
           console.log("HYDRATION_RESOURCES", JSON.stringify(hydrationResources));
-                    console.log("ROAST_BEFORE", await roast.getAttribute("aria-pressed"));
+                    const roastBefore = await roast.getAttribute("aria-pressed");
+          console.log("ROAST_BEFORE", roastBefore);
           console.log("PAGE_ERRORS_BEFORE", JSON.stringify(pageErrors));
           console.log("CONSOLE_BEFORE", JSON.stringify(consoleLines.slice(-100)));
-          const buttonBox = await roast.boundingBox();
-          if (buttonBox) {
-            const cx = buttonBox.x + buttonBox.width / 2;
-            const cy = buttonBox.y + buttonBox.height / 2;
-            const hit = await page.evaluate(({cx,cy}) => document.elementsFromPoint(cx,cy).slice(0,8).map((el) => ({
-              tag: el.tagName,
-              text: (el.textContent || "").trim().slice(0,100),
-              cls: String(el.className || "").slice(0,180),
-            })), {cx,cy});
-            console.log("ROAST_HIT_STACK", JSON.stringify(hit));
-          }
-          await roast.click({ timeout: 10000 });
-          await page.waitForTimeout(300);
-          const roastAfter = await roast.getAttribute("aria-pressed");
-          console.log("ROAST_AFTER", roastAfter);
-          console.log("PAGE_ERRORS_AFTER_CLICK", JSON.stringify(pageErrors));
-          console.log("CONSOLE_AFTER_CLICK", JSON.stringify(consoleLines.slice(-100)));
-          if (roastAfter !== "true") {
-            throw new Error("HYDRATION_OR_INTERACTION_FAIL: Sans filtre did not change state");
+          if (roastBefore !== "false") {
+            throw new Error("NORMAL_MODE_NOT_DEFAULT");
           }
 
-          await textarea.fill("La France va perdre 25-0 son prochain match.");
+          await textarea.fill("La France va perdre 25 zero ce soir");
           console.log("TEXTAREA_VALUE", await textarea.inputValue());
 
           const chatResponsePromise = page.waitForResponse(
@@ -116,12 +100,19 @@ jobs:
           console.log("CHAT_STATUS", chatResponse.status());
 
           await page.waitForFunction(
-            () => document.body.innerText.includes("tabouret probabiliste") ||
-                  document.body.innerText.includes("CALAMAR") ||
-                  document.body.innerText.includes("score pareil"),
+            () => document.body.innerText.includes("justificatif de domicile"),
             null,
             { timeout: 20000 },
           );
+
+          const normalTranscript = await page.locator('[role="log"]').innerText();
+          console.log("NORMAL_PERSONALITY_TRANSCRIPT", normalTranscript);
+          if (/Ukraine|Northern Ireland|Unibet|Le desk a déjà bossé|SÉLECTION AUTOMATIQUE BETGPT/i.test(normalTranscript)) {
+            throw new Error("WRONG_DAILY_PICK_ROUTING: " + normalTranscript);
+          }
+          if (!/25-0 \? Non|justificatif de domicile|intellectuellement paresseux/i.test(normalTranscript)) {
+            throw new Error("BETGPT_PERSONALITY_MISSING_NORMAL: " + normalTranscript);
+          }
 
           console.log("PAGE_ERRORS", JSON.stringify(pageErrors));
           console.log("CONSOLE", JSON.stringify(consoleLines.slice(-50)));
@@ -129,14 +120,11 @@ jobs:
           if (pageErrors.length) {
             throw new Error("Browser page errors: " + pageErrors.join(" | "));
           }
-          if ((await roast.getAttribute("aria-pressed")) !== "true") {
-            throw new Error("Sans filtre click did not change aria-pressed");
-          }
           if (chatResponse.status() !== 200) {
             throw new Error("Chat POST status " + chatResponse.status());
           }
 
-          console.log("ASTRA_CHAT_UI_LIVE_PASS");
+          console.log("ASTRA_PERSONALITY_NORMAL_LIVE_PASS");
 
           // Fresh-visitor gate: first visit must be understandable and become fully interactive.
           const fresh = await browser.newContext({
@@ -192,7 +180,7 @@ jobs:
             throw new Error("Sans filtre did not activate after legal gates");
           }
 
-          await freshTextarea.fill("La France va perdre 25-0 son prochain match.");
+          await freshTextarea.fill("La France va perdre 25 zero ce soir");
           const freshChatResponsePromise = freshPage.waitForResponse(
             (r) => r.url().includes("/api/chat") && r.request().method() === "POST",
             { timeout: 20000 },
@@ -205,13 +193,21 @@ jobs:
           }
 
           await freshPage.waitForFunction(
-            () => document.body.innerText.includes("CALAMAR") ||
-                  document.body.innerText.includes("score pareil"),
+            () => document.body.innerText.includes("grille-pain tactique") ||
+                  document.body.innerText.includes("rapport d’autopsie statistique"),
             null,
             { timeout: 20000 },
           );
+          const roastTranscript = await freshPage.locator('[role="log"]').innerText();
+          console.log("ROAST_PERSONALITY_TRANSCRIPT", roastTranscript);
+          if (/Ukraine|Northern Ireland|Unibet|Le desk a déjà bossé|SÉLECTION AUTOMATIQUE BETGPT/i.test(roastTranscript)) {
+            throw new Error("WRONG_DAILY_PICK_ROUTING_ROAST: " + roastTranscript);
+          }
+          if (!/Magnifique|grille-pain tactique|autopsie statistique/i.test(roastTranscript)) {
+            throw new Error("BETGPT_PERSONALITY_MISSING_ROAST: " + roastTranscript);
+          }
           if (freshErrors.length) throw new Error("Fresh visitor page errors: " + freshErrors.join(" | "));
-          console.log("ASTRA_FRESH_VISITOR_CHAT_UI_PASS");
+          console.log("ASTRA_PERSONALITY_ROAST_LIVE_PASS");
 
           await fresh.close();
           await browser.close();
