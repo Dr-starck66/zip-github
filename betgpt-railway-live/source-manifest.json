@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-02T12:50:00Z",
-  "reason": "Promote latest proven GREEN release containing canonical ROI5 learning fix"
+  "updatedAt": "2026-10-02T12:53:02.133Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
