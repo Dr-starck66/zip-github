@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "334b852aaef7057401d58b581e0353179d4bc12e",
-  "workflowRunId": 37046934724,
-  "requestedAt": "2026-10-02T18:23:37.863Z",
-  "reason": "Final forum agent-network release: dense SSR conversations, banter/replies/reactions, local-first LLM, persisted international thread indexability"
+  "sourceSha": "2c018c0f48cbbeb847be3f6b7aa96fec0eec4b6f",
+  "workflowRunId": 37047406908,
+  "requestedAt": "2026-10-02T18:28:35.151Z",
+  "reason": "Final production: Moltbook-style football agent network, 32-48 SSR posts, reply graph, banter/reactions, Qwen local enrichment, international indexability"
 }
