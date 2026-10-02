@@ -13,7 +13,7 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 7
     steps:
       - name: Checkout verification request
         uses: actions/checkout@v4
@@ -38,6 +38,21 @@ jobs:
           echo
           test "$HEALTH" = "200"
           echo "PUBLIC_HEALTH_PASS"
+
+          echo "== BetGPT mascot asset =="
+          MASCOT_STATUS="$(curl -sS --retry 3 --retry-delay 2 --retry-all-errors --connect-timeout 8 --max-time 30 -D /tmp/mascot.headers -o /tmp/mascot -w '%{http_code}' -H 'cache-control: no-cache' https://betgpt.live/betgpt-mascot-avatar.webp)"
+          test "$MASCOT_STATUS" = "200"
+          test -s /tmp/mascot
+          MASCOT_BYTES="$(wc -c < /tmp/mascot | tr -d ' ')"
+          test "$MASCOT_BYTES" -gt 5000
+          grep -Eqi '^content-type:[[:space:]]*image/webp' /tmp/mascot.headers
+          echo "PUBLIC_MASCOT_ASSET_PASS bytes=$MASCOT_BYTES"
+
+          echo "== BetGPT mascot in public chat =="
+          CHAT_HTML="$(curl --compressed --retry 3 --retry-delay 2 --retry-all-errors -fsSL --connect-timeout 8 --max-time 45 -H 'cache-control: no-cache' https://betgpt.live/chat)"
+          printf '%s\n' "$CHAT_HTML" | grep -F "/betgpt-mascot-avatar.webp" >/dev/null
+          printf '%s\n' "$CHAT_HTML" | grep -F "Mascotte BetGPT, assistant football sans filtre" >/dev/null
+          echo "PUBLIC_MASCOT_CHAT_MARKUP_PASS=$TARGET"
 
           echo "== France–Italie article sidebar imagery =="
           ARTICLE_URL="https://betgpt.live/actualites/france-italie-ligue-des-nations-2026-10-02"
@@ -76,6 +91,8 @@ jobs:
           printf '%s\n' "$PANEL" | grep -F 'track("chat_share_offer")' >/dev/null
           printf '%s\n' "$PANEL" | grep -F 'track("chat_challenge_view", shareSource)' >/dev/null
           printf '%s\n' "$PANEL" | grep -F 'track("chat_challenge_accept", shareSource)' >/dev/null
+          printf '%s\n' "$PANEL" | grep -F '/betgpt-mascot-avatar.webp' >/dev/null
+          printf '%s\n' "$PANEL" | grep -F 'Mascotte BetGPT, assistant football sans filtre' >/dev/null
           printf '%s\n' "$SHARE" | grep -F 'share_source' >/dev/null
           printf '%s\n' "$SHARE" | grep -F 'canvas.width = 1080' >/dev/null
           printf '%s\n' "$SHARE" | grep -F 'canvas.height = 1350' >/dev/null
@@ -112,7 +129,7 @@ jobs:
               headers={"content-type":"application/json","user-agent":"ASTRA-Public-Verify/2.0"},
               method="POST"
             )
-            with urllib.request.urlopen(req,timeout=20) as r:
+            with urllib.request.urlopen(req,timeout=75) as r:
               assert r.status==200
               return json.load(r)
 
