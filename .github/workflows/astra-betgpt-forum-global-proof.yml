@@ -74,6 +74,65 @@ jobs:
           test "$PASS" -ge 3
           echo "GLOBAL_FORUM_MULTI_MATCH_PASS threads=$PASS total_posts=$TOTAL_POSTS"
 
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          import itertools, re
+
+          class ForumBodyParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.in_body = False
+                  self.buf = []
+                  self.posts = []
+              def handle_starttag(self, tag, attrs):
+                  if tag == "p" and dict(attrs).get("data-forum-body") == "1":
+                      self.in_body = True
+                      self.buf = []
+              def handle_data(self, data):
+                  if self.in_body:
+                      self.buf.append(data)
+              def handle_endtag(self, tag):
+                  if tag == "p" and self.in_body:
+                      text = " ".join(" ".join(self.buf).split())
+                      if text:
+                          self.posts.append(text)
+                      self.in_body = False
+                      self.buf = []
+
+          urls = [x.strip() for x in Path("/tmp/forum-urls.txt").read_text().splitlines() if x.strip()]
+          docs = {}
+          for url in urls:
+              safe = re.sub(r"[^A-Za-z0-9]+", "_", url)
+              html = Path("/tmp/" + safe + ".html").read_text(errors="ignore")
+              parser = ForumBodyParser()
+              parser.feed(html)
+              if len(parser.posts) < 30:
+                  raise SystemExit(f"GLOBAL_FORUM_DIVERSITY_FAIL missing tagged posts url={url} count={len(parser.posts)}")
+              docs[url] = " ".join(parser.posts)
+
+          def grams(text, n=4):
+              words = re.findall(r"[0-9A-Za-zÀ-ÿ]+", text.lower())
+              return {" ".join(words[i:i+n]) for i in range(max(0, len(words)-n+1))}
+
+          def similarity(a, b):
+              aa, bb = grams(a), grams(b)
+              if not aa and not bb:
+                  return 1.0
+              return len(aa & bb) / max(1, len(aa | bb))
+
+          worst = (0.0, None, None)
+          for (ua, a), (ub, b) in itertools.combinations(docs.items(), 2):
+              score = similarity(a, b)
+              print(f"GLOBAL_FORUM_DIVERSITY_PAIR score={score:.4f} a={ua} b={ub}")
+              if score > worst[0]:
+                  worst = (score, ua, ub)
+
+          if worst[0] >= 0.55:
+              raise SystemExit(f"GLOBAL_FORUM_DIVERSITY_FAIL max_similarity={worst[0]:.4f} a={worst[1]} b={worst[2]}")
+          print(f"GLOBAL_FORUM_DIVERSITY_PASS max_similarity={worst[0]:.4f} threshold=0.55")
+          PY
+
           curl --compressed -fsSL --retry 3 --retry-delay 2 --connect-timeout 8 --max-time 30 -H 'cache-control: no-cache' https://betgpt.live/forum -o /tmp/forum-index.html
           grep -aF "/forum/" /tmp/forum-index.html >/dev/null
           INDEX_BYTES="$(wc -c < /tmp/forum-index.html | tr -d ' ')"
