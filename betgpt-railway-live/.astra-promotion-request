@@ -1,6 +1,6 @@
 {
-  "sourceSha": "86a0046d1917e326d8ea3c3fd9e7127f52b2a753",
-  "workflowRunId": 37010537731,
-  "requestedAt": "2026-10-02T13:07:02.166Z",
-  "reason": "Promote GREEN BetGPT editorial sidebar imagery: unique related cards with 1200px+ Discover-ready images"
+  "sourceSha": "a05d36aa842da0e7847a32dfb2fb1ec6614b19a6",
+  "workflowRunId": 37011977296,
+  "requestedAt": "2026-10-02T13:18:43.896Z",
+  "reason": "Promote GREEN BetGPT sidebar imagery with related-article-specific 1200px+ metadata"
 }
