@@ -1,6 +1,6 @@
 {
-  "sourceSha": "84bfc43224115911d67e3f3a10d843aad09db1ce",
-  "workflowRunId": 37042745133,
-  "requestedAt": "2026-10-02T17:46:10.000Z",
-  "reason": "Promote final BetGPT persona with useful in-character tactical fallback"
+  "sourceSha": "86e159b596504763481cbbf42ba74054c6a08afe",
+  "workflowRunId": 37043261245,
+  "requestedAt": "2026-10-02T17:50:15.000Z",
+  "reason": "Promote no-503 browser voice fallback and corrected live voice gate"
 }
