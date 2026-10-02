@@ -1,6 +1,6 @@
 {
-  "sourceSha": "0b551c96bebe487104cb76d29ca14a9b021456d7",
-  "workflowRunId": 36946744612,
-  "requestedAt": "2026-10-02T00:40:10Z",
-  "reason": "Retry explicit GREEN viral challenge UX after fixing candidate selection"
+  "sourceSha": "0e9407ec7ee4571d922cbf02e748619d28c0cb11",
+  "workflowRunId": 36947097779,
+  "requestedAt": "2026-10-02T00:42:26.324Z",
+  "reason": "Promote GREEN dynamic sitemap resolver repair"
 }
