@@ -56,20 +56,39 @@ jobs:
 
           echo "== Moltbook-style football forum SSR =="
           FORUM_URL="https://betgpt.live/forum/cyprus-armenia-2026-10-02"
-          FORUM_HTML="$(curl --compressed --retry 3 --retry-delay 2 --retry-all-errors -fsSL --connect-timeout 12 --max-time 90 -H 'cache-control: no-cache' "$FORUM_URL")"
-          echo "PUBLIC_FORUM_HTML_BYTES=${#FORUM_HTML}"
-          printf '%s\n' "$FORUM_HTML" | grep -F "Le fil des IA" >/dev/null
-          printf '%s\n' "$FORUM_HTML" | grep -F "Qwen local" >/dev/null
-          printf '%s\n' "$FORUM_HTML" | grep -F 'name="robots"' >/dev/null
-          if printf '%s\n' "$FORUM_HTML" | grep -Fqi "noindex"; then
+          FORUM_TIME="$(curl --compressed --retry 3 --retry-delay 2 --retry-all-errors -fsSL --connect-timeout 8 --max-time 20 -H 'cache-control: no-cache' -o /tmp/forum.html -w '%{time_total}' "$FORUM_URL")"
+          FORUM_BYTES="$(wc -c < /tmp/forum.html | tr -d ' ')"
+          echo "PUBLIC_FORUM_HTML_BYTES=$FORUM_BYTES"
+          echo "PUBLIC_FORUM_TIME_SECONDS=$FORUM_TIME"
+          python3 - <<'PY'
+          import os
+          t=float(os.environ.get("FORUM_TIME","99"))
+          assert t < 8.0, f"forum SSR too slow: {t}s"
+          PY
+          grep -F "Le fil des IA" /tmp/forum.html >/dev/null
+          grep -F 'name="robots"' /tmp/forum.html >/dev/null
+          if grep -Fqi "noindex" /tmp/forum.html; then
             echo "PUBLIC_FORUM_INDEXABILITY_FAIL noindex"
             exit 1
           fi
-          FORUM_POSTS="$(printf '%s\n' "$FORUM_HTML" | grep -o 'aria-label="Réactions des agents"' | wc -l | tr -d ' ')"
+          FORUM_POSTS="$(grep -ao 'aria-label="Réactions des agents"' /tmp/forum.html | wc -l | tr -d ' ')"
           test "$FORUM_POSTS" -ge 30
-          printf '%s\n' "$FORUM_HTML" | grep -F "répond à" >/dev/null
-          printf '%s\n' "$FORUM_HTML" | grep -F "chambrage" >/dev/null
-          echo "PUBLIC_FORUM_SSR_PASS posts=$FORUM_POSTS qwen_local=yes indexable=yes"
+          grep -aF "répond à" /tmp/forum.html >/dev/null
+          grep -aF "chambrage" /tmp/forum.html >/dev/null
+          echo "PUBLIC_FORUM_SSR_PASS posts=$FORUM_POSTS indexable=yes"
+
+          echo "== local Qwen enrichment cache =="
+          QWEN_PASS=0
+          for i in $(seq 1 10); do
+            sleep 3
+            curl --compressed -fsSL --connect-timeout 8 --max-time 12 -H 'cache-control: no-cache' "$FORUM_URL" -o /tmp/forum-qwen.html || true
+            if grep -aF "Qwen local" /tmp/forum-qwen.html >/dev/null 2>&1; then
+              QWEN_PASS=1
+              echo "PUBLIC_FORUM_QWEN_CACHE_PASS attempt=$i"
+              break
+            fi
+          done
+          test "$QWEN_PASS" = "1"
 
           echo "== France–Italie article sidebar imagery =="
           ARTICLE_URL="https://betgpt.live/actualites/france-italie-ligue-des-nations-2026-10-02"
