@@ -1,11 +1,12 @@
 {
-  "target": "0b551c96bebe487104cb76d29ca14a9b021456d7",
-  "requestedAt": "2026-10-02T00:45:20Z",
+  "target": "b49ee92d18262e54f8616e4f22a1d04814325229",
+  "requestedAt": "2026-10-02T01:12:00Z",
   "checks": [
     "public-revision",
     "health",
-    "viral-ux-bundle",
+    "challenge-receiver-ux",
+    "viral-share-loop",
     "absurd-score-chat-punchline-reaction"
   ],
-  "reason": "Final revision-bound viral UX verification"
+  "reason": "Verify public one-tap received challenge loop"
 }
