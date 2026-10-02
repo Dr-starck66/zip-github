@@ -9,7 +9,7 @@ jobs:
   diagnose:
     runs-on: ubuntu-latest
     steps:
-      - name: Inspect archive names for production 404 samples
+      - name: Inspect archive coverage for production 404 samples
         shell: bash
         run: |
           set -euo pipefail
@@ -18,15 +18,19 @@ jobs:
           node <<'NODE'
           const fs=require('fs');
           const j=JSON.parse(fs.readFileSync('data/archive-history.json','utf8'));
-          const dates=['2024-04-13','2023-05-06','2026-02-28','2025-03-16','2025-02-16','2025-05-11'];
-          for (const d of dates) {
+          const samples=[
+            ['2024-04-13','psv-eindhoven-vitesse-2024-04-13'],
+            ['2023-05-06','sparta-rotterdam-psv-eindhoven-2023-05-06'],
+            ['2026-02-28','falkirk-kilmarnock-2026-02-28'],
+            ['2025-03-16','dundee-united-dundee-2025-03-16'],
+            ['2025-02-16','rio-ave-avs-2025-02-16'],
+            ['2025-05-11','feyenoord-rotterdam-psv-eindhoven-2025-05-11']
+          ];
+          for (const [d,slug] of samples) {
             const rows=j.matches.filter(m=>String(m.kickoff).startsWith(d));
-            console.log('DATE',d,'COUNT',rows.length);
-            for(const m of rows) {
-              const s=((m.homeName||'')+' '+(m.awayName||'')).toLowerCase();
-              if(/psv|vitesse|sparta|falkirk|kilmarnock|dundee|rio ave|avs|feyenoord/.test(s)) {
-                console.log(JSON.stringify({id:m.id,league:m.league,kickoff:m.kickoff,home:m.homeName,away:m.awayName}));
-              }
-            }
+            const counts={};
+            for(const m of rows) counts[m.league]=(counts[m.league]||0)+1;
+            console.log('DATE',d,'SLUG',slug,'COUNT',rows.length,'LEAGUES',JSON.stringify(counts));
+            for(const m of rows) console.log('ROW',JSON.stringify({id:m.id,league:m.league,home:m.homeName,away:m.awayName}));
           }
           NODE
