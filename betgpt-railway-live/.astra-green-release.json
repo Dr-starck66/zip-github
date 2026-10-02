@@ -15,8 +15,8 @@
   "reemit": {
     "sourceSha": "ea5f7af36bdcc1d80f6d3d191328897f6f2d582e",
     "greenWorkflowRunId": 36943463881,
-    "at": "2026-10-02T00:06:30Z",
+    "at": "2026-10-02T00:10:00Z",
     "controller": "ASTRA_RAILWAY_GREEN_RECONCILER",
-    "reason": "Authorized atomic GREEN reemit with Docker multi-stage runtime packaging repair."
+    "reason": "Force Nitro node-server artifact contract for Railway runtime."
   }
 }
