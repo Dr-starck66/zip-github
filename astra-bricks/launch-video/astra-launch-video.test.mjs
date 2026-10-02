@@ -21,6 +21,8 @@ test("normalizes explicit capture actions and DOM proof rules", () => {
       preseedLocalStorage: { accepted: 1 },
       clickSelectors: ["#accept"],
       clickText: ["Continue"],
+      optionalClickSelectors: [".cookie-close"],
+      optionalClickText: ["Essentials only"],
       forbiddenText: ["Sign in"],
       requiredText: ["Dashboard"],
       waitAfterActionsMs: 1200,
@@ -29,6 +31,8 @@ test("normalizes explicit capture actions and DOM proof rules", () => {
   assert.deepEqual(config.capture.preseedLocalStorage, { accepted: "1" });
   assert.deepEqual(config.capture.clickSelectors, ["#accept"]);
   assert.deepEqual(config.capture.clickText, ["Continue"]);
+  assert.deepEqual(config.capture.optionalClickSelectors, [".cookie-close"]);
+  assert.deepEqual(config.capture.optionalClickText, ["Essentials only"]);
   assert.deepEqual(config.capture.forbiddenText, ["Sign in"]);
   assert.deepEqual(config.capture.requiredText, ["Dashboard"]);
   assert.equal(config.capture.waitAfterActionsMs, 1200);
