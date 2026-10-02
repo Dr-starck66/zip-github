@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-02T19:00:51.220Z",
-  "reason": "Explicit GREEN promotion after GitHub release-train API rate-limit; immutable Never-Fail proof retained"
+  "updatedAt": "2026-10-02T19:01:15.354Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
