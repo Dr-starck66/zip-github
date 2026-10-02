@@ -1,6 +1,6 @@
 {
-  "sourceSha": "434bcc50b97a625ddc26b96c9deec33facb6fa8b",
-  "workflowRunId": 37018520629,
-  "requestedAt": "2026-10-02T14:17:25.249Z",
-  "reason": "Promote GREEN public-image-copy cleanup: contextual SEO captions, clean alts, ledger guard"
+  "sourceSha": "6399d8ff45ee83bf4c1467852b02a7db0dafe47b",
+  "workflowRunId": 37019474397,
+  "requestedAt": "2026-10-02T14:25:15.458Z",
+  "reason": "Promote GREEN localized SEO image captions and public-image-copy guard"
 }
