@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "d73a21ea60de24d457c40470cd90a3342491a223",
-  "workflowRunId": 37066650678,
-  "requestedAt": "2026-10-02T21:27:11.000Z",
-  "reason": "Forum SEO diversity repair: remove shared banter copy, match-specific evidence threads, invalidate legacy cache, reject near-duplicate Qwen posts, add public cross-thread similarity proof"
+  "sourceSha": "40f098709375e9bafce229bbff7a7b9e15c1d6b1",
+  "workflowRunId": 37067671753,
+  "requestedAt": "2026-10-02T21:37:17.000Z",
+  "reason": "Forum SEO diversity repair v2: diversify all agent frames and remove generic MIN_POSTS filler after public similarity fail 0.5768"
 }
