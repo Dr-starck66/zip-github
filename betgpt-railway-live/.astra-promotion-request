@@ -1,8 +1,6 @@
 {
-  "schema": "astra-promotion-request/v1",
-  "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "69a8f3cf008353a877d4d04c8d56b3dde9ba0607",
-  "workflowRunId": null,
-  "requestedAt": "2026-10-02T22:08:00Z",
-  "reason": "Wake ASTRA Safe BetGPT Promotion after match-route resilience + TRUE LINEUPS merge; controller must independently resolve and reverify the latest successful main GREEN workflow before promotion"
+  "sourceSha": "798146fd4bc944b238c7bcb11c6a29e7bb11416e",
+  "workflowRunId": 37141524421,
+  "reason": "ASTRA NEWS SOURCE INTEGRITY GUARD Ω rollout and legacy editorial repair",
+  "requestedAt": "2026-10-03T17:44:30Z"
 }
