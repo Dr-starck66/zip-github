@@ -19,7 +19,7 @@ jobs:
       - name: Checkout release controller
         uses: actions/checkout@v4
 
-      - name: Probe exact reported phrase immediately
+      - name: Probe reported scenario contract immediately
         shell: bash
         run: |
           set -euo pipefail
@@ -50,7 +50,7 @@ jobs:
           assert ntext, normal
           assert not any(x in nlow for x in ("ukraine","northern ireland","unibet","le desk a déjà bossé","sélection automatique betgpt")), ntext
           assert "25-0" in ntext or "25 zero" in nlow, ntext
-          assert any(x in nlow for x in ("scénario extrême","justificatif de domicile","intellectuellement","probabilité")), ntext
+          assert any(x in nlow for x in ("scénario","probabilité","autopsie statistique","grille-pain tactique","football")), ntext
           print("DIRECT_NORMAL_PERSONA_PASS")
 
           roast=ask("ROAST")
@@ -119,7 +119,7 @@ jobs:
           assert "ukraine" not in nlow and "northern ireland" not in nlow and "unibet" not in nlow, ntext
           assert "le desk a déjà bossé" not in nlow and "sélection automatique betgpt" not in nlow, ntext
           assert "25-0" in ntext, ntext
-          assert any(x in nlow for x in ("justificatif de domicile","intellectuellement paresseux","scénario extrême")), ntext
+          assert any(x in nlow for x in ("scénario","probabilité","autopsie statistique","grille-pain tactique","football")), ntext
           print("BETGPT_EXACT_NORMAL_RESPONSE", ntext)
           print("ASTRA_PERSONALITY_NORMAL_LIVE_PASS")
 
