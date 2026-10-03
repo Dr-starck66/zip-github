@@ -159,7 +159,7 @@ for(const row of indexable){
 }
 
 const robots=text(robotsKey);
-const preferred=cfg.canonicalBase.replace(/\/$/,"/")+cfg.preferredSitemap;
+const preferred=cfg.canonicalBase.endsWith("/")?cfg.canonicalBase+cfg.preferredSitemap:cfg.canonicalBase+"/"+cfg.preferredSitemap;
 if(robots&&/User-agent:\s*\*[\s\S]*?Disallow:\s*\/\s*(?:$|\r?\n)/i.test(robots)) blocked.push({file:cfg.robotsFile,reason:"global-disallow-root"});
 if(!robots||!robots.split(/\r?\n/).some(line=>line.trim().toLowerCase()===("sitemap: "+preferred).toLowerCase())){
   actions.push({type:"ensure-robots-sitemap",value:preferred});
