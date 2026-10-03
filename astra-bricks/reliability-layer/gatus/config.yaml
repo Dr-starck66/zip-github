@@ -1,0 +1,35 @@
+web:
+  port: ${PORT}
+
+storage:
+  type: memory
+
+endpoints:
+  - name: BetGPT
+    group: ASTRA
+    url: "${BETGPT_URL}/api/health"
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+      - "[BODY].ok == true"
+      - "[BODY].service == betgpt"
+      - "[RESPONSE_TIME] < 3000"
+
+  - name: AFFILHUNT PRIVATE OMEGA
+    group: ASTRA
+    url: "${AFFILHUNT_URL}/health"
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+      - "[BODY].ok == true"
+      - "[BODY].access == direct"
+      - "[RESPONSE_TIME] < 3000"
+
+  - name: ASTRA BUILDER OMEGA
+    group: ASTRA
+    url: "${ASTRA_BUILDER_URL}/api/self_test"
+    interval: 2m
+    conditions:
+      - "[STATUS] == 200"
+      - "[BODY].ok == true"
+      - "[RESPONSE_TIME] < 15000"
