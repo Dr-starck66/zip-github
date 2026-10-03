@@ -1,0 +1,16 @@
+{
+  "name": "astra-reliability-trigger",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@trigger.dev/sdk": "^4.0.0"
+  },
+  "scripts": {
+    "check": "npx tsc --noEmit",
+    "dev": "npx trigger.dev@latest dev",
+    "deploy": "npx trigger.dev@latest deploy"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}
