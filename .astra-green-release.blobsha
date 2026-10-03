@@ -1,7 +1,7 @@
 3aca8b373c72dfd6e3c5743f87371fb90e3cf8bc  server.cjs
 f9539a607407adb92b56fba74f99362d0b80ff32  package.json
 a17a632545d658db45e26c12bd99fcb390be3dcb  config/astra-seo-self-heal.json
-fa9b824dff43935c46176e77d318b24bc99197c7  scripts/astra-seo-self-heal.cjs
+f100acd45fdd3292cfb03b49cab7fb175f5d7cb5  scripts/astra-seo-self-heal.cjs
 c12f8fcd426a4f75a1c0821ac2b9109bdcf5a554  scripts/astra-seo-self-heal.test.cjs
 43039037a7c1326ffc3f31c74633f9d8429c9603  scripts/astra-verify-green-token.cjs
 9e27f9b113c73597a6cd19a131efad042d0d23b7  bundle.part00
