@@ -1,0 +1,24 @@
+model_list:
+  - model_name: astra-chat
+    litellm_params:
+      model: openai/qwen-chat-local
+      api_base: os.environ/ASTRA_CHAT_OPENAI_BASE
+      api_key: os.environ/ASTRA_CHAT_OPENAI_KEY
+
+  - model_name: astra-chat
+    litellm_params:
+      model: openai/qwen-standard-local
+      api_base: os.environ/ASTRA_STANDARD_OPENAI_BASE
+      api_key: os.environ/ASTRA_STANDARD_OPENAI_KEY
+
+  - model_name: astra-builder
+    litellm_params:
+      model: openai/qwen-coder-local
+      api_base: os.environ/ASTRA_BUILDER_OPENAI_BASE
+      api_key: os.environ/ASTRA_BUILDER_OPENAI_KEY
+
+router_settings:
+  routing_strategy: simple-shuffle
+  num_retries: 2
+  timeout: 45
+  allowed_fails: 2
