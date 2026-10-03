@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "9c3c1f887c974df1aa111e88f37eba8fa4bc5b49",
-  "promotionKey": "Dr-starck66/betgpt-railway@9c3c1f887c974df1aa111e88f37eba8fa4bc5b49",
+  "sourceSha": "e7c4735f799a065a16ce5c4c43addba5a72ffaa0",
+  "promotionKey": "Dr-starck66/betgpt-railway@e7c4735f799a065a16ce5c4c43addba5a72ffaa0",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -16,7 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-03T15:56:00.000Z",
-  "reason": "Trigger Railway with the already-verified GREEN OOM load-shedding release",
-  "deployTrigger": "oom-load-shed-20261003T155600Z"
+  "updatedAt": "2026-10-03T16:05:46.000Z",
+  "reason": "Promote forum local-AI global cooldown after ASTRA Never-Fail Candidate Gate PASS"
 }
