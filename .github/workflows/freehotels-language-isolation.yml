@@ -1,0 +1,14 @@
+name: ASTRA FreeHotels Language Isolation
+on:
+  push:
+    paths:
+      - 'freehotels-deploy/**'
+      - '.github/workflows/freehotels-language-isolation.yml'
+  workflow_dispatch:
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Language isolation gate
+        run: python freehotels-deploy/fix_languages_deploy.py freehotels-deploy
