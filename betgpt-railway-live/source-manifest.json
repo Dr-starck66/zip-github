@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-03T16:12:44.000Z",
-  "reason": "Promote shared forum local-AI budget and failure backoff after ASTRA Never-Fail Candidate Gate PASS"
+  "updatedAt": "2026-10-03T16:13:46.210Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
