@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "9d43138ae138148c18a265272c22a954a0aeef7f",
-  "promotionKey": "Dr-starck66/betgpt-railway@9d43138ae138148c18a265272c22a954a0aeef7f",
+  "sourceSha": "da5e01655878373e7ae23975dfebfeb17b08c546",
+  "promotionKey": "Dr-starck66/betgpt-railway@da5e01655878373e7ae23975dfebfeb17b08c546",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-03T10:36:21.191Z",
-  "reason": "Release Train: promote latest immutable GREEN ancestor of current main without rollback starvation"
+  "updatedAt": "2026-10-03T12:47:26.922Z",
+  "reason": "GREEN forum release: fast SSR plus longer non-blocking local-Qwen enrichment"
 }
