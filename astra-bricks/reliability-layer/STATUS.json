@@ -1,0 +1,26 @@
+{
+  "schema": "astra-reliability-layer-status/v1",
+  "layer": "ASTRA RELIABILITY LAYER Ω",
+  "components": {
+    "railwayTracing": {
+      "integration": "platform",
+      "claim": "verify per service at runtime"
+    },
+    "gatus": {
+      "integration": "config-ready",
+      "claim": "UNVERIFIED until a Gatus runtime executes the probes"
+    },
+    "litellm": {
+      "integration": "config-ready",
+      "claim": "UNVERIFIED until a LiteLLM runtime passes /health/liveliness and chat probe"
+    },
+    "trigger": {
+      "integration": "task-ready",
+      "claim": "UNVERIFIED until Trigger credentials/runtime execute astra-proof-gate"
+    },
+    "langfuse": {
+      "integration": "otel-contract-ready",
+      "claim": "UNVERIFIED until trace ingestion and retrieval are proven"
+    }
+  }
+}
