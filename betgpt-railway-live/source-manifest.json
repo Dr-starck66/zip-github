@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-03T19:35:55.000Z",
-  "reason": "Promote ASTRA RELIABILITY LAYER candidate after successful immutable candidate gate"
+  "updatedAt": "2026-10-03T19:37:59.430Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
