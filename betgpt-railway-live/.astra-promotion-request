@@ -1,6 +1,8 @@
 {
-  "sourceSha": "798146fd4bc944b238c7bcb11c6a29e7bb11416e",
-  "workflowRunId": 37141524421,
-  "reason": "ASTRA NEWS SOURCE INTEGRITY GUARD Ω rollout and legacy editorial repair",
-  "requestedAt": "2026-10-03T17:44:30Z"
+  "schema": "astra-promotion-request/v1",
+  "sourceRepo": "Dr-starck66/betgpt-railway",
+  "sourceSha": "65a3a3333b781592f43be38b08b070c7cd44a877",
+  "workflowRunId": 37066500054,
+  "requestedAt": "2026-10-03T18:53:00.000Z",
+  "reason": "Fix forum SEO duplicate-content regression: match-specific SSR conversations, legacy cache invalidation, near-duplicate filter, prebuild diversity gate"
 }
