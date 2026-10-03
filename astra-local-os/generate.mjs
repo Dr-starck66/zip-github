@@ -50,6 +50,28 @@ const paragraphs=[
 "Cette approche reste volontairement pragmatique. Une PME n’a pas besoin d’un projet technologique spectaculaire pour améliorer son acquisition. Elle a besoin d’un parcours fiable, observable et facile à reprendre par un humain. L’automatisation doit réduire la charge, pas créer une dépendance à une interface supplémentaire. C’est pourquoi la valeur d’une plateforme intégrée vient surtout de son orchestration : attirer, répondre, qualifier, planifier, publier et mesurer dans un même flux. La technologie devient alors un moyen de protéger les opportunités commerciales plutôt qu’une fin en soi."
 ];
 
+function stripText(value=""){return String(value).replace(/<[^>]+>/g," ").replace(/&[a-z0-9#]+;/gi," ").replace(/\s+/g," ").trim()}
+function repairExistingSourceSection(html){
+  const title=stripText((html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)||[])[1]||"");
+  const sectionRx=/<section><h2>Sources et signaux consultés<\/h2>([\s\S]*?)<\/section>/i;
+  const match=html.match(sectionRx);
+  if(!match||!title) return html;
+  const items=[...match[1].matchAll(/<li><a[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>(?:\s*—\s*([^<]*))?<\/li>/gi)].map((m)=>({
+    link:m[1],
+    url:m[1],
+    title:stripText(m[2]),
+    source:stripText(m[3]||""),
+    label:stripText(m[3]||m[2]),
+    status:"CORROBORATED"
+  }));
+  if(!items.length) return html;
+  const kept=filterRelevantSources({title},items,{minOverlap:1});
+  const sourceHtml=kept.length
+    ? `<ul>${kept.map(s=>`<li><a rel="nofollow noopener" href="${esc(s.link)}">${esc(s.title)}</a>${s.source?" — "+esc(s.source):""}</li>`).join("")}</ul>`
+    : "<p>Aucun signal d’actualité suffisamment pertinent n’est conservé pour cette édition ; le contenu repose sur le cadre éditorial permanent.</p>";
+  return html.replace(sectionRx,`<section><h2>Sources et signaux consultés</h2>${sourceHtml}</section>`);
+}
+
 function articleHtml(meta,sources){
   const canonical=`${BASE}/articles/${meta.file}`;
   const sourceHtml=sources.length?`<ul>${sources.map(s=>`<li><a rel="nofollow noopener" href="${esc(s.link)}">${esc(s.title)}</a>${s.source?" — "+esc(s.source):""}</li>`).join("")}</ul>`:"<p>Aucun signal d’actualité fiable n’a été récupéré lors de cette génération ; l’analyse repose sur le cadre éditorial permanent.</p>";
@@ -85,7 +107,10 @@ for(const [slot,h,m] of slots){
 }
 
 for(const f of fs.readdirSync(articlesDir).filter(x=>x.endsWith(".html")).sort().reverse()){
-  const html=fs.readFileSync(path.join(articlesDir,f),"utf8");
+  const articlePath=path.join(articlesDir,f);
+  const originalHtml=fs.readFileSync(articlePath,"utf8");
+  const html=repairExistingSourceSection(originalHtml);
+  if(html!==originalHtml) fs.writeFileSync(articlePath,html);
   const title=(html.match(/<h1>(.*?)<\/h1>/)||[])[1]||f;
   const date=f.slice(0,10);
   all.push({file:f,title,date});
