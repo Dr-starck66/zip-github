@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-03T12:57:17.368Z",
-  "reason": "GREEN durable forum resolver: historical slug -> dated ESPN -> persisted thread"
+  "updatedAt": "2026-10-03T12:57:33.745Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
