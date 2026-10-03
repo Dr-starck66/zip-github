@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "e7c4735f799a065a16ce5c4c43addba5a72ffaa0",
-  "promotionKey": "Dr-starck66/betgpt-railway@e7c4735f799a065a16ce5c4c43addba5a72ffaa0",
+  "sourceSha": "87053a3c82e4ae1a10a38855f3b20b92b5543626",
+  "promotionKey": "Dr-starck66/betgpt-railway@87053a3c82e4ae1a10a38855f3b20b92b5543626",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-03T16:06:45.163Z",
-  "reason": "Re-emit approved GREEN release because public production had not converged"
+  "updatedAt": "2026-10-03T16:12:44.000Z",
+  "reason": "Promote shared forum local-AI budget and failure backoff after ASTRA Never-Fail Candidate Gate PASS"
 }
