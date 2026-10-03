@@ -269,14 +269,18 @@ jobs:
                   assert r.status == 200, r.status
                   return json.load(r)
 
+          # BetGPT is intentionally single-mode Sans filtre. "NORMAL" is kept
+          # as a backwards-compatible request alias, but must resolve to the same
+          # strong persona instead of the retired softer mode.
           normal=ask("NORMAL")
           ntext=str(normal.get("text","")).strip()
           nlow=ntext.lower()
-          print("POSTFLIGHT_NORMAL_RESPONSE", ntext)
+          print("POSTFLIGHT_NORMAL_ALIAS_RESPONSE", ntext)
           assert ntext
           assert not any(x in nlow for x in ("ukraine","northern ireland","unibet","le desk a déjà bossé","sélection automatique betgpt"))
           assert "25-0" in ntext or "25 zero" in nlow
-          assert any(x in nlow for x in ("scénario extrême","justificatif de domicile","intellectuellement","probabilité"))
+          assert any(x in nlow for x in ("magnifique","grille-pain tactique","autopsie statistique","micro-ondes","jeu vidéo"))
+          assert str((normal.get("punchline") or {}).get("text","")).strip()
 
           roast=ask("ROAST")
           rtext=str(roast.get("text","")).strip()
