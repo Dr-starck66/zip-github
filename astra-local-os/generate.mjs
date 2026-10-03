@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { filterRelevantSources } from "../astra-global/astra-news-source-integrity-guard.mjs";
 
 const root = path.resolve("astra-local-os");
 const articlesDir = path.join(root,"articles");
@@ -66,7 +67,21 @@ for(const [slot,h,m] of slots){
   const iso=`${now.date}T${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:00${new Intl.DateTimeFormat("en",{timeZone:"Europe/Paris",timeZoneName:"longOffset"}).formatToParts(new Date(now.date+"T12:00:00Z")).find(x=>x.type==="timeZoneName").value.replace("GMT","")}`;
   const meta={file,title:theme[1],query:theme[2],dek:theme[3],date:now.date,slot,iso};
   const target=path.join(articlesDir,file);
-  if(!fs.existsSync(target)) fs.writeFileSync(target,articleHtml(meta,await news(meta.query)));
+  if(!fs.existsSync(target)) {
+    const rawSources = await news(meta.query);
+    const filteredSources = filterRelevantSources(
+      { title: meta.title, description: meta.dek, query: meta.query },
+      rawSources.map((s) => ({
+        ...s,
+        label: s.source || "Google News",
+        title: s.title,
+        url: s.link,
+        status: "CORROBORATED"
+      })),
+      { minOverlap: 1 }
+    );
+    fs.writeFileSync(target,articleHtml(meta,filteredSources));
+  }
 }
 
 for(const f of fs.readdirSync(articlesDir).filter(x=>x.endsWith(".html")).sort().reverse()){
