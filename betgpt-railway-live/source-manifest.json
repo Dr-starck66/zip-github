@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-03T12:49:48.409Z",
-  "reason": "Promote latest Never-Fail GREEN ancestor containing forum fixes and later BetGPT changes"
+  "updatedAt": "2026-10-03T12:50:01.513Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
