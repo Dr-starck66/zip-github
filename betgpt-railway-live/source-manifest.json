@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-03T12:47:26.922Z",
-  "reason": "GREEN forum release: fast SSR plus longer non-blocking local-Qwen enrichment"
+  "updatedAt": "2026-10-03T12:47:40.365Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
