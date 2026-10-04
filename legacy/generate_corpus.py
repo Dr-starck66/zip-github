@@ -7,6 +7,20 @@ root = Path(sys.argv[1])
 src = Path(sys.argv[2])
 cities = json.loads((src / "cities.json").read_text(encoding="utf-8"))
 
+# ASTRA FULL INDEXATION GATE Ω
+# Keep one master sitemap URL (/sitemap.xml) that exposes every indexable corpus.
+# Preserve the existing primary urlset before replacing /sitemap.xml with an index.
+primary_sitemap = root / "sitemap.xml"
+master_children = []
+if primary_sitemap.exists():
+    original = primary_sitemap.read_text(encoding="utf-8", errors="ignore")
+    if "<urlset" in original:
+        main_target = root / "sitemap-main.xml"
+        primary_sitemap.replace(main_target)
+        master_children.append("https://freehotels.info/sitemap-main.xml")
+    elif "<sitemapindex" in original:
+        master_children.extend(re.findall(r"<loc>\s*(https://freehotels\.info/[^<]+)\s*</loc>", original, re.I))
+
 variants = [
     ("Welche Lage passt zu deiner Reise?", "Anreise und Wege realistisch planen", "Gesamtpreis statt Zimmerpreis vergleichen"),
     ("Stadtteilwahl vor Preisfilter", "Bahnhof, ÖPNV und Ankunft", "Wann eine alternative Lage besser ist"),
@@ -142,11 +156,22 @@ for u in indexable_urls:
 sitemap.append("</urlset>")
 (root/"sitemap-legacy.xml").write_text("\n".join(sitemap)+"\n",encoding="utf-8")
 
+# Build the single master sitemap endpoint. Submitting /sitemap.xml is enough
+# for discovery of the modern, News and restored historical URL corpora.
+master_children.append("https://freehotels.info/sitemap-legacy.xml")
+if (root/"sitemap-news.xml").exists():
+    master_children.append("https://freehotels.info/sitemap-news.xml")
+master_children = list(dict.fromkeys(master_children))
+master = ['<?xml version="1.0" encoding="UTF-8"?>','<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+for loc in master_children:
+    master.append(f"  <sitemap><loc>{loc}</loc></sitemap>")
+master.append("</sitemapindex>")
+(root/"sitemap.xml").write_text("\n".join(master)+"\n",encoding="utf-8")
+
 robots=root/"robots.txt"
 rt=robots.read_text(encoding="utf-8",errors="ignore") if robots.exists() else "User-agent: *\nAllow: /\n"
-line="Sitemap: https://freehotels.info/sitemap-legacy.xml"
-if line not in rt:
-    rt=rt.rstrip()+"\n"+line+"\n"
+rt=re.sub(r"(?im)^Sitemap:\s*.*$","",rt).strip()
+rt=rt+"\nSitemap: https://freehotels.info/sitemap.xml\n"
 robots.write_text(rt,encoding="utf-8")
 
 manifest={
