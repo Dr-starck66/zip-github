@@ -122,6 +122,11 @@ for p in hub_files:
     if len(re.findall(r"<h2(?:\s|>)",s,re.I)) < 2: issues.append([rel,"h2_count"])
     if 'rel="canonical"' not in s: issues.append([rel,"canonical_missing"])
     if len(s) < 1800: issues.append([rel,"too_short"])
+    weak_placeholder = (
+        "historisch ein Hotelreservierungs- und Informationsportal" in s
+        or "Diese wiederaufgebaute Seite setzt genau diese thematische Kontinuität" in s
+    )
+    if weak_placeholder: issues.append([rel,"legacy_placeholder_template"])
     m=re.search(r"<title>(.*?)</title>",s,re.I|re.S)
     if m:
         t=re.sub(r"\s+"," ",m.group(1)).strip().lower()
