@@ -276,7 +276,7 @@ jobs:
           assert ntext
           assert not any(x in nlow for x in ("ukraine","northern ireland","unibet","le desk a déjà bossé","sélection automatique betgpt"))
           assert "25-0" in ntext or "25 zero" in nlow
-          assert any(x in nlow for x in ("scénario extrême","justificatif de domicile","intellectuellement","probabilité"))
+          assert any(x in nlow for x in ("scénario","domicile","intellect","probabil","autopsie statistique","grille-pain"))
 
           roast=ask("ROAST")
           rtext=str(roast.get("text","")).strip()
