@@ -40,6 +40,15 @@ RUN apk add --no-cache curl \
  && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/berlin/guenstige-hotels/)" = "200" \
  && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/muenchen/flughafen/)" = "200" \
  && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/en/)" = "200" \
+ && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/dortmund/ | grep -q 'Signal Iduna Park' \
+ && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/bonn/ | grep -q 'Bundesviertel' \
+ && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/bremen/ | grep -q 'Überseestadt' \
+ && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/dresden/ | grep -q 'Neustadt' \
+ && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/essen/ | grep -q 'Rüttenscheid' \
+ && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/heidelberg/ | grep -q 'Neuenheim' \
+ && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/nuernberg/ | grep -q 'Messe Nürnberg' \
+ && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/stuttgart/ | grep -q 'Bad Cannstatt' \
+ && curl -sSI -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/ | grep -qi 'Strict-Transport-Security' \
  && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: http' http://127.0.0.1/)" = "301" \
  && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: www.freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/)" = "301" \
  && nginx -s quit \
