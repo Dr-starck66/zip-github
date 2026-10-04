@@ -2,7 +2,8 @@ FROM nginx:1.27-alpine
 RUN apk add --no-cache unzip
 COPY site.b64 /tmp/site.b64
 RUN base64 -d /tmp/site.b64 > /tmp/site.zip \
- && unzip -q /tmp/site.zip -d /usr/share/nginx/html \
+ && rm -rf /usr/share/nginx/html/* \
+ && unzip -oq /tmp/site.zip -d /usr/share/nginx/html \
  && cp /usr/share/nginx/html/nginx.conf /etc/nginx/conf.d/default.conf \
  && rm -f /tmp/site.b64 /tmp/site.zip \
     /usr/share/nginx/html/Dockerfile \
