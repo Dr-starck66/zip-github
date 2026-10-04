@@ -42,5 +42,11 @@
     "günstige Hotels by major city",
     "Hauptbahnhof hotels by major city",
     "Flughafen hotels by major city"
-  ]
+  ],
+  "indexnow": {
+    "enabled": true,
+    "key_location": "https://freehotels.info/268d53f637eeacf2e56853f16afb545a23d04faeffe760cc5c9f73c233822070.txt",
+    "source": "sitemap-legacy.xml",
+    "policy": "Submit the rebuilt public corpus after the production verification gate succeeds."
+  }
 }
