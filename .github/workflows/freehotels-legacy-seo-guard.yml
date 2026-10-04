@@ -61,4 +61,31 @@ jobs:
           test "$count" -ge 70
           curl -fsS "$base/robots.txt" | grep -q 'Sitemap: https://freehotels.info/sitemap-legacy.xml'
 
+          wait_for_200 "/268d53f637eeacf2e56853f16afb545a23d04faeffe760cc5c9f73c233822070.txt"
           echo "FreeHotels legacy SEO guard PASS: targets=200, historical redirects=301, preserved legacy pages=200, unknown legacy path=404, sitemap/canonical present."
+
+      - name: Submit rebuilt corpus to IndexNow
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://freehotels.info"
+          key="268d53f637eeacf2e56853f16afb545a23d04faeffe760cc5c9f73c233822070"
+          curl -fsS "$base/sitemap-legacy.xml" -o /tmp/sitemap.xml
+          python3 - <<'PY'
+          import json, xml.etree.ElementTree as ET
+          root=ET.parse('/tmp/sitemap.xml').getroot()
+          ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
+          urls=[n.text.strip() for n in root.findall('s:url/s:loc',ns) if n.text]
+          payload={
+            "host":"freehotels.info",
+            "key":"268d53f637eeacf2e56853f16afb545a23d04faeffe760cc5c9f73c233822070",
+            "keyLocation":"https://freehotels.info/268d53f637eeacf2e56853f16afb545a23d04faeffe760cc5c9f73c233822070.txt",
+            "urlList":urls[:10000],
+          }
+          open('/tmp/indexnow.json','w').write(json.dumps(payload))
+          print(f"IndexNow URLs: {len(payload['urlList'])}")
+          PY
+          code=$(curl -sS -o /tmp/indexnow-response -w '%{http_code}'             -H 'Content-Type: application/json; charset=utf-8'             --data-binary @/tmp/indexnow.json             https://api.indexnow.org/indexnow)
+          cat /tmp/indexnow-response || true
+          echo "IndexNow HTTP $code"
+          test "$code" = "200" -o "$code" = "202"
