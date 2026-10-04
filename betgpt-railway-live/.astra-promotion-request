@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "fa4c9ba586012fb1209f4a79bc38262bddb53560",
-  "workflowRunId": 37203680538,
-  "requestedAt": "2026-10-04T12:56:00Z",
-  "reason": "Promote GREEN bookmaker CTA release after full Never-Fail candidate gate and browser/SEO verification"
+  "sourceSha": "1d47b64eea0d7da091efa2d20ea69f8214e40e47",
+  "workflowRunId": 37207221537,
+  "requestedAt": "2026-10-04T13:54:30Z",
+  "reason": "Promote GREEN ASTRA ODDS TRUTH GUARD release: fresh provider quotes only, no HTML odds ingestion, exact-match CTA only"
 }
