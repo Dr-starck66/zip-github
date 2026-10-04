@@ -35,6 +35,11 @@ RUN apk add --no-cache curl \
  && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/paris/)" = "200" \
  && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/definitely-not-a-restored-city/12345)" = "404" \
  && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/sitemap-legacy.xml)" = "200" \
+ && test "$(curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/sitemap-legacy.xml | grep -c '<url>')" -ge 80 \
+ && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/sitemap-legacy.xml | grep -q 'https://freehotels.info/de/berlin/guenstige-hotels/' \
+ && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/berlin/guenstige-hotels/)" = "200" \
+ && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/muenchen/flughafen/)" = "200" \
+ && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/en/)" = "200" \
  && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: http' http://127.0.0.1/)" = "301" \
  && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: www.freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/)" = "301" \
  && nginx -s quit \
