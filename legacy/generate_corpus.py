@@ -166,4 +166,9 @@ if len(indexable_urls) < 80:
     raise SystemExit(f"recovery sitemap unexpectedly small: {len(indexable_urls)}")
 audit={"status":"PASS","hub_count":len(hubs),"sitemap_url_count":len(indexable_urls),"generated":created,"verified_routes":len(verified),"direct_historic":len(direct),"growth_clusters":len(required_growth),"issues":[]}
 (root/"legacy-audit.json").write_text(json.dumps(audit,ensure_ascii=False,indent=2),encoding="utf-8")
+
+# IndexNow ownership proof. The key is intentionally public and is not a secret.
+indexnow_key="268d53f637eeacf2e56853f16afb545a23d04faeffe760cc5c9f73c233822070"
+(root/f"{indexnow_key}.txt").write_text(indexnow_key+"\n",encoding="utf-8")
+
 print(json.dumps(audit))
