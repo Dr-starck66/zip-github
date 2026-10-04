@@ -94,6 +94,64 @@ direct = [
  "/de/berlin/45.html","/de/koeln/133.html","/de/frankfurt/14.html","/en/berlin/45.html"
 ]
 
+# Remove redirect-only legacy URLs from the preserved primary sitemap.
+# A sitemap must contain final canonical URLs, not routes whose only role is 301 recovery.
+main_sitemap_path = root / "sitemap-main.xml"
+if main_sitemap_path.exists():
+    raw_main = main_sitemap_path.read_text(encoding="utf-8", errors="ignore")
+    locs = re.findall(r"<loc>\s*(https://freehotels\.info/[^<]+)\s*</loc>", raw_main, re.I)
+    cleaned = []
+    for loc in locs:
+        path_only = re.sub(r"^https://freehotels\.info", "", loc)
+        redirect_family = re.match(r"^/(de|en)/[^/]+/(?:list\.html|[0-9]+(?:\.html)?|[0-9]+/index\.html)/?$", path_only, re.I)
+        if redirect_family and path_only not in direct:
+            continue
+        cleaned.append(loc)
+    main_xml = ['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for loc in dict.fromkeys(cleaned):
+        main_xml.append(f"  <url><loc>{loc}</loc></url>")
+    main_xml.append("</urlset>")
+    main_sitemap_path.write_text("\n".join(main_xml)+"\n",encoding="utf-8")
+
+# ASTRA SEMANTIC FLOW + FULL INDEXATION: every first-level city hub receives
+# at least one real internal link from its language directory. Direct historic
+# 200 pages are exposed in a small, explicit historical section rather than hidden.
+city_names = {(x["lang"], x["slug"]): x["city"] for x in cities}
+for lang in ("de","en"):
+    landing = root / lang / "index.html"
+    if not landing.exists():
+        continue
+    first_level = sorted(
+        p for p in (root/lang).glob("*/index.html")
+        if p.parent != root/lang
+    )
+    items = []
+    for p in first_level:
+        slug = p.parent.name
+        name = city_names.get((lang,slug), slug.replace("-"," ").title())
+        items.append(f'<li><a href="/{lang}/{slug}/">{escape(name)}</a></li>')
+    title = "Alle wiederhergestellten Städte" if lang == "de" else "All restored city guides"
+    intro = ("Dieses Verzeichnis wird beim Build aus dem vollständigen wiederhergestellten Korpus erzeugt; "
+             "dadurch bleibt keine indexierbare Stadtseite ohne internen Einstieg."
+             if lang == "de" else
+             "This directory is generated from the complete restored corpus at build time, so no indexable city guide is left without an internal entry point.")
+    historical = [u for u in direct if u.startswith(f"/{lang}/")]
+    hist_html = ""
+    if historical:
+        hist_title = "Historische FreeHotels-Seiten" if lang == "de" else "Historic FreeHotels pages"
+        hist_items = "".join(f'<li><a href="{u}">{escape(u)}</a></li>' for u in historical)
+        hist_html = f'<h3>{hist_title}</h3><ul>{hist_items}</ul>'
+    section = f'<section id="astra-full-city-directory"><h2>{title}</h2><p>{intro}</p><ul>{"".join(items)}</ul>{hist_html}</section>'
+    page = landing.read_text(encoding="utf-8",errors="ignore")
+    page = re.sub(r'<section id="astra-full-city-directory">[\s\S]*?</section>', '', page, flags=re.I)
+    if "</article>" in page:
+        page = page.replace("</article>", section+"</article>", 1)
+    elif "</main>" in page:
+        page = page.replace("</main>", section+"</main>", 1)
+    else:
+        page = page.replace("</body>", section+"</body>", 1)
+    landing.write_text(page,encoding="utf-8")
+
 for row in verified:
     target_file = root / row["target"].strip("/") / "index.html"
     if not target_file.exists():
