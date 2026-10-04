@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "1d47b64eea0d7da091efa2d20ea69f8214e40e47",
-  "workflowRunId": 37207221537,
-  "requestedAt": "2026-10-04T13:54:30Z",
-  "reason": "Promote GREEN ASTRA ODDS TRUTH GUARD release: fresh provider quotes only, no HTML odds ingestion, exact-match CTA only"
+  "sourceSha": "331766cbb632f83042815764fb6ae40109a9ede8",
+  "workflowRunId": 37216568388,
+  "requestedAt": "2026-10-04T16:25:06Z",
+  "reason": "Promote GREEN null-route resilience fix: never emit /match/null or /match/undefined; tested fail-closed route fallback"
 }
