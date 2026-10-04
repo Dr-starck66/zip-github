@@ -1,0 +1,64 @@
+name: FreeHotels Legacy SEO Guard
+
+on:
+  push:
+    branches: [freehotels-railway-omega]
+    paths:
+      - 'legacy/**'
+      - 'railway-nginx.conf'
+      - 'Dockerfile'
+  workflow_dispatch:
+
+jobs:
+  verify-production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Railway deployment and verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://freehotels.info"
+
+          wait_for_200() {
+            local path="$1"
+            for i in $(seq 1 24); do
+              code=$(curl -sS -o /tmp/page -w '%{http_code}' "$base$path" || true)
+              if [ "$code" = "200" ]; then return 0; fi
+              sleep 15
+            done
+            echo "Expected 200 for $path, got $code"
+            exit 1
+          }
+
+          expect_301() {
+            local path="$1"
+            local expected="$2"
+            headers=$(curl -sS -I "$base$path" || true)
+            code=$(printf '%s' "$headers" | awk 'NR==1{print $2}')
+            location=$(printf '%s' "$headers" | awk 'BEGIN{IGNORECASE=1}/^location:/{gsub("\r","");print $2}' | tail -1)
+            test "$code" = "301"
+            test "$location" = "$expected"
+          }
+
+          for path in             /de/             /de/europa/             /de/leipzig/             /de/dresden/             /de/berlin/guenstige-hotels/             /de/muenchen/flughafen/             /en/             /en/berlin/             /sitemap-legacy.xml
+          do
+            wait_for_200 "$path"
+          done
+
+          expect_301 /de/leipzig/list.html https://freehotels.info/de/leipzig/
+          expect_301 /de/halle_an_der_saale/8434 https://freehotels.info/de/halle-an-der-saale/
+          expect_301 /en/leipzig/329.html https://freehotels.info/en/leipzig/
+
+          for path in /de/berlin/45.html /de/koeln/133.html /de/frankfurt/14.html /en/berlin/45.html; do
+            wait_for_200 "$path"
+          done
+
+          unknown=$(curl -sS -o /dev/null -w '%{http_code}' "$base/de/does-not-exist/99999" || true)
+          test "$unknown" = "404"
+
+          curl -fsS "$base/de/berlin/guenstige-hotels/" | grep -q '<link rel="canonical" href="https://freehotels.info/de/berlin/guenstige-hotels/">'
+          count=$(curl -fsS "$base/sitemap-legacy.xml" | grep -c '<url>')
+          test "$count" -ge 70
+          curl -fsS "$base/robots.txt" | grep -q 'Sitemap: https://freehotels.info/sitemap-legacy.xml'
+
+          echo "FreeHotels legacy SEO guard PASS: targets=200, historical redirects=301, preserved legacy pages=200, unknown legacy path=404, sitemap/canonical present."
