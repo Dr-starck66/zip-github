@@ -1,0 +1,46 @@
+{
+  "project": "FREEHOTELS.INFO historical corpus recovery",
+  "updated": "2026-10-04",
+  "policy": {
+    "historical_url_strategy": "Preserve original URL as 200 when a verified restored page exists; otherwise 301 to the same-city/language hub only when that hub exists; otherwise 404. Never blanket-redirect legacy URLs to the homepage.",
+    "content_strategy": "Rebuild topical continuity around Hotels in Deutschland / Hotelreservierung Deutschland / Hotels in Germany and Europe with useful city and travel-intent pages.",
+    "soft_404_guard": true
+  },
+  "evidence": {
+    "public_historical_positioning": [
+      "Hotels in Deutschland, Hotelreservierung Deutschland",
+      "Hotelreservierung in deutschen Grossstädten. Informationen über Hotels in Deutschland sowie Europa.",
+      "Historical external anchors: Hotels in Berlin, Hotels in Germany, Hotels in Deutschland."
+    ],
+    "runtime_observed_legacy_requests": [
+      "/de/leipzig/list.html",
+      "/de/halle_an_der_saale/8434",
+      "/de/krakau/18541",
+      "/de/mykonos/24532",
+      "/en/leipzig/329.html"
+    ],
+    "verified_restored_200": [
+      "/de/berlin/45.html",
+      "/de/koeln/133.html",
+      "/de/frankfurt/14.html",
+      "/en/berlin/45.html"
+    ]
+  },
+  "route_families": [
+    "/de/<city>/list.html",
+    "/en/<city>/list.html",
+    "/de/<city>/<numeric-id>",
+    "/de/<city>/<numeric-id>.html",
+    "/en/<city>/<numeric-id>",
+    "/en/<city>/<numeric-id>.html"
+  ],
+  "current_recovery_sitemap_target_count": 80,
+  "growth_clusters": [
+    "Germany city hubs",
+    "Europe city hubs",
+    "English Hotels in Germany hubs",
+    "günstige Hotels by major city",
+    "Hauptbahnhof hotels by major city",
+    "Flughafen hotels by major city"
+  ]
+}
