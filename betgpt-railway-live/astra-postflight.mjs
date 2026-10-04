@@ -122,6 +122,20 @@ assert(new RegExp("Sitemap:\\s*" + base.replace(/[.*+?^$()|[\\]\\]/g, "\\$&") + 
 const sitemap = await request("/sitemap.xml", "application/xml,text/xml");
 assert(sitemap.status === 200, "sitemap HTTP " + sitemap.status);
 assert(/<urlset\b/i.test(sitemap.body), "sitemap missing urlset");
+const criticalSitemaps = [
+  ["/news-sitemap.xml", "news sitemap"],
+  ["/sitemap-images.xml", "image sitemap"],
+];
+
+for (const [pathname, label] of criticalSitemaps) {
+  const startedAt = Date.now();
+  const xml = await request(pathname, "application/xml,text/xml");
+  const elapsedMs = Date.now() - startedAt;
+  assert(xml.status === 200, label + " HTTP " + xml.status);
+  assert(/<urlset\b/i.test(xml.body), label + " missing urlset");
+  assert(elapsedMs <= timeoutMs * 2, label + " exceeded response budget: " + elapsedMs + "ms");
+  console.log("ASTRA_SITEMAP_ENDPOINT_PASS", JSON.stringify({ pathname, status: xml.status, elapsedMs }));
+}
 
 const urls = [...sitemap.body.matchAll(/<loc>([^<]+)<\/loc>/gi)]
   .map((match) => decodeXml(match[1].trim()))
@@ -266,6 +280,8 @@ console.log("ASTRA_RELEASE_CONTROL_PLANE_POSTFLIGHT_PASS", JSON.stringify({
   home: home.status,
   robots: robots.status,
   sitemap: sitemap.status,
+  newsSitemap: 200,
+  imageSitemap: 200,
   sitemapUrlsAudited: uniqueUrls.length,
   health: health.status,
   searchTruth: searchTruthJson.status,
