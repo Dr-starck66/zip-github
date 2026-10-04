@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-04T17:00:51.000Z",
-  "reason": "Release Train: promote current immutable GREEN BetGPT head after runtime false-PASS repairs"
+  "updatedAt": "2026-10-04T17:02:25.363Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
