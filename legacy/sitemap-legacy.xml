@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://freehotels.info/de/leipzig/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://freehotels.info/de/halle-an-der-saale/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://freehotels.info/de/krakau/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://freehotels.info/de/mykonos/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://freehotels.info/en/leipzig/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://freehotels.info/de/halle-an-der-saale/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://freehotels.info/de/krakau/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://freehotels.info/de/mykonos/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://freehotels.info/en/leipzig/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://freehotels.info/en/napoli/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://freehotels.info/de/stuttgart/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freehotels.info/de/nuernberg/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freehotels.info/de/dresden/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freehotels.info/de/bremen/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freehotels.info/de/dortmund/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freehotels.info/de/essen/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freehotels.info/de/bonn/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freehotels.info/de/heidelberg/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freehotels.info/en/munich/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freehotels.info/en/hamburg/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freehotels.info/en/frankfurt/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://freehotels.info/en/cologne/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>
