@@ -91,6 +91,28 @@ for url in direct:
 hub_files = sorted(list(root.glob("de/*/index.html")) + list(root.glob("en/*/index.html")))
 hubs = ["/" + p.relative_to(root).as_posix().removesuffix("index.html") for p in hub_files]
 
+# Sitemap must include the full rebuilt corpus, not only first-level city hubs.
+# This keeps city-intent clusters (cheap hotels, station, airport, parking, etc.)
+# discoverable and prevents the build from silently shrinking the recovery sitemap.
+indexable_files = sorted(set(
+    list(root.glob("de/**/index.html")) +
+    list(root.glob("en/**/index.html")) +
+    [p for p in (root/"de"/"index.html", root/"en"/"index.html") if p.exists()]
+))
+indexable_urls = ["/" + p.relative_to(root).as_posix().removesuffix("index.html") for p in indexable_files]
+
+required_growth = [
+ "/de/berlin/guenstige-hotels/","/de/berlin/hauptbahnhof/","/de/berlin/flughafen/",
+ "/de/muenchen/guenstige-hotels/","/de/muenchen/hauptbahnhof/","/de/muenchen/flughafen/",
+ "/de/hamburg/guenstige-hotels/","/de/hamburg/hauptbahnhof/","/de/hamburg/flughafen/",
+ "/de/frankfurt/guenstige-hotels/","/de/frankfurt/hauptbahnhof/","/de/frankfurt/flughafen/",
+ "/de/koeln/guenstige-hotels/","/de/koeln/hauptbahnhof/","/de/koeln/flughafen/",
+ "/de/duesseldorf/guenstige-hotels/","/de/duesseldorf/hauptbahnhof/","/de/duesseldorf/flughafen/",
+]
+missing_growth=[u for u in required_growth if not (root/u.strip("/")/"index.html").exists()]
+if missing_growth:
+    raise SystemExit("missing growth cluster: "+json.dumps(missing_growth,ensure_ascii=False))
+
 issues=[]
 seen_titles={}
 for p in hub_files:
@@ -109,8 +131,9 @@ if issues:
     raise SystemExit("corpus audit failed: "+json.dumps(issues[:30],ensure_ascii=False))
 
 sitemap = ['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-for u in hubs:
-    sitemap.append(f"  <url><loc>https://freehotels.info{u}</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>")
+for u in indexable_urls:
+    priority = "0.9" if u in ("/de/","/en/") else ("0.8" if u.count("/") <= 3 else "0.7")
+    sitemap.append(f"  <url><loc>https://freehotels.info{u}</loc><changefreq>weekly</changefreq><priority>{priority}</priority></url>")
 sitemap.append("</urlset>")
 (root/"sitemap-legacy.xml").write_text("\n".join(sitemap)+"\n",encoding="utf-8")
 
@@ -128,6 +151,7 @@ manifest={
  "direct_historic_200":direct,
  "city_hubs":hubs,
  "city_hub_count":len(hubs),
+ "sitemap_url_count":len(indexable_urls),
  "generated_city_count":created,
  "route_families":[
    "/{lang}/{city}/list.html",
@@ -138,6 +162,8 @@ manifest={
  "unknown_city_policy":"404 (no mass redirect to homepage)"
 }
 (root/"legacy-corpus.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding="utf-8")
-audit={"status":"PASS","hub_count":len(hubs),"generated":created,"verified_routes":len(verified),"direct_historic":len(direct),"issues":[]}
+if len(indexable_urls) < 80:
+    raise SystemExit(f"recovery sitemap unexpectedly small: {len(indexable_urls)}")
+audit={"status":"PASS","hub_count":len(hubs),"sitemap_url_count":len(indexable_urls),"generated":created,"verified_routes":len(verified),"direct_historic":len(direct),"growth_clusters":len(required_growth),"issues":[]}
 (root/"legacy-audit.json").write_text(json.dumps(audit,ensure_ascii=False,indent=2),encoding="utf-8")
 print(json.dumps(audit))
