@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "331766cbb632f83042815764fb6ae40109a9ede8",
-  "workflowRunId": 37216568388,
-  "requestedAt": "2026-10-04T16:25:06Z",
-  "reason": "Promote GREEN null-route resilience fix: never emit /match/null or /match/undefined; tested fail-closed route fallback"
+  "sourceSha": "a2ea8727272526407d66be02426109a1ec44d405",
+  "workflowRunId": 37233927976,
+  "requestedAt": "2026-10-04T20:58:00Z",
+  "reason": "Promote GREEN provider-independent sitemap + native chat reaction fallback; fixes 300s sitemap hangs and chat fallback gate."
 }
