@@ -4551,6 +4551,27 @@
             "Publicamos noticias actuales con fuentes identificadas, páginas permanentes de contexto y reconstrucciones de archivo cuando una URL antigua conserva valor documental o enlaces externos.",
             "La prioridad es que cada página tenga una función clara y que la navegación permita distinguir actualidad, contexto y archivo."
           ]
+        ],
+        [
+          "Una reconstrucción documentée, pas une fausse continuité",
+          [
+            "El Diario del Cibao utiliza un dominio que tuvo actividad periodística durante años y que conserva miles de rutas históricas y enlaces externos. La etapa actual reconstruye esa huella de forma explícita. No afirmamos que el equipo editorial de 2026 sea el mismo que publicó cada pieza histórica ni presentamos los nuevos textos como copias de artículos desaparecidos.",
+            "El inventario técnico identifica 5.099 rutas históricas, de las cuales 5.094 corresponden a artículos con estructura de publicación. Las direcciones se preservan para mantener referencias y backlinks, pero solo entran en indexación cuando el contenido ha sido investigado, reescrito y revisado."
+          ]
+        ],
+        [
+          "Qué cubrimos y por qué",
+          [
+            "El foco editorial es Santiago, el Cibao y la región norte de República Dominicana. La cobertura se organiza alrededor de territorio, economía, infraestructura, turismo, cultura, deporte, servicios y decisiones nacionales que tengan un impacto regional claro.",
+            "Esta especialización sirve también como filtro. No buscamos convertir el sitio en un agregador nacional sin identidad. Una noticia nacional se publica cuando aporta contexto útil para los lectores del norte o cuando forma parte de la continuidad histórica del archivo."
+          ]
+        ],
+        [
+          "Cómo se financia y cómo cambiaremos esta página",
+          [
+            "El sitio puede incorporar en el futuro publicidad, afiliación o colaboraciones comerciales. Cuando una pieza sea patrocinada o exista una relación comercial relevante, deberá identificarse de forma visible y separarse del criterio editorial.",
+            "Esta página se actualizará cuando cambien la estructura, los canales de contacto o las políticas del medio. La transparencia sobre quién publica y cómo se mantiene el archivo forma parte del mismo estándar de calidad aplicado a las noticias."
+          ]
         ]
       ]
     },
@@ -4572,6 +4593,41 @@
           [
             "Una URL histórica restaurada no se presenta como noticia recién publicada. La página debe indicar que el contenido fue reconstruido y evitar detalles que no puedan verificarse.",
             "El objetivo de conservar la ruta es documental y editorial, además de técnico."
+          ]
+        ],
+        [
+          "Principios de publicación",
+          [
+            "Cada pieza debe tener una función editorial clara: informar sobre un hecho actual, explicar un tema permanente, documentar una entidad o reconstruir una ruta histórica. Publicar por volumen no es un objetivo en sí mismo. Las páginas sin evidencia o sin profundidad suficiente permanecen fuera del índice.",
+            "Los titulares deben representar el contenido y no exagerar la evidencia. Una posibilidad no se convierte en certeza, una declaración no se convierte en hecho probado y un anuncio no se presenta como obra terminada."
+          ]
+        ],
+        [
+          "Fuentes primarias, fuentes secundarias y atribución",
+          [
+            "Priorizamos documentos oficiales, estadísticas, resoluciones, fuentes directas e instituciones responsables cuando son pertinentes. Una fuente oficial demuestra lo que una institución afirma, no necesariamente que su interpretación sea independiente o completa.",
+            "Los medios que aportan investigación o información propia se citan y enlazan. Cuando varias fuentes difieren, se conserva la atribución de cada cifra o versión en lugar de mezclarlas."
+          ]
+        ],
+        [
+          "Política, justicia y sucesos",
+          [
+            "En acusaciones, investigaciones y procesos judiciales utilizamos lenguaje que distinga denuncia, investigación, imputación, acusación formal, decisión y sentencia. Una persona señalada en un titular antiguo no será descrita como culpable únicamente por la existencia de esa publicación.",
+            "En accidentes y sucesos se separan hechos confirmados, testimonios e hipótesis. No atribuimos causas técnicas o responsabilidades antes de que exista información suficiente."
+          ]
+        ],
+        [
+          "Archivo histórico y reconstrucción",
+          [
+            "Las rutas 2011–2018 se preservan aunque la captura completa no siempre esté disponible. Cuando una URL no cuenta con evidencia suficiente, responde técnicamente pero permanece noindex,follow hasta que pueda reconstruirse de forma útil y segura.",
+            "Cuando sí existen fuentes, redactamos un artículo nuevo con contexto posterior, correcciones y límites documentales. No copiamos automáticamente el texto histórico ni materiales visuales cuyos derechos no estén claros."
+          ]
+        ],
+        [
+          "Correcciones, actualizaciones y conflictos de interés",
+          [
+            "Una corrección material debe modificar el contenido tan pronto como exista evidencia suficiente. Si el cambio altera una afirmación importante, se debe indicar de forma clara. Las actualizaciones rutinarias de datos operativos pueden integrarse sin dramatizar el cambio.",
+            "Las relaciones comerciales no deben determinar conclusiones editoriales. El contenido patrocinado o afiliado, cuando exista, debe distinguirse de noticias, guías y reconstrucciones históricas."
           ]
         ]
       ]
@@ -4595,6 +4651,41 @@
             "Si una publicación contiene un error material, se corrige de forma clara. Las correcciones que alteran un hecho relevante deben quedar explicadas.",
             "Las páginas permanentes pueden actualizarse cuando cambian datos, instituciones o contexto."
           ]
+        ],
+        [
+          "Jerarquía de fuentes",
+          [
+            "Para datos oficiales utilizamos organismos competentes y documentos originales siempre que estén disponibles. Para hechos locales podemos recurrir a medios regionales, testimonios atribuidos y fuentes directas, pero cada tipo de fuente tiene un nivel de evidencia diferente.",
+            "Una publicación en redes sociales puede servir para localizar una pista o una declaración pública, pero no sustituye por sí sola la verificación cuando el hecho es sensible."
+          ]
+        ],
+        [
+          "Cómo citamos",
+          [
+            "Las noticias y reconstrucciones que dependen de información externa incluyen una sección de fuentes o enlaces identificables. La atribución permite que el lector compruebe el origen de una cifra, una declaración o un antecedente.",
+            "No copiamos artículos completos. Resumimos, contextualizamos y enlazamos la fuente cuando otro medio produjo la información original."
+          ]
+        ],
+        [
+          "Correcciones materiales",
+          [
+            "Si detectamos un error de nombre, fecha, cifra, lugar, atribución o contexto que cambie el significado de una pieza, la prioridad es corregirlo. Una corrección importante no debe ocultarse detrás de una simple reescritura silenciosa.",
+            "Cuando la nueva evidencia contradice un titular histórico, la URL puede conservarse pero el contenido debe explicar la contradicción. El caso de una acusación posteriormente desmentida es un ejemplo claro de por qué el archivo debe ser corregible."
+          ]
+        ],
+        [
+          "Solicitar una revisión",
+          [
+            "Una solicitud de corrección debe identificar la URL, el pasaje cuestionado y la documentación o fuente que respalda el cambio. Esto facilita revisar hechos concretos y evita discusiones abstractas sobre una página completa.",
+            "Las solicitudes relacionadas con privacidad, derechos de imagen o material histórico se evalúan caso por caso, teniendo en cuenta interés público, exactitud, derechos y utilidad documental."
+          ]
+        ],
+        [
+          "Actualización de guías y noticias",
+          [
+            "Las guías permanentes se actualizan cuando cambian datos estructurales, infraestructuras o instituciones. Las noticias conservan su fecha y pueden recibir una nota de actualización si nuevos hechos modifican sustancialmente la historia.",
+            "Las alertas meteorológicas, horarios, rutas aéreas y otra información volátil no deben aparecer como vigente después de su fecha sin una comprobación actual."
+          ]
         ]
       ]
     },
@@ -4617,6 +4708,34 @@
             "Una solicitud sobre una página histórica debe identificar la URL y aportar documentación suficiente para revisar el caso.",
             "La existencia de un enlace antiguo no impide corregir o actualizar una página cuando la evidencia lo justifica."
           ]
+        ],
+        [
+          "Qué tipo de mensajes atendemos",
+          [
+            "El canal de contacto del medio sirve para correcciones, aclaraciones, derechos de contenido, propuestas editoriales, información documentada sobre el Cibao y consultas relacionadas con el archivo histórico. Una solicitud útil debe incluir la URL correspondiente y explicar con precisión qué se desea revisar.",
+            "No publicamos en esta página teléfonos, domicilios o correos electrónicos que no hayan sido verificados por el responsable del proyecto. Cuando se habilite un canal oficial permanente, se incorporará aquí de forma explícita."
+          ]
+        ],
+        [
+          "Correcciones y derecho de respuesta",
+          [
+            "Si una persona, empresa o institución considera incorrecto un dato factual, puede aportar documentos, enlaces o una explicación verificable. La revisión distingue hechos de opiniones y no exige retirar una pieza únicamente porque resulte desfavorable.",
+            "Cuando una corrección sea procedente, el contenido se actualizará y, si el cambio es material, se dejará constancia suficiente para que el lector comprenda que la versión fue modificada."
+          ]
+        ],
+        [
+          "Archivo histórico",
+          [
+            "Las páginas antiguas pueden aparecer en buscadores o enlaces de terceros muchos años después de su publicación original. Si una ruta histórica contiene una afirmación sensible, la reconstrucción intenta incorporar contexto posterior y evitar que un titular de otra época se interprete como una afirmación actual.",
+            "Para una solicitud sobre archivo es especialmente útil aportar documentos contemporáneos al hecho, decisiones judiciales, certificaciones, obituarios, archivos institucionales o referencias de medios que permitan revisar la reconstrucción."
+          ]
+        ],
+        [
+          "Propuestas y material enviado",
+          [
+            "El envío de una propuesta no garantiza publicación. Antes de utilizar documentos, fotografías o datos facilitados por terceros, el medio debe evaluar relevancia, autenticidad y derechos de uso.",
+            "No se aceptará como noticia verificable una afirmación cuya única evidencia sea que quien la envía desea que aparezca publicada."
+          ]
         ]
       ]
     },
@@ -4638,6 +4757,41 @@
           [
             "Las páginas pueden enlazar a fuentes oficiales y medios externos, que tienen sus propias políticas y condiciones.",
             "El Diario del Cibao no controla el tratamiento de datos realizado por dominios externos."
+          ]
+        ],
+        [
+          "Datos necesarios para servir el sitio",
+          [
+            "Leer El Diario del Cibao no requiere crear una cuenta. El proveedor de alojamiento y la infraestructura de red pueden procesar datos técnicos como dirección IP, fecha y hora, agente de usuario y solicitudes HTTP para entregar páginas, prevenir abusos y diagnosticar errores.",
+            "Estos registros técnicos no se presentan como una base de perfiles editoriales. Si la configuración del sitio cambia y se incorporan nuevas herramientas de analítica o publicidad, esta política deberá reflejarlo."
+          ]
+        ],
+        [
+          "Cookies, analítica y publicidad",
+          [
+            "La versión actual debe describir únicamente tecnologías realmente utilizadas. No afirmamos que existan cookies publicitarias, perfiles de comportamiento o proveedores concretos si todavía no se han integrado.",
+            "Si en el futuro se añade Google AdSense, analítica, afiliación u otra tecnología que requiera consentimiento o información adicional, la página se actualizará antes de considerar esa integración correctamente documentada."
+          ]
+        ],
+        [
+          "Enlaces a terceros",
+          [
+            "Las noticias y guías enlazan instituciones, documentos y otros medios como fuentes. Al seguir un enlace, el visitante pasa a un dominio con sus propias políticas de privacidad y seguridad.",
+            "El Diario del Cibao no controla los registros, cookies o tratamientos realizados por esos sitios externos."
+          ]
+        ],
+        [
+          "Archivo y datos personales",
+          [
+            "El archivo histórico puede mencionar personas que aparecieron en noticias entre 2011 y 2018. La reconstrucción intenta minimizar datos personales innecesarios y evitar reproducir números de documentos, domicilios u otros detalles que no aporten valor periodístico.",
+            "Las solicitudes de revisión se valoran considerando exactitud, relevancia pública, contexto histórico y documentación disponible. Conservar una URL no obliga a conservar información incorrecta o excesiva."
+          ]
+        ],
+        [
+          "Cambios en esta política",
+          [
+            "Las prácticas técnicas pueden evolucionar a medida que el sitio incorpore nuevas funciones. Esta página debe cambiar cuando cambie realmente el tratamiento de datos, no mediante textos legales genéricos que describan herramientas inexistentes.",
+            "La fecha y el contenido de futuras revisiones deben permitir al lector comprender qué nuevas funcionalidades justificaron el cambio."
           ]
         ]
       ]
