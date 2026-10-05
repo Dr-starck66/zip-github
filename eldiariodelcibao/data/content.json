@@ -4572,6 +4572,14 @@
             "El sitio puede incorporar en el futuro publicidad, afiliación o colaboraciones comerciales. Cuando una pieza sea patrocinada o exista una relación comercial relevante, deberá identificarse de forma visible y separarse del criterio editorial.",
             "Esta página se actualizará cuando cambien la estructura, los canales de contacto o las políticas del medio. La transparencia sobre quién publica y cómo se mantiene el archivo forma parte del mismo estándar de calidad aplicado a las noticias."
           ]
+        ],
+        [
+          "Responsabilidad ante el lector",
+          [
+            "El lector debe poder distinguir con facilidad una noticia de 2026, una guía permanente y una reconstrucción histórica. Esa separación aparece en fechas, etiquetas, fuentes y estructura. Si una página antigua se reescribe, se informa de que el texto actual es una reconstrucción y no se altera la fecha histórica para hacerla parecer una noticia nueva.",
+            "También evitamos prometer resultados que todavía no existen. Que el dominio tuviera tráfico en el pasado no garantiza recuperarlo, y que una página supere controles técnicos no garantiza una posición concreta en Google. Publicamos el estado real del proyecto y tratamos la recuperación de audiencia como un proceso medible.",
+            "El medio quiere volver a ser útil precisamente porque su archivo tuvo presencia en la web. Esa utilidad depende de combinar memoria local, actualidad verificable y una arquitectura que permita encontrar información por territorio y tema sin navegar entre páginas duplicadas."
+          ]
         ]
       ]
     },
@@ -4628,6 +4636,13 @@
           [
             "Una corrección material debe modificar el contenido tan pronto como exista evidencia suficiente. Si el cambio altera una afirmación importante, se debe indicar de forma clara. Las actualizaciones rutinarias de datos operativos pueden integrarse sin dramatizar el cambio.",
             "Las relaciones comerciales no deben determinar conclusiones editoriales. El contenido patrocinado o afiliado, cuando exista, debe distinguirse de noticias, guías y reconstrucciones históricas."
+          ]
+        ],
+        [
+          "Calidad mínima y publicación",
+          [
+            "Los artículos informativos y las reconstrucciones que se envían al índice deben superar un umbral de profundidad, pero el número de palabras es solo un filtro inicial. También se revisan H1, jerarquía de secciones, enlaces, fuentes, imágenes, canonical y coherencia entre título y contenido.",
+            "Una pieza que alcance el mínimo mediante repeticiones, párrafos genéricos o afirmaciones sin fuente sigue considerándose débil. El objetivo del umbral es bloquear publicaciones superficiales, no incentivar texto de relleno. Las páginas que no pasan el control permanecen noindex hasta ser corregidas."
           ]
         ]
       ]
@@ -4686,6 +4701,14 @@
             "Las guías permanentes se actualizan cuando cambian datos estructurales, infraestructuras o instituciones. Las noticias conservan su fecha y pueden recibir una nota de actualización si nuevos hechos modifican sustancialmente la historia.",
             "Las alertas meteorológicas, horarios, rutas aéreas y otra información volátil no deben aparecer como vigente después de su fecha sin una comprobación actual."
           ]
+        ],
+        [
+          "Trazabilidad de cambios",
+          [
+            "Cuando una reconstrucción histórica incorpora contexto posterior, procuramos que el lector pueda identificar qué parte pertenece al hecho original y qué información apareció después. Esto es especialmente importante en procesos judiciales, accidentes, campañas políticas y controversias donde la primera versión puede haber sido corregida o desmentida.",
+            "El historial técnico del dominio también se audita. Sitemaps, canonicals, estados HTTP y rutas antiguas se comprueban por separado del contenido. Una URL puede estar técnicamente recuperada y, al mismo tiempo, seguir noindex porque su reconstrucción editorial todavía no está lista.",
+            "Si una fuente deja de estar disponible, no inventamos un sustituto. Se busca otra referencia independiente o se reduce el alcance de la afirmación hasta lo que pueda sostenerse."
+          ]
         ]
       ]
     },
@@ -4735,6 +4758,15 @@
           [
             "El envío de una propuesta no garantiza publicación. Antes de utilizar documentos, fotografías o datos facilitados por terceros, el medio debe evaluar relevancia, autenticidad y derechos de uso.",
             "No se aceptará como noticia verificable una afirmación cuya única evidencia sea que quien la envía desea que aparezca publicada."
+          ]
+        ],
+        [
+          "Uso responsable del canal",
+          [
+            "Las propuestas de enlaces, publicidad o colaboración comercial deben identificarse como tales y no presentarse como solicitudes editoriales urgentes. Una relación comercial futura no concede derecho a modificar una noticia ni a eliminar información verificada.",
+            "Para temas históricos, indicar año, nombre de la página y enlace exacto ayuda a localizar la ruta dentro de un inventario que supera las cinco mil direcciones. Para temas actuales, conviene aportar fecha, institución o documento que permita contrastar rápidamente la información.",
+            "Los mensajes abusivos, automatizados o destinados únicamente a insertar contenido engañoso pueden ser ignorados. El propósito del canal es facilitar correcciones y comunicación útil, no sustituir el proceso de verificación.",
+            "Cuando exista un formulario público, deberá indicar qué campos son obligatorios y evitar pedir documentos personales salvo que sean estrictamente necesarios para una revisión concreta. Las solicitudes comerciales y editoriales se mantendrán separadas para reducir conflictos de interés."
           ]
         ]
       ]
@@ -4792,6 +4824,14 @@
           [
             "Las prácticas técnicas pueden evolucionar a medida que el sitio incorpore nuevas funciones. Esta página debe cambiar cuando cambie realmente el tratamiento de datos, no mediante textos legales genéricos que describan herramientas inexistentes.",
             "La fecha y el contenido de futuras revisiones deben permitir al lector comprender qué nuevas funcionalidades justificaron el cambio."
+          ]
+        ],
+        [
+          "Derechos y futuras funcionalidades",
+          [
+            "Cuando el sitio disponga de un canal adecuado para solicitudes de datos, esta página deberá explicar cómo ejercer los derechos aplicables y qué información es necesaria para identificar una petición sin recopilar más datos de los imprescindibles.",
+            "Las futuras funciones de comentarios, boletines o cuentas requerirán una revisión específica antes de activarse. No se deben reutilizar datos entregados para una finalidad —por ejemplo, solicitar una corrección— para marketing sin una base y una información adecuadas.",
+            "El diseño de nuevas integraciones seguirá un principio de privacidad por defecto: minimizar campos, evitar almacenar secretos en formularios y separar datos editoriales de datos técnicos. Esta política se revisará cuando una nueva función cambie realmente esas prácticas."
           ]
         ]
       ]
