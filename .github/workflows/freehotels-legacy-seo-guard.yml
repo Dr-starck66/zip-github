@@ -59,7 +59,7 @@ jobs:
           curl -fsS "$base/de/berlin/guenstige-hotels/" | grep -q '<link rel="canonical" href="https://freehotels.info/de/berlin/guenstige-hotels/">'
           count=$(curl -fsS "$base/sitemap-legacy.xml" | grep -c '<url>')
           test "$count" -ge 70
-          curl -fsS "$base/robots.txt" | grep -q 'Sitemap: https://freehotels.info/sitemap-legacy.xml'
+          curl -fsS "$base/robots.txt" | grep -q 'Sitemap: https://freehotels.info/sitemap.xml'
 
           wait_for_200 "/268d53f637eeacf2e56853f16afb545a23d04faeffe760cc5c9f73c233822070.txt"
           echo "FreeHotels legacy SEO guard PASS: targets=200, historical redirects=301, preserved legacy pages=200, unknown legacy path=404, sitemap/canonical present."
