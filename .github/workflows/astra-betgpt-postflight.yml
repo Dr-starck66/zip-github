@@ -85,7 +85,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          PREV="$(git log --format=%H --skip=1 -- betgpt-railway-live/.astra-green-release.json | head -n1)"
+          PREV="$(git log --format=%H --skip=1 -n 1 -- betgpt-railway-live/.astra-green-release.json)"
           if [ -z "$PREV" ]; then
             echo "No previous GREEN release commit available." >&2
             exit 1
