@@ -1,13 +1,13 @@
 {
   "schema": "astra-betgpt-learning-live-proof/v1",
-  "checkedAt": "2026-10-06T22:00:13Z",
+  "checkedAt": "2026-10-06T23:11:25Z",
   "source": "https://betgpt.live/api/learning-checkpoint",
   "runtimeSchema": "astra-betgpt-runtime-checkpoint/v2",
-  "generatedAt": "2026-10-06T22:00:13.492Z",
+  "generatedAt": "2026-10-06T23:11:25.311Z",
   "refresh": {
     "status": "PASS",
-    "liveFetchedAt": 1791323997982,
-    "liveAsOf": "2026-10-06T21:59:57.982Z"
+    "liveFetchedAt": 1791328268815,
+    "liveAsOf": "2026-10-06T23:11:08.815Z"
   },
   "recovery": {
     "targets": 0,
@@ -254,6 +254,8 @@
         "id": "espn-401919990:1X2",
         "kickoff": "2026-10-06T19:00Z",
         "league": "NL",
+        "competition": "Qualifications Coupe d'Afrique des Nations",
+        "competitionKey": "caf.nations_qual",
         "market": "1X2_H",
         "odds": 1.38,
         "result": "win",
@@ -263,6 +265,7 @@
         "factors": [
           "market:1X2_H",
           "league:NL",
+          "competition:caf.nations_qual",
           "odds:<1.80",
           "prob:48-53%",
           "ev:<3%",
@@ -278,6 +281,8 @@
         "id": "espn-401919990:BTTS_Y:mise",
         "kickoff": "2026-10-06T19:00Z",
         "league": "NL",
+        "competition": "Qualifications Coupe d'Afrique des Nations",
+        "competitionKey": "caf.nations_qual",
         "market": "BTTS_Y",
         "odds": 2.65,
         "result": "win",
@@ -287,6 +292,7 @@
         "factors": [
           "market:BTTS_Y",
           "league:NL",
+          "competition:caf.nations_qual",
           "odds:2.40-2.69",
           "prob:48-53%",
           "ev:12%+",
