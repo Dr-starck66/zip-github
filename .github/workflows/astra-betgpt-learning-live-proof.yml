@@ -1,0 +1,79 @@
+name: ASTRA BetGPT Learning Live Proof Ω
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/astra-betgpt-learning-live-proof.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: astra-betgpt-learning-live-proof
+  cancel-in-progress: true
+
+jobs:
+  prove-live-learning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch and validate live learning state
+        shell: bash
+        run: |
+          set -euo pipefail
+          tmp="$(mktemp)"
+          curl -fsS --retry 8 --retry-delay 5 --connect-timeout 8 --max-time 40             -H 'accept: application/json'             -H 'cache-control: no-cache'             -H 'user-agent: ASTRA-BETGPT-LEARNING-LIVE-PROOF/1.0'             https://betgpt.live/api/learning-checkpoint -o "$tmp"
+
+          jq -e '
+            .schema == "astra-betgpt-runtime-checkpoint/v2" and
+            .refresh.status == "PASS" and
+            (.tickets | type == "array") and
+            (.learning.schema == "astra-betgpt-learning-memory/v1") and
+            (.learning.learningSettledN | type == "number") and
+            (.learning.learningWins | type == "number") and
+            (.learning.learningLosses | type == "number") and
+            (.learning.learningFreshness.status | IN("FRESH","STALE","EMPTY"))
+          ' "$tmp" >/dev/null
+
+          jq '{
+            schema: "astra-betgpt-learning-live-proof/v1",
+            checkedAt: (now | todateiso8601),
+            source: "https://betgpt.live/api/learning-checkpoint",
+            runtimeSchema: .schema,
+            generatedAt: .generatedAt,
+            refresh: .refresh,
+            ticketCount: (.tickets | length),
+            learning: {
+              canonicalSettledN: .learning.canonicalSettledN,
+              canonicalWins: .learning.canonicalWins,
+              canonicalLosses: .learning.canonicalLosses,
+              canonicalRoi: .learning.canonicalRoi,
+              observationalSettledN: .learning.learningSettledN,
+              observationalWins: .learning.learningWins,
+              observationalLosses: .learning.learningLosses,
+              observationalSimulatedRoi: .learning.learningSimulatedRoi,
+              freshness: .learning.learningFreshness,
+              latestSettled: (.learning.latestSettled[0:20]),
+              harmfulFactors: (.learning.harmfulFactors[0:10]),
+              helpfulFactors: (.learning.helpfulFactors[0:10])
+            },
+            status: "PASS"
+          }' "$tmp" > betgpt-railway-live/learning-live-proof.json
+
+          echo "ASTRA_BETGPT_LEARNING_LIVE_PROOF_PASS"
+          jq '.learning' betgpt-railway-live/learning-live-proof.json
+
+      - name: Persist live proof
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "ASTRA Learning Live Proof"
+          git config user.email "actions@users.noreply.github.com"
+          git add betgpt-railway-live/learning-live-proof.json
+          git diff --cached --quiet && exit 0
+          git commit -m "proof: record live BetGPT learning state"
+          git pull --rebase origin main
+          git push
