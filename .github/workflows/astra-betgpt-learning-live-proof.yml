@@ -27,6 +27,9 @@ jobs:
           tmp="$(mktemp)"
           curl -fsS --retry 8 --retry-delay 5 --connect-timeout 8 --max-time 40             -H 'accept: application/json'             -H 'cache-control: no-cache'             -H 'user-agent: ASTRA-BETGPT-LEARNING-LIVE-PROOF/1.0'             https://betgpt.live/api/learning-checkpoint -o "$tmp"
 
+          echo "ASTRA_LIVE_LEARNING_DIAGNOSTIC"
+          jq '{generatedAt, refresh, recovery, ticketCount: (.tickets|length), learning: {settled: .learning.learningSettledN, wins: .learning.learningWins, losses: .learning.learningLosses, freshness: .learning.learningFreshness, latest: (.learning.latestSettled[0:5])}}' "$tmp"
+
           jq -e --argjson now "$(date +%s)" '
             .schema == "astra-betgpt-runtime-checkpoint/v2" and
             .refresh.status == "PASS" and
@@ -49,6 +52,7 @@ jobs:
             runtimeSchema: .schema,
             generatedAt: .generatedAt,
             refresh: .refresh,
+            recovery: .recovery,
             ticketCount: (.tickets | length),
             learning: {
               canonicalSettledN: .learning.canonicalSettledN,
