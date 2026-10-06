@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "25fe9bdf02d5fbded45c86b8ccd53f6a985e9aef",
-  "workflowRunId": 37527774696,
-  "requestedAt": "2026-10-06T20:42:00Z",
-  "reason": "Trigger ASTRA release-train for the BetGPT learning repair after independent full candidate proof; promotion controller must still select and reverify the latest successful main Never-Fail run."
+  "sourceSha": "c92f0df7135e993427fa1cefb69e273a5eef4efb",
+  "workflowRunId": 37530996602,
+  "requestedAt": "2026-10-06T21:05:00Z",
+  "reason": "Promote BetGPT recent-result recovery only after main Never-Fail and learning proof gates both passed; postflight must prove fresh October settlement before global PASS."
 }
