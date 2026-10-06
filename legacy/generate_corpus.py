@@ -17,6 +17,25 @@ if primary_sitemap.exists():
     if "<urlset" in original:
         main_target = root / "sitemap-main.xml"
         primary_sitemap.replace(main_target)
+        # Historical numeric/list routes may still exist in an old primary sitemap.
+        # They are redirect aliases, not canonical indexable URLs: remove them before publishing.
+        main_xml = main_target.read_text(encoding="utf-8", errors="ignore")
+        blocks = re.findall(r"<url>.*?</url>", main_xml, re.I | re.S)
+        kept = []
+        legacy_alias = re.compile(r"https://freehotels\.info/(?:de|en)/[^/]+/(?:list\.html|\d+(?:\.html)?(?:/index\.html)?/?)(?:<|$)", re.I)
+        for block in blocks:
+            loc = re.search(r"<loc>\s*([^<]+)\s*</loc>", block, re.I)
+            if loc and legacy_alias.search(loc.group(1) + "<"):
+                continue
+            kept.append(block)
+        if blocks:
+            main_target.write_text(
+                '<?xml version="1.0" encoding="UTF-8"?>\n'
+                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+                + "\n".join(kept)
+                + '\n</urlset>\n',
+                encoding="utf-8",
+            )
         master_children.append("https://freehotels.info/sitemap-main.xml")
     elif "<sitemapindex" in original:
         master_children.extend(re.findall(r"<loc>\s*(https://freehotels\.info/[^<]+)\s*</loc>", original, re.I))
@@ -169,7 +188,7 @@ hubs = ["/" + p.relative_to(root).as_posix().removesuffix("index.html") for p in
 indexable_files = sorted(set(
     list(root.glob("de/**/index.html")) +
     list(root.glob("en/**/index.html")) +
-    [p for p in (root/"de"/"index.html", root/"en"/"index.html") if p.exists()]
+    [p for p in (root/"index.html", root/"de"/"index.html", root/"en"/"index.html") if p.exists()]
 ))
 indexable_urls = ["/" + p.relative_to(root).as_posix().removesuffix("index.html") for p in indexable_files]
 
