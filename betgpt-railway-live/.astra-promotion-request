@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "ada19c3fddd9aefd207becf6f71de00402ed09aa",
-  "workflowRunId": 37483764462,
-  "requestedAt": "2026-10-06T15:03:00Z",
-  "reason": "Promote GREEN citation-readiness release: canonical BetGPT identity, AI/LLM evidence surfaces, disambiguation, and evidence-first best-prediction-site page."
+  "sourceSha": "1fb7e51318a942a2a0f366591c5180ce98771baf",
+  "workflowRunId": 37486173449,
+  "requestedAt": "2026-10-06T15:55:00Z",
+  "reason": "Promote GREEN Dataset + IndexNow discovery release after Never-Fail, Semantic Flow and Zero Weak Page guards succeeded."
 }
