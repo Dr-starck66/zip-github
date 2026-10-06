@@ -2,6 +2,10 @@ name: ASTRA BetGPT Learning Live Proof Ω
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/astra-betgpt-learning-live-proof.yml"
   workflow_run:
     workflows: ["ASTRA Safe BetGPT Promotion"]
     types: [completed]
@@ -41,7 +45,7 @@ jobs:
             (.learning.contextualFreshness.status == "FRESH") and
             (.learning.contextualFreshness.settledLast7d | type == "number" and . > 0) and
             (.learning.contextualFreshness.latestSettledKickoff | type == "string") and
-            (($now - (.learning.contextualFreshness.latestSettledKickoff | fromdateiso8601)) <= 604800) and
+            (($now - (.learning.contextualFreshness.latestSettledKickoff | if test("T[0-9]{2}:[0-9]{2}Z$") then sub("Z$"; ":00Z") else . end | fromdateiso8601)) <= 604800) and
             (.learning.latestContextSettled | type == "array" and length > 0)
           ' "$tmp" >/dev/null
 
