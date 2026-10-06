@@ -37,11 +37,12 @@ RUN apk add --no-cache curl \
  && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/sitemap.xml)" = "200" \
  && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/sitemap.xml | grep -q '<sitemapindex' \
  && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/sitemap.xml | grep -q 'https://freehotels.info/sitemap-legacy.xml' \
+ && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/sitemap-legacy.xml | grep -q '<loc>https://freehotels.info/</loc>' \
  && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/robots.txt | grep -q 'Sitemap: https://freehotels.info/sitemap.xml' \
  && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/ | grep -q '/de/bielefeld/' \
  && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/ | grep -q '/de/bruessel/' \
  && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/en/ | grep -q '/en/napoli/' \
- && ! curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/sitemap-main.xml | grep -Eq '/(de|en)/[^/]+/(list\\.html|[0-9]+)(</loc>|/index\\.html</loc>)' \
+ && ! curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/sitemap-main.xml | grep -Eq '/(de|en)/[^/]+/(list\\.html|[0-9]+(?:\\.html)?/?|[0-9]+/index\\.html)(</loc>)' \
  && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/sitemap-legacy.xml)" = "200" \
  && test "$(curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/sitemap-legacy.xml | grep -c '<url>')" -ge 80 \
  && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/sitemap-legacy.xml | grep -q 'https://freehotels.info/de/berlin/guenstige-hotels/' \
