@@ -2,10 +2,9 @@ name: ASTRA BetGPT Learning Live Proof Ω
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/astra-betgpt-learning-live-proof.yml"
+  workflow_run:
+    workflows: ["ASTRA Safe BetGPT Promotion"]
+    types: [completed]
 
 permissions:
   contents: write
@@ -16,6 +15,7 @@ concurrency:
 
 jobs:
   prove-live-learning:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -27,15 +27,19 @@ jobs:
           tmp="$(mktemp)"
           curl -fsS --retry 8 --retry-delay 5 --connect-timeout 8 --max-time 40             -H 'accept: application/json'             -H 'cache-control: no-cache'             -H 'user-agent: ASTRA-BETGPT-LEARNING-LIVE-PROOF/1.0'             https://betgpt.live/api/learning-checkpoint -o "$tmp"
 
-          jq -e '
+          jq -e --argjson now "$(date +%s)" '
             .schema == "astra-betgpt-runtime-checkpoint/v2" and
             .refresh.status == "PASS" and
             (.tickets | type == "array") and
             (.learning.schema == "astra-betgpt-learning-memory/v1") and
-            (.learning.learningSettledN | type == "number") and
+            (.learning.learningSettledN | type == "number" and . > 0) and
             (.learning.learningWins | type == "number") and
             (.learning.learningLosses | type == "number") and
-            (.learning.learningFreshness.status | IN("FRESH","STALE","EMPTY"))
+            (.learning.learningFreshness.status == "FRESH") and
+            (.learning.learningFreshness.settledLast7d | type == "number" and . > 0) and
+            (.learning.learningFreshness.latestSettledKickoff | type == "string") and
+            (($now - (.learning.learningFreshness.latestSettledKickoff | fromdateiso8601)) <= 604800) and
+            (.learning.latestSettled | type == "array" and length > 0)
           ' "$tmp" >/dev/null
 
           jq '{
@@ -60,7 +64,7 @@ jobs:
               harmfulFactors: (.learning.harmfulFactors[0:10]),
               helpfulFactors: (.learning.helpfulFactors[0:10])
             },
-            status: "PASS"
+            status: "PASS_RECENT_RESULTS_LEARNED"
           }' "$tmp" > betgpt-railway-live/learning-live-proof.json
 
           echo "ASTRA_BETGPT_LEARNING_LIVE_PROOF_PASS"
