@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "9576ab091d980b8d8a649734a07c6e33b402f2dd",
-  "workflowRunId": 37513780533,
-  "requestedAt": "2026-10-06T18:47:35Z",
-  "reason": "Promote GREEN BetGPT Live entity disambiguation after route-tree repair and successful Never-Fail candidate gate."
+  "sourceSha": "25fe9bdf02d5fbded45c86b8ccd53f6a985e9aef",
+  "workflowRunId": 37527774696,
+  "requestedAt": "2026-10-06T20:42:00Z",
+  "reason": "Trigger ASTRA release-train for the BetGPT learning repair after independent full candidate proof; promotion controller must still select and reverify the latest successful main Never-Fail run."
 }
