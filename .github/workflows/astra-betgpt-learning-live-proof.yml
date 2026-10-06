@@ -28,21 +28,21 @@ jobs:
           curl -fsS --retry 8 --retry-delay 5 --connect-timeout 8 --max-time 40             -H 'accept: application/json'             -H 'cache-control: no-cache'             -H 'user-agent: ASTRA-BETGPT-LEARNING-LIVE-PROOF/1.0'             https://betgpt.live/api/learning-checkpoint -o "$tmp"
 
           echo "ASTRA_LIVE_LEARNING_DIAGNOSTIC"
-          jq '{generatedAt, refresh, recovery, ticketCount: (.tickets|length), learning: {settled: .learning.learningSettledN, wins: .learning.learningWins, losses: .learning.learningLosses, freshness: .learning.learningFreshness, latest: (.learning.latestSettled[0:5])}}' "$tmp"
+          jq '{generatedAt, refresh, recovery, ticketCount: (.tickets|length), learning: {canonicalSettled: .learning.canonicalSettledN, playableObservations: .learning.learningSettledN, playableFreshness: .learning.learningFreshness, contextualSettled: .learning.contextualSettledN, contextualWins: .learning.contextualWins, contextualLosses: .learning.contextualLosses, contextualFreshness: .learning.contextualFreshness, latestContext: (.learning.latestContextSettled[0:5])}}' "$tmp"
 
           jq -e --argjson now "$(date +%s)" '
             .schema == "astra-betgpt-runtime-checkpoint/v2" and
             .refresh.status == "PASS" and
             (.tickets | type == "array") and
             (.learning.schema == "astra-betgpt-learning-memory/v1") and
-            (.learning.learningSettledN | type == "number" and . > 0) and
-            (.learning.learningWins | type == "number") and
-            (.learning.learningLosses | type == "number") and
-            (.learning.learningFreshness.status == "FRESH") and
-            (.learning.learningFreshness.settledLast7d | type == "number" and . > 0) and
-            (.learning.learningFreshness.latestSettledKickoff | type == "string") and
-            (($now - (.learning.learningFreshness.latestSettledKickoff | fromdateiso8601)) <= 604800) and
-            (.learning.latestSettled | type == "array" and length > 0)
+            (.learning.contextualSettledN | type == "number" and . > 0) and
+            (.learning.contextualWins | type == "number") and
+            (.learning.contextualLosses | type == "number") and
+            (.learning.contextualFreshness.status == "FRESH") and
+            (.learning.contextualFreshness.settledLast7d | type == "number" and . > 0) and
+            (.learning.contextualFreshness.latestSettledKickoff | type == "string") and
+            (($now - (.learning.contextualFreshness.latestSettledKickoff | fromdateiso8601)) <= 604800) and
+            (.learning.latestContextSettled | type == "array" and length > 0)
           ' "$tmp" >/dev/null
 
           jq '{
@@ -63,8 +63,14 @@ jobs:
               observationalWins: .learning.learningWins,
               observationalLosses: .learning.learningLosses,
               observationalSimulatedRoi: .learning.learningSimulatedRoi,
-              freshness: .learning.learningFreshness,
-              latestSettled: (.learning.latestSettled[0:20]),
+              playableFreshness: .learning.learningFreshness,
+              latestPlayableSettled: (.learning.latestSettled[0:20]),
+              contextualSettledN: .learning.contextualSettledN,
+              contextualWins: .learning.contextualWins,
+              contextualLosses: .learning.contextualLosses,
+              contextualFreshness: .learning.contextualFreshness,
+              latestContextSettled: (.learning.latestContextSettled[0:20]),
+              contextualFactors: (.learning.contextualFactorPerformance[0:20]),
               harmfulFactors: (.learning.harmfulFactors[0:10]),
               helpfulFactors: (.learning.helpfulFactors[0:10])
             },
