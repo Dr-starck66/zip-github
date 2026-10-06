@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "c92f0df7135e993427fa1cefb69e273a5eef4efb",
-  "workflowRunId": 37530996602,
-  "requestedAt": "2026-10-06T21:05:00Z",
-  "reason": "Promote BetGPT recent-result recovery only after main Never-Fail and learning proof gates both passed; postflight must prove fresh October settlement before global PASS."
+  "sourceSha": "50470f4805d5ed4446154a35bc311344709fd0c0",
+  "workflowRunId": 37532696629,
+  "requestedAt": "2026-10-06T21:19:00Z",
+  "reason": "Promote direct ESPN event-id result recovery after main Never-Fail and Learning Proof both passed; global PASS still requires the post-promotion live-learning freshness gate."
 }
