@@ -1,0 +1,389 @@
+{
+  "schema": "astra-betgpt-learning-live-proof/v1",
+  "checkedAt": "2026-10-06T20:52:47Z",
+  "source": "https://betgpt.live/api/learning-checkpoint",
+  "runtimeSchema": "astra-betgpt-runtime-checkpoint/v2",
+  "generatedAt": "2026-10-06T20:52:41.925Z",
+  "refresh": {
+    "status": "PASS",
+    "liveFetchedAt": 1791319633252,
+    "liveAsOf": "2026-10-06T20:47:13.252Z"
+  },
+  "ticketCount": 494,
+  "learning": {
+    "canonicalSettledN": 0,
+    "canonicalWins": 0,
+    "canonicalLosses": 0,
+    "canonicalRoi": null,
+    "observationalSettledN": 11,
+    "observationalWins": 5,
+    "observationalLosses": 6,
+    "observationalSimulatedRoi": 0.10232492861759823,
+    "freshness": {
+      "latestSettledKickoff": "2026-09-12T16:00:00Z",
+      "settledLast24h": 0,
+      "settledLast7d": 0,
+      "status": "STALE"
+    },
+    "latestSettled": [
+      {
+        "id": "ub-lazio|milan-2026-09-12:1X2",
+        "kickoff": "2026-09-12T16:00:00Z",
+        "league": "SA",
+        "market": "1X2_A",
+        "odds": 2.23,
+        "result": "lose",
+        "pnlUnits": -1,
+        "kind": "prono",
+        "decision": "NO_BET",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_A",
+          "league:SA",
+          "odds:2.10-2.39",
+          "prob:42-47%",
+          "ev:<3%"
+        ]
+      },
+      {
+        "id": "ub-osasuna|espanyol-2026-09-12:1X2",
+        "kickoff": "2026-09-12T14:15:00Z",
+        "league": "LL",
+        "market": "1X2_H",
+        "odds": 2.15,
+        "result": "lose",
+        "pnlUnits": -1,
+        "kind": "prono",
+        "decision": "NO_BET",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_H",
+          "league:LL",
+          "odds:2.10-2.39",
+          "prob:42-47%",
+          "ev:<3%"
+        ]
+      },
+      {
+        "id": "ub-astonvilla|nottinghamforest-2026-09-12:1X2",
+        "kickoff": "2026-09-12T14:00:00Z",
+        "league": "PL",
+        "market": "1X2_H",
+        "odds": 2.25,
+        "result": "lose",
+        "pnlUnits": -1,
+        "kind": "prono",
+        "decision": "WATCH",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_H",
+          "league:PL",
+          "odds:2.10-2.39",
+          "prob:42-47%",
+          "ev:<3%"
+        ]
+      },
+      {
+        "id": "ub-crystalpalace|ipswichtown-2026-09-12:1X2",
+        "kickoff": "2026-09-12T14:00:00Z",
+        "league": "PL",
+        "market": "1X2_H",
+        "odds": 1.82,
+        "result": "lose",
+        "pnlUnits": -1,
+        "kind": "prono",
+        "decision": "NO_BET",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_H",
+          "league:PL",
+          "odds:1.80-2.09",
+          "prob:42-47%",
+          "ev:<3%"
+        ]
+      },
+      {
+        "id": "ub-tsghoffenheim|vfbstuttgart-2026-09-12:1X2",
+        "kickoff": "2026-09-12T13:30:00Z",
+        "league": "BL",
+        "market": "1X2_H",
+        "odds": 2.3,
+        "result": "win",
+        "pnlUnits": 1.2999999999999998,
+        "kind": "prono",
+        "decision": "NO_BET",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_H",
+          "league:BL",
+          "odds:2.10-2.39",
+          "prob:42-47%",
+          "ev:<3%"
+        ]
+      },
+      {
+        "id": "ub-genoa|frosinone-2026-09-12:1X2",
+        "kickoff": "2026-09-12T13:00:00Z",
+        "league": "SA",
+        "market": "1X2_H",
+        "odds": 2.14,
+        "result": "lose",
+        "pnlUnits": -1,
+        "kind": "prono",
+        "decision": "NO_BET",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_H",
+          "league:SA",
+          "odds:2.10-2.39",
+          "prob:42-47%",
+          "ev:<3%"
+        ]
+      },
+      {
+        "id": "ub-racingsantander|alaves-2026-09-12:1X2",
+        "kickoff": "2026-09-12T12:00:00Z",
+        "league": "LL",
+        "market": "1X2_H",
+        "odds": 2.5,
+        "result": "win",
+        "pnlUnits": 1.5,
+        "kind": "prono",
+        "decision": "WATCH",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_H",
+          "league:LL",
+          "odds:2.40-2.69",
+          "prob:<42%",
+          "ev:3-6%"
+        ]
+      },
+      {
+        "id": "ub-sevilla|valencia-2026-09-11:1X2",
+        "kickoff": "2026-09-11T19:00:00Z",
+        "league": "LL",
+        "market": "1X2_H",
+        "odds": 2.05,
+        "result": "win",
+        "pnlUnits": 1.0499999999999998,
+        "kind": "prono",
+        "decision": "NO_BET",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_H",
+          "league:LL",
+          "odds:1.80-2.09",
+          "prob:42-47%",
+          "ev:<3%"
+        ]
+      },
+      {
+        "id": "ub-venezia|fiorentina-2026-09-11:1X2",
+        "kickoff": "2026-09-11T18:45:00Z",
+        "league": "SA",
+        "market": "1X2_H",
+        "odds": 2.97,
+        "result": "lose",
+        "pnlUnits": -1,
+        "kind": "prono",
+        "decision": "WATCH",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_H",
+          "league:SA",
+          "odds:2.70-3.00",
+          "prob:<42%",
+          "ev:12%+"
+        ]
+      },
+      {
+        "id": "espn-401915440:1X2",
+        "kickoff": "2026-09-10T19:00Z",
+        "league": "CL",
+        "market": "1X2_A",
+        "odds": 2.7,
+        "result": "win",
+        "pnlUnits": 1.7000000000000002,
+        "kind": "prono",
+        "decision": "NO_BET",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_A",
+          "league:CL",
+          "odds:2.70-3.00",
+          "prob:<42%",
+          "ev:7-11%"
+        ]
+      },
+      {
+        "id": "espn-401915450:1X2",
+        "kickoff": "2026-09-08T19:00Z",
+        "league": "CL",
+        "market": "1X2_A",
+        "odds": 2.5755742147935816,
+        "result": "win",
+        "pnlUnits": 1.5755742147935816,
+        "kind": "prono",
+        "decision": "NO_BET",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_A",
+          "league:CL",
+          "odds:2.40-2.69",
+          "prob:<42%",
+          "ev:12%+"
+        ]
+      }
+    ],
+    "harmfulFactors": [
+      {
+        "factor": "league:SA",
+        "n": 3,
+        "wins": 0,
+        "losses": 3,
+        "hitRate": 0,
+        "roi": -1,
+        "profitUnits": -3
+      },
+      {
+        "factor": "odds:2.10-2.39",
+        "n": 5,
+        "wins": 1,
+        "losses": 4,
+        "hitRate": 0.2,
+        "roi": -0.54,
+        "profitUnits": -2.7
+      },
+      {
+        "factor": "prob:42-47%",
+        "n": 7,
+        "wins": 2,
+        "losses": 5,
+        "hitRate": 0.2857142857142857,
+        "roi": -0.3785714285714286,
+        "profitUnits": -2.6500000000000004
+      },
+      {
+        "factor": "ev:<3%",
+        "n": 7,
+        "wins": 2,
+        "losses": 5,
+        "hitRate": 0.2857142857142857,
+        "roi": -0.3785714285714286,
+        "profitUnits": -2.6500000000000004
+      },
+      {
+        "factor": "market:1X2_H",
+        "n": 8,
+        "wins": 3,
+        "losses": 5,
+        "hitRate": 0.375,
+        "roi": -0.14375000000000004,
+        "profitUnits": -1.1500000000000004
+      },
+      {
+        "factor": "league:LL",
+        "n": 3,
+        "wins": 2,
+        "losses": 1,
+        "hitRate": 0.6666666666666666,
+        "roi": 0.5166666666666666,
+        "profitUnits": 1.5499999999999998
+      },
+      {
+        "factor": "market:1X2_A",
+        "n": 3,
+        "wins": 2,
+        "losses": 1,
+        "hitRate": 0.6666666666666666,
+        "roi": 0.7585247382645273,
+        "profitUnits": 2.275574214793582
+      },
+      {
+        "factor": "prob:<42%",
+        "n": 4,
+        "wins": 3,
+        "losses": 1,
+        "hitRate": 0.75,
+        "roi": 0.9438935536983954,
+        "profitUnits": 3.775574214793582
+      }
+    ],
+    "helpfulFactors": [
+      {
+        "factor": "prob:<42%",
+        "n": 4,
+        "wins": 3,
+        "losses": 1,
+        "hitRate": 0.75,
+        "roi": 0.9438935536983954,
+        "profitUnits": 3.775574214793582
+      },
+      {
+        "factor": "market:1X2_A",
+        "n": 3,
+        "wins": 2,
+        "losses": 1,
+        "hitRate": 0.6666666666666666,
+        "roi": 0.7585247382645273,
+        "profitUnits": 2.275574214793582
+      },
+      {
+        "factor": "league:LL",
+        "n": 3,
+        "wins": 2,
+        "losses": 1,
+        "hitRate": 0.6666666666666666,
+        "roi": 0.5166666666666666,
+        "profitUnits": 1.5499999999999998
+      },
+      {
+        "factor": "market:1X2_H",
+        "n": 8,
+        "wins": 3,
+        "losses": 5,
+        "hitRate": 0.375,
+        "roi": -0.14375000000000004,
+        "profitUnits": -1.1500000000000004
+      },
+      {
+        "factor": "prob:42-47%",
+        "n": 7,
+        "wins": 2,
+        "losses": 5,
+        "hitRate": 0.2857142857142857,
+        "roi": -0.3785714285714286,
+        "profitUnits": -2.6500000000000004
+      },
+      {
+        "factor": "ev:<3%",
+        "n": 7,
+        "wins": 2,
+        "losses": 5,
+        "hitRate": 0.2857142857142857,
+        "roi": -0.3785714285714286,
+        "profitUnits": -2.6500000000000004
+      },
+      {
+        "factor": "odds:2.10-2.39",
+        "n": 5,
+        "wins": 1,
+        "losses": 4,
+        "hitRate": 0.2,
+        "roi": -0.54,
+        "profitUnits": -2.7
+      },
+      {
+        "factor": "league:SA",
+        "n": 3,
+        "wins": 0,
+        "losses": 3,
+        "hitRate": 0,
+        "roi": -1,
+        "profitUnits": -3
+      }
+    ]
+  },
+  "status": "PASS"
+}
