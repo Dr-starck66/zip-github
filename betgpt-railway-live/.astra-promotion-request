@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "a2ea8727272526407d66be02426109a1ec44d405",
-  "workflowRunId": 37233927976,
-  "requestedAt": "2026-10-04T20:58:00Z",
-  "reason": "Promote GREEN provider-independent sitemap + native chat reaction fallback; fixes 300s sitemap hangs and chat fallback gate."
+  "sourceSha": "ada19c3fddd9aefd207becf6f71de00402ed09aa",
+  "workflowRunId": 37483764462,
+  "requestedAt": "2026-10-06T15:03:00Z",
+  "reason": "Promote GREEN citation-readiness release: canonical BetGPT identity, AI/LLM evidence surfaces, disambiguation, and evidence-first best-prediction-site page."
 }
