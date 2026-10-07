@@ -8,7 +8,7 @@ const timeoutMs = Number(process.env.ASTRA_HTTP_TIMEOUT_MS || 15000);
 // Six workers are enough to audit the full sitemap inside the workflow budget while
 // leaving headroom for normal users and dynamic score/statistics routes.
 const sitemapConcurrency = Math.max(1, Math.min(16, Number(process.env.ASTRA_SITEMAP_CONCURRENCY || 6)));
-const sitemapMaxUrls = Math.max(1, Number(process.env.ASTRA_SITEMAP_MAX_URLS || 3000));
+const sitemapMaxUrls = Math.max(1, Number(process.env.ASTRA_SITEMAP_MAX_URLS || 50000));
 
 if (!/^[a-f0-9]{40}$/.test(expectedSha)) {
   throw new Error("ASTRA_POSTFLIGHT_BLOCKED: ASTRA_EXPECTED_SHA must be a 40-char commit SHA");
