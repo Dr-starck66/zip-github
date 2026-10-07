@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "12ac8ca8ef50730273f71ce260a9fe5e7ac2f56d",
-  "workflowRunId": 37551585048,
-  "requestedAt": "2026-10-07T00:24:00Z",
-  "reason": "Deploy autonomous competition learning loop: immutable pre-match capture, provider-agnostic result recovery, capture coverage proof, and 28-result maturity gate."
+  "sourceSha": "a978f4c2a5c599d6b71bf0956573b71b314c6c9c",
+  "workflowRunId": 37552463093,
+  "requestedAt": "2026-10-07T00:34:05Z",
+  "reason": "Deploy verified international pre-match auto-discovery on top of autonomous competition learning, with editorial cache type repair. Never-Fail GREEN."
 }
