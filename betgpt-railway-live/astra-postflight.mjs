@@ -3,8 +3,11 @@ import process from "node:process";
 
 const base = String(process.env.ASTRA_PUBLIC_BASE || "https://betgpt.live").replace(/\/$/, "");
 const expectedSha = String(process.env.ASTRA_EXPECTED_SHA || "").trim().toLowerCase();
-const timeoutMs = Number(process.env.ASTRA_HTTP_TIMEOUT_MS || 10000);
-const sitemapConcurrency = Math.max(1, Math.min(32, Number(process.env.ASTRA_SITEMAP_CONCURRENCY || 16)));
+const timeoutMs = Number(process.env.ASTRA_HTTP_TIMEOUT_MS || 15000);
+// Public postflight must verify production, not DoS it immediately after deploy.
+// Six workers are enough to audit the full sitemap inside the workflow budget while
+// leaving headroom for normal users and dynamic score/statistics routes.
+const sitemapConcurrency = Math.max(1, Math.min(16, Number(process.env.ASTRA_SITEMAP_CONCURRENCY || 6)));
 const sitemapMaxUrls = Math.max(1, Number(process.env.ASTRA_SITEMAP_MAX_URLS || 3000));
 
 if (!/^[a-f0-9]{40}$/.test(expectedSha)) {
@@ -157,7 +160,7 @@ async function worker() {
     const url = uniqueUrls[index];
 
     try {
-      const res = await requestUrl(url, "text/html,application/xhtml+xml", "manual", 3);
+      const res = await requestUrl(url, "text/html,application/xhtml+xml", "manual", 4);
       if (res.status !== 200) {
         failures.push({ url, reason: "http-status", status: res.status, location: res.location });
         continue;
