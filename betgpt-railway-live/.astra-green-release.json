@@ -12,10 +12,11 @@
   "gateWorkflow": "astra-never-fail.yml",
   "workflowRunId": 37595063284,
   "verifiedAt": "2026-10-07T08:39:48.000Z",
-  "reemit": {
-    "sourceSha": "f6e3985cc5cf47a6e5ed449d457a77c2f86e58a6",
-    "greenWorkflowRunId": 37595063284,
-    "at": "2026-10-07T08:42:12.703Z",
-    "controller": "ASTRA_RAILWAY_GREEN_RECONCILER"
+  "rollback": {
+    "automatic": true,
+    "failedSourceSha": "f6e3985cc5cf47a6e5ed449d457a77c2f86e58a6",
+    "restoredSourceSha": "f6e3985cc5cf47a6e5ed449d457a77c2f86e58a6",
+    "controller": "ASTRA_RELEASE_CONTROL_PLANE",
+    "at": "2026-10-07T08:47:39.199Z"
   }
 }

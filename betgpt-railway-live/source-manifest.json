@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-07T08:42:12.703Z",
-  "reason": "Re-emit approved GREEN release because public production had not converged"
+  "updatedAt": "2026-10-07T08:47:39.254Z",
+  "reason": "Automatic rollback after failed public postflight of f6e3985cc5cf47a6e5ed449d457a77c2f86e58a6"
 }
