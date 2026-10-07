@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-07T08:39:48.000Z",
-  "reason": "Release Train: promote verified chat fail-closed/context-cap repair after Never-Fail PASS"
+  "updatedAt": "2026-10-07T08:42:12.703Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
