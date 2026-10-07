@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "4255b197abc9e2e637d87299040751f4ef8f7cfb",
-  "workflowRunId": 37551323833,
-  "requestedAt": "2026-10-07T00:21:10Z",
-  "reason": "Promote verified canonical 1X2 learning isolation. BTTS/OU outcomes remain contextual/shadow only and cannot alter 1X2 controls or adaptive challenger."
+  "sourceSha": "12ac8ca8ef50730273f71ce260a9fe5e7ac2f56d",
+  "workflowRunId": 37551585048,
+  "requestedAt": "2026-10-07T00:24:00Z",
+  "reason": "Deploy autonomous competition learning loop: immutable pre-match capture, provider-agnostic result recovery, capture coverage proof, and 28-result maturity gate."
 }
