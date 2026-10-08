@@ -1,0 +1,99 @@
+name: FreeHotels complete site ZIP
+
+on:
+  push:
+    branches: [freehotels-railway-omega]
+    paths:
+      - '.github/workflows/freehotels-export-complet.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout production branch
+        uses: actions/checkout@v4
+      - name: Build exact production Docker image with its proof gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker build -t freehotels-complet:export .
+      - name: Extract entire rendered public site and project source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p FreeHotels.info-COMPLET/site FreeHotels.info-COMPLET/source
+          id="$(docker create freehotels-complet:export)"
+          trap 'docker rm -f "$id" >/dev/null 2>&1 || true' EXIT
+          docker cp "$id:/usr/share/nginx/html/." FreeHotels.info-COMPLET/site/
+          cp -a legacy editorial FreeHotels.info-COMPLET/source/
+          cp -a site.b64 Dockerfile railway-nginx.conf railway.toml package.json server.js build.js FreeHotels.info-COMPLET/source/
+          cat > FreeHotels.info-COMPLET/README.txt <<'TXT'
+          FREEHOTELS.INFO — COMPLETE SITE EXPORT
+
+          site/     Ready-to-host static website (all HTML, CSS, JS, images,
+                    restored historic routes, news, sitemap files and robots).
+          source/   The exact production-branch source and build scripts.
+
+          Static hosting: publish the CONTENTS of site/ as the web root.
+          Existing booking forms redirect to Booking.com for availability.
+          Nginx historic redirect and canonical rules are in
+          source/railway-nginx.conf and require equivalent configuration
+          when changing hosting providers.
+
+          See site/repair-audit.json and site/legacy-audit.json for generated
+          technical audit results. This export never deletes legacy content.
+
+          Source branch: Dr-starck66/zip-github @ freehotels-railway-omega
+          TXT
+          python3 - <<'PY'
+          import json, pathlib
+          root=pathlib.Path("FreeHotels.info-COMPLET/site")
+          checks={
+              "homepage":(root/"index.html").is_file(),
+              "german":(root/"de/index.html").is_file(),
+              "english":(root/"en/index.html").is_file(),
+              "historic_berlin":(root/"de/berlin/45.html").is_file(),
+              "historic_dortmund":(root/"de/dortmund/index.html").is_file(),
+              "sitemap":(root/"sitemap.xml").is_file(),
+              "sitemap_legacy":(root/"sitemap-legacy.xml").is_file(),
+              "robots":(root/"robots.txt").is_file(),
+              "booking_css":(root/"assets/freehotels-repair.css").is_file(),
+              "booking_js":(root/"assets/freehotels-repair.js").is_file(),
+              "repair_audit":(root/"repair-audit.json").is_file(),
+              "legacy_audit":(root/"legacy-audit.json").is_file(),
+          }
+          n=sum(p.is_file() for p in root.rglob("*"))
+          print(json.dumps({"checks":checks,"static_files":n},indent=2))
+          assert all(checks.values()), "Archive incomplete"
+          assert n >= 90, "Unexpected small site export"
+          PY
+          zip -9 -q -r FreeHotels-Site-Complet.zip FreeHotels.info-COMPLET
+          unzip -t -q FreeHotels-Site-Complet.zip | tail -2
+          ls -lh FreeHotels-Site-Complet.zip
+      - name: Preserve export as GitHub Actions artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: FreeHotels-Site-Complet
+          path: FreeHotels-Site-Complet.zip
+          retention-days: 30
+          if-no-files-found: error
+      - name: Publish permanent public downloadable ZIP release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          tag="freehotels-site-2026-10-09"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            gh release upload "$tag" FreeHotels-Site-Complet.zip --clobber
+          else
+            gh release create "$tag" FreeHotels-Site-Complet.zip \
+              --target "$GITHUB_SHA" \
+              --title "FreeHotels.info — Site complet (9 octobre 2026)" \
+              --notes "Site statique entier, images, SEO, URL historiques, sources et configuration Railway. Archive testée lors du build."
+          fi
