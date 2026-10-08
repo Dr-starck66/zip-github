@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "4e2ed8e5c59c673f2f072a5ef8af04907cda6917",
-  "workflowRunId": 37553261351,
-  "requestedAt": "2026-10-07T00:43:05Z",
-  "reason": "Promote runtime international feed coverage proof on top of verified autonomous learning loop."
+  "sourceSha": "c16ca7607c9364edfdc3767ef816848fcfca6954",
+  "workflowRunId": 37768207846,
+  "requestedAt": "2026-10-08T11:30:37.519Z",
+  "reason": "User-authorized deployment of verified editorial live-budget fix (PR #62); require successful immutable candidate gate and production revision proof."
 }
