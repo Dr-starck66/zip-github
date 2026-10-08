@@ -11,6 +11,7 @@ RUN mkdir -p /site /site/de /site/en \
  && python3 /tmp/legacy/generate_corpus.py /site /tmp/legacy \
  && mkdir -p /site/en/news/ruby-lilou-marseille-opening \
  && cp /tmp/editorial/ruby-lilou/index.html /tmp/editorial/ruby-lilou/hero.svg /site/en/news/ruby-lilou-marseille-opening/ \
+ && python3 /tmp/editorial/ruby-lilou/generate_cover.py \
  && rm -f /site/Dockerfile /site/railway.toml /site/nginx.conf /site/vercel.json
 
 FROM nginx:1.27-alpine
