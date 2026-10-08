@@ -2,12 +2,15 @@ FROM python:3.12-alpine AS builder
 RUN apk add --no-cache unzip
 COPY site.b64 /tmp/site.b64
 COPY legacy/ /tmp/legacy/
+COPY editorial/ /tmp/editorial/
 RUN mkdir -p /site /site/de /site/en \
  && base64 -d /tmp/site.b64 > /tmp/site.zip \
  && unzip -oq /tmp/site.zip -d /site \
  && if [ -d /tmp/legacy/de ]; then cp -R /tmp/legacy/de/. /site/de/; fi \
  && if [ -d /tmp/legacy/en ]; then cp -R /tmp/legacy/en/. /site/en/; fi \
  && python3 /tmp/legacy/generate_corpus.py /site /tmp/legacy \
+ && mkdir -p /site/en/news/ruby-lilou-marseille-opening \
+ && cp /tmp/editorial/ruby-lilou/index.html /tmp/editorial/ruby-lilou/hero.svg /site/en/news/ruby-lilou-marseille-opening/ \
  && rm -f /site/Dockerfile /site/railway.toml /site/nginx.conf /site/vercel.json
 
 FROM nginx:1.27-alpine
