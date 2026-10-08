@@ -9,6 +9,7 @@ RUN mkdir -p /site /site/de /site/en \
  && if [ -d /tmp/legacy/de ]; then cp -R /tmp/legacy/de/. /site/de/; fi \
  && if [ -d /tmp/legacy/en ]; then cp -R /tmp/legacy/en/. /site/en/; fi \
  && python3 /tmp/legacy/generate_corpus.py /site /tmp/legacy \
+ && python3 /tmp/legacy/repair_site.py /site /tmp/legacy \
  && mkdir -p /site/en/news/ruby-lilou-marseille-opening \
  && cp /tmp/editorial/ruby-lilou/index.html /tmp/editorial/ruby-lilou/hero.svg /site/en/news/ruby-lilou-marseille-opening/ \
  && python3 /tmp/editorial/ruby-lilou/generate_cover.py \
@@ -43,6 +44,11 @@ RUN apk add --no-cache curl \
  && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/sitemap.xml | grep -q 'https://freehotels.info/sitemap-legacy.xml' \
  && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/sitemap-legacy.xml | grep -q '<loc>https://freehotels.info/</loc>' \
  && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/robots.txt | grep -q 'Sitemap: https://freehotels.info/sitemap.xml' \
+ && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/assets/freehotels-repair.css)" = "200" \
+ && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/assets/freehotels-repair.js)" = "200" \
+ && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/dortmund/ | grep -q 'booking.com/searchresults.html' \
+ && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/ | grep -q 'fh-city-filter' \
+ && test "$(curl -sS -o /dev/null -w '%{http_code}' -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/repair-audit.json)" = "200" \
  && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/ | grep -q '/de/bielefeld/' \
  && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/de/ | grep -q '/de/bruessel/' \
  && curl -sS -H 'Host: freehotels.info' -H 'X-Forwarded-Proto: https' http://127.0.0.1/en/ | grep -q '/en/napoli/' \
