@@ -24,3 +24,10 @@ if (!fs.existsSync(homepage)) {
 }
 
 console.log("FREEHOTELS_BUILD_OK", fs.statSync(homepage).size);
+
+// Overlay independently maintained editorial content after archive extraction.
+const editorial = path.join(__dirname, "editorial", "ruby-lilou");
+const articleTarget = path.join(output, "en", "news", "ruby-lilou-marseille-opening");
+fs.mkdirSync(articleTarget, { recursive: true });
+for (const file of ["index.html", "hero.svg"]) fs.copyFileSync(path.join(editorial, file), path.join(articleTarget, file));
+console.log("FREEHOTELS_EDITORIAL_OVERLAY_OK", articleTarget);
