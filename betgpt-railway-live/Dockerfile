@@ -36,6 +36,9 @@ RUN npm --prefix app run test:results-watchdog
 RUN npm --prefix app run build
 RUN test -f app/.output/server/index.mjs \
  && test -f app/.output/public/astra-revision.json \
+ && test -f app/.output/public/ereferer-verification.html \
+ && grep -Fq '5dfb8c2d03070322faa31530c814e2f1' app/.output/public/ereferer-verification.html \
+ && echo EREFERER_ARTIFACT_PROOF_PASS \
  && node -e "const fs=require('fs');const r=JSON.parse(fs.readFileSync('app/.output/public/astra-revision.json','utf8'));const m=JSON.parse(fs.readFileSync('source-manifest.json','utf8'));if(r.sourceSha!==m.sourceSha)throw new Error('ASTRA_RUNTIME_REVISION_MISMATCH');console.log('ASTRA_RUNTIME_ARTIFACT_PASS',r.sourceSha)"
 
 FROM node:22-bookworm-slim AS runtime
