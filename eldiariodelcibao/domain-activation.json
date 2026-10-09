@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "domain": "eldiariodelcibao.com",
+  "registrar": "Dynadot",
+  "dnsProvider": "Dynadot DNS",
+  "project": "EL DIARIO DEL CIBAO",
+  "railway": {
+    "projectId": "0fc826ff-7ae0-4f71-87c4-4c44dd8cef10",
+    "serviceId": "e433bc4f-48bc-4afc-ac59-67122e4ab2b2",
+    "environmentId": "3cccc9e1-c67b-4317-af8b-5532cfc6245a"
+  },
+  "records": [
+    {
+      "host": "@",
+      "type": "ANAME",
+      "target": "960z4s7q.up.railway.app",
+      "purpose": "root traffic"
+    },
+    {
+      "host": "_railway-verify",
+      "type": "TXT",
+      "target": "railway-verify=ef736b8fd3427d59c64da2f7e49fa6a42579a41a7195dc434976c0fd6e0ac811",
+      "purpose": "root ownership"
+    },
+    {
+      "host": "www",
+      "type": "CNAME",
+      "target": "q29qchfz.up.railway.app",
+      "purpose": "www traffic"
+    },
+    {
+      "host": "_railway-verify.www",
+      "type": "TXT",
+      "target": "railway-verify=a896b58954dc4da8a58cd54997bb2a197c195179039989bc1900e995921b0bd7",
+      "purpose": "www ownership"
+    }
+  ],
+  "safety": {
+    "preserveUnrelatedDnsRecords": true,
+    "doNotOverwriteMXorSPF": true,
+    "requireValidDynadotApiKey": true,
+    "neverAssumeApplied": true
+  },
+  "checks": [
+    "Railway root verified",
+    "Railway www verified",
+    "TLS certificate issued both hostnames",
+    "HTTP 200 on /health",
+    "indexable sitemap URLs",
+    "no 5xx over 10 probe URLs"
+  ],
+  "discoveredOn": "2026-10-09"
+}
