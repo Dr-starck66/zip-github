@@ -74,7 +74,7 @@ if (fs.existsSync(appRootRoute)) {
   if (!root.includes(erefererToken)) {
     const markerNode = `<span hidden dangerouslySetInnerHTML={{ __html: "${erefererToken}" }} />`;
     if (!root.includes("<body>")) throw new Error("EREFERER_ROOT_PROOF_FAILED: missing SSR body");
-    root = root.replace("<body>", `<body>\\n        ${markerNode}`);
+    root = root.replace("<body>", `<body>\n        ${markerNode}`);
     fs.writeFileSync(appRootRoute, root);
   }
 }
