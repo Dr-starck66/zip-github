@@ -53,6 +53,33 @@ if (!sourceDir) throw new Error("BetGPT package.json missing after GitHub archiv
 
 fs.renameSync(sourceDir, appDir);
 
+// Railway Ereferer ownership proof: emitted into the real runtime artifact,
+// even when the application release train is pinned to an earlier GREEN SHA.
+const erefererToken = "<!-- 5dfb8c2d03070322faa31530c814e2f1 -->";
+const erefererPage = path.join(appDir, "public", "ereferer-verification.html");
+fs.mkdirSync(path.dirname(erefererPage), { recursive: true });
+fs.writeFileSync(
+  erefererPage,
+  `<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="robots" content="noindex,follow"><title>BetGPT - Ereferer</title></head>
+<body>
+  ${erefererToken}
+  <p>Vérification de propriété du domaine betgpt.live.</p>
+</body></html>
+`,
+);
+const appRootRoute = path.join(appDir, "src", "routes", "__root.tsx");
+if (fs.existsSync(appRootRoute)) {
+  let root = fs.readFileSync(appRootRoute, "utf8");
+  if (!root.includes(erefererToken)) {
+    const markerNode = `<span hidden dangerouslySetInnerHTML={{ __html: "${erefererToken}" }} />`;
+    if (!root.includes("<body>")) throw new Error("EREFERER_ROOT_PROOF_FAILED: missing SSR body");
+    root = root.replace("<body>", `<body>\\n        ${markerNode}`);
+    fs.writeFileSync(appRootRoute, root);
+  }
+}
+console.log("EREFERER_RAILWAY_ARTIFACT_PASS", JSON.stringify({ page: erefererPage, token: erefererToken }));
+
 const revisionPath = path.join(appDir, "public", "astra-revision.json");
 fs.mkdirSync(path.dirname(revisionPath), { recursive: true });
 fs.writeFileSync(
