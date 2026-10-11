@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "493379589d7b63011cc415a9bcd9c668e816e91d",
-  "workflowRunId": 38164701974,
-  "requestedAt": "2026-10-11T18:40:56Z",
-  "reason": "BetGPT user-authorized incident repair PR #64: bound /equipe/* and /actualites provider waits after completed GREEN main candidate gate. Require immutable promotion and production HTTP/memory/latency proof before PASS."
+  "sourceSha": "6509e2bc7bf3a1bb1e6e669e1ac44089767b7caf",
+  "workflowRunId": 38167694440,
+  "requestedAt": "2026-10-11T19:23:47.861Z",
+  "reason": "User-requested BetGPT ledger ROI historical display PR #66: promote verified GREEN immutable 6509e2bc, preserve separate real public performance and proof gate."
 }
