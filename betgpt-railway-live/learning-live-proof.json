@@ -1,35 +1,62 @@
 {
   "schema": "astra-betgpt-learning-live-proof/v1",
-  "checkedAt": "2026-10-10T20:43:10Z",
+  "checkedAt": "2026-10-11T03:35:32Z",
   "source": "https://betgpt.live/api/learning-checkpoint",
   "runtimeSchema": "astra-betgpt-runtime-checkpoint/v2",
-  "generatedAt": "2026-10-10T20:43:03.719Z",
+  "generatedAt": "2026-10-11T03:35:24.836Z",
   "refresh": {
     "status": "PASS",
-    "liveFetchedAt": 1791664981426,
-    "liveAsOf": "2026-10-10T20:43:01.426Z"
+    "liveFetchedAt": 1791689723039,
+    "liveAsOf": "2026-10-11T03:35:23.039Z"
   },
   "recovery": {
-    "targets": 17,
-    "recovered": 2
+    "targets": 8,
+    "recovered": 0
   },
-  "ticketCount": 820,
+  "ticketCount": 817,
   "learning": {
     "canonicalSettledN": 8,
     "canonicalWins": 2,
     "canonicalLosses": 6,
     "canonicalRoi": -0.38375000000000004,
-    "observationalSettledN": 21,
-    "observationalWins": 8,
+    "observationalSettledN": 22,
+    "observationalWins": 9,
     "observationalLosses": 13,
-    "observationalSimulatedRoi": -0.047353608819353354,
+    "observationalSimulatedRoi": -0.007019353873019118,
     "playableFreshness": {
       "latestSettledKickoff": "2026-10-10T18:45Z",
-      "settledLast24h": 7,
-      "settledLast7d": 10,
+      "settledLast24h": 8,
+      "settledLast7d": 11,
       "status": "FRESH"
     },
     "latestPlayableSettled": [
+      {
+        "id": "espn-401876448:1X2",
+        "kickoff": "2026-10-10T18:45Z",
+        "league": "L1",
+        "competition": "Ligue 1",
+        "competitionKey": "fra.1",
+        "market": "1X2_H",
+        "odds": 1.84,
+        "result": "win",
+        "pnlUnits": 0.8400000000000001,
+        "kind": "prono",
+        "decision": "NO_BET",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_H",
+          "league:L1",
+          "odds:1.80-2.09",
+          "prob:42-47%",
+          "ev:<3%",
+          "dataQuality:HIGH",
+          "modelDisagreement:HIGH",
+          "tacticalConflict:VERY_HIGH",
+          "devilChallenge:VERY_HIGH",
+          "oddsMove:FLAT",
+          "missingInfo:HIGH"
+        ]
+      },
       {
         "id": "espn-401876445:1X2_A:mise",
         "kickoff": "2026-10-10T18:45Z",
@@ -472,37 +499,70 @@
           "prob:<42%",
           "ev:12%+"
         ]
-      },
-      {
-        "id": "espn-401915440:1X2",
-        "kickoff": "2026-09-10T19:00Z",
-        "league": "CL",
-        "market": "1X2_A",
-        "odds": 2.7,
-        "result": "win",
-        "pnlUnits": 1.7000000000000002,
-        "kind": "prono",
-        "decision": "NO_BET",
-        "evidence": "OBSERVATIONAL_PREDICTION",
-        "factors": [
-          "market:1X2_A",
-          "league:CL",
-          "odds:2.70-3.00",
-          "prob:<42%",
-          "ev:7-11%"
-        ]
       }
     ],
-    "contextualSettledN": 64,
-    "contextualWins": 26,
+    "contextualSettledN": 67,
+    "contextualWins": 29,
     "contextualLosses": 38,
     "contextualFreshness": {
-      "latestSettledKickoff": "2026-10-10T18:45Z",
-      "settledLast24h": 27,
-      "settledLast7d": 35,
+      "latestSettledKickoff": "2026-10-10T19:00Z",
+      "settledLast24h": 30,
+      "settledLast7d": 38,
       "status": "FRESH"
     },
     "latestContextSettled": [
+      {
+        "id": "espn-401882848:1X2",
+        "kickoff": "2026-10-10T19:00Z",
+        "league": "LL",
+        "competition": "La Liga",
+        "competitionKey": "esp.1",
+        "market": "1X2_H",
+        "odds": 1.32,
+        "result": "win",
+        "kind": "prono",
+        "decision": "WATCH",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_H",
+          "league:LL",
+          "odds:<1.80",
+          "prob:54%+",
+          "ev:12%+",
+          "dataQuality:HIGH",
+          "modelDisagreement:MEDIUM",
+          "tacticalConflict:MEDIUM",
+          "devilChallenge:HIGH",
+          "oddsMove:FLAT",
+          "missingInfo:HIGH"
+        ]
+      },
+      {
+        "id": "espn-401882848:OU_25_U:mise",
+        "kickoff": "2026-10-10T19:00Z",
+        "league": "LL",
+        "competition": "La Liga",
+        "competitionKey": "esp.1",
+        "market": "OU_25_U",
+        "odds": 3.85,
+        "result": "win",
+        "kind": "mise",
+        "decision": "BET",
+        "evidence": "ACTUAL_BET",
+        "factors": [
+          "market:OU_25_U",
+          "league:LL",
+          "odds:3.01+",
+          "prob:<42%",
+          "ev:12%+",
+          "dataQuality:HIGH",
+          "modelDisagreement:MEDIUM",
+          "tacticalConflict:MEDIUM",
+          "devilChallenge:HIGH",
+          "oddsMove:FLAT",
+          "missingInfo:HIGH"
+        ]
+      },
       {
         "id": "espn-401874754:1X2",
         "kickoff": "2026-10-10T18:45Z",
@@ -554,6 +614,32 @@
           "devilChallenge:HIGH",
           "oddsMove:FLAT",
           "importance:HIGH",
+          "missingInfo:HIGH"
+        ]
+      },
+      {
+        "id": "espn-401876448:1X2",
+        "kickoff": "2026-10-10T18:45Z",
+        "league": "L1",
+        "competition": "Ligue 1",
+        "competitionKey": "fra.1",
+        "market": "1X2_H",
+        "odds": 1.84,
+        "result": "win",
+        "kind": "prono",
+        "decision": "NO_BET",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_H",
+          "league:L1",
+          "odds:1.80-2.09",
+          "prob:42-47%",
+          "ev:<3%",
+          "dataQuality:HIGH",
+          "modelDisagreement:HIGH",
+          "tacticalConflict:VERY_HIGH",
+          "devilChallenge:VERY_HIGH",
+          "oddsMove:FLAT",
           "missingInfo:HIGH"
         ]
       },
@@ -950,169 +1036,98 @@
           "oddsMove:FLAT",
           "missingInfo:HIGH"
         ]
-      },
-      {
-        "id": "espn-401884775:1X2_A:mise",
-        "kickoff": "2026-10-10T13:30Z",
-        "league": "BL",
-        "competition": "Bundesliga",
-        "competitionKey": "ger.1",
-        "market": "1X2_A",
-        "odds": 2.6,
-        "result": "lose",
-        "kind": "mise",
-        "decision": "BET",
-        "evidence": "ACTUAL_BET",
-        "factors": [
-          "market:1X2_A",
-          "league:BL",
-          "odds:2.40-2.69",
-          "prob:54%+",
-          "ev:12%+",
-          "dataQuality:HIGH",
-          "modelDisagreement:HIGH",
-          "tacticalConflict:MEDIUM",
-          "devilChallenge:HIGH",
-          "oddsMove:FLAT",
-          "missingInfo:HIGH"
-        ]
-      },
-      {
-        "id": "espn-401884777:1X2",
-        "kickoff": "2026-10-10T13:30Z",
-        "league": "BL",
-        "competition": "Bundesliga",
-        "competitionKey": "ger.1",
-        "market": "1X2_A",
-        "odds": 1.16,
-        "result": "lose",
-        "kind": "prono",
-        "decision": "NO_BET",
-        "evidence": "OBSERVATIONAL_PREDICTION",
-        "factors": [
-          "market:1X2_A",
-          "league:BL",
-          "odds:<1.80",
-          "prob:54%+",
-          "ev:<3%",
-          "dataQuality:HIGH",
-          "modelDisagreement:VERY_HIGH",
-          "tacticalConflict:VERY_HIGH",
-          "devilChallenge:VERY_HIGH",
-          "oddsMove:FLAT",
-          "importance:HIGH",
-          "missingInfo:HIGH"
-        ]
-      },
-      {
-        "id": "espn-401884776:1X2",
-        "kickoff": "2026-10-10T13:30Z",
-        "league": "BL",
-        "competition": "Bundesliga",
-        "competitionKey": "ger.1",
-        "market": "1X2_H",
-        "odds": 3,
-        "result": "lose",
-        "kind": "prono",
-        "decision": "WATCH",
-        "evidence": "OBSERVATIONAL_PREDICTION",
-        "factors": [
-          "market:1X2_H",
-          "league:BL",
-          "odds:2.70-3.00",
-          "prob:54%+",
-          "ev:12%+",
-          "dataQuality:HIGH",
-          "modelDisagreement:HIGH",
-          "tacticalConflict:VERY_HIGH",
-          "devilChallenge:VERY_HIGH",
-          "oddsMove:FLAT",
-          "importance:HIGH",
-          "missingInfo:HIGH"
-        ]
       }
     ],
     "contextualFactors": [
       {
         "factor": "oddsMove:FLAT",
-        "n": 35,
-        "wins": 15,
+        "n": 38,
+        "wins": 18,
         "losses": 20,
-        "hitRate": 0.42857142857142855,
-        "roi": -0.14142857142857151,
-        "profitUnits": -4.950000000000003
+        "hitRate": 0.47368421052631576,
+        "roi": -0.024736842105263286,
+        "profitUnits": -0.9400000000000048
       },
       {
         "factor": "missingInfo:HIGH",
-        "n": 35,
-        "wins": 15,
+        "n": 38,
+        "wins": 18,
         "losses": 20,
-        "hitRate": 0.42857142857142855,
-        "roi": -0.14142857142857151,
-        "profitUnits": -4.950000000000003
+        "hitRate": 0.47368421052631576,
+        "roi": -0.024736842105263286,
+        "profitUnits": -0.9400000000000048
       },
       {
         "factor": "dataQuality:HIGH",
-        "n": 32,
-        "wins": 14,
+        "n": 35,
+        "wins": 17,
         "losses": 18,
-        "hitRate": 0.4375,
-        "roi": -0.11562500000000009,
-        "profitUnits": -3.700000000000003
+        "hitRate": 0.4857142857142857,
+        "roi": 0.00885714285714272,
+        "profitUnits": 0.30999999999999517
       },
       {
         "factor": "market:1X2_H",
-        "n": 32,
-        "wins": 16,
+        "n": 34,
+        "wins": 18,
         "losses": 16,
-        "hitRate": 0.5,
-        "roi": -0.14156250000000015,
-        "profitUnits": -4.530000000000005
+        "hitRate": 0.5294117647058824,
+        "roi": -0.09911764705882366,
+        "profitUnits": -3.3700000000000045
       },
       {
         "factor": "ev:12%+",
-        "n": 30,
-        "wins": 9,
+        "n": 32,
+        "wins": 11,
         "losses": 21,
-        "hitRate": 0.3,
-        "roi": -0.2931475261735473,
-        "profitUnits": -8.794425785206418
+        "hitRate": 0.34375,
+        "roi": -0.1757633057877005,
+        "profitUnits": -5.624425785206416
       },
       {
         "factor": "prob:54%+",
-        "n": 26,
-        "wins": 12,
+        "n": 27,
+        "wins": 13,
         "losses": 14,
-        "hitRate": 0.46153846153846156,
-        "roi": -0.246923076923077,
-        "profitUnits": -6.420000000000002
+        "hitRate": 0.48148148148148145,
+        "roi": -0.22592592592592597,
+        "profitUnits": -6.100000000000001
       },
       {
         "factor": "ev:<3%",
-        "n": 21,
-        "wins": 10,
+        "n": 22,
+        "wins": 11,
         "losses": 11,
-        "hitRate": 0.47619047619047616,
-        "roi": -0.299047619047619,
-        "profitUnits": -6.279999999999999
+        "hitRate": 0.5,
+        "roi": -0.24727272727272717,
+        "profitUnits": -5.439999999999998
       },
       {
         "factor": "odds:<1.80",
-        "n": 20,
-        "wins": 12,
+        "n": 21,
+        "wins": 13,
         "losses": 8,
-        "hitRate": 0.6,
-        "roi": -0.15649999999999994,
-        "profitUnits": -3.129999999999999
+        "hitRate": 0.6190476190476191,
+        "roi": -0.13380952380952374,
+        "profitUnits": -2.8099999999999987
       },
       {
         "factor": "devilChallenge:VERY_HIGH",
+        "n": 20,
+        "wins": 7,
+        "losses": 13,
+        "hitRate": 0.35,
+        "roi": -0.3285,
+        "profitUnits": -6.57
+      },
+      {
+        "factor": "tacticalConflict:VERY_HIGH",
         "n": 19,
         "wins": 6,
         "losses": 13,
         "hitRate": 0.3157894736842105,
-        "roi": -0.39,
-        "profitUnits": -7.41
+        "roi": -0.40263157894736834,
+        "profitUnits": -7.649999999999999
       },
       {
         "factor": "league:BL",
@@ -1124,31 +1139,31 @@
         "profitUnits": -8.88
       },
       {
-        "factor": "tacticalConflict:VERY_HIGH",
+        "factor": "devilChallenge:HIGH",
+        "n": 18,
+        "wins": 11,
+        "losses": 7,
+        "hitRate": 0.6111111111111112,
+        "roi": 0.3127777777777777,
+        "profitUnits": 5.629999999999999
+      },
+      {
+        "factor": "prob:42-47%",
         "n": 18,
         "wins": 5,
         "losses": 13,
         "hitRate": 0.2777777777777778,
-        "roi": -0.47166666666666657,
-        "profitUnits": -8.489999999999998
+        "roi": -0.4222222222222223,
+        "profitUnits": -7.600000000000001
       },
       {
-        "factor": "prob:42-47%",
+        "factor": "modelDisagreement:HIGH",
         "n": 17,
-        "wins": 4,
-        "losses": 13,
-        "hitRate": 0.23529411764705882,
-        "roi": -0.4964705882352942,
-        "profitUnits": -8.440000000000001
-      },
-      {
-        "factor": "devilChallenge:HIGH",
-        "n": 16,
-        "wins": 9,
-        "losses": 7,
-        "hitRate": 0.5625,
-        "roi": 0.15374999999999983,
-        "profitUnits": 2.4599999999999973
+        "wins": 7,
+        "losses": 10,
+        "hitRate": 0.4117647058823529,
+        "roi": -0.24764705882352947,
+        "profitUnits": -4.210000000000001
       },
       {
         "factor": "importance:HIGH",
@@ -1160,13 +1175,13 @@
         "profitUnits": -3.379999999999999
       },
       {
-        "factor": "modelDisagreement:HIGH",
-        "n": 16,
+        "factor": "prob:<42%",
+        "n": 15,
         "wins": 6,
-        "losses": 10,
-        "hitRate": 0.375,
-        "roi": -0.31562500000000004,
-        "profitUnits": -5.050000000000001
+        "losses": 9,
+        "hitRate": 0.4,
+        "roi": 0.18170494765290546,
+        "profitUnits": 2.725574214793582
       },
       {
         "factor": "modelDisagreement:VERY_HIGH",
@@ -1187,13 +1202,13 @@
         "profitUnits": 1.1999999999999993
       },
       {
-        "factor": "prob:<42%",
+        "factor": "market:OU_25_U",
         "n": 14,
-        "wins": 5,
-        "losses": 9,
-        "hitRate": 0.35714285714285715,
-        "roi": -0.00888755608617269,
-        "profitUnits": -0.12442578520641767
+        "wins": 4,
+        "losses": 10,
+        "hitRate": 0.2857142857142857,
+        "roi": -0.13214285714285712,
+        "profitUnits": -1.8499999999999996
       },
       {
         "factor": "market:1X2_A",
@@ -1203,15 +1218,6 @@
         "hitRate": 0.3076923076923077,
         "roi": -0.27649429116972446,
         "profitUnits": -3.5944257852064183
-      },
-      {
-        "factor": "market:OU_25_U",
-        "n": 13,
-        "wins": 3,
-        "losses": 10,
-        "hitRate": 0.23076923076923078,
-        "roi": -0.3615384615384615,
-        "profitUnits": -4.699999999999999
       }
     ],
     "harmfulFactors": [
@@ -1225,15 +1231,6 @@
         "profitUnits": -4
       },
       {
-        "factor": "modelDisagreement:HIGH",
-        "n": 6,
-        "wins": 1,
-        "losses": 5,
-        "hitRate": 0.16666666666666666,
-        "roi": -0.6033333333333334,
-        "profitUnits": -3.62
-      },
-      {
         "factor": "odds:2.10-2.39",
         "n": 8,
         "wins": 2,
@@ -1243,31 +1240,13 @@
         "profitUnits": -3.3200000000000003
       },
       {
-        "factor": "tacticalConflict:VERY_HIGH",
-        "n": 5,
-        "wins": 1,
-        "losses": 4,
-        "hitRate": 0.2,
-        "roi": -0.41,
-        "profitUnits": -2.05
-      },
-      {
-        "factor": "devilChallenge:VERY_HIGH",
-        "n": 5,
-        "wins": 1,
-        "losses": 4,
-        "hitRate": 0.2,
-        "roi": -0.41,
-        "profitUnits": -2.05
-      },
-      {
-        "factor": "ev:<3%",
+        "factor": "modelDisagreement:HIGH",
         "n": 7,
         "wins": 2,
         "losses": 5,
         "hitRate": 0.2857142857142857,
-        "roi": -0.3785714285714286,
-        "profitUnits": -2.6500000000000004
+        "roi": -0.3971428571428572,
+        "profitUnits": -2.7800000000000002
       },
       {
         "factor": "prob:54%+",
@@ -1279,15 +1258,6 @@
         "profitUnits": -2.67
       },
       {
-        "factor": "prob:42-47%",
-        "n": 9,
-        "wins": 3,
-        "losses": 6,
-        "hitRate": 0.3333333333333333,
-        "roi": -0.2333333333333334,
-        "profitUnits": -2.1000000000000005
-      },
-      {
         "factor": "league:BL",
         "n": 3,
         "wins": 1,
@@ -1297,13 +1267,49 @@
         "profitUnits": -0.7000000000000002
       },
       {
-        "factor": "oddsMove:FLAT",
-        "n": 10,
+        "factor": "ev:<3%",
+        "n": 8,
         "wins": 3,
-        "losses": 7,
-        "hitRate": 0.3,
-        "roi": -0.21200000000000002,
-        "profitUnits": -2.12
+        "losses": 5,
+        "hitRate": 0.375,
+        "roi": -0.22625000000000006,
+        "profitUnits": -1.8100000000000005
+      },
+      {
+        "factor": "tacticalConflict:VERY_HIGH",
+        "n": 6,
+        "wins": 2,
+        "losses": 4,
+        "hitRate": 0.3333333333333333,
+        "roi": -0.20166666666666666,
+        "profitUnits": -1.21
+      },
+      {
+        "factor": "devilChallenge:VERY_HIGH",
+        "n": 6,
+        "wins": 2,
+        "losses": 4,
+        "hitRate": 0.3333333333333333,
+        "roi": -0.20166666666666666,
+        "profitUnits": -1.21
+      },
+      {
+        "factor": "market:1X2_A",
+        "n": 9,
+        "wins": 3,
+        "losses": 6,
+        "hitRate": 0.3333333333333333,
+        "roi": -0.14938064280071314,
+        "profitUnits": -1.3444257852064183
+      },
+      {
+        "factor": "ev:12%+",
+        "n": 12,
+        "wins": 4,
+        "losses": 8,
+        "hitRate": 0.3333333333333333,
+        "roi": -0.12870214876720146,
+        "profitUnits": -1.5444257852064176
       }
     ],
     "helpfulFactors": [
@@ -1326,6 +1332,15 @@
         "profitUnits": 1.9299999999999997
       },
       {
+        "factor": "league:L1",
+        "n": 3,
+        "wins": 2,
+        "losses": 1,
+        "hitRate": 0.6666666666666666,
+        "roi": 0.4633333333333332,
+        "profitUnits": 1.3899999999999997
+      },
+      {
         "factor": "odds:2.70-3.00",
         "n": 4,
         "wins": 2,
@@ -1333,6 +1348,24 @@
         "hitRate": 0.5,
         "roi": 0.4125000000000001,
         "profitUnits": 1.6500000000000004
+      },
+      {
+        "factor": "odds:1.80-2.09",
+        "n": 3,
+        "wins": 2,
+        "losses": 1,
+        "hitRate": 0.6666666666666666,
+        "roi": 0.2966666666666666,
+        "profitUnits": 0.8899999999999997
+      },
+      {
+        "factor": "market:1X2_H",
+        "n": 13,
+        "wins": 6,
+        "losses": 7,
+        "hitRate": 0.46153846153846156,
+        "roi": 0.09153846153846136,
+        "profitUnits": 1.1899999999999977
       },
       {
         "factor": "odds:2.40-2.69",
@@ -1353,15 +1386,6 @@
         "profitUnits": 0.33000000000000007
       },
       {
-        "factor": "market:1X2_H",
-        "n": 12,
-        "wins": 5,
-        "losses": 7,
-        "hitRate": 0.4166666666666667,
-        "roi": 0.02916666666666649,
-        "profitUnits": 0.34999999999999787
-      },
-      {
         "factor": "devilChallenge:HIGH",
         "n": 5,
         "wins": 2,
@@ -1371,31 +1395,13 @@
         "profitUnits": -0.07000000000000028
       },
       {
-        "factor": "league:LL",
-        "n": 5,
-        "wins": 2,
-        "losses": 3,
-        "hitRate": 0.4,
-        "roi": -0.09000000000000004,
-        "profitUnits": -0.4500000000000002
-      },
-      {
         "factor": "dataQuality:HIGH",
-        "n": 9,
-        "wins": 3,
-        "losses": 6,
-        "hitRate": 0.3333333333333333,
-        "roi": -0.12444444444444445,
-        "profitUnits": -1.12
-      },
-      {
-        "factor": "ev:12%+",
-        "n": 12,
+        "n": 10,
         "wins": 4,
-        "losses": 8,
-        "hitRate": 0.3333333333333333,
-        "roi": -0.12870214876720146,
-        "profitUnits": -1.5444257852064176
+        "losses": 6,
+        "hitRate": 0.4,
+        "roi": -0.027999999999999935,
+        "profitUnits": -0.27999999999999936
       }
     ]
   },
