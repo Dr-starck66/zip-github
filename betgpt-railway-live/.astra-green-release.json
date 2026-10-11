@@ -11,5 +11,11 @@
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
   "workflowRunId": 37768207846,
-  "verifiedAt": "2026-10-10T06:27:06.709Z"
+  "verifiedAt": "2026-10-10T06:27:06.709Z",
+  "reemit": {
+    "sourceSha": "c16ca7607c9364edfdc3767ef816848fcfca6954",
+    "greenWorkflowRunId": 37768207846,
+    "at": "2026-10-11T00:51:58.904Z",
+    "controller": "ASTRA_RAILWAY_GREEN_RECONCILER"
+  }
 }

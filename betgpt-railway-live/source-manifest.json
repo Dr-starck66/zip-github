@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-10T06:27:06.705Z",
-  "reason": "Release Train: promote latest immutable GREEN ancestor of current main without rollback starvation"
+  "updatedAt": "2026-10-11T00:51:58.904Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
