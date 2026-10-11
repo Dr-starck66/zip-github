@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "c16ca7607c9364edfdc3767ef816848fcfca6954",
-  "workflowRunId": 37768207846,
-  "requestedAt": "2026-10-08T11:30:37.519Z",
-  "reason": "User-authorized deployment of verified editorial live-budget fix (PR #62); require successful immutable candidate gate and production revision proof."
+  "sourceSha": "9b5baf5a8de49f898e8adea449230e71edadd142",
+  "workflowRunId": 38128227857,
+  "requestedAt": "2026-10-11T09:26:00Z",
+  "reason": "User-authorized incident recovery for BetGPT OOM 2026-10-10; PR #63 guarded archive backfill, TS18046 fix. Require GREEN promotion and live revision/health verification; no false PASS."
 }
