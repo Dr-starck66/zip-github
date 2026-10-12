@@ -1,0 +1,30 @@
+{
+  "/archivo/2018/esperanza-boca-de-mao-obras-protestas/": {
+    "path": "/images/esperanza-boca-mao-obras-protestas-2018.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 31688,
+    "mime": "image/webp",
+    "alt": "Ilustración editorial del río y un puente de Valverde para contextualizar obras y protestas de Esperanza y Boca de Mao en 2018",
+    "caption": "Ilustración editorial original de Valverde, creada para el reportaje histórico; no es una fotografía tomada en 2018.",
+    "source": {
+      "type": "original",
+      "author": "El Diario del Cibao — edición ASTRA",
+      "proof": "author-approved",
+      "proofRef": "https://github.com/Dr-starck66/zip-github/commit/44ac746934ef631d2fcbf34206be693bc3c82c3e",
+      "createdAt": "2026-10-12",
+      "license": "obra original para este periódico"
+    },
+    "editorial": {
+      "reviewed": true,
+      "exactSubjectMatch": true,
+      "placeMatch": true,
+      "nonStockGeneric": true,
+      "depictsHistoricalEvent": false,
+      "isModernPhoto": false,
+      "modernContextDeclared": true
+    },
+    "sha256": "dcb0990848c2c3d411e65a0644edf1902532f7f11c2377995aae669b8ffda811",
+    "pageTitle": "Esperanza y Boca de Mao en junio de 2018: obras, protestas e identidad local"
+  }
+}
