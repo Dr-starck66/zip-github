@@ -4,6 +4,7 @@ on:
     branches: [eldiariodelcibao-metadata-integration]
     paths:
       - "eldiariodelcibao/server.mjs"
+      - "eldiariodelcibao/scripts/recover-wayback-2018.py"
       - ".github/workflows/eldiario-integration-proof.yml"
   workflow_dispatch:
 permissions:
