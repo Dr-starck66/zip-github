@@ -23,6 +23,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Install Node image processing dependencies before real startup probe
+        run: npm install --prefix eldiariodelcibao --no-audit --no-fund
       - name: Adversarial content mutation must block server at startup
         run: |
           node - <<'JS'
