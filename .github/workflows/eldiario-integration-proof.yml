@@ -19,6 +19,7 @@ jobs:
           node-version: "22"
       - name: Syntax and local server
         run: |
+          python3 -m py_compile eldiariodelcibao/scripts/recover-wayback-2018.py
           node --check eldiariodelcibao/server.mjs
           cd eldiariodelcibao
           PORT=3087 node server.mjs > /tmp/eldiario.log 2>&1 &
