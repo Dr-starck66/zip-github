@@ -389,5 +389,38 @@
     },
     "sha256": "b02ce26c6f039119039e4c329b98b0446c272b89e226345eb8b9067e87a95199",
     "pageTitle": "Monte Cristi: actualidad y contexto del noroeste"
+  },
+  "/turismo-en-el-cibao/": {
+    "path": "/images/turismo-cibao-puerto-plata-panoramica-atlantico.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 63116,
+    "mime": "image/webp",
+    "alt": "Panorámica real de Puerto Plata en la costa atlántica de República Dominicana, incluida en la ruta turística del norte",
+    "caption": "Puerto Plata, costa atlántica, fotografiada el 30 de diciembre de 2013 por Fanny S Forsdik (CC BY-SA 3.0). Recorte adaptado a WebP; vista contextual de uno de los destinos de esta guía.",
+    "source": {
+      "type": "commons",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Puerto_Plata_-_panoramio.jpg",
+      "licenseEvidenceUrl": "https://commons.wikimedia.org/wiki/File:Puerto_Plata_-_panoramio.jpg",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "checkedAt": "2026-10-12",
+      "author": "Fanny S Forsdik",
+      "derivativeLicense": "CC BY-SA 3.0",
+      "originalSha1": "a702bdadf9156888780cbd1d07f0a389d4ccf5f2",
+      "downloadedSha1": "9c513abe97437ab42a80f7c3de5fcc92ed224643",
+      "adaptations": "preserved original panorama as foreground, blurred backdrop, WebP conversion"
+    },
+    "editorial": {
+      "reviewed": true,
+      "exactSubjectMatch": true,
+      "placeMatch": true,
+      "nonStockGeneric": true,
+      "depictsHistoricalEvent": false,
+      "isModernPhoto": false,
+      "modernContextDeclared": true
+    },
+    "sha256": "2bc3e9577bdaf22805d06771e2be59f5ad4345457b5391d83279ee4e0ae2fb51",
+    "pageTitle": "Turismo en el Cibao: Santiago, montañas, cascadas y costa norte"
   }
 }
