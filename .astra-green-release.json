@@ -1,8 +1,8 @@
 {
   "schema": "astra-green-release/v1",
   "site": "pantomime.org",
-  "sourceSha": "d6386db6b3e4faefd6d7cbaf8a5233f25d2a7e4e",
+  "sourceSha": "e11f30e4fa30289e8357cbaaabe9e797a8e1ba4a",
   "greenVerified": true,
   "controller": "ASTRA_PANTOMIME_SELF_HEAL",
-  "verifiedAt": "2026-10-12T17:20:36.859Z"
+  "verifiedAt": "2026-10-12T17:26:37.032Z"
 }
