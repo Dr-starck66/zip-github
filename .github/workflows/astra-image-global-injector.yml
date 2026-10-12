@@ -1,4 +1,4 @@
-name: ASTRA IMAGE Global Injector and Proof Gate
+name: ASTRA IMAGE Global Injector and Proof Gate Ω
 on:
   push:
     branches: [astra-image-global-injector-omega, main]
@@ -66,3 +66,5 @@ jobs:
             echo 'FALSE PASS: modified WebP was wrongly accepted'; exit 1
           fi
           echo 'ASTRA_IMAGE_ADVERSARIAL_PROOF PASS — mutated file rejected'
+
+# Second discovery push to register this workflow on the feature branch.
