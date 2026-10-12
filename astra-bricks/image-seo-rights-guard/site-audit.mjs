@@ -7,7 +7,7 @@
 import {existsSync,readFileSync} from "node:fs";
 import path from "node:path";
 import {createHash} from "node:crypto";
-import {auditManifest} from "./index.mjs";
+import {auditManifest} from "./lib/astra-image-seo-rights-guard.mjs";
 const root=process.cwd();
 const files={pages:path.join(root,"config","astra-image-pages.json"),manifest:path.join(root,"config","astra-image-manifest.json")};
 const die=(reason,detail)=>{console.error("ASTRA_IMAGE_GUARD_FAIL",JSON.stringify({reason,detail}));process.exitCode=1};
