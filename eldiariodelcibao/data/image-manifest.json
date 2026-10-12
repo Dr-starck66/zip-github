@@ -1,19 +1,23 @@
 {
   "/archivo/2018/esperanza-boca-de-mao-obras-protestas/": {
-    "path": "/images/esperanza-boca-mao-obras-protestas-2018.webp",
+    "path": "/images/esperanza-valverde-calle-desfile-comunitario-2014.webp",
     "width": 1200,
     "height": 675,
-    "bytes": 31688,
+    "bytes": 122628,
     "mime": "image/webp",
-    "alt": "Ilustración editorial del río y un puente de Valverde para contextualizar obras y protestas de Esperanza y Boca de Mao en 2018",
-    "caption": "Ilustración editorial original de Valverde, creada para el reportaje histórico; no es una fotografía tomada en 2018.",
+    "alt": "Desfile cultural celebrado en una calle real de Esperanza, provincia Valverde, República Dominicana, en 2014",
+    "caption": "Esperanza, Valverde: desfile cultural fotografiado el 12 de marzo de 2014. Imagen contextual de la localidad; NO muestra el paro ni las obras de 2018. Fotografía: Valvedero99 (CC BY-SA 4.0). Recorte y adaptación WebP.",
     "source": {
-      "type": "original",
-      "author": "El Diario del Cibao — edición ASTRA",
-      "proof": "author-approved",
-      "proofRef": "https://github.com/Dr-starck66/zip-github/commit/44ac746934ef631d2fcbf34206be693bc3c82c3e",
-      "createdAt": "2026-10-12",
-      "license": "obra original para este periódico"
+      "type": "commons",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Esperanza_Dominican_Republic.jpg",
+      "licenseEvidenceUrl": "https://commons.wikimedia.org/wiki/File:Esperanza_Dominican_Republic.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "checkedAt": "2026-10-12",
+      "author": "Valvedero99",
+      "derivativeLicense": "CC BY-SA 4.0",
+      "adaptations": "Ampliación 1000→1200 px, recorte panorámico et conversion WebP, 2026-10-12",
+      "upstreamSHA1": "c8aadb4ee23fc2556c9c9bf023af6d6f69ef72a2"
     },
     "editorial": {
       "reviewed": true,
@@ -24,7 +28,8 @@
       "isModernPhoto": false,
       "modernContextDeclared": true
     },
-    "sha256": "dcb0990848c2c3d411e65a0644edf1902532f7f11c2377995aae669b8ffda811",
-    "pageTitle": "Esperanza y Boca de Mao en junio de 2018: obras, protestas e identidad local"
+    "sha256": "66fb5c18967c3d8ad4131e7fd8c263d717b540c8d372dfaef3dfb4c189b83b86",
+    "pageTitle": "Esperanza y Boca de Mao en junio de 2018: obras, protestas e identidad local",
+    "editorialScope": "Location documentation only. The image is NOT an illustration of a 2018 event."
   }
 }
