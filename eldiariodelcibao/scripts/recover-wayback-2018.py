@@ -53,7 +53,7 @@ def process(row):
     archive_url = f"https://web.archive.org/web/{timestamp}id_/{original}"
     try:
         req = Request(archive_url, headers={"User-Agent":AGENT,"Accept":"text/html"})
-        with urlopen(req, timeout=30) as response:
+        with urlopen(req, timeout=12) as response:
             code = response.status
             final_url = response.url
             html = response.read(1_200_001)
@@ -107,14 +107,35 @@ def main():
     source = json.loads(SOURCE.read_text(encoding="utf-8"))
     old = json.loads(DEST.read_text(encoding="utf-8")) if DEST.exists() else {"records":[]}
     by_path = {x["path"]:x for x in old.get("records",[])}
-    candidates = [x for x in source if x["path"].startswith("/2018/06/")
-                  and x["path"] not in by_path]
-    candidates = candidates[:max(0,args.limit)]
+    eligible = [x for x in source if x["path"].startswith("/2018/06/")]
+    def editorial_priority(record):
+        name = record["path"].lower()
+        towns = ("esperanza", "boca-de-mao", "valverde", "santiago",
+                 "laguna-salada", "mao", "cibao", "monte-cristi",
+                 "puerto-plata", "la-vega", "dajabon", "noroeste")
+        themes = ("carretera", "calle", "obra", "hospital", "educa", "escuela",
+                  "cultura", "feria", "agric", "municip", "vecinos", "paro",
+                  "agua", "econom", "comercio", "puente", "patrimonio")
+        sensitive = ("apresan", "asesin", "asalt", "violac", "abus", "suicid",
+                     "muerte", "muere", "atracan", "sexual", "denuncia")
+        score = 8 * sum(t in name for t in towns) + 3 * sum(t in name for t in themes)
+        score -= 12 * sum(t in name for t in sensitive)
+        return (-score, name)
+    unseen = sorted((x for x in eligible if x["path"] not in by_path),
+                    key=editorial_priority)
+    failed = [x for x in eligible if x["path"] in by_path
+              and by_path[x["path"]].get("status") == "fetch-failed"]
+    failed.sort(key=lambda x: (by_path[x["path"]].get("attemptCount", 1),
+                               by_path[x["path"]].get("lastAttemptUTC", "")))
+    candidates = (unseen + failed)[:max(0, args.limit)]
     print(json.dumps({"attempting":len(candidates),"existing":len(by_path)}),flush=True)
     with concurrent.futures.ThreadPoolExecutor(max_workers=max(1,min(args.workers,5))) as executor:
         futures = {executor.submit(process,x):x for x in candidates}
         for i, fut in enumerate(concurrent.futures.as_completed(futures),1):
             item = fut.result()
+            prior = by_path.get(item["path"], {})
+            item["attemptCount"] = int(prior.get("attemptCount", 1)) + 1 if prior else 1
+            item["lastAttemptUTC"] = datetime.now(timezone.utc).isoformat()
             by_path[item["path"]] = item
             if i%20==0 or i==len(candidates):
                 good = sum(x.get("status")=="evidence-metadata" for x in by_path.values())
