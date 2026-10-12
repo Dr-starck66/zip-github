@@ -219,5 +219,73 @@
     },
     "sha256": "85beb0cc9c46c7af30ed56471473d87587dcef6f15fdb7224e2157049bd9bdea",
     "pageTitle": "Carnaval de La Vega: historia, cultura y guía editorial"
+  },
+  "/mao-valverde/": {
+    "path": "/images/mao-valverde-vista-real-ciudad-2023.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 64016,
+    "mime": "image/webp",
+    "alt": "Vista urbana auténtica de la ciudad de Mao en la provincia Valverde, República Dominicana",
+    "caption": "Vista de la ciudad de Mao en 2023. Fotografía: Ultimo1988; CC BY-SA 4.0. Recorte panorámico y conversión WebP.",
+    "source": {
+      "type": "commons",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Mao_Valverde_Dominican_Republic_city_7.jpg",
+      "licenseEvidenceUrl": "https://commons.wikimedia.org/wiki/File:Mao_Valverde_Dominican_Republic_city_7.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "checkedAt": "2026-10-12",
+      "author": "Ultimo1988",
+      "derivativeLicense": "CC BY-SA 4.0",
+      "originalSha1": "e8cad19852a7b7888b3e78cd81a65efe71163ee0",
+      "downloadedSha1": "e4ffd765126b6ea05dc9fdff430a3931ac1958d1",
+      "sourceEndpoint": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Mao_Valverde_Dominican_Republic_city_7.jpg/1280px-Mao_Valverde_Dominican_Republic_city_7.jpg",
+      "adaptations": "subject-specific 1200x675 WebP crop"
+    },
+    "editorial": {
+      "reviewed": true,
+      "exactSubjectMatch": true,
+      "placeMatch": true,
+      "nonStockGeneric": true,
+      "depictsHistoricalEvent": false,
+      "isModernPhoto": true,
+      "modernContextDeclared": true
+    },
+    "sha256": "96b1673a9b57a8a920d94eaa9c4f3d12070bf7f5852d3091a81aecc8ab3444fb",
+    "pageTitle": "Mao y Valverde: noticias y contexto del noroeste"
+  },
+  "/la-vega/": {
+    "path": "/images/la-vega-republica-dominicana-panoramica-urbana-2021.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 171504,
+    "mime": "image/webp",
+    "alt": "Vista real de las calles y edificios de la ciudad de La Vega, República Dominicana",
+    "caption": "Vista de la ciudad de La Vega fotografiada en 2021. Fotografía: CristoRey99; CC BY-SA 4.0. Recorte panorámico y adaptación WebP.",
+    "source": {
+      "type": "commons",
+      "filePage": "https://commons.wikimedia.org/wiki/File:La_Vega_Dominican_Republic.jpg",
+      "licenseEvidenceUrl": "https://commons.wikimedia.org/wiki/File:La_Vega_Dominican_Republic.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "checkedAt": "2026-10-12",
+      "author": "CristoRey99",
+      "derivativeLicense": "CC BY-SA 4.0",
+      "originalSha1": "b380f34966ee36805e4e9bec4d718002ee470bbd",
+      "downloadedSha1": "9d7c16d93d70b57ea9edd3d18c085a3f7f4fd3a8",
+      "sourceEndpoint": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/La_Vega_Dominican_Republic.jpg/1280px-La_Vega_Dominican_Republic.jpg",
+      "adaptations": "subject-specific 1200x675 WebP crop"
+    },
+    "editorial": {
+      "reviewed": true,
+      "exactSubjectMatch": true,
+      "placeMatch": true,
+      "nonStockGeneric": true,
+      "depictsHistoricalEvent": false,
+      "isModernPhoto": true,
+      "modernContextDeclared": true
+    },
+    "sha256": "f5722ae56f0c65a4160e2169482202dde11ffb22e09b66e0512cb7de7d6b6c2a",
+    "pageTitle": "La Vega: noticias y guía de la provincia"
   }
 }
