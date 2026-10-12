@@ -47,7 +47,7 @@ def fetch(url,limit=16000000):
         return b
 def metadata(title):
     query=urlencode({"action":"query","format":"json","prop":"imageinfo",
-        "iiprop":"url|size|extmetadata","titles":title})
+        "iiprop":"url|size|sha1|extmetadata","titles":title})
     d=json.loads(fetch(API+"?"+query,500000))
     pages=list(d.get("query",{}).get("pages",{}).values())
     if len(pages)!=1 or pages[0].get("missing"):raise RuntimeError("Commons file missing")
