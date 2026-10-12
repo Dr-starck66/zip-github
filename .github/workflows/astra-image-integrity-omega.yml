@@ -1,0 +1,33 @@
+name: ASTRA IMAGE INTEGRITY OMEGA
+on:
+  pull_request:
+    branches: [eldiariodelcibao-metadata-integration]
+    paths: ["eldiariodelcibao/**", ".github/workflows/astra-image-integrity-omega.yml"]
+  push:
+    branches: [eldiariodelcibao-metadata-integration]
+    paths: ["eldiariodelcibao/**", ".github/workflows/astra-image-integrity-omega.yml"]
+  schedule:
+    - cron: "19 6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  enforce-cover-quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    defaults:
+      run:
+        working-directory: eldiariodelcibao
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: eldiariodelcibao-metadata-integration
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install --no-audit --no-fund
+      - name: Fail closed on missing / broken images, MIME, dimensions, duplicates
+        run: npm run test:images
+      - name: Check Railway preproduction public pages (scheduled or manual)
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: npm run test:images:live
