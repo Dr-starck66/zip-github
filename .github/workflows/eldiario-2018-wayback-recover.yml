@@ -1,0 +1,49 @@
+name: ELDIARIO June 2018 evidence recovery
+on:
+  push:
+    branches: [eldiariodelcibao-restauration-2018]
+    paths:
+      - "eldiariodelcibao/scripts/recover-wayback-2018.py"
+      - ".github/workflows/eldiario-2018-wayback-recover.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: eldiario-2018-wayback-recovery
+  cancel-in-progress: false
+jobs:
+  recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: eldiariodelcibao-restauration-2018
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --disable-pip-version-check "beautifulsoup4==4.12.3"
+      - name: Recover and validate only June 2018 metadata
+        run: |
+          python eldiariodelcibao/scripts/recover-wayback-2018.py --limit 259 --workers 4
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path("eldiariodelcibao/data/wayback-2018-metadata.json").read_text())
+          assert a["totalJune2018"] == 259, a["totalJune2018"]
+          assert len(a["records"]) == 259, len(a["records"])
+          assert all(item["path"].startswith("/2018/06/") for item in a["records"])
+          assert all(item["indexable"] is False for item in a["records"])
+          assert len({item["path"] for item in a["records"]}) == len(a["records"])
+          print("EVIDENCE_GATE",{"total":len(a["records"]),"evidence":sum(i["status"]=="evidence-metadata" for i in a["records"])})
+          PY
+      - name: Commit archive metadata, scoped to El Diario del Cibao
+        run: |
+          git config user.name "astra-archive-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add eldiariodelcibao/data/wayback-2018-metadata.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data(eldiario): evidence manifest for 259 archived June 2018 routes [skip ci]"
+            git push origin HEAD:eldiariodelcibao-restauration-2018
+          fi
