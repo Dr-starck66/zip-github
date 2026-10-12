@@ -1,0 +1,54 @@
+name: ASTRA CONTENT QUALITY GLOBAL BRICK OMEGA
+on:
+  push:
+    branches: [astra-global-content-quality-omega, main]
+    paths:
+      - "astra-bricks/content-quality-guard/**"
+      - "astra-bricks/registry/registry.json"
+      - ".github/workflows/astra-content-quality-global.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Real adversarial quality engine unit tests
+        run: |
+          node --check astra-bricks/content-quality-guard/quality.mjs
+          node --check astra-bricks/content-quality-guard/audit.mjs
+          node --test astra-bricks/content-quality-guard/test.mjs
+      - name: Actual ASTRA injector plus release-gate smoke and false-PASS tests
+        run: |
+          mkdir -p /tmp/astra-content-test/config
+          node - <<'JS'
+          const fs=require('node:fs');
+          fs.writeFileSync('/tmp/astra-content-test/package.json',JSON.stringify({name:'astra-content-smoke',version:'1.0.0',private:true,type:'module',scripts:{}}));
+          fs.writeFileSync('/tmp/astra-content-test/config/astra-content-pages.json',JSON.stringify({pages:[{path:'/old-constanza/',title:'Constanza old generic boilerplate',type:'guide',language:'es',sections:[{heading:'Reconstrucción SEO con un estándar mínimo de calidad',paragraphs:['Este contenido consiste en una plantilla genérica y no proporciona información local.']}],changed:false}]}));
+          fs.writeFileSync('/tmp/astra-content-test/config/astra-content-routes.json',JSON.stringify({routes:['/old-constanza/']}));
+          JS
+          node astra-bricks/injector/astra-brick-injector.mjs apply --brick astra-bricks/content-quality-guard --target /tmp/astra-content-test
+          node astra-bricks/injector/astra-brick-injector.mjs verify --brick astra-bricks/content-quality-guard --target /tmp/astra-content-test
+          (cd /tmp/astra-content-test && npm run guard:content)
+          node - <<'JS'
+          const fs=require('node:fs'),f='/tmp/astra-content-test/config/astra-content-pages.json';
+          const d=JSON.parse(fs.readFileSync(f,'utf8'));d.pages[0].changed=true;fs.writeFileSync(f,JSON.stringify(d));
+          JS
+          if (cd /tmp/astra-content-test && npm run guard:content); then
+            echo 'FALSE PASS: rejected boilerplate was permitted in new content'; exit 1
+          fi
+          echo 'ASTRA_CONTENT_NEGATIVE_GATE PASS - boilerplate blocked'
+          node - <<'JS'
+          const fs=require('node:fs'),p='/tmp/astra-content-test/config/astra-content-pages.json';
+          const d=JSON.parse(fs.readFileSync(p,'utf8'));d.pages[0].changed=false;fs.writeFileSync(p,JSON.stringify(d));
+          fs.writeFileSync('/tmp/astra-content-test/config/astra-content-routes.json',JSON.stringify({routes:['/old-constanza/','/missing-route/']}));
+          JS
+          if (cd /tmp/astra-content-test && npm run guard:content); then
+            echo 'FALSE PASS: manifest missed a published route'; exit 1
+          fi
+          echo 'ASTRA_CONTENT_ROUTE_COVERAGE PASS - unknown published URL blocked'
