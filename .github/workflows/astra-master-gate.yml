@@ -13,6 +13,8 @@ jobs:
           node-version: '22'
       - name: Install deps only with lockfile
         run: if test -f package-lock.json; then npm ci --ignore-scripts; fi
+      - name: Run ASTRA core regression tests
+        run: node --test scripts/astra-master-gate.test.mjs
       - name: Strict all-applicable-brick verification
         run: node scripts/astra-master-gate.mjs --task=code --strict
       - name: Publish proof report
