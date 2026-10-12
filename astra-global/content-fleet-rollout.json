@@ -1,0 +1,70 @@
+{
+  "schema": "astra-content-fleet/v1",
+  "updatedAt": "2026-10-12",
+  "principle": "Each actual site needs its OWN publishing and production proof. A global registry alone does NOT protect external WordPress/Webflow or unrelated repositories.",
+  "futureNodeRule": {
+    "profile": "image-ready-node-web-v1",
+    "brick": "content-quality-guard",
+    "status": "REGISTERED_TESTED",
+    "proof": "https://github.com/Dr-starck66/zip-github/actions/runs/38268206338"
+  },
+  "sites": [
+    {
+      "site": "eldiariodelcibao.com",
+      "proofHost": "https://eldiariodelcibao-web-production.up.railway.app",
+      "state": "RUNTIME_GUARD_PROVEN_LEGACY_DEBT",
+      "protectedScope": "56 exact existing snapshots; all changed/new pages in runtime inventory",
+      "evidence": "https://github.com/Dr-starck66/zip-github/actions/runs/38268145237",
+      "warning": "Existing generic text is inventoried, NOT automatically fixed. Other standalone publishing surfaces remain unverified."
+    },
+    {
+      "site": "betgpt.live",
+      "repo": "Dr-starck66/betgpt-railway",
+      "state": "SOURCE_GUARD_MERGED_PRODUCTION_UNVERIFIED",
+      "protectedScope": "existing editorial quality and Gold Standard candidate publication checks",
+      "evidence": "https://github.com/Dr-starck66/betgpt-railway/pull/68"
+    },
+    {
+      "site": "freehotels.info",
+      "repo": "Dr-starck66/freehotels-grok-live",
+      "state": "DRAFT_PR_UNVERIFIED",
+      "evidence": "https://github.com/Dr-starck66/freehotels-grok-live/pull/9",
+      "warning": "CI job failed before runner assignment. Not merged, not live."
+    },
+    {
+      "site": "gamicnews.com",
+      "state": "NOT_YET_VERIFIED"
+    },
+    {
+      "site": "bizarresexuality.com",
+      "state": "NOT_YET_VERIFIED"
+    },
+    {
+      "site": "streameasthub.com",
+      "state": "NOT_YET_VERIFIED"
+    },
+    {
+      "site": "avocat-belgique.com",
+      "state": "NOT_YET_VERIFIED"
+    },
+    {
+      "site": "pantomime.org",
+      "state": "NOT_YET_VERIFIED"
+    },
+    {
+      "site": "andaluztarija.com",
+      "state": "NOT_YET_VERIFIED"
+    },
+    {
+      "site": "wiikk.com",
+      "state": "NOT_YET_VERIFIED"
+    }
+  ],
+  "rules": [
+    "No mass noindex due to quality audit",
+    "No word-count-only PASS",
+    "New content: topical substance plus cited claims plus review plus multi-page duplication checks",
+    "Each CMS/platform needs a real adapter, a publishing hook and deployment evidence",
+    "Do not call overall fleet PASS until every actual target has a source and public prepublish proof"
+  ]
+}
