@@ -53,7 +53,7 @@ def process(row):
     archive_url = f"https://web.archive.org/web/{timestamp}id_/{original}"
     try:
         req = Request(archive_url, headers={"User-Agent":AGENT,"Accept":"text/html"})
-        with urlopen(req, timeout=30) as response:
+        with urlopen(req, timeout=12) as response:
             code = response.status
             final_url = response.url
             html = response.read(1_200_001)
@@ -108,7 +108,7 @@ def main():
     old = json.loads(DEST.read_text(encoding="utf-8")) if DEST.exists() else {"records":[]}
     by_path = {x["path"]:x for x in old.get("records",[])}
     candidates = [x for x in source if x["path"].startswith("/2018/06/")
-                  and x["path"] not in by_path]
+                  and (x["path"] not in by_path or by_path[x["path"]].get("status") == "fetch-failed")]
     candidates = candidates[:max(0,args.limit)]
     print(json.dumps({"attempting":len(candidates),"existing":len(by_path)}),flush=True)
     with concurrent.futures.ThreadPoolExecutor(max_workers=max(1,min(args.workers,5))) as executor:
