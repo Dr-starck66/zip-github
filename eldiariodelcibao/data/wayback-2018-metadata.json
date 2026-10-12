@@ -1,6 +1,207 @@
 {
   "schemaVersion": 1,
-  "checkedUTC": null,
+  "checkedUTC": "2026-10-12T10:50:16.359419646Z",
   "totalJune2018": 259,
-  "records": []
+  "records": [
+    {
+      "path": "/2018/06/20-anos-de-prision-productor-de-tv.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180610103738id_/http://www.eldiariodelcibao.com:80/2018/06/20-anos-de-prision-productor-de-tv.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/aduanas-dispondra-de-inteligencia.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180630070334id_/http://www.eldiariodelcibao.com:80/2018/06/aduanas-dispondra-de-inteligencia.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/aerolineas-eu-rechazan-transportar.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180625160355id_/http://www.eldiariodelcibao.com:80/2018/06/aerolineas-eu-rechazan-transportar.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/alcalde-de-nueva-york-propone-monumento.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180630070339id_/http://www.eldiariodelcibao.com:80/2018/06/alcalde-de-nueva-york-propone-monumento.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/alcaldesa-de-esperanza-anuncia.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180629223335id_/http://www.eldiariodelcibao.com:80/2018/06/alcaldesa-de-esperanza-anuncia.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/alianza-pais-y-opcion-democratica-se.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180620044107id_/http://www.eldiariodelcibao.com:80/2018/06/alianza-pais-y-opcion-democratica-se.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/almeyda-dice-reinaldo-no-esta-facultado.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180623142446id_/http://www.eldiariodelcibao.com:80/2018/06/almeyda-dice-reinaldo-no-esta-facultado.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/amanda-mena-le-me-gustaria-grabar-tema.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180626095928id_/http://www.eldiariodelcibao.com:80/2018/06/amanda-mena-le-me-gustaria-grabar-tema.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/amas-de-casas-se-quejan-por-precios-gas.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180625160402id_/http://www.eldiariodelcibao.com:80/2018/06/amas-de-casas-se-quejan-por-precios-gas.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/anciana-de-81-anos-muere-calcinada-al.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180703072404id_/http://www.eldiariodelcibao.com:80/2018/06/anciana-de-81-anos-muere-calcinada-al.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/andres-bautista-se-defiente-denuncia-un.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180620044113id_/http://www.eldiariodelcibao.com:80/2018/06/andres-bautista-se-defiente-denuncia-un.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/autoridades-monumento-de-santiago-dicen.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180625160407id_/http://www.eldiariodelcibao.com:80/2018/06/autoridades-monumento-de-santiago-dicen.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/convocan-paro-por-48-horas-en-esperanza.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180620044230id_/http://www.eldiariodelcibao.com:80/2018/06/convocan-paro-por-48-horas-en-esperanza.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/diputado-denuncia-maniobra-para-aprobar.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180607213351id_/http://www.eldiariodelcibao.com:80/2018/06/diputado-denuncia-maniobra-para-aprobar.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/director-junta-de-boca-de-mao-se-reune.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180623142521id_/http://www.eldiariodelcibao.com:80/2018/06/director-junta-de-boca-de-mao-se-reune.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/empresario-pedro-espinal-sera.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180703072430id_/http://www.eldiariodelcibao.com:80/2018/06/empresario-pedro-espinal-sera.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/encuesta-indica-que-lopez-obrador-posee.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180630070242id_/http://www.eldiariodelcibao.com:80/2018/06/encuesta-indica-que-lopez-obrador-posee.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/fondos-petrocaribe-en-obras-vinculan.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180620044144id_/http://www.eldiariodelcibao.com:80/2018/06/fondos-petrocaribe-en-obras-vinculan.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/mujer-que-murio-en-cirugia-estetica.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180620044204id_/http://www.eldiariodelcibao.com:80/2018/06/mujer-que-murio-en-cirugia-estetica.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/ni-ellos-aguantan-la.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180630070405id_/http://www.eldiariodelcibao.com:80/2018/06/ni-ellos-aguantan-la.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/ni-los-militares-salen-las-calles-en-rd.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180607213155id_/http://www.eldiariodelcibao.com:80/2018/06/ni-los-militares-salen-las-calles-en-rd.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/periodista-maria-elena-salinas-en.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180703072510id_/http://www.eldiariodelcibao.com:80/2018/06/periodista-maria-elena-salinas-en.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/por-carolina-pichardolistin-diario.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180626095759id_/http://www.eldiariodelcibao.com:80/2018/06/por-carolina-pichardolistin-diario.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/profesora-de-mao-denuncia-tiene-9-meses.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180607213412id_/http://www.eldiariodelcibao.com:80/2018/06/profesora-de-mao-denuncia-tiene-9-meses.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    },
+    {
+      "path": "/2018/06/ratifican-respaldo-paro-municipal-en.html",
+      "status": "fetch-failed",
+      "error": "TimeoutError",
+      "archiveUrl": "https://web.archive.org/web/20180702062620id_/http://www.eldiariodelcibao.com:80/2018/06/ratifican-respaldo-paro-municipal-en.html",
+      "indexable": false,
+      "provenance": "wayback-fetch-attempt"
+    }
+  ]
 }
