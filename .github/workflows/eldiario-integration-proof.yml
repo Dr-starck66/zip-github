@@ -28,7 +28,7 @@ jobs:
           const sleep=ms=>new Promise(r=>setTimeout(r,ms));
           (async()=>{
            for(let i=0;i<20;i++){try{const r=await fetch(base+'/health');if(r.ok)break}catch{} await sleep(250)}
-           const paths=['/health','/','/archivo/','/archivo/2018/06/','/archive-evidence.json','/sitemap.xml','/news-sitemap.xml','/2018/06/convocan-paro-por-48-horas-en-esperanza.html'];
+           const paths=['/health','/','/archivo/','/archivo/2018/06/','/archive-evidence.json','/sitemap.xml','/news-sitemap.xml','/2018/06/convocan-paro-por-48-horas-en-esperanza.html','/archivo/2018/esperanza-boca-de-mao-obras-protestas/'];
            for(const p of paths){const r=await fetch(base+p);assert.equal(r.status,200,p)}
            const evidence=await(await fetch(base+'/archive-evidence.json')).json();
            assert.equal(evidence.registered,259);
@@ -38,6 +38,15 @@ jobs:
            assert.ok(page.includes('noindex,follow'));
            const sitemap=await(await fetch(base+'/sitemap.xml')).text();
            assert.ok(!sitemap.includes('/2018/06/convocan-paro-por-48-horas-en-esperanza.html'));
+           const essay=await(await fetch(base+'/archivo/2018/esperanza-boca-de-mao-obras-protestas/')).text();
+           assert.ok(essay.includes('index,follow,max-image-preview:large'));
+           assert.ok(!essay.includes('name="robots" content="noindex'));
+           assert.equal((essay.match(/<h1>/g)||[]).length,1);
+           assert.ok(essay.includes('application/ld+json'));
+           assert.ok((essay.match(/web.archive.org\/web\//g)||[]).length>=4);
+           assert.ok(sitemap.includes('/archivo/2018/esperanza-boca-de-mao-obras-protestas/'));
+           const text=essay.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+           assert.ok(text.split(' ').length>1500);
            console.log('ASTRA_CIBAO_INTEGRATION_PROOF PASS',paths.length,'endpoints');
           })().catch(err=>{console.error(err);process.exitCode=1})
           JS
