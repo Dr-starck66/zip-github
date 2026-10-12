@@ -15,7 +15,7 @@ function makePage(){
    s.details+" "+["Los visitantes pueden conocer los lugares con informacion local comprobada. ","El contexto de la comarca ayuda a diferenciar estos sectores geograficos. ","Esta actividad tiene actores concretos y relaciones locales que merecen una explicacion. ","El acceso responsable requiere conocer las condiciones de terreno de cada comunidad. ","La interpretacion exige contrastar testimonios y documentación municipal. "][k]+
    ["El cultivo y el paisaje se presentan sin inventar precios o rendimientos.","La montaña merece consejos concretos sin prometer horarios de acceso.","Las áreas protegidas no deben confundirse con servicios comerciales.","La historia de los caminos se explica con documentos identificables.","La actividad rural depende de infraestructura y de cadenas logísticas.","La memoria municipal se separa de la promoción turística."][i]+" "+
    "Este capítulo se centra en "+s.h.toLowerCase()+" dentro de Constanza, provincia La Vega, y explica la relación de este lugar con la vida cotidiana del municipio."
- ))}));
+ )}));
  const sources=sourceURLs.map((url,i)=>({title:["Ministerio de Agricultura","Ministerio de Medio Ambiente","Presidencia"][i],url}));
  const evidence=subjects.map((s,i)=>({claim:s.fact,sourceUrl:sourceURLs[i%3],sourceLocator:"sección "+s.h+" · comprobación editorial"}));
  // Claims must appear verbatim in actual text.
