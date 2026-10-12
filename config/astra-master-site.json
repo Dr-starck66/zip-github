@@ -1,0 +1,31 @@
+{
+  "schema": "astra-master-site/1",
+  "siteId": "eldiariodelcibao.com-prodbranch",
+  "capabilities": [
+    "seo",
+    "editorial",
+    "news",
+    "runtime",
+    "restoration"
+  ],
+  "checks": {
+    "ASTRA_MASTER_GATE": [
+      {
+        "type": "command",
+        "run": "node --check scripts/astra-master-gate.mjs"
+      }
+    ],
+    "ASTRA_BRICK_PROOF_GATE": [
+      {
+        "type": "command",
+        "run": "node --test scripts/astra-master-gate.test.mjs"
+      }
+    ],
+    "ASTRA_AUTOMATION_EVIDENCE": [
+      {
+        "type": "command",
+        "run": "node --test scripts/astra-master-gate.test.mjs"
+      }
+    ]
+  }
+}
