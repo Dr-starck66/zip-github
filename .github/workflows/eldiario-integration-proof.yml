@@ -4,6 +4,8 @@ on:
     branches: [eldiariodelcibao-metadata-integration]
     paths:
       - "eldiariodelcibao/server.mjs"
+      - "eldiariodelcibao/data/content.json"
+      - "eldiariodelcibao/scripts/astra_local_guide_guard.mjs"
       - "eldiariodelcibao/scripts/recover-wayback-2018.py"
       - ".github/workflows/eldiario-integration-proof.yml"
   workflow_dispatch:
@@ -22,6 +24,7 @@ jobs:
         run: |
           python3 -m py_compile eldiariodelcibao/scripts/recover-wayback-2018.py
           node --check eldiariodelcibao/server.mjs
+          node eldiariodelcibao/scripts/astra_local_guide_guard.mjs
           cd eldiariodelcibao
           PORT=3087 node server.mjs > /tmp/eldiario.log 2>&1 &
           node - <<'JS'
