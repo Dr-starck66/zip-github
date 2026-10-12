@@ -1,6 +1,6 @@
 {
   "schema": "astra-brick-registry/v1",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "policy": {
     "safeByDefault": true,
     "blockOnDrift": true,
@@ -8,7 +8,7 @@
     "verifyAfterApply": true,
     "rollbackCapable": true,
     "noCrossRepoWriteWithoutTargetAuthorization": true,
-    "futureNodeWebDefaultProfile": "launch-ready-node-web-v1"
+    "futureNodeWebDefaultProfile": "image-ready-node-web-v1"
   },
   "bricks": {
     "stream-resilience-guard": {
@@ -55,6 +55,21 @@
       "status": "UNMANAGED",
       "path": "astra-bricks/deploy-trigger-firewall",
       "reason": "Legacy reusable brick exists but has no astra-brick/v1 manifest yet."
+    },
+    "image-seo-rights-guard": {
+      "version": "1.0.0",
+      "status": "PROVEN",
+      "path": "astra-bricks/image-seo-rights-guard",
+      "manifest": "astra-bricks/image-seo-rights-guard/brick.json",
+      "compatibility": {
+        "runtime": "node",
+        "minNode": "20",
+        "requiresPackageJson": true
+      },
+      "proofRuns": [
+        38255071642,
+        38255278442
+      ]
     }
   },
   "profiles": {
@@ -81,6 +96,14 @@
       "description": "Current managed BetGPT brick profile.",
       "bricks": [
         "stream-resilience-guard"
+      ]
+    },
+    "image-ready-node-web-v1": {
+      "description": "Mandatory images in future Node web launches: resilience, launch video, exact subject-matched licensed SEO image and real file proof; gate requires explicit page inventory.",
+      "bricks": [
+        "stream-resilience-guard",
+        "launch-video",
+        "image-seo-rights-guard"
       ]
     }
   }
