@@ -1,0 +1,48 @@
+name: ASTRA Content Portfolio Live Audit
+on:
+  push:
+    branches: [astra-content-live-portfolio-monitor, main]
+    paths:
+      - "astra-bricks/content-quality-guard/live-monitor.mjs"
+      - "astra-bricks/content-quality-guard/portfolio-sites.json"
+      - ".github/workflows/astra-content-portfolio-audit.yml"
+  schedule:
+    - cron: '27 5 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: astra-content-portfolio-audit
+  cancel-in-progress: true
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate monitor and detection adversarial fixtures
+        run: |
+          node --check astra-bricks/content-quality-guard/live-monitor.mjs
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict';
+          import {inspect,monitor} from './astra-bricks/content-quality-guard/live-monitor.mjs';
+          const bad='<main><h1>Constanza</h1><h2>Reconstrucción SEO con un estándar mínimo de calidad</h2><p>Qué información cambia y qué debe permanecer estable</p></main>';
+          const good='<main><h1>Constanza</h1><h2>Salto de Aguas Blancas</h2><p>Una cascada situada en un entorno de montaña cerca de Constanza</p></main>';
+          assert.equal(inspect(bad,'https://example.org/bad').status,'FAIL');
+          assert.equal(inspect(good,'https://example.org/good').status,'PASS');
+          await assert.rejects(monitor({schema:'astra-content-portfolio/v1',sites:[]}),/INVALID_PORTFOLIO_MANIFEST/);
+          console.log('ASTRA_PUBLIC_CONTENT_ADVERSARIAL_TEST PASS');
+          JS
+      - name: Audit public pages on all registered platforms without modifying them
+        run: |
+          ASTRA_CONTENT_MONITOR_OUTPUT=artifacts/astra-content-portfolio.json node astra-bricks/content-quality-guard/live-monitor.mjs
+      - name: Upload verifiable JSON proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: astra-content-portfolio-proof
+          path: artifacts/astra-content-portfolio.json
+          retention-days: 10
