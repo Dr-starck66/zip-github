@@ -1,0 +1,354 @@
+{
+  "schema": "astra-brick-registry/1",
+  "version": "2026-10-12",
+  "policy": "Missing executable evidence is UNVERIFIED; never count presence-only as PASS. An applicability mismatch is N/A.",
+  "bricks": [
+    {
+      "id": "ASTRA_MASTER_GATE",
+      "scope": "universal",
+      "on": [
+        "code",
+        "content",
+        "seo",
+        "deploy"
+      ],
+      "purpose": "ASTRA central mandatory applicability and proof checker"
+    },
+    {
+      "id": "ASTRA_BRICK_PROOF_GATE",
+      "scope": "universal",
+      "on": [
+        "code",
+        "deploy"
+      ],
+      "purpose": "Every brick has success tests and evidence"
+    },
+    {
+      "id": "ASTRA_NO_REPEAT",
+      "scope": "universal",
+      "on": [
+        "code",
+        "deploy"
+      ],
+      "purpose": "Previously accepted rules must remain checked"
+    },
+    {
+      "id": "ASTRA_ZERO_COST",
+      "scope": "universal",
+      "on": [
+        "code",
+        "deploy"
+      ],
+      "purpose": "No new paid external service"
+    },
+    {
+      "id": "ASTRA_CONTENT_QUALITY",
+      "scope": "editorial",
+      "on": [
+        "content",
+        "seo"
+      ],
+      "purpose": "No filler generic articles"
+    },
+    {
+      "id": "ASTRA_CONTENT_BULKER",
+      "scope": "editorial",
+      "on": [
+        "content"
+      ],
+      "purpose": "Long-form content production and source audit"
+    },
+    {
+      "id": "ASTRA_ZERO_WEAK_PAGE",
+      "scope": "seo",
+      "on": [
+        "content",
+        "seo"
+      ],
+      "purpose": "No thin indexed pages"
+    },
+    {
+      "id": "ASTRA_HEADING_ARCHITECTURE",
+      "scope": "seo",
+      "on": [
+        "content",
+        "seo"
+      ],
+      "purpose": "One H1 and logical H2/H3"
+    },
+    {
+      "id": "ASTRA_SEMANTIC_FLOW",
+      "scope": "seo",
+      "on": [
+        "content",
+        "seo"
+      ],
+      "purpose": "Internal linking and semantic cannibalization"
+    },
+    {
+      "id": "ASTRA_NEWS_SOURCE_INTEGRITY",
+      "scope": "news",
+      "on": [
+        "content"
+      ],
+      "purpose": "Source relevance rights and integrity"
+    },
+    {
+      "id": "ASTRA_DISCOVER_NEWS",
+      "scope": "news",
+      "on": [
+        "content",
+        "seo"
+      ],
+      "purpose": "News Discover technical/editorial validation"
+    },
+    {
+      "id": "ASTRA_IMAGE_RELEVANCE_RIGHTS",
+      "scope": "editorial",
+      "on": [
+        "content"
+      ],
+      "purpose": "Relevant available images and rights"
+    },
+    {
+      "id": "ASTRA_FULL_INDEXATION",
+      "scope": "seo",
+      "on": [
+        "seo",
+        "deploy"
+      ],
+      "purpose": "Complete intended indexable sitemaps"
+    },
+    {
+      "id": "ASTRA_CRAWL_FIRST",
+      "scope": "seo",
+      "on": [
+        "seo"
+      ],
+      "purpose": "Crawl site before diagnosing"
+    },
+    {
+      "id": "ASTRA_SEARCH_INTELLIGENCE",
+      "scope": "seo",
+      "on": [
+        "seo"
+      ],
+      "purpose": "Query opportunities with evidence"
+    },
+    {
+      "id": "ASTRA_SEMRUSH_TRAFFIC_BOOSTER",
+      "scope": "seo",
+      "on": [
+        "seo"
+      ],
+      "purpose": "Organic traffic growth backed by real measurements"
+    },
+    {
+      "id": "ASTRA_WAYBACK_REBUILDER",
+      "scope": "restoration",
+      "on": [
+        "seo",
+        "deploy"
+      ],
+      "purpose": "Archive URL recovery and redirect mapping"
+    },
+    {
+      "id": "ASTRA_DESIGN_INTELLIGENCE",
+      "scope": "design",
+      "on": [
+        "code",
+        "deploy"
+      ],
+      "purpose": "Site design and QA"
+    },
+    {
+      "id": "ASTRA_TARDIGRADE",
+      "scope": "runtime",
+      "on": [
+        "code",
+        "deploy"
+      ],
+      "purpose": "Resilience/fault tolerance"
+    },
+    {
+      "id": "ASTRA_RAILWAY_DEPLOY_GATE",
+      "scope": "railway",
+      "on": [
+        "deploy"
+      ],
+      "purpose": "Build startup port and DNS checks"
+    },
+    {
+      "id": "ASTRA_HEALTH_GATE",
+      "scope": "runtime",
+      "on": [
+        "deploy"
+      ],
+      "purpose": "Health URL and runtime errors"
+    },
+    {
+      "id": "ASTRA_PRODUCTION_PROOF",
+      "scope": "runtime",
+      "on": [
+        "deploy"
+      ],
+      "purpose": "Public HTTP 200 plus expected content"
+    },
+    {
+      "id": "ASTRA_SRE_BRIGADE",
+      "scope": "runtime",
+      "on": [
+        "deploy"
+      ],
+      "purpose": "Monitoring and incident handling"
+    },
+    {
+      "id": "ASTRA_LAUNCH_VIDEO",
+      "scope": "launch",
+      "on": [
+        "deploy"
+      ],
+      "purpose": "Real-launch video evidence"
+    },
+    {
+      "id": "ASTRA_SOCIAL_AUTO",
+      "scope": "social",
+      "on": [
+        "content"
+      ],
+      "purpose": "Post only after proven publication on authorized accounts"
+    },
+    {
+      "id": "ASTRA_AFFILIATE_LINK_GUARD",
+      "scope": "affiliate",
+      "on": [
+        "content",
+        "seo"
+      ],
+      "purpose": "Correct sponsored tracking link"
+    },
+    {
+      "id": "ASTRA_BROADCAST_AFFILIATE",
+      "scope": "football",
+      "on": [
+        "content",
+        "seo"
+      ],
+      "purpose": "Broadcasters link to actual broadcaster"
+    },
+    {
+      "id": "ASTRA_TRUE_LINEUPS",
+      "scope": "football",
+      "on": [
+        "code",
+        "content"
+      ],
+      "purpose": "Confirmed lineups require verified eleven"
+    },
+    {
+      "id": "ASTRA_FLAG_GUARD",
+      "scope": "football",
+      "on": [
+        "code",
+        "content"
+      ],
+      "purpose": "Canonical flag image lookup"
+    },
+    {
+      "id": "ASTRA_ODDS_TRUTH",
+      "scope": "football",
+      "on": [
+        "content",
+        "code"
+      ],
+      "purpose": "Verified odds and market consistency"
+    },
+    {
+      "id": "ASTRA_ROI_LEDGER",
+      "scope": "football",
+      "on": [
+        "code"
+      ],
+      "purpose": "Canonical market accounting"
+    },
+    {
+      "id": "ASTRA_PUBLISH_AUDIT",
+      "scope": "editorial",
+      "on": [
+        "content"
+      ],
+      "purpose": "Publication route content and success checks"
+    },
+    {
+      "id": "ASTRA_EDITORIAL_AUTHORITY",
+      "scope": "news",
+      "on": [
+        "content"
+      ],
+      "purpose": "Editorial references and factual sources"
+    },
+    {
+      "id": "ASTRA_AFFILIATE_PROGRAM_VALIDATION",
+      "scope": "affiliate",
+      "on": [
+        "content"
+      ],
+      "purpose": "Offer and commission provenance"
+    },
+    {
+      "id": "ASTRA_SEARCH_CONSOLE",
+      "scope": "seo",
+      "on": [
+        "seo"
+      ],
+      "purpose": "Indexing verification via property owner"
+    },
+    {
+      "id": "ASTRA_IMAGE_DELIVERY",
+      "scope": "editorial",
+      "on": [
+        "content",
+        "deploy"
+      ],
+      "purpose": "No broken image links in public pages"
+    },
+    {
+      "id": "ASTRA_SEO_AUTOMATION",
+      "scope": "seo",
+      "on": [
+        "seo"
+      ],
+      "purpose": "Automated SEO test and recheck"
+    },
+    {
+      "id": "ASTRA_AUTOMATION_EVIDENCE",
+      "scope": "universal",
+      "on": [
+        "code",
+        "content",
+        "seo",
+        "deploy"
+      ],
+      "purpose": "Actions must log actual results"
+    },
+    {
+      "id": "ASTRA_BACKLINK_INTEGRITY",
+      "scope": "seo",
+      "on": [
+        "seo"
+      ],
+      "purpose": "Sensible internal/external links"
+    },
+    {
+      "id": "ASTRA_OPTIMIZER_OMEGA",
+      "scope": "universal",
+      "on": [
+        "code",
+        "content",
+        "seo",
+        "deploy"
+      ],
+      "purpose": "Evidence-driven performance optimization, trials, regression and zero-cost guardrails for all ASTRA bricks"
+    }
+  ]
+}
