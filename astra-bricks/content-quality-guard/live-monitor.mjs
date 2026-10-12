@@ -25,7 +25,7 @@ const forbidden=[
 function decodeHtml(s){return String(s).replace(/&#(\d+);/g,(_,n)=>String.fromCodePoint(Math.min(+n,0x10ffff)))
  .replace(/&(?:amp|quot|apos|nbsp|lt|gt);/gi," ").replace(/\s+/g," ");}
 const norm=s=>decodeHtml(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
-function inspect(html,url){
+export function inspect(html,url){
  const main=html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]||html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)?.[1]||html;
  const withoutScripts=main.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi," ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi," ");
  const text=decodeHtml(withoutScripts.replace(/<[^>]+>/g," "));
@@ -55,7 +55,7 @@ async function get(url){
  finally{clearTimeout(timer)}
 }
 export async function monitor(cfg=config){
- if(cfg.schema!=="astra-content-portfolio/v1"||!Array.isArray(cfg.sites))throw Error("INVALID_PORTFOLIO_MANIFEST");
+ if(cfg.schema!=="astra-content-portfolio/v1"||!Array.isArray(cfg.sites)||cfg.sites.length===0||cfg.sites.some(s=>!Array.isArray(s.checks)||!s.checks.length))throw Error("INVALID_PORTFOLIO_MANIFEST");
  const results=[];
  for(const site of cfg.sites){
   const pages=[];
