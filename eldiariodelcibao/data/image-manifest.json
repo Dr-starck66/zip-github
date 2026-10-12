@@ -83,5 +83,141 @@
         -70.991
       ]
     }
+  },
+  "/santiago/": {
+    "path": "/images/santiago-caballeros-vista-panoramica-urbana.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 160036,
+    "mime": "image/webp",
+    "alt": "Vista panorámica auténtica de la ciudad de Santiago de los Caballeros, República Dominicana",
+    "caption": "Vista general de Santiago de los Caballeros. Fotografía de Janel J. Díaz, CC BY-SA 3.0; recortada y optimizada para este portal.",
+    "source": {
+      "type": "commons",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Santiago-edit.jpg",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "licenseEvidenceUrl": "https://commons.wikimedia.org/wiki/File:Santiago-edit.jpg",
+      "checkedAt": "2026-10-12",
+      "author": "Janel J. Díaz",
+      "derivativeLicense": "CC BY-SA 3.0",
+      "originalSha1": "4cee22c121e5fadd3e63314c24edb612a62182a2",
+      "downloadedSha1": "f1ad57ff8580d85c3a4dfe3f55c0012877745a2a",
+      "sourceEndpoint": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Santiago-edit.jpg/1920px-Santiago-edit.jpg",
+      "adaptations": "crop/resize or contain with backdrop, WebP conversion"
+    },
+    "editorial": {
+      "reviewed": true,
+      "exactSubjectMatch": true,
+      "placeMatch": true,
+      "nonStockGeneric": true,
+      "depictsHistoricalEvent": false,
+      "isModernPhoto": true,
+      "modernContextDeclared": true
+    },
+    "sha256": "a8306321c7cd7e381c7709bc0643327d9df342952fee2cd908ad66722b63aac1",
+    "pageTitle": "Santiago de los Caballeros: noticias y actualidad"
+  },
+  "/monumento-heroes-restauracion-santiago/": {
+    "path": "/images/monumento-heroes-restauracion-santiago-fotografia.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 40508,
+    "mime": "image/webp",
+    "alt": "Fotografía del verdadero Monumento a los Héroes de la Restauración en Santiago de los Caballeros",
+    "caption": "Monumento a los Héroes de la Restauración en Santiago. Fotografía: Diori de Jesús Lora Amaro, CC BY-SA 4.0; adaptación panorámica.",
+    "source": {
+      "type": "commons",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Monumento_a_los_H%C3%A9roes_de_la_Restauraci%C3%B3n,_de_Santiago_de_los_caballeros.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "licenseEvidenceUrl": "https://commons.wikimedia.org/wiki/File:Monumento_a_los_H%C3%A9roes_de_la_Restauraci%C3%B3n,_de_Santiago_de_los_caballeros.jpg",
+      "checkedAt": "2026-10-12",
+      "author": "Diori de Jesús Lora Amaro",
+      "derivativeLicense": "CC BY-SA 4.0",
+      "originalSha1": "ddc1ea41274da9ffed38cc56393fec0c9250d928",
+      "downloadedSha1": "1e2a8ac138270827516963375a83490682440353",
+      "sourceEndpoint": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/Monumento_a_los_H%C3%A9roes_de_la_Restauraci%C3%B3n%2C_de_Santiago_de_los_caballeros.jpg/1920px-Monumento_a_los_H%C3%A9roes_de_la_Restauraci%C3%B3n%2C_de_Santiago_de_los_caballeros.jpg",
+      "adaptations": "crop/resize or contain with backdrop, WebP conversion"
+    },
+    "editorial": {
+      "reviewed": true,
+      "exactSubjectMatch": true,
+      "placeMatch": true,
+      "nonStockGeneric": true,
+      "depictsHistoricalEvent": false,
+      "isModernPhoto": true,
+      "modernContextDeclared": true
+    },
+    "sha256": "56fc1bac7942cb03c96b5b1c18035139ede0eca183d3cf404abf8d0790bae803",
+    "pageTitle": "Monumento a los Héroes de la Restauración en Santiago"
+  },
+  "/puerto-plata/": {
+    "path": "/images/puerto-plata-puerto-vista-costera.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 98564,
+    "mime": "image/webp",
+    "alt": "Vista del puerto marítimo de Puerto Plata y su entorno costero en la República Dominicana",
+    "caption": "Puerto de Puerto Plata en una fotografía de 2014. Autor: Abrahami, CC BY-SA 3.0; adaptación WebP de la escena costera.",
+    "source": {
+      "type": "commons",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Port_Puerto_plata.jpg",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "licenseEvidenceUrl": "https://commons.wikimedia.org/wiki/File:Port_Puerto_plata.jpg",
+      "checkedAt": "2026-10-12",
+      "author": "Abrahami",
+      "derivativeLicense": "CC BY-SA 3.0",
+      "originalSha1": "f60fd035aa0a5cdd7dad798832f87ab74cc72f9e",
+      "downloadedSha1": "3f8d22d8c29ad0d804c97503564d53b4a533970e",
+      "sourceEndpoint": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/Port_Puerto_plata.jpg/1920px-Port_Puerto_plata.jpg",
+      "adaptations": "crop/resize or contain with backdrop, WebP conversion"
+    },
+    "editorial": {
+      "reviewed": true,
+      "exactSubjectMatch": true,
+      "placeMatch": true,
+      "nonStockGeneric": true,
+      "depictsHistoricalEvent": false,
+      "isModernPhoto": true,
+      "modernContextDeclared": true
+    },
+    "sha256": "bdae2d3499dc994e870bd976572a5899ad64572412ceb580ff4edeb029034b84",
+    "pageTitle": "Puerto Plata: noticias, turismo y contexto del norte dominicano"
+  },
+  "/carnaval-de-la-vega/": {
+    "path": "/images/carnaval-la-vega-disfraces-desfile-2020.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 114356,
+    "mime": "image/webp",
+    "alt": "Fotografía del Carnaval Vegano celebrando su desfile de máscaras y disfraces en La Vega en 2020",
+    "caption": "Carnaval de La Vega, fotografía de 2020. Autor: Estefanía Moronta, CC BY-SA 4.0; edición panorámica.",
+    "source": {
+      "type": "commons",
+      "filePage": "https://commons.wikimedia.org/wiki/File:CARNAVAL_VEGANO_2020.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "licenseEvidenceUrl": "https://commons.wikimedia.org/wiki/File:CARNAVAL_VEGANO_2020.jpg",
+      "checkedAt": "2026-10-12",
+      "author": "Estefanía Moronta",
+      "derivativeLicense": "CC BY-SA 4.0",
+      "originalSha1": "696c692fbbdb36a099aad413a5cffbd9b56160f5",
+      "downloadedSha1": "7ecc7f1d9e725e3d7c01176aa2e310cc209e93de",
+      "sourceEndpoint": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/CARNAVAL_VEGANO_2020.jpg/1920px-CARNAVAL_VEGANO_2020.jpg",
+      "adaptations": "crop/resize or contain with backdrop, WebP conversion"
+    },
+    "editorial": {
+      "reviewed": true,
+      "exactSubjectMatch": true,
+      "placeMatch": true,
+      "nonStockGeneric": true,
+      "depictsHistoricalEvent": false,
+      "isModernPhoto": true,
+      "modernContextDeclared": true
+    },
+    "sha256": "85beb0cc9c46c7af30ed56471473d87587dcef6f15fdb7224e2157049bd9bdea",
+    "pageTitle": "Carnaval de La Vega: historia, cultura y guía editorial"
   }
 }
