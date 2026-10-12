@@ -34,7 +34,11 @@ jobs:
            for(const p of paths){const r=await fetch(base+p);assert.equal(r.status,200,p)}
            const evidence=await(await fetch(base+'/archive-evidence.json')).json();
            assert.equal(evidence.registered,259);
-           assert.equal(evidence.checked,0);
+           const fs=require('node:fs');
+          const ledger=JSON.parse(fs.readFileSync('data/wayback-2018-metadata.json','utf8'));
+          assert.equal(evidence.checked,ledger.records.length);
+          assert.equal(evidence.evidence,ledger.records.filter(x=>x.status==='evidence-metadata').length);
+          assert.ok(evidence.checked<=259);
            assert.equal(evidence.noindex,true);
            const page=await(await fetch(base+'/2018/06/convocan-paro-por-48-horas-en-esperanza.html')).text();
            assert.ok(page.includes('noindex,follow'));
