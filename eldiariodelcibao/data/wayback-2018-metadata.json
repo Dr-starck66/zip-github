@@ -1,6 +1,2605 @@
 {
   "schemaVersion": 1,
-  "checkedUTC": null,
+  "purpose": "Source metadata only; no copied full article texts and no automatic indexability",
+  "checkedUTC": "2026-10-12T10:55:37.136237+00:00",
   "totalJune2018": 259,
-  "records": []
+  "records": [
+    {
+      "path": "/2018/06/20-anos-de-prision-productor-de-tv.html",
+      "status": "capture-incomplete",
+      "archiveUrl": "https://web.archive.org/web/20180610103738id_/http://www.eldiariodelcibao.com:80/2018/06/20-anos-de-prision-productor-de-tv.html",
+      "archiveTimestamp": "20180610103738",
+      "originalTitle": "20 años de prisión a productor de TV. Miguel Angel Medrano a por alegada violación de una mujer",
+      "originalDate": "2018-06-05",
+      "sourceBodyWords": 45,
+      "sourceBodySha256": "fa71d86f1eaf7a6bf99292b9ccf50f029f78a03e945bd873055f1e562736b9c3",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "capture-requires-human-review"
+    },
+    {
+      "path": "/2018/06/aduanas-dispondra-de-inteligencia.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180630070334id_/http://www.eldiariodelcibao.com:80/2018/06/aduanas-dispondra-de-inteligencia.html",
+      "archiveTimestamp": "20180630070334",
+      "originalTitle": "Aduanas dispondrá de Inteligencia Artificial para determinar el valor real de las mercancías",
+      "originalDate": "2018-06-25",
+      "sourceBodyWords": 564,
+      "sourceBodySha256": "f38cb7db8d3d08d34f95a85e78a6a7905f67cbb7d5c6ddef018bafe2efe5ebe3",
+      "sourceExcerpt": "JUAN DOLIO, San Pedro de Macorís. La Dirección General de Aduanas informó que se encamina a convertirse en una “aduana d",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/aerolineas-eu-rechazan-transportar.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180625160355id_/http://www.eldiariodelcibao.com:80/2018/06/aerolineas-eu-rechazan-transportar.html",
+      "archiveTimestamp": "20180625160355",
+      "originalTitle": "Aerolíneas EU rechazan transportar a menores separados de sus familias",
+      "originalDate": "2018-06-21",
+      "sourceBodyWords": 612,
+      "sourceBodySha256": "7059617f704af9b791c9381d543cb16d59bfa2e68f1f4667ae17855c3bc3b72e",
+      "sourceExcerpt": "WASHINGTON.- Tres de las principales aerolíneas estadounidenses, United, American Airlines y Frontier, anunciaron hoy qu",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/al-menos-7-muertos-y-17-millones-de.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180607213340id_/http://www.eldiariodelcibao.com:80/2018/06/al-menos-7-muertos-y-17-millones-de.html",
+      "archiveTimestamp": "20180607213340",
+      "originalTitle": "Al menos 7 muertos y 1,7 millones de afectados por la erupción del volcán de Fuego en Guatemala",
+      "originalDate": "2018-06-03",
+      "sourceBodyWords": 200,
+      "sourceBodySha256": "4db31b9b489ee33a9849fb524ee5337c5c01e0badd044a2a9db0a6dab2ec56de",
+      "sourceExcerpt": "Al menos 7 personas han muerto a causa de la erupción del volcán de Fuego, situado en el sur de Guatemala, informa el Go",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/alcalde-de-nueva-york-propone-monumento.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180630070339id_/http://www.eldiariodelcibao.com:80/2018/06/alcalde-de-nueva-york-propone-monumento.html",
+      "archiveTimestamp": "20180630070339",
+      "originalTitle": "Alcalde de Nueva York propone monumento en memoria de estudiante dominicano asesinado",
+      "originalDate": "2018-06-26",
+      "sourceBodyWords": 264,
+      "sourceBodySha256": "e2c067b1bb0470b17b7d254f2bfbbcefde37e31872f6a59f23fb8cce15077996",
+      "sourceExcerpt": "S NUEVA YORK._ En medio del masivo luto que envuelve la ciudad y el repudio a todos los niveles contra el asesinato brut",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/alcaldesa-de-esperanza-anuncia.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180629223335id_/http://www.eldiariodelcibao.com:80/2018/06/alcaldesa-de-esperanza-anuncia.html",
+      "archiveTimestamp": "20180629223335",
+      "originalTitle": "Alcaldesa de Esperanza anuncia asfaltado de la calle de Piedra",
+      "originalDate": "2018-06-25",
+      "sourceBodyWords": 130,
+      "sourceBodySha256": "3b0536d814b361d702b74a4b78e8bbc96e1caad4d0c4496c12af2a52444b3fae",
+      "sourceExcerpt": "La alcaldesa de Esperanza anunció para la próxima semana el asfaltado de la carretera Antonio Guzmán Fernández, mejor co",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/alianza-pais-y-opcion-democratica-se.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180620044107id_/http://www.eldiariodelcibao.com:80/2018/06/alianza-pais-y-opcion-democratica-se.html",
+      "archiveTimestamp": "20180620044107",
+      "originalTitle": "Alianza País y Opción Democrática se unen para rendir homenaje a los héroes de la gesta 14 de junio",
+      "originalDate": "2018-06-14",
+      "sourceBodyWords": 418,
+      "sourceBodySha256": "dc5a63bd6466a150087dd39c7e842d9fcb5612c276afbe62c0689f77582c0f5e",
+      "sourceExcerpt": "Santiago de los Caballeros . Con motivo de cumplirse 59 años de la gesta patriótica del 14 de junio de 1959, Alianza Paí",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/almeyda-dice-reinaldo-no-esta-facultado.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180623142446id_/http://www.eldiariodelcibao.com:80/2018/06/almeyda-dice-reinaldo-no-esta-facultado.html",
+      "archiveTimestamp": "20180623142446",
+      "originalTitle": "Almeyda dice Reinaldo no está facultado para suspender; Fadul afirma decisión fue la correcta",
+      "originalDate": "2018-06-19",
+      "sourceBodyWords": 199,
+      "sourceBodySha256": "f69c81d0895db99a3884f8a44496bd41790e8d0431f1179da5aae837e2e01666",
+      "sourceExcerpt": "SANTO DOMINGO. El dirigente del Comité Político del Partido de la Liberación Dominicana (PLD), Franklin Almeyda, manifes",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/amanda-mena-le-me-gustaria-grabar-tema.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180626095928id_/http://www.eldiariodelcibao.com:80/2018/06/amanda-mena-le-me-gustaria-grabar-tema.html",
+      "archiveTimestamp": "20180626095928",
+      "originalTitle": "Amanda Mena le gustaría grabar tema con Cardi B.",
+      "originalDate": "2018-06-22",
+      "sourceBodyWords": 898,
+      "sourceBodySha256": "7dc8010b2b48782bc1e2f39d31728e895e9028b7b8716abd357aa9883ffea88e",
+      "sourceExcerpt": "Amanda Mena, la adolescente de 15 años que pasó de las audiciones a la semifinal del reality show America’s Got Talent, ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/amas-de-casas-se-quejan-por-precios-gas.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180625160402id_/http://www.eldiariodelcibao.com:80/2018/06/amas-de-casas-se-quejan-por-precios-gas.html",
+      "archiveTimestamp": "20180625160402",
+      "originalTitle": "Amas de Casas se quejan por precios gas propano; Anuncian su apoyo a Marcha Verde",
+      "originalDate": "2018-06-21",
+      "sourceBodyWords": 171,
+      "sourceBodySha256": "9341a0392a8406f47af804d4c406e9a7d85dd656bbc131aaec1d780edb643d3d",
+      "sourceExcerpt": "La presidenta de la Asociación de Comités de Amas de Casa, Ana Vertilia Cabrea, deploró los altos precios de los combust",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/anciana-de-81-anos-muere-calcinada-al.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180703072404id_/http://www.eldiariodelcibao.com:80/2018/06/anciana-de-81-anos-muere-calcinada-al.html",
+      "archiveTimestamp": "20180703072404",
+      "originalTitle": "Anciana de 81 años muere calcinada al incendiarse su vivienda en Montecristi",
+      "originalDate": "2018-06-30",
+      "sourceBodyWords": 177,
+      "sourceBodySha256": "10c442d64edb9e5ee325ead538bae3321000379d0f2501007b4973d7b37dc5fa",
+      "sourceExcerpt": "MONTECRISTI, República Dominicana .- Una señora de 81 años de edad murió a causa de las graves quemaduras que sufrió al ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/andres-bautista-se-defiente-denuncia-un.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180620044113id_/http://www.eldiariodelcibao.com:80/2018/06/andres-bautista-se-defiente-denuncia-un.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/angel-delgado-de-haina-para-la-nba.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180626095722id_/http://www.eldiariodelcibao.com:80/2018/06/angel-delgado-de-haina-para-la-nba.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/apresan-dos-ancianos-de-78-y-85-anos.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702062746id_/http://www.eldiariodelcibao.com:80/2018/06/apresan-dos-ancianos-de-78-y-85-anos.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/apresan-dos-dominicanos-acusados-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180610103806id_/http://www.eldiariodelcibao.com:80/2018/06/apresan-dos-dominicanos-acusados-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/apresan-en-amina-haitiano-acusado-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142451id_/http://www.eldiariodelcibao.com:80/2018/06/apresan-en-amina-haitiano-acusado-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/apresan-hombre-asesino-mujer-en-joyeria.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142455id_/http://www.eldiariodelcibao.com:80/2018/06/apresan-hombre-asesino-mujer-en-joyeria.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/aprueban-prestamo-por-us-150-millones.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180625044146id_/http://www.eldiariodelcibao.com:80/2018/06/aprueban-prestamo-por-us-150-millones.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/asaltan-camion-de-cerveza-y-cargan-con.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180610103607id_/http://www.eldiariodelcibao.com:80/2018/06/asaltan-camion-de-cerveza-y-cargan-con.html",
+      "archiveTimestamp": "20180610103607",
+      "originalTitle": "Asaltan camión de cerveza y cargan con más de RD$600 mil ( videos)",
+      "originalDate": "2018-06-05",
+      "sourceBodyWords": 81,
+      "sourceBodySha256": "3648ee81f80f697342f2329c2458b7a3816a30497c923f554dbd026d018883ba",
+      "sourceExcerpt": "Ocoa-Varios sujetos hasta el momento sin identificar asaltaron un camión de la compañía cervecera D’ Daniel Súper Fría, ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/asaltan-granja-de-pollos-en-laguna.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180626095816id_/http://www.eldiariodelcibao.com:80/2018/06/asaltan-granja-de-pollos-en-laguna.html",
+      "archiveTimestamp": "20180626095816",
+      "originalTitle": "Asaltan granja de pollos en Laguna Salada y cargan con más de medio millón de pesos",
+      "originalDate": "2018-06-22",
+      "sourceBodyWords": 129,
+      "sourceBodySha256": "d7fa7bb664ac49747959e8508b624f8453cab4c5e1102704d1ee547a851dde9e",
+      "sourceExcerpt": "Laguna Salada-. Personas hasta el momento desconocidas asaltaron una granja de pollos de este municipio, de donde cargar",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/asesinan-dos-candidatos-alcaldes-en.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180627123226id_/http://www.eldiariodelcibao.com:80/2018/06/asesinan-dos-candidatos-alcaldes-en.html",
+      "archiveTimestamp": "20180627123226",
+      "originalTitle": "Asesinan a dos candidatos alcaldes en pueblos mexicanos",
+      "originalDate": "2018-06-21",
+      "sourceBodyWords": 256,
+      "sourceBodySha256": "3671f723f776521187f3aaa58f27593dc2fe2b5fd84e2e5ea783c9b2f6d21942",
+      "sourceExcerpt": "CIUDAD DE MÉXICO (AP).- Dos candidatos a alcalde en pueblos rurales distintos en México fueron asesinados en menos de 24",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/asi-sepultaron-joseito-mateo-videos.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180607213139id_/http://www.eldiariodelcibao.com:80/2018/06/asi-sepultaron-joseito-mateo-videos.html",
+      "archiveTimestamp": "20180607213139",
+      "originalTitle": "Así sepultaron a Joseito Mateo [Videos]",
+      "originalDate": "2018-06-03",
+      "sourceBodyWords": 420,
+      "sourceBodySha256": "f877cf5f78078e4ce8601c40237ac4dafa7436d1ead9d511ece530d65c5b2989",
+      "sourceExcerpt": "Con los merengues que lo hicieron famoso, sonados a todo volumen en el cementerio Puerta del Cielo, fueron sepultados ay",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/atracan-mujer-y-roban-arma-y-dinero-en.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180630070222id_/http://www.eldiariodelcibao.com:80/2018/06/atracan-mujer-y-roban-arma-y-dinero-en.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/autoridades-monumento-de-santiago-dicen.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180625160407id_/http://www.eldiariodelcibao.com:80/2018/06/autoridades-monumento-de-santiago-dicen.html",
+      "archiveTimestamp": "20180625160407",
+      "originalTitle": "Autoridades Monumento de Santiago dicen no es espacio público",
+      "originalDate": "2018-06-21",
+      "sourceBodyWords": 143,
+      "sourceBodySha256": "b7b8d7e45d957f63ef483b2471f61e909bfa7e3dbdd6f35dcebdb85a783cb515",
+      "sourceExcerpt": "Santo Domingo.- La dirección del Monumento a los Héroes de la Restauración en Santiago, dependencia, del Ministerio de C",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/azua-delincuentes-encapuchados-roban.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180702013913id_/http://www.eldiariodelcibao.com:80/2018/06/azua-delincuentes-encapuchados-roban.html",
+      "archiveTimestamp": "20180702013913",
+      "originalTitle": "AZUA: Delincuentes encapuchados roban RD$2 millones 57 mil en asalto",
+      "originalDate": "2018-06-27",
+      "sourceBodyWords": 222,
+      "sourceBodySha256": "4b3880cf90be77d8db91778d291095b3ef33e40f7edbb024c5345b664f1a3711",
+      "sourceExcerpt": "Por Estieny Martinez - AZUA, República Dominicana.- Dos individuos encapuchados que se desplazaban en una motocicleta, a",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/bani-hombre-viola-y-asesina-menor-de-8.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180610103811id_/http://www.eldiariodelcibao.com:80/2018/06/bani-hombre-viola-y-asesina-menor-de-8.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/bartolo-colon-gana-juego-y-empata-con.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180610103613id_/http://www.eldiariodelcibao.com:80/2018/06/bartolo-colon-gana-juego-y-empata-con.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/bomba-hipolito-advierte-que-dira-lo-que.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180607213346id_/http://www.eldiariodelcibao.com:80/2018/06/bomba-hipolito-advierte-que-dira-lo-que.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/brasil-espera-la-libertad-de-lula-luego.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142335id_/http://www.eldiariodelcibao.com:80/2018/06/brasil-espera-la-libertad-de-lula-luego.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/camara-de-diputados-aprueba-prestamo.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702014137id_/http://www.eldiariodelcibao.com:80/2018/06/camara-de-diputados-aprueba-prestamo.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/canada-legalizara-uso-de-la-marihuana.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180626100004id_/http://www.eldiariodelcibao.com:80/2018/06/canada-legalizara-uso-de-la-marihuana.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/candidato-de-partido-uribista-ivan.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180623142500id_/http://www.eldiariodelcibao.com:80/2018/06/candidato-de-partido-uribista-ivan.html",
+      "archiveTimestamp": "20180623142500",
+      "originalTitle": "Candidato de partido uribista Iván Duque, es electo presidente de Colombia",
+      "originalDate": "2018-06-17",
+      "sourceBodyWords": 228,
+      "sourceBodySha256": "fb3ef0b3c010a822699c05a39494dc77337155dde190daa1fd8d4f8f5ae9a9ec",
+      "sourceExcerpt": "BOGOTA(EFE).-El candidato del partido uribista Centro Democrático, Iván Duque, fue elegido este dinubgi presidente de Co",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/cardi-b-se-desnudo-embarazada-para.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180623142340id_/http://www.eldiariodelcibao.com:80/2018/06/cardi-b-se-desnudo-embarazada-para.html",
+      "archiveTimestamp": "20180623142340",
+      "originalTitle": "Cardi B se desnudó embarazada, para portada de revista Rolling Stone [ ver foto ]",
+      "originalDate": "2018-06-17",
+      "sourceBodyWords": 234,
+      "sourceBodySha256": "fea5fbe8a32a50c5222409d11c74387c5f69cb0869a7edd6d3c5b42d772c8b86",
+      "sourceExcerpt": "LOS ÁNGELES. La rapera de origen dominicano Cardi B se desnudó para la portada de la revista Rolling Stone, en donde no ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/cardi-b-y-rihanna-rinden-tributo-al.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180628082418id_/http://www.eldiariodelcibao.com:80/2018/06/cardi-b-y-rihanna-rinden-tributo-al.html",
+      "archiveTimestamp": "20180628082418",
+      "originalTitle": "Cardi B y Rihanna rinden tributo al dominicano de 15 años que fue asesinado en el Bronx, Nueva York",
+      "originalDate": "2018-06-25",
+      "sourceBodyWords": 306,
+      "sourceBodySha256": "7743c10ea22c8dc7c907fc5479656d50a674302bee89a9b76092478923a866a0",
+      "sourceExcerpt": "Rihanna y Cardi B se encuentran entre los muchos artistas que rindieron homenaje al dominicano de 15 años que fue asesin",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/caso-de-emely-peguero-se-complica-el.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180607213221id_/http://www.eldiariodelcibao.com:80/2018/06/caso-de-emely-peguero-se-complica-el.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/castillo-seman-pide-jce-y-sociedad.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180610103816id_/http://www.eldiariodelcibao.com:80/2018/06/castillo-seman-pide-jce-y-sociedad.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/cesfront-detiene-venezolanos-robaban.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180623142506id_/http://www.eldiariodelcibao.com:80/2018/06/cesfront-detiene-venezolanos-robaban.html",
+      "archiveTimestamp": "20180623142506",
+      "originalTitle": "Cesfront detiene Venezolanos robaban vehiculos para venderlos en Haití",
+      "originalDate": "2018-06-19",
+      "sourceBodyWords": 112,
+      "sourceBodySha256": "e02719cb65b9dec2907c24906a7279b606490bd7e1dfe635e1804dee08665b6d",
+      "sourceExcerpt": "Elías Piña,- Miembros del Cesfront detuvieron cuatro supuestos integrantes de una banda de ciudadanos venezolanos, que s",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/choque-de-motocicletas-deja-un-saldo-de.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180702062952id_/http://www.eldiariodelcibao.com:80/2018/06/choque-de-motocicletas-deja-un-saldo-de.html",
+      "archiveTimestamp": "20180702062952",
+      "originalTitle": "Choque de motocicletas deja un saldo de un muerto y un herido en Palo Verde",
+      "originalDate": "2018-06-28",
+      "sourceBodyWords": 140,
+      "sourceBodySha256": "b693c78cfbf76e9be1d146c1d9d1856fb9660ba7c723816bb7c06ce4b34fa6f3",
+      "sourceExcerpt": "Montecristi-. Una persona muerta y otra herida es el saldo de un choque entre dos motocicletas ocurrido en el distrito m",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/choque-de-titanes-michael-miguel.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180620044118id_/http://www.eldiariodelcibao.com:80/2018/06/choque-de-titanes-michael-miguel.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/cierran-tres-pica-pollos-chinos-por.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142510id_/http://www.eldiariodelcibao.com:80/2018/06/cierran-tres-pica-pollos-chinos-por.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/cifra-de-muertes-por-huracan-maria.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180607213502id_/http://www.eldiariodelcibao.com:80/2018/06/cifra-de-muertes-por-huracan-maria.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/colombia-supero-senegal-y-se-clasifico.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702062603id_/http://www.eldiariodelcibao.com:80/2018/06/colombia-supero-senegal-y-se-clasifico.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/comision-nacional-de-espectaculos.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142516id_/http://www.eldiariodelcibao.com:80/2018/06/comision-nacional-de-espectaculos.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/comite-la-barranquita-incorporado.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180703072410id_/http://www.eldiariodelcibao.com:80/2018/06/comite-la-barranquita-incorporado.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/confirman-121-personas-han-muerto-de.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180610103507id_/http://www.eldiariodelcibao.com:80/2018/06/confirman-121-personas-han-muerto-de.html",
+      "archiveTimestamp": "20180610103507",
+      "originalTitle": "Confirman 121 personas han muerto de forma violenta durante crisis política en Nicaragua",
+      "originalDate": "2018-06-05",
+      "sourceBodyWords": 215,
+      "sourceBodySha256": "092bf0bb03e5b153d2d47987876f272c91b6622dacbf17a7f46b00cdf077bcfb",
+      "sourceExcerpt": "MANAGUA.- El Centro Nicaragüense de Derechos Humanos (Cenidh) informó que la crisis sociopolítica de Nicaragua se ha cob",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/confirman-cinco-muertos-tras-tiroteo-en.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180702062957id_/http://www.eldiariodelcibao.com:80/2018/06/confirman-cinco-muertos-tras-tiroteo-en.html",
+      "archiveTimestamp": "20180702062957",
+      "originalTitle": "Confirman cinco muertos tras tiroteo en un periódico de Maryland",
+      "originalDate": "2018-06-28",
+      "sourceBodyWords": 238,
+      "sourceBodySha256": "8f0efa8015707e9a7ea69025ce066b246fbee3114b1b65b2ca0bae0cda7842ea",
+      "sourceExcerpt": "La Policía confirmó hoy, jueves, sobre 20 heridos y al menos cinco personas muertas tras un tiroteo registrado en la red",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/consulta-adp-sin-concursos-no-habra.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180626095728id_/http://www.eldiariodelcibao.com:80/2018/06/consulta-adp-sin-concursos-no-habra.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/convocan-paro-por-48-horas-en-esperanza.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180620044230id_/http://www.eldiariodelcibao.com:80/2018/06/convocan-paro-por-48-horas-en-esperanza.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/cruz-jiminian-pide-pension-para-margaro.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180702013919id_/http://www.eldiariodelcibao.com:80/2018/06/cruz-jiminian-pide-pension-para-margaro.html",
+      "archiveTimestamp": "20180702013919",
+      "originalTitle": "Cruz Jiminián pide pensión para Margaro y cree la soledad lo tiene delgado y depresivo",
+      "originalDate": "2018-06-27",
+      "sourceBodyWords": 433,
+      "sourceBodySha256": "230259f65892d91cfd1b781aef16f2c22642d1716bc9c4c0f5076db981ca4635",
+      "sourceExcerpt": "SANTO DOMINGO.- El comediante Nicolás Díaz (Margaro) tuvo una época de gloria dentro de su carrera profesional de humori",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/david-ortiz-y-torii-hunter-dirigiran.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180625160451id_/http://www.eldiariodelcibao.com:80/2018/06/david-ortiz-y-torii-hunter-dirigiran.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/delincuentes-deguellan-empleada-joyeria.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180620044236id_/http://www.eldiariodelcibao.com:80/2018/06/delincuentes-deguellan-empleada-joyeria.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/demandan-rector-de-la-uasd-por.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142345id_/http://www.eldiariodelcibao.com:80/2018/06/demandan-rector-de-la-uasd-por.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/denuncian-gobierno-ofrece-facilidades.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180703072415id_/http://www.eldiariodelcibao.com:80/2018/06/denuncian-gobierno-ofrece-facilidades.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/denuncian-irregularidades-en-el.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180617211904id_/http://www.eldiariodelcibao.com:80/2018/06/denuncian-irregularidades-en-el.html",
+      "archiveTimestamp": "20180617211904",
+      "originalTitle": "Denuncian irregularidades en el Proyecto de Viviendas Ciudad Juan Bosch",
+      "originalDate": "2018-06-13",
+      "sourceBodyWords": 553,
+      "sourceBodySha256": "04a6ce55f9256334cc61c96699b1e1cb00b12a868f10f630660996af80693a10",
+      "sourceExcerpt": "Rep. Dom. (EFE).- Adquirientes de viviendas en la Ciudad Juan Bosch se quejaron hoy de que supuestamente las institucion",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/denuncian-la-mala-situacion-que-viven.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180702062346id_/http://www.eldiariodelcibao.com:80/2018/06/denuncian-la-mala-situacion-que-viven.html",
+      "archiveTimestamp": "20180702062346",
+      "originalTitle": "DENUNCIAN LA MALA SITUACIÓN QUE VIVEN LOS PRESOS PREVENTIVOS DE MAO.",
+      "originalDate": "2018-06-28",
+      "sourceBodyWords": 184,
+      "sourceBodySha256": "d4cc22cc1c94cc6492d9edfb316ccc0d2194f21b431ea5821e8943b49c0fd6ed",
+      "sourceExcerpt": "Mao-. Familiares de personas que guardan prisión en la cárcel preventiva de la Dirección Regional Noroeste de la Policía",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/desaparece-joven-que-retiraba-dinero-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702062751id_/http://www.eldiariodelcibao.com:80/2018/06/desaparece-joven-que-retiraba-dinero-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/destacable-lo-malo-de-trujillo-y-lo.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180617211731id_/http://www.eldiariodelcibao.com:80/2018/06/destacable-lo-malo-de-trujillo-y-lo.html",
+      "archiveTimestamp": "20180617211731",
+      "originalTitle": "¡Destacable: lo malo de Trujillo! ¿Y lo bueno qué?",
+      "originalDate": "2018-06-08",
+      "sourceBodyWords": 813,
+      "sourceBodySha256": "40429ef29d28d47c4d8dd3549398d797cc82fb22bb516c2df2eebd306c458833",
+      "sourceExcerpt": "¡Nunca todo es malo por completo! Cada sistema, cuál que sea, tiene siempre sus pros, como sus contras. Y, la actitud má",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/diablo-como-se-trata-de-entretener-un.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180617211737id_/http://www.eldiariodelcibao.com:80/2018/06/diablo-como-se-trata-de-entretener-un.html",
+      "archiveTimestamp": "20180617211737",
+      "originalTitle": "¡Diablo, cómo se trata de entretener a un pueblo!",
+      "originalDate": "2018-06-08",
+      "sourceBodyWords": 1297,
+      "sourceBodySha256": "f0044797fa6975edee82775e27ca9c7bedff311a5bd20b58f5367bbc09359ffe",
+      "sourceExcerpt": "Para que la gente aquí lea; continúe roncando, y se olvide de los grandes problemas nacionales. ¡Qué bien! Titulares por",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/dictan-un-ano-de-prision-preventiva.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180607213508id_/http://www.eldiariodelcibao.com:80/2018/06/dictan-un-ano-de-prision-preventiva.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/diputado-denuncia-maniobra-para-aprobar.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180607213351id_/http://www.eldiariodelcibao.com:80/2018/06/diputado-denuncia-maniobra-para-aprobar.html",
+      "archiveTimestamp": "20180607213351",
+      "originalTitle": "Diputado denuncia maniobra para aprobar primarias abiertas",
+      "originalDate": "2018-06-03",
+      "sourceBodyWords": 260,
+      "sourceBodySha256": "fe55aba92c0bd1be7f42ca406f4b618d32744d0a05119048af3c73bffb8eda14",
+      "sourceExcerpt": "SANTO DOMINGO.-El diputado del Partido de la Liberación Dominicana Juan Carlos Quiñones dijo este domingo que luego del ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/director-del-indrhi-propone-al.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180610103513id_/http://www.eldiariodelcibao.com:80/2018/06/director-del-indrhi-propone-al.html",
+      "archiveTimestamp": "20180610103513",
+      "originalTitle": "Director del INDRHI propone al presidente Danilo Medina ordene construir presa en Santiago Rodríguez.",
+      "originalDate": "2018-06-05",
+      "sourceBodyWords": 1110,
+      "sourceBodySha256": "4af4987925087b6e881a3e68f5f4f0be29b8f1389c98d8bbbb7df8df3b2e5658",
+      "sourceExcerpt": "Por Marcelo Peralta. - Santiago, R.D.-El director del Instituto Nacional de Recursos Hidráulicos (INDRHI), ingeniero Olg",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/director-dni-revela-hay-pistas-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180617211911id_/http://www.eldiariodelcibao.com:80/2018/06/director-dni-revela-hay-pistas-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/director-junta-de-boca-de-mao-se-reune.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142521id_/http://www.eldiariodelcibao.com:80/2018/06/director-junta-de-boca-de-mao-se-reune.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/dirigente-nacional-adp-pide-al-ministro.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180620044124id_/http://www.eldiariodelcibao.com:80/2018/06/dirigente-nacional-adp-pide-al-ministro.html",
+      "archiveTimestamp": "20180620044124",
+      "originalTitle": "DIRIGENTE NACIONAL ADP PIDE AL MINISTRO NAVARRO QUE RENUNCIE",
+      "originalDate": "2018-06-13",
+      "sourceBodyWords": 179,
+      "sourceBodySha256": "ee68b43a7220a3bbf7b04a8327a00cb4a4add4c894bcbf6f55e0191ab8de72b2",
+      "sourceExcerpt": "Por Quiro Gomez - Mao,R.D-.El dirigente Nacional de la Asociación Dominicana de Profesores, profesor Juan Núñez, pidió a",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/dominguez-brito-formalizo-pedido.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180617211917id_/http://www.eldiariodelcibao.com:80/2018/06/dominguez-brito-formalizo-pedido.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/donald-trump-aseguro-que-ya-no-hay-una.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180617211742id_/http://www.eldiariodelcibao.com:80/2018/06/donald-trump-aseguro-que-ya-no-hay-una.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/donni-santana-insiste-que-es-inocente-y.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142526id_/http://www.eldiariodelcibao.com:80/2018/06/donni-santana-insiste-que-es-inocente-y.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/dos-miembros-del-cp-del-pld-creen.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180702014142id_/http://www.eldiariodelcibao.com:80/2018/06/dos-miembros-del-cp-del-pld-creen.html",
+      "archiveTimestamp": "20180702014142",
+      "originalTitle": "Dos miembros del CP del PLD creen resolución JCE que suprime proselitismo empuja aprobación Ley Partido",
+      "originalDate": "2018-06-26",
+      "sourceBodyWords": 198,
+      "sourceBodySha256": "26c654dde1edb685bcddf4a1a447813e72ed0f40b9469a3d872c97a7bd595f12",
+      "sourceExcerpt": "Dos miembros del Comité Político del Partido de la Liberación Dominicana, calificaron como bien intencionada la resoluci",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/dos-policias-se-quedaron-indiferentes.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180703072420id_/http://www.eldiariodelcibao.com:80/2018/06/dos-policias-se-quedaron-indiferentes.html",
+      "archiveTimestamp": "20180703072420",
+      "originalTitle": "Dos policías se quedaron indiferentes mientras estudiante dominicano asesinado se desangraba en la acera",
+      "originalDate": "2018-06-29",
+      "sourceBodyWords": 637,
+      "sourceBodySha256": "e9ffb22c1ab5894a113eeb84d23aaa0ea03944a6ed49b23220cfee9f32f59083",
+      "sourceExcerpt": "Miguel Cruz Tejada - NUEVA YORK._ Dos policías, un hombre y una mujer, que estaban de patrulla en la misma cuadra donde ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/dr-jiminian-desmiente-el-pacha-niega.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180630070227id_/http://www.eldiariodelcibao.com:80/2018/06/dr-jiminian-desmiente-el-pacha-niega.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/eeuu-sanciono-felix-bautista-apoyandose.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180617211921id_/http://www.eldiariodelcibao.com:80/2018/06/eeuu-sanciono-felix-bautista-apoyandose.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/el-79-de-los-dominicanos-aprueba.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180620044129id_/http://www.eldiariodelcibao.com:80/2018/06/el-79-de-los-dominicanos-aprueba.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/el-actor-alfredo-adame-dice-mi-laura.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180630070232id_/http://www.eldiariodelcibao.com:80/2018/06/el-actor-alfredo-adame-dice-mi-laura.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20190227045356id_/http://www.eldiariodelcibao.com:80/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/el-cantautor-manuel-jimenez-viajara-ny.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180618033718id_/http://www.eldiariodelcibao.com:80/2018/06/el-cantautor-manuel-jimenez-viajara-ny.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/el-chiste-del-dia-abinader-aventaja.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702014147id_/http://www.eldiariodelcibao.com:80/2018/06/el-chiste-del-dia-abinader-aventaja.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/el-chiste-del-diaalejandrina-german.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180625160412id_/http://www.eldiariodelcibao.com:80/2018/06/el-chiste-del-diaalejandrina-german.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/el-doctor-cruz-jiminian-dice-presidente.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180703072425id_/http://www.eldiariodelcibao.com:80/2018/06/el-doctor-cruz-jiminian-dice-presidente.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/el-equipo-medias-rojas-de-boston.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180626095733id_/http://www.eldiariodelcibao.com:80/2018/06/el-equipo-medias-rojas-de-boston.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/el-leon-erechaza-emplazamiento-hace-jce.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180625160457id_/http://www.eldiariodelcibao.com:80/2018/06/el-leon-erechaza-emplazamiento-hace-jce.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/el-pacha-se-queja-porque-david-collado.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180623142350id_/http://www.eldiariodelcibao.com:80/2018/06/el-pacha-se-queja-porque-david-collado.html",
+      "archiveTimestamp": "20180623142350",
+      "originalTitle": "El Pacha se queja porque David Collado no ha metido preso a Roberto Salcedo por supuesto desfalco",
+      "originalDate": "2018-06-19",
+      "sourceBodyWords": 171,
+      "sourceBodySha256": "f25e9b0552686e4c679591c2e98531acae92f5dcead468c3de03f5ded483e65b",
+      "sourceExcerpt": "El carismático y controvertido comunicador, Frederick Martinez (El Pacha), arremetió en su programa de televisión contra",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/el-pacha-sobre-margaro-si-no-nos.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180630070344id_/http://www.eldiariodelcibao.com:80/2018/06/el-pacha-sobre-margaro-si-no-nos.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/el-senor-de-los-cieloslo-acusan-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180626095822id_/http://www.eldiariodelcibao.com:80/2018/06/el-senor-de-los-cieloslo-acusan-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/el-tipo-que-mato-y-violo-la-nina-de-8.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180610103743id_/http://www.eldiariodelcibao.com:80/2018/06/el-tipo-que-mato-y-violo-la-nina-de-8.html",
+      "archiveTimestamp": "20180610103743",
+      "originalTitle": "El tipo, que mato y violo la niña de 8 años y golpeo la mama, tenia 6 meses de salir prisión después de cumplir 10 años por otro caso similar",
+      "originalDate": "2018-06-07",
+      "sourceBodyWords": 212,
+      "sourceBodySha256": "9bf4743a2f98ddec58e8b2197c4b640d2e29143f5238f9fe38194f576ce66b4a",
+      "sourceExcerpt": "Baní. Elvin Esteban Díaz, el hombre que violó y luego asesinó anoche a una niña de 8 años de edad en Baní (al sur de Rep",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/elina-estrella-es-electa-como-nueva.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180625160502id_/http://www.eldiariodelcibao.com:80/2018/06/elina-estrella-es-electa-como-nueva.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/ella-era-el-amiguito-que-llamo-junior.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180630070237id_/http://www.eldiariodelcibao.com:80/2018/06/ella-era-el-amiguito-que-llamo-junior.html",
+      "archiveTimestamp": "20180630070237",
+      "originalTitle": "ELLA ERA EL AMIGUITO QUE LLAMO A JUNIOR Stephanie Astacio es la chica del video con Invirg Ozuna",
+      "originalDate": "2018-06-27",
+      "sourceBodyWords": 99,
+      "sourceBodySha256": "ad327c5778b44e2bef43f2779f5a30ee47b7ecfdb7abf5e0e262a33f6490f32c",
+      "sourceExcerpt": "JUNIOR** Stephanie Astacio es la chica del video con Invirg Ozuna, el cual tiene su Facebook desactivado, pero al parece",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/embarazada-fallece-junto-su-criatura.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180607213356id_/http://www.eldiariodelcibao.com:80/2018/06/embarazada-fallece-junto-su-criatura.html",
+      "archiveTimestamp": "20180607213356",
+      "originalTitle": "Embarazada fallece junto a su criatura por alegada negligencia médica en La Vega.",
+      "originalDate": "2018-06-03",
+      "sourceBodyWords": 165,
+      "sourceBodySha256": "242edca1906dde6fb6ba7e2498bf9dae26041e8534c6082c485c80c372fafd01",
+      "sourceExcerpt": "LA VEGA RD.- La Joven Milta Marina Diaz quien se encontraba en estado de gestación estaba falleció junto a su criatura e",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/empresariado-de-rd-se-pronuncia-dice.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180617211747id_/http://www.eldiariodelcibao.com:80/2018/06/empresariado-de-rd-se-pronuncia-dice.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/empresario-pedro-espinal-sera.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180703072430id_/http://www.eldiariodelcibao.com:80/2018/06/empresario-pedro-espinal-sera.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/en-5-dias-felix-bautista-dono-rd45.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142355id_/http://www.eldiariodelcibao.com:80/2018/06/en-5-dias-felix-bautista-dono-rd45.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/en-medio-de-dispositivo-de-seguridad.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142400id_/http://www.eldiariodelcibao.com:80/2018/06/en-medio-de-dispositivo-de-seguridad.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/encuentran-hombre-muerto-con-heridas-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180630070349id_/http://www.eldiariodelcibao.com:80/2018/06/encuentran-hombre-muerto-con-heridas-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/encuentran-hombre-muerto-de-un.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142405id_/http://www.eldiariodelcibao.com:80/2018/06/encuentran-hombre-muerto-de-un.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/encuentran-hombre-muerto-en-finca-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142410id_/http://www.eldiariodelcibao.com:80/2018/06/encuentran-hombre-muerto-en-finca-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/encuentran-muerta-joven-maena.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180607213145id_/http://www.eldiariodelcibao.com:80/2018/06/encuentran-muerta-joven-maena.html",
+      "archiveTimestamp": "20180607213145",
+      "originalTitle": "Encuentran muerta joven maeña desaparecida desde el pasado fin de semana frente al club Quisqueya en mao.",
+      "originalDate": "2018-06-04",
+      "sourceBodyWords": 79,
+      "sourceBodySha256": "db476f19c2a769916a0f1c478e09a0bfbc903c638693456685af6c39a761c574",
+      "sourceExcerpt": "Mao Lamentablemente, la joven Yokabell Pimentel Valdez, acaba de ser encontrada muerta en una casa abandonada detrás del",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/encuentran-mujer-ahorcada-con-un.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180626095738id_/http://www.eldiariodelcibao.com:80/2018/06/encuentran-mujer-ahorcada-con-un.html",
+      "archiveTimestamp": "20180626095738",
+      "originalTitle": "Encuentran mujer ahorcada con un cinturón en sector Los Bonilla de Mao",
+      "originalDate": "2018-06-03",
+      "sourceBodyWords": 205,
+      "sourceBodySha256": "d02b5b0c29d7cac58b359777a4842e82c624c3cfaaae22752bf3a486126f71f4",
+      "sourceExcerpt": "Fenecida Altagracia Bonilla Mao.- Una mujer fue encontrada muerta la tarde de este sabado, en su residencia ubicada en e",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/encuentran-una-pareja-muerta-en.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180610103821id_/http://www.eldiariodelcibao.com:80/2018/06/encuentran-una-pareja-muerta-en.html",
+      "archiveTimestamp": "20180610103821",
+      "originalTitle": "Encuentran una pareja muerta en vivienda de La Vega",
+      "originalDate": "2018-06-07",
+      "sourceBodyWords": 62,
+      "sourceBodySha256": "6f90f393531f95e512c24e635d70a30f78154b71591259add0fdba7a2c45dbad",
+      "sourceExcerpt": "Santo Domingo.- Una pareja fue encontrada muerta en el interior de su vivienda ubicada en la calle 2 del sector Maria Au",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/encuesta-indica-que-lopez-obrador-posee.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180630070242id_/http://www.eldiariodelcibao.com:80/2018/06/encuesta-indica-que-lopez-obrador-posee.html",
+      "archiveTimestamp": "20180630070242",
+      "originalTitle": "Encuesta indica que López Obrador posee ventaja antes de presidenciales en México",
+      "originalDate": "2018-06-26",
+      "sourceBodyWords": 277,
+      "sourceBodySha256": "9e3bd164ff07b3f477fecee41d723cdf42b8e98336a965dba3abac643297f789",
+      "sourceExcerpt": "Un sondeo dado a conocer ayer por la firma Consulta Mitofsky indica que el candidato de la coalición Juntos Haremos Hist",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/enfrentamientos-deja-dos-personas.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180629222944id_/http://www.eldiariodelcibao.com:80/2018/06/enfrentamientos-deja-dos-personas.html",
+      "archiveTimestamp": "20180629222944",
+      "originalTitle": "Enfrentamientos deja dos personas muertas y cuatro heridas en Santiago",
+      "originalDate": "2018-06-25",
+      "sourceBodyWords": 133,
+      "sourceBodySha256": "65cd30670c16faf59f5d378fdce7014f0c45f259490564e0e9176a81d28a6022",
+      "sourceExcerpt": "Santiago.- En el barrio Yaguita de Pastor, en Santiago se produce un enfrentamiento entre dos supuestas bandas que se di",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/espaillat-pide-renuncia-de-la.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180623142415id_/http://www.eldiariodelcibao.com:80/2018/06/espaillat-pide-renuncia-de-la.html",
+      "archiveTimestamp": "20180623142415",
+      "originalTitle": "Espaillat pide renuncia de la comisionada de taxis y limosinas después del suicidio de un sexto taxista",
+      "originalDate": "2018-06-18",
+      "sourceBodyWords": 398,
+      "sourceBodySha256": "2f1692a4432f745a556f7912648e383d8149b50118b5e51a5f50fb9a810f5738",
+      "sourceExcerpt": "Miguel Cruz Tejada - NUEVA YORK._ El congresista dominicano Adriano Espaillat, pidió el sábado la renuncia de la comisio",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/espaillat-respalda-sanciones-de-estados.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180620044134id_/http://www.eldiariodelcibao.com:80/2018/06/espaillat-respalda-sanciones-de-estados.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/espectaculo-publico-advierte-la-tora.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180620044241id_/http://www.eldiariodelcibao.com:80/2018/06/espectaculo-publico-advierte-la-tora.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/estudiante-dominicano-es-muerto.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180626100011id_/http://www.eldiariodelcibao.com:80/2018/06/estudiante-dominicano-es-muerto.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/ex-vicepresidente-sale-en-defensa-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623120055id_/http://www.eldiariodelcibao.com:80/2018/06/ex-vicepresidente-sale-en-defensa-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/fallece-en-accidente-de-transito-la.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180614163052id_/http://www.eldiariodelcibao.com:80/2018/06/fallece-en-accidente-de-transito-la.html",
+      "archiveTimestamp": "20180614163052",
+      "originalTitle": "Fallece en accidente de tránsito la modelo Massiel González en Río San Juan",
+      "originalDate": "2018-06-10",
+      "sourceBodyWords": 110,
+      "sourceBodySha256": "7d33fbc15c138e43be281180855ffa5b8d4e1f4faab15cd8db551b22c81a41e5",
+      "sourceExcerpt": "Perdió el control de un vehículo todo terreno Gaspar Hernández, Espaillat RD.- Falleció la tarde de este domingo en un a",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/fallece-madre-del-senador-amable-aristy.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180607213401id_/http://www.eldiariodelcibao.com:80/2018/06/fallece-madre-del-senador-amable-aristy.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/fallecio-el-papa-de-michael-jackson-joe.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702014152id_/http://www.eldiariodelcibao.com:80/2018/06/fallecio-el-papa-de-michael-jackson-joe.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/falpo-anuncia-huelga-de-48-horas-en.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180618033723id_/http://www.eldiariodelcibao.com:80/2018/06/falpo-anuncia-huelga-de-48-horas-en.html",
+      "archiveTimestamp": "20180618033723",
+      "originalTitle": "Falpo anuncia huelga de 48 horas en Salcedo y San Francisco de Macorís",
+      "originalDate": "2018-06-10",
+      "sourceBodyWords": 459,
+      "sourceBodySha256": "324c9a36eb9ecf4844c726e6d58b175a79bd75fb8e7a59308d3f4f82abe5107d",
+      "sourceExcerpt": "Salcedo.- Más de una decena de organizaciones del municipio de Salcedo, encabezadas por el Frente Amplio de Lucha Popula",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/felix-bautista-presupuesto-remodelacion.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180702014157id_/http://www.eldiariodelcibao.com:80/2018/06/felix-bautista-presupuesto-remodelacion.html",
+      "archiveTimestamp": "20180702014157",
+      "originalTitle": "Félix Bautista presupuestó remodelación de la Biblioteca Nacional en 88 millones sin embargo invirtieron 1,397 MILLONES",
+      "originalDate": "2018-06-27",
+      "sourceBodyWords": 132,
+      "sourceBodySha256": "2d2c090a525e98fa24ce3f08b9b7d4a488c1f74bc0cf645ea061647f20bb5ff0",
+      "sourceExcerpt": "El jurista Julio Cury a traves de su cuenta de twitter denuncio que en la gestion de Felix Bautista en la Oficina de Sup",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/felix-bautista-se-burla-de-estados.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180617211752id_/http://www.eldiariodelcibao.com:80/2018/06/felix-bautista-se-burla-de-estados.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/felix-bautista-tiene-rd84-mil-600.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180620044139id_/http://www.eldiariodelcibao.com:80/2018/06/felix-bautista-tiene-rd84-mil-600.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/fiscalia-dn-investiga-la-madre-de-nina.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180607213227id_/http://www.eldiariodelcibao.com:80/2018/06/fiscalia-dn-investiga-la-madre-de-nina.html",
+      "archiveTimestamp": "20180607213227",
+      "originalTitle": "Fiscalía DN investiga la madre de niña presuntamente violada por su padrastro",
+      "originalDate": "2018-06-04",
+      "sourceBodyWords": 133,
+      "sourceBodySha256": "8895cf9d3ac5db6957b3fe844d5b89a4dba9990937a8c6b0c60a1f78334f43b0",
+      "sourceExcerpt": "SANTO DOMINGO. La fiscal del Distrito Nacional, Yeni Berenice Reynoso, dijo que la madre de la menor de edad presuntamen",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/fondos-petrocaribe-en-obras-vinculan.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180620044144id_/http://www.eldiariodelcibao.com:80/2018/06/fondos-petrocaribe-en-obras-vinculan.html",
+      "archiveTimestamp": "20180620044144",
+      "originalTitle": "Haití auditará utilización fondos PETROCARIBE en obras vinculan a Félix Bautista",
+      "originalDate": "2018-06-14",
+      "sourceBodyWords": 406,
+      "sourceBodySha256": "e7fe7bf30e27eaa38a03240f96933674611e2945aa376745008d97186698f95f",
+      "sourceExcerpt": "SANTO DOMINGO. El Tribunal Superior de Cuentas y Litigación Administrativa (CSCCA) de Haití informó que auditará la util",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/fwd-de-musicos-guireros-y-records.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142530id_/http://www.eldiariodelcibao.com:80/2018/06/fwd-de-musicos-guireros-y-records.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/fwd-presidente-asobeu-recrimina-actitud.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180702063002id_/http://www.eldiariodelcibao.com:80/2018/06/fwd-presidente-asobeu-recrimina-actitud.html",
+      "archiveTimestamp": "20180702063002",
+      "originalTitle": "Presidente Asobeu recrimina actitud de bodeguero en el asesinato del joven Junior Guzmán Feliz",
+      "originalDate": "2018-06-28",
+      "sourceBodyWords": 317,
+      "sourceBodySha256": "2486d677e12e0fe1657ce6f3b9fac121c099fad48753e5cfc0cabca8ca4db7a0",
+      "sourceExcerpt": "Miguel Melenciano - Bronx, NY.-El presidente de la Asociación de Bodegueros de los Estados Unidos, ASOBEU, Ramón Murphy ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/fwd.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180625160507id_/http://www.eldiariodelcibao.com:80/2018/06/fwd.html",
+      "archiveTimestamp": "20180625160507",
+      "originalTitle": "Visitar el Yankee Stadium es algo que me ha producido una impresión pocas veces sentida en mi vida.",
+      "originalDate": "2018-06-21",
+      "sourceBodyWords": 698,
+      "sourceBodySha256": "7fbb58d375c04ab105469b26511bfa948684f95d8b7311838d99399a09f4a49a",
+      "sourceExcerpt": "Por Horacio Nolasco.- Como jugaban los Marineros de Seattle entendí que no estaríamos a todo dar, pero que va, salen gen",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/gobierno-dara-pension-al-humorista.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702014023id_/http://www.eldiariodelcibao.com:80/2018/06/gobierno-dara-pension-al-humorista.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/gran-verdad-irrebatible.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180607213513id_/http://www.eldiariodelcibao.com:80/2018/06/gran-verdad-irrebatible.html",
+      "archiveTimestamp": "20180607213513",
+      "originalTitle": "¡Gran verdad, irrebatible!",
+      "originalDate": "2018-06-03",
+      "sourceBodyWords": 791,
+      "sourceBodySha256": "dc65f74ac8602b7f20128256beb198e85cc7f0d4539fc1155eef0002cafa65bb",
+      "sourceExcerpt": "En Dominicana, ¡no todos los ciudadanos cuentan para los gobiernos que se gastan! Satisfacciones para los poderes políti",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/guido-acusa-miguel-vargas-de-manejar-su.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180702014028id_/http://www.eldiariodelcibao.com:80/2018/06/guido-acusa-miguel-vargas-de-manejar-su.html",
+      "archiveTimestamp": "20180702014028",
+      "originalTitle": "Guido acusa a Miguel Vargas de manejar a su antojo más de 2 mil millones de pesos",
+      "originalDate": "2018-06-27",
+      "sourceBodyWords": 274,
+      "sourceBodySha256": "ed2b2d91045b0daadb9679c6679c6aeea0a0f762034732623fa9e3bc1564e4d4",
+      "sourceExcerpt": "Santiago.-El dirigente perredeista Guido Gómez Mazara y otros miembros de la corriente Rescate Institucional del Partido",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/habla-el-bodeguero-con-lagrimas-en-los.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702014201id_/http://www.eldiariodelcibao.com:80/2018/06/habla-el-bodeguero-con-lagrimas-en-los.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/haitiano-le-corta-una-mano-un.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142535id_/http://www.eldiariodelcibao.com:80/2018/06/haitiano-le-corta-una-mano-un.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/hallan-ahorcada-nina-de-9-anos-en.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142540id_/http://www.eldiariodelcibao.com:80/2018/06/hallan-ahorcada-nina-de-9-anos-en.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/hanley-ramirez-no-tiene-conocimiento-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180626095743id_/http://www.eldiariodelcibao.com:80/2018/06/hanley-ramirez-no-tiene-conocimiento-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/hieren-mujer-machetazos-durante-un.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180630070355id_/http://www.eldiariodelcibao.com:80/2018/06/hieren-mujer-machetazos-durante-un.html",
+      "archiveTimestamp": "20180630070355",
+      "originalTitle": "Hieren mujer a machetazos durante un atraco en La Romana.",
+      "originalDate": "2018-06-26",
+      "sourceBodyWords": 85,
+      "sourceBodySha256": "deabdcb1199f75be1b4e794961cef7107aec3154110f7566eed02a2d552c7457",
+      "sourceExcerpt": "LA ROMANA. Rep. Dom.- Desconocidos hirieron de machetazos a una mujer de 33 años de edad, presuntamente para robarle, en",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/hipolito-duda-danilo-pueda-imponer-otra.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142546id_/http://www.eldiariodelcibao.com:80/2018/06/hipolito-duda-danilo-pueda-imponer-otra.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/hombre-celoso-mata-dos-mujeres-y-hiere.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180610103826id_/http://www.eldiariodelcibao.com:80/2018/06/hombre-celoso-mata-dos-mujeres-y-hiere.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/hombre-le-quita-la-vida-ex-pareja-en.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180703072435id_/http://www.eldiariodelcibao.com:80/2018/06/hombre-le-quita-la-vida-ex-pareja-en.html",
+      "archiveTimestamp": "20180703072435",
+      "originalTitle": "Hombre le quita la vida a ex pareja en Baní",
+      "originalDate": "2018-06-30",
+      "sourceBodyWords": 93,
+      "sourceBodySha256": "679785e5b97ae138d531989d4336e0c573e2fb51a3cdfce4c847de363b2e98fe",
+      "sourceExcerpt": "Una mujer de 31 años de edad fue ultimada anoche, en el centro de esta ciudad sureña. La víctima fue identificada como S",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/hombre-lleva-su-mujer-un-motel-le-da-un.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180626100016id_/http://www.eldiariodelcibao.com:80/2018/06/hombre-lleva-su-mujer-un-motel-le-da-un.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/hombre-muere-embestido-por-toro.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180617211757id_/http://www.eldiariodelcibao.com:80/2018/06/hombre-muere-embestido-por-toro.html",
+      "archiveTimestamp": "20180617211757",
+      "originalTitle": "Hombre muere embestido por toro enfurecido escapó de corrar en La Romana",
+      "originalDate": "2018-06-13",
+      "sourceBodyWords": 94,
+      "sourceBodySha256": "671b91c4fa4ea3f50cde296b9dc1b40453a65a0fb678f9c2129212732f2795ec",
+      "sourceExcerpt": "REPÚBLICA DOMINICANA.- Un hombre murió a causa de una herida que les produjo un toro en el municipio Guamate de La Roman",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/hombre-tendria-mas-de-7-anos-violando.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180626100021id_/http://www.eldiariodelcibao.com:80/2018/06/hombre-tendria-mas-de-7-anos-violando.html",
+      "archiveTimestamp": "20180626100021",
+      "originalTitle": "Hombre tendría más de 7 años violando sus dos hijastras",
+      "originalDate": "2018-06-22",
+      "sourceBodyWords": 190,
+      "sourceBodySha256": "a96d446179ac57572b7b6f42b929dfb37c15a1be26951b8d161b208f56107e6e",
+      "sourceExcerpt": "SAN FRANCISCO DE MACORÍS. Rep. Dom.– El padre de dos jovencitas de 17 y 19 años de edad, denunció este viernes que el pa",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/hombre-tenia-trece-dias-desaparecido-es.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180703072440id_/http://www.eldiariodelcibao.com:80/2018/06/hombre-tenia-trece-dias-desaparecido-es.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/hombres-armados-asaltan-planta-de-gas.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180630070247id_/http://www.eldiariodelcibao.com:80/2018/06/hombres-armados-asaltan-planta-de-gas.html",
+      "archiveTimestamp": "20180630070247",
+      "originalTitle": "Hombres armados asaltan planta de Gas en Boca de Mao",
+      "originalDate": "2018-06-26",
+      "sourceBodyWords": 140,
+      "sourceBodySha256": "b0cbe796595133c79a3e1dfadd751a181a172834f907bdc2443f814f4a55ce59",
+      "sourceExcerpt": "Por Nelson Mercado - Mao.- Cuatro hombres encapuchados y armados asaltaron la madrugada de este martes la estación Nelso",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/humorista-margaro-esta-interno-con.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180630070252id_/http://www.eldiariodelcibao.com:80/2018/06/humorista-margaro-esta-interno-con.html",
+      "archiveTimestamp": "20180630070252",
+      "originalTitle": "Humorista Margaro está interno con neumonía agresiva",
+      "originalDate": "2018-06-26",
+      "sourceBodyWords": 354,
+      "sourceBodySha256": "55bc55e903e5f7d824d6da2572df9e26e4189523b1faaacaaaef784809030144",
+      "sourceExcerpt": "SANTO DOMINGO. Nicolás Díaz \"Margaro\" fue ingresado hoy a la Clínica Cruz Jiminían para someterlo a chequeos médicos lue",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/imputados-por-caso-odebrecht-no-quieren.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180630070257id_/http://www.eldiariodelcibao.com:80/2018/06/imputados-por-caso-odebrecht-no-quieren.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/incautan-reces-en-descomposicion-en.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180625160512id_/http://www.eldiariodelcibao.com:80/2018/06/incautan-reces-en-descomposicion-en.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/intenso-tiroteo-afecto-las-actividades.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142421id_/http://www.eldiariodelcibao.com:80/2018/06/intenso-tiroteo-afecto-las-actividades.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/j-balvin-conocio-rihanna-despues-de-su.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180626095749id_/http://www.eldiariodelcibao.com:80/2018/06/j-balvin-conocio-rihanna-despues-de-su.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/jennifer-lopez-y-alex-rodriguez-alzan.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180702062608id_/http://www.eldiariodelcibao.com:80/2018/06/jennifer-lopez-y-alex-rodriguez-alzan.html",
+      "archiveTimestamp": "20180702062608",
+      "originalTitle": "Jennifer López y Alex Rodríguez alzan la voz y exigen justicia para Junior.",
+      "originalDate": "2018-06-28",
+      "sourceBodyWords": 229,
+      "sourceBodySha256": "3f736c9820f1f70016dfaa88c562fecc6968e87d961202f305bfdb0eecbab68b",
+      "sourceExcerpt": "El asesinato del joven Lesandro Guzmán-Feliz ha conmocionado a la opinión pública a nivel nacional y la ha unido en una ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/jm-hidalgo-dice-que-artistas-no-podran.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180625160517id_/http://www.eldiariodelcibao.com:80/2018/06/jm-hidalgo-dice-que-artistas-no-podran.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/jose-ignacio-paliza-y-carolina-mejia.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180620044149id_/http://www.eldiariodelcibao.com:80/2018/06/jose-ignacio-paliza-y-carolina-mejia.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/joven-camarografo-utilizaba-el-celular.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702062351id_/http://www.eldiariodelcibao.com:80/2018/06/joven-camarografo-utilizaba-el-celular.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/joven-es-amenazada-por-video-sexual-que.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180628082628id_/http://www.eldiariodelcibao.com:80/2018/06/joven-es-amenazada-por-video-sexual-que.html",
+      "archiveTimestamp": "20180628082628",
+      "originalTitle": "Joven es amenazada por video sexual que condujo al asesinato de Lesandro Guzmán",
+      "originalDate": "2018-06-25",
+      "sourceBodyWords": 170,
+      "sourceBodySha256": "e64a8dc8b8522d762ae134864fa18c14edf5020641656bf4fc9e0f8152532a00",
+      "sourceExcerpt": "La joven en el video sexual que provocó el asesinato de un inocente adolescente del Bronx ha recibido mensajes amenazant",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/joven-grabado-en-video-asesinando.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180703092639id_/http://www.eldiariodelcibao.com:80/2018/06/joven-grabado-en-video-asesinando.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/juez-envia-juicio-de-fondo-marlon-y.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180623142426id_/http://www.eldiariodelcibao.com:80/2018/06/juez-envia-juicio-de-fondo-marlon-y.html",
+      "archiveTimestamp": "20180623142426",
+      "originalTitle": "Juez envía juicio de fondo a Marlon y Marlin Martínez por la muerte de la adolescente Emely Peguero",
+      "originalDate": "2018-06-19",
+      "sourceBodyWords": 193,
+      "sourceBodySha256": "5ada86a100ecb8afd68980d93a097686f99bb635d9b408d79ef7f7f6c68d784b",
+      "sourceExcerpt": "REPÚBLICA DOMINICANA.- La jueza del Primer Tribunal de Instrucción de la jurisdicción judicial de San Francisco de Macor",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/juramentan-comite-permanente-de.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180623142551id_/http://www.eldiariodelcibao.com:80/2018/06/juramentan-comite-permanente-de.html",
+      "archiveTimestamp": "20180623142551",
+      "originalTitle": "Juramentan Comité Permanente de Seguimiento del Monumento a los Héroes de la Batalla de la Barranquita",
+      "originalDate": "2018-06-19",
+      "sourceBodyWords": 192,
+      "sourceBodySha256": "71fca2855d2d6136cf03bdf7eb8c011263eb5bb23911c4b9031098f5905967a1",
+      "sourceExcerpt": "Mao-. Fue Juramentado el Comité Permanente de Seguimiento del Monumento a los Héroes de La Barranquita, que tendrá la re",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/justicia-para-junior-reclaman-en.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702014033id_/http://www.eldiariodelcibao.com:80/2018/06/justicia-para-junior-reclaman-en.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/korea-del-sur-se-come-al-equipazo-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180701213132id_/http://www.eldiariodelcibao.com:80/2018/06/korea-del-sur-se-come-al-equipazo-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/la-guerrera-juliana-recibe-sus-30-anos.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702062613id_/http://www.eldiariodelcibao.com:80/2018/06/la-guerrera-juliana-recibe-sus-30-anos.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/la-justicia-de-eeuu-ordena-reunificar.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702014207id_/http://www.eldiariodelcibao.com:80/2018/06/la-justicia-de-eeuu-ordena-reunificar.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/la-plataforma-multisectorial-de-genero.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180617211927id_/http://www.eldiariodelcibao.com:80/2018/06/la-plataforma-multisectorial-de-genero.html",
+      "archiveTimestamp": "20180617211927",
+      "originalTitle": "La Plataforma multisectorial de Género de Valverde se solidariza con familias afectadas por violencia",
+      "originalDate": "2018-06-13",
+      "sourceBodyWords": 286,
+      "sourceBodySha256": "33e3c36b87209e3e36600003dc4b164364c0aa0c8b74c4d29059dbe1cc667b4d",
+      "sourceExcerpt": "La Plataforma multisectorial de Género de Valverde, se solidariza con las familias afectadas ante los hechos sangrientos",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/laura-pausini-esta-en-el-centro-de-una.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180703072445id_/http://www.eldiariodelcibao.com:80/2018/06/laura-pausini-esta-en-el-centro-de-una.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/lebron-james-no-importa-quien-gane-las.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180610103755id_/http://www.eldiariodelcibao.com:80/2018/06/lebron-james-no-importa-quien-gane-las.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/leonel-fernandez-continuara-campana.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180626095754id_/http://www.eldiariodelcibao.com:80/2018/06/leonel-fernandez-continuara-campana.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/leonel-fernandez-organiza-su-grupo-de.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180607213407id_/http://www.eldiariodelcibao.com:80/2018/06/leonel-fernandez-organiza-su-grupo-de.html",
+      "archiveTimestamp": "20180607213407",
+      "originalTitle": "Leonel Fernández organiza su grupo de bocinas para el 2020",
+      "originalDate": "2018-06-03",
+      "sourceBodyWords": 484,
+      "sourceBodySha256": "aabe1bbd9b7ffa1855d3fb62a9864baa39c6d4963f864b6f294e0c5463f54c5f",
+      "sourceExcerpt": "Participantes en el acto de proclamación de la Red Nacional Digital REPÚBLICA DOMINICANA.- Periodistas de las distintas ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/lidio-cadet-el-comite-politico-tiene-el.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180617211802id_/http://www.eldiariodelcibao.com:80/2018/06/lidio-cadet-el-comite-politico-tiene-el.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/los-yankees-otorgan-un-minuto-de.html",
+      "status": "capture-incomplete",
+      "archiveUrl": "https://web.archive.org/web/20180703072450id_/http://www.eldiariodelcibao.com:80/2018/06/los-yankees-otorgan-un-minuto-de.html",
+      "archiveTimestamp": "20180703072450",
+      "originalTitle": "Los Yankees otorgan un minuto de silencio en honor al joven dominicano Lesandro Guzmán.",
+      "originalDate": "2018-06-29",
+      "sourceBodyWords": 14,
+      "sourceBodySha256": "cfd6fcf18548ca3ee7b9e6fbcb338304626e3930279fb5adaebfb4598bd0c2b6",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "capture-requires-human-review"
+    },
+    {
+      "path": "/2018/06/marcha-verde-convoca-para-el-12-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180630070400id_/http://www.eldiariodelcibao.com:80/2018/06/marcha-verde-convoca-para-el-12-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/marcha-verde-procedera-contra.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180625160522id_/http://www.eldiariodelcibao.com:80/2018/06/marcha-verde-procedera-contra.html",
+      "archiveTimestamp": "20180625160522",
+      "originalTitle": "Marcha Verde procederá contra funcionarios por desalojo",
+      "originalDate": "2018-06-21",
+      "sourceBodyWords": 175,
+      "sourceBodySha256": "8cac78e8eac2bd28bfbe9ed56bd87a6b76ede81c54a9418ce460a7c9633b16d1",
+      "sourceExcerpt": "Santiago.-Los activistas de la Marcha Verde que fueron desalojados de la plazoleta del entorno del Monumento a los Héroe",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/marcha-verde-reclama-expliquen-por-que.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142556id_/http://www.eldiariodelcibao.com:80/2018/06/marcha-verde-reclama-expliquen-por-que.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/marchan-en-moncion-reclamando-acueducto.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180702014213id_/http://www.eldiariodelcibao.com:80/2018/06/marchan-en-moncion-reclamando-acueducto.html",
+      "archiveTimestamp": "20180702014213",
+      "originalTitle": "Marchan en Monción reclamando acueducto para ese municipio",
+      "originalDate": "2018-06-27",
+      "sourceBodyWords": 83,
+      "sourceBodySha256": "5138f934b77b854dc35200253428597ac1c0069b4e9077d3a3ac0750ba5a91a5",
+      "sourceExcerpt": "Santiago Rodríguez-. Moradores de diversos sectores del municipio de Monción realizaron una marcha y piquete reclamando ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/mas-comida-para-el-pld-la-constructora.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180625160417id_/http://www.eldiariodelcibao.com:80/2018/06/mas-comida-para-el-pld-la-constructora.html",
+      "archiveTimestamp": "20180625160417",
+      "originalTitle": "Más comida para el PLD, La constructora más grande del mundo, interesada en invertir en República Dominicana",
+      "originalDate": "2018-06-21",
+      "sourceBodyWords": 194,
+      "sourceBodySha256": "d6cefb8e97164a9afae35a19c602e7c0dc74fdcd47f9fed0cd587ecb3931ff0c",
+      "sourceExcerpt": "El ministro para Políticas de Integración Regional, Miguel Mejía, recibió en el Palacio Nacional a representantes de la ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/mas-ministras-que-ministros-en-el-nuevo.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180610103518id_/http://www.eldiariodelcibao.com:80/2018/06/mas-ministras-que-ministros-en-el-nuevo.html",
+      "archiveTimestamp": "20180610103518",
+      "originalTitle": "Más ministras que ministros en el nuevo Gobierno de España",
+      "originalDate": "2018-06-06",
+      "sourceBodyWords": 148,
+      "sourceBodySha256": "3108cbac07a54cbe6da47a27bc4bf9e4328e1df7e1407dfc042e5dac26713dff",
+      "sourceExcerpt": "El presidente del Gobierno, Pedro Sánchez , tiene previsto anunciar este miércoles los nombramientos de los ministros qu",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/matan-de-tres-balazos-dueno-banca-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180703072455id_/http://www.eldiariodelcibao.com:80/2018/06/matan-de-tres-balazos-dueno-banca-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/matan-hombre-balazos-y-hieren-hermana.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180623142601id_/http://www.eldiariodelcibao.com:80/2018/06/matan-hombre-balazos-y-hieren-hermana.html",
+      "archiveTimestamp": "20180623142601",
+      "originalTitle": "Matan hombre a balazos y hieren hermana en Licey al Medio , Santiago",
+      "originalDate": "2018-06-19",
+      "sourceBodyWords": 195,
+      "sourceBodySha256": "b07fd377ca5d10c26b8e19088bc2048aef7cf245402ba588272f48d7deb9ea6b",
+      "sourceExcerpt": "SANTIAGO. Un hombre fue muerto de varios balazos anoche y una hermana que intervino en una discusión también resultó her",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/matan-recluso-durante-enfrentamiento-en.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180620044154id_/http://www.eldiariodelcibao.com:80/2018/06/matan-recluso-durante-enfrentamiento-en.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/matan-una-joven-punaladas-cuando-salia.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180620044159id_/http://www.eldiariodelcibao.com:80/2018/06/matan-una-joven-punaladas-cuando-salia.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/menor-de-16-anos-se-quita-la-vida-y.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180620044246id_/http://www.eldiariodelcibao.com:80/2018/06/menor-de-16-anos-se-quita-la-vida-y.html",
+      "archiveTimestamp": "20180620044246",
+      "originalTitle": "Menor de 16 años se quita la vida y deja una carta en Altamira, Puerto Plata",
+      "originalDate": "2018-06-14",
+      "sourceBodyWords": 141,
+      "sourceBodySha256": "243084c278c6f4447ce341a68ada0fedadfa2e8ae7bb2ede1e3d6579176884bf",
+      "sourceExcerpt": "Altamira Puerto Plata- Fue encontrada colgada de una mata de mango en los alrededores de su vivienda en el paraje media ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/mia-cepeda-le-manda-fuego-funcionarios.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180617211808id_/http://www.eldiariodelcibao.com:80/2018/06/mia-cepeda-le-manda-fuego-funcionarios.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/mira-los-detalles-que-da-banco-popular.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702062356id_/http://www.eldiariodelcibao.com:80/2018/06/mira-los-detalles-que-da-banco-popular.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/mlb-dice-es-decepcionante-que-telemicro.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180607213232id_/http://www.eldiariodelcibao.com:80/2018/06/mlb-dice-es-decepcionante-que-telemicro.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/momento-en-que-delincuentes-matan.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180703072500id_/http://www.eldiariodelcibao.com:80/2018/06/momento-en-que-delincuentes-matan.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/monchy-fadul-dice-leonel-y-demas.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180623142430id_/http://www.eldiariodelcibao.com:80/2018/06/monchy-fadul-dice-leonel-y-demas.html",
+      "archiveTimestamp": "20180623142430",
+      "originalTitle": "Monchy Fadul dice Leonel y demás precandidatos con campaña violan decisión del CP",
+      "originalDate": "2018-06-18",
+      "sourceBodyWords": 117,
+      "sourceBodySha256": "8ee6cc23fc9eb79d3e7a60c9ab6062da7b62691a13e30cd46c4e62b3d970245a",
+      "sourceExcerpt": "Para el miembro del Comité Político del Partido de la Liberación Dominicana (PLD) José Ramón Fadul, el inicio a destiemp",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/muere-bebe-de-9-meses-y-dos-mujeres.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180617211932id_/http://www.eldiariodelcibao.com:80/2018/06/muere-bebe-de-9-meses-y-dos-mujeres.html",
+      "archiveTimestamp": "20180617211932",
+      "originalTitle": "Muere bebé de 9 meses y dos mujeres resultan heridas en accidente Avenida Isabel Aguiar",
+      "originalDate": "2018-06-13",
+      "sourceBodyWords": 106,
+      "sourceBodySha256": "a42f3ab4907500a162f6555c4c69530de93cfc848b859298ab3a15b84261d3f5",
+      "sourceExcerpt": "Cadáver del bebe cubierto en el pavimento/fuente externa SANTO DOMINGO OESTE.-Un bebé de nueve meses murió y dos mujeres",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/muere-director-de-orquesta-y-pianista.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180610103831id_/http://www.eldiariodelcibao.com:80/2018/06/muere-director-de-orquesta-y-pianista.html",
+      "archiveTimestamp": "20180610103831",
+      "originalTitle": "Muere director de orquesta y pianista Primitivo Santo",
+      "originalDate": "2018-06-06",
+      "sourceBodyWords": 199,
+      "sourceBodySha256": "0d669877624af093fca8625014557dd5adb24c296b76f6c2139d7d85a4413ffb",
+      "sourceExcerpt": "REPÚBLICA DOMINICANA.- Falleció este miércoles en Miami, el director de orquesta y pianista, Primitivo Santo.El deceso s",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/muere-tercer-recluso-que-intento.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180607213150id_/http://www.eldiariodelcibao.com:80/2018/06/muere-tercer-recluso-que-intento.html",
+      "archiveTimestamp": "20180607213150",
+      "originalTitle": "Muere tercer recluso que intentó escapar y fue acribillado por agentes en San Pedro de Macorís",
+      "originalDate": "2018-06-03",
+      "sourceBodyWords": 195,
+      "sourceBodySha256": "26908675f31bb4fc31a10bdef053816567ef08815583360ab73bec71e06ec6ff",
+      "sourceExcerpt": "Murió en el Hospital Antonio Musa de esta ciudad otro de los reclusos que habían sido heridos cuando trataron de escapar",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/mueren-cuatro-personas-en-choque-de-dos.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180623142606id_/http://www.eldiariodelcibao.com:80/2018/06/mueren-cuatro-personas-en-choque-de-dos.html",
+      "archiveTimestamp": "20180623142606",
+      "originalTitle": "Mueren cuatro personas en choque de dos camionetas en San Francisco de Macoris",
+      "originalDate": "2018-06-17",
+      "sourceBodyWords": 128,
+      "sourceBodySha256": "7790333b3d46f25c61f8b2d6cdf420bf9d057cd78e0334447f4bed37a51c2e76",
+      "sourceExcerpt": "SAN FRANCISCO DE MACORIS.-Cuatro personas murieron este domingo en la tarde en un choque entre dos camionetas ocurrido e",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/mujer-le-quita-la-vida-su-pareja-tras.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180607213519id_/http://www.eldiariodelcibao.com:80/2018/06/mujer-le-quita-la-vida-su-pareja-tras.html",
+      "archiveTimestamp": "20180607213519",
+      "originalTitle": "Mujer le quita la vida a su pareja tras una discusión en un Drink",
+      "originalDate": "2018-06-04",
+      "sourceBodyWords": 207,
+      "sourceBodySha256": "857be28460752c631dd1d22b7718524b9373b3bbfa3e1a0191e156756eb06894",
+      "sourceExcerpt": "SANSAN FRANCISCO DE MACORIS-Una mujer ultimó a su pareja la noche anoche de este domingo pasada las 10 de la noche en lo",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/mujer-que-murio-en-cirugia-estetica.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180620044204id_/http://www.eldiariodelcibao.com:80/2018/06/mujer-que-murio-en-cirugia-estetica.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/mujer-se-ahorca-dentro-de-su-vivienda.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142611id_/http://www.eldiariodelcibao.com:80/2018/06/mujer-se-ahorca-dentro-de-su-vivienda.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/mujer-vive-momentos-de-terror-en-una.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180620044304id_/http://www.eldiariodelcibao.com:80/2018/06/mujer-vive-momentos-de-terror-en-una.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/multitud-casi-linchar-puertero-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702062404id_/http://www.eldiariodelcibao.com:80/2018/06/multitud-casi-linchar-puertero-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/multitud-despide-restos-de-estudiante.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702014039id_/http://www.eldiariodelcibao.com:80/2018/06/multitud-despide-restos-de-estudiante.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/ni-ellos-aguantan-la.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180630070405id_/http://www.eldiariodelcibao.com:80/2018/06/ni-ellos-aguantan-la.html",
+      "archiveTimestamp": "20180630070405",
+      "originalTitle": "Ni ellos aguantan la criminalidad,Euclides Gutiérrez llama a su gobierno a controlarla.",
+      "originalDate": "2018-06-26",
+      "sourceBodyWords": 356,
+      "sourceBodySha256": "8024aeab2880aa6ed1f235f61d9a846dbe9fb93d88320cad33edaed6f5b4128b",
+      "sourceExcerpt": "Rep. Dom.- Euclides Gutiérrez Félix, miembro del Comité Político del Partido de la Liberación Dominicana (PLD), se mostr",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/ni-los-militares-salen-las-calles-en-rd.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180607213155id_/http://www.eldiariodelcibao.com:80/2018/06/ni-los-militares-salen-las-calles-en-rd.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/niegan-padrastro-quemara-parte-intima.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180610103847id_/http://www.eldiariodelcibao.com:80/2018/06/niegan-padrastro-quemara-parte-intima.html",
+      "archiveTimestamp": "20180610103847",
+      "originalTitle": "Niegan padrastro quemara parte intima a niña, dicen se cayó en un fogón",
+      "originalDate": "2018-06-06",
+      "sourceBodyWords": 238,
+      "sourceBodySha256": "4043f5e70e8928a260ae9283276c38f6d49b71b322beea7740d21644607d5d0a",
+      "sourceExcerpt": "Santo Domingo RD.- Familiares, amigos y vecinos de un joven que fue detenido porque supuestamente quemó con un carbón en",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/no-la-burla-telemundo-suspende-elenco.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180703072505id_/http://www.eldiariodelcibao.com:80/2018/06/no-la-burla-telemundo-suspende-elenco.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/nueva-ley-electoral-castigara-falsas.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180610103619id_/http://www.eldiariodelcibao.com:80/2018/06/nueva-ley-electoral-castigara-falsas.html",
+      "archiveTimestamp": "20180610103619",
+      "originalTitle": "Nueva Ley Electoral castigará “Falsas Escuestas” en tiempo de campaña",
+      "originalDate": "2018-06-05",
+      "sourceBodyWords": 125,
+      "sourceBodySha256": "1e37e6d96fce9cf1d5a24d06203189091a98291227dfdac3aa931635d13ae443",
+      "sourceExcerpt": "La ley Electoral que cursa en el Congreso Nacional castigará las falsas encuestas que procuren manipular a los electores",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/obispo-considera-el-pld-se-ha.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180623142617id_/http://www.eldiariodelcibao.com:80/2018/06/obispo-considera-el-pld-se-ha.html",
+      "archiveTimestamp": "20180623142617",
+      "originalTitle": "Obispo considera el PLD se ha convertido en una olla de grillo",
+      "originalDate": "2018-06-19",
+      "sourceBodyWords": 267,
+      "sourceBodySha256": "7ac1fe01369aa3fcc97ccf0747e69b2d1f7e64dc7efb6e6ed561f04be9535362",
+      "sourceExcerpt": "Rep. Dom- El Partido de la Liberación Dominicana se habría convertido en un escenario de conflictos, opinó este martes e",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/obispo-justifica-expulsion-del-padre.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180626095828id_/http://www.eldiariodelcibao.com:80/2018/06/obispo-justifica-expulsion-del-padre.html",
+      "archiveTimestamp": "20180626095828",
+      "originalTitle": "Obispo justifica expulsión del padre Rogelio; lo define como hombre de baja actitud",
+      "originalDate": "2018-06-23",
+      "sourceBodyWords": 173,
+      "sourceBodySha256": "e98b1db9eb51d10bafec789698b32ad6d3f50771ae61b28b1be9ca46d7574336",
+      "sourceExcerpt": "Rep. Dom.- El obispo Víctor Masalles, de la diócesis de Baní, Ocoa y San Cristóbal, justificó la expulsión del padre Rog",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/ola-de-asaltos-y-robos-en-el-alto.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180630070304id_/http://www.eldiariodelcibao.com:80/2018/06/ola-de-asaltos-y-robos-en-el-alto.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/onu-aprueba-resolucion-de-condena.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180617211936id_/http://www.eldiariodelcibao.com:80/2018/06/onu-aprueba-resolucion-de-condena.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/otra-joven-victima-de-las-cirugias.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180620044311id_/http://www.eldiariodelcibao.com:80/2018/06/otra-joven-victima-de-las-cirugias.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/padre-rogelio-amenaza-con-decirlo-todo.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180625044435id_/http://www.eldiariodelcibao.com:80/2018/06/padre-rogelio-amenaza-con-decirlo-todo.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/padre-rogelio-soy-desobediente-pero-lo.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180625160527id_/http://www.eldiariodelcibao.com:80/2018/06/padre-rogelio-soy-desobediente-pero-lo.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/pandillero-que-propino-ocho-punaladas.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180701225515id_/http://www.eldiariodelcibao.com:80/2018/06/pandillero-que-propino-ocho-punaladas.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/pelotero-dominicano-hanley-ramirez-en.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180626100033id_/http://www.eldiariodelcibao.com:80/2018/06/pelotero-dominicano-hanley-ramirez-en.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/periodista-maria-elena-salinas-en.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180703072510id_/http://www.eldiariodelcibao.com:80/2018/06/periodista-maria-elena-salinas-en.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/peru-perdio-ante-francia-y-quedo.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180625160424id_/http://www.eldiariodelcibao.com:80/2018/06/peru-perdio-ante-francia-y-quedo.html",
+      "archiveTimestamp": "20180625160424",
+      "originalTitle": "Perú perdió ante Francia y quedó eliminado del Mundial Rusia 2018",
+      "originalDate": "2018-06-21",
+      "sourceBodyWords": 153,
+      "sourceBodySha256": "e7007a65713e07d56b8173d49cf15a9f6330c4bfd98494663a42e48538e5e058",
+      "sourceExcerpt": "La selección de fútbol de Francia avanzó el jueves a los octavos de final del Mundial tras ganarle 1-0 a Perú 1-0 con go",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/picotean-por-ahi-que-actriz-adela.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180610103624id_/http://www.eldiariodelcibao.com:80/2018/06/picotean-por-ahi-que-actriz-adela.html",
+      "archiveTimestamp": "20180610103624",
+      "originalTitle": "Picotean por ahí!. que actriz Adela Noriega sufre de cáncer.",
+      "originalDate": "2018-06-05",
+      "sourceBodyWords": 138,
+      "sourceBodySha256": "bd72738895174d14688f8f4b2cda9c196e4b8472167b9aec0d2343b92fb09031",
+      "sourceExcerpt": "Una de las actrices de telenovelas más queridas por el público es Adela Noriega, pero han pasado 10 años desde la última",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/pld-aclara-que-para-expulsar-sus.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180617211813id_/http://www.eldiariodelcibao.com:80/2018/06/pld-aclara-que-para-expulsar-sus.html",
+      "archiveTimestamp": "20180617211813",
+      "originalTitle": "PLD aclara que para expulsar sus miembros deben ser condenados primero de forma irrevocable.",
+      "originalDate": "2018-06-13",
+      "sourceBodyWords": 319,
+      "sourceBodySha256": "4e94714b7beded492e7151aaae8113093036e9e4db176f41f4f878899dfd9410",
+      "sourceExcerpt": "SANTO DOMINGO, RD.-“El Reglamento de Disciplina y Ética del Partido de la Liberación Dominicana al explicar el procedimi",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/pleito-por-una-vaca-deja-2-muertos-y.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142622id_/http://www.eldiariodelcibao.com:80/2018/06/pleito-por-una-vaca-deja-2-muertos-y.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/policia-activa-la-busqueda-de-dos.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180610103523id_/http://www.eldiariodelcibao.com:80/2018/06/policia-activa-la-busqueda-de-dos.html",
+      "archiveTimestamp": "20180610103523",
+      "originalTitle": "Policía activa la búsqueda de dos hombres mataron a tiros a una estudiante e hirieron a su acompañante en La Romana",
+      "originalDate": "2018-06-06",
+      "sourceBodyWords": 202,
+      "sourceBodySha256": "076712e62db4c19b5a167a233cf78d0a31c8d112f19f6e63a57298b7bf37a27c",
+      "sourceExcerpt": "LA ROMANA, República Dominicana.- Las autoridades persiguen a los causantes de la muerte de una joven estudiante que fue",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/policia-desmantela-plantacion-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702063025id_/http://www.eldiariodelcibao.com:80/2018/06/policia-desmantela-plantacion-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/policia-mata-dos-hombres-ultimaron-otro.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702062756id_/http://www.eldiariodelcibao.com:80/2018/06/policia-mata-dos-hombres-ultimaron-otro.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/policia-nacional-desmantela-laboratorio.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702014045id_/http://www.eldiariodelcibao.com:80/2018/06/policia-nacional-desmantela-laboratorio.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/polito-vega-rey-abandonado.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702062801id_/http://www.eldiariodelcibao.com:80/2018/06/polito-vega-rey-abandonado.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/por-carolina-pichardolistin-diario.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180626095759id_/http://www.eldiariodelcibao.com:80/2018/06/por-carolina-pichardolistin-diario.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/por-razones-aun-desconocidas-joven-se.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180620044209id_/http://www.eldiariodelcibao.com:80/2018/06/por-razones-aun-desconocidas-joven-se.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/presidente-de-filipinas-llama-estupido.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180703072515id_/http://www.eldiariodelcibao.com:80/2018/06/presidente-de-filipinas-llama-estupido.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/presidente-de-zimbabue-sale-ileso-de.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180626095804id_/http://www.eldiariodelcibao.com:80/2018/06/presidente-de-zimbabue-sale-ileso-de.html",
+      "archiveTimestamp": "20180626095804",
+      "originalTitle": "Presidente de Zimbabue sale ileso de explosión durante mitin político",
+      "originalDate": "2018-06-23",
+      "sourceBodyWords": 318,
+      "sourceBodySha256": "4f2a31a0f9d7b7d5ed9b78c4dcb15ca5a022369da15acd8c7e07890656c28f96",
+      "sourceExcerpt": "Zimabue-El presidente de Emmerson Mnangagwa salió ileso de una explosión ocurrida hoy durante un mitin electoral en Bula",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/prision-preventiva-mujer-que-fracturo.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180614161836id_/http://www.eldiariodelcibao.com:80/2018/06/prision-preventiva-mujer-que-fracturo.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/prm-anuncia-que-encabezara-y-apoyara.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180702062419id_/http://www.eldiariodelcibao.com:80/2018/06/prm-anuncia-que-encabezara-y-apoyara.html",
+      "archiveTimestamp": "20180702062419",
+      "originalTitle": "PRM anuncia que encabezará y apoyará movilizaciones por reivindicaciones sociales",
+      "originalDate": "2018-06-28",
+      "sourceBodyWords": 129,
+      "sourceBodySha256": "fb4c1c6282c1a2d5a94bff3bcc059ef21fd0257bdc1f3c9da1f16fa3381ef1f8",
+      "sourceExcerpt": "La Comisión Política del Partido Revolucionario Moderno, aprobó que esa organización encabezará y apoyará movimientos re",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/prm-apoya-oficialmente-resolucion-jce.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180630070410id_/http://www.eldiariodelcibao.com:80/2018/06/prm-apoya-oficialmente-resolucion-jce.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/profesora-de-mao-denuncia-tiene-9-meses.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180607213412id_/http://www.eldiariodelcibao.com:80/2018/06/profesora-de-mao-denuncia-tiene-9-meses.html",
+      "archiveTimestamp": "20180607213412",
+      "originalTitle": "Profesora de Mao denuncia tiene 9 meses sin recibir pensión; amenaza con quitarse la vida",
+      "originalDate": "2018-06-01",
+      "sourceBodyWords": 176,
+      "sourceBodySha256": "950b0dbf927653b1f0829c34f45d665fb41e94110b0d5570e0c4e33a997ee44e",
+      "sourceExcerpt": "La profesora y abogada Lucila Nestora Bonilla Bonilla denunció que los ministerios de Hacienda y Educación tienen nueve ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/que-prestamazo-mamacita.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180625160532id_/http://www.eldiariodelcibao.com:80/2018/06/que-prestamazo-mamacita.html",
+      "archiveTimestamp": "20180625160532",
+      "originalTitle": "¡Qué 'prestamazo', mamacita!",
+      "originalDate": "2018-06-21",
+      "sourceBodyWords": 277,
+      "sourceBodySha256": "0e898fed5439c4eb44532613e6e9327970308b887cc001d54862896b905bdb93",
+      "sourceExcerpt": "Para eso sí que logran ponerse de acuerdo rápidamente los levanta manos de la amplia caja de resonancia que tiene operan",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/ramfis-trujillo-ataca-lanza-plataforma.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180607213524id_/http://www.eldiariodelcibao.com:80/2018/06/ramfis-trujillo-ataca-lanza-plataforma.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/ramfis-trujillo-envia-mensaje.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180625160536id_/http://www.eldiariodelcibao.com:80/2018/06/ramfis-trujillo-envia-mensaje.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/ramon-fadul-felix-bautista-y-victor.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180623142627id_/http://www.eldiariodelcibao.com:80/2018/06/ramon-fadul-felix-bautista-y-victor.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/ratifican-llamado-huelga-por-48-horas.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180607213417id_/http://www.eldiariodelcibao.com:80/2018/06/ratifican-llamado-huelga-por-48-horas.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/ratifican-respaldo-paro-municipal-en.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702062620id_/http://www.eldiariodelcibao.com:80/2018/06/ratifican-respaldo-paro-municipal-en.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/raymond-y-miguel-presentan-el-ladron.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702062806id_/http://www.eldiariodelcibao.com:80/2018/06/raymond-y-miguel-presentan-el-ladron.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/reguetonero-bryant-myrs-es-secuestrado.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180610103629id_/http://www.eldiariodelcibao.com:80/2018/06/reguetonero-bryant-myrs-es-secuestrado.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/reinaldo-pared-dice-la-jce-solo-puede.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180626095810id_/http://www.eldiariodelcibao.com:80/2018/06/reinaldo-pared-dice-la-jce-solo-puede.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/restos-rey-del-merengue-joseito-mateo.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180603131352id_/http://www.eldiariodelcibao.com:80/2018/06/restos-rey-del-merengue-joseito-mateo.html",
+      "archiveTimestamp": "20180603131352",
+      "originalTitle": "Restos Rey del Merengue Joseito Mateo serán velados este sábado en la Funeraria Blandino de la avenida Abrahan Lincoln",
+      "originalDate": "2018-06-01",
+      "sourceBodyWords": 172,
+      "sourceBodySha256": "359db19ee748ff0230ebfaaa57c99cb97327fe3ed51b9f669cf7d53de908a3d5",
+      "sourceExcerpt": "REPÚBLICA DOMINICANA.-Los restos del merenguero Joseíto Mateo, quien falleció cerca del mediodía de este viernes a causa",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/roban-en-la-habitacion-de-hotel-de.html",
+      "status": "capture-incomplete",
+      "archiveUrl": "https://web.archive.org/web/20180623142436id_/http://www.eldiariodelcibao.com:80/2018/06/roban-en-la-habitacion-de-hotel-de.html",
+      "archiveTimestamp": "20180623142436",
+      "originalTitle": "Roban en la habitación de hotel de Maluma en Moscú y se llevan un botín de casi 800.000 dólares",
+      "originalDate": "2018-06-19",
+      "sourceBodyWords": 46,
+      "sourceBodySha256": "19f8dceeef12e5bbe8cceb591be700dbad90c3fc207e6cff5a2a1c48deccb003",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "capture-requires-human-review"
+    },
+    {
+      "path": "/2018/06/roberto-rosario-sale-en-defensa-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180617211818id_/http://www.eldiariodelcibao.com:80/2018/06/roberto-rosario-sale-en-defensa-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/romeo-ya-no-esta-en-roc-nation-el.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180702014219id_/http://www.eldiariodelcibao.com:80/2018/06/romeo-ya-no-esta-en-roc-nation-el.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/sacan-por-la-fuerza-haitianos-ilegales.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180630070415id_/http://www.eldiariodelcibao.com:80/2018/06/sacan-por-la-fuerza-haitianos-ilegales.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/sacerdote-critica-posicion-masalles.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180630070420id_/http://www.eldiariodelcibao.com:80/2018/06/sacerdote-critica-posicion-masalles.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/sacerdote-de-sfm-defiende-al-padre.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180629223341id_/http://www.eldiariodelcibao.com:80/2018/06/sacerdote-de-sfm-defiende-al-padre.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/santiago-matias-reconoce-que-lo-vulgar.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180625160546id_/http://www.eldiariodelcibao.com:80/2018/06/santiago-matias-reconoce-que-lo-vulgar.html",
+      "archiveTimestamp": "20180625160546",
+      "originalTitle": "Santiago Matías reconoce que lo vulgar de la música urbana, es producto de la falta de educación.",
+      "originalDate": "2018-06-21",
+      "sourceBodyWords": 320,
+      "sourceBodySha256": "a9b2a4aa3b45e17441f45b435feb731cfe7ff763cf795bbea232ef651beeef2a",
+      "sourceExcerpt": "Por Agustin de la Cruz (Sugar). - Alofokemusic.net entrevistó a JM Hidalgo (director de CNEPR). New York (SL) -Dentro de",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/santiago-rodriguez-en-estado-delicado.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180621120446id_/http://www.eldiariodelcibao.com:80/2018/06/santiago-rodriguez-en-estado-delicado.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/santo-domingo.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180617211823id_/http://www.eldiariodelcibao.com:80/2018/06/santo-domingo.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/santo-domingo_26.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180630070438id_/http://www.eldiariodelcibao.com:80/2018/06/santo-domingo_26.html",
+      "archiveTimestamp": "20180630070438",
+      "originalTitle": "Delincuentes vestidos de policías despojan hombre de camioneta en plena vía",
+      "originalDate": "2018-06-26",
+      "sourceBodyWords": 165,
+      "sourceBodySha256": "9fa54b1c794c0dddbe4593f5daab8d9dfb3e4af8d4ac5b9dc3a35a5cb067ea4f",
+      "sourceExcerpt": "SANTO DOMINGO.-Dos individuos vestidos de policías junto a otro individuo despojaron de una camioneta a su conductor a p",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/scj-ratifica-juez-ortega-polanco-para.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180702062641id_/http://www.eldiariodelcibao.com:80/2018/06/scj-ratifica-juez-ortega-polanco-para.html",
+      "archiveTimestamp": "20180702062641",
+      "originalTitle": "SCJ ratifica juez Ortega Polanco para conocer caso Odebrecht",
+      "originalDate": "2018-06-28",
+      "sourceBodyWords": 142,
+      "sourceBodySha256": "14262f47997eaceb0a785a4eb15b682f161890b45993ff5fdf1ce0444cd7c326",
+      "sourceExcerpt": "Santo Domingo, RD.- El pleno de la Suprema Corte de Justicia (SCJ) ratificó al juez Francisco Ortega Polanco para conoce",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/se-arma-el-corre-corre-en-el-complejo.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180615140542id_/http://www.eldiariodelcibao.com:80/2018/06/se-arma-el-corre-corre-en-el-complejo.html",
+      "archiveTimestamp": "20180615140542",
+      "originalTitle": "Se arma el corre corre en el complejo turístico Agua Azul de Mao,mira porque ...",
+      "originalDate": "2018-06-10",
+      "sourceBodyWords": 151,
+      "sourceBodySha256": "b5ce3a1a8901b1b7756f9e674a4854a852cf3914f01cac631bc66a5728803fdd",
+      "sourceExcerpt": "Por Nelson Mercado - Mao.- Un enjambre de abejas ataco a los bañista que asistieron la tarde de este domingo a las insta",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/se-incendia-minibus-cargado-de.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20181005135128id_/http://www.eldiariodelcibao.com/2018/06/se-incendia-minibus-cargado-de.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/sector-de-leonel-dice-no-acatara.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180627123231id_/http://www.eldiariodelcibao.com:80/2018/06/sector-de-leonel-dice-no-acatara.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/sepultan-restos-del-adolescente-de-15.html",
+      "status": "capture-incomplete",
+      "archiveUrl": "https://web.archive.org/web/20180702014224id_/http://www.eldiariodelcibao.com:80/2018/06/sepultan-restos-del-adolescente-de-15.html",
+      "archiveTimestamp": "20180702014224",
+      "originalTitle": "Sepultan restos del adolescente de 15 años, Lesandro Guzmán Feliz (Junior) en El Bronx",
+      "originalDate": "2018-06-27",
+      "sourceBodyWords": 20,
+      "sourceBodySha256": "ccb0946c255870461fcdb2aa15e19f5f89ede00adc1e879598f0aa243446d23c",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "capture-requires-human-review"
+    },
+    {
+      "path": "/2018/06/servio-tulio-advierte-juez-designado.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180623142441id_/http://www.eldiariodelcibao.com:80/2018/06/servio-tulio-advierte-juez-designado.html",
+      "archiveTimestamp": "20180623142441",
+      "originalTitle": "Servio Tulio advierte juez designado por SCJ para caso Odebrecht podría ser recusado",
+      "originalDate": "2018-06-17",
+      "sourceBodyWords": 263,
+      "sourceBodySha256": "b547f7f6d5a06737addb526c414e11d1ebe40a5a00d5b6236e9a480d669cd432",
+      "sourceExcerpt": "El juez de la Instrucción Especial de la Suprema Corte de Justicia, Francisco Ortega Polanco, podría ser objeto de recus",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/sntp-emplaza-senador-que-senale.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180617211942id_/http://www.eldiariodelcibao.com:80/2018/06/sntp-emplaza-senador-que-senale.html",
+      "archiveTimestamp": "20180617211942",
+      "originalTitle": "SNTP emplaza senador que señale periodista lo ha chantajeado",
+      "originalDate": "2018-06-13",
+      "sourceBodyWords": 340,
+      "sourceBodySha256": "d55e3ecbe0ebfda97c8aa74d75dc2929f1787c557e18c79bf71920ef5ff8b7d9",
+      "sourceExcerpt": "Santo Domingo: El Sindicato Nacional de Trabajadores de la Prensa (SNTP), emplazó al senador por la provincia Monseñor N",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/someten-encargado-restaurante-trato-de.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180630070309id_/http://www.eldiariodelcibao.com:80/2018/06/someten-encargado-restaurante-trato-de.html",
+      "archiveTimestamp": "20180630070309",
+      "originalTitle": "Someten encargado restaurante trató de sobornar con RD$100 mil pesos a inspectores de ProConsumidor",
+      "originalDate": "2018-06-26",
+      "sourceBodyWords": 295,
+      "sourceBodySha256": "caf40877ec96e7ad66ea3e6699ea52c6c4fd37f08b941c90c98cdf5d21bf87db",
+      "sourceExcerpt": "El Instituto Nacional de Protección de los Derechos del Consumidor (ProConsumidor) sometió penalmente al representante d",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/someten-la-justicia-cinco-exempleados.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180626095947id_/http://www.eldiariodelcibao.com:80/2018/06/someten-la-justicia-cinco-exempleados.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/suspenden-transmisiones-de-mlb-en-rd.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180607213200id_/http://www.eldiariodelcibao.com:80/2018/06/suspenden-transmisiones-de-mlb-en-rd.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/telemundo-responde-supuesta-salida-del.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180617211828id_/http://www.eldiariodelcibao.com:80/2018/06/telemundo-responde-supuesta-salida-del.html",
+      "archiveTimestamp": "20180617211828",
+      "originalTitle": "Telemundo responde a supuesta salida del actor Rafael Amaya de ‘El Señor de los Cielos 6’.",
+      "originalDate": "2018-06-13",
+      "sourceBodyWords": 150,
+      "sourceBodySha256": "1a9b2d6c9b78c8aa66c6b7b7f3b3340b2f0a89fe8361c47d5b2e7d4b037c6056",
+      "sourceExcerpt": "Rumores de que Rafael Amaya podría salir de “El Señor de los Cielos” en Telemundo han cautivado a las redes sociales ya ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/telemundo-suspende-dos-presentadores.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180703072520id_/http://www.eldiariodelcibao.com:80/2018/06/telemundo-suspende-dos-presentadores.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/tirotean-camion-de-envios-de-valores-en.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180625160551id_/http://www.eldiariodelcibao.com:80/2018/06/tirotean-camion-de-envios-de-valores-en.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/tres-heridos-en-el-primer-dia-de-la.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180702014229id_/http://www.eldiariodelcibao.com:80/2018/06/tres-heridos-en-el-primer-dia-de-la.html",
+      "archiveTimestamp": "20180702014229",
+      "originalTitle": "Tres heridos en el primer día de la convocatoria a paros, movilizaciones y protestas convocada en Bonao",
+      "originalDate": "2018-06-27",
+      "sourceBodyWords": 172,
+      "sourceBodySha256": "b0b54570bfb4d6033fceee5fdf992efea349c15f28f254fdfbda8cfd7660ec11",
+      "sourceExcerpt": "Bonao, Monseñor Nouel.-Tres heridos es el saldo del primer día de la convocatoria a paros, movilizaciones y protestas, c",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/tribunal-ratifica-condena-periodista.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180625160626id_/http://www.eldiariodelcibao.com:80/2018/06/tribunal-ratifica-condena-periodista.html",
+      "archiveTimestamp": "20180625160626",
+      "originalTitle": "Tribunal ratifica condena a periodista Holguín por difamar hermana del presidente Medina",
+      "originalDate": "2018-06-21",
+      "sourceBodyWords": 202,
+      "sourceBodySha256": "742a8a438c5a7ded0e74ed0a95d8469cffaba7ac7e80cb9f3e8c409b13531a2c",
+      "sourceExcerpt": "Rep. Dom.- La Segunda Sala Penal de la Corte de Apelación del Distrito Nacional ratificó este jueves la condena al comun",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/trump-kim-en-lugar-de-misiles-podrias.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20181005113527id_/http://www.eldiariodelcibao.com/2018/06/trump-kim-en-lugar-de-misiles-podrias.html",
+      "indexable": false
+    },
+    {
+      "path": "/2018/06/tsa-anuncia-nuevas-restricciones-para.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180629223143id_/http://www.eldiariodelcibao.com:80/2018/06/tsa-anuncia-nuevas-restricciones-para.html",
+      "archiveTimestamp": "20180629223143",
+      "originalTitle": "TSA anuncia nuevas restricciones para sustancias en polvo en los equipajes de mano",
+      "originalDate": "2018-06-25",
+      "sourceBodyWords": 387,
+      "sourceBodySha256": "a8b16872f0cb5e424526131cae0ad2e47a21c4795d03ea4ab3eb5df537ba4745",
+      "sourceExcerpt": "Santo Domingo El 30 de junio la Administración de Seguridad de Transportes (TSA, en inglés) implementará nuevos requerim",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/un-adolescente-de-14-anos-grave-en-otro.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180702014234id_/http://www.eldiariodelcibao.com:80/2018/06/un-adolescente-de-14-anos-grave-en-otro.html",
+      "archiveTimestamp": "20180702014234",
+      "originalTitle": "Un adolescente de 14 años grave en otro ataque a machetazos en El Bronx",
+      "originalDate": "2018-06-27",
+      "sourceBodyWords": 388,
+      "sourceBodySha256": "f08b288fc8e777357c3df59e0826ecbc99955ee864edf76591e8a5a1d64f9c44",
+      "sourceExcerpt": "NUEVA YORK._ La policía divulgó un video ayer martes en el que presuntos pandilleros de Los Trinitarios, atacaron salvaj",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/un-muerto-y-cinco-heridos-en-accidente.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180607213251id_/http://www.eldiariodelcibao.com:80/2018/06/un-muerto-y-cinco-heridos-en-accidente.html",
+      "archiveTimestamp": "20180607213251",
+      "originalTitle": "Un muerto y cinco heridos en accidente de tránsito tramo Nagua San Francisco",
+      "originalDate": "2018-06-03",
+      "sourceBodyWords": 179,
+      "sourceBodySha256": "14f1df47a6284ac4c2dab2a5e6368e372350ec10662b6e893e0a500ec4bd7223",
+      "sourceExcerpt": "Noticias Generales PORTADA Un accidente de tránsito ocurrido en el tramo carretero Nagua- San Francisco, específicamente",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/un-muerto-y-dos-heridos-deja-accidente_18.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180623142632id_/http://www.eldiariodelcibao.com:80/2018/06/un-muerto-y-dos-heridos-deja-accidente_18.html",
+      "archiveTimestamp": "20180623142632",
+      "originalTitle": "Un muerto y dos heridos deja accidente de tránsito en Boca de Mao",
+      "originalDate": "2018-06-18",
+      "sourceBodyWords": 127,
+      "sourceBodySha256": "10444f4a1f8b3f6c826dc3959507f831cab6c08b7b12c0d66af53e50f465f494",
+      "sourceExcerpt": "Esperanza-. Un muerto y dos heridos es el saldo de un accidente de tránsito ocurrido en el distrito municipal de Boca de",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/un-muerto-y-un-herido-de-gravedad.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180703072525id_/http://www.eldiariodelcibao.com:80/2018/06/un-muerto-y-un-herido-de-gravedad.html",
+      "archiveTimestamp": "20180703072525",
+      "originalTitle": "Un muerto y un herido de gravedad accidente de motor en Montecristi",
+      "originalDate": "2018-06-29",
+      "sourceBodyWords": 163,
+      "sourceBodySha256": "12c5cc94d26aba253c654fb5b10a8d0555d879edea92fbc96725d07ded839845",
+      "sourceExcerpt": "Por Santos Vásquez - Montecristi, R.D.-Un hombre resultó muerto y otro gravemente herido al originarse un choque de moto",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/una-nube-negra-se-cierne-sobre-el.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180617211833id_/http://www.eldiariodelcibao.com:80/2018/06/una-nube-negra-se-cierne-sobre-el.html",
+      "archiveTimestamp": "20180617211833",
+      "originalTitle": "Una nube negra se cierne sobre el proyecto!. Surge conflicto por homenaje a Joseíto Mateo con la grabación de su éxito El Merengón",
+      "originalDate": "2018-06-13",
+      "sourceBodyWords": 263,
+      "sourceBodySha256": "635d1f02d3c201155f8fc03ca0886cb01dc8f08ba85f6daa1c7f64024036985d",
+      "sourceExcerpt": "Por Jose Antonio Aybar -El nacional Picoteando el Espectáculo A horas de haberse estrenado el homenaje musical a Joseíto",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/vice-presidenta-cree-que-debe-abordarse.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180617212253id_/http://www.eldiariodelcibao.com:80/2018/06/vice-presidenta-cree-que-debe-abordarse.html",
+      "archiveTimestamp": "20180617212253",
+      "originalTitle": "Vice-presidenta cree que debe abordarse propuesta de destitución de Díaz Rúa y Félix Bautista",
+      "originalDate": "2018-06-13",
+      "sourceBodyWords": 253,
+      "sourceBodySha256": "3bc09d82a980075d3a72480d478e29b34f5a8dfc1b9acaebc9f6d28dc7361219",
+      "sourceExcerpt": "Rep. Dom.- La vicepresidenta de la República, Margarita Cedeño de Fernández, llamó este miércoles a los miembros del Par",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/victoria-para-la-marchaverde-en.html",
+      "status": "evidence-metadata",
+      "archiveUrl": "https://web.archive.org/web/20180703072530id_/http://www.eldiariodelcibao.com:80/2018/06/victoria-para-la-marchaverde-en.html",
+      "archiveTimestamp": "20180703072530",
+      "originalTitle": "Victoria para la Marcha Verde en Santiago,Tribunal acoge recurso de amparo contra Cultura y la Policía",
+      "originalDate": "2018-06-29",
+      "sourceBodyWords": 199,
+      "sourceBodySha256": "52cd90ccfb6474b3fbc32d5627ab984be28a0955ff1ff05382525b1c0d3f514b",
+      "sourceExcerpt": "SANTIAGO. La Cámara Civil y Comercial de este distrito judicial acogió la acción de amparo interpuesta por el colectivo ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture"
+    },
+    {
+      "path": "/2018/06/video-bofetada-de-cura-nino-desata-ola.html",
+      "status": "fetch-failed",
+      "error": "URLError",
+      "archiveUrl": "https://web.archive.org/web/20180626095843id_/http://www.eldiariodelcibao.com:80/2018/06/video-bofetada-de-cura-nino-desata-ola.html",
+      "indexable": false
+    }
+  ]
 }
