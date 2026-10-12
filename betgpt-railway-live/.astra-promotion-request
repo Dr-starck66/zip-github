@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "a6c5382fece717ecef3cc8b3c89706e97fb67dee",
-  "workflowRunId": 38238322433,
-  "requestedAt": "2026-10-12T10:47:35.448Z",
-  "reason": "User explicitly requests removal of /ledger published-prediction results KPIs, calibration and model panels plus redundant secondary simulation. Source contains precise removal, retains historical ROI and raw evidence. Immutable GREEN CI."
+  "sourceSha": "e4f07f2f3ac39425d1a01ab69c558e9887ad4fc6",
+  "workflowRunId": 38257496845,
+  "requestedAt": "2026-10-12T13:43:29.048Z",
+  "reason": "Correct inaccurate BetGPT /ledger statement that recalibration is useful only when later improvement proven. Clarify real self-calibration, historical+live data, and lack of proven out-of-sample improvement; CI GREEN, ROI unchanged."
 }
