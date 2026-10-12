@@ -1,0 +1,68 @@
+name: ASTRA IMAGE Global Injector and Proof Gate
+on:
+  push:
+    branches: [astra-image-global-injector-omega, main]
+    paths:
+      - "astra-bricks/image-seo-rights-guard/**"
+      - "astra-bricks/registry/registry.json"
+      - ".github/workflows/astra-image-global-injector.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inject-and-adversarial-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build fixture with actual WebP, SHA256, rights & editorial record
+        run: |
+          python -m pip install --disable-pip-version-check "Pillow==11.3.0"
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          import hashlib,json
+          root=Path("/tmp/astra-image-fixture")
+          folder=root/"public/images"
+          folder.mkdir(parents=True,exist_ok=True)
+          (root/"config").mkdir(exist_ok=True)
+          (root/"package.json").write_text(json.dumps({"name":"astra-image-fixture","version":"1.0.0","private":True,"type":"module","scripts":{}}))
+          p=folder/"valverde-historico-ilustracion-original.webp"
+          Image.new("RGB",(1200,675),(22,44,66)).save(p,"WEBP",quality=80)
+          data=p.read_bytes()
+          obj={"path":"/images/"+p.name,"width":1200,"height":675,"bytes":len(data),"mime":"image/webp",
+            "sha256":hashlib.sha256(data).hexdigest(),
+            "alt":"Ilustración de prueba original que representa un paisaje de Valverde para un artículo de historia local",
+            "caption":"Ilustración ficticia de prueba; no se publica en ningún sitio real",
+            "source":{"type":"original","proof":"author-approved","author":"ASTRA test fixture","proofRef":"https://github.com/Dr-starck66/zip-github/tree/main/astra-bricks/image-seo-rights-guard"},
+            "editorial":{"reviewed":True,"exactSubjectMatch":True,"placeMatch":True,"nonStockGeneric":True,
+              "isModernPhoto":False,"depictsHistoricalEvent":False,"modernContextDeclared":True}}
+          (root/"config/astra-image-pages.json").write_text(json.dumps({"pages":[{"path":"/valverde-historico/","title":"Paisaje de Valverde en la historia","isNew":True}]}))
+          (root/"config/astra-image-manifest.json").write_text(json.dumps({"/valverde-historico/":obj}))
+          print("ASTRA_FIXTURE_REAL_WEBP",len(data))
+          PY
+      - name: Actual injector apply plus launch profile lookup
+        run: |
+          node astra-bricks/injector/astra-brick-injector.mjs apply --brick astra-bricks/image-seo-rights-guard --target /tmp/astra-image-fixture
+          node astra-bricks/injector/astra-brick-injector.mjs verify --brick astra-bricks/image-seo-rights-guard --target /tmp/astra-image-fixture
+          (cd /tmp/astra-image-fixture && npm run guard:images)
+          node astra-bricks/registry/astra-brick-rollout.mjs plan --profile image-ready-node-web-v1 --target /tmp/astra-image-fixture
+      - name: Adversarial proof — edited binary must be detected
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path("/tmp/astra-image-fixture/public/images/valverde-historico-ilustracion-original.webp")
+          b=bytearray(p.read_bytes())
+          b[-1]^=1
+          p.write_bytes(b)
+          PY
+          if (cd /tmp/astra-image-fixture && npm run guard:images); then
+            echo 'FALSE PASS: modified WebP was wrongly accepted'; exit 1
+          fi
+          echo 'ASTRA_IMAGE_ADVERSARIAL_PROOF PASS — mutated file rejected'
