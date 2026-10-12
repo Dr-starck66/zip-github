@@ -108,7 +108,21 @@ def main():
     old = json.loads(DEST.read_text(encoding="utf-8")) if DEST.exists() else {"records":[]}
     by_path = {x["path"]:x for x in old.get("records",[])}
     eligible = [x for x in source if x["path"].startswith("/2018/06/")]
-    unseen = [x for x in eligible if x["path"] not in by_path]
+    def editorial_priority(record):
+        name = record["path"].lower()
+        towns = ("esperanza", "boca-de-mao", "valverde", "santiago",
+                 "laguna-salada", "mao", "cibao", "monte-cristi",
+                 "puerto-plata", "la-vega", "dajabon", "noroeste")
+        themes = ("carretera", "calle", "obra", "hospital", "educa", "escuela",
+                  "cultura", "feria", "agric", "municip", "vecinos", "paro",
+                  "agua", "econom", "comercio", "puente", "patrimonio")
+        sensitive = ("apresan", "asesin", "asalt", "violac", "abus", "suicid",
+                     "muerte", "muere", "atracan", "sexual", "denuncia")
+        score = 8 * sum(t in name for t in towns) + 3 * sum(t in name for t in themes)
+        score -= 12 * sum(t in name for t in sensitive)
+        return (-score, name)
+    unseen = sorted((x for x in eligible if x["path"] not in by_path),
+                    key=editorial_priority)
     failed = [x for x in eligible if x["path"] in by_path
               and by_path[x["path"]].get("status") == "fetch-failed"]
     failed.sort(key=lambda x: (by_path[x["path"]].get("attemptCount", 1),
