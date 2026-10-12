@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "464f925b6a32d4761a1fa47d7599ed117b2c4161",
-  "workflowRunId": 38210850183,
-  "requestedAt": "2026-10-12T06:08:17.496Z",
-  "reason": "User-requested urgent repair of BetGPT /ledger: show genuine calculated historical ROI and readable audited historical results. Only promote immutable GREEN proven source; preserve public ledger."
+  "sourceSha": "a6c5382fece717ecef3cc8b3c89706e97fb67dee",
+  "workflowRunId": 38238322433,
+  "requestedAt": "2026-10-12T10:47:35.448Z",
+  "reason": "User explicitly requests removal of /ledger published-prediction results KPIs, calibration and model panels plus redundant secondary simulation. Source contains precise removal, retains historical ROI and raw evidence. Immutable GREEN CI."
 }
