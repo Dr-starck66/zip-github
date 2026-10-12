@@ -29,7 +29,7 @@ def fetch(url):
   if r.status!=200 or not r.headers.get("Content-Type","").startswith("image/"):
    raise ValueError("not an original image")
   b=r.read(5000000)
-  if not 100000<=len(b)<=4999999 or b[:2]!=b"\\xff\\xd8":raise ValueError("invalid JPEG")
+  if not 100000<=len(b)<=4999999 or b[:2]!=b"\xff\xd8":raise ValueError("invalid JPEG")
   return b
 def main():
  content=None
@@ -76,6 +76,6 @@ def main():
   "pageTitle":"Esperanza y Boca de Mao en junio de 2018: obras, protestas e identidad local",
   "editorialScope":"Location documentation only. The image is NOT an illustration of a 2018 event."
  }
- MANIFEST.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+ MANIFEST.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
  print("ASTRA_ESPERANZA_WEBP_PASS",json.dumps({"filename":OUT.name,"bytes":len(encoded),"sha256":hashlib.sha256(encoded).hexdigest(),"captionHonest":True}))
 if __name__=="__main__":main()
