@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node server.mjs",
     "test:images": "node scripts/astra-image-gate.mjs --local",
-    "test:images:live": "node scripts/astra-image-gate.mjs --base https://eldiariodelcibao-web-production.up.railway.app"
+    "test:images:live": "node scripts/astra-image-gate.mjs --base https://eldiariodelcibao-web-production.up.railway.app",
+    "test:news-eligibility": "node --test tests/astra-news-eligibility.test.mjs"
   },
   "dependencies": {
     "sharp": "^0.34.0"
