@@ -107,14 +107,21 @@ def main():
     source = json.loads(SOURCE.read_text(encoding="utf-8"))
     old = json.loads(DEST.read_text(encoding="utf-8")) if DEST.exists() else {"records":[]}
     by_path = {x["path"]:x for x in old.get("records",[])}
-    candidates = [x for x in source if x["path"].startswith("/2018/06/")
-                  and (x["path"] not in by_path or by_path[x["path"]].get("status") == "fetch-failed")]
-    candidates = candidates[:max(0,args.limit)]
+    eligible = [x for x in source if x["path"].startswith("/2018/06/")]
+    unseen = [x for x in eligible if x["path"] not in by_path]
+    failed = [x for x in eligible if x["path"] in by_path
+              and by_path[x["path"]].get("status") == "fetch-failed"]
+    failed.sort(key=lambda x: (by_path[x["path"]].get("attemptCount", 1),
+                               by_path[x["path"]].get("lastAttemptUTC", "")))
+    candidates = (unseen + failed)[:max(0, args.limit)]
     print(json.dumps({"attempting":len(candidates),"existing":len(by_path)}),flush=True)
     with concurrent.futures.ThreadPoolExecutor(max_workers=max(1,min(args.workers,5))) as executor:
         futures = {executor.submit(process,x):x for x in candidates}
         for i, fut in enumerate(concurrent.futures.as_completed(futures),1):
             item = fut.result()
+            prior = by_path.get(item["path"], {})
+            item["attemptCount"] = int(prior.get("attemptCount", 1)) + 1 if prior else 1
+            item["lastAttemptUTC"] = datetime.now(timezone.utc).isoformat()
             by_path[item["path"]] = item
             if i%20==0 or i==len(candidates):
                 good = sum(x.get("status")=="evidence-metadata" for x in by_path.values())
