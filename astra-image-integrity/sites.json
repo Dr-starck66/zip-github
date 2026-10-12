@@ -1,0 +1,108 @@
+{
+  "sites": [
+    {
+      "name": "El Diario del Cibao — Railway preproduction",
+      "base": "https://eldiariodelcibao-web-production.up.railway.app",
+      "pages": [
+        {
+          "path": "/guias/calcular-prestaciones-laborales-republica-dominicana/",
+          "article": true
+        },
+        {
+          "path": "/guias/cursos-infotep-gratis-santiago-cibao/",
+          "article": true
+        },
+        {
+          "path": "/guias/afiliarse-senasa-subsidiado-requisitos/",
+          "article": true
+        },
+        {
+          "path": "/guias/",
+          "article": false
+        }
+      ]
+    },
+    {
+      "name": "BetGPT",
+      "base": "https://betgpt.live",
+      "pages": [
+        {
+          "path": "/",
+          "article": false
+        }
+      ]
+    },
+    {
+      "name": "Gamic News",
+      "base": "https://gamicnews.com",
+      "pages": [
+        {
+          "path": "/",
+          "article": false
+        }
+      ]
+    },
+    {
+      "name": "FreeHotels",
+      "base": "https://freehotels.info",
+      "pages": [
+        {
+          "path": "/",
+          "article": false
+        }
+      ]
+    },
+    {
+      "name": "Bizarre Sexuality",
+      "base": "https://bizarresexuality.com",
+      "pages": [
+        {
+          "path": "/",
+          "article": false
+        }
+      ]
+    },
+    {
+      "name": "StreamEastHub",
+      "base": "https://streameasthub.com",
+      "pages": [
+        {
+          "path": "/",
+          "article": false
+        }
+      ]
+    },
+    {
+      "name": "Wine Else — The Art of Wine",
+      "base": "https://wine-else-artists.vercel.app",
+      "pages": [
+        {
+          "path": "/",
+          "article": false
+        }
+      ]
+    },
+    {
+      "name": "Wine Else — Vignerons du Sud",
+      "base": "https://les-vignerons-du-sud.vercel.app",
+      "pages": [
+        {
+          "path": "/",
+          "article": false
+        }
+      ]
+    },
+    {
+      "name": "Avocat Belgique (DNS en attente)",
+      "base": "https://avocat-belgique.com",
+      "enabled": false,
+      "reason": "Nom de domaine non relié: préproduction et pipeline à raccorder",
+      "pages": [
+        {
+          "path": "/",
+          "article": false
+        }
+      ]
+    }
+  ]
+}
