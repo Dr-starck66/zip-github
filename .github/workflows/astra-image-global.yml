@@ -1,0 +1,61 @@
+name: ASTRA IMAGE INTEGRITY OMEGA - GLOBAL
+on:
+  workflow_call:
+    inputs:
+      site_url:
+        type: string
+        required: true
+      paths_csv:
+        type: string
+        default: "/"
+      articles:
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths: ["astra-image-integrity/**", ".github/workflows/astra-image-integrity-global.yml"]
+  pull_request:
+    branches: [main]
+    paths: ["astra-image-integrity/**", ".github/workflows/astra-image-integrity-global.yml"]
+  schedule:
+    - cron: "35 5 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-real-images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Dr-starck66/zip-github
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || 'main' }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Enforce no broken images for caller
+        if: github.event_name == 'workflow_call'
+        env:
+          TARGET: ${{ inputs.site_url }}
+          PATHS: ${{ inputs.paths_csv }}
+          ARTICLES: ${{ inputs.articles }}
+        run: |
+          if [ "$ARTICLES" = "true" ]; then
+            node astra-image-integrity/scan.mjs --base "$TARGET" --paths "$PATHS" --articles
+          else
+            node astra-image-integrity/scan.mjs --base "$TARGET" --paths "$PATHS"
+          fi
+      - name: Verify active editorial image on changes
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        run: node astra-image-integrity/scan.mjs --base https://eldiariodelcibao-web-production.up.railway.app --paths /guias/calcular-prestaciones-laborales-republica-dominicana/,/guias/cursos-infotep-gratis-santiago-cibao/ --articles
+      - name: Scan monitored portfolio
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: node astra-image-integrity/scan.mjs --config astra-image-integrity/sites.json --report astra-image-integrity/latest-report.json
+      - uses: actions/upload-artifact@v4
+        if: always() && github.event_name != 'workflow_call'
+        with:
+          name: astra-image-integrity-report
+          path: astra-image-integrity/latest-report.json
+          retention-days: 7
+          if-no-files-found: ignore
