@@ -14,10 +14,11 @@ function fixture(bricks,checks,capabilities=[]) {
   for (const id of required) if (!all.some(b=>b.id===id)) all.push({id,scope:"universal",on:["seo"]});
   while (all.length<39) all.push({id:"FILLER_"+all.length,scope:"not-applicable",on:["seo"]});
   fs.writeFileSync(path.join(cwd,"config/astra-brick-registry.json"),JSON.stringify({schema:"astra-brick-registry/1",bricks:all}));
-  fs.writeFileSync(path.join(cwd,"config/astra-master-site.json"),JSON.stringify({siteId:"test-site",capabilities,checks}));
+  fs.writeFileSync(path.join(cwd,"config/astra-master-site.json"),JSON.stringify({schema:"astra-master-site/1",siteId:"test-site",capabilities,checks}));
   const run=()=> {
     const res=spawnSync(process.execPath,[runner,"--task=code","--strict"],{cwd,encoding:"utf8",timeout:10000});
     const data=JSON.parse(fs.readFileSync(path.join(cwd,"artifacts/astra-master-gate/report.json"),"utf8"));
+    if (data.fatal) console.error("ASTRA_FIXTURE_FATAL", data.fatal, "STDERR", res.stderr, "STDOUT", res.stdout);
     return {res,data};
   };
   return {cwd,run};
@@ -29,7 +30,7 @@ test("PASS requires a successfully executed command and evidence report",()=>{
   const {res,data}=run();
   assert.equal(res.status,0);
   assert.equal(data.status,"PASS");
-  assert.deepEqual(data.summary,{pass:1,na:38,fail:0,unverified:0,unknownBindings:0});
+  assert.deepEqual(data.summary,{pass:1,na:38,fail:0,unverified:0,unknownBindings:0,untrackedScripts:0,invalidExemptions:0});
   assert.match(data.registrySha256,/^[a-f0-9]{64}$/);
 });
 test("missing executable proof is never a PASS",()=>{
