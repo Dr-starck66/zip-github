@@ -287,5 +287,107 @@
     },
     "sha256": "f5722ae56f0c65a4160e2169482202dde11ffb22e09b66e0512cb7de7d6b6c2a",
     "pageTitle": "La Vega: noticias y guía de la provincia"
+  },
+  "/jarabacoa/": {
+    "path": "/images/jarabacoa-la-vega-vista-real-ciudad-montana.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 50414,
+    "mime": "image/webp",
+    "alt": "Fotografía auténtica de Jarabacoa, municipio de montaña de la provincia La Vega en la República Dominicana",
+    "caption": "Vista de Jarabacoa documentada por Ronny Medina. CC BY-SA 4.0; composición WebP panorámica.",
+    "source": {
+      "type": "commons",
+      "filePage": "https://commons.wikimedia.org/wiki/File:JarabacoaRD.jpg",
+      "licenseEvidenceUrl": "https://commons.wikimedia.org/wiki/File:JarabacoaRD.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "checkedAt": "2026-10-12",
+      "author": "Ronny Medina",
+      "derivativeLicense": "CC BY-SA 4.0",
+      "originalSha1": "32c318a65ca07e558794983d7c35c30779a3fe44",
+      "downloadedSha1": "27c96bfc683b677c7d6cdce6c591be97415a792e",
+      "sourceEndpoint": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/JarabacoaRD.jpg/1280px-JarabacoaRD.jpg",
+      "adaptations": "subject-specific 1200x675 WebP crop"
+    },
+    "editorial": {
+      "reviewed": true,
+      "exactSubjectMatch": true,
+      "placeMatch": true,
+      "nonStockGeneric": true,
+      "depictsHistoricalEvent": false,
+      "isModernPhoto": true,
+      "modernContextDeclared": true
+    },
+    "sha256": "12e89945de8859828a5199c39984cb0db14c916792596d9fc47d1dd3f44eb79a",
+    "pageTitle": "Jarabacoa: turismo, montaña y actualidad local"
+  },
+  "/constanza/": {
+    "path": "/images/constanza-valle-ciudad-provincia-la-vega.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 144888,
+    "mime": "image/webp",
+    "alt": "Vista real de Constanza, localidad de montaña de la provincia La Vega en República Dominicana",
+    "caption": "Vista documental de Constanza, provincia La Vega. Fotografía: CristoRey99; CC BY-SA 4.0. Adaptación panorámica WebP.",
+    "source": {
+      "type": "commons",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Constanza_Dominican_Republic.jpg",
+      "licenseEvidenceUrl": "https://commons.wikimedia.org/wiki/File:Constanza_Dominican_Republic.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "checkedAt": "2026-10-12",
+      "author": "CristoRey99",
+      "derivativeLicense": "CC BY-SA 4.0",
+      "originalSha1": "54fb4f2001a0eec196e45bfbb4b0a35297e1bd93",
+      "downloadedSha1": "3a35135e19dfa03882836da1e3e115632c1eaecd",
+      "sourceEndpoint": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Constanza_Dominican_Republic.jpg/1280px-Constanza_Dominican_Republic.jpg",
+      "adaptations": "subject-specific 1200x675 WebP crop"
+    },
+    "editorial": {
+      "reviewed": true,
+      "exactSubjectMatch": true,
+      "placeMatch": true,
+      "nonStockGeneric": true,
+      "depictsHistoricalEvent": false,
+      "isModernPhoto": true,
+      "modernContextDeclared": true
+    },
+    "sha256": "d9980f815f581d150f7124fc74060143c55ab05624b37edbd6109472ee01971d",
+    "pageTitle": "Constanza: agricultura, montaña, turismo y actualidad"
+  },
+  "/monte-cristi/": {
+    "path": "/images/monte-cristi-camino-desertico-el-morro-2023.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 134096,
+    "mime": "image/webp",
+    "alt": "Camino real por el paisaje árido de El Morro de Monte Cristi en el noroeste dominicano",
+    "caption": "Paisaje del camino hacia El Morro, Monte Cristi, fotografiado en 2023 por Ultimo1988. CC BY-SA 4.0; recorte WebP.",
+    "source": {
+      "type": "commons",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Montecristi_Dominican_Republic_El_Morro_4.jpg",
+      "licenseEvidenceUrl": "https://commons.wikimedia.org/wiki/File:Montecristi_Dominican_Republic_El_Morro_4.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "checkedAt": "2026-10-12",
+      "author": "Ultimo1988",
+      "derivativeLicense": "CC BY-SA 4.0",
+      "originalSha1": "d111a3692ae04e6608f986f3e3a1b9c6dfdf2aa4",
+      "downloadedSha1": "f9140537d93176e487e7b33c8b61a5b7c0ece893",
+      "sourceEndpoint": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Montecristi_Dominican_Republic_El_Morro_4.jpg/1280px-Montecristi_Dominican_Republic_El_Morro_4.jpg",
+      "adaptations": "subject-specific 1200x675 WebP crop"
+    },
+    "editorial": {
+      "reviewed": true,
+      "exactSubjectMatch": true,
+      "placeMatch": true,
+      "nonStockGeneric": true,
+      "depictsHistoricalEvent": false,
+      "isModernPhoto": true,
+      "modernContextDeclared": true
+    },
+    "sha256": "b02ce26c6f039119039e4c329b98b0446c272b89e226345eb8b9067e87a95199",
+    "pageTitle": "Monte Cristi: actualidad y contexto del noroeste"
   }
 }
