@@ -34,7 +34,13 @@ jobs:
           (root/"config").mkdir(exist_ok=True)
           (root/"package.json").write_text(json.dumps({"name":"astra-image-fixture","version":"1.0.0","private":True,"type":"module","scripts":{}}))
           p=folder/"valverde-historico-ilustracion-original.webp"
-          Image.new("RGB",(1200,675),(22,44,66)).save(p,"WEBP",quality=80)
+          im=Image.new("RGB",(1200,675))
+          px=im.load()
+          for y in range(675):
+              for x in range(1200):
+                  px[x,y]=((x//3 + y//7)%256,((x//4) ^ (y//5))%256,(x//2 + y//3)%256)
+          im.save(p,"WEBP",quality=80)
+          assert p.stat().st_size>2000, p.stat().st_size
           data=p.read_bytes()
           obj={"path":"/images/"+p.name,"width":1200,"height":675,"bytes":len(data),"mime":"image/webp",
             "sha256":hashlib.sha256(data).hexdigest(),
