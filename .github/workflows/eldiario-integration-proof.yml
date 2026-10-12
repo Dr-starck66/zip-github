@@ -4,6 +4,9 @@ on:
     branches: [eldiariodelcibao-metadata-integration]
     paths:
       - "eldiariodelcibao/server.mjs"
+      - "eldiariodelcibao/lib/astra-content-quality.mjs"
+      - "eldiariodelcibao/lib/astra-content-site-launch.mjs"
+      - "eldiariodelcibao/data/astra-content-legacy-baseline.json"
       - "eldiariodelcibao/data/content.json"
       - "eldiariodelcibao/scripts/astra_local_guide_guard.mjs"
       - "eldiariodelcibao/scripts/recover-wayback-2018.py"
@@ -20,6 +23,27 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Adversarial content mutation must block server at startup
+        run: |
+          node - <<'JS'
+          const assert=require('node:assert/strict');
+          const fs=require('node:fs');
+          const cp=require('node:child_process');
+          const file='eldiariodelcibao/data/content.json';
+          const raw=fs.readFileSync(file,'utf8');
+          const d=JSON.parse(raw);
+          const original=d.pages.find(x=>x.p==='/constanza/');
+          assert.ok(original,'Constanza benchmark absent');
+          original.sections[0][1][0]+=' Reconstrucción SEO con un estándar mínimo de calidad.';
+          try {
+            fs.writeFileSync(file,JSON.stringify(d));
+            const p=cp.spawnSync(process.execPath,['eldiariodelcibao/server.mjs'],{
+              env:{...process.env,PORT:'3099'},encoding:'utf8',timeout:20000});
+            assert.notEqual(p.status,0,'FALSE PASS: a tampered low-quality Constanza page was served');
+            assert.match(p.stdout+p.stderr,/ASTRA_CONTENT_PUBLICATION_BLOCKED/);
+            console.log('ASTRA_RUNTIME_ADVERSARIAL_GATE PASS: low-quality content rejected BEFORE HTTP startup');
+          } finally {fs.writeFileSync(file,raw)}
+          JS
       - name: Syntax and local server
         run: |
           python3 -m py_compile eldiariodelcibao/scripts/recover-wayback-2018.py
