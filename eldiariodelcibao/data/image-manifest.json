@@ -31,5 +31,57 @@
     "sha256": "66fb5c18967c3d8ad4131e7fd8c263d717b540c8d372dfaef3dfb4c189b83b86",
     "pageTitle": "Esperanza y Boca de Mao en junio de 2018: obras, protestas e identidad local",
     "editorialScope": "Location documentation only. The image is NOT an illustration of a 2018 event."
+  },
+  "/archivo/2018/esperanza-boca-de-mao-obras-protestas/#map": {
+    "path": "/images/mapa-esperanza-boca-mao-puente-san-rafael-valverde.webp",
+    "width": 1400,
+    "height": 800,
+    "bytes": 42566,
+    "mime": "image/webp",
+    "alt": "Mapa esquemático basado en las coordenadas de Esperanza, Boca de Mao y El Puente San Rafael en Valverde, República Dominicana",
+    "caption": "Ubicación de las tres localidades citadas; esquema sin carreteras. Coordenadas OSM y Mapcarta (consulta 12-10-2026). La línea no identifica un puente ni una vía.",
+    "source": {
+      "type": "original",
+      "author": "El Diario del Cibao — cartografía editorial / datos © OpenStreetMap contributors",
+      "proof": "author-approved",
+      "proofRef": "https://mapcarta.com/es/N3701295514",
+      "dataLicense": "Open Database License (ODbL)",
+      "dataAttribution": "© OpenStreetMap contributors",
+      "sources": [
+        "https://mapcarta.com/es/34655116",
+        "https://mapcarta.com/es/19368258",
+        "https://mapcarta.com/es/N3701295514"
+      ],
+      "osmNodes": {
+        "El Puente San Rafael": 3701295514,
+        "Boca de Mao": 3701267857,
+        "Esperanza": 252989429
+      }
+    },
+    "editorial": {
+      "reviewed": true,
+      "exactSubjectMatch": true,
+      "placeMatch": true,
+      "nonStockGeneric": true,
+      "depictsHistoricalEvent": false,
+      "isModernPhoto": false,
+      "modernContextDeclared": true
+    },
+    "sha256": "d712653b819c3294657dc0ab34e8b01c1a0054b407d3e743eb3e7d6597bb4422",
+    "pageTitle": "Esperanza y Boca de Mao en junio de 2018: obras, protestas e identidad local",
+    "coordinates": {
+      "El Puente San Rafael": [
+        19.59178,
+        -71.0588
+      ],
+      "Boca de Mao": [
+        19.58813,
+        -71.04454
+      ],
+      "Esperanza": [
+        19.5784,
+        -70.991
+      ]
+    }
   }
 }
