@@ -1,32 +1,32 @@
 {
   "schema": "astra-betgpt-learning-live-proof/v1",
-  "checkedAt": "2026-10-14T05:25:53Z",
+  "checkedAt": "2026-10-14T10:28:35Z",
   "source": "https://betgpt.live/api/learning-checkpoint",
   "runtimeSchema": "astra-betgpt-runtime-checkpoint/v2",
-  "generatedAt": "2026-10-14T05:25:52.794Z",
+  "generatedAt": "2026-10-14T10:28:34.661Z",
   "refresh": {
     "status": "PASS",
-    "liveFetchedAt": 1791955551994,
-    "liveAsOf": "2026-10-14T05:25:51.994Z"
+    "liveFetchedAt": 1791973713701,
+    "liveAsOf": "2026-10-14T10:28:33.701Z"
   },
   "recovery": {
     "targets": 14,
     "recovered": 0
   },
-  "ticketCount": 845,
+  "ticketCount": 851,
   "learning": {
-    "canonicalSettledN": 17,
-    "canonicalWins": 4,
+    "canonicalSettledN": 18,
+    "canonicalWins": 5,
     "canonicalLosses": 13,
-    "canonicalRoi": -0.43529411764705883,
-    "observationalSettledN": 37,
-    "observationalWins": 14,
+    "canonicalRoi": -0.3427777777777778,
+    "observationalSettledN": 38,
+    "observationalWins": 15,
     "observationalLosses": 23,
-    "observationalSimulatedRoi": -0.10741691311368705,
+    "observationalSimulatedRoi": -0.07222173118964274,
     "playableFreshness": {
       "latestSettledKickoff": "2026-10-13T19:00:00Z",
-      "settledLast24h": 3,
-      "settledLast7d": 26,
+      "settledLast24h": 4,
+      "settledLast7d": 27,
       "status": "FRESH"
     },
     "latestPlayableSettled": [
@@ -66,6 +66,25 @@
           "odds:1.80-2.09",
           "prob:42-47%",
           "ev:<3%"
+        ]
+      },
+      {
+        "id": "ub-atleticomadrid|manchesterunited-2026-10-13:1X2_H:mise",
+        "kickoff": "2026-10-13T19:00:00Z",
+        "league": "CL",
+        "market": "1X2_H",
+        "odds": 2.23,
+        "result": "win",
+        "pnlUnits": 1.23,
+        "kind": "mise",
+        "decision": "BET",
+        "evidence": "ACTUAL_BET",
+        "factors": [
+          "market:1X2_H",
+          "league:CL",
+          "odds:2.10-2.39",
+          "prob:48-53%",
+          "ev:7-11%"
         ]
       },
       {
@@ -521,43 +540,15 @@
           "oddsMove:FLAT",
           "missingInfo:HIGH"
         ]
-      },
-      {
-        "id": "espn-401878772:1X2_A:mise",
-        "kickoff": "2026-10-10T14:00Z",
-        "league": "PL",
-        "competition": "Premier League",
-        "competitionKey": "eng.1",
-        "market": "1X2_A",
-        "odds": 2.38,
-        "result": "win",
-        "pnlUnits": 1.38,
-        "kind": "mise",
-        "decision": "BET",
-        "evidence": "ACTUAL_BET",
-        "factors": [
-          "market:1X2_A",
-          "league:PL",
-          "odds:2.10-2.39",
-          "prob:54%+",
-          "ev:12%+",
-          "dataQuality:HIGH",
-          "modelDisagreement:HIGH",
-          "tacticalConflict:HIGH",
-          "devilChallenge:HIGH",
-          "oddsMove:FLAT",
-          "importance:HIGH",
-          "missingInfo:HIGH"
-        ]
       }
     ],
-    "contextualSettledN": 97,
-    "contextualWins": 43,
+    "contextualSettledN": 98,
+    "contextualWins": 44,
     "contextualLosses": 54,
     "contextualFreshness": {
       "latestSettledKickoff": "2026-10-13T19:00Z",
-      "settledLast24h": 5,
-      "settledLast7d": 66,
+      "settledLast24h": 6,
+      "settledLast7d": 67,
       "status": "FRESH"
     },
     "latestContextSettled": [
@@ -622,6 +613,24 @@
           "odds:1.80-2.09",
           "prob:42-47%",
           "ev:<3%"
+        ]
+      },
+      {
+        "id": "ub-atleticomadrid|manchesterunited-2026-10-13:1X2_H:mise",
+        "kickoff": "2026-10-13T19:00:00Z",
+        "league": "CL",
+        "market": "1X2_H",
+        "odds": 2.23,
+        "result": "win",
+        "kind": "mise",
+        "decision": "BET",
+        "evidence": "ACTUAL_BET",
+        "factors": [
+          "market:1X2_H",
+          "league:CL",
+          "odds:2.10-2.39",
+          "prob:48-53%",
+          "ev:7-11%"
         ]
       },
       {
@@ -1034,33 +1043,6 @@
           "oddsMove:FLAT",
           "missingInfo:HIGH"
         ]
-      },
-      {
-        "id": "espn-401878774:1X2",
-        "kickoff": "2026-10-11T13:00Z",
-        "league": "PL",
-        "competition": "Premier League",
-        "competitionKey": "eng.1",
-        "market": "1X2_A",
-        "odds": 2.06,
-        "result": "lose",
-        "kind": "prono",
-        "decision": "NO_BET",
-        "evidence": "OBSERVATIONAL_PREDICTION",
-        "factors": [
-          "market:1X2_A",
-          "league:PL",
-          "odds:1.80-2.09",
-          "prob:42-47%",
-          "ev:<3%",
-          "dataQuality:HIGH",
-          "modelDisagreement:HIGH",
-          "tacticalConflict:VERY_HIGH",
-          "devilChallenge:VERY_HIGH",
-          "oddsMove:FLAT",
-          "importance:HIGH",
-          "missingInfo:HIGH"
-        ]
       }
     ],
     "contextualFactors": [
@@ -1092,6 +1074,15 @@
         "profitUnits": 1.6199999999999903
       },
       {
+        "factor": "market:1X2_H",
+        "n": 49,
+        "wins": 28,
+        "losses": 21,
+        "hitRate": 0.5714285714285714,
+        "roi": 0.05204081632653041,
+        "profitUnits": 2.54999999999999
+      },
+      {
         "factor": "ev:12%+",
         "n": 49,
         "wins": 18,
@@ -1099,15 +1090,6 @@
         "hitRate": 0.3673469387755102,
         "roi": -0.1556005262287023,
         "profitUnits": -7.624425785206412
-      },
-      {
-        "factor": "market:1X2_H",
-        "n": 48,
-        "wins": 27,
-        "losses": 21,
-        "hitRate": 0.5625,
-        "roi": 0.027499999999999858,
-        "profitUnits": 1.3199999999999932
       },
       {
         "factor": "prob:54%+",
@@ -1301,15 +1283,6 @@
         "profitUnits": -6.2644257852064165
       },
       {
-        "factor": "odds:2.10-2.39",
-        "n": 10,
-        "wins": 3,
-        "losses": 7,
-        "hitRate": 0.3,
-        "roi": -0.32,
-        "profitUnits": -3.2
-      },
-      {
         "factor": "tacticalConflict:LOW",
         "n": 4,
         "wins": 1,
@@ -1335,6 +1308,15 @@
         "hitRate": 0.3333333333333333,
         "roi": -0.2333333333333334,
         "profitUnits": -0.7000000000000002
+      },
+      {
+        "factor": "tacticalConflict:VERY_HIGH",
+        "n": 14,
+        "wins": 5,
+        "losses": 9,
+        "hitRate": 0.35714285714285715,
+        "roi": -0.1928571428571428,
+        "profitUnits": -2.6999999999999993
       }
     ],
     "helpfulFactors": [
@@ -1349,12 +1331,12 @@
       },
       {
         "factor": "ev:7-11%",
-        "n": 3,
-        "wins": 2,
+        "n": 4,
+        "wins": 3,
         "losses": 1,
-        "hitRate": 0.6666666666666666,
-        "roi": 0.7100000000000003,
-        "profitUnits": 2.130000000000001
+        "hitRate": 0.75,
+        "roi": 0.8400000000000003,
+        "profitUnits": 3.360000000000001
       },
       {
         "factor": "modelDisagreement:MEDIUM",
@@ -1367,12 +1349,12 @@
       },
       {
         "factor": "league:CL",
-        "n": 5,
-        "wins": 3,
+        "n": 6,
+        "wins": 4,
         "losses": 2,
-        "hitRate": 0.6,
-        "roi": 0.43911484295871633,
-        "profitUnits": 2.1955742147935817
+        "hitRate": 0.6666666666666666,
+        "roi": 0.5709290357989302,
+        "profitUnits": 3.4255742147935813
       },
       {
         "factor": "prob:<42%",
@@ -1393,6 +1375,15 @@
         "profitUnits": 1.3499999999999996
       },
       {
+        "factor": "market:1X2_H",
+        "n": 20,
+        "wins": 10,
+        "losses": 10,
+        "hitRate": 0.5,
+        "roi": 0.176,
+        "profitUnits": 3.5199999999999996
+      },
+      {
         "factor": "league:PL",
         "n": 9,
         "wins": 4,
@@ -1409,15 +1400,6 @@
         "hitRate": 0.5,
         "roi": 0.12250000000000005,
         "profitUnits": 1.9600000000000009
-      },
-      {
-        "factor": "market:1X2_H",
-        "n": 19,
-        "wins": 9,
-        "losses": 10,
-        "hitRate": 0.47368421052631576,
-        "roi": 0.12052631578947363,
-        "profitUnits": 2.289999999999999
       },
       {
         "factor": "odds:2.70-3.00",
