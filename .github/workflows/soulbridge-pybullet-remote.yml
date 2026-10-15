@@ -5,6 +5,7 @@ on:
       - soulbridge-webots-dual-20261015
     paths:
       - '.github/workflows/soulbridge-pybullet-remote.yml'
+      - 'tests/ci_pybullet_probe*.json'
       - 'tests/remote_pybullet.py'
       - 'tests/verify_pybullet.py'
       - 'tests/verify_pybullet_cross.py'
@@ -15,6 +16,7 @@ on:
       - soulbridge-webots-dual-20261015
     paths:
       - '.github/workflows/soulbridge-pybullet-remote.yml'
+      - 'tests/ci_pybullet_probe*.json'
       - 'tests/remote_pybullet.py'
       - 'tests/verify_pybullet.py'
       - 'tests/verify_pybullet_cross.py'
