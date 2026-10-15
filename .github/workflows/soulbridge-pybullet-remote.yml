@@ -42,7 +42,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install real open-source physics engine
-        run: python -m pip install --disable-pip-version-check pybullet==3.2.7
+        run: python -m pip install --disable-pip-version-check numpy==1.26.4 pybullet==3.2.7
       - name: Run physics then independently validate same fixture hash
         shell: bash
         run: |
