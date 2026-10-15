@@ -1,0 +1,32 @@
+name: SoulBridge OpenAI dialogue zero-cost contract tests
+on:
+  push:
+    branches: [soulbridge-webots-dual-20261015]
+    paths:
+      - '.github/workflows/soulbridge-openai-dialogue.yml'
+      - 'tests/openai_bridge.py'
+      - 'tests/test_openai_bridge.py'
+      - 'data/synthetic_capsule.json'
+  pull_request:
+    branches: [soulbridge-webots-dual-20261015]
+    paths:
+      - 'tests/openai_bridge.py'
+      - 'tests/test_openai_bridge.py'
+      - 'tests/ci_openai_dialogue_*.json'
+      - '.github/workflows/soulbridge-openai-dialogue.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    name: Validate opt-in OpenAI adapter without paid calls
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p test_openai_bridge.py -v
+        env:
+          OPENAI_API_KEY: ''
