@@ -74,7 +74,8 @@ def simulate(platform,cap,sha,identity,questions,pb,pb_data):
         turns=[]
         print(json.dumps({"event":"REAL_LLM_ROBOT_BOOT","platform":platform,"asset":asset,"joints":joints,"steps":20,"capsule_sha256":sha,"model_digest":identity["digest"]}),flush=True)
         for q in questions:
-            scoped, has_fact=scoped_capsule(cap,q["id"])\n            out=dialogue(scoped,q["text"],provider="ollama_local",consent=True,model=identity["name"])
+            scoped, has_fact=scoped_capsule(cap,q["id"])
+            out=dialogue(scoped,q["text"],provider="ollama_local",consent=True,model=identity["name"])
             if out["provider"]!="ollama_local" or out["generated_by_llm"] is not True or out["proof_level"]!="MODEL_RESPONSE_LOCAL_NOT_GROUNDED":
                 raise RuntimeError("FAKE_LLM_RESPONSE")
             text=out["reply"].strip()
