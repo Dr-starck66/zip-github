@@ -2,7 +2,7 @@
 """External log-only source-of-truth; reject hallucinated or missing physics evidence."""
 import argparse,hashlib,json,pathlib
 p=argparse.ArgumentParser()
-p.add_argument("--model",choices=["humanoid","atlas"],required=True)
+p.add_argument("--model",choices=["humanoid","mjcf"],required=True)
 p.add_argument("--log",required=True)
 a=p.parse_args()
 root=pathlib.Path(__file__).resolve().parents[1]
