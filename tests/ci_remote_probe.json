@@ -1,0 +1,11 @@
+{
+  "experiment": "soulbridge-dual-humanoid",
+  "type": "ci-remote-probe",
+  "data": "synthetic_only",
+  "real_robots": false,
+  "expected": [
+    "op2",
+    "nao"
+  ],
+  "gate": "real_webots_runtime_required"
+}

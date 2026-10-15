@@ -1,0 +1,9 @@
+{
+  "project": "astra-soulbridge",
+  "stage": "openai-chat-protocol",
+  "mode": "test-only",
+  "real_paid_api_calls": 0,
+  "model": "gpt-4.1-mini",
+  "needs_explicit_consent": true,
+  "physical_robot_actuation": false
+}

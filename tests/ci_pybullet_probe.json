@@ -1,0 +1,13 @@
+{
+  "experiment": "dual remote pybullet humanoids",
+  "engines": [
+    "webots_fail",
+    "pybullet_under_test"
+  ],
+  "targets": [
+    "humanoid/humanoid.urdf",
+    "atlas/atlas_v4_with_multisense.urdf"
+  ],
+  "data": "synthetic_only",
+  "date": "2026-10-15"
+}

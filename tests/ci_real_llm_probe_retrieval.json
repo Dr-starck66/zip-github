@@ -1,0 +1,9 @@
+{
+  "reason": "First real Qwen-0.5B produced 8 authentic outputs but failed 8/8 memory quality checks; test evidence-scoped Qwen-1.5B",
+  "question_mode": "chosen at runtime",
+  "data": "synthetic-only",
+  "expected": "technical evidence separately from semantic quality",
+  "model": "qwen2.5:1.5b",
+  "cost": "no billed APIs",
+  "safety": "no actuator commands"
+}

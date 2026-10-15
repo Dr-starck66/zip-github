@@ -1,0 +1,8 @@
+{
+  "experiment": "two distinct humanoid robot model files",
+  "robot1": "URDF humanoid",
+  "robot2": "MJCF humanoid",
+  "capsule": "identical SHA-256",
+  "motor_control": false,
+  "legacy_atlas_asset": "missing"
+}

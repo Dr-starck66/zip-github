@@ -1,0 +1,22 @@
+{
+  "experiment": "soulbridge-dual-virtual-robot-dialogue-bridge",
+  "source": "shared Python provider adapter",
+  "models": [
+    "pybullet-urdf-humanoid",
+    "pybullet-mjcf-humanoid"
+  ],
+  "provider": "fixture_stub",
+  "real_model_in_ci": false,
+  "paid_api_calls_allowed": false,
+  "claims": [
+    "real PyBullet steps",
+    "same synthetic capsule",
+    "same dialogue route",
+    "strict model provenance"
+  ],
+  "blocked": [
+    "physical actuation",
+    "real memory exposure",
+    "false LLM PASS"
+  ]
+}

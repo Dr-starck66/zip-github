@@ -1,0 +1,16 @@
+{
+  "experiment": "SOULBRIDGE real generative dialogue on two virtual humanoids",
+  "date": "2026-10-15",
+  "engine": "PyBullet headless",
+  "bodies": [
+    "humanoid/humanoid.urdf",
+    "mjcf/humanoid.xml"
+  ],
+  "model": "qwen2.5:0.5b",
+  "runtime": "Ollama CPU / GitHub public runner",
+  "data": "synthetic fixture only",
+  "paid_api_calls_allowed": false,
+  "questions": "selected at runtime",
+  "safety": "never send commands to any robot actuators",
+  "criteria": "independent real-model and capsule audit; quality measured separately"
+}

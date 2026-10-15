@@ -1,0 +1,6 @@
+{
+  "scope": "isolated_synthetic_webots_dual_model",
+  "reason": "time-bounded Docker process must not hang",
+  "run": "bounded_force_kill",
+  "status": "independent_remote_proof_required"
+}

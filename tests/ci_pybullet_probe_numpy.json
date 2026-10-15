@@ -1,0 +1,5 @@
+{
+  "fix": "NumPy 1.26.4 pinned to match PyBullet 3.2.7",
+  "validation": "fresh external physics runner",
+  "memory": "synthetic only"
+}
