@@ -1,0 +1,7 @@
+{
+  "experiment": "soulbridge_two_humanoids",
+  "revision": 3,
+  "change": "Separate pinned Webots Docker pull from timed actual simulation",
+  "data": "synthetic_only",
+  "physical_robot": false
+}
