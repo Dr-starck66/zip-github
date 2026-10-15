@@ -11,17 +11,6 @@ on:
       - 'tests/verify_cloud_runtime.py'
       - 'tests/verify_transfer.py'
       - 'tests/ci_remote_probe*.json'
-  pull_request:
-    branches:
-      - soulbridge-webots-dual-20261015
-    paths:
-      - 'tests/verify_cloud_runtime.py'
-      - 'tests/verify_transfer.py'
-      - 'tests/ci_remote_probe*.json'
-      - 'controllers/**'
-      - 'data/**'
-      - 'worlds/**'
-      - '.github/workflows/soulbridge-remote-webots.yml'
   workflow_dispatch:
 permissions:
   contents: read
