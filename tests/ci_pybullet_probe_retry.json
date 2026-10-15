@@ -1,0 +1,7 @@
+{
+  "trigger": "pybullet-two-humanoid-physical-engine",
+  "remote": true,
+  "same_capsule_required": true,
+  "webots_status": "FAIL",
+  "simulation_stage": "untested"
+}
