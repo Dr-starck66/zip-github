@@ -1,30 +1,30 @@
 {
   "schema": "astra-betgpt-learning-live-proof/v1",
-  "checkedAt": "2026-10-15T10:08:42Z",
+  "checkedAt": "2026-10-15T15:03:58Z",
   "source": "https://betgpt.live/api/learning-checkpoint",
   "runtimeSchema": "astra-betgpt-runtime-checkpoint/v2",
-  "generatedAt": "2026-10-15T10:08:40.698Z",
+  "generatedAt": "2026-10-15T15:03:57.746Z",
   "refresh": {
     "status": "PASS",
     "source": "LIVE_REFRESH",
-    "liveFetchedAt": 1792058919733,
-    "liveAsOf": "2026-10-15T10:08:39.733Z"
+    "liveFetchedAt": 1792076619639,
+    "liveAsOf": "2026-10-15T15:03:39.639Z"
   },
   "recovery": {
     "status": "PASS",
     "targets": 4,
-    "recovered": 2
+    "recovered": 0
   },
-  "ticketCount": 851,
+  "ticketCount": 848,
   "learning": {
-    "canonicalSettledN": 22,
+    "canonicalSettledN": 23,
     "canonicalWins": 8,
-    "canonicalLosses": 14,
-    "canonicalRoi": -0.15909090909090892,
-    "observationalSettledN": 45,
+    "canonicalLosses": 15,
+    "canonicalRoi": -0.19565217391304332,
+    "observationalSettledN": 46,
     "observationalWins": 19,
-    "observationalLosses": 26,
-    "observationalSimulatedRoi": -0.02698723967125384,
+    "observationalLosses": 27,
+    "observationalSimulatedRoi": -0.048139690982748326,
     "playableFreshness": {
       "latestSettledKickoff": "2026-10-14T19:00Z",
       "settledLast24h": 5,
@@ -535,9 +535,9 @@
         ]
       }
     ],
-    "contextualSettledN": 110,
+    "contextualSettledN": 111,
     "contextualWins": 52,
-    "contextualLosses": 58,
+    "contextualLosses": 59,
     "contextualFreshness": {
       "latestSettledKickoff": "2026-10-14T19:00Z",
       "settledLast24h": 9,
@@ -1042,21 +1042,21 @@
       },
       {
         "factor": "ev:12%+",
-        "n": 56,
+        "n": 57,
         "wins": 22,
-        "losses": 34,
-        "hitRate": 0.39285714285714285,
-        "roi": -0.10382903187868602,
-        "profitUnits": -5.814425785206417
+        "losses": 35,
+        "hitRate": 0.38596491228070173,
+        "roi": -0.11955132956502486,
+        "profitUnits": -6.814425785206417
       },
       {
         "factor": "market:1X2_H",
-        "n": 55,
+        "n": 56,
         "wins": 32,
-        "losses": 23,
-        "hitRate": 0.5818181818181818,
-        "roi": 0.10945454545454525,
-        "profitUnits": 6.019999999999989
+        "losses": 24,
+        "hitRate": 0.5714285714285714,
+        "roi": 0.08964285714285694,
+        "profitUnits": 5.019999999999989
       },
       {
         "factor": "prob:54%+",
@@ -1159,12 +1159,12 @@
       },
       {
         "factor": "prob:<42%",
-        "n": 23,
+        "n": 24,
         "wins": 9,
-        "losses": 14,
-        "hitRate": 0.391304347826087,
-        "roi": 0.19372061803450358,
-        "profitUnits": 4.455574214793582
+        "losses": 15,
+        "hitRate": 0.375,
+        "roi": 0.1439822589497326,
+        "profitUnits": 3.4555742147935824
       },
       {
         "factor": "league:CL",
@@ -1333,15 +1333,6 @@
         "profitUnits": 4.835574214793581
       },
       {
-        "factor": "prob:<42%",
-        "n": 8,
-        "wins": 4,
-        "losses": 4,
-        "hitRate": 0.5,
-        "roi": 0.2756967768491978,
-        "profitUnits": 2.2055742147935824
-      },
-      {
         "factor": "league:L1",
         "n": 5,
         "wins": 3,
@@ -1352,12 +1343,21 @@
       },
       {
         "factor": "market:1X2_H",
-        "n": 23,
+        "n": 24,
         "wins": 12,
-        "losses": 11,
-        "hitRate": 0.5217391304347826,
-        "roi": 0.22043478260869567,
-        "profitUnits": 5.07
+        "losses": 12,
+        "hitRate": 0.5,
+        "roi": 0.16958333333333334,
+        "profitUnits": 4.07
+      },
+      {
+        "factor": "prob:<42%",
+        "n": 9,
+        "wins": 4,
+        "losses": 5,
+        "hitRate": 0.4444444444444444,
+        "roi": 0.13395269053262027,
+        "profitUnits": 1.2055742147935824
       },
       {
         "factor": "league:PL",
