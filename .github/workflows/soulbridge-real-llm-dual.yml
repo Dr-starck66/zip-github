@@ -55,7 +55,7 @@ jobs:
             sleep 2
           done
           test "$ok" = 1
-          ollama pull qwen2.5:0.5b
+          ollama pull qwen2.5:1.5b
           curl --silent --show-error --fail http://127.0.0.1:11434/api/tags > logs/model-tags.json
       - name: Run true generative dialogue with two PyBullet humanoids using the same capsule
         shell: bash
