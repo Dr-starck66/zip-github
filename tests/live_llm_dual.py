@@ -112,7 +112,8 @@ def audit(sessions,questions):
     for s in sessions:
         if s["actuation"] or s["joints"]<10 or s["steps"]<10:raise ValueError("PHYSICS_SAFETY_FAIL")
         if [q["id"] for q in s["turns"]]!=keys:raise ValueError("MISSING_TURN")
-        if any(q.get("generated_by_llm") is not True or q.get("proof_level")!="MODEL_RESPONSE_LOCAL_NOT_GROUNDED" or not q.get("answer") for q in s["turns"]):raise ValueError("NOT_REAL_MODEL")
+        if any(q.get("generated_by_llm") is not True or q.get("proof_level")!="MODEL_RESPONSE_LOCAL_NOT_GROUNDED" or not q.get("answer") or not q.get("raw_model_answer") for q in s["turns"]):raise ValueError("NOT_REAL_MODEL")
+        if any((q.get("answer_source")!="memory_guard" if q.get("memory_guard_intervened") else q.get("answer_source")!="llm") for q in s["turns"]):raise ValueError("MISLABELLED_OUTPUT_ORIGIN")
     for i in range(len(keys)):
         if sessions[0]["turns"][i]["question_sha256"]!=sessions[1]["turns"][i]["question_sha256"]:raise ValueError("CHANGED_QUESTION")
     hits=sum(int(q["quality_heuristic"]) for s in sessions for q in s["turns"])
