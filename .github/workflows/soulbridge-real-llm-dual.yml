@@ -1,0 +1,78 @@
+name: SoulBridge REAL local LLM on two remote robot bodies
+on:
+  pull_request:
+    branches: [soulbridge-webots-dual-20261015]
+    paths:
+      - 'tests/ci_real_llm_probe*.json'
+      - 'tests/live_llm_dual.py'
+      - 'tests/verify_live_llm_dual.py'
+      - 'tests/test_live_llm_dual.py'
+      - '.github/workflows/soulbridge-real-llm-dual.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: soulbridge-real-llm-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  real-dual-llm:
+    name: Qwen model on real CPU runner with two simulated humanoids
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    env:
+      OLLAMA_HOST: 127.0.0.1:11434
+      OLLAMA_NO_CLOUD: '1'
+      OLLAMA_MAX_LOADED_MODELS: '1'
+      OLLAMA_NUM_PARALLEL: '1'
+      OLLAMA_KEEP_ALIVE: 5m
+      OPENAI_API_KEY: ''
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate proof gates and prompt-selection logic without any model calls
+        run: python -m unittest discover -s tests -p test_live_llm_dual.py -v
+      - name: Install CPU physics runtime
+        run: python -m pip install --disable-pip-version-check numpy==1.26.4 pybullet==3.2.7
+      - name: Install official Ollama local model runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p logs
+          curl --retry 2 -fsSL https://ollama.com/install.sh -o /tmp/ollama-install-soulbridge.sh
+          bash /tmp/ollama-install-soulbridge.sh
+          ollama --version
+      - name: Run Ollama localhost only, then pull small multilingual Qwen
+        shell: bash
+        run: |
+          set -euo pipefail
+          nohup ollama serve > logs/ollama-local-runtime.log 2>&1 < /dev/null &
+          echo $! > logs/ollama-server.pid
+          ok=0
+          for i in $(seq 1 45); do
+            if curl --silent --fail http://127.0.0.1:11434/api/tags > /dev/null; then ok=1; break; fi
+            sleep 2
+          done
+          test "$ok" = 1
+          ollama pull qwen2.5:0.5b
+          curl --silent --show-error --fail http://127.0.0.1:11434/api/tags > logs/model-tags.json
+      - name: Run true generative dialogue with two PyBullet humanoids using the same capsule
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -u tests/live_llm_dual.py --output logs/live-llm-dual-report.json | tee logs/live-llm-dual-console.log
+          python tests/verify_live_llm_dual.py --report logs/live-llm-dual-report.json | tee logs/independent-proof-gate.log
+      - name: Upload honest reproducible evidence (synthetic data only)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: soulbridge-real-generative-two-humanoids
+          path: |
+            logs/live-llm-dual-report.json
+            logs/live-llm-dual-console.log
+            logs/independent-proof-gate.log
+            logs/model-tags.json
+            logs/ollama-local-runtime.log
+          retention-days: 7
+          if-no-files-found: warn
