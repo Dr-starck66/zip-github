@@ -1,0 +1,74 @@
+name: SoulBridge dual remote PyBullet humanoid physics proof
+on:
+  push:
+    branches:
+      - soulbridge-webots-dual-20261015
+    paths:
+      - '.github/workflows/soulbridge-pybullet-remote.yml'
+      - 'tests/remote_pybullet.py'
+      - 'tests/verify_pybullet.py'
+      - 'tests/verify_pybullet_cross.py'
+      - 'controllers/soulbridge_shared/memory_engine.py'
+      - 'data/synthetic_capsule.json'
+  pull_request:
+    branches:
+      - soulbridge-webots-dual-20261015
+    paths:
+      - '.github/workflows/soulbridge-pybullet-remote.yml'
+      - 'tests/remote_pybullet.py'
+      - 'tests/verify_pybullet.py'
+      - 'tests/verify_pybullet_cross.py'
+      - 'controllers/soulbridge_shared/memory_engine.py'
+      - 'data/synthetic_capsule.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  physics:
+    name: Actual Bullet physics ${{ matrix.model }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    strategy:
+      fail-fast: false
+      matrix:
+        model: [humanoid, atlas]
+    env:
+      MODEL: ${{ matrix.model }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install real open-source physics engine
+        run: python -m pip install --disable-pip-version-check pybullet==3.2.7
+      - name: Run physics then independently validate same fixture hash
+        shell: bash
+        run: |
+          mkdir -p logs
+          timeout 85s python -u tests/remote_pybullet.py --model "$MODEL" | tee "logs/pybullet-${MODEL}.log"
+          python tests/verify_pybullet.py --model "$MODEL" --log "logs/pybullet-${MODEL}.log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: soulbridge-pybullet-${{ matrix.model }}
+          path: logs/
+          if-no-files-found: warn
+          retention-days: 1
+  same-memory:
+    name: Cross-check actual remote dual humanoid memory
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    needs: physics
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: soulbridge-pybullet-*
+          path: logs/
+          merge-multiple: true
+      - run: python tests/verify_pybullet_cross.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: soulbridge-dual-pybullet-verified
+          path: logs/remote-pybullet-dual-proof.json
+          retention-days: 1
