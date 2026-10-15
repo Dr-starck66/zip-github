@@ -1,0 +1,69 @@
+name: SoulBridge real remote Webots two-humanoid proof
+on:
+  push:
+    branches:
+      - soulbridge-webots-dual-20261015
+    paths:
+      - '.github/workflows/soulbridge-remote-webots.yml'
+      - 'controllers/**'
+      - 'data/**'
+      - 'worlds/**'
+      - 'tests/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: soulbridge-remote-webots
+  cancel-in-progress: true
+jobs:
+  simulate:
+    name: Genuine Webots ${{ matrix.model }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        model: [op2, nao]
+    env:
+      MODEL: ${{ matrix.model }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run real Webots engine in headless Docker
+        shell: bash
+        run: |
+          mkdir -p logs
+          set +e
+          timeout 110s docker run --rm --shm-size=1g -e MODEL="$MODEL" -e QTWEBENGINE_DISABLE_SANDBOX=1 -v "$PWD:/sim:ro" -w /sim cyberbotics/webots:R2025a-ubuntu22.04 bash -lc 'xvfb-run -a webots --stdout --stderr --batch --no-rendering --mode=fast /sim/worlds/soulbridge_${MODEL}.wbt' > "logs/webots-${MODEL}.log" 2>&1
+          result=$?
+          set -e
+          printf 'Remote Docker/Webots exit code: %s\n' "$result"
+          tail -n 75 "logs/webots-${MODEL}.log"
+          if [ "$result" -ne 0 ] && [ "$result" -ne 124 ]; then exit "$result"; fi
+          python3 tests/verify_cloud_runtime.py --model "$MODEL" --log "logs/webots-${MODEL}.log"
+      - name: Upload execution and proof logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: soulbridge-${{ matrix.model }}-proof
+          path: logs/
+          retention-days: 1
+          if-no-files-found: error
+  cross-platform:
+    name: Prove same capsule in OP2 and NAO
+    runs-on: ubuntu-latest
+    needs: simulate
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: soulbridge-*-proof
+          path: logs/
+          merge-multiple: true
+      - name: Independent cross-platform hash and challenge comparison
+        run: python3 tests/verify_transfer.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: soulbridge-dual-webots-evidence
+          path: logs/cross-platform-proof.json
+          retention-days: 1
