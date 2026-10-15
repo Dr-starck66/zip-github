@@ -2,7 +2,7 @@
 import json,pathlib
 p=pathlib.Path("logs")
 a=json.loads((p/"pybullet-proof-humanoid.json").read_text())
-b=json.loads((p/"pybullet-proof-atlas.json").read_text())
+b=json.loads((p/"pybullet-proof-mjcf.json").read_text())
 assert a["status"]==b["status"]=="REMOTE_PHYSICS_MEMORY_PASS"
 assert a["platform"]!=b["platform"] and a["asset"]!=b["asset"]
 assert a["joints"]>=10 and b["joints"]>=10
