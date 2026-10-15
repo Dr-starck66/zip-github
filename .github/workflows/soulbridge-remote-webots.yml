@@ -9,11 +9,20 @@ on:
       - 'data/**'
       - 'worlds/**'
       - 'tests/**'
+  pull_request:
+    branches:
+      - soulbridge-webots-dual-20261015
+    paths:
+      - 'tests/**'
+      - 'controllers/**'
+      - 'data/**'
+      - 'worlds/**'
+      - '.github/workflows/soulbridge-remote-webots.yml'
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: soulbridge-remote-webots
+  group: soulbridge-remote-webots-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   simulate:
