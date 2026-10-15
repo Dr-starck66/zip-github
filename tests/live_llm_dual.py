@@ -56,6 +56,13 @@ def model_identity():
     digest=found[0].get("digest","")
     if not re.fullmatch(r"(sha256:)?[0-9a-f]{64}",digest):raise RuntimeError("MODEL_DIGEST_UNVERIFIED")
     return {"name":MODEL,"digest":digest}
+def memory_guard(raw_text,has_fact,question_id):
+    """Fail closed: model text is never evidence of an absent memory."""
+    if not has_fact:
+        return "Je ne sais pas : ce souvenir ne figure pas dans la capsule.", True
+    if not grade(question_id,raw_text):
+        return "Je ne peux pas confirmer cette information à partir des souvenirs fournis.", True
+    return raw_text, False
 def simulate(platform,cap,sha,identity,questions,pb,pb_data):
     cid=pb.connect(pb.DIRECT)
     if cid<0:raise RuntimeError("PHYSICS_CONNECT_FAIL")
@@ -78,12 +85,17 @@ def simulate(platform,cap,sha,identity,questions,pb,pb_data):
             out=dialogue(scoped,q["text"],provider="ollama_local",consent=True,model=identity["name"])
             if out["provider"]!="ollama_local" or out["generated_by_llm"] is not True or out["proof_level"]!="MODEL_RESPONSE_LOCAL_NOT_GROUNDED":
                 raise RuntimeError("FAKE_LLM_RESPONSE")
-            text=out["reply"].strip()
-            if not text or text==retrieve(scoped,q["text"])["reply"]:raise RuntimeError("EMPTY_OR_STUB_RESPONSE")
+            raw=out["reply"].strip()
+            if not raw or raw==retrieve(scoped,q["text"])["reply"]:raise RuntimeError("EMPTY_OR_STUB_RESPONSE")
+            text,blocked=memory_guard(raw,has_fact,q["id"])
             turn={
                 "id":q["id"],"question":q["text"],"question_sha256":hashlib.sha256(q["text"].encode()).hexdigest(),
+                "raw_model_answer":raw[:1300],"raw_model_answer_sha256":hashlib.sha256(raw.encode()).hexdigest(),
                 "answer":text[:1300],"answer_sha256":hashlib.sha256(text.encode()).hexdigest(),
-                "quality_heuristic":grade(q["id"],text),"retrieval_fact_found":has_fact,
+                "model_quality_heuristic":grade(q["id"],raw),
+                "quality_heuristic":grade(q["id"],text),
+                "retrieval_fact_found":has_fact,"memory_guard_intervened":blocked,
+                "answer_source":"memory_guard" if blocked else "llm",
                 "generated_by_llm":True,"proof_level":out["proof_level"]
             }
             turns.append(turn)
@@ -104,7 +116,8 @@ def audit(sessions,questions):
     for i in range(len(keys)):
         if sessions[0]["turns"][i]["question_sha256"]!=sessions[1]["turns"][i]["question_sha256"]:raise ValueError("CHANGED_QUESTION")
     hits=sum(int(q["quality_heuristic"]) for s in sessions for q in s["turns"])
-    return {"status":"REMOTE_REAL_LLM_TWO_SIM_ROBOTS_PASS","quality_hits":hits,"quality_total":2*len(keys),"quality_status":"HEURISTIC_PASS" if hits>=7 else "HEURISTIC_PARTIAL"}
+    raw_hits=sum(int(q["model_quality_heuristic"]) for s in sessions for q in s["turns"])
+    return {"status":"REMOTE_REAL_LLM_TWO_SIM_ROBOTS_PASS","quality_hits":hits,"quality_total":2*len(keys),"raw_model_hits":raw_hits,"guard_interventions":sum(int(q["memory_guard_intervened"]) for s in sessions for q in s["turns"]),"quality_status":"HEURISTIC_PASS_WITH_GUARD" if hits>=7 else "HEURISTIC_PARTIAL"}
 def main():
     a=argparse.ArgumentParser()
     a.add_argument("--output",default="logs/live-llm-dual-report.json")
