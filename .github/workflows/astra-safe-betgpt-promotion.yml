@@ -53,9 +53,19 @@ jobs:
                 (.head_sha == $sha and .head_branch == "main" and .status == "completed" and .conclusion == "success" and (.path | endswith("/astra-never-fail.yml"))) // false
               ')"
               if [ "$REQUEST_VALID" = "true" ]; then
-                SHA="$REQUEST_SHA"
-                RUN_ID="$REQUEST_RUN_ID"
-                echo "ASTRA_EXPLICIT_GREEN_REQUEST_ACCEPTED candidate=$SHA run=$RUN_ID"
+                # A valid but older explicit request must never starve a newer
+                # successful GREEN main candidate. Accept only an explicit
+                # request that is equal to or DESCENDS from latest GREEN.
+                REQUEST_COMPARE="$(curl -fsSL "${HDR[@]}" "$API/compare/$SHA...$REQUEST_SHA")"
+                REQUEST_MERGE_BASE="$(printf '%s' "$REQUEST_COMPARE" | jq -r '.merge_base_commit.sha // empty')"
+                REQUEST_COMPARE_STATUS="$(printf '%s' "$REQUEST_COMPARE" | jq -r '.status // empty')"
+                if [ "$REQUEST_MERGE_BASE" = "$SHA" ] && { [ "$REQUEST_COMPARE_STATUS" = "ahead" ] || [ "$REQUEST_COMPARE_STATUS" = "identical" ]; }; then
+                  SHA="$REQUEST_SHA"
+                  RUN_ID="$REQUEST_RUN_ID"
+                  echo "ASTRA_EXPLICIT_GREEN_REQUEST_ACCEPTED candidate=$SHA run=$RUN_ID"
+                else
+                  echo "ASTRA_STALE_GREEN_REQUEST_IGNORED requested=$REQUEST_SHA newestGreen=$SHA comparison=$REQUEST_COMPARE_STATUS"
+                fi
               else
                 echo "ASTRA_EXPLICIT_GREEN_REQUEST_IGNORED candidate=$REQUEST_SHA run=$REQUEST_RUN_ID"
               fi
