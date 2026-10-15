@@ -33,7 +33,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        model: [humanoid, atlas]
+        model: [humanoid, mjcf]
     env:
       MODEL: ${{ matrix.model }}
     steps:
