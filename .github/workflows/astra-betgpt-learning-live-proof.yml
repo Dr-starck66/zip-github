@@ -95,3 +95,4 @@ jobs:
           git commit -m "proof: record live BetGPT learning state"
           git pull --rebase origin main
           git push
+# ASTRA live smoke recheck: learning-refresh gate source 0d56a3f (2026-10-15), no bypass of freshness/HTTP proofs.
