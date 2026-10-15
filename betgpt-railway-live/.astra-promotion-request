@@ -1,9 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "",
-  "workflowRunId": null,
-  "requestedSourceSha": "0d56a3f402aefd89ea337736c38ef5acb463a418",
-  "requestedAt": "2026-10-15T05:32:15.203Z",
-  "reason": "Re-evaluate latest independently verified GREEN after learning refresh 503 repair. No fabricated run ID; controller alone selects a green ancestor. Prevent stale explicit request from pinning older a87f5291 release."
+  "sourceSha": "5a6261bf1b6ff784fdd12ec834b376d883e4e257",
+  "workflowRunId": 38712934780,
+  "requestedAt": "2026-10-15T09:28:00Z",
+  "reason": "Fix 90-day rotating verified result recovery, bounded OOM-safe provider concurrency. Full main Never-Fail candidate run 38712934780 SUCCESS. Request release train GREEN ancestry checks, no forced rollout or rollback."
 }
