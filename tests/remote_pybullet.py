@@ -9,7 +9,7 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"controllers"/"soulbridge_shared"))
 from memory_engine import load_capsule,retrieve,QUESTIONS
 
-ASSETS={"humanoid":"humanoid/humanoid.urdf","atlas":"atlas/atlas_v4_with_multisense.urdf"}
+ASSETS={"humanoid":"humanoid/humanoid.urdf","mjcf":"mjcf/humanoid.xml"}
 parser=argparse.ArgumentParser()
 parser.add_argument("--model",required=True,choices=tuple(ASSETS))
 args=parser.parse_args()
@@ -20,7 +20,7 @@ pb.setAdditionalSearchPath(pybullet_data.getDataPath())
 pb.setGravity(0,0,-9.81)
 pb.setTimeStep(1/240)
 model_asset=ASSETS[args.model]
-body=pb.loadURDF(model_asset,[0,0,1.4],useFixedBase=True)
+body=(pb.loadURDF(model_asset,[0,0,1.4],useFixedBase=True) if args.model=="humanoid" else max(pb.loadMJCF(model_asset), key=pb.getNumJoints))
 if body<0:raise RuntimeError("ROBOT_ASSET_NOT_LOADED")
 joints=pb.getNumJoints(body)
 if joints<10:raise RuntimeError("ROBOT_NOT_HUMANOID_ENOUGH")
