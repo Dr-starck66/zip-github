@@ -1,7 +1,7 @@
 import copy,hashlib,sys,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-from live_llm_dual import audit,grade,selected_questions,MODEL
+from live_llm_dual import audit,grade,selected_questions,MODEL,memory_guard
 
 IDS=["chicago","bordeaux","evidence","unknown"]
 ANS={"chicago":"Chicago accueille cette dégustation fictive.",
@@ -14,9 +14,11 @@ def session(platform,asset):
       "capsule_sha256":"b"*64,"actuation":False,
       "turns":[{"id":i,"question":"Question "+i,
         "question_sha256":hashlib.sha256(("Question "+i).encode()).hexdigest(),
+        "raw_model_answer":ANS[i],"raw_model_answer_sha256":hashlib.sha256(ANS[i].encode()).hexdigest(),
         "answer":ANS[i],"answer_sha256":hashlib.sha256(ANS[i].encode()).hexdigest(),
-        "quality_heuristic":True,"generated_by_llm":True,
-        "proof_level":"MODEL_RESPONSE_LOCAL_NOT_GROUNDED"} for i in IDS]}
+        "quality_heuristic":True,"model_quality_heuristic":True,
+        "retrieval_fact_found":i!="unknown","memory_guard_intervened":False,"answer_source":"llm",
+        "generated_by_llm":True,"proof_level":"MODEL_RESPONSE_LOCAL_NOT_GROUNDED"} for i in IDS]}
 class GateTests(unittest.TestCase):
  def setUp(self):
     self.q=[{"id":x,"text":"Question "+x} for x in IDS]
@@ -46,6 +48,10 @@ class GateTests(unittest.TestCase):
  def test_runtime_variant(self):
     questions=selected_questions(lambda opts:opts[-1])
     self.assertEqual([x["id"] for x in questions],IDS)
+ def test_memory_guard_rejects_unverified_dog_name(self):
+    result,intervened=memory_guard("Rex",False,"unknown")
+    self.assertTrue(intervened)
+    self.assertIn("ne sais pas",result)
  def test_quality_signal(self):
     self.assertTrue(grade("chicago",ANS["chicago"]))
     self.assertTrue(grade("unknown",ANS["unknown"]))
