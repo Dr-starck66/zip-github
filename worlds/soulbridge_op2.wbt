@@ -1,0 +1,29 @@
+#VRML_SIM R2025a utf8
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/robotis/darwin-op/protos/RobotisOp2.proto"
+WorldInfo {
+  basicTimeStep 16
+  title "ASTRA SoulBridge EXPERIMENTAL SYNTHETIC op2 humanoid"
+  info ["Under development" "Offline fake capsule only; no physical motor control"]
+}
+Viewpoint { orientation 0.194 -0.326 -0.925 2.38 position 1.6 -1.9 1.15 }
+TexturedBackground {}
+TexturedBackgroundLight {}
+Solid {
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.13 0.19 0.28 roughness 1 metalness 0 }
+      geometry Box { size 4 4 0.04 }
+    }
+  ]
+  translation 0 0 -0.02
+  name "ground"
+  boundingObject Box { size 4 4 0.04 }
+  locked TRUE
+}
+RobotisOp2 {
+  translation 0 0 0.277
+  controller "soulbridge_op2"
+  name "SOULBRIDGE-OP2-01"
+}

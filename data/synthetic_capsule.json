@@ -1,0 +1,29 @@
+{
+  "schema": "soulbridge.capsule.v1",
+  "created_at": "2026-10-15T00:00:00Z",
+  "assistant_name": "Jekyll — fictitious demo persona",
+  "relationship_style": "Playful but accurate. Do not claim consciousness or unverified experiences.",
+  "memories": "Projet fictif : une marque de vin en Occitanie prépare un événement à Chicago.\nSlogan fictif : Hasta la vista, Bordeaux.\nL'utilisateur préfère les preuves testées aux annonces non vérifiées.",
+  "excerpts": [
+    {
+      "source_title": "Synthetic example A",
+      "role": "user",
+      "text": "Notre projet vinicole en Occitanie prépare une dégustation à Chicago en novembre."
+    },
+    {
+      "source_title": "Synthetic example B",
+      "role": "assistant",
+      "text": "Nous avions inventé cette plaisanterie : Hasta la vista, Bordeaux !"
+    }
+  ],
+  "claims": {
+    "consciousness_transfer": false,
+    "robot_control": false,
+    "identity_equivalence": false
+  },
+  "processing": {
+    "source": "synthetic_fixture",
+    "local_import": true,
+    "selected_conversations": 0
+  }
+}
