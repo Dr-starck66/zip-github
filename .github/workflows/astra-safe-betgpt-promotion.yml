@@ -28,11 +28,13 @@ jobs:
       - name: Resolve latest GREEN BetGPT release-train candidate
         id: candidate
         shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
 
           API="https://api.github.com/repos/Dr-starck66/betgpt-railway"
-          HDR=(-H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28")
+          HDR=(-H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" -H "Authorization: Bearer $GH_TOKEN")
           RUNS_JSON="$(curl -fsSL "${HDR[@]}" "$API/actions/workflows/astra-never-fail.yml/runs?branch=main&status=success&per_page=1")"
           HEAD_JSON="$(curl -fsSL "${HDR[@]}" "$API/commits/main")"
 
@@ -124,12 +126,13 @@ jobs:
         if: steps.candidate.outputs.promote == 'true'
         shell: bash
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CANDIDATE_SHA: ${{ steps.candidate.outputs.sha }}
           WORKFLOW_RUN_ID: ${{ steps.candidate.outputs.run_id }}
         run: |
           set -euo pipefail
           API="https://api.github.com/repos/Dr-starck66/betgpt-railway"
-          HDR=(-H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28")
+          HDR=(-H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" -H "Authorization: Bearer $GH_TOKEN")
 
           RUN_JSON="$(curl -fsSL "${HDR[@]}" "$API/actions/runs/$WORKFLOW_RUN_ID")"
           printf '%s' "$RUN_JSON" | jq -e --arg sha "$CANDIDATE_SHA" '
@@ -153,6 +156,7 @@ jobs:
         if: steps.candidate.outputs.promote == 'true'
         shell: bash
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CANDIDATE_SHA: ${{ steps.candidate.outputs.sha }}
           WORKFLOW_RUN_ID: ${{ steps.candidate.outputs.run_id }}
         run: |
@@ -161,8 +165,8 @@ jobs:
           assert_lineage() {
             local api="https://api.github.com/repos/Dr-starck66/betgpt-railway"
             local head compare status base
-            head="$(curl -fsSL -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "$api/commits/main" | jq -r '.sha // empty')"
-            compare="$(curl -fsSL -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "$api/compare/$CANDIDATE_SHA...$head")"
+            head="$(curl -fsSL -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" -H "Authorization: Bearer $GH_TOKEN" "$api/commits/main" | jq -r '.sha // empty')"
+            compare="$(curl -fsSL -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" -H "Authorization: Bearer $GH_TOKEN" "$api/compare/$CANDIDATE_SHA...$head")"
             status="$(printf '%s' "$compare" | jq -r '.status // empty')"
             base="$(printf '%s' "$compare" | jq -r '.merge_base_commit.sha // empty')"
             if [ "$base" != "$CANDIDATE_SHA" ] || { [ "$status" != "ahead" ] && [ "$status" != "identical" ]; }; then
