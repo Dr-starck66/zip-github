@@ -1,0 +1,9 @@
+{
+  "run": "live Qwen1.5B remote dual humanoid memory hallucination guard",
+  "reason": "Qwen made up a dog name (Rex) in previous real test",
+  "guard": "replace ungrounded answer with explicit unknown, retain raw model answer in proof",
+  "expected_raw_model_score": "6/8 observed last run, may vary",
+  "expected_safe_output": "all benchmark questions resolved or refused",
+  "cost": "zero paid API",
+  "source": "synthetic"
+}
