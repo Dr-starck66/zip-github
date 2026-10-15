@@ -42,7 +42,7 @@ jobs:
         run: |
           mkdir -p logs
           set +e
-          timeout 110s docker run --rm --shm-size=1g -e MODEL="$MODEL" -e QTWEBENGINE_DISABLE_SANDBOX=1 -v "$PWD:/sim:ro" -w /sim cyberbotics/webots:R2025a-ubuntu22.04 bash -lc 'xvfb-run -a webots --stdout --stderr --batch --no-rendering --mode=fast /sim/worlds/soulbridge_${MODEL}.wbt' > "logs/webots-${MODEL}.log" 2>&1
+          timeout --signal=TERM --kill-after=8s 110s docker run --rm --shm-size=1g -e MODEL="$MODEL" -e QTWEBENGINE_DISABLE_SANDBOX=1 -v "$PWD:/sim:ro" -w /sim cyberbotics/webots:R2025a-ubuntu22.04 bash -lc 'xvfb-run -a webots --stdout --stderr --batch --no-rendering --mode=fast /sim/worlds/soulbridge_${MODEL}.wbt' > "logs/webots-${MODEL}.log" 2>&1
           result=$?
           set -e
           printf 'Remote Docker/Webots exit code: %s\n' "$result"
