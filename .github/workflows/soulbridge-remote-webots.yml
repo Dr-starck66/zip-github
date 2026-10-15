@@ -37,6 +37,8 @@ jobs:
       MODEL: ${{ matrix.model }}
     steps:
       - uses: actions/checkout@v4
+      - name: Pull pinned Webots engine image separately (public runner)
+        run: docker pull cyberbotics/webots:R2025a-ubuntu22.04
       - name: Run real Webots engine in headless Docker
         shell: bash
         run: |
