@@ -91,7 +91,7 @@ class Ros2TextAdapter(RobotTextAdapter):
         self._publisher = None
         if node is not None:
             node.destroy_node()
-        if self._owns_context and self._rclpy is not None:
+        if self._owns_context and self._rclpy is not None and self._rclpy.ok():
             self._rclpy.shutdown()
         self._owns_context = False
 
