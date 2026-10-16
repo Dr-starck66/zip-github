@@ -20,9 +20,10 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from controllers.soulbridge_shared.robot_adapters import SyntheticMemory
 from ros2_probe.qwen_ros_bridge import PROOF_PROVIDER, sha
+from robot_models.kinematics import RobotDescription, compare_real_models
 
 REPORT=Path("/tmp/soulbridge-qwen-ros2-handoff-report.json")
-DOMAINS={"robotis_op2":42,"softbank_nao":43}
+DOMAINS={"robotis_op3":42,"unitree_g1":43}
 WORKERS=tuple(DOMAINS)
 
 class ProofError(ValueError): pass
@@ -40,6 +41,11 @@ def run():
     from rclpy.qos import QoSProfile,ReliabilityPolicy,DurabilityPolicy
     from std_msgs.msg import String
     memory=SyntheticMemory.from_file(ROOT/"data"/"synthetic_capsule.json")
+    model_A=RobotDescription.load(ROOT/'robot_models'/'robotis_op3.model.json')
+    model_B=RobotDescription.load(ROOT/'robot_models'/'unitree_g1.model.json')
+    description_proof=compare_real_models(model_A, model_B)
+    require(description_proof['status']=='TWO_OFFICIAL_MANUFACTURER_KINEMATIC_PROFILES_PASS',
+            'DISTINCT_AUTHENTIC_ROBOT_DESCRIPTIONS_REQUIRED')
     with urllib.request.urlopen("http://127.0.0.1:18080/health",timeout=5) as res:
         state=json.loads(res.read(10000))
     require(state.get("status")=="ok","QWEN_LOCAL_SERVER_NOT_READY")
@@ -160,6 +166,14 @@ def run():
                 r3.get("history_turns_in_prompt")==6 and
                 "chicago" in r3.get("model_answer","").casefold(),
                 "ORIGINAL_CAPSULE_LOST_AFTER_HANDOFF")
+        # Bind each DDS text-generation worker to its authentic vendor kinematic tree.
+        for payload,desc in ((r1,model_A),(r_new,model_A),(r2,model_B),(r3,model_B)):
+            require(payload.get("actual_joint_tree_used") is True
+                    and payload.get("motor_actions_exposed") is False
+                    and payload.get("manufacturer_model_binding")==desc.profile_id
+                    and payload.get("model_tree_sha256")==desc.fingerprint
+                    and payload.get("model_source_commit")==desc.profile["source"]["commit"],
+                    "REAL_MANUFACTURER_MODEL_BINDING_MISMATCH")
         require(r1["worker_pid"]==r_new["worker_pid"]
                 and r2["worker_pid"]==r3["worker_pid"]
                 and r1["worker_pid"]!=r2["worker_pid"],
@@ -180,6 +194,9 @@ def run():
             "source":"Qwen/Qwen2.5-1.5B-Instruct-GGUF",
             "capsule_sha256":memory.sha256,
             "real_rclpy_dds":True,"ros_distro":"jazzy",
+            "vendor_kinematic_model_proof":description_proof,
+            "both_manufacturer_descriptions_loaded_and_used":True,
+            "manufacturer_joint_models":["ROBOTIS OP3 20-DOF","Unitree G1 23-DOF"],
             "domain_A":DOMAINS[a],"domain_B":DOMAINS[b],
             "negative_cross_domain_dds_discovery_pass":True,
             "separate_worker_os_pids":[r1["worker_pid"],r2["worker_pid"]],
@@ -205,6 +222,9 @@ def run():
                  "context_turns_received":6,"test":"original_capsule_retained","real_generation":True}],
             "independent_physical_hosts_tested":False,
             "independent_robot_physics_engines_tested":False,
+            "manufacturer_robot_description_files_tested":True,
+            "real_manufacturer_sdk_integration_tested":False,
+            "simulated_physics_actuation_tested":False,
             "real_manufacturer_robots_tested":False,
             "chatgpt_export_loaded":False,
             "synthetic_only":True,
