@@ -9,6 +9,7 @@ from __future__ import annotations
 from datetime import datetime,timezone
 import json
 import os
+import secrets
 from pathlib import Path
 import subprocess
 import sys
@@ -120,26 +121,57 @@ def run():
                 r1.get("history_turns_in_prompt")==0 and
                 "chicago" in r1.get("model_answer","").casefold(),
                 "FIRST_REAL_MODEL_FACT_NOT_GROUNDED")
-        # Portable dialogue context: transparent transfer by supervisor,
-        # not a hidden shared LLM session or two processes seeing common RAM.
-        transcript=[{"role":"user","content":q1},
-                    {"role":"assistant","content":r1["model_answer"]}]
-        q2="Dans notre conversation juste avant, quelle ville avons-nous mentionnée ?"
-        r2=exchange(b,q2,transcript,"phase2")
+        # Stronger challenge: a RANDOM NEW synthetic code, absent from the capsule.
+        # Without the explicit transferred conversation, robot B cannot infer it.
+        codeword="AZUR-"+str(200+secrets.randbelow(700))
+        require(codeword not in json.dumps(memory._capsule,ensure_ascii=False),
+                "CODEWORD_ALREADY_IN_CAPSULE")
+        partial_history=[{"role":"user","content":q1},
+                         {"role":"assistant","content":r1["model_answer"]}]
+        q_new=("Pour notre expérience fictive, retiens ce NOUVEAU code temporaire : "
+               +codeword+". Confirme uniquement le code, sans autre mot.")
+        r_new=exchange(a,q_new,partial_history,"phase2_new_fact")
+        require(r_new.get("generated_by_llm") is True and
+                r_new.get("provider")==PROOF_PROVIDER and
+                r_new.get("history_turns_in_prompt")==2 and
+                codeword.casefold() in r_new.get("model_answer","").casefold(),
+                "MODEL_A_FAILED_TO_ACKNOWLEDGE_NEW_FACT")
+        # Only now hand off all prior turns across DDS domains via supervisor.
+        transcript=partial_history+[
+            {"role":"user","content":q_new},
+            {"role":"assistant","content":r_new["model_answer"]}]
+        q2="Quel était exactement le NOUVEAU code fictif donné dans notre conversation précédente ?"
+        require(codeword.casefold() not in q2.casefold(),
+                "CODE_LEAK_IN_SECOND_QUESTION")
+        r2=exchange(b,q2,transcript,"phase3_cross_domain")
         require(r2.get("generated_by_llm") is True and
                 r2.get("status")=="GENERATED_REAL_QWEN_ROS2" and
                 r2.get("provider")==PROOF_PROVIDER and
-                r2.get("history_turns_in_prompt")==2 and
-                "chicago" in r2.get("model_answer","").casefold(),
-                "SECOND_REAL_MODEL_HANDOFF_NOT_GROUNDED")
-        require(r1["worker_pid"]!=r2["worker_pid"],"PROCESS_NOT_INDEPENDENT")
-        require(r1["capsule_sha256"]==r2["capsule_sha256"]==memory.sha256,
-                "DIFFERENT_MEMORY_CAPSULES")
-        require(r1["model_returned"]==r2["model_returned"],
-                "NOT_SAME_MODEL")
-        require(r1["model_answer_sha256"]==sha(r1["model_answer"])
-             and r2["model_answer_sha256"]==sha(r2["model_answer"]),
-             "GENERATED_HASH_INVALID")
+                r2.get("history_turns_in_prompt")==4 and
+                codeword.casefold() in r2.get("model_answer","").casefold(),
+                "NEW_MEMORY_NOT_TRANSFERRED_TO_DOMAIN_B")
+        q3="Dans la mémoire initiale fictive, quelle ville des États-Unis était citée pour le vin ?"
+        history_next=transcript+[
+            {"role":"user","content":q2},
+            {"role":"assistant","content":r2["model_answer"]}]
+        r3=exchange(b,q3,history_next,"phase4_fixture_still_available")
+        require(r3.get("generated_by_llm") is True and
+                r3.get("provider")==PROOF_PROVIDER and
+                r3.get("history_turns_in_prompt")==6 and
+                "chicago" in r3.get("model_answer","").casefold(),
+                "ORIGINAL_CAPSULE_LOST_AFTER_HANDOFF")
+        require(r1["worker_pid"]==r_new["worker_pid"]
+                and r2["worker_pid"]==r3["worker_pid"]
+                and r1["worker_pid"]!=r2["worker_pid"],
+                "PROCESS_INDEPENDENCE_FAILURE")
+        require(all(x["capsule_sha256"]==memory.sha256
+                    for x in (r1,r_new,r2,r3)),
+                "CAPSULE_CHANGED_ACROSS_DOMAINS")
+        require(len({x["model_returned"] for x in (r1,r_new,r2,r3)})==1,
+                "MODEL_CHANGED_ACROSS_DOMAINS")
+        require(all(x["model_answer_sha256"]==sha(x["model_answer"])
+                    for x in (r1,r_new,r2,r3)),
+                "GENERATED_HASH_INVALID")
         return {
             "status":"REAL_QWEN_ROS2_CROSS_DOMAIN_HANDOFF_PASS",
             "timestamp_utc":datetime.now(timezone.utc).isoformat(),
@@ -154,14 +186,23 @@ def run():
             "distinct_ros2_dds_domains":True,
             "handoff_via_explicit_transcript":True,
             "handoff_transcript_sha256":sha(json.dumps(transcript,ensure_ascii=False)),
-            "turns":[{"robot_id":a,"model_answer":r1["model_answer"],
-                      "model_answer_sha256":r1["model_answer_sha256"],
-                      "context_turns_received":0,
-                      "real_generation":True},
-                     {"robot_id":b,"model_answer":r2["model_answer"],
-                      "model_answer_sha256":r2["model_answer_sha256"],
-                      "context_turns_received":2,
-                      "real_generation":True}],
+            "novel_challenge_codeword":codeword,
+            "novel_challenge_absent_from_initial_memory":True,
+            "novel_challenge_absent_from_receiver_question":True,
+            "generated_answer_count":4,
+            "turns":[
+                {"robot_id":a,"model_answer":r1["model_answer"],
+                 "model_answer_sha256":r1["model_answer_sha256"],
+                 "context_turns_received":0,"test":"original_capsule","real_generation":True},
+                {"robot_id":a,"model_answer":r_new["model_answer"],
+                 "model_answer_sha256":r_new["model_answer_sha256"],
+                 "context_turns_received":2,"test":"new_random_fact","real_generation":True},
+                {"robot_id":b,"model_answer":r2["model_answer"],
+                 "model_answer_sha256":r2["model_answer_sha256"],
+                 "context_turns_received":4,"test":"novel_fact_cross_domain","real_generation":True},
+                {"robot_id":b,"model_answer":r3["model_answer"],
+                 "model_answer_sha256":r3["model_answer_sha256"],
+                 "context_turns_received":6,"test":"original_capsule_retained","real_generation":True}],
             "independent_physical_hosts_tested":False,
             "independent_robot_physics_engines_tested":False,
             "real_manufacturer_robots_tested":False,
