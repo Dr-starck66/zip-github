@@ -1,0 +1,541 @@
+{
+  "schema": "soulbridge.real_model_kinematics.v1",
+  "profile_id": "robotis_op3",
+  "vendor": "ROBOTIS",
+  "model": "OP3",
+  "source": {
+    "repository": "ROBOTIS-GIT/ROBOTIS-OP3-Common",
+    "commit": "6f7d56ccef6f78061925c56c6bd9d134d243f911",
+    "files": [
+      "op3_description/urdf/robotis_op3.structure.rarm.xacro",
+      "op3_description/urdf/robotis_op3.structure.larm.xacro",
+      "op3_description/urdf/robotis_op3.structure.rleg.xacro",
+      "op3_description/urdf/robotis_op3.structure.lleg.xacro",
+      "op3_description/urdf/robotis_op3.structure.head.xacro"
+    ],
+    "immutable_urls": [
+      "https://raw.githubusercontent.com/ROBOTIS-GIT/ROBOTIS-OP3-Common/6f7d56ccef6f78061925c56c6bd9d134d243f911/op3_description/urdf/robotis_op3.structure.rarm.xacro",
+      "https://raw.githubusercontent.com/ROBOTIS-GIT/ROBOTIS-OP3-Common/6f7d56ccef6f78061925c56c6bd9d134d243f911/op3_description/urdf/robotis_op3.structure.larm.xacro",
+      "https://raw.githubusercontent.com/ROBOTIS-GIT/ROBOTIS-OP3-Common/6f7d56ccef6f78061925c56c6bd9d134d243f911/op3_description/urdf/robotis_op3.structure.rleg.xacro",
+      "https://raw.githubusercontent.com/ROBOTIS-GIT/ROBOTIS-OP3-Common/6f7d56ccef6f78061925c56c6bd9d134d243f911/op3_description/urdf/robotis_op3.structure.lleg.xacro",
+      "https://raw.githubusercontent.com/ROBOTIS-GIT/ROBOTIS-OP3-Common/6f7d56ccef6f78061925c56c6bd9d134d243f911/op3_description/urdf/robotis_op3.structure.head.xacro"
+    ]
+  },
+  "root_link": "body_link",
+  "model_origin": "manufacturer-supplied descriptions",
+  "motor_control_enabled": false,
+  "robot_hardware_verified": false,
+  "physics_engine_used": false,
+  "actual_description_parsed": true,
+  "actuated_joint_count": 20,
+  "link_count": 23,
+  "joint_count": 22,
+  "joints": [
+    {
+      "name": "r_sho_pitch",
+      "type": "revolute",
+      "parent": "body_link",
+      "child": "r_sho_pitch_link",
+      "origin_xyz": [
+        -0.001,
+        -0.06,
+        0.111
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        0,
+        -1,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "r_sho_roll",
+      "type": "revolute",
+      "parent": "r_sho_pitch_link",
+      "child": "r_sho_roll_link",
+      "origin_xyz": [
+        0.019,
+        -0.0285,
+        -0.01
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        -1,
+        0,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "r_el",
+      "type": "revolute",
+      "parent": "r_sho_roll_link",
+      "child": "r_el_link",
+      "origin_xyz": [
+        0,
+        -0.0904,
+        -0.0001
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        1,
+        0,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "l_sho_pitch",
+      "type": "revolute",
+      "parent": "body_link",
+      "child": "l_sho_pitch_link",
+      "origin_xyz": [
+        -0.001,
+        0.06,
+        0.111
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        0,
+        1,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "l_sho_roll",
+      "type": "revolute",
+      "parent": "l_sho_pitch_link",
+      "child": "l_sho_roll_link",
+      "origin_xyz": [
+        0.019,
+        0.0285,
+        -0.01
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        -1,
+        0,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "l_el",
+      "type": "revolute",
+      "parent": "l_sho_roll_link",
+      "child": "l_el_link",
+      "origin_xyz": [
+        0,
+        0.0904,
+        -0.0001
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        1,
+        0,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "r_hip_yaw",
+      "type": "revolute",
+      "parent": "body_link",
+      "child": "r_hip_yaw_link",
+      "origin_xyz": [
+        0,
+        -0.035,
+        0
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        0,
+        0,
+        -1
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "r_hip_roll",
+      "type": "revolute",
+      "parent": "r_hip_yaw_link",
+      "child": "r_hip_roll_link",
+      "origin_xyz": [
+        -0.024,
+        0,
+        -0.0285
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        -1,
+        0,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "r_hip_pitch",
+      "type": "revolute",
+      "parent": "r_hip_roll_link",
+      "child": "r_hip_pitch_link",
+      "origin_xyz": [
+        0.0241,
+        -0.019,
+        0
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        0,
+        -1,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "r_knee",
+      "type": "revolute",
+      "parent": "r_hip_pitch_link",
+      "child": "r_knee_link",
+      "origin_xyz": [
+        0,
+        0,
+        -0.11015
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        0,
+        -1,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "r_ank_pitch",
+      "type": "revolute",
+      "parent": "r_knee_link",
+      "child": "r_ank_pitch_link",
+      "origin_xyz": [
+        0,
+        0,
+        -0.11
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        0,
+        1,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "r_ank_roll",
+      "type": "revolute",
+      "parent": "r_ank_pitch_link",
+      "child": "r_ank_roll_link",
+      "origin_xyz": [
+        -0.0241,
+        0.019,
+        0
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        1,
+        0,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "l_hip_yaw",
+      "type": "revolute",
+      "parent": "body_link",
+      "child": "l_hip_yaw_link",
+      "origin_xyz": [
+        0,
+        0.035,
+        0
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        0,
+        0,
+        -1
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "l_hip_roll",
+      "type": "revolute",
+      "parent": "l_hip_yaw_link",
+      "child": "l_hip_roll_link",
+      "origin_xyz": [
+        -0.024,
+        0,
+        -0.0285
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        -1,
+        0,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "l_hip_pitch",
+      "type": "revolute",
+      "parent": "l_hip_roll_link",
+      "child": "l_hip_pitch_link",
+      "origin_xyz": [
+        0.0241,
+        0.019,
+        0
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        0,
+        1,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "l_knee",
+      "type": "revolute",
+      "parent": "l_hip_pitch_link",
+      "child": "l_knee_link",
+      "origin_xyz": [
+        0,
+        0,
+        -0.11015
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        0,
+        1,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "l_ank_pitch",
+      "type": "revolute",
+      "parent": "l_knee_link",
+      "child": "l_ank_pitch_link",
+      "origin_xyz": [
+        0,
+        0,
+        -0.11
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        0,
+        -1,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "l_ank_roll",
+      "type": "revolute",
+      "parent": "l_ank_pitch_link",
+      "child": "l_ank_roll_link",
+      "origin_xyz": [
+        -0.0241,
+        -0.019,
+        0
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        1,
+        0,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "head_pan",
+      "type": "revolute",
+      "parent": "body_link",
+      "child": "head_pan_link",
+      "origin_xyz": [
+        -0.001,
+        0,
+        0.1365
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        0,
+        0,
+        1
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "head_tilt",
+      "type": "revolute",
+      "parent": "head_pan_link",
+      "child": "head_tilt_link",
+      "origin_xyz": [
+        0.01,
+        0.019,
+        0.0285
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        0,
+        -1,
+        0
+      ],
+      "lower": -2.827433388230814,
+      "upper": 2.827433388230814
+    },
+    {
+      "name": "cam",
+      "type": "fixed",
+      "parent": "head_tilt_link",
+      "child": "cam_link",
+      "origin_xyz": [
+        0.01425,
+        -0.019,
+        0.04975
+      ],
+      "origin_rpy": [
+        -1.5707963267948966,
+        0,
+        -1.5707963267948966
+      ],
+      "axis_xyz": [
+        0,
+        0,
+        0
+      ],
+      "lower": null,
+      "upper": null
+    },
+    {
+      "name": "cam_gazebo",
+      "type": "fixed",
+      "parent": "head_tilt_link",
+      "child": "cam_gazebo_link",
+      "origin_xyz": [
+        0.01425,
+        -0.019,
+        0.04975
+      ],
+      "origin_rpy": [
+        0,
+        0,
+        0
+      ],
+      "axis_xyz": [
+        0,
+        0,
+        0
+      ],
+      "lower": null,
+      "upper": null
+    }
+  ]
+}
