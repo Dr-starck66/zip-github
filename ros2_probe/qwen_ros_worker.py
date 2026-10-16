@@ -16,11 +16,45 @@ from controllers.soulbridge_shared.robot_adapters import RobotIdentity,Synthetic
 from controllers.soulbridge_shared.ros2_text_adapter import Ros2TextAdapter
 from ros2_probe.qwen_ros_bridge import query_qwen
 from robot_models.kinematics import RobotDescription
+from robot_models.skeleton_urdf import export_skeleton_urdf, joint_state_snapshot
 
 class RealQwenTextAdapter(Ros2TextAdapter):
     def __init__(self, identity, memory, model):
         super().__init__(identity, memory)
         self.kinematic_model = model
+        self._joint_state_publisher = None
+        self._urdf_publisher = None
+        self._urdf_message = None
+        self._joint_state_message = None
+
+    def start(self, *, consent=False, allow_lan=False):
+        super().start(consent=consent, allow_lan=allow_lan)
+        from std_msgs.msg import String
+        from sensor_msgs.msg import JointState
+        from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
+        self._urdf_message = String()
+        self._urdf_message.data = export_skeleton_urdf(self.kinematic_model)
+        self._joint_state_message = JointState()
+        snapshot = joint_state_snapshot(self.kinematic_model)
+        self._joint_state_message.name = snapshot["name"]
+        self._joint_state_message.position = snapshot["position"]
+        self._joint_state_message.velocity = snapshot["velocity"]
+        self._joint_state_message.effort = snapshot["effort"]
+        self._urdf_publisher = self._node.create_publisher(
+            String, f"/soulbridge/{self.identity.robot_id}/robot_description",
+            QoSProfile(depth=1,reliability=ReliabilityPolicy.RELIABLE,
+                       durability=DurabilityPolicy.TRANSIENT_LOCAL))
+        self._joint_state_publisher = self._node.create_publisher(
+            JointState, f"/soulbridge/{self.identity.robot_id}/joint_states",
+            QoSProfile(depth=10,reliability=ReliabilityPolicy.RELIABLE,
+                       durability=DurabilityPolicy.VOLATILE))
+
+    def publish_kinematic_state(self):
+        if self._joint_state_publisher is None or self._node is None:
+            raise RuntimeError("KINEMATIC_PUBLISHER_NOT_STARTED")
+        self._joint_state_message.header.stamp = self._node.get_clock().now().to_msg()
+        self._urdf_publisher.publish(self._urdf_message)
+        self._joint_state_publisher.publish(self._joint_state_message)
 
     def _on_question(self, message):
         if self._node is None or self._publisher is None:
@@ -78,8 +112,13 @@ def main():
                           "model_tree_sha256":description.fingerprint,
                           "real_vendor_model":description.profile_id,
                           "vendor_actuated_joint_count":description.spec["motors"]}),flush=True)
+        import time
+        next_state=time.monotonic()
         while True:
             adapter.spin_once(timeout_sec=0.1)
+            if time.monotonic()>=next_state:
+                adapter.publish_kinematic_state()
+                next_state=time.monotonic()+0.4
     except KeyboardInterrupt:
         pass
     except Exception as exc:
