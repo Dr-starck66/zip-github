@@ -1,0 +1,16 @@
+{
+  "artifact_schema": "soulbridge.cross-domain-negative-control.v1",
+  "date": "2026-10-16",
+  "experiment": "Stop local llama.cpp Qwen server and rerun exactly the real ROS2 cross-domain test",
+  "local_qwen_health_endpoint_unreachable": true,
+  "probe_exit_code": 1,
+  "probe_result": {
+    "status": "REAL_QWEN_ROS2_CROSS_DOMAIN_FAIL",
+    "error_class": "URLError",
+    "reason": "RUNTIME_ERROR",
+    "timestamp_utc": "2026-10-16T14:33:28.241144+00:00"
+  },
+  "anti_false_pass_confirmed": true,
+  "no_user_history_used": true,
+  "remarks": "This controlled failure was executed AFTER saving two successful Qwen/DDS runs; no mock or stub fallback was invoked."
+}
