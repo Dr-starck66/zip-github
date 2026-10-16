@@ -1,3 +1,13 @@
+# ACTUAL TEST STATUS — VERIFIED 2026-10-16
+
+**REAL_ROS2_DDS_LOOPBACK_PASS** established on real ROS 2 Jazzy using an isolated Ubuntu Noble OCI rootfs under chroot (no Docker daemon required) with rclpy/Fast DDS, two text endpoints and one independent observer, four delivered responses, shared public synthetic capsule, input rejection, no motor topics. The prior Render payment block was bypassed using an existing compute VM. **No physical robot, SDK or personal ChatGPT memory was tested.**
+
+[Durable evidence JSON](../docs/evidence/SOULBRIDGE-ROS2-DDS-REAL-PASS-2026-10-16.json) · [full final status report](../docs/SOULBRIDGE-ROS2-RUNTIME-STATUS-2026-10-16.md)
+
+The notes below document the original Docker test configuration. Their "UNVERIFIED until run" condition has now been satisfied **only for the above real ROS 2 DDS text-loopback scope**.
+
+---
+
 # ASTRA SOULBRIDGE Ω — Proof gate: ROS 2 réellement exécuté
 
 **Statut initial : UNVERIFIED** jusqu'à une preuve d'exécution d'un conteneur basé sur ROS Jazzy, incluant des messages réels via DDS.
