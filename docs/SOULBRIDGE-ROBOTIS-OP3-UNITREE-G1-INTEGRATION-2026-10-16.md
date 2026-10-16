@@ -16,7 +16,7 @@
 | Environnement DDS prévu | Domaine ROS 2 **42** | Domaine ROS 2 **43** |
 | Utilisation d'un SDK constructeur ou d'un moteur physique | **Non** | **Non** |
 
-Sources : urlOP3 dans la documentation ROBOTIShttps://docs.robotis.com/docs/systems/op3/introduction/ et urlG1 décrit par Unitreehttps://github.com/unitreerobotics/unitree_ros/tree/master/robots/g1_description.
+Sources : [OP3 dans la documentation ROBOTIS](https://docs.robotis.com/docs/systems/op3/introduction/) et [G1 décrit par Unitree](https://github.com/unitreerobotics/unitree_ros/tree/master/robots/g1_description).
 
 ## Actions réalisées
 
