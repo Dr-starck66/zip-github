@@ -1,0 +1,148 @@
+{
+  "artifact_schema": "soulbridge.real-qwen-ros2-cross-domain-evidence.v1",
+  "date": "2026-10-16",
+  "model_source": "Qwen/Qwen2.5-1.5B-Instruct-GGUF",
+  "model_sha256": "6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e",
+  "execution": "Official ROS2 Jazzy (Ubuntu Noble ARM64 OCI rootfs chroot), two real ROS2 DDS domains 42/43, two independent OS worker processes and one local llama.cpp server",
+  "runner": "existing user-authorized Floot compute VM, no new paid plan",
+  "runs": [
+    {
+      "status": "REAL_QWEN_ROS2_CROSS_DOMAIN_HANDOFF_PASS",
+      "timestamp_utc": "2026-10-16T14:30:44.203063+00:00",
+      "model_backend": "Local llama.cpp CPU with real Qwen2.5 1.5B GGUF Q4_K_M",
+      "model": "/tmp/soulbridge-model/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "source": "Qwen/Qwen2.5-1.5B-Instruct-GGUF",
+      "capsule_sha256": "d6838573ea81a61a7977e4f7a6115aba8b552883cdd68118aa961c803fbd8eea",
+      "real_rclpy_dds": true,
+      "ros_distro": "jazzy",
+      "domain_A": 42,
+      "domain_B": 43,
+      "negative_cross_domain_dds_discovery_pass": true,
+      "separate_worker_os_pids": [
+        4593,
+        4594
+      ],
+      "distinct_ros2_dds_domains": true,
+      "handoff_via_explicit_transcript": true,
+      "handoff_transcript_sha256": "e293941dc9d66fd14ffad87844b72c3c53f3f7e29330b881568d2b6ed167a2a9",
+      "novel_challenge_codeword": "AZUR-370",
+      "novel_challenge_absent_from_initial_memory": true,
+      "novel_challenge_absent_from_receiver_question": true,
+      "generated_answer_count": 4,
+      "turns": [
+        {
+          "robot_id": "robotis_op2",
+          "model_answer": "Chicago.",
+          "model_answer_sha256": "d86f0046083fcc9851015740ba770b23887294aebc2332c37ad4190dc731f0d2",
+          "context_turns_received": 0,
+          "test": "original_capsule",
+          "real_generation": true
+        },
+        {
+          "robot_id": "robotis_op2",
+          "model_answer": "AZUR-370.",
+          "model_answer_sha256": "650228be3ed894ef6c085f5b2d20b48adfd74c93d816d6e3868f0dd4411af2ca",
+          "context_turns_received": 2,
+          "test": "new_random_fact",
+          "real_generation": true
+        },
+        {
+          "robot_id": "softbank_nao",
+          "model_answer": "AZUR-370.",
+          "model_answer_sha256": "650228be3ed894ef6c085f5b2d20b48adfd74c93d816d6e3868f0dd4411af2ca",
+          "context_turns_received": 4,
+          "test": "novel_fact_cross_domain",
+          "real_generation": true
+        },
+        {
+          "robot_id": "softbank_nao",
+          "model_answer": "Chicago.",
+          "model_answer_sha256": "d86f0046083fcc9851015740ba770b23887294aebc2332c37ad4190dc731f0d2",
+          "context_turns_received": 6,
+          "test": "original_capsule_retained",
+          "real_generation": true
+        }
+      ],
+      "independent_physical_hosts_tested": false,
+      "independent_robot_physics_engines_tested": false,
+      "real_manufacturer_robots_tested": false,
+      "chatgpt_export_loaded": false,
+      "synthetic_only": true,
+      "motor_commands_enabled": false,
+      "scope": "Two independent process and DDS-domain endpoints on same host, shared synthetic capsule, one LLM service; NOT two physical robots."
+    },
+    {
+      "status": "REAL_QWEN_ROS2_CROSS_DOMAIN_HANDOFF_PASS",
+      "timestamp_utc": "2026-10-16T14:31:16.230769+00:00",
+      "model_backend": "Local llama.cpp CPU with real Qwen2.5 1.5B GGUF Q4_K_M",
+      "model": "/tmp/soulbridge-model/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "source": "Qwen/Qwen2.5-1.5B-Instruct-GGUF",
+      "capsule_sha256": "d6838573ea81a61a7977e4f7a6115aba8b552883cdd68118aa961c803fbd8eea",
+      "real_rclpy_dds": true,
+      "ros_distro": "jazzy",
+      "domain_A": 42,
+      "domain_B": 43,
+      "negative_cross_domain_dds_discovery_pass": true,
+      "separate_worker_os_pids": [
+        4667,
+        4668
+      ],
+      "distinct_ros2_dds_domains": true,
+      "handoff_via_explicit_transcript": true,
+      "handoff_transcript_sha256": "77901c1cf9002cba00c497caf02899e574d58b074785a5bfef07adc08040e812",
+      "novel_challenge_codeword": "AZUR-437",
+      "novel_challenge_absent_from_initial_memory": true,
+      "novel_challenge_absent_from_receiver_question": true,
+      "generated_answer_count": 4,
+      "turns": [
+        {
+          "robot_id": "robotis_op2",
+          "model_answer": "Chicago.",
+          "model_answer_sha256": "d86f0046083fcc9851015740ba770b23887294aebc2332c37ad4190dc731f0d2",
+          "context_turns_received": 0,
+          "test": "original_capsule",
+          "real_generation": true
+        },
+        {
+          "robot_id": "robotis_op2",
+          "model_answer": "AZUR-437.",
+          "model_answer_sha256": "699f97242b09e87f1341dee618706d379d8795da89951fad1ec5d46a21f9dc40",
+          "context_turns_received": 2,
+          "test": "new_random_fact",
+          "real_generation": true
+        },
+        {
+          "robot_id": "softbank_nao",
+          "model_answer": "AZUR-437.",
+          "model_answer_sha256": "699f97242b09e87f1341dee618706d379d8795da89951fad1ec5d46a21f9dc40",
+          "context_turns_received": 4,
+          "test": "novel_fact_cross_domain",
+          "real_generation": true
+        },
+        {
+          "robot_id": "softbank_nao",
+          "model_answer": "Chicago.",
+          "model_answer_sha256": "d86f0046083fcc9851015740ba770b23887294aebc2332c37ad4190dc731f0d2",
+          "context_turns_received": 6,
+          "test": "original_capsule_retained",
+          "real_generation": true
+        }
+      ],
+      "independent_physical_hosts_tested": false,
+      "independent_robot_physics_engines_tested": false,
+      "real_manufacturer_robots_tested": false,
+      "chatgpt_export_loaded": false,
+      "synthetic_only": true,
+      "motor_commands_enabled": false,
+      "scope": "Two independent process and DDS-domain endpoints on same host, shared synthetic capsule, one LLM service; NOT two physical robots."
+    }
+  ],
+  "checks": {
+    "both_runs_pass": true,
+    "different_challenges": true,
+    "all_answers_real": true,
+    "second_run_stdout_clean": true,
+    "no_private_history": true,
+    "no_motors": true
+  }
+}
