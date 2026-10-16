@@ -20,6 +20,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from controllers.soulbridge_shared.robot_adapters import SyntheticMemory
 from ros2_probe.qwen_ros_bridge import PROOF_PROVIDER, sha
+from robot_models.skeleton_urdf import export_skeleton_urdf, joint_state_snapshot
 from robot_models.kinematics import RobotDescription, compare_real_models
 
 REPORT=Path("/tmp/soulbridge-qwen-ros2-handoff-report.json")
@@ -40,6 +41,7 @@ def run():
     from rclpy.executors import SingleThreadedExecutor
     from rclpy.qos import QoSProfile,ReliabilityPolicy,DurabilityPolicy
     from std_msgs.msg import String
+    from sensor_msgs.msg import JointState
     memory=SyntheticMemory.from_file(ROOT/"data"/"synthetic_capsule.json")
     model_A=RobotDescription.load(ROOT/'robot_models'/'robotis_op3.model.json')
     model_B=RobotDescription.load(ROOT/'robot_models'/'unitree_g1.model.json')
@@ -51,6 +53,8 @@ def run():
     require(state.get("status")=="ok","QWEN_LOCAL_SERVER_NOT_READY")
     children=[];log_files=[];contexts=[];nodes={};publishers={};executors={}
     answers={name:[] for name in WORKERS}
+    descriptions={}
+    vendor_joint_states={}
     try:
         for rid,domain in DOMAINS.items():
             log=open("/tmp/soulbridge-"+rid+"-qwen-worker.log","w")
@@ -79,6 +83,15 @@ def run():
                 String,"/soulbridge/"+rid+"/operator_text",qos)
             node.create_subscription(String,"/soulbridge/"+rid+"/assistant_text",
                 lambda msg,rid=rid: answers[rid].append(json.loads(msg.data)),qos)
+            node.create_subscription(
+                String, "/soulbridge/"+rid+"/robot_description",
+                lambda msg,rid=rid:descriptions.__setitem__(rid,msg.data),
+                QoSProfile(depth=1,reliability=ReliabilityPolicy.RELIABLE,
+                           durability=DurabilityPolicy.TRANSIENT_LOCAL))
+            node.create_subscription(
+                JointState, "/soulbridge/"+rid+"/joint_states",
+                lambda msg,rid=rid:vendor_joint_states.__setitem__(rid,msg),
+                qos)
 
         def spin_both_once():
             for rid in WORKERS:
@@ -94,6 +107,25 @@ def run():
                 break
         else:raise ProofError("TWO_DDS_DOMAINS_DISCOVERY_FAILED")
 
+        # Two genuinely different, vendor-derived URDF models must be present
+        # on distinct DDS domains, not just textual manufacturer labels.
+        description_deadline=time.monotonic()+15
+        while time.monotonic()<description_deadline and (
+              len(descriptions)!=2 or len(vendor_joint_states)!=2):
+            spin_both_once()
+        require(len(descriptions)==2 and len(vendor_joint_states)==2,
+                "VENDOR_ROBOT_DESCRIPTIONS_NOT_REALLY_PUBLISHED_VIA_DDS")
+        for rid,desc in ((WORKERS[0],model_A),(WORKERS[1],model_B)):
+            require(descriptions.get(rid)==export_skeleton_urdf(desc),
+                    "WRONG_VENDOR_URDF_RECEIVED_OVER_DDS")
+            msg=vendor_joint_states[rid]
+            expected=joint_state_snapshot(desc)
+            require(list(msg.name)==expected["name"]
+                    and len(msg.position)==desc.spec["motors"]
+                    and list(msg.position)==expected["position"]
+                    and all(v==0 for v in msg.velocity)
+                    and all(v==0 for v in msg.effort),
+                    "WRONG_VENDOR_JOINT_STATE_OVER_DDS")
         # Negative discovery: each domain MUST NOT see the other's robot topics.
         a,b=WORKERS
         require(nodes[a].count_publishers("/soulbridge/"+b+"/assistant_text")==0
@@ -196,6 +228,9 @@ def run():
             "real_rclpy_dds":True,"ros_distro":"jazzy",
             "vendor_kinematic_model_proof":description_proof,
             "both_manufacturer_descriptions_loaded_and_used":True,
+            "two_different_vendor_urdf_skeletons_received_via_ros2_dds":True,
+            "vendor_joint_state_counts":[model_A.spec["motors"],model_B.spec["motors"]],
+            "published_joint_states_are_synthetic_kinematics_only":True,
             "manufacturer_joint_models":["ROBOTIS OP3 20-DOF","Unitree G1 23-DOF"],
             "domain_A":DOMAINS[a],"domain_B":DOMAINS[b],
             "negative_cross_domain_dds_discovery_pass":True,
