@@ -11,7 +11,7 @@ from urllib import request, error
 
 from controllers.soulbridge_shared.robot_adapters import SyntheticMemory, AdapterError
 
-HOST = "http://127.0.0.1:8080"
+HOST = "http://127.0.0.1:18080"
 MODEL_ID = "qwen2.5-1.5b-instruct-q4_k_m.gguf"
 PROOF_PROVIDER = "llama_cpp_real_qwen25_15b"
 
