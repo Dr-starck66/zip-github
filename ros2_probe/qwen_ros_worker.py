@@ -64,6 +64,10 @@ def main():
             adapter.spin_once(timeout_sec=0.1)
     except KeyboardInterrupt:
         pass
+    except Exception as exc:
+        from rclpy.executors import ExternalShutdownException
+        if not isinstance(exc, ExternalShutdownException):
+            raise
     finally:
         adapter.close()
 
