@@ -49,7 +49,8 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--id",required=True,choices=["robotis_op2","softbank_nao"])
     args=parser.parse_args()
-    if os.getenv("ROS_AUTOMATIC_DISCOVERY_RANGE")!="LOCALHOST" or os.getenv("ROS_DOMAIN_ID")!="42":
+    if (os.getenv("ROS_AUTOMATIC_DISCOVERY_RANGE")!="LOCALHOST"
+        or os.getenv("ROS_DOMAIN_ID")!=({"robotis_op2":"42","softbank_nao":"43"}[args.id])):
         raise SystemExit("DDS_DISCOVERY_NOT_ISOLATED")
     mem=SyntheticMemory.from_file(ROOT/"data"/"synthetic_capsule.json")
     profiles={"robotis_op2":("Robotis","OP2"),"softbank_nao":("SoftBank","NAO")}
