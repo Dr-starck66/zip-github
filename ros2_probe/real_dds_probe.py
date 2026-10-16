@@ -153,7 +153,9 @@ def run_real_ros2_probe(timeout: float = 22.0) -> dict:
         return {
             'status': 'REAL_ROS2_DDS_LOOPBACK_PASS',
             'timestamp_utc': datetime.now(timezone.utc).isoformat(),
-            'environment': 'isolated container - actual rclpy / DDS',
+            'environment': 'ROS 2 Jazzy OCI rootfs or container - actual rclpy/DDS',
+            'discovery_restriction': 'ROS_DOMAIN_ID=42 and ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST',
+            'not_network_firewall_isolation': True,
             'ros_distro': os.environ['ROS_DISTRO'],
             'ros_domain_id': 42,
             'ros_discovery_range': 'LOCALHOST',
