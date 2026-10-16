@@ -79,8 +79,8 @@ def run_real_ros2_probe(timeout: float = 22.0) -> dict:
                 qos,
             )
         nodes = [observer, *(b._node for b in probes)]
-        deadline = time.monotonic() + timeout
-        while time.monotonic() < deadline:
+        discovery_deadline = time.monotonic() + timeout
+        while time.monotonic() < discovery_deadline:
             pump(rclpy, nodes, 0.09)
             ready = all(
                 publishers[b.identity.robot_id].get_subscription_count() >= 1
@@ -104,7 +104,8 @@ def run_real_ros2_probe(timeout: float = 22.0) -> dict:
             msg.data = question
             for bridge in probes:
                 publishers[bridge.identity.robot_id].publish(msg)
-            while time.monotonic() < deadline:
+            challenge_deadline = time.monotonic() + timeout
+            while time.monotonic() < challenge_deadline:
                 pump(rclpy, nodes, 0.09)
                 if all(len(metrics[b.identity.robot_id]) > before[b.identity.robot_id]
                        for b in probes):
