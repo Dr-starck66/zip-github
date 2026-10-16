@@ -1,0 +1,65 @@
+{
+  "schema": "soulbridge.two-official-manufacturer-models-evidence.v1",
+  "date_utc": "2026-10-16T16:15:54.220Z",
+  "status": "TWO_OFFICIAL_ROBOT_KINEMATIC_STRUCTURES_PARSED_AND_VALIDATED_PASS",
+  "validation_engine": "ECMAScript reference validator in current ChatGPT tool connection using GitHub content; not ROS2 runtime",
+  "official_sources": [
+    {
+      "pass": true,
+      "vendor": "ROBOTIS",
+      "actuated_joints": 20,
+      "links": 23,
+      "official_commit": "6f7d56ccef6f78061925c56c6bd9d134d243f911"
+    },
+    {
+      "pass": true,
+      "vendor": "Unitree",
+      "actuated_joints": 23,
+      "links": 33,
+      "official_commit": "5994d4faef0a9cadd3287f8de0199a67eeb2a259"
+    }
+  ],
+  "immutable_upstream_sources": [
+    "ROBOTIS-GIT/ROBOTIS-OP3-Common@6f7d56ccef6f78061925c56c6bd9d134d243f911",
+    "unitreerobotics/unitree_ros@5994d4faef0a9cadd3287f8de0199a67eeb2a259"
+  ],
+  "negative_controls": [
+    {
+      "case": "reject counterfeit model type",
+      "detected": true,
+      "reason": "WRONG_VENDOR_OR_JOINT_COUNT"
+    },
+    {
+      "case": "reject renamed actuated joint count",
+      "detected": true,
+      "reason": "WRONG_VENDOR_OR_JOINT_COUNT"
+    },
+    {
+      "case": "reject altered source commit",
+      "detected": true,
+      "reason": "SOURCE_COMMIT_MISMATCH"
+    },
+    {
+      "case": "reject motor-enable",
+      "detected": true,
+      "reason": "MOTOR_CONTROL_ENABLED"
+    },
+    {
+      "case": "reject duplicated downstream link",
+      "detected": true,
+      "reason": "DUPLICATED_CHILD_LINK"
+    }
+  ],
+  "distinct_manufacturers": true,
+  "distict_joint_trees": true,
+  "kinematic_joint_perturbation_proof": {
+    "robotis_op3_left_ankle_shift_m": 0.0168755341958621,
+    "unitree_g1_left_ankle_shift_m": 0.04759055455838047,
+    "knee_perturbation_radians": 0.15,
+    "validation_note": "Kinematic displacement computed on graph (not a physics engine) from officially sourced joint origins and axes."
+  },
+  "no_motor_commands": true,
+  "physical_robot_connection_tested": false,
+  "ros2_new_model_integrated_execution_tested": false,
+  "limitations": "Only vendor-authentic kinematic manifests validated, based on upstream XACRO/URDF; no manufacturer SDK or real hardware/physics execution."
+}
