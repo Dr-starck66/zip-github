@@ -40,7 +40,7 @@ def run():
     capsule=SyntheticMemory.from_file(ROOT/"data"/"synthetic_capsule.json")
     model_path=Path("/tmp/soulbridge-model/qwen2.5-1.5b-instruct-q4_k_m.gguf")
     # Only announce the model name after validating that llama.cpp responds.
-    with urllib.request.urlopen("http://127.0.0.1:8080/health",timeout=5) as s:
+    with urllib.request.urlopen("http://127.0.0.1:18080/health",timeout=5) as s:
         status=json.loads(s.read(16000))
     require(status.get("status")=="ok","LOCAL_QWEN_SERVER_UNHEALTHY")
     processes=[]
