@@ -7,10 +7,11 @@ ENV ROS_DOMAIN_ID=42 \
     PYTHONUNBUFFERED=1 \
     ROS_LOG_DIR=/tmp/soulbridge_ros_logs
 RUN apt-get update \
-  && apt-get install --no-install-recommends -y ros-jazzy-std-msgs \
+  && apt-get install --no-install-recommends -y ros-jazzy-std-msgs ros-jazzy-sensor-msgs \
   && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY controllers/soulbridge_shared/ controllers/soulbridge_shared/
+COPY robot_models/ robot_models/
 COPY data/synthetic_capsule.json data/synthetic_capsule.json
 COPY ros2_probe/ ros2_probe/
 RUN useradd -u 10001 --create-home soulbridge \
