@@ -1,33 +1,50 @@
-# ASTRA SOULBRIDGE Ω — vérification ROS 2 réelle (16 octobre 2026)
+# ASTRA SOULBRIDGE Ω — ROS 2 natif réel : rapport définitif du 16 octobre 2026
 
-## Résultat observé
+## Résultat de l'exécution : **PASS**, périmètre strictement limité au test DDS de dialogue synthétique
 
-**Statut final : BLOCKED / ROS2_RUNTIME_UNVERIFIED. Ne pas afficher PASS.**
+**Preuve structurée horodatée :** [SOULBRIDGE-ROS2-DDS-REAL-PASS-2026-10-16.json](./evidence/SOULBRIDGE-ROS2-DDS-REAL-PASS-2026-10-16.json).
 
-### 1. Exécution locale
-Le conteneur d'exécution accessible à ChatGPT est Debian 13 avec Python 3.13. Il ne possède ni commande `ros2`, ni `rclpy`, ni `std_msgs`, ni moteur Docker ou Podman. Les téléchargements directs via `curl` sont bloqués au niveau DNS.
+- Dernière exécution réussie : **2026-10-16 13:49:41 UTC**.
+- Statut renvoyé par le vrai programme : `REAL_ROS2_DDS_LOOPBACK_PASS`.
+- Sortie du processus : code **0** ; **0 erreur** sur cette exécution finale.
+- **ROS 2 Jazzy**, Ubuntu Noble **arm64/aarch64**, paquet natif `rclpy` et `std_msgs`.
+- Image OCI officielle : `docker.io/library/ros:jazzy-ros-base`, manifeste ARM64 `sha256:066420e07f60aa18262f2479981def87ebcfcec42eefb0c0c57c4a46098348ca`.
+- Capsule fictive partagée, empreinte SHA-256 : `d6838573ea81a61a7977e4f7a6115aba8b552883cdd68118aa961c803fbd8eea`.
+- **Trois véritables nœuds ROS 2** : deux adaptateurs de dialogue et un observateur sur DDS.
+- **Quatre messages** de réponse réellement délivrés et vérifiés via DDS sur quatre topics : pour chaque profil, souvenir connu puis souvenir absent.
+- Résultat identique des deux adaptateurs, avec refus explicite du souvenir absent.
+- Entrée trop longue rejetée, aucune réponse publiée en retour ; aucun topic d'actionneur ni pilote robot.
+- `ROS_DOMAIN_ID=42`, `ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST`.
 
-**Conclusion :** aucun middleware ROS 2 natif ne peut actuellement y exécuter le banc DDS.
+### Comment le blocage Render a été contourné sans payer
 
-### 2. Tentative cloud gratuite
-Un service Render explicitement demandé en plan `free` a été proposé :
-- Nom : `soulbridge-ros2-proof-omega`
-- Dépôt source : `Dr-starck66/zip-github`, branche `soulbridge-ros2-real-probe-20261016`
-- Dockerfile : `ros2_probe/Dockerfile` (image officielle `ros:jazzy-ros-base`)
-- Paramètres : `ROS_DOMAIN_ID=42`, `ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST`
-- Région : Frankfurt, `autoDeploy=no`
+La tentative initiale sur Render Free a retourné **HTTP 402** car Render réclamait des données de paiement. Aucun service Render n'a été créé, aucun débit engagé.
 
-**Réponse réelle de Render : HTTP 402 — « Payment information is required to complete this request ».**
+À la place, une **machine virtuelle de calcul déjà disponible** via l'application Floot connectée a été utilisée (aucun nouvel abonnement). Elle est Debian 12 arm64, exécutable root, mais ne disposait ni de Docker ni de ROS. Nous y avons installé les outils `skopeo` / `umoci`, téléchargé l'image officielle ROS 2 comme **rootfs OCI**, puis exécuté **directement** le runtime Ubuntu/ROS 2 via `chroot`. La mémoire partagée `/dev/shm` a été montée dans le rootfs pour supprimer les avertissements Fast DDS apparus lors des deux premiers essais, et la vérification finale a été rejouée : **PASS et logs propres**.
 
-Aucun service Render n'a été créé et aucune carte bancaire n'a été ajoutée. **Aucun coût déclenché.** Aucune clé/API privée n'a été fournie. Conformément au souhait de zéro coût, aucun plan payant n'a été tenté.
+L'environnement était isolé au sens d'un **rootfs séparé** et d'une découverte ROS 2 limitée à `LOCALHOST`. Ce n'était **pas** un conteneur Docker avec pare-feu ou une preuve de confinement de niveau sécurité ; la découverte sur localhost ne chiffre pas les messages.
 
-### 3. Ce qui est réellement prêt
-- Programme de test dans `ros2_probe/real_dds_probe.py` : deux adaptateurs ROS 2 textuels, troisième nœud observateur, topics DDS, deux questions (connue/inconnue), refus de message invalide, empreintes identiques, exclusion des topics moteurs.
-- Conteneur ROS 2 Jazzy officiel `ros2_probe/Dockerfile`.
-- Rapport HTTP en lecture seule `ros2_probe/server.py` qui répond 200 à `/healthz` **uniquement** si le test ROS 2 est réellement réussi ; sinon 503, `/report` donne les détails.
-- La seule mémoire autorisée est `data/synthetic_capsule.json` ; l'historique privé ChatGPT reste non importé.
+### Validation et limites exactes
 
-### 4. Condition du PASS vérifiable
-Un environnement avec Docker et accès réseau pour récupérer `ros:jazzy-ros-base` doit lancer le conteneur, puis produire un JSON `REAL_ROS2_DDS_LOOPBACK_PASS` et des logs attestant deux véritables communications ROS 2 rclpy/DDS sans mock. **Aucun rapport de ce type n'existe au 16 octobre 2026.**
+**Démontré :** vrai `rclpy`, vrai middleware ROS 2 DDS, deux endpoints de dialogue, même capsule de mémoire, réponses textuelles reçues via les topics, validation des réponses, rejet d'entrée incorrecte.
 
-**ATTENTION :** deux profils logiciels nommés « Robotis » et « SoftBank » ne constituent pas deux véritables SDK robot, ni deux robots physiques.
+**Non démontré :** deux fabricants réellement intégrés, deux machines physiques, robots réels, moteurs, voix, vraie mémoire ChatGPT exportée, DDS sécurisé, déploiement permanent sur serveur. Les noms `Robotis` / `SoftBank` sont uniquement des **profils logiciels** ; ils ne signifient pas que leurs SDK ont été utilisés.
+
+### Reproductibilité sans Docker daemon
+
+Sur un hôte Linux compatible ARM64 avec `skopeo`, `umoci` et `chroot` autorisés :
+
+```bash
+skopeo copy --override-arch arm64 docker://docker.io/library/ros:jazzy-ros-base oci:/tmp/soulbridge-ros-oci:jazzy
+umoci unpack --rootless --image /tmp/soulbridge-ros-oci:jazzy /tmp/soulbridge-ros-bundle
+mkdir -p /tmp/soulbridge-ros-bundle/rootfs/dev/shm
+mount --bind /dev/shm /tmp/soulbridge-ros-bundle/rootfs/dev/shm
+# Déposer les fichiers du dépôt dans /tmp/soulbridge-ros-bundle/rootfs/app
+ROS_DOMAIN_ID=42 ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST \
+chroot /tmp/soulbridge-ros-bundle/rootfs /bin/bash -lc \
+  'source /opt/ros/jazzy/setup.bash; cd /app; python3 -u ros2_probe/real_dds_probe.py'
+```
+
+Le script sort avec code 0 **uniquement si** les contrôles DDS réels passent. Il ne reçoit et n'envoie aucune donnée personnelle. Le rapport synthétique horodaté dans `docs/evidence` a été sauvegardé comme preuve durable ; GitHub Actions n'a pas été utilisé.
+
+**Suite logique :** interopérabilité entre deux processus/machines isolées, puis étude des connecteurs SDK robots réels, sous supervision scientifique.
