@@ -35,13 +35,14 @@ def run():
     require(os.environ.get("ROS_DISTRO")=="jazzy","ROS_JAZZY_REQUIRED")
     import rclpy
     from rclpy.context import Context
+    from rclpy.executors import SingleThreadedExecutor
     from rclpy.qos import QoSProfile,ReliabilityPolicy,DurabilityPolicy
     from std_msgs.msg import String
     memory=SyntheticMemory.from_file(ROOT/"data"/"synthetic_capsule.json")
     with urllib.request.urlopen("http://127.0.0.1:18080/health",timeout=5) as res:
         state=json.loads(res.read(10000))
     require(state.get("status")=="ok","QWEN_LOCAL_SERVER_NOT_READY")
-    children=[];log_files=[];contexts=[];nodes={};publishers={}
+    children=[];log_files=[];contexts=[];nodes={};publishers={};executors={}
     answers={name:[] for name in WORKERS}
     try:
         for rid,domain in DOMAINS.items():
@@ -62,6 +63,9 @@ def run():
             node=rclpy.create_node("soulbridge_domain_"+str(domain)+"_observer",
                                    context=context)
             nodes[rid]=node
+            executor=SingleThreadedExecutor(context=context)
+            executor.add_node(node)
+            executors[rid]=executor
             qos=QoSProfile(depth=10,reliability=ReliabilityPolicy.RELIABLE,
                            durability=DurabilityPolicy.VOLATILE)
             publishers[rid]=node.create_publisher(
@@ -71,7 +75,7 @@ def run():
 
         def spin_both_once():
             for rid in WORKERS:
-                rclpy.spin_once(nodes[rid],timeout_sec=0.04)
+                executors[rid].spin_once(timeout_sec=0.04)
 
         discovery_until=time.monotonic()+40
         while time.monotonic()<discovery_until:
@@ -167,6 +171,8 @@ def run():
             "scope":"Two independent process and DDS-domain endpoints on same host, shared synthetic capsule, one LLM service; NOT two physical robots."
         }
     finally:
+        for executor in executors.values():
+            executor.shutdown()
         for node in nodes.values():
             node.destroy_node()
         for ctx in reversed(contexts):
