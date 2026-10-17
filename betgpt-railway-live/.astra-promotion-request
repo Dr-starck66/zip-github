@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "9e07f788e704ed6cb9a9e2e62da718827f4032ed",
-  "workflowRunId": 39008078202,
-  "requestedAt": "2026-10-17T05:59:45.815Z",
-  "reason": "Release ten rewritten, beginner-friendly football biographies with real life stories, clubs, major matches, source links and player-specific career tables; preserve URLs, 48h schedule and guarded Railway rollout."
+  "sourceSha": "2f643699722d5215a8008a15fc10fac5c8820962",
+  "workflowRunId": 39009006980,
+  "requestedAt": "2026-10-17T06:14:56.092Z",
+  "reason": "Release ten authenticated actual-footballer Wikimedia Commons photographs, visible photographer CC BY-SA credits and image fallback for all 40 player articles while retaining readable biographies and 48-hour schedule. Full Never-Fail Candidate Gate SUCCESS."
 }
