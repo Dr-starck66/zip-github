@@ -1,0 +1,9 @@
+[build]
+  command = "SITE_URL=https://wyylde-avis-guide-2026.netlify.app python3 build_site.py && SITE_URL=https://wyylde-avis-guide-2026.netlify.app python3 audit_site.py"
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
