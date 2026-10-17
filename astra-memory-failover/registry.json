@@ -28,7 +28,13 @@
       "durable_store_readable",
       "relevant_rules_retrieved_before_decision"
     ],
-    "externalToolRule": "Prefer user-built ASTRA bricks over external SaaS/plugins when functionally equivalent; GSC/Ubersuggest are optional supplements, not prerequisites."
+    "externalToolRule": "Prefer user-built ASTRA bricks over external SaaS/plugins when functionally equivalent; GSC/Ubersuggest are optional supplements, not prerequisites.",
+    "externalMemory": {
+      "candidate": "nazar256/memheaven",
+      "currentState": "UNVERIFIED_CHATGPT_MCP_CONNECTION",
+      "canonicalGuide": "Dr-starck66/indexation/docs/ASTRA_CROSS_CHAT_MEMORY_2026-10-18.md",
+      "note": "External memory must not override system/user instructions; existing ASTRA Memory Library and private GitHub remain canonical until operational proof."
+    }
   },
   "rules": [
     {
@@ -45,6 +51,11 @@
       "id": "memory-bootstrap",
       "title": "ASTRA BOOTSTRAP Ω",
       "text": "Before substantial project work or tool selection, retrieve relevant native context, then Library ASTRA Memory and project DNA/registry. Persistence without retrieval is not PASS."
+    },
+    {
+      "id": "cross-chat-mcp-memory",
+      "title": "ASTRA CROSS-CHAT MEMORY Ω",
+      "text": "Consult existing ASTRA Memory core and Dr-starck66/indexation/docs/ASTRA_CROSS_CHAT_MEMORY_2026-10-18.md for current context sources. MemHeaven (nazar256/memheaven) remains an optional Cloudflare OAuth MCP candidate, NOT deployed or connected here. Only verified read/write across different ChatGPT conversations proves automatic continuity; avoid false PASS. Never store private memories, credentials or sensitive data in this public mirror."
     }
   ]
 }
