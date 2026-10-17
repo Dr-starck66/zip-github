@@ -1,4 +1,3 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
-
-Sitemap: https://dr-starck66.github.io/zip-github/sitemap.xml
+Sitemap: https://wyyldeavis.github.io/sitemap.xml
