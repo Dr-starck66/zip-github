@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "5a6261bf1b6ff784fdd12ec834b376d883e4e257",
-  "workflowRunId": 38712934780,
-  "requestedAt": "2026-10-15T09:28:00Z",
-  "reason": "Fix 90-day rotating verified result recovery, bounded OOM-safe provider concurrency. Full main Never-Fail candidate run 38712934780 SUCCESS. Request release train GREEN ancestry checks, no forced rollout or rollback."
+  "sourceSha": "8c6eecb7cacc9f5b3d9012be95513b0b758ff621",
+  "workflowRunId": 39005389757,
+  "requestedAt": "2026-10-17T05:27:39.767Z",
+  "reason": "Release mobile performance improvements (deferred Hunter board and data, font preconnect, low-priority images) and contextual StreamEast backlink. Full main Never-Fail candidate 39005389757 SUCCESS; preserve immutable GREEN source, health gate and no-rollback controls."
 }
