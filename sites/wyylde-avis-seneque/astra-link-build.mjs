@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /** ASTRA ORPHAN GUARD Ω — build-time source-to-output repair; no credentials/dependencies. */
 import fs from 'node:fs/promises';
+import {enrich} from './astra-depth-content.mjs';
 import path from 'node:path';
 const ROOT=process.cwd(), OUT=path.join(ROOT,'dist'), BASE='https://wyylde-avis.seneque.info/';
 const sitemapFile=path.join(ROOT,'sitemap.xml');
@@ -14,6 +15,7 @@ async function enumerate(dir){const list=[];for(const d of await fs.readdir(dir,
 async function main(){
   await fs.rm(OUT,{recursive:true,force:true});await fs.mkdir(OUT,{recursive:true});
   for(const e of await fs.readdir(ROOT,{withFileTypes:true})){if(['dist','node_modules','.git','astra-link-build.mjs'].includes(e.name)||e.isSymbolicLink())continue;await fs.cp(path.join(ROOT,e.name),path.join(OUT,e.name),{recursive:true})}
+  await enrich(OUT);
   const original=await fs.readFile(sitemapFile,'utf8');
   if(!/<urlset\b/i.test(original))throw Error('INVALID_SITEMAP');
   const declared=[...original.matchAll(/<loc\b[^>]*>([^<]+)<\/loc>/gi)].map(m=>m[1].replace(/&amp;/g,'&'));
