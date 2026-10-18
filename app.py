@@ -489,6 +489,9 @@ def _railway_verify_token(value: str) -> str:
     return value
 
 def _dynadot_rest_call(api_key: str, api_secret: str, method: str, path: str, payload=None):
+    # ASTRA SAFE DNS: requests cannot mutate registrar state on this service.
+    if method.upper() not in ("GET", "HEAD"):
+        raise HTTPException(status_code=403, detail="ASTRA_AUTODNS_DNS_WRITES_DISABLED")
     api_key = (api_key or "").strip().strip('"').strip("'")
     api_secret = (api_secret or "").strip().strip('"').strip("'")
     if not api_key or not api_secret:
@@ -584,6 +587,8 @@ document.getElementById('go').onclick=async()=>{
 
 @app.post("/autodns/setup/apply")
 def autodns_setup_apply(req: AutodnsSetupRequest, token: str = ""):
+    # Never accept DNS mutations, even with a valid one-shot setup token.
+    raise HTTPException(status_code=403, detail="ASTRA_AUTODNS_DNS_WRITES_DISABLED")
     global _AUTODNS_SETUP_USED
     if not _autodns_token_ok(token):
         raise HTTPException(404, "Not found")
