@@ -55,6 +55,12 @@ const baseDir=path.resolve('cocon-wyylde');
 for(const slug of wyyldeSlugs){
  const article=await fs.readFile(path.join(baseDir,slug,'index.html'),'utf8');
  if(!article.includes('<h1>')||!article.includes('href="'+SITE+'/'+slug+'/'))throw Error('COCON_INVALID '+slug);
+ const faqStart=article.indexOf('<section class="faqs">');
+ const mainStart=article.indexOf('<main');
+ if(faqStart<0||mainStart<0)throw Error('COCON_SECTION_MISSING '+slug);
+ const editorialWords=wc(article.slice(mainStart,faqStart));
+ if(editorialWords<1500)throw Error('COCON_TOO_SHORT '+slug+' '+editorialWords);
+ console.log(JSON.stringify({component:'ASTRA_COCON_MIN_1500',slug,words:editorialWords,status:'PASS'}));
  await save(slug+'/index.html',article);
 }
 await save('wyylde-cocon.css',await fs.readFile(path.join(baseDir,'wyylde-cocon.css'),'utf8'));
