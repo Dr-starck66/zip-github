@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "2f643699722d5215a8008a15fc10fac5c8820962",
-  "promotionKey": "Dr-starck66/betgpt-railway@2f643699722d5215a8008a15fc10fac5c8820962",
+  "sourceSha": "7188387cc30278ed023184ef26e850a7880ee2c1",
+  "promotionKey": "Dr-starck66/betgpt-railway@7188387cc30278ed023184ef26e850a7880ee2c1",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-17T17:20:13.727Z",
-  "reason": "Re-emit approved GREEN release because public production had not converged"
+  "updatedAt": "2026-10-18T16:38:33.144Z",
+  "reason": "Promote verified GREEN BetGPT results fastpath from workflow 39145700332; prevent provider I/O from blocking SSR"
 }
