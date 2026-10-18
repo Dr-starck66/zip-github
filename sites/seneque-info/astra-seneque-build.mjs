@@ -17,13 +17,14 @@ const css=`
 .astra-depth{margin:3rem 0;padding:2rem 0;border-top:3px solid #ae8c67;line-height:1.8}.astra-depth h3{font-size:clamp(1.1rem,2.3vw,1.5rem);margin:1.7rem 0 .6rem}.astra-depth p{max-width:76ch}.astra-depth img{max-width:100%;height:auto;max-height:460px;object-fit:contain;border-radius:12px}.astra-depth figcaption{font-size:.83rem;color:#786a56;margin-top:.5rem}.astra-proof{background:#f1e5d2;padding:1rem 1.3rem;border-left:4px solid #a6734c}.astra-proof li{margin:.5rem 0}.astra-edited{text-transform:uppercase;letter-spacing:.06em;font-size:.8rem;color:#985f39;font-weight:700}.astra-frame{aspect-ratio:16/9;background:#24190f;border-radius:12px;overflow:hidden}.astra-frame iframe{width:100%;height:100%;border:0}.astra-home-media{padding:3rem 0;background:#f5e9d5}.astra-home-media .wrap{padding-inline:1.2rem}.astra-home-media img{width:100%;max-height:470px;object-fit:contain;height:auto}.astra-home-media p{max-width:75ch}.astra-media-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}@media(max-width:750px){.astra-media-grid{grid-template-columns:1fr}.astra-depth{padding:1.2rem 0}}
 `;
 await fs.rm(OUT,{recursive:true,force:true});await fs.mkdir(OUT,{recursive:true});
-const sitemap=await get('/sitemap.xml');const routes=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>new URL(m[1]).pathname);
+const sitemap=await get('/sitemap.xml');const allRoutes=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>new URL(m[1]).pathname);const routes=allRoutes.filter(p=>!p.startsWith('/wyylde-'));
 if(routes.length!==22||new Set(routes).size!==22)throw Error('SITEMAP_22_REQUIRED');
 if(input.articles.length!==21)throw Error('EDITORIAL_21_REQUIRED');
 const map=new Map(input.articles.map(x=>['/'+x.slug+'/',x]));let count=0,modified=0,minimum=999;
 for(const route of routes){
  let html=await get(route);if(!html.includes('<!doctype html>'))throw Error('NON_HTML '+route);
  if(route==='/'){
+   html=html.replaceAll('https://wyylde-avis.seneque.info/','/wyylde-avis/');
    if(!html.includes('data-astra-enriched="2026-10-18"')){
    const block='<section class="astra-home-media" data-astra-enriched="2026-10-18"><div class="wrap"><h2>Rome antique : une histoire en images et en sources</h2><p>Les fêtes romaines, les banquets et les textes de Sénèque ne forment pas une histoire uniforme. Un auteur satirique peut grossir l’excès ; une fresque présente une scène construite ; une inscription aide parfois à recouper les récits. Nous confrontons ces documents sans transformer des représentations en statistiques.</p><p>La société romaine connaissait de fortes inégalités de statut. Comprendre ses plaisirs exige donc de regarder les conditions des femmes, des personnes asservies et des citoyens, et de préciser la date de chaque témoignage. Nos dossiers conservent les doutes lorsqu’une filiation ou une anecdote ne sont pas prouvées.</p><div class="astra-media-grid">'+artF+artS+'</div>'+video('KArMbrAUa50','Pompéi : exposition du Grand Palais')+'<p><a href="/lupanar-pompei/">Le lupanar de Pompéi</a> · <a href="/banquets-plaisirs-rome/">Les banquets antiques</a> · <a href="/sources-historiques/">Sources et méthode</a></p></div></section>';
    html=html.replace('</main>',block+'</main>');modified++;
@@ -48,5 +49,17 @@ for(const route of routes){
 await save('style.css',(await get('/style.css'))+'\n'+css);
 await save('favicon.svg',await get('/favicon.svg'));
 await save('robots.txt',await get('/robots.txt'));
-await save('sitemap.xml',sitemap.replace(/<lastmod>2026-10-17<\/lastmod>/g,'<lastmod>2026-10-18</lastmod>'));
-console.log(JSON.stringify({component:'ASTRA_SENEQUE_BUILD',status:'PASS_BUILD',pages:count,enhanced:modified,minimumArticleWords:minimum,images:21,videoEmbeds:3,sourceOrigin:SITE}));
+// Bundle the eight Wyylde articles as real files of the apex domain; no cross-project rewrite.
+const wyyldeSlugs=['wyylde-avis','wyylde-tarifs','wyylde-gratuit','wyylde-resiliation','wyylde-fiabilite','wyylde-avis-utilisateurs','wyylde-avis-homme-seul','wyylde-avis-couple'];
+const baseDir=path.resolve('cocon-wyylde');
+for(const slug of wyyldeSlugs){
+ const article=await fs.readFile(path.join(baseDir,slug,'index.html'),'utf8');
+ if(!article.includes('<h1>')||!article.includes('href="'+SITE+'/'+slug+'/'))throw Error('COCON_INVALID '+slug);
+ await save(slug+'/index.html',article);
+}
+await save('wyylde-cocon.css',await fs.readFile(path.join(baseDir,'wyylde-cocon.css'),'utf8'));
+const allPaths=[...routes,...wyyldeSlugs.map(s=>'/'+s+'/')];
+if(allPaths.length!==30||new Set(allPaths).size!==30)throw Error('SITEMAP_30_REQUIRED');
+const unionSitemap='<?xml version="1.0" encoding="UTF-8"?>\\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\\n'+allPaths.map(p=>'<url><loc>'+SITE+p+'</loc><lastmod>2026-10-18</lastmod></url>').join('\\n')+'\\n</urlset>\\n';
+await save('sitemap.xml',unionSitemap);
+console.log(JSON.stringify({component:'ASTRA_SENEQUE_BUILD',status:'PASS_BUILD',legacyPages:count,wyyldePages:wyyldeSlugs.length,totalPages:allPaths.length,enhanced:modified,minimumArticleWords:minimum,images:21,videoEmbeds:3,sourceOrigin:SITE}));
