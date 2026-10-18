@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "trailingSlash": true,
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "node build-longform.mjs",
+  "outputDirectory": "dist"
+}
