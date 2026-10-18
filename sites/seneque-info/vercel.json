@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "trailingSlash": true,
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "node astra-seneque-build.mjs",
+  "outputDirectory": "dist"
+}
