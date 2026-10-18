@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-18T16:38:33.144Z",
-  "reason": "Promote verified GREEN BetGPT results fastpath from workflow 39145700332; prevent provider I/O from blocking SSR"
+  "updatedAt": "2026-10-18T16:38:53.714Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
