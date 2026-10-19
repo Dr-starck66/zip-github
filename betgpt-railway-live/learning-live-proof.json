@@ -1,21 +1,21 @@
 {
   "schema": "astra-betgpt-learning-live-proof/v1",
-  "checkedAt": "2026-10-18T23:39:59Z",
+  "checkedAt": "2026-10-19T14:26:31Z",
   "source": "https://betgpt.live/api/learning-checkpoint",
   "runtimeSchema": "astra-betgpt-runtime-checkpoint/v2",
-  "generatedAt": "2026-10-18T23:39:58.617Z",
+  "generatedAt": "2026-10-19T14:26:31.118Z",
   "refresh": {
     "status": "PASS",
     "source": "FRESH_CACHE",
-    "liveFetchedAt": 1792366533121,
-    "liveAsOf": "2026-10-18T23:35:33.121Z"
+    "liveFetchedAt": 1792419881066,
+    "liveAsOf": "2026-10-19T14:24:41.066Z"
   },
   "recovery": {
     "status": "PASS",
     "targets": 4,
     "recovered": 0
   },
-  "ticketCount": 876,
+  "ticketCount": 889,
   "learning": {
     "canonicalSettledN": 32,
     "canonicalWins": 11,
@@ -27,7 +27,7 @@
     "observationalSimulatedRoi": 0.026156408308021295,
     "playableFreshness": {
       "latestSettledKickoff": "2026-10-18T18:45Z",
-      "settledLast24h": 9,
+      "settledLast24h": 4,
       "settledLast7d": 34,
       "status": "FRESH"
     },
@@ -576,7 +576,7 @@
     "contextualLosses": 89,
     "contextualFreshness": {
       "latestSettledKickoff": "2026-10-18T19:00Z",
-      "settledLast24h": 23,
+      "settledLast24h": 12,
       "settledLast7d": 81,
       "status": "FRESH"
     },
