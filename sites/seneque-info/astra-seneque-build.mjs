@@ -70,6 +70,6 @@ for(const slug of wyyldeSlugs){
 await save('wyylde-cocon.css',await fs.readFile(path.join(baseDir,'wyylde-cocon.css'),'utf8'));
 const allPaths=[...routes,...wyyldeSlugs.map(s=>'/'+s+'/')];
 if(allPaths.length!==30||new Set(allPaths).size!==30)throw Error('SITEMAP_30_REQUIRED');
-const unionSitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+allPaths.map(p=>'<url><loc>'+SITE+p+'</loc><lastmod>2026-10-18</lastmod></url>').join('\n')+'\n</urlset>\n';
+const unionSitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+allPaths.map(p=>'<url><loc>'+SITE+p+'</loc><lastmod>'+(p==='/'||p==='/wyylde-avis/'?'2026-10-21':'2026-10-18')+'</lastmod></url>').join('\n')+'\n</urlset>\n';
 await save('sitemap.xml',unionSitemap);
 console.log(JSON.stringify({component:'ASTRA_SENEQUE_BUILD',status:'PASS_BUILD',legacyPages:count,wyyldePages:wyyldeSlugs.length,totalPages:allPaths.length,enhanced:modified,minimumArticleWords:minimum,images:21,videoEmbeds:3,sourceOrigin:SITE}));
