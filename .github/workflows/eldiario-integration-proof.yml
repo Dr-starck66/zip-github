@@ -9,6 +9,7 @@ on:
       - "eldiariodelcibao/data/astra-content-legacy-baseline.json"
       - "eldiariodelcibao/data/content.json"
       - "eldiariodelcibao/scripts/astra_local_guide_guard.mjs"
+      - "eldiariodelcibao/data/wayback-2018-metadata.json"
       - "eldiariodelcibao/scripts/recover-wayback-2018.py"
       - ".github/workflows/eldiario-integration-proof.yml"
   workflow_dispatch:
@@ -67,7 +68,8 @@ jobs:
           const ledger=JSON.parse(fs.readFileSync('data/wayback-2018-metadata.json','utf8'));
           assert.equal(evidence.checked,ledger.records.length);
           assert.equal(evidence.evidence,ledger.records.filter(x=>x.status==='evidence-metadata').length);
-          assert.ok(evidence.checked<=259);
+          assert.equal(evidence.checked,259);
+          assert.ok(evidence.evidence>=180,"Historical archive proof regression below 180");
            assert.equal(evidence.noindex,true);
            const page=await(await fetch(base+'/2018/06/convocan-paro-por-48-horas-en-esperanza.html')).text();
            assert.ok(page.includes('noindex,follow'));
