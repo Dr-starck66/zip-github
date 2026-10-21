@@ -32,6 +32,15 @@ async function main(){
     all.set(url,{url,html,local:urlToFile(url)});
   }
   if(!all.has(BASE))throw Error('HOMEPAGE_MISSING');
+  // ASTRA SEO: one clear organic landing URL for the exact-match target.
+  const pillarUrl=BASE+'wyylde-avis/';
+  if(!all.has(pillarUrl))throw Error('WYYLDE_AVIS_PILLAR_MISSING');
+  const homeTitle=title(all.get(BASE).html), pillarTitle=title(all.get(pillarUrl).html);
+  if(/^wyylde avis(?:\\s|:|\\b)/i.test(homeTitle))throw Error('SEO_PRIMARY_HOMEPAGE_TITLE_COLLISION');
+  if(!/^wyylde avis(?:\\s|:|\\b)/i.test(pillarTitle))throw Error('SEO_PRIMARY_PILLAR_TITLE_MISSING');
+  if(!anchors(all.get(BASE).html,BASE).has(pillarUrl))throw Error('SEO_PRIMARY_PILLAR_NOT_LINKED');
+  if(!/<meta\\s+name="robots"\\s+content="[^"]*index,follow/i.test(all.get(pillarUrl).html))throw Error('SEO_PRIMARY_PILLAR_NOT_INDEXABLE');
+  console.log(JSON.stringify({component:'ASTRA_PRIMARY_KEYWORD_GUARD',status:'PASS_BUILD',keyword:'wyylde avis',canonicalPillar:pillarUrl,homeTitle,pillarTitle}));
   for(const url of sitemap)if(!all.has(url))throw Error('SITEMAP_PAGE_MISSING '+url);
   let generated=0,appended=0;
   for(const url of all.keys())if(!sitemap.has(url)){sitemap.add(url);generated++}
