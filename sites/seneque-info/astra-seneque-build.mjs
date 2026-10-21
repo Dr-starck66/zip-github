@@ -24,7 +24,11 @@ const map=new Map(input.articles.map(x=>['/'+x.slug+'/',x]));let count=0,modifie
 for(const route of routes){
  let html=await get(route);if(!html.includes('<!doctype html>'))throw Error('NON_HTML '+route);
  if(route==='/'){
-   html=html.replaceAll('https://wyylde-avis.seneque.info/','/wyylde-avis/');
+   // Historic /wyylde-avis/ stays live. Its homepage link now endorses the primary subdomain pillar.
+   const pillar='https://wyylde-avis.seneque.info/wyylde-avis/';
+   const oldHref='href="/wyylde-avis/"', newHref='href="'+pillar+'"';
+   if(!html.includes(oldHref)&&!html.includes(newHref))throw Error('WYYLDE_INBOUND_LINK_MISSING');
+   html=html.replace(oldHref,newHref).replace('href="https://wyylde-avis.seneque.info/"',newHref);
    if(!html.includes('data-astra-enriched="2026-10-18"')){
    const block='<section class="astra-home-media" data-astra-enriched="2026-10-18"><div class="wrap"><h2>Rome antique : une histoire en images et en sources</h2><p>Les fêtes romaines, les banquets et les textes de Sénèque ne forment pas une histoire uniforme. Un auteur satirique peut grossir l’excès ; une fresque présente une scène construite ; une inscription aide parfois à recouper les récits. Nous confrontons ces documents sans transformer des représentations en statistiques.</p><p>La société romaine connaissait de fortes inégalités de statut. Comprendre ses plaisirs exige donc de regarder les conditions des femmes, des personnes asservies et des citoyens, et de préciser la date de chaque témoignage. Nos dossiers conservent les doutes lorsqu’une filiation ou une anecdote ne sont pas prouvées.</p><div class="astra-media-grid">'+artF+artS+'</div>'+video('KArMbrAUa50','Pompéi : exposition du Grand Palais')+'<p><a href="/lupanar-pompei/">Le lupanar de Pompéi</a> · <a href="/banquets-plaisirs-rome/">Les banquets antiques</a> · <a href="/sources-historiques/">Sources et méthode</a></p></div></section>';
    html=html.replace('</main>',block+'</main>');modified++;
