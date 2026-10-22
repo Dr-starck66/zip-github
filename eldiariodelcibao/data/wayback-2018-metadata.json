@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Source metadata only; no copied full article texts and no automatic indexability",
-  "checkedUTC": "2026-10-21T07:54:06.066574+00:00",
+  "checkedUTC": "2026-10-22T07:50:47.428082+00:00",
   "totalJune2018": 259,
   "records": [
     {
@@ -162,11 +162,19 @@
     },
     {
       "path": "/2018/06/andres-bautista-se-defiente-denuncia-un.html",
-      "status": "fetch-failed",
-      "error": "TimeoutError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180620044113id_/http://www.eldiariodelcibao.com:80/2018/06/andres-bautista-se-defiente-denuncia-un.html",
+      "archiveTimestamp": "20180620044113",
+      "originalTitle": "Andrés Bautista se defiente; denuncia un plan rastrero del procurador",
+      "originalDate": "2018-06-14",
+      "sourceBodyWords": 640,
+      "sourceBodySha256": "df6647c597486668bd6dbecf200d7c0d57c39027ca08984737ec52d83ec4b5ca",
+      "sourceExcerpt": "Rep. Dom.- El expresidente del Partido Revolucionario Moderno (PRM), Andrés Bautista, aprovechó el escenario de la conve",
+      "httpStatus": 200,
       "indexable": false,
-      "provenance": "wayback-fetch-attempt"
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-22T07:50:25.296349+00:00"
     },
     {
       "path": "/2018/06/angel-delgado-de-haina-para-la-nba.html",
@@ -376,10 +384,19 @@
     },
     {
       "path": "/2018/06/bani-hombre-viola-y-asesina-menor-de-8.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180610103811id_/http://www.eldiariodelcibao.com:80/2018/06/bani-hombre-viola-y-asesina-menor-de-8.html",
-      "indexable": false
+      "archiveTimestamp": "20180610103811",
+      "originalTitle": "Baní : Hombre viola y asesina menor de 8 años, agrede a la madre de esta y se suicida (video)",
+      "originalDate": "2018-06-06",
+      "sourceBodyWords": 339,
+      "sourceBodySha256": "d05ce57b68307c64f27b2107ca954b0a47a83ff172506390194829a5ad92dec6",
+      "sourceExcerpt": "BANÍ, Peravia.- Lo que se pensó que pudo haber sido un suicido, se convirtió en una terrible tragedia en Bani, el nombra",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-22T07:50:23.824521+00:00"
     },
     {
       "path": "/2018/06/bartolo-colon-gana-juego-y-empata-con.html",
@@ -607,10 +624,19 @@
     },
     {
       "path": "/2018/06/cifra-de-muertes-por-huracan-maria.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180607213502id_/http://www.eldiariodelcibao.com:80/2018/06/cifra-de-muertes-por-huracan-maria.html",
-      "indexable": false
+      "archiveTimestamp": "20180607213502",
+      "originalTitle": "Cifra de muertes por huracán María causa dolor e indignación en Puerto Rico",
+      "originalDate": "2018-06-04",
+      "sourceBodyWords": 324,
+      "sourceBodySha256": "77f0d95b8a59c2e2ae4460a82e44d4f9b3608924fd69fa4ce241fa2d148a2ad1",
+      "sourceExcerpt": "SAN JUAN.- La negativa del Gobierno de Puerto Rico a confirmar la cantidad de muertes a consecuencia del huracán María, ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-22T07:50:25.343657+00:00"
     },
     {
       "path": "/2018/06/colombia-supero-senegal-y-se-clasifico.html",
@@ -710,11 +736,19 @@
     },
     {
       "path": "/2018/06/convocan-paro-por-48-horas-en-esperanza.html",
-      "status": "fetch-failed",
-      "error": "TimeoutError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180620044230id_/http://www.eldiariodelcibao.com:80/2018/06/convocan-paro-por-48-horas-en-esperanza.html",
+      "archiveTimestamp": "20180620044230",
+      "originalTitle": "Convocan paro por 48 horas en Esperanza los días 3 y 4 de julio",
+      "originalDate": "2018-06-14",
+      "sourceBodyWords": 155,
+      "sourceBodySha256": "dea84437cabe27607a3667602988d6c596c014614fc0a8768fb21f017557d669",
+      "sourceExcerpt": "Esperanza-. El Frente Amplio de Lucha Popular (FALPO), luego de sostener una reunión con organizaciones sociales y comun",
+      "httpStatus": 200,
       "indexable": false,
-      "provenance": "wayback-fetch-attempt"
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-22T07:50:26.950597+00:00"
     },
     {
       "path": "/2018/06/cruz-jiminian-pide-pension-para-margaro.html",
@@ -782,10 +816,19 @@
     },
     {
       "path": "/2018/06/denuncian-gobierno-ofrece-facilidades.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180703072415id_/http://www.eldiariodelcibao.com:80/2018/06/denuncian-gobierno-ofrece-facilidades.html",
-      "indexable": false
+      "archiveTimestamp": "20180703072415",
+      "originalTitle": "Denuncian gobierno ofrece facilidades a empresas chinas para monopolizar el transporte RD",
+      "originalDate": "2018-06-29",
+      "sourceBodyWords": 449,
+      "sourceBodySha256": "04920012734a550355150523c969ca1aa9228e70ea5c2cda17050e70337c8804",
+      "sourceExcerpt": "Por Manuel Curiel.- Boston, massachusetts- El Secretario de Transporte del Partido Reformista Social Cristiano (PRSC), l",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-22T07:50:26.554192+00:00"
     },
     {
       "path": "/2018/06/denuncian-irregularidades-en-el.html",
@@ -927,11 +970,19 @@
     },
     {
       "path": "/2018/06/director-junta-de-boca-de-mao-se-reune.html",
-      "status": "fetch-failed",
-      "error": "TimeoutError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180623142521id_/http://www.eldiariodelcibao.com:80/2018/06/director-junta-de-boca-de-mao-se-reune.html",
+      "archiveTimestamp": "20180623142521",
+      "originalTitle": "Director Junta de Boca de Mao se reúne con líderes comunitario del Puente San Rafael para tratar tema de letrero",
+      "originalDate": "2018-06-18",
+      "sourceBodyWords": 208,
+      "sourceBodySha256": "1fe8ae86ff31e542dcb1d348b739c2ac4a0719c5e28ddc1f6623b32f786ca4a8",
+      "sourceExcerpt": "Esperanza-. El director de junta distrital de Boca de Mao, José Alberto Taveras anunció este lunes que luego de una reun",
+      "httpStatus": 200,
       "indexable": false,
-      "provenance": "wayback-fetch-attempt"
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-22T07:50:27.982225+00:00"
     },
     {
       "path": "/2018/06/dirigente-nacional-adp-pide-al-ministro.html",
@@ -1335,11 +1386,19 @@
     },
     {
       "path": "/2018/06/empresario-pedro-espinal-sera.html",
-      "status": "fetch-failed",
-      "error": "TimeoutError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180703072430id_/http://www.eldiariodelcibao.com:80/2018/06/empresario-pedro-espinal-sera.html",
+      "archiveTimestamp": "20180703072430",
+      "originalTitle": "Empresario Pedro Espinal será observador el domingo en elecciones de México.",
+      "originalDate": "2018-06-29",
+      "sourceBodyWords": 753,
+      "sourceBodySha256": "847a1638d3a3feb11aa22e8bb5a4b6f0a4a9ed9b563c7fb84276219845bcad8a",
+      "sourceExcerpt": "Por Marcelo Peralta. - Santiago, R.D.- El empresario de origen sabanetero Pedro Espinal -Pellín- será observador el domi",
+      "httpStatus": 200,
       "indexable": false,
-      "provenance": "wayback-fetch-attempt"
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-22T07:50:30.922472+00:00"
     },
     {
       "path": "/2018/06/en-5-dias-felix-bautista-dono-rd45.html",
@@ -2181,10 +2240,19 @@
     },
     {
       "path": "/2018/06/joven-grabado-en-video-asesinando.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180703092639id_/http://www.eldiariodelcibao.com:80/2018/06/joven-grabado-en-video-asesinando.html",
-      "indexable": false
+      "archiveTimestamp": "20180703092639",
+      "originalTitle": "Joven grabado en video asesinando a Lesandro Guzmán se declara inocente",
+      "originalDate": "2018-06-29",
+      "sourceBodyWords": 227,
+      "sourceBodySha256": "c3283acd3f2bb1d0d0de3d1feb704819bb1efc0e881d36c3fb4a01f9b33286c2",
+      "sourceExcerpt": "Elvin García, uno de los principales acusados del asesinato del joven dominicano Lesandro Guzmán, se declaró inocente de",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-22T07:50:31.697269+00:00"
     },
     {
       "path": "/2018/06/juez-envia-juicio-de-fondo-marlon-y.html",
@@ -2220,31 +2288,60 @@
     },
     {
       "path": "/2018/06/justicia-para-junior-reclaman-en.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180702014033id_/http://www.eldiariodelcibao.com:80/2018/06/justicia-para-junior-reclaman-en.html",
-      "indexable": false
+      "archiveTimestamp": "20180702014033",
+      "originalTitle": "“¡Justicia para Junior!”, reclaman en funeral de Lesandro Guzmán Feliz en El Bronx",
+      "originalDate": "2018-06-27",
+      "sourceBodyWords": 266,
+      "sourceBodySha256": "d56579ec20bfea400494111493d89bdb6b5f0c45492017e598e630f6cea71849",
+      "sourceExcerpt": "NUEVA YORK – La comunidad de El Bronx continúa llorando la pérdida de uno de sus pequeños. Con un silencio que paulatina",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-22T07:50:35.411342+00:00"
     },
     {
       "path": "/2018/06/korea-del-sur-se-come-al-equipazo-de.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180701213132id_/http://www.eldiariodelcibao.com:80/2018/06/korea-del-sur-se-come-al-equipazo-de.html",
-      "indexable": false
+      "archiveTimestamp": "20180701213132",
+      "originalTitle": "KOREA DEL SUR SE COME AL EQUIPAZO DE ALEMANIA Y LO DESCALIFICA DE EL MUNDIAL",
+      "originalDate": "2018-06-27",
+      "sourceBodyWords": 103,
+      "sourceBodySha256": "b2ea53ad76c78e3d6303da7c2a874ca528b84d244981efa3eb948ed1ae8dc762",
+      "sourceExcerpt": "El Mundial de Rusia vivió el primer gran golpe histórico con Alemania como selección protagonista: cayó ante Corea del S",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-22T07:50:36.501255+00:00"
     },
     {
       "path": "/2018/06/la-guerrera-juliana-recibe-sus-30-anos.html",
       "status": "fetch-failed",
       "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20180702062613id_/http://www.eldiariodelcibao.com:80/2018/06/la-guerrera-juliana-recibe-sus-30-anos.html",
-      "indexable": false
+      "indexable": false,
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-22T07:50:47.427657+00:00"
     },
     {
       "path": "/2018/06/la-justicia-de-eeuu-ordena-reunificar.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180702014207id_/http://www.eldiariodelcibao.com:80/2018/06/la-justicia-de-eeuu-ordena-reunificar.html",
-      "indexable": false
+      "archiveTimestamp": "20180702014207",
+      "originalTitle": "La Justicia de EEUU ordena reunificar a los menores separados en 30 días",
+      "originalDate": "2018-06-27",
+      "sourceBodyWords": 73,
+      "sourceBodySha256": "13da80f84cd5ba74faa201ac13b085e93e989bed5cc172d44b682ab6bef4aa1e",
+      "sourceExcerpt": "La Justicia de Estados Unidos ordenó hoy al Gobierno del presidente Donald Trump que reunifique, en un plazo de 30 días,",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-22T07:50:43.830341+00:00"
     },
     {
       "path": "/2018/06/la-plataforma-multisectorial-de-genero.html",
