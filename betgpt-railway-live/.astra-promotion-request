@@ -1,9 +1,9 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "",
-  "workflowRunId": null,
-  "requestedSourceSha": "d151623998397b52c0441ee300cdba34d2616b67",
-  "requestedAt": "2026-10-23T10:30:00Z",
-  "reason": "User requested PR #78 production rollout. Run the existing ASTRA Safe BetGPT Promotion controller to select latest independently verified GREEN main candidate including tactical chat fix d151623 if the Never-Fail gate is successful. Do not invent a workflowRunId, bypass immutable proof, or roll production backwards. Postflight must confirm public revision and chat."
+  "sourceSha": "93fe1e5b89b4404c3b6d72cf12a7f5b9a001caf8",
+  "workflowRunId": 39950564190,
+  "requestedSourceSha": "93fe1e5b89b4404c3b6d72cf12a7f5b9a001caf8",
+  "requestedAt": "2026-10-23T12:06:08.785Z",
+  "reason": "User-authorized PR #79 rollout: GREEN main candidate proof run 39950564190; promote via ASTRA Safe BetGPT Promotion only; verify public sourceSha, fail-closed canonical ROI PAUSE and continuing recent-results learning. No rollback."
 }
