@@ -124,7 +124,7 @@ def main():
     unseen = sorted((x for x in eligible if x["path"] not in by_path),
                     key=editorial_priority)
     failed = [x for x in eligible if x["path"] in by_path
-              and by_path[x["path"]].get("status") == "fetch-failed"]
+              and by_path[x["path"]].get("status") in {"fetch-failed", "capture-incomplete"}]
     failed.sort(key=lambda x: (by_path[x["path"]].get("attemptCount", 1),
                                by_path[x["path"]].get("lastAttemptUTC", "")))
     candidates = (unseen + failed)[:max(0, args.limit)]
