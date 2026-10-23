@@ -5,8 +5,8 @@ const data=JSON.parse(readFileSync(new URL("../data/archives-2018-june-dossiers.
 const ledger=JSON.parse(readFileSync(new URL("../data/wayback-2018-metadata.json",import.meta.url)));
 const source=new Map(ledger.records.map(x=>[x.path,x]));
 const server=readFileSync(new URL("../server.mjs",import.meta.url),"utf8");
-test("eight source-backed dossiers from original Wayback bodies",()=>{
- assert.equal(data.items.length,8);
+test("25 source-backed dossiers from original Wayback bodies",()=>{
+ assert.equal(data.items.length,25);
  assert.equal(new Set(data.items.map(x=>x.path)).size,8);
  for(const d of data.items){
   const ev=source.get(d.path);
@@ -18,7 +18,11 @@ test("eight source-backed dossiers from original Wayback bodies",()=>{
   assert.ok(d.sections.length>=3,d.path);
   assert.ok(d.sections.map(x=>x[1]).join(" ").split(/\s+/).length>=170,d.path);
   assert.equal(d.documentType,"resumen-documental-de-fuente-original");
-  assert.equal(d.editorialStatus,"partial-dossier");
+  assert.ok(["partial-dossier","source-reviewed-dossier"].includes(d.editorialStatus),d.path);
+  if(d.editorialStatus==="source-reviewed-dossier"){
+   assert.ok(d.sections.length>=4,d.path);
+   assert.ok(d.sections.map(x=>x[1]).join(" ").split(/\s+/).length>=260,d.path);
+  }
  }
 });
 test("routes are wired to content renderer and sitemap without removing missing-source caveats",()=>{
