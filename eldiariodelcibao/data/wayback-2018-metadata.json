@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Source metadata only; no copied full article texts and no automatic indexability",
-  "checkedUTC": "2026-10-22T07:50:47.428082+00:00",
+  "checkedUTC": "2026-10-23T07:49:42.022106+00:00",
   "totalJune2018": 259,
   "records": [
     {
@@ -2359,24 +2359,51 @@
     },
     {
       "path": "/2018/06/laura-pausini-esta-en-el-centro-de-una.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180703072445id_/http://www.eldiariodelcibao.com:80/2018/06/laura-pausini-esta-en-el-centro-de-una.html",
-      "indexable": false
+      "archiveTimestamp": "20180703072445",
+      "originalTitle": "Laura Pausini está en el centro de una enorme polémica por haber aparecido en redes usando la bandera de Cuba como vestido.",
+      "originalDate": "2018-06-29",
+      "sourceBodyWords": 324,
+      "sourceBodySha256": "5c2b0b737a7a64697ccc4d37780419f334d70111e6685dc6890a8a68df0b377f",
+      "sourceExcerpt": "Picoteando el Espectáculo La controversia comenzó porque este martes la cantante italiana de 44 años cantó por primera v",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-23T07:49:22.482626+00:00"
     },
     {
       "path": "/2018/06/lebron-james-no-importa-quien-gane-las.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180610103755id_/http://www.eldiariodelcibao.com:80/2018/06/lebron-james-no-importa-quien-gane-las.html",
-      "indexable": false
+      "archiveTimestamp": "20180610103755",
+      "originalTitle": "LeBron James: No importa quién gane las finales de la NBA, nadie quiere visitar la Casa Blanca",
+      "originalDate": "2018-06-05",
+      "sourceBodyWords": 232,
+      "sourceBodySha256": "37d5a7fc2c92957a5c448cb3bfc9bd8e21cb5aab8e80f5daf573fbe2050372db",
+      "sourceExcerpt": "La estrella de Cleveland Cavaliers, LeBron James, dice que ni los Cavaliers de Cleveland ni los Golden State Warriors qu",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-23T07:49:22.482591+00:00"
     },
     {
       "path": "/2018/06/leonel-fernandez-continuara-campana.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180626095754id_/http://www.eldiariodelcibao.com:80/2018/06/leonel-fernandez-continuara-campana.html",
-      "indexable": false
+      "archiveTimestamp": "20180626095754",
+      "originalTitle": "Leonel Fernández continuará campaña política por encima del PLD, JCE, CONEP y del país",
+      "originalDate": "2018-06-22",
+      "sourceBodyWords": 227,
+      "sourceBodySha256": "db55114d3900404abcca6883d6057e9283ee24a8d3c1e6904ddd986affcbf1f8",
+      "sourceExcerpt": "El ex presidente Fernandez en un comunicado hecho publico a través de sus redes sociales, se mostró en total desacuerdo ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-23T07:49:23.885959+00:00"
     },
     {
       "path": "/2018/06/leonel-fernandez-organiza-su-grupo-de.html",
@@ -2394,10 +2421,19 @@
     },
     {
       "path": "/2018/06/lidio-cadet-el-comite-politico-tiene-el.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180617211802id_/http://www.eldiariodelcibao.com:80/2018/06/lidio-cadet-el-comite-politico-tiene-el.html",
-      "indexable": false
+      "archiveTimestamp": "20180617211802",
+      "originalTitle": "Lidio Cadet: El Comité Político tiene el deber ineludible de responder a la población",
+      "originalDate": "2018-06-13",
+      "sourceBodyWords": 564,
+      "sourceBodySha256": "ea370a218fc617f80b5a10ce625de1451c7376b2d5b11bfdd94cdf65402b4fd3",
+      "sourceExcerpt": "SANTO DOMINGO.- Los miembros del Comité Político del Partido de la Liberación Dominicana (PLD), senadora Cristina Lizard",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-23T07:49:23.731938+00:00"
     },
     {
       "path": "/2018/06/los-yankees-otorgan-un-minuto-de.html",
@@ -2415,10 +2451,19 @@
     },
     {
       "path": "/2018/06/marcha-verde-convoca-para-el-12-de.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180630070400id_/http://www.eldiariodelcibao.com:80/2018/06/marcha-verde-convoca-para-el-12-de.html",
-      "indexable": false
+      "archiveTimestamp": "20180630070400",
+      "originalTitle": "Marcha Verde convoca para el 12 de agosto a la Marcha del Millón contra la corrupción",
+      "originalDate": "2018-06-26",
+      "sourceBodyWords": 406,
+      "sourceBodySha256": "93bc03df7d3e601884e40752bea0c463960d1fd369a08f0496373a01a979f7e9",
+      "sourceExcerpt": "Santo Domingo.- El Movimiento Marcha Verde convocó hoy a la ciudadanía de las 32 provincias y a la diáspora a participar",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-23T07:49:24.927167+00:00"
     },
     {
       "path": "/2018/06/marcha-verde-procedera-contra.html",
@@ -2436,10 +2481,19 @@
     },
     {
       "path": "/2018/06/marcha-verde-reclama-expliquen-por-que.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180623142556id_/http://www.eldiariodelcibao.com:80/2018/06/marcha-verde-reclama-expliquen-por-que.html",
-      "indexable": false
+      "archiveTimestamp": "20180623142556",
+      "originalTitle": "Marcha Verde reclama expliquen por qué no incluyen en el caso Odebrecht a familiares de Rondón y Díaz Rúa",
+      "originalDate": "2018-06-17",
+      "sourceBodyWords": 433,
+      "sourceBodySha256": "1f40fc0c728e98b9ce1bbce75f3d3b4141001628b4da216df8178481349deee5",
+      "sourceExcerpt": "SANTO DOMINGO. La Marcha Verde aseguró hoy que en la lista de testigos presentada por la defensa de Ángel Rondón figuran",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-23T07:49:27.775732+00:00"
     },
     {
       "path": "/2018/06/marchan-en-moncion-reclamando-acueducto.html",
@@ -2485,10 +2539,19 @@
     },
     {
       "path": "/2018/06/matan-de-tres-balazos-dueno-banca-de.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180703072455id_/http://www.eldiariodelcibao.com:80/2018/06/matan-de-tres-balazos-dueno-banca-de.html",
-      "indexable": false
+      "archiveTimestamp": "20180703072455",
+      "originalTitle": "Matan de tres balazos dueño banca de lotería en un atraco en La Romana",
+      "originalDate": "2018-06-29",
+      "sourceBodyWords": 200,
+      "sourceBodySha256": "871355cb5872cb7f092eba8d9d33aab7c4e701bc005aec48d63e3412bfab7395",
+      "sourceExcerpt": "El propietario de una banca de lotería fue asesinado anoche de tres balazos en La Romana, por desconocidos que lo despoj",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-23T07:49:29.099877+00:00"
     },
     {
       "path": "/2018/06/matan-hombre-balazos-y-hieren-hermana.html",
@@ -2506,17 +2569,35 @@
     },
     {
       "path": "/2018/06/matan-recluso-durante-enfrentamiento-en.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180620044154id_/http://www.eldiariodelcibao.com:80/2018/06/matan-recluso-durante-enfrentamiento-en.html",
-      "indexable": false
+      "archiveTimestamp": "20180620044154",
+      "originalTitle": "Matan recluso durante enfrentamiento en cárcel de Nagua",
+      "originalDate": "2018-06-14",
+      "sourceBodyWords": 170,
+      "sourceBodySha256": "cf60d63fbd7e825bba46e90eec7b3f1e2d0bc2114c4a7eba67bc00bef16ae4a8",
+      "sourceExcerpt": "Curiosos observan cadáver de recluso muerto en cárcel de Nagua NAGUA, República Dominicana.- Fue identificado como José ",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-23T07:49:35.020367+00:00"
     },
     {
       "path": "/2018/06/matan-una-joven-punaladas-cuando-salia.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180620044159id_/http://www.eldiariodelcibao.com:80/2018/06/matan-una-joven-punaladas-cuando-salia.html",
-      "indexable": false
+      "archiveTimestamp": "20180620044159",
+      "originalTitle": "Matan una joven a puñaladas cuando salía de fiestas patronales en Tenares, provincia Hermanas Mirabal",
+      "originalDate": "2018-06-14",
+      "sourceBodyWords": 129,
+      "sourceBodySha256": "d7af9f77faa087cde5f46dfb6a0d6ba292893c9fdf1de842663527acf0a69335",
+      "sourceExcerpt": "SALCEDO, República Dominicana.- Una joven fue muerta a cuchilladas cuando salía de la celebración de las fiestas patrona",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-23T07:49:34.271408+00:00"
     },
     {
       "path": "/2018/06/menor-de-16-anos-se-quita-la-vida-y.html",
@@ -2534,24 +2615,51 @@
     },
     {
       "path": "/2018/06/mia-cepeda-le-manda-fuego-funcionarios.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180617211808id_/http://www.eldiariodelcibao.com:80/2018/06/mia-cepeda-le-manda-fuego-funcionarios.html",
-      "indexable": false
+      "archiveTimestamp": "20180617211808",
+      "originalTitle": "Mía Cepeda le manda fuego a funcionarios que ocultan su preferencia mostrándose como hombres de familia",
+      "originalDate": "2018-06-13",
+      "sourceBodyWords": 201,
+      "sourceBodySha256": "cb4f022fd3bca9e6f79ac9b0c7e821af9f32fd3c6ce81dd0b15f9b9a0fa4bdb6",
+      "sourceExcerpt": "La presentadora de televisión Mía Cepeda se refirió al caso de Yimbert Féliz Telemin, un dirigente de la comunidad de le",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-23T07:49:36.640260+00:00"
     },
     {
       "path": "/2018/06/mira-los-detalles-que-da-banco-popular.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180702062356id_/http://www.eldiariodelcibao.com:80/2018/06/mira-los-detalles-que-da-banco-popular.html",
-      "indexable": false
+      "archiveTimestamp": "20180702062356",
+      "originalTitle": "Mira los detalles que da Banco Popular, sobre el asalto en sucursal",
+      "originalDate": "2018-06-28",
+      "sourceBodyWords": 173,
+      "sourceBodySha256": "4f8dcc137bb81bb592cda22e5853c9b2f6cedd01cecb092ee7f04c15ef44d2b8",
+      "sourceExcerpt": "El Banco Popular Dominicano, S.A.- Banco Múltiple, informó hace un momento que al momento del asalto en la sucursal de e",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-23T07:49:39.517842+00:00"
     },
     {
       "path": "/2018/06/mlb-dice-es-decepcionante-que-telemicro.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "evidence-metadata",
       "archiveUrl": "https://web.archive.org/web/20180607213232id_/http://www.eldiariodelcibao.com:80/2018/06/mlb-dice-es-decepcionante-que-telemicro.html",
-      "indexable": false
+      "archiveTimestamp": "20180607213232",
+      "originalTitle": "MLB dice es decepcionante que Telemicro impida a dominicanos ver juegos de beisbol",
+      "originalDate": "2018-06-03",
+      "sourceBodyWords": 246,
+      "sourceBodySha256": "a6ea6511856721f4a120732adf28affd6d56e3b2ba51af6f21f2128ccb59bc03",
+      "sourceExcerpt": "Santo Domingo.- Las Ligas Mayores de Beisbol (MLB por sus siglas en ingés) se mostró en total desacuerdo con la decisión",
+      "httpStatus": 200,
+      "indexable": false,
+      "provenance": "html-original-capture",
+      "attemptCount": 2,
+      "lastAttemptUTC": "2026-10-23T07:49:42.021598+00:00"
     },
     {
       "path": "/2018/06/momento-en-que-delincuentes-matan.html",
