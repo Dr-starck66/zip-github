@@ -15,6 +15,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
+from urllib.parse import urlencode
 
 from bs4 import BeautifulSoup
 
@@ -43,9 +44,9 @@ def historical_date(s):
     except ValueError:
         return None
 
-def process(row):
+def _process_capture(row, forced_timestamp=None):
     path = row["path"]
-    timestamp = row.get("timestamp", "")
+    timestamp = forced_timestamp or row.get("timestamp", "")
     original = row.get("original", "")
     if not re.fullmatch(r"20\d{12}", timestamp) or not re.match(
             r"^https?://(?:www\.)?eldiariodelcibao\.com(?::80)?/", original, re.I):
@@ -86,6 +87,20 @@ def process(row):
             paragraphs = [ws(remain[:stop.start() if stop else 3500])]
     body = ws(" ".join(paragraphs))
     date = historical_date(page_text[:min(len(page_text),6000)])
+    if not date:
+        # Read source-authored dates only; never invent a missing historical date.
+        for selector in ('meta[property="article:published_time"]',
+                         'meta[itemprop="datePublished"]', 'time[datetime]'):
+            tag = soup.select_one(selector)
+            raw = (tag.get("content") or tag.get("datetime") or "") if tag else ""
+            if re.fullmatch(r"2018-06-\d{2}(?:[T ].*)?", raw):
+                try:
+                    day = raw[:10]
+                    if datetime.fromisoformat(day).month == 6:
+                        date = day
+                        break
+                except ValueError:
+                    pass
     words = len(body.split())
     verified = (code == 200 and len(html) > 2000 and
         "eldiariodelcibao" in final_url.lower() and date and
@@ -98,6 +113,58 @@ def process(row):
         "sourceExcerpt":body[:120] if verified else "",
         "httpStatus":code,"indexable":False,
         "provenance":"html-original-capture" if verified else "capture-requires-human-review"}
+
+def _alternative_snapshots(row):
+    """CDX alternative snapshots: strictly source-linked, never fabricated."""
+    original = row.get("original", "")
+    if not re.match(r"^https?://(?:www\.)?eldiariodelcibao\.com(?::80)?/", original, re.I):
+        return []
+    query = urlencode({"url": original, "output": "json", "from": "2018",
+                       "to": "2020", "filter": "statuscode:200",
+                       "collapse": "digest", "limit": "25"})
+    req = Request("https://web.archive.org/cdx/search/cdx?" + query,
+                  headers={"User-Agent": AGENT, "Accept": "application/json"})
+    try:
+        with urlopen(req, timeout=12) as response:
+            records = json.loads(response.read(60000))
+    except (HTTPError, URLError, TimeoutError, OSError, ValueError):
+        return []
+    if not isinstance(records, list) or not records or not isinstance(records[0], list):
+        return []
+    if "timestamp" not in records[0]:
+        return []
+    column = records[0].index("timestamp")
+    seen = {row.get("timestamp", "")}
+    stamps = []
+    for item in records[1:]:
+        if not isinstance(item, list) or len(item) <= column:
+            continue
+        stamp = str(item[column])
+        if not re.fullmatch(r"20\d{12}", stamp) or stamp in seen:
+            continue
+        seen.add(stamp)
+        stamps.append(stamp)
+    return stamps[:3]
+
+
+def process(row):
+    first = _process_capture(row)
+    if first.get("status") == "evidence-metadata":
+        return first
+    if first.get("status") not in {"capture-incomplete", "fetch-failed"}:
+        return first
+    attempts = 0
+    for timestamp in _alternative_snapshots(row):
+        attempts += 1
+        candidate = _process_capture(row, forced_timestamp=timestamp)
+        if candidate.get("status") == "evidence-metadata":
+            candidate["originalInventoryTimestamp"] = row.get("timestamp")
+            candidate["alternateCaptureVerified"] = True
+            candidate["alternatesExamined"] = attempts
+            return candidate
+    first["alternatesExamined"] = attempts
+    return first
+
 
 def main():
     cli = argparse.ArgumentParser()
