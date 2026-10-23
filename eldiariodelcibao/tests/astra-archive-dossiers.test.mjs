@@ -7,7 +7,7 @@ const source=new Map(ledger.records.map(x=>[x.path,x]));
 const server=readFileSync(new URL("../server.mjs",import.meta.url),"utf8");
 test("25 source-backed dossiers from original Wayback bodies",()=>{
  assert.equal(data.items.length,25);
- assert.equal(new Set(data.items.map(x=>x.path)).size,8);
+ assert.equal(new Set(data.items.map(x=>x.path)).size,data.items.length);
  for(const d of data.items){
   const ev=source.get(d.path);
   assert.equal(ev?.status,"evidence-metadata",d.path);
