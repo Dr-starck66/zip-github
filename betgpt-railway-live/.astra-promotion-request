@@ -4,6 +4,7 @@
   "sourceSha": "93fe1e5b89b4404c3b6d72cf12a7f5b9a001caf8",
   "workflowRunId": 39950564190,
   "requestedSourceSha": "93fe1e5b89b4404c3b6d72cf12a7f5b9a001caf8",
-  "requestedAt": "2026-10-23T12:06:08.785Z",
-  "reason": "User-authorized PR #79 rollout: GREEN main candidate proof run 39950564190; promote via ASTRA Safe BetGPT Promotion only; verify public sourceSha, fail-closed canonical ROI PAUSE and continuing recent-results learning. No rollback."
+  "requestedAt": "2026-10-23T15:22:00.000Z",
+  "reason": "User-authorized urgent restart of the existing safe GREEN promotion controller for BetGPT PSG–Lyon; check newest completed successful ASTRA Never-Fail main run and ancestry to promote 9ad54202497028b977cf234bf1148a36094fcfdd ONLY if GREEN. Keep production healthy otherwise. Historical valid explicit request retained to prevent unverified bypass.",
+  "desiredSourceSha": "9ad54202497028b977cf234bf1148a36094fcfdd"
 }
