@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Source metadata only; no copied full article texts and no automatic indexability",
-  "checkedUTC": "2026-10-23T10:29:07.542060+00:00",
+  "checkedUTC": "2026-10-23T10:29:37.625046+00:00",
   "totalJune2018": 259,
   "records": [
     {
@@ -17,8 +17,8 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 3,
-      "lastAttemptUTC": "2026-10-23T10:28:51.659158+00:00"
+      "attemptCount": 4,
+      "lastAttemptUTC": "2026-10-23T10:29:36.209925+00:00"
     },
     {
       "path": "/2018/06/aduanas-dispondra-de-inteligencia.html",
@@ -191,8 +191,8 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 3,
-      "lastAttemptUTC": "2026-10-23T10:29:06.558515+00:00"
+      "attemptCount": 4,
+      "lastAttemptUTC": "2026-10-23T10:29:36.860912+00:00"
     },
     {
       "path": "/2018/06/apresan-dos-ancianos-de-78-y-85-anos.html",
@@ -1159,8 +1159,8 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 3,
-      "lastAttemptUTC": "2026-10-23T10:29:06.707513+00:00"
+      "attemptCount": 4,
+      "lastAttemptUTC": "2026-10-23T10:29:36.989543+00:00"
     },
     {
       "path": "/2018/06/el-cantautor-manuel-jimenez-viajara-ny.html",
@@ -1733,8 +1733,8 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 3,
-      "lastAttemptUTC": "2026-10-23T10:29:07.540486+00:00"
+      "attemptCount": 4,
+      "lastAttemptUTC": "2026-10-23T10:29:37.624623+00:00"
     },
     {
       "path": "/2018/06/felix-bautista-tiene-rd84-mil-600.html",
@@ -2457,8 +2457,8 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 3,
-      "lastAttemptUTC": "2026-10-23T10:28:50.707184+00:00"
+      "attemptCount": 4,
+      "lastAttemptUTC": "2026-10-23T10:29:36.209958+00:00"
     },
     {
       "path": "/2018/06/marcha-verde-convoca-para-el-12-de.html",
@@ -3215,8 +3215,8 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 3,
-      "lastAttemptUTC": "2026-10-23T10:28:52.596277+00:00"
+      "attemptCount": 4,
+      "lastAttemptUTC": "2026-10-23T10:29:36.331956+00:00"
     },
     {
       "path": "/2018/06/por-carolina-pichardolistin-diario.html",
@@ -3509,8 +3509,8 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 3,
-      "lastAttemptUTC": "2026-10-23T10:28:55.542571+00:00"
+      "attemptCount": 4,
+      "lastAttemptUTC": "2026-10-23T10:29:36.336980+00:00"
     },
     {
       "path": "/2018/06/roberto-rosario-sale-en-defensa-de.html",
@@ -3557,8 +3557,8 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 3,
-      "lastAttemptUTC": "2026-10-23T10:29:03.883825+00:00"
+      "attemptCount": 4,
+      "lastAttemptUTC": "2026-10-23T10:29:37.554850+00:00"
     },
     {
       "path": "/2018/06/sacerdote-critica-posicion-masalles.html",
@@ -3727,8 +3727,8 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 3,
-      "lastAttemptUTC": "2026-10-23T10:29:05.698070+00:00"
+      "attemptCount": 4,
+      "lastAttemptUTC": "2026-10-23T10:29:36.924172+00:00"
     },
     {
       "path": "/2018/06/servio-tulio-advierte-juez-designado.html",
