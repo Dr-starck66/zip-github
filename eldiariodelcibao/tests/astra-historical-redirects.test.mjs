@@ -26,3 +26,14 @@ test("unrelated nonexistent historical URL is not redirected",()=>{
 test("valid canonical historical page is served without redirect",()=>{
  assert.equal(route("eldiariodelcibao.com",canonical),null);
 });
+
+test("Blogger Atom feed aliases redirect to the existing canonical RSS feed",()=>{
+ assert.equal(route("eldiariodelcibao.com","/feeds/posts/default"),"https://eldiariodelcibao.com/feed.xml");
+ assert.equal(route("www.eldiariodelcibao.com","/feeds/posts/default","?alt=rss"),"https://eldiariodelcibao.com/feed.xml");
+ assert.equal(route("eldiariodelcibao.com","/feed/"),"https://eldiariodelcibao.com/feed.xml");
+ assert.equal(route("eldiariodelcibao.com","/feed"),"https://eldiariodelcibao.com/feed.xml");
+});
+test("unrelated Blogger label and unknown article remain 404",()=>{
+ assert.equal(route("eldiariodelcibao.com","/feeds/posts/default/-/POLITICA"),null);
+ assert.equal(route("eldiariodelcibao.com","/2016/07/unknown.html"),null);
+});

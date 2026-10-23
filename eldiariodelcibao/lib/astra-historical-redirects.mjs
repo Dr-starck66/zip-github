@@ -5,6 +5,10 @@
  */
 export function resolveLegacyRedirect({host, pathname, search="", historicMap}) {
   const origin="https://eldiariodelcibao.com";
+  // Restore historical Blogger feed URLs without redirecting unknown articles.
+  if (/^\/(?:feeds\/posts\/default|feed)\/?$/.test(pathname)) {
+    return origin+"/feed.xml";
+  }
   const oldPath=typeof pathname==="string"?pathname:"/";
   const canonicalPath=oldPath.endsWith(".html/") && historicMap.has(oldPath.slice(0,-1))
     ? oldPath.slice(0,-1) : oldPath;
