@@ -10,7 +10,8 @@
     "start": "node server.mjs",
     "test:images": "node scripts/astra-image-gate.mjs --local",
     "test:images:live": "node scripts/astra-image-gate.mjs --base https://eldiariodelcibao-web-production.up.railway.app",
-    "test:news-eligibility": "node --test tests/astra-news-eligibility.test.mjs"
+    "test:news-eligibility": "node --test tests/astra-news-eligibility.test.mjs",
+    "test:seo-indexing": "node --test tests/astra-indexing-policy.test.mjs tests/astra-historical-redirects.test.mjs"
   },
   "dependencies": {
     "sharp": "^0.34.0"
