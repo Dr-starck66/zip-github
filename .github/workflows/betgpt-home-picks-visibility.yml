@@ -1,0 +1,47 @@
+name: BetGPT Homepage Picks — Public HTML Visibility
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/betgpt-home-picks-visibility.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  public-home-picks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check exact GREEN release and visible homepage heading
+        shell: bash
+        run: |
+          set -euo pipefail
+          EXPECTED="$(jq -r '.sourceSha' betgpt-railway-live/.astra-green-release.json)"
+          for attempt in 1 2 3; do
+            HTTP="$(curl -fsSL -o /tmp/betgpt-home.html -w '%{http_code}' \
+              --connect-timeout 8 --max-time 50 \
+              -H 'Cache-Control: no-cache' \
+              https://betgpt.live/ || true)"
+            REVISION="$(curl -fsSL --connect-timeout 8 --max-time 15 \
+              -H 'Cache-Control: no-cache' \
+              https://betgpt.live/astra-revision.json | jq -r '.sourceSha // empty' || true)"
+            echo "PUBLIC_HOME_HTTP=$HTTP EXPECTED_SHA=$EXPECTED PUBLIC_SHA=$REVISION"
+            if [ "$HTTP" = 200 ] && [ "$REVISION" = "$EXPECTED" ] &&
+               grep -q 'paris-conseilles' /tmp/betgpt-home.html &&
+               grep -q 'Paris conseill' /tmp/betgpt-home.html; then
+              echo "BETGPT_HOME_TOP_PICKS_VISIBLE_PASS"
+              if grep -q 'Aucun pari conseill' /tmp/betgpt-home.html; then
+                echo "BETGPT_HOME_NO_ELIGIBLE_BETS_VISIBLE"
+              else
+                echo "BETGPT_HOME_PICK_CARDS_PRESENT_OR_EMPTY_COPY_ALTERNATE"
+              fi
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "BETGPT_HOME_TOP_PICKS_VISIBLE_FAIL"
+          exit 1
