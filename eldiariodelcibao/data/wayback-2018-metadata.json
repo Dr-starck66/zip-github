@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Source metadata only; no copied full article texts and no automatic indexability",
-  "checkedUTC": "2026-10-23T10:29:37.625046+00:00",
+  "checkedUTC": "2026-10-23T12:22:17.331135+00:00",
   "totalJune2018": 259,
   "records": [
     {
@@ -17,8 +17,9 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 4,
-      "lastAttemptUTC": "2026-10-23T10:29:36.209925+00:00"
+      "alternatesExamined": 0,
+      "attemptCount": 5,
+      "lastAttemptUTC": "2026-10-23T12:22:03.263781+00:00"
     },
     {
       "path": "/2018/06/aduanas-dispondra-de-inteligencia.html",
@@ -191,8 +192,9 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 4,
-      "lastAttemptUTC": "2026-10-23T10:29:36.860912+00:00"
+      "alternatesExamined": 0,
+      "attemptCount": 5,
+      "lastAttemptUTC": "2026-10-23T12:22:09.213465+00:00"
     },
     {
       "path": "/2018/06/apresan-dos-ancianos-de-78-y-85-anos.html",
@@ -1159,8 +1161,9 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 4,
-      "lastAttemptUTC": "2026-10-23T10:29:36.989543+00:00"
+      "alternatesExamined": 0,
+      "attemptCount": 5,
+      "lastAttemptUTC": "2026-10-23T12:22:04.399772+00:00"
     },
     {
       "path": "/2018/06/el-cantautor-manuel-jimenez-viajara-ny.html",
@@ -1733,8 +1736,9 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 4,
-      "lastAttemptUTC": "2026-10-23T10:29:37.624623+00:00"
+      "alternatesExamined": 0,
+      "attemptCount": 5,
+      "lastAttemptUTC": "2026-10-23T12:22:11.933460+00:00"
     },
     {
       "path": "/2018/06/felix-bautista-tiene-rd84-mil-600.html",
@@ -2457,8 +2461,9 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 4,
-      "lastAttemptUTC": "2026-10-23T10:29:36.209958+00:00"
+      "alternatesExamined": 0,
+      "attemptCount": 5,
+      "lastAttemptUTC": "2026-10-23T12:22:01.263848+00:00"
     },
     {
       "path": "/2018/06/marcha-verde-convoca-para-el-12-de.html",
@@ -3215,8 +3220,9 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 4,
-      "lastAttemptUTC": "2026-10-23T10:29:36.331956+00:00"
+      "alternatesExamined": 0,
+      "attemptCount": 5,
+      "lastAttemptUTC": "2026-10-23T12:22:01.362717+00:00"
     },
     {
       "path": "/2018/06/por-carolina-pichardolistin-diario.html",
@@ -3509,8 +3515,9 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 4,
-      "lastAttemptUTC": "2026-10-23T10:29:36.336980+00:00"
+      "alternatesExamined": 0,
+      "attemptCount": 5,
+      "lastAttemptUTC": "2026-10-23T12:22:01.323872+00:00"
     },
     {
       "path": "/2018/06/roberto-rosario-sale-en-defensa-de.html",
@@ -3557,8 +3564,9 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 4,
-      "lastAttemptUTC": "2026-10-23T10:29:37.554850+00:00"
+      "alternatesExamined": 0,
+      "attemptCount": 5,
+      "lastAttemptUTC": "2026-10-23T12:22:05.557273+00:00"
     },
     {
       "path": "/2018/06/sacerdote-critica-posicion-masalles.html",
@@ -3727,8 +3735,9 @@
       "httpStatus": 200,
       "indexable": false,
       "provenance": "capture-requires-human-review",
-      "attemptCount": 4,
-      "lastAttemptUTC": "2026-10-23T10:29:36.924172+00:00"
+      "alternatesExamined": 3,
+      "attemptCount": 5,
+      "lastAttemptUTC": "2026-10-23T12:22:17.330658+00:00"
     },
     {
       "path": "/2018/06/servio-tulio-advierte-juez-designado.html",
