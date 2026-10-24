@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "ef5d53a4799cc6c00cf085922ba80e83165cccd8",
-  "workflowRunId": 40124904309,
-  "requestedAt": "2026-10-24T19:25:00.000Z",
-  "reason": "Deploy ASTRA Lumistade image integrity repair: PR #110 merged, ten ORIGINAL distinct 1600x900 JPEG covers and inline illustrations, image-integrity guard passes, Never-Fail Candidate Gate GREEN run 40124904309. Require exact public SHA and HTTP 200 for ten images and five pages."
+  "sourceSha": "78edfdaf285ef6fd751daf4da71e0c3b0608b85d",
+  "workflowRunId": 40130482577,
+  "requestedAt": "2026-10-24T20:38:00.000Z",
+  "reason": "Promote immutable GREEN BetGPT editorial repair PR #111: ASTRA_CONTENT_BULKER executable proof, fail-closed content pipeline, 3 distinct 1200x675 licensed images, 3 genuine dated editorial articles. Verify public revision, each article HTTP 200, sitemap News and image metadata. Source never-fail run 40130482577 PASS."
 }
