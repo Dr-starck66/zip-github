@@ -16,7 +16,7 @@ module.exports = async function handler(req, res) {
     try {
       const r = await fetch(url,{method:"GET",redirect:"manual",headers:{"Accept":"text/html"},signal:AbortSignal.timeout(8000)});
       const html = await r.text();
-      const canonical = html.match(/<link\\s+rel="canonical"\\s+href="([^"]+)"/i)?.[1] || null;
+      const canonical = html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i)?.[1] || null;
       const isHtml = (r.headers.get("content-type")||"").includes("text/html");
       return {url,status:r.status,html:isHtml,canonical,pass:r.status===200 && isHtml && canonical===url && !/noindex/i.test(html)};
     } catch(e) {return {url,status:null,pass:false,error:String(e.message||e).slice(0,100)};}
@@ -25,7 +25,7 @@ module.exports = async function handler(req, res) {
   try {
     const r=await fetch(sitemap.url,{headers:{"Accept":"application/xml"},signal:AbortSignal.timeout(8000)});
     const text=await r.text();
-    const entries=[...text.matchAll(/<loc>\\s*([^<]+?)\\s*<\\/loc>/gi)].map(m=>m[1]);
+    const entries=[...text.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/gi)].map(m=>m[1]);
     sitemap={url:sitemap.url,status:r.status,urls:entries.length,hasAllSix:PATHS.every(p=>entries.includes(HOST+p)),pass:r.status===200 && entries.length===26 && PATHS.every(p=>entries.includes(HOST+p))};
   }catch(e){sitemap.error=String(e.message||e).slice(0,100);}
   const pass=results.every(x=>x.pass) && sitemap.pass;
