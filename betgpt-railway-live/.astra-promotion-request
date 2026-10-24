@@ -3,8 +3,8 @@
   "sourceRepo": "Dr-starck66/betgpt-railway",
   "sourceSha": "a8b614c140c11c4e7c153cc39536cd33f8270c3c",
   "workflowRunId": 40077053074,
-  "requestedSourceSha": "b1c99ccda089d10dab81de808d9bf90af73d490c",
-  "requestedAt": "2026-10-24T08:33:35.000Z",
-  "reason": "Promote three daily quality-gated automatic BetGPT publications with final QA-order fix PR #93, strictly from latest completed GREEN main gate and no rollback.",
-  "desiredSourceSha": "b1c99ccda089d10dab81de808d9bf90af73d490c"
+  "requestedSourceSha": "2887ba718d44e962604604aef61df55a36a101ad",
+  "requestedAt": "2026-10-24T08:40:00.000Z",
+  "reason": "Promote latest GREEN source of BetGPT auto-publisher after PR #91, #93, #94, #95; no bypass, no regressions or rolled-back SHA.",
+  "desiredSourceSha": "2887ba718d44e962604604aef61df55a36a101ad"
 }
