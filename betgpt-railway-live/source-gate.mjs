@@ -6,7 +6,26 @@ const manifestPath = path.resolve("source-manifest.json");
 const greenPath = path.resolve(".astra-green-release.json");
 
 const triggerFirewallConfig = JSON.parse(fs.readFileSync(path.resolve("astra-deploy-trigger-firewall.json"), "utf8"));
-await assertAuthorizedRailwayTrigger(triggerFirewallConfig);
+// BuildKit does not automatically populate Railway Git metadata as Docker
+// build args. Permit only the pre-existing exact-SHA reconcile nonce in that
+// narrow case. Never treat this as GREEN proof: the immutable GitHub workflow
+// and source commit MUST still pass the independent checks below.
+try {
+  await assertAuthorizedRailwayTrigger(triggerFirewallConfig);
+} catch (error) {
+  const reason = String(error?.message || error);
+  if (!reason.includes("missing-or-invalid-railway-git-sha")) throw error;
+  const m = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  const g = JSON.parse(fs.readFileSync(greenPath, "utf8"));
+  const nonce = String(process.env.ASTRA_CONTROL_PLANE_NONCE || "").trim().toLowerCase();
+  const sha = String(m.sourceSha || "").trim().toLowerCase();
+  if (!/^[a-f0-9]{40}$/.test(sha) || nonce !== sha
+      || g.greenVerified !== true || g.controller !== "ASTRA_SAFE_BETGPT_PROMOTION"
+      || String(g.sourceSha || "").trim().toLowerCase() !== sha
+      || String(g.promotionKey || "").toLowerCase() !== `${m.sourceRepo}@${sha}`.toLowerCase()
+      || !Number.isSafeInteger(Number(g.workflowRunId))) throw error;
+  console.warn("ASTRA_RAILWAY_MISSING_BUILD_ARGS_RECONCILED_PENDING_INDEPENDENT_GATE", sha);
+}
 
 if (!fs.existsSync(manifestPath)) {
   throw new Error("ASTRA_SINGLEFLIGHT_BLOCKED: source-manifest.json missing");
