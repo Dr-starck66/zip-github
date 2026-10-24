@@ -15,6 +15,8 @@ jobs:
         run: if test -f package-lock.json; then npm ci --ignore-scripts; fi
       - name: Run ASTRA core regression tests
         run: node --test scripts/astra-master-gate.test.mjs
+      - name: Test immutable source proof fail-closed contracts
+        run: node --test scripts/astra-upstream-proof.test.mjs
       - name: Detect unverified or missing ASTRA brick proof
         run: node scripts/astra-master-gate.mjs --task=code --strict
       - name: Save evidence
@@ -22,5 +24,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: astra-master-shared-site-report
-          path: artifacts/astra-master-gate/report.json
+          path: |
+            artifacts/astra-master-gate/report.json
+            artifacts/astra-master-gate/upstream-source-proof.json
           if-no-files-found: error
