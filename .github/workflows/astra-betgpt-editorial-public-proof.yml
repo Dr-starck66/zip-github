@@ -112,3 +112,14 @@ jobs:
           assert health==200, ("health",health)
           print("ASTRA_EDITORIAL_PUBLIC_PROOF_PASS sourceSha",target,"article",article_url)
           PY
+      - name: Probe optimized Villa Park Commons image
+        shell: bash
+        run: |
+          set -euo pipefail
+          for u in \
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Birmingham_aston_villa_park_stadium.jpg/1600px-Birmingham_aston_villa_park_stadium.jpg' \
+            'https://commons.wikimedia.org/wiki/Special:FilePath/Birmingham_aston_villa_park_stadium.jpg?width=1600'; do
+            echo "IMAGE_PROBE_URL=$u"
+            curl --compressed -L -sS --connect-timeout 8 --max-time 45 -o /tmp/astra-photo-probe -w 'IMAGE_PROBE_HTTP=%{http_code} IMAGE_PROBE_BYTES=%{size_download} IMAGE_PROBE_TYPE=%{content_type}\\n' "$u" || true
+            file /tmp/astra-photo-probe || true
+          done
