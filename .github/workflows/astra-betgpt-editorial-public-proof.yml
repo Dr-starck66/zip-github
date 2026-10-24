@@ -69,6 +69,7 @@ jobs:
                   self.canonicals=[]
                   self.robots=[]
                   self.ogwidth=[]
+                  self.images=[]
                   self.h2=0
                   self.h3=0
                   self.text=[]
@@ -80,6 +81,7 @@ jobs:
                       self.robots.append(d.get("content",""))
                   if tag=="meta" and d.get("property")=="og:image:width":
                       self.ogwidth.append(d.get("content",""))
+                  if tag=="img": self.images.append(d.get("src",""))
                   if tag=="h2": self.h2+=1
                   if tag=="h3": self.h3+=1
               def handle_data(self,data):
@@ -99,6 +101,16 @@ jobs:
           print("ASTRA_ARTICLE_INDEXABLE_PASS",page.robots)
           print("ASTRA_ARTICLE_IMAGE_RIGHTS_PASS width",page.ogwidth,"credit=Arne Müseler")
           print("ASTRA_ARTICLE_STRUCTURE_PASS h2",page.h2,"h3",page.h3)
+          expected_img="https://commons.wikimedia.org/wiki/Special:FilePath/Birmingham_aston_villa_park_stadium.jpg?width=1600"
+          assert expected_img in page.images, ("optimized image not in rendered HTML",page.images[:3])
+          image_request=urllib.request.Request(expected_img,headers={"User-Agent":"ASTRA-EDITORIAL-IMAGE-PROOF/1.0"})
+          with urllib.request.urlopen(image_request,timeout=45) as photo:
+              image_data=photo.read()
+              image_status=photo.status
+              image_type=photo.headers.get("Content-Type","")
+          assert image_status==200 and "image/jpeg" in image_type.lower(), (image_status,image_type)
+          assert image_data.startswith(bytes.fromhex("ffd8")) and 300000<len(image_data)<2500000, len(image_data)
+          print("ASTRA_ARTICLE_IMAGE_ASSET_PASS http",image_status,"bytes",len(image_data),"type",image_type)
 
           for suffix,label in (("/sitemap.xml","CLASSIC"),("/news-sitemap.xml","NEWS")):
               status,content_type,xml=get(base+suffix,timeout=45)
