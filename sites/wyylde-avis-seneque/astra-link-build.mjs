@@ -2,6 +2,7 @@
 /** ASTRA ORPHAN GUARD Ω — build-time source-to-output repair; no credentials/dependencies. */
 import fs from 'node:fs/promises';
 import {enrich} from './astra-depth-content.mjs';
+import {generateAccessCocon} from './astra-connexion-cocon.mjs';
 import path from 'node:path';
 const ROOT=process.cwd(), OUT=path.join(ROOT,'dist'), BASE='https://wyylde-avis.seneque.info/';
 const sitemapFile=path.join(ROOT,'sitemap.xml');
@@ -16,14 +17,15 @@ async function main(){
   await fs.rm(OUT,{recursive:true,force:true});await fs.mkdir(OUT,{recursive:true});
   for(const e of await fs.readdir(ROOT,{withFileTypes:true})){if(['dist','node_modules','.git','astra-link-build.mjs'].includes(e.name)||e.isSymbolicLink())continue;await fs.cp(path.join(ROOT,e.name),path.join(OUT,e.name),{recursive:true})}
   await enrich(OUT);
+  await generateAccessCocon(OUT);
   const original=await fs.readFile(sitemapFile,'utf8');
   if(!/<urlset\b/i.test(original))throw Error('INVALID_SITEMAP');
   const declared=[...original.matchAll(/<loc\b[^>]*>([^<]+)<\/loc>/gi)].map(m=>m[1].replace(/&amp;/g,'&'));
   const sitemap=new Set(declared.map(x=>normalize(x)).filter(Boolean));
   if(sitemap.size!==declared.length)throw Error('INVALID_OR_DUPLICATE_SITEMAP_URL');
-  const paths=await enumerate(ROOT), all=new Map();
+  const paths=await enumerate(OUT), all=new Map();
   for(const file of paths){
-    const route=path.relative(ROOT,path.dirname(file)).split(path.sep).join('/');
+    const route=path.relative(OUT,path.dirname(file)).split(path.sep).join('/');
     const url=normalize(route?route+'/':BASE);if(!url)throw Error('UNSAFE_ROUTE '+route);
     const html=await fs.readFile(file,'utf8');
     if(/<meta\b[^>]*(?:noindex)/i.test(html)||/<html\b[^>]*\bdata-noindex/i.test(html))continue;
