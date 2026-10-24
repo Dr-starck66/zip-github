@@ -47,6 +47,8 @@ jobs:
             console.log('ASTRA_RUNTIME_ADVERSARIAL_GATE PASS: low-quality content rejected BEFORE HTTP startup');
           } finally {fs.writeFileSync(file,raw)}
           JS
+      - name: Audit nine unverified archive captures with external-source separation
+        run: node --test eldiariodelcibao/tests/astra-wayback-nine-audit.test.mjs
       - name: Syntax and local server
         run: |
           python3 -m py_compile eldiariodelcibao/scripts/recover-wayback-2018.py

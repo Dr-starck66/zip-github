@@ -17,6 +17,12 @@ test("All nine unverified originals have independently recorded, non-inflated ev
   assert.equal(source.status,"capture-incomplete",row.path);
   assert.equal(row.waybackCaptureStatus,source.status,row.path);
   assert.equal(row.originalPublicationDateFromWayback,source.originalDate,row.path);
+  assert.equal(row.originalTitleFromWayback,source.originalTitle,row.path);
+  assert.equal(row.originalCaptureTimestamp,source.archiveTimestamp,row.path);
+  assert.equal(row.sourceBodyWordsExtracted,source.sourceBodyWords,row.path);
+  assert.equal(row.sourceBodySha256,source.sourceBodySha256,row.path);
+  assert.equal(row.sourceHttpStatus,source.httpStatus,row.path);
+  assert.equal(row.alternatesExaminedInLastRun,source.alternatesExamined||0,row.path);
   assert.equal(row.fullOriginalBodyVerified,false,row.path);
   assert.equal(row.alternativeWaybackCaptureVerified,false,row.path);
   assert.ok(row.note?.length>40,row.path);
