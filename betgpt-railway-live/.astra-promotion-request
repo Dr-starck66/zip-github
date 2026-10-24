@@ -1,10 +1,10 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "7d9a920cdf33347447e8738270edc432fd816ea1",
-  "workflowRunId": 40075817587,
-  "requestedSourceSha": "7d9a920cdf33347447e8738270edc432fd816ea1",
-  "requestedAt": "2026-10-24T07:56:00.000Z",
-  "reason": "User-authorized generator repair PR #89. Promote only immutable GREEN source commit proven by ASTRA Never-Fail workflow run 40075817587; never override the safe controller, ancestry checks or previous healthy deployment. Does not certify daily publications.",
-  "desiredSourceSha": "7d9a920cdf33347447e8738270edc432fd816ea1"
+  "sourceSha": "56dd31b99260a3ee836a63c1883ec70339366a79",
+  "workflowRunId": 40076089194,
+  "requestedSourceSha": "56dd31b99260a3ee836a63c1883ec70339366a79",
+  "requestedAt": "2026-10-24T08:00:00.000Z",
+  "reason": "User-authorized follow-on BetGPT generator proof PR #90. Safe controller only, immutable GREEN main SHA 56dd31b, ASTRA Never-Fail run 40076089194 successful; preserve code quality and never count ledger-only saves as new articles.",
+  "desiredSourceSha": "56dd31b99260a3ee836a63c1883ec70339366a79"
 }
