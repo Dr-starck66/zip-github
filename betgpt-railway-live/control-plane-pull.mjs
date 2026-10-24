@@ -48,7 +48,7 @@ try {
   );
   controllerSha = String(commitPayload.sha || "").trim().toLowerCase();
 } catch (error) {
-  if (!/HTTP (?:403|429)\\b/.test(String(error))) throw error;
+  if (!/HTTP (?:403|429)\b/.test(String(error))) throw error;
   const ref = execFileSync("git", [
     "-c", "credential.helper=",
     "ls-remote", "--exit-code",
@@ -58,7 +58,7 @@ try {
     timeout: 20000,
     env: { ...process.env, GIT_TERMINAL_PROMPT: "0" },
   }).trim();
-  const match = /^([a-f0-9]{40})\\s+refs\\/heads\\/main$/.exec(ref);
+  const match = /^([a-f0-9]{40})\s+refs\/heads\/main$/.exec(ref);
   if (!match) throw new Error("ASTRA_CONTROL_PLANE_PULL_FAIL: unverified git main ref");
   controllerSha = match[1];
   console.log("ASTRA_CONTROL_PLANE_SHA_GIT_FALLBACK", controllerSha);
