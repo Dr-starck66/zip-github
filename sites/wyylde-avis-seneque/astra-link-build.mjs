@@ -15,7 +15,7 @@ const canonical=(html,src)=>{const tag=(html.match(/<link\b[^>]*\brel=["']canoni
 async function enumerate(dir){const list=[];for(const d of await fs.readdir(dir,{withFileTypes:true})){if(d.name==='dist'||d.name==='.git'||d.name==='node_modules')continue;const full=path.join(dir,d.name);if(d.isSymbolicLink())continue;if(d.isDirectory())list.push(...await enumerate(full));else if(d.isFile()&&d.name==='index.html')list.push(full)}return list}
 async function main(){
   await fs.rm(OUT,{recursive:true,force:true});await fs.mkdir(OUT,{recursive:true});
-  for(const e of await fs.readdir(ROOT,{withFileTypes:true})){if(['dist','node_modules','.git','astra-link-build.mjs'].includes(e.name)||e.isSymbolicLink())continue;await fs.cp(path.join(ROOT,e.name),path.join(OUT,e.name),{recursive:true})}
+  for(const e of await fs.readdir(ROOT,{withFileTypes:true})){if(['dist','node_modules','.git','api','astra-link-build.mjs'].includes(e.name)||e.isSymbolicLink())continue;await fs.cp(path.join(ROOT,e.name),path.join(OUT,e.name),{recursive:true})}
   await enrich(OUT);
   await generateAccessCocon(OUT);
   const original=await fs.readFile(sitemapFile,'utf8');
