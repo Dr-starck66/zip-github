@@ -3,8 +3,8 @@
   "sourceRepo": "Dr-starck66/betgpt-railway",
   "sourceSha": "a8b614c140c11c4e7c153cc39536cd33f8270c3c",
   "workflowRunId": 40077053074,
-  "requestedSourceSha": "a8b614c140c11c4e7c153cc39536cd33f8270c3c",
-  "requestedAt": "2026-10-24T08:13:46.692Z",
-  "reason": "User-requested BetGPT forward-accuracy PR #80 promotion: immutable main SHA with successful ASTRA Never-Fail Candidate Gate; only safe controller, no rollback or unvalidated deployment.",
-  "desiredSourceSha": "a8b614c140c11c4e7c153cc39536cd33f8270c3c"
+  "requestedSourceSha": "9af76059f098b9128a341ad9383c2e862dd52340",
+  "requestedAt": "2026-10-24T08:32:00.000Z",
+  "reason": "Publish PR #91 auto reporter only after safe ASTRA candidate GREEN and monotonic validated lineage. Never bypass GREEN or force stale SHA.",
+  "desiredSourceSha": "9af76059f098b9128a341ad9383c2e862dd52340"
 }
