@@ -30,7 +30,7 @@
     "ASTRA_NO_REPEAT": [
       {
         "type": "command",
-        "run": "node --test eldiariodelcibao/tests/astra-historical-redirects.test.mjs eldiariodelcibao/tests/astra-indexing-policy.test.mjs"
+        "run": "node --test eldiariodelcibao/tests/astra-historical-redirects.test.mjs eldiariodelcibao/tests/astra-indexing-policy.test.mjs eldiariodelcibao/tests/astra-wayback-nine-audit.test.mjs"
       }
     ],
     "ASTRA_ZERO_COST": [

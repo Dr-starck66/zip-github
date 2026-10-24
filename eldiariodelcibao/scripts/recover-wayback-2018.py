@@ -114,6 +114,48 @@ def _process_capture(row, forced_timestamp=None):
         "httpStatus":code,"indexable":False,
         "provenance":"html-original-capture" if verified else "capture-requires-human-review"}
 
+def _availability_snapshots(row):
+    """Fallback to Internet Archive availability API when CDX yields no candidates.
+    Confirm exact original hostname and article path; never count a nearby page.
+    """
+    from urllib.parse import urlparse
+    original = row.get("original", "")
+    parsed = urlparse(original)
+    if parsed.hostname not in {"eldiariodelcibao.com", "www.eldiariodelcibao.com"}:
+        return []
+    seen = {row.get("timestamp", "")}
+    found = []
+    variants = list(dict.fromkeys([original, original.replace(":80", "")]))
+    anchors = list(dict.fromkeys(["20180615", str(row.get("timestamp", ""))[:8]]))
+    for candidate_url in variants:
+        for anchor in anchors:
+            req = Request("https://archive.org/wayback/available?" +
+                          urlencode({"url": candidate_url, "timestamp": anchor}),
+                          headers={"User-Agent": AGENT, "Accept": "application/json"})
+            try:
+                with urlopen(req, timeout=7) as response:
+                    doc = json.loads(response.read(16000))
+            except (HTTPError, URLError, TimeoutError, OSError, ValueError):
+                continue
+            closest = (doc.get("archived_snapshots") or {}).get("closest") or {}
+            if closest.get("available") is not True or str(closest.get("status")) != "200":
+                continue
+            stamp = str(closest.get("timestamp", ""))
+            if not re.fullmatch(r"20\\d{12}", stamp) or not 2018 <= int(stamp[:4]) <= 2020 or stamp in seen:
+                continue
+            playback = re.search(r"/web/20\\d{12}/(https?://[^\\s]+)", str(closest.get("url", "")))
+            if not playback:
+                continue
+            saved = urlparse(playback.group(1))
+            if saved.hostname not in {"eldiariodelcibao.com", "www.eldiariodelcibao.com"} or saved.path != parsed.path:
+                continue
+            seen.add(stamp)
+            found.append(stamp)
+            if len(found) >= 3:
+                return found
+    return found
+
+
 def _alternative_snapshots(row):
     """CDX alternative snapshots: strictly source-linked, never fabricated."""
     original = row.get("original", "")
@@ -128,9 +170,9 @@ def _alternative_snapshots(row):
         with urlopen(req, timeout=12) as response:
             records = json.loads(response.read(60000))
     except (HTTPError, URLError, TimeoutError, OSError, ValueError):
-        return []
+        records = []
     if not isinstance(records, list) or not records or not isinstance(records[0], list):
-        return []
+        return _availability_snapshots(row)
     if "timestamp" not in records[0]:
         return []
     column = records[0].index("timestamp")
@@ -144,7 +186,7 @@ def _alternative_snapshots(row):
             continue
         seen.add(stamp)
         stamps.append(stamp)
-    return stamps[:3]
+    return (stamps + [s for s in _availability_snapshots(row) if s not in seen])[:3]
 
 
 def process(row):
