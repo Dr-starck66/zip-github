@@ -128,6 +128,9 @@ async function main() {
   const unknownBindings=Object.keys(config.checks).filter(id=>!ids.has(id));
   const failures=results.filter(r=>r.status==="FAIL");
   const unverified=results.filter(r=>r.status==="UNVERIFIED");
+  // A missing proof is neither successful nor a failed execution. Strict still blocks it.
+  const verdict=failures.length||unknownBindings.length||untrackedScripts.length||invalidExemptions.length
+    ?"FAIL":unverified.length?"UNVERIFIED":"PASS";
   const report={schema:"astra-master-gate/report-v1",generatedAt:startedAt,siteId:config.siteId,task,strict,
     commit:process.env.GITHUB_SHA||process.env.RAILWAY_GIT_COMMIT_SHA||null,
     registrySha256:sha256(readFileSync(registryFile,"utf8")),
@@ -135,7 +138,7 @@ async function main() {
     effectiveCapabilities:[...capabilities],inferredCapabilities,
     summary:{pass:results.filter(x=>x.status==="PASS").length,na:results.filter(x=>x.status==="N/A").length,
       fail:failures.length,unverified:unverified.length,unknownBindings:unknownBindings.length,untrackedScripts:untrackedScripts.length,invalidExemptions:invalidExemptions.length},
-    status:failures.length||unverified.length||unknownBindings.length||untrackedScripts.length||invalidExemptions.length?"FAIL":"PASS",unknownBindings,untrackedScripts,invalidExemptions,results};
+    status:verdict,unknownBindings,untrackedScripts,invalidExemptions,results};
   writeReport(report);
   console.log("ASTRA_MASTER_GATE",JSON.stringify({siteId:report.siteId,task,status:report.status,summary:report.summary,report:relative(root,reportFile)}));
   for (const r of [...failures,...unverified]) console.error("ASTRA_UNPROVEN_BRICK",r.id,r.status,r.reason||"check-failed");

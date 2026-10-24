@@ -38,6 +38,10 @@ test("missing executable proof is never a PASS",()=>{
   const {res,data}=run();
   assert.notEqual(res.status,0);
   assert.equal(data.results[0].status,"UNVERIFIED");
+  assert.equal(data.results[0].reason,"no-proof-defined");
+  assert.equal(data.status,"UNVERIFIED");
+  assert.equal(data.summary.fail,0);
+  assert.equal(data.summary.unverified,1);
 });
 test("a file existing alone cannot establish activation",()=>{
   const f=fixture([always],{ALWAYS:[{type:"file",path:"config/astra-master-site.json"}]});
@@ -50,6 +54,7 @@ test("failed executable blocks strict mode",()=>{
   const {res,data}=run();
   assert.notEqual(res.status,0);
   assert.equal(data.results[0].status,"FAIL");
+  assert.equal(data.status,"FAIL");
   assert.equal(data.results[0].evidence[0].exitCode,3);
 });
 test("unregistered binding cannot be silently accepted",()=>{
@@ -66,4 +71,16 @@ test("unregistered ASTRA scripts cannot bypass the catalog",()=>{
   const {res,data}=f.run();
   assert.notEqual(res.status,0);
   assert.deepEqual(data.untrackedScripts,["scripts/astra-hidden-guard.mjs"]);
+});
+
+test("FAIL takes precedence over independent UNVERIFIED proofs",()=>{
+  const broken={id:"BROKEN",scope:"universal",on:["code"]};
+  const {run}=fixture([always,broken],{BROKEN:[{type:"command",run:"node -e \"process.exit(3)\""}]});
+  const {res,data}=run();
+  assert.notEqual(res.status,0);
+  assert.equal(data.status,"FAIL");
+  assert.equal(data.summary.fail,1);
+  assert.equal(data.summary.unverified,1);
+  assert.equal(data.results.find(r=>r.id==="ALWAYS").status,"UNVERIFIED");
+  assert.equal(data.results.find(r=>r.id==="BROKEN").status,"FAIL");
 });
