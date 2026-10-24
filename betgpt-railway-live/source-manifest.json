@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-24T18:14:00.000Z",
-  "reason": "Durable Neon editorial readback + full first-party RSS article evidence, Never-Fail GREEN 40119530871"
+  "updatedAt": "2026-10-24T18:13:38.677Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
