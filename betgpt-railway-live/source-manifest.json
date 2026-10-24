@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-24T13:51:25.838Z",
-  "reason": "Release Train: promote green proof run 40099766783 after real candidate gate/typecheck"
+  "updatedAt": "2026-10-24T13:52:09.819Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
