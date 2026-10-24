@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "b2bc1242b276f5a9a06a0fdd864bf34ed8542f1a",
-  "promotionKey": "Dr-starck66/betgpt-railway@b2bc1242b276f5a9a06a0fdd864bf34ed8542f1a",
+  "sourceSha": "6c9ced8025d0c457dd11f526b28da7263e908304",
+  "promotionKey": "Dr-starck66/betgpt-railway@6c9ced8025d0c457dd11f526b28da7263e908304",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-24T14:07:40.594Z",
-  "reason": "Re-emit approved GREEN release because public production had not converged"
+  "updatedAt": "2026-10-24T14:16:09.374Z",
+  "reason": "Release Train: verified French football feeds Never-Fail run 40101566928"
 }
