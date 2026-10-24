@@ -1,21 +1,15 @@
 {
   "schema": "astra-green-release/v2",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "6318372a3fa3652b0f2358d21122eb885770e402",
-  "sourceHeadAtPromotion": "da01c7068470b43d6f7fa4b9dcd0092bb2794bd5",
-  "promotionKey": "Dr-starck66/betgpt-railway@6318372a3fa3652b0f2358d21122eb885770e402",
+  "sourceSha": "8a41c952fed6c49c143c4669b46680c6d009f955",
+  "sourceHeadAtPromotion": "43a6e0a63890d68121ad8cbb63bb588b8e061c1c",
+  "promotionKey": "Dr-starck66/betgpt-railway@8a41c952fed6c49c143c4669b46680c6d009f955",
   "greenVerified": true,
   "lineageVerified": true,
   "monotonicVerified": true,
   "releaseTrain": true,
   "controller": "ASTRA_SAFE_BETGPT_PROMOTION",
   "gateWorkflow": "astra-never-fail.yml",
-  "workflowRunId": 40119530871,
-  "verifiedAt": "2026-10-24T18:14:00.000Z",
-  "reemit": {
-    "sourceSha": "6318372a3fa3652b0f2358d21122eb885770e402",
-    "greenWorkflowRunId": 40119530871,
-    "at": "2026-10-24T18:13:38.677Z",
-    "controller": "ASTRA_RAILWAY_GREEN_RECONCILER"
-  }
+  "workflowRunId": 40121276922,
+  "verifiedAt": "2026-10-24T18:37:53.096Z"
 }
