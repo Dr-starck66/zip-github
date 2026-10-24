@@ -1,0 +1,114 @@
+name: ASTRA BetGPT Editorial Public Proof Ω
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "betgpt-railway-live/.astra-editorial-verify-request"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: astra-betgpt-editorial-public-proof
+  cancel-in-progress: true
+
+jobs:
+  public-article-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify GREEN source, HTTP 200, canonical, indexability and both sitemaps
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          import json, re, sys, time, urllib.request, urllib.error
+          from html.parser import HTMLParser
+          from xml.etree import ElementTree as ET
+
+          req=json.load(open("betgpt-railway-live/.astra-editorial-verify-request",encoding="utf-8"))
+          slug=req["slug"]
+          target=req["sourceSha"]
+          assert re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*",slug), slug
+          assert re.fullmatch(r"[0-9a-f]{40}",target), target
+          base="https://betgpt.live"
+          path="/actualites/"+slug
+          article_url=base+path
+
+          def get(url, timeout=25):
+              request=urllib.request.Request(url,headers={"User-Agent":"ASTRA-EDITORIAL-PUBLIC-PROOF/1.0","Cache-Control":"no-cache"})
+              try:
+                  with urllib.request.urlopen(request,timeout=timeout) as response:
+                      return response.status,response.headers.get("Content-Type",""),response.read().decode("utf-8","replace")
+              except urllib.error.HTTPError as e:
+                  return e.code,e.headers.get("Content-Type",""),e.read().decode("utf-8","replace")
+
+          revision=None
+          for attempt in range(1,37):
+              try:
+                  rc,_,body=get(base+"/astra-revision.json")
+                  revision=json.loads(body).get("sourceSha") if rc==200 else None
+                  code,ctype,html=get(article_url)
+                  if revision==target and code==200:
+                      print("ASTRA_PUBLIC_REVISION_PASS",target,"attempt",attempt)
+                      break
+                  print("ASTRA_PUBLIC_WAIT",attempt,"revision",revision,"articleStatus",code,flush=True)
+              except Exception as e:
+                  print("ASTRA_PUBLIC_RETRY",attempt,type(e).__name__,str(e)[:180],flush=True)
+              if attempt==36:
+                  raise AssertionError("Production never served requested GREEN source and article HTTP 200")
+              time.sleep(10)
+
+          assert "text/html" in ctype.lower(), ("content-type",ctype)
+          class Page(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.canonicals=[]
+                  self.robots=[]
+                  self.ogwidth=[]
+                  self.h2=0
+                  self.h3=0
+                  self.text=[]
+              def handle_starttag(self,tag,attrs):
+                  d=dict(attrs)
+                  if tag=="link" and "canonical" in (d.get("rel") or "").split():
+                      self.canonicals.append(d.get("href"))
+                  if tag=="meta" and d.get("name")=="robots":
+                      self.robots.append(d.get("content",""))
+                  if tag=="meta" and d.get("property")=="og:image:width":
+                      self.ogwidth.append(d.get("content",""))
+                  if tag=="h2": self.h2+=1
+                  if tag=="h3": self.h3+=1
+              def handle_data(self,data):
+                  self.text.append(data)
+          page=Page()
+          page.feed(html)
+          assert page.canonicals==[article_url], ("canonical",page.canonicals)
+          assert page.robots and all("noindex" not in v.lower() for v in page.robots), ("robots",page.robots)
+          assert any("index" in v.lower() for v in page.robots), ("robots",page.robots)
+          assert any(int(w)>=1200 for w in page.ogwidth if w.isdigit()), ("image-width",page.ogwidth)
+          assert page.h2>=7 and page.h3>=7, ("headings",page.h2,page.h3)
+          visible=" ".join(page.text)
+          assert "Arne Müseler" in visible, "Visible photo author credit absent"
+          assert "Haaland" in visible and "Manzambi" in visible, "Article identity not present"
+          print("ASTRA_ARTICLE_HTTP_200_PASS",article_url)
+          print("ASTRA_ARTICLE_CANONICAL_PASS",page.canonicals[0])
+          print("ASTRA_ARTICLE_INDEXABLE_PASS",page.robots)
+          print("ASTRA_ARTICLE_IMAGE_RIGHTS_PASS width",page.ogwidth,"credit=Arne Müseler")
+          print("ASTRA_ARTICLE_STRUCTURE_PASS h2",page.h2,"h3",page.h3)
+
+          for suffix,label in (("/sitemap.xml","CLASSIC"),("/news-sitemap.xml","NEWS")):
+              status,content_type,xml=get(base+suffix,timeout=45)
+              assert status==200, (label,status)
+              assert "xml" in content_type.lower(), (label,content_type)
+              root=ET.fromstring(xml)
+              locs=[(node.text or "").strip() for node in root.iter() if node.tag.split("}")[-1]=="loc"]
+              assert article_url in locs, (label,"missing article URL",len(locs))
+              print("ASTRA_"+label+"_SITEMAP_PASS",article_url,"locs",len(locs))
+          health,_,_=get(base+"/api/health")
+          assert health==200, ("health",health)
+          print("ASTRA_EDITORIAL_PUBLIC_PROOF_PASS sourceSha",target,"article",article_url)
+          PY
