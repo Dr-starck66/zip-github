@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "1822c4de235882ce21557faadd9b3a89419a33a6",
-  "workflowRunId": 40115116705,
-  "requestedAt": "2026-10-24T17:18:00.000Z",
-  "reason": "Promote immutable GREEN BetGPT 19h Aston Villa 2-1 Manchester City article from merged PR #107. Never-Fail Candidate Gate SUCCESS run 40115116705; preserve existing URL and quality gates, verify production HTTP/canonical/sitemap."
+  "sourceSha": "8a41c952fed6c49c143c4669b46680c6d009f955",
+  "workflowRunId": 40121276922,
+  "requestedAt": "2026-10-24T18:35:30.000Z",
+  "reason": "Publish ASTRA SEO Lumistade 5-page semantic cocoon from merged BetGPT PR #109. Never-Fail Candidate Gate SUCCESS run 40121276922, immutable source SHA 8a41c952fed6c49c143c4669b46680c6d009f955; preserve historical URLs, require production 200/canonical/indexable/sitemap verification."
 }
