@@ -23,13 +23,13 @@ RUN npm install --omit=dev --no-audit --no-fund
 
 COPY control-plane-pull.mjs source-manifest.json .astra-green-release.json source-gate.mjs astra-deploy-trigger-firewall.mjs astra-deploy-trigger-firewall.json bootstrap.mjs ./
 
-# RAILWAY_DEPLOYMENT_ID is unique for every deployment. Referencing it in this
-# RUN makes the control-plane pull non-cacheable across redeployments, while the
-# fetched controller files are all pinned to one zip-github commit SHA.
-RUN command -v git \
- && node --check control-plane-pull.mjs \
- && echo "ASTRA_CONTROL_PLANE_CACHE_BUST deployment=${RAILWAY_DEPLOYMENT_ID} nonce=${ASTRA_CONTROL_PLANE_NONCE}" \
- && node control-plane-pull.mjs
+# Railway already checks out one immutable zip-github commit for this Docker
+# context. Never fetch the controller a second time via anonymous GitHub REST:
+# the shared rate limit (HTTP 403) prevented the build before the GREEN gate.
+# Source provenance is still checked by source-gate.mjs (workflow + commit).
+RUN node --check source-gate.mjs \
+ && node --check bootstrap.mjs \
+ && node -e "const fs=require('fs');const m=JSON.parse(fs.readFileSync('source-manifest.json'));const g=JSON.parse(fs.readFileSync('.astra-green-release.json'));if(g.greenVerified!==true||g.controller!=='ASTRA_SAFE_BETGPT_PROMOTION'||m.sourceSha!==g.sourceSha||g.promotionKey!==m.sourceRepo+'@'+m.sourceSha)process.exit(1);console.log('ASTRA_CONTROL_PLANE_LOCAL_PASS',m.sourceSha)"
 
 RUN node source-gate.mjs
 RUN node bootstrap.mjs
