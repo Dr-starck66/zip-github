@@ -26,6 +26,37 @@
         "type": "command",
         "run": "node --test scripts/astra-master-gate.test.mjs"
       }
+    ],
+    "ASTRA_NO_REPEAT": [
+      {
+        "type": "command",
+        "run": "node --test eldiariodelcibao/tests/astra-historical-redirects.test.mjs eldiariodelcibao/tests/astra-indexing-policy.test.mjs"
+      }
+    ],
+    "ASTRA_ZERO_COST": [
+      {
+        "type": "command",
+        "run": "node --test eldiariodelcibao/tests/astra-zero-cost-contract.test.mjs"
+      }
+    ],
+    "ASTRA_TARDIGRADE": [
+      {
+        "type": "command",
+        "run": "node --test eldiariodelcibao/tests/astra-runtime-resilience.test.mjs",
+        "timeoutMs": 60000
+      }
+    ],
+    "ASTRA_OPTIMIZER_OMEGA": [
+      {
+        "type": "command",
+        "run": "node eldiariodelcibao/seo-evidence/tests.mjs"
+      }
+    ],
+    "ASTRA_NEWS_ELIGIBILITY": [
+      {
+        "type": "command",
+        "run": "node --test eldiariodelcibao/tests/astra-news-eligibility.test.mjs"
+      }
     ]
   }
 }

@@ -1,0 +1,110 @@
+{
+  "schema": "astra-wayback-nine-exceptions/1",
+  "asOf": "2026-10-24",
+  "scope": "June 2018 Cibao Wayback metadata",
+  "method": "Current CDX fallback yielded 0 usable alternate timestamps for each of these 9 records; corroboration below is separate external publication evidence, not an original-source copy.",
+  "status": "PARTIAL",
+  "verifiedOriginalCaptureCount": 250,
+  "incompleteOriginalCaptureCount": 9,
+  "rows": [
+    {
+      "path": "/2018/06/20-anos-de-prision-productor-de-tv.html",
+      "waybackCaptureStatus": "capture-incomplete",
+      "originalPublicationDateFromWayback": "2018-06-05",
+      "independentPublicationDate": "2018-06-06",
+      "externalUrl": "https://agenda56.com/1234comunicador-condenado-a-20-anos-acusado-de-violacion-sexual/",
+      "evidenceType": "same-event-report",
+      "note": "Une source du 6 juin relate le jugement; elle ne valide ni les 45 mots capturés ni la date de publication exacte sur l'ancien site.",
+      "fullOriginalBodyVerified": false,
+      "alternativeWaybackCaptureVerified": false
+    },
+    {
+      "path": "/2018/06/angel-delgado-de-haina-para-la-nba.html",
+      "waybackCaptureStatus": "capture-incomplete",
+      "originalPublicationDateFromWayback": "2018-06-22",
+      "independentPublicationDate": "2018-06-22",
+      "externalUrl": "https://www.notiactualidadglobal.com.do/2018/06/el-dominicano-angel-delgado-no-fue.html",
+      "evidenceType": "same-event-report",
+      "note": "Le contrat two-way des Clippers est documenté le 22 juin; le contenu original du billet demeure absent.",
+      "fullOriginalBodyVerified": false,
+      "alternativeWaybackCaptureVerified": false
+    },
+    {
+      "path": "/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
+      "waybackCaptureStatus": "capture-incomplete",
+      "originalPublicationDateFromWayback": null,
+      "independentPublicationDate": "2018-06-14",
+      "externalUrl": "https://eldia.com.do/el-cambio-no-viene-hay-que-hacerlo/",
+      "evidenceType": "exact-title-independent-publication",
+      "note": "Titre et date vérifiés dans une publication signée Claudio Caamaño; ne prouve pas la date de republication historique.",
+      "fullOriginalBodyVerified": false,
+      "alternativeWaybackCaptureVerified": false
+    },
+    {
+      "path": "/2018/06/felix-bautista-se-burla-de-estados.html",
+      "waybackCaptureStatus": "capture-incomplete",
+      "originalPublicationDateFromWayback": "2018-06-13",
+      "independentPublicationDate": "2018-06-13",
+      "externalUrl": "https://fuegoalalata.do/2018/06/13/felix-bautista-rompe-el-silencio-no-tengo-cuentas-ni-bienes-en-estados-unidos/",
+      "evidenceType": "same-claim-report",
+      "note": "Déclaration datée et corroborée par une seconde rédaction; le texte d'origine reste de 29 mots extraits.",
+      "fullOriginalBodyVerified": false,
+      "alternativeWaybackCaptureVerified": false
+    },
+    {
+      "path": "/2018/06/los-yankees-otorgan-un-minuto-de.html",
+      "waybackCaptureStatus": "capture-incomplete",
+      "originalPublicationDateFromWayback": "2018-06-29",
+      "independentPublicationDate": "2018-06-29",
+      "externalUrl": "https://www.pachaproduccion.com/2018/06/los-yankees-otorgan-un-minuto-de.html",
+      "evidenceType": "exact-title-parallel-post",
+      "note": "Même titre et date dans un billet distinct mais celui-ci contient lui aussi presque seulement un titre.",
+      "fullOriginalBodyVerified": false,
+      "alternativeWaybackCaptureVerified": false
+    },
+    {
+      "path": "/2018/06/polito-vega-rey-abandonado.html",
+      "waybackCaptureStatus": "capture-incomplete",
+      "originalPublicationDateFromWayback": "2018-06-28",
+      "independentPublicationDate": "2018-06-28",
+      "externalUrl": "https://www.pachaproduccion.com/2018/06/polito-vega-rey-abandonado.html",
+      "evidenceType": "exact-title-parallel-post",
+      "note": "Texte court publié sur autre domaine; assertions médicales non corroborées indépendamment.",
+      "fullOriginalBodyVerified": false,
+      "alternativeWaybackCaptureVerified": false
+    },
+    {
+      "path": "/2018/06/roban-en-la-habitacion-de-hotel-de.html",
+      "waybackCaptureStatus": "capture-incomplete",
+      "originalPublicationDateFromWayback": "2018-06-19",
+      "independentPublicationDate": "2018-06-19",
+      "externalUrl": "https://elcambronal.blogspot.com/2018/06/entre-los-objetos-sustraidos-se.html",
+      "evidenceType": "exact-title-parallel-post",
+      "note": "Le titre et la date du 19 juin sont retrouvés; une publication concurrente ne certifie pas le texte original Wayback.",
+      "fullOriginalBodyVerified": false,
+      "alternativeWaybackCaptureVerified": false
+    },
+    {
+      "path": "/2018/06/sacan-por-la-fuerza-haitianos-ilegales.html",
+      "waybackCaptureStatus": "capture-incomplete",
+      "originalPublicationDateFromWayback": "2018-06-26",
+      "independentPublicationDate": null,
+      "externalUrl": null,
+      "evidenceType": "unverified",
+      "note": "Aucune corroboration indépendante convaincante de l'événement précis de Cambita; corps source vide.",
+      "fullOriginalBodyVerified": false,
+      "alternativeWaybackCaptureVerified": false
+    },
+    {
+      "path": "/2018/06/sepultan-restos-del-adolescente-de-15.html",
+      "waybackCaptureStatus": "capture-incomplete",
+      "originalPublicationDateFromWayback": "2018-06-27",
+      "independentPublicationDate": "2018-06-27",
+      "externalUrl": "https://www.pachaproduccion.com/2018/06/sepultan-restos-del-adolescente-de-15.html",
+      "evidenceType": "exact-title-parallel-post",
+      "note": "Le titre et la date figurent sur un second blog, le déroulement des funérailles est aussi documenté par El Día; corps d'origine non restitué.",
+      "fullOriginalBodyVerified": false,
+      "alternativeWaybackCaptureVerified": false
+    }
+  ]
+}

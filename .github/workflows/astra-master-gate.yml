@@ -13,6 +13,8 @@ jobs:
           node-version: '22'
       - name: Install deps only with lockfile
         run: if test -f package-lock.json; then npm ci --ignore-scripts; fi
+      - name: Install Cibao runtime dependencies for real restart test
+        run: npm install --prefix eldiariodelcibao --no-audit --no-fund
       - name: Run ASTRA core regression tests
         run: node --test scripts/astra-master-gate.test.mjs
       - name: Strict all-applicable-brick verification
