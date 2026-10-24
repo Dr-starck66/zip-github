@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "6a624af5cfd3bf84e5b4aa3bc324b8df9fd2a94a",
-  "workflowRunId": 40088940538,
-  "requestedAt": "2026-10-24T11:14:36.697Z",
-  "reason": "Promote GREEN BetGPT 24 Oct 13h editorial article (PR #96) via immutable ASTRA safe promotion only; no bypass or rollback."
+  "sourceSha": "fdff82805edc4c4cabb6f791386fa0b26ee9ce57",
+  "workflowRunId": 40089654393,
+  "requestedAt": "2026-10-24T11:24:55.478Z",
+  "reason": "Promote GREEN optimized Villa Park image for BetGPT noon article PR #97, after full 13-check candidate gate; immutable ASTRA release only."
 }
