@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-24T14:07:10.407Z",
-  "reason": "Release Train: verified safe first-party evidence fetch; Never-Fail run 40100937449"
+  "updatedAt": "2026-10-24T14:07:40.594Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
