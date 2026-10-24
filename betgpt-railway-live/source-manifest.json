@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-24T14:48:02.842Z",
-  "reason": "Independent publisher diversity round-robin, Never-Fail run 40103959641 GREEN"
+  "updatedAt": "2026-10-24T14:48:38.934Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
