@@ -1,10 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "a8b614c140c11c4e7c153cc39536cd33f8270c3c",
-  "workflowRunId": 40077053074,
-  "requestedSourceSha": "2887ba718d44e962604604aef61df55a36a101ad",
-  "requestedAt": "2026-10-24T08:40:00.000Z",
-  "reason": "Promote latest GREEN source of BetGPT auto-publisher after PR #91, #93, #94, #95; no bypass, no regressions or rolled-back SHA.",
-  "desiredSourceSha": "2887ba718d44e962604604aef61df55a36a101ad"
+  "sourceSha": "6a624af5cfd3bf84e5b4aa3bc324b8df9fd2a94a",
+  "workflowRunId": 40088940538,
+  "requestedAt": "2026-10-24T11:14:36.697Z",
+  "reason": "Promote GREEN BetGPT 24 Oct 13h editorial article (PR #96) via immutable ASTRA safe promotion only; no bypass or rollback."
 }
