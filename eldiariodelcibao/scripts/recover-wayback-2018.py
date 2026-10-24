@@ -141,9 +141,9 @@ def _availability_snapshots(row):
             if closest.get("available") is not True or str(closest.get("status")) != "200":
                 continue
             stamp = str(closest.get("timestamp", ""))
-            if not re.fullmatch(r"20\\d{12}", stamp) or not 2018 <= int(stamp[:4]) <= 2020 or stamp in seen:
+            if not re.fullmatch(r"20\d{12}", stamp) or not 2018 <= int(stamp[:4]) <= 2020 or stamp in seen:
                 continue
-            playback = re.search(r"/web/20\\d{12}/(https?://[^\\s]+)", str(closest.get("url", "")))
+            playback = re.search(r"/web/20\d{12}/(https?://[^\s]+)", str(closest.get("url", "")))
             if not playback:
                 continue
             saved = urlparse(playback.group(1))
