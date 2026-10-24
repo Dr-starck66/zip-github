@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-24T14:16:09.374Z",
-  "reason": "Release Train: verified French football feeds Never-Fail run 40101566928"
+  "updatedAt": "2026-10-24T14:16:49.278Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
