@@ -1,4 +1,5 @@
 import fs from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 
 const repo = "Dr-starck66/zip-github";
 const dir = "betgpt-railway-live";
@@ -33,13 +34,35 @@ async function fetchText(url, headers = {}) {
   throw last ?? new Error("control-plane fetch failed");
 }
 
-const commitPayload = JSON.parse(
-  await fetchText(`https://api.github.com/repos/${repo}/commits/main`, {
-    Accept: "application/vnd.github+json",
-    "X-GitHub-Api-Version": "2022-11-28",
-  }),
-);
-const controllerSha = String(commitPayload.sha || "").trim().toLowerCase();
+// Resolve a real commit SHA before fetching the control plane. The anonymous
+// GitHub REST endpoint can return HTTP 403 when its shared rate limit is hit.
+// For this PUBLIC repository only, fall back to the authenticated-by-TLS Git
+// smart protocol, keeping all subsequent raw files pinned to the same SHA.
+let controllerSha = "";
+try {
+  const commitPayload = JSON.parse(
+    await fetchText(`https://api.github.com/repos/${repo}/commits/main`, {
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+    }),
+  );
+  controllerSha = String(commitPayload.sha || "").trim().toLowerCase();
+} catch (error) {
+  if (!/HTTP (?:403|429)\b/.test(String(error))) throw error;
+  const ref = execFileSync("git", [
+    "-c", "credential.helper=",
+    "ls-remote", "--exit-code",
+    `https://github.com/${repo}.git`, "refs/heads/main",
+  ], {
+    encoding: "utf8",
+    timeout: 20000,
+    env: { ...process.env, GIT_TERMINAL_PROMPT: "0" },
+  }).trim();
+  const match = /^([a-f0-9]{40})\s+refs\/heads\/main$/.exec(ref);
+  if (!match) throw new Error("ASTRA_CONTROL_PLANE_PULL_FAIL: unverified git main ref");
+  controllerSha = match[1];
+  console.log("ASTRA_CONTROL_PLANE_SHA_GIT_FALLBACK", controllerSha);
+}
 if (!/^[a-f0-9]{40}$/.test(controllerSha)) {
   throw new Error("ASTRA_CONTROL_PLANE_PULL_FAIL: invalid controller SHA");
 }

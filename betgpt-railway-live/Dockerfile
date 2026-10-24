@@ -26,7 +26,9 @@ COPY control-plane-pull.mjs source-manifest.json .astra-green-release.json sourc
 # RAILWAY_DEPLOYMENT_ID is unique for every deployment. Referencing it in this
 # RUN makes the control-plane pull non-cacheable across redeployments, while the
 # fetched controller files are all pinned to one zip-github commit SHA.
-RUN echo "ASTRA_CONTROL_PLANE_CACHE_BUST deployment=${RAILWAY_DEPLOYMENT_ID} nonce=${ASTRA_CONTROL_PLANE_NONCE}" \
+RUN command -v git \
+ && node --check control-plane-pull.mjs \
+ && echo "ASTRA_CONTROL_PLANE_CACHE_BUST deployment=${RAILWAY_DEPLOYMENT_ID} nonce=${ASTRA_CONTROL_PLANE_NONCE}" \
  && node control-plane-pull.mjs
 
 RUN node source-gate.mjs
