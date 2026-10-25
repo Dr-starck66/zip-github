@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "c683ad9897658b78e18bb51adc3c4ac19009eaeb",
-  "workflowRunId": 40220628271,
-  "requestedAt": "2026-10-25T18:20:00.000Z",
-  "reason": "Publish 10 original evergreen BetGPT blog pages and 20 topic-specific SVG illustrations. Verified successful immutable Never-Fail Candidate Gate 40220628271, source SHA c683ad9; promote using existing safe release controller, preserving zero-cost and no-rollback constraints."
+  "sourceSha": "b942c9aea0e4d24fb57aefba1c7458c9edf7f2d2",
+  "workflowRunId": 40224093288,
+  "requestedAt": "2026-10-25T19:05:24.632Z",
+  "reason": "ASTRA Match Center global UI repair: premium score-first layout + official-only XI for all /match/* routes; candidate verified GREEN; use safe promoter, no rollback or safeguards bypass."
 }
