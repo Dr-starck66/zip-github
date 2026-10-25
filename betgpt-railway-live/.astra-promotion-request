@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "b942c9aea0e4d24fb57aefba1c7458c9edf7f2d2",
-  "workflowRunId": 40224093288,
-  "requestedAt": "2026-10-25T19:05:24.632Z",
-  "reason": "ASTRA Match Center global UI repair: premium score-first layout + official-only XI for all /match/* routes; candidate verified GREEN; use safe promoter, no rollback or safeguards bypass."
+  "sourceSha": "e6bf831b017507fc6d2322a60be70439dc51ee84",
+  "workflowRunId": 40225863538,
+  "requestedAt": "2026-10-25T19:25:46.000Z",
+  "reason": "Repair ten real BetGPT /blog/* 404 URLs; PR #116 merged, Never-Fail Candidate Gate 40225863538 SUCCESS. Promote via protected ASTRA release train; enforce postflight HTTP 200, canonical and sitemap checks."
 }
