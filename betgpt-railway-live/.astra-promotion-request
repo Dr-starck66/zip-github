@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "78edfdaf285ef6fd751daf4da71e0c3b0608b85d",
-  "workflowRunId": 40130482577,
-  "requestedAt": "2026-10-24T20:38:00.000Z",
-  "reason": "Promote immutable GREEN BetGPT editorial repair PR #111: ASTRA_CONTENT_BULKER executable proof, fail-closed content pipeline, 3 distinct 1200x675 licensed images, 3 genuine dated editorial articles. Verify public revision, each article HTTP 200, sitemap News and image metadata. Source never-fail run 40130482577 PASS."
+  "sourceSha": "d82ba4b6b9c01310a02cc62feb4257b1b35f07b0",
+  "workflowRunId": 40189083548,
+  "requestedAt": "2026-10-25T11:31:19.000Z",
+  "reason": "Promote BetGPT PR #113 real graphical tactical lineups: 11 verified starters per team, formation-shaped football pitch, proper crests, honest pending/partial states. Main Never-Fail Gate 40189083548 success; maintain immutable release-train controls and verify public revision."
 }
