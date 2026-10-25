@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "d82ba4b6b9c01310a02cc62feb4257b1b35f07b0",
-  "workflowRunId": 40189083548,
-  "requestedAt": "2026-10-25T11:31:19.000Z",
-  "reason": "Promote BetGPT PR #113 real graphical tactical lineups: 11 verified starters per team, formation-shaped football pitch, proper crests, honest pending/partial states. Main Never-Fail Gate 40189083548 success; maintain immutable release-train controls and verify public revision."
+  "sourceSha": "bdf3b0c7196b42b30d3ccc87abde8cac63560210",
+  "workflowRunId": 40193495272,
+  "requestedAt": "2026-10-25T12:34:00.000Z",
+  "reason": "Promote immutable GREEN BetGPT global Match Center PR #115. Always render two visual tactical pitches on all historical, live and upcoming /match/* routes, anonymous schematics if no official XI. Never-Fail Gate 40193495272 success, strict tests and no fabricated players. Verify public revision and 3 match URL pages."
 }
