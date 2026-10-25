@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "bdf3b0c7196b42b30d3ccc87abde8cac63560210",
-  "workflowRunId": 40193495272,
-  "requestedAt": "2026-10-25T12:34:00.000Z",
-  "reason": "Promote immutable GREEN BetGPT global Match Center PR #115. Always render two visual tactical pitches on all historical, live and upcoming /match/* routes, anonymous schematics if no official XI. Never-Fail Gate 40193495272 success, strict tests and no fabricated players. Verify public revision and 3 match URL pages."
+  "sourceSha": "c683ad9897658b78e18bb51adc3c4ac19009eaeb",
+  "workflowRunId": 40220628271,
+  "requestedAt": "2026-10-25T18:20:00.000Z",
+  "reason": "Publish 10 original evergreen BetGPT blog pages and 20 topic-specific SVG illustrations. Verified successful immutable Never-Fail Candidate Gate 40220628271, source SHA c683ad9; promote using existing safe release controller, preserving zero-cost and no-rollback constraints."
 }
