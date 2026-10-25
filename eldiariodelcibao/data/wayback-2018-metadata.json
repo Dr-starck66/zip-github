@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Source metadata only; no copied full article texts and no automatic indexability",
-  "checkedUTC": "2026-10-24T08:15:53.490063+00:00",
+  "checkedUTC": "2026-10-25T07:45:31.846113+00:00",
   "totalJune2018": 259,
   "records": [
     {
@@ -18,8 +18,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 7,
-      "lastAttemptUTC": "2026-10-24T08:15:42.338702+00:00"
+      "attemptCount": 8,
+      "lastAttemptUTC": "2026-10-25T07:44:39.713796+00:00"
     },
     {
       "path": "/2018/06/aduanas-dispondra-de-inteligencia.html",
@@ -193,8 +193,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 7,
-      "lastAttemptUTC": "2026-10-24T08:15:44.393163+00:00"
+      "attemptCount": 8,
+      "lastAttemptUTC": "2026-10-25T07:45:04.594478+00:00"
     },
     {
       "path": "/2018/06/apresan-dos-ancianos-de-78-y-85-anos.html",
@@ -1150,20 +1150,13 @@
     },
     {
       "path": "/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20190227045356id_/http://www.eldiariodelcibao.com:80/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
-      "archiveTimestamp": "20190227045356",
-      "originalTitle": "El cambio no viene, hay que hacerlo",
-      "originalDate": null,
-      "sourceBodyWords": 291,
-      "sourceBodySha256": "2551f84266985b2f4d71b630b02f16518b694aecc490ff65ac059bcc2b6ff2c0",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 7,
-      "lastAttemptUTC": "2026-10-24T08:15:44.101538+00:00"
+      "attemptCount": 8,
+      "lastAttemptUTC": "2026-10-25T07:44:58.870996+00:00"
     },
     {
       "path": "/2018/06/el-cantautor-manuel-jimenez-viajara-ny.html",
@@ -1725,20 +1718,13 @@
     },
     {
       "path": "/2018/06/felix-bautista-se-burla-de-estados.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20180617211752id_/http://www.eldiariodelcibao.com:80/2018/06/felix-bautista-se-burla-de-estados.html",
-      "archiveTimestamp": "20180617211752",
-      "originalTitle": "Félix Bautista se burla de Estados Unidos; no tengo cuentas ni bienes alla...",
-      "originalDate": "2018-06-13",
-      "sourceBodyWords": 29,
-      "sourceBodySha256": "1fd7e0a4a77d60f71dc547c432e045ffdca827a9bad1a98a5bc401eb63e70e6b",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 7,
-      "lastAttemptUTC": "2026-10-24T08:15:44.287648+00:00"
+      "attemptCount": 8,
+      "lastAttemptUTC": "2026-10-25T07:45:10.929979+00:00"
     },
     {
       "path": "/2018/06/felix-bautista-tiene-rd84-mil-600.html",
@@ -2462,8 +2448,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 7,
-      "lastAttemptUTC": "2026-10-24T08:15:42.100545+00:00"
+      "attemptCount": 8,
+      "lastAttemptUTC": "2026-10-25T07:44:32.850267+00:00"
     },
     {
       "path": "/2018/06/marcha-verde-convoca-para-el-12-de.html",
@@ -3221,8 +3207,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 7,
-      "lastAttemptUTC": "2026-10-24T08:15:42.796142+00:00"
+      "attemptCount": 8,
+      "lastAttemptUTC": "2026-10-25T07:44:44.575685+00:00"
     },
     {
       "path": "/2018/06/por-carolina-pichardolistin-diario.html",
@@ -3516,8 +3502,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 7,
-      "lastAttemptUTC": "2026-10-24T08:15:42.015722+00:00"
+      "attemptCount": 8,
+      "lastAttemptUTC": "2026-10-25T07:44:33.160031+00:00"
     },
     {
       "path": "/2018/06/roberto-rosario-sale-en-defensa-de.html",
@@ -3565,8 +3551,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 7,
-      "lastAttemptUTC": "2026-10-24T08:15:43.906763+00:00"
+      "attemptCount": 8,
+      "lastAttemptUTC": "2026-10-25T07:44:44.928756+00:00"
     },
     {
       "path": "/2018/06/sacerdote-critica-posicion-masalles.html",
@@ -3724,20 +3710,13 @@
     },
     {
       "path": "/2018/06/sepultan-restos-del-adolescente-de-15.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20180702014224id_/http://www.eldiariodelcibao.com:80/2018/06/sepultan-restos-del-adolescente-de-15.html",
-      "archiveTimestamp": "20180702014224",
-      "originalTitle": "Sepultan restos del adolescente de 15 años, Lesandro Guzmán Feliz (Junior) en El Bronx",
-      "originalDate": "2018-06-27",
-      "sourceBodyWords": 20,
-      "sourceBodySha256": "ccb0946c255870461fcdb2aa15e19f5f89ede00adc1e879598f0aa243446d23c",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
-      "alternatesExamined": 3,
-      "attemptCount": 7,
-      "lastAttemptUTC": "2026-10-24T08:15:53.489304+00:00"
+      "alternatesExamined": 0,
+      "attemptCount": 8,
+      "lastAttemptUTC": "2026-10-25T07:45:31.845635+00:00"
     },
     {
       "path": "/2018/06/servio-tulio-advierte-juez-designado.html",
