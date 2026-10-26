@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "63ef556d81c880fb3bb1b695e8cb26ec9d31da0b",
-  "workflowRunId": 40283323648,
-  "requestedAt": "2026-10-26T07:05:00.000Z",
-  "reason": "BetGPT 26 Oct 2026 morning edition: PR #117 merged, 2451 words/10 H2/8 verified sources, Never-Fail Candidate Gate 40283323648 SUCCESS. Request protected ASTRA release train only; require immutable SHA, lineage and production HTTP 200/canonical/news sitemap checks."
+  "sourceSha": "b752e7f21421b81b91500ae0ff26856e0cc76757",
+  "workflowRunId": 40308629397,
+  "requestedAt": "2026-10-26T10:37:50Z",
+  "reason": "Publish audited licensed landscape Anfield image; immutable Never-Fail PASS; preserve production quality gates; verify revision HTTP and News sitemap."
 }
