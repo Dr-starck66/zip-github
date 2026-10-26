@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "31cf250e0f69351791c91ca05c5c5d819ff91476",
-  "workflowRunId": 40342268326,
-  "requestedAt": "2026-10-26T14:45:54.387Z",
-  "reason": "Enforce max 3 distinct public pages per Paris day, counting agent catchup without faking Qwen generationProof. PR #121 merged, 5 PR checks and immutable Never-Fail Candidate Gate 40342268326 SUCCESS. All editorial Gold Standard gates unchanged. Safe promotion and postflight only; preserve historic URLs, canonicals, News sitemap, robots index."
+  "sourceSha": "bc69d6c142183ffb5927c4f82fbe62add7bda017",
+  "workflowRunId": 40410440254,
+  "requestedAt": "2026-10-26T22:12:58.957Z",
+  "reason": "User-authorized 27 October editorial native publication fix, PR #123 merged. GREEN immutable Never-Fail Candidate Gate 40410440254. Release only through ASTRA Safe BetGPT Promotion, preserving Gold Standard and URL/indexing safeguards."
 }
