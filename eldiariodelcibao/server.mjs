@@ -28,7 +28,7 @@ for(const dossier of archiveDossiers){
    throw new Error("ASTRA_ARCHIVE_DOSSIER_PROVENANCE_FAILURE "+dossier.path);
  archiveDossierMap.set(dossier.path,dossier);
 }
-const evergreenGuides=["prestaciones-laborales.json","papel-buena-conducta.json","cursos-infotep.json","certificado-infotep.json","senasa-subsidiado.json","acta-nacimiento-jce.json","renovacion-licencia.json","multas-transito.json","afp-sipen.json","certificado-bachiller.json"].map(name=>JSON.parse(readFileSync(new URL("./data/evergreen/"+name,import.meta.url),"utf8")));
+const evergreenGuides=["prestaciones-laborales.json","papel-buena-conducta.json","cursos-infotep.json","certificado-infotep.json","senasa-subsidiado.json","acta-nacimiento-jce.json","renovacion-licencia.json","multas-transito.json","afp-sipen.json","certificado-bachiller.json","pasaporte-dominicano-primera-vez.json","registro-nombre-comercial-onapi.json","duplicado-cedula-jce.json"].map(name=>JSON.parse(readFileSync(new URL("./data/evergreen/"+name,import.meta.url),"utf8")));
 const evergreenMap=new Map(evergreenGuides.map(g=>[g.path,g]));
 const guideCovers=await generateGuideCovers(evergreenGuides);
 const pages=content.pages||[], currentNews=content.currentNews||[], trustPages=content.trustPages||[];
@@ -68,7 +68,7 @@ function renderEvergreenGuide(g){
 }
 function guidesIndex(){
  const cards=evergreenGuides.map(g=>'<a class="card" href="'+e(g.path)+'"><img src="'+coverPath(g)+'" width="1200" height="675" alt="Ilustración editorial: '+e(g.title)+'" loading="lazy" decoding="async"><div class="k">'+e(g.section)+'</div><h3>'+e(g.title)+'</h3><p>'+e(g.description)+'</p></a>').join("");
- return shell({title:"Guías prácticas de República Dominicana",desc:"Trámites, educación, empleo y servicios explicados desde Santiago y la región del Cibao.",path:"/guias/",body:'<main><section class="hero"><div class="k">Servicios · educación · empleo · Cibao</div><h1>Guías prácticas de República Dominicana</h1><p class="deck">Diez explicaciones originales, con fuentes institucionales, para preparar trámites y tomar decisiones informadas.</p></section><div class="grid">'+cards+'</div></main>'});
+ return shell({title:"Guías prácticas de República Dominicana",desc:"Trámites, educación, empleo y servicios explicados desde Santiago y la región del Cibao.",path:"/guias/",body:'<main><section class="hero"><div class="k">Servicios · educación · empleo · Cibao</div><h1>Guías prácticas de República Dominicana</h1><p class="deck">Trece explicaciones originales, con fuentes institucionales, para preparar trámites y tomar decisiones informadas.</p></section><div class="grid">'+cards+'</div></main>'});
 }
 function renderTrust(t){return shell({title:t.title,desc:t.description,path:t.path,body:'<main><article class="article"><div class="k">'+e(t.section)+'</div><h1>'+e(t.title)+'</h1><p class="deck">'+e(t.description)+'</p>'+secHtml(t.sections)+'</article></main>'})}
 
