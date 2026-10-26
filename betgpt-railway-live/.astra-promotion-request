@@ -1,8 +1,8 @@
 {
-  "schema": "astra-safe-promotion-request/v1",
+  "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "32f74518232d8ebc2c437d874f9bfc192d6ce9dd",
-  "workflowRunId": 40329984382,
-  "requestedAt": "2026-10-26T13:25:53.145Z",
-  "reason": "Verified 39 editorial tests, typecheck and immutable GREEN gate; publication provenance and bounded structured model generation."
+  "sourceSha": "d4087dfdcd1b7cdd139479a42539dda2118e06fc",
+  "workflowRunId": 40332568964,
+  "requestedAt": "2026-10-26T13:42:05.075Z",
+  "reason": "Repair event fragmentation and readable-source selection. 40 editorial tests PASS, immutable candidate gate SUCCESS, preserve all Gold Standard guards."
 }
