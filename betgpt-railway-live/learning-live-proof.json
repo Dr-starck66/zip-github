@@ -1,14 +1,14 @@
 {
   "schema": "astra-betgpt-learning-live-proof/v1",
-  "checkedAt": "2026-10-26T13:29:34Z",
+  "checkedAt": "2026-10-26T13:47:34Z",
   "source": "https://betgpt.live/api/learning-checkpoint",
   "runtimeSchema": "astra-betgpt-runtime-checkpoint/v2",
-  "generatedAt": "2026-10-26T13:29:33.379Z",
+  "generatedAt": "2026-10-26T13:47:33.147Z",
   "refresh": {
     "status": "PASS",
-    "source": "LIVE_REFRESH",
-    "liveFetchedAt": 1793021371278,
-    "liveAsOf": "2026-10-26T13:29:31.278Z"
+    "source": "FRESH_CACHE",
+    "liveFetchedAt": 1793022438678,
+    "liveAsOf": "2026-10-26T13:47:18.678Z"
   },
   "recovery": {
     "status": "PASS",
