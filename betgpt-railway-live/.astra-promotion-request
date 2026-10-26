@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "c8f873134874b889cfb1de9ab6097c9a088133a2",
-  "workflowRunId": 40340402701,
-  "requestedAt": "2026-10-26T14:34:58.218Z",
-  "reason": "26 Oct 2026 Clásico postmatch catchup article written by scheduled task agent, NOT native Qwen. PR #120 merged, 2268 words, 9 H2, 8 verified official and independent sources, distinct licensed 1600px image. Immutable Never-Fail Candidate Gate 40340402701 SUCCESS. Promote through ASTRA_SAFE_BETGPT_PROMOTION only; enforce all quality, provenance, HTTP, canonical and News sitemap gates; preserve all historic URLs and indexability; do not count as astra-auto-reporter-v2 native generation."
+  "sourceSha": "31cf250e0f69351791c91ca05c5c5d819ff91476",
+  "workflowRunId": 40342268326,
+  "requestedAt": "2026-10-26T14:45:54.387Z",
+  "reason": "Enforce max 3 distinct public pages per Paris day, counting agent catchup without faking Qwen generationProof. PR #121 merged, 5 PR checks and immutable Never-Fail Candidate Gate 40342268326 SUCCESS. All editorial Gold Standard gates unchanged. Safe promotion and postflight only; preserve historic URLs, canonicals, News sitemap, robots index."
 }
