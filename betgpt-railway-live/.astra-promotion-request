@@ -1,8 +1,8 @@
 {
-  "schema": "astra-promotion-request/v1",
+  "schema": "astra-safe-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "4a902ce8da8157ec8fce0c1c303c7a510b2faf47",
-  "workflowRunId": 40320856581,
-  "requestedAt": "2026-10-26T12:15:34Z",
-  "reason": "26 Oct 2026 noon edition Ballon d'Or, PR #119 merged, original 2318-word sourced article, CC BY-SA 4.0 museum photograph. Immutable ASTRA Never-Fail Candidate Gate 40320856581 SUCCESS; request protected promotion only. Enforce provenance, quality, HTTP 200, canonical, News sitemap. Preserve historical URLs and indexability."
+  "sourceSha": "32f74518232d8ebc2c437d874f9bfc192d6ce9dd",
+  "workflowRunId": 40329984382,
+  "requestedAt": "2026-10-26T13:25:53.145Z",
+  "reason": "Verified 39 editorial tests, typecheck and immutable GREEN gate; publication provenance and bounded structured model generation."
 }
