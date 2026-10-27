@@ -119,5 +119,39 @@
         "Las fuentes oficiales fueron consultadas el 26 de octubre de 2026. Requisitos, citas y tasas pueden cambiar. La información actual de la JCE prevalece sobre esta guía. Este contenido no se presenta como prueba de rich result o posición cero; esas apariciones solo pueden verificarse con evidencia de Google y métricas externas vigentes."
       ]
     ]
+  ],
+  "factAsOf": "2026-10-26",
+  "review": {
+    "reviewer": "ASTRA source-verification desk",
+    "date": "2026-10-26",
+    "approved": true,
+    "factualSpotcheck": true
+  },
+  "evidence": [
+    {
+      "claim": "La página de ayuda de la JCE indica aportar la cédula anterior cuando esté disponible y la denuncia de la policía o llenar el formulario de descargo.",
+      "sourceUrl": "https://ayuda.jce.gob.do/kb/a196/requisitos-para-obtener-duplicado-de-cedula.aspx",
+      "sourceLocator": "Requisitos para obtener duplicado de cédula"
+    },
+    {
+      "claim": "La JCE publica requisitos adicionales para miembros policiales o militares: carnet de la institución y, en pérdida, un certificado original firmado y sellado por Recursos Humanos con la antigüedad máxima indicada.",
+      "sourceUrl": "https://ayuda.jce.gob.do/kb/a196/requisitos-para-obtener-duplicado-de-cedula.aspx",
+      "sourceLocator": "Caso policía o militar"
+    },
+    {
+      "claim": "La JCE publica que el duplicado puede requerir pasaporte vigente, tarjeta de residencia vigente, certificación de denuncia por pérdida y recibo de pago.",
+      "sourceUrl": "https://jce.gob.do/cedulas-extranjeros",
+      "sourceLocator": "DUPLICADOS para extranjeros"
+    },
+    {
+      "claim": "La presencia del ciudadano es imprescindible.",
+      "sourceUrl": "https://jce.gob.do/cedulas-extranjeros",
+      "sourceLocator": "Nota de presencia obligatoria"
+    },
+    {
+      "claim": "La JCE mantiene un sistema de citas y una red de centros de cedulación.",
+      "sourceUrl": "https://citas.jce.gob.do/",
+      "sourceLocator": "Sistema de Citas JCE"
+    }
   ]
 }

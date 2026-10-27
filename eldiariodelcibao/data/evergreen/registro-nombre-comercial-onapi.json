@@ -119,5 +119,39 @@
         "Las fuentes de esta guía fueron consultadas el 26 de octubre de 2026. ONAPI puede modificar formularios, tasas o plataformas. Antes de presentar, abre la ficha de Registro de Nombre Comercial y E-SERPI enlazadas abajo. Sin métricas externas actuales de volumen y dificultad, este artículo no se etiqueta como prueba de posición cero; sí busca resolver el trámite con información institucional."
       ]
     ]
+  ],
+  "factAsOf": "2026-10-26",
+  "review": {
+    "reviewer": "ASTRA source-verification desk",
+    "date": "2026-10-26",
+    "approved": true,
+    "factualSpotcheck": true
+  },
+  "evidence": [
+    {
+      "claim": "ONAPI describe el nombre comercial como la denominación, designación o abreviatura que identifica una empresa o establecimiento comercial.",
+      "sourceUrl": "https://onapi.gob.do/index.php/servicios/signos-distintivos/nombres-comerciales/registro-de-nombre-comercial-2023",
+      "sourceLocator": "Descripción del servicio Registro de Nombre Comercial"
+    },
+    {
+      "claim": "El sistema E-SERPI permite crear una cuenta y gestionar solicitudes de signos distintivos.",
+      "sourceUrl": "https://onapi.gob.do/siteServices/Registrarse.aspx",
+      "sourceLocator": "Sistema de Solicitudes Electrónicas de Registro de Propiedad Industrial"
+    },
+    {
+      "claim": "Selecciona Solicitud de Registro de Nombre Comercial, Rótulo y Emblema y confirma que el tipo específico sea nombre comercial.",
+      "sourceUrl": "https://onapi.gob.do/siteServices/Registrarse.aspx",
+      "sourceLocator": "Solicitudes de registro de Signos Distintivos"
+    },
+    {
+      "claim": "El certificado de nombre comercial no crea por sí solo una sociedad, no emite Registro Mercantil y no asigna RNC.",
+      "sourceUrl": "https://empresas24h.gob.do/preguntas-frecuentes/",
+      "sourceLocator": "Flujo integrado: nombre comercial, Registro Mercantil y RNC"
+    },
+    {
+      "claim": "El portal Empresas en 24 Horas integra determinados flujos para persona física, EIRL o SRL, pero su servicio se describe como híbrido y puede requerir actuaciones posteriores.",
+      "sourceUrl": "https://empresas24h.gob.do/preguntas-frecuentes/",
+      "sourceLocator": "Tipos de empresa y carácter híbrido del servicio"
+    }
   ]
 }

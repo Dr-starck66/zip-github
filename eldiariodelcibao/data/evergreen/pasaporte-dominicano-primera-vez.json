@@ -111,5 +111,39 @@
         "Este artículo es informativo y fue preparado con páginas institucionales consultadas el 26 de octubre de 2026. No afirma que una tasa, plazo o modalidad permanezca igual después de esa fecha. Antes de iniciar, abre los enlaces de Fuentes y organismos oficiales. Si el portal publica una regla distinta, prevalece la instrucción actual de la autoridad competente."
       ]
     ]
+  ],
+  "factAsOf": "2026-10-26",
+  "review": {
+    "reviewer": "ASTRA source-verification desk",
+    "date": "2026-10-26",
+    "approved": true,
+    "factualSpotcheck": true
+  },
+  "evidence": [
+    {
+      "claim": "El servicio descrito se refiere al adulto dominicano por nacimiento que solicita pasaporte por primera vez.",
+      "sourceUrl": "https://www.gob.do/servicios/solicitud-de-pasaporte-por-primera-vez-adulto",
+      "sourceLocator": "Encabezado y público del servicio"
+    },
+    {
+      "claim": "La ficha oficial señala como documentos generales la cédula de identidad física y copia legible de ambos lados, el acta de nacimiento original y copia, y la constancia de cita y pago.",
+      "sourceUrl": "https://citas-e.pasaportes.gob.do/citas-v2/requisitos",
+      "sourceLocator": "Documentos Generales"
+    },
+    {
+      "claim": "Desde la ficha oficial, entra al portal de Solicitudes Web de la DGP, elige Servicios y selecciona la solicitud para adultos por primera vez.",
+      "sourceUrl": "https://www.gob.do/servicios/solicitud-de-pasaporte-por-primera-vez-adulto",
+      "sourceLocator": "Procedimientos a seguir — modalidad en línea"
+    },
+    {
+      "claim": "La información oficial describe una fotografía frontal, reciente, con fondo blanco y medidas aceptadas por la DGP, alineada con especificaciones internacionales.",
+      "sourceUrl": "https://www.gob.do/servicios/solicitud-de-pasaporte-por-primera-vez-adulto",
+      "sourceLocator": "Especificaciones de la fotografía digital"
+    },
+    {
+      "claim": "Para retirar, la ficha pública indica presentar la cédula original actualizada y el formulario de entrega recibido al finalizar la solicitud.",
+      "sourceUrl": "https://www.gob.do/servicios/solicitud-de-pasaporte-por-primera-vez-adulto",
+      "sourceLocator": "Requisitos para retirar el pasaporte"
+    }
   ]
 }
