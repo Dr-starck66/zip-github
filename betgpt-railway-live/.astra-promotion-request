@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "9dfe876e6b308106dbe39bc216c01add50945145",
-  "workflowRunId": 40470948030,
-  "requestedAt": "2026-10-27T08:05:00.000Z",
-  "reason": "27 Oct morning PSG–Lyon agent-scheduled fallback, source PR #124 and typecheck fix PR #125 merged. Immutable Never-Fail Candidate Gate 40470948030 must be SUCCESS before promotion; no native Qwen generationProof claimed. Enforce 3/day cap, no historical URL replacement/noindex, Gold Standard unchanged, postflight revision HTTP 200 canonical and News sitemap. ASTRA_SAFE_BETGPT_PROMOTION only."
+  "sourceSha": "e4164b60a2535151b024fe1ded913f2f52438fd3",
+  "workflowRunId": 40537813418,
+  "requestedAt": "2026-10-27T16:09:00.000Z",
+  "reason": "27 Oct noon Liverpool–Chelsea agent-scheduled fallback, source PR #127 merged as SCHEDULED then released at 16:07 UTC. Immutable Never-Fail Candidate Gate 40537813418 MUST finish SUCCESS on e4164b60 before merging this request. No native Qwen generationProof claimed. Preserve three/day cap, Gold Standard, existing URLs/indexing and verify live HTTP 200 canonical News sitemap. ASTRA_SAFE_BETGPT_PROMOTION only."
 }
