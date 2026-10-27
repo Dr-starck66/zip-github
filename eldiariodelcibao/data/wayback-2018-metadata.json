@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Source metadata only; no copied full article texts and no automatic indexability",
-  "checkedUTC": "2026-10-26T08:01:25.312835+00:00",
+  "checkedUTC": "2026-10-27T08:13:24.493690+00:00",
   "totalJune2018": 259,
   "records": [
     {
@@ -18,8 +18,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 9,
-      "lastAttemptUTC": "2026-10-26T08:00:29.876024+00:00"
+      "attemptCount": 10,
+      "lastAttemptUTC": "2026-10-27T08:12:14.982856+00:00"
     },
     {
       "path": "/2018/06/aduanas-dispondra-de-inteligencia.html",
@@ -186,8 +186,8 @@
       "archiveUrl": "https://web.archive.org/web/20180626095722id_/http://www.eldiariodelcibao.com:80/2018/06/angel-delgado-de-haina-para-la-nba.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 9,
-      "lastAttemptUTC": "2026-10-26T08:00:55.190992+00:00"
+      "attemptCount": 10,
+      "lastAttemptUTC": "2026-10-27T08:12:44.291423+00:00"
     },
     {
       "path": "/2018/06/apresan-dos-ancianos-de-78-y-85-anos.html",
@@ -1143,13 +1143,20 @@
     },
     {
       "path": "/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "capture-incomplete",
       "archiveUrl": "https://web.archive.org/web/20190227045356id_/http://www.eldiariodelcibao.com:80/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
+      "archiveTimestamp": "20190227045356",
+      "originalTitle": "El cambio no viene, hay que hacerlo",
+      "originalDate": null,
+      "sourceBodyWords": 291,
+      "sourceBodySha256": "2551f84266985b2f4d71b630b02f16518b694aecc490ff65ac059bcc2b6ff2c0",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
       "indexable": false,
+      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 9,
-      "lastAttemptUTC": "2026-10-26T08:00:55.771409+00:00"
+      "attemptCount": 10,
+      "lastAttemptUTC": "2026-10-27T08:12:53.572989+00:00"
     },
     {
       "path": "/2018/06/el-cantautor-manuel-jimenez-viajara-ny.html",
@@ -1716,8 +1723,8 @@
       "archiveUrl": "https://web.archive.org/web/20180617211752id_/http://www.eldiariodelcibao.com:80/2018/06/felix-bautista-se-burla-de-estados.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 9,
-      "lastAttemptUTC": "2026-10-26T08:01:24.059074+00:00"
+      "attemptCount": 10,
+      "lastAttemptUTC": "2026-10-27T08:13:10.689497+00:00"
     },
     {
       "path": "/2018/06/felix-bautista-tiene-rd84-mil-600.html",
@@ -2441,8 +2448,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 9,
-      "lastAttemptUTC": "2026-10-26T08:00:24.264430+00:00"
+      "attemptCount": 10,
+      "lastAttemptUTC": "2026-10-27T08:12:04.124029+00:00"
     },
     {
       "path": "/2018/06/marcha-verde-convoca-para-el-12-de.html",
@@ -3200,8 +3207,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 9,
-      "lastAttemptUTC": "2026-10-26T08:00:36.296741+00:00"
+      "attemptCount": 10,
+      "lastAttemptUTC": "2026-10-27T08:12:35.033137+00:00"
     },
     {
       "path": "/2018/06/por-carolina-pichardolistin-diario.html",
@@ -3495,8 +3502,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 9,
-      "lastAttemptUTC": "2026-10-26T08:00:23.947983+00:00"
+      "attemptCount": 10,
+      "lastAttemptUTC": "2026-10-27T08:12:01.532330+00:00"
     },
     {
       "path": "/2018/06/roberto-rosario-sale-en-defensa-de.html",
@@ -3544,8 +3551,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 9,
-      "lastAttemptUTC": "2026-10-26T08:00:34.778880+00:00"
+      "attemptCount": 10,
+      "lastAttemptUTC": "2026-10-27T08:12:14.605127+00:00"
     },
     {
       "path": "/2018/06/sacerdote-critica-posicion-masalles.html",
@@ -3708,8 +3715,8 @@
       "archiveUrl": "https://web.archive.org/web/20180702014224id_/http://www.eldiariodelcibao.com:80/2018/06/sepultan-restos-del-adolescente-de-15.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 9,
-      "lastAttemptUTC": "2026-10-26T08:01:25.312449+00:00"
+      "attemptCount": 10,
+      "lastAttemptUTC": "2026-10-27T08:13:24.493253+00:00"
     },
     {
       "path": "/2018/06/servio-tulio-advierte-juez-designado.html",
