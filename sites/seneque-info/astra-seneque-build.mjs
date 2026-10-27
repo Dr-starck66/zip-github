@@ -78,7 +78,7 @@ for(const slug of wyyldeSlugs){
  await save(slug+'/index.html',article);
 }
 await save('wyylde-cocon.css',await fs.readFile(path.join(baseDir,'wyylde-cocon.css'),'utf8'));
-if(daily.articles.length!==3||daily.datePublished!=='2026-10-27T08:00:00+01:00')throw Error('DAILY_EDITORIAL_INVALID');
+if(daily.articles.length!==3||daily.datePublished!=='2026-10-27T08:11:26+01:00')throw Error('DAILY_EDITORIAL_INVALID');
 const dailyPaths=[];
 for(const [index,article] of daily.articles.entries()){
  const leaf=article.slug.split('/').at(-1),html=guideHtml(article,index),words=wc(html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]||html);
