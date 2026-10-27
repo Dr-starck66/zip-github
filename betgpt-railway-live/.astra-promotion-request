@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "f9b0bc068ce84f60d86138d861ddc071b36ac5fd",
-  "workflowRunId": 40538569978,
-  "requestedAt": "2026-10-27T16:14:00.000Z",
-  "reason": "27 Oct noon Liverpool–Chelsea already source-staged plus isolated correction of morning PSG–Lyon 4:3 image to licensed 16:9 1600x900 photo, to restore unchanged daily IMAGE_FORMAT Gold Standard. Immutable Candidate Gate 40538569978 SUCCESS on exact source SHA; editorial-publish run 40538569910 SUCCESS. No native Qwen generationProof claimed. ASTRA_SAFE_BETGPT_PROMOTION only, verify HTTP200 canonical News sitemap."
+  "sourceSha": "672a0a1948ade5a1d8c173fcf018eb65eb9ae5eb",
+  "workflowRunId": 40540071780,
+  "requestedAt": "2026-10-27T16:25:00.000Z",
+  "reason": "27 Oct two published agent-scheduled articles morning PSG–Lyon and noon Liverpool–Chelsea; correct their editorial timestamps to actual Railway first-public proofs (09:52:16Z and 16:14:18Z), no backdating, preserve original content, licensed 16:9 images, URLs and SEO. Immutable Candidate Gate 40540071780 SUCCESS and editorial-publish 40540071583 SUCCESS. No native Qwen generationProof. ASTRA_SAFE_BETGPT_PROMOTION only."
 }
