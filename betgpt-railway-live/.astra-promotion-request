@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "672a0a1948ade5a1d8c173fcf018eb65eb9ae5eb",
-  "workflowRunId": 40540071780,
-  "requestedAt": "2026-10-27T16:25:00.000Z",
-  "reason": "27 Oct two published agent-scheduled articles morning PSG–Lyon and noon Liverpool–Chelsea; correct their editorial timestamps to actual Railway first-public proofs (09:52:16Z and 16:14:18Z), no backdating, preserve original content, licensed 16:9 images, URLs and SEO. Immutable Candidate Gate 40540071780 SUCCESS and editorial-publish 40540071583 SUCCESS. No native Qwen generationProof. ASTRA_SAFE_BETGPT_PROMOTION only."
+  "sourceSha": "1f7dae7a06fd56c9e9be2fb2626dd91418ef69e9",
+  "workflowRunId": 40559523530,
+  "requestedAt": "2026-10-27T18:26:23.303Z",
+  "reason": "27 Oct evening Fleetwood–Arsenal original agent scheduled run cc07a9ef-0784-8331-9a53-e49a51d8aca1; native Qwen evening run 0ac02b86 failed on TimeoutError section 1. Six PR checks GREEN including immutable editorial Candidate Gate 40559141413 on 7663378a; merged source main 1f7dae7a and ASTRA Never-Fail immutable Candidate Gate 40559523530 SUCCESS. Promote only through ASTRA_SAFE_BETGPT_PROMOTION; 2006 words, seven H2, three independent media, official EFL and licensed distinct Fleetwood photo. Require Railway SUCCESS and public HTTP 200, canonical, News sitemap; align publishedAt to first public proof."
 }
