@@ -1,21 +1,21 @@
 {
   "schema": "astra-betgpt-learning-live-proof/v1",
-  "checkedAt": "2026-10-27T18:29:31Z",
+  "checkedAt": "2026-10-27T23:49:00Z",
   "source": "https://betgpt.live/api/learning-checkpoint",
   "runtimeSchema": "astra-betgpt-runtime-checkpoint/v2",
-  "generatedAt": "2026-10-27T18:29:30.792Z",
+  "generatedAt": "2026-10-27T23:48:59.888Z",
   "refresh": {
     "status": "PASS",
     "source": "LIVE_REFRESH",
-    "liveFetchedAt": 1793125753853,
-    "liveAsOf": "2026-10-27T18:29:13.853Z"
+    "liveFetchedAt": 1793144939105,
+    "liveAsOf": "2026-10-27T23:48:59.105Z"
   },
   "recovery": {
     "status": "PASS",
     "targets": 4,
     "recovered": 0
   },
-  "ticketCount": 991,
+  "ticketCount": 992,
   "learning": {
     "canonicalSettledN": 33,
     "canonicalWins": 12,
@@ -28,7 +28,7 @@
     "playableFreshness": {
       "latestSettledKickoff": "2026-10-25T16:30Z",
       "settledLast24h": 0,
-      "settledLast7d": 22,
+      "settledLast7d": 21,
       "status": "FRESH"
     },
     "latestPlayableSettled": [
@@ -576,16 +576,94 @@
         ]
       }
     ],
-    "contextualSettledN": 255,
-    "contextualWins": 129,
-    "contextualLosses": 126,
+    "contextualSettledN": 258,
+    "contextualWins": 130,
+    "contextualLosses": 128,
     "contextualFreshness": {
-      "latestSettledKickoff": "2026-10-26T20:00Z",
-      "settledLast24h": 1,
-      "settledLast7d": 64,
+      "latestSettledKickoff": "2026-10-27T19:45Z",
+      "settledLast24h": 3,
+      "settledLast7d": 61,
       "status": "FRESH"
     },
     "latestContextSettled": [
+      {
+        "id": "espn-401874780:1X2",
+        "kickoff": "2026-10-27T19:45Z",
+        "league": "SA",
+        "competition": "Serie A",
+        "competitionKey": "ita.1",
+        "market": "1X2_H",
+        "odds": 1.26,
+        "result": "win",
+        "kind": "prono",
+        "decision": "NO_BET",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_H",
+          "league:SA",
+          "odds:<1.80",
+          "prob:<42%",
+          "ev:<3%",
+          "dataQuality:HIGH",
+          "modelDisagreement:VERY_HIGH",
+          "tacticalConflict:LOW",
+          "devilChallenge:HIGH",
+          "oddsMove:FLAT",
+          "missingInfo:HIGH"
+        ]
+      },
+      {
+        "id": "espn-401874786:1X2",
+        "kickoff": "2026-10-27T19:45Z",
+        "league": "SA",
+        "competition": "Serie A",
+        "competitionKey": "ita.1",
+        "market": "1X2_H",
+        "odds": 4.6,
+        "result": "lose",
+        "kind": "prono",
+        "decision": "WATCH",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_H",
+          "league:SA",
+          "odds:3.01+",
+          "prob:<42%",
+          "ev:12%+",
+          "dataQuality:HIGH",
+          "modelDisagreement:HIGH",
+          "tacticalConflict:LOW",
+          "devilChallenge:HIGH",
+          "oddsMove:FLAT",
+          "missingInfo:HIGH"
+        ]
+      },
+      {
+        "id": "espn-401874980:1X2",
+        "kickoff": "2026-10-27T17:30Z",
+        "league": "SA",
+        "competition": "Serie A",
+        "competitionKey": "ita.1",
+        "market": "1X2_H",
+        "odds": 3.45,
+        "result": "lose",
+        "kind": "prono",
+        "decision": "WATCH",
+        "evidence": "OBSERVATIONAL_PREDICTION",
+        "factors": [
+          "market:1X2_H",
+          "league:SA",
+          "odds:3.01+",
+          "prob:<42%",
+          "ev:12%+",
+          "dataQuality:HIGH",
+          "modelDisagreement:HIGH",
+          "tacticalConflict:LOW",
+          "devilChallenge:HIGH",
+          "oddsMove:FLAT",
+          "missingInfo:HIGH"
+        ]
+      },
       {
         "id": "espn-401882828:1X2",
         "kickoff": "2026-10-26T20:00Z",
@@ -1027,158 +1105,80 @@
           "oddsMove:FLAT",
           "missingInfo:HIGH"
         ]
-      },
-      {
-        "id": "espn-401874952:1X2",
-        "kickoff": "2026-10-25T14:00Z",
-        "league": "SA",
-        "competition": "Serie A",
-        "competitionKey": "ita.1",
-        "market": "1X2_H",
-        "odds": 2.2,
-        "result": "win",
-        "kind": "prono",
-        "decision": "NO_BET",
-        "evidence": "OBSERVATIONAL_PREDICTION",
-        "factors": [
-          "market:1X2_H",
-          "league:SA",
-          "odds:2.10-2.39",
-          "prob:<42%",
-          "ev:<3%",
-          "dataQuality:HIGH",
-          "modelDisagreement:MEDIUM",
-          "tacticalConflict:LOW",
-          "devilChallenge:HIGH",
-          "oddsMove:FLAT",
-          "missingInfo:HIGH"
-        ]
-      },
-      {
-        "id": "espn-401878765:1X2",
-        "kickoff": "2026-10-25T14:00Z",
-        "league": "PL",
-        "competition": "Premier League",
-        "competitionKey": "eng.1",
-        "market": "1X2_H",
-        "odds": 1.95,
-        "result": "win",
-        "kind": "prono",
-        "decision": "NO_BET",
-        "evidence": "OBSERVATIONAL_PREDICTION",
-        "factors": [
-          "market:1X2_H",
-          "league:PL",
-          "odds:1.80-2.09",
-          "prob:42-47%",
-          "ev:<3%",
-          "dataQuality:HIGH",
-          "modelDisagreement:MEDIUM",
-          "tacticalConflict:LOW",
-          "devilChallenge:HIGH",
-          "oddsMove:FLAT",
-          "missingInfo:HIGH"
-        ]
-      },
-      {
-        "id": "espn-401875036:1X2",
-        "kickoff": "2026-10-25T11:30Z",
-        "league": "SA",
-        "competition": "Serie A",
-        "competitionKey": "ita.1",
-        "market": "1X2_H",
-        "odds": 1.32,
-        "result": "win",
-        "kind": "prono",
-        "decision": "NO_BET",
-        "evidence": "OBSERVATIONAL_PREDICTION",
-        "factors": [
-          "market:1X2_H",
-          "league:SA",
-          "odds:<1.80",
-          "prob:48-53%",
-          "ev:<3%",
-          "dataQuality:HIGH",
-          "modelDisagreement:HIGH",
-          "tacticalConflict:VERY_HIGH",
-          "devilChallenge:VERY_HIGH",
-          "oddsMove:FLAT",
-          "missingInfo:HIGH"
-        ]
       }
     ],
     "contextualFactors": [
       {
         "factor": "oddsMove:FLAT",
-        "n": 207,
-        "wins": 108,
-        "losses": 99,
-        "hitRate": 0.5217391304347826,
-        "roi": -0.003091787439613735,
-        "profitUnits": -0.6400000000000432
+        "n": 210,
+        "wins": 109,
+        "losses": 101,
+        "hitRate": 0.5190476190476191,
+        "roi": -0.011333333333333582,
+        "profitUnits": -2.3800000000000523
       },
       {
         "factor": "missingInfo:HIGH",
-        "n": 207,
-        "wins": 108,
-        "losses": 99,
-        "hitRate": 0.5217391304347826,
-        "roi": -0.003091787439613735,
-        "profitUnits": -0.6400000000000432
+        "n": 210,
+        "wins": 109,
+        "losses": 101,
+        "hitRate": 0.5190476190476191,
+        "roi": -0.011333333333333582,
+        "profitUnits": -2.3800000000000523
       },
       {
         "factor": "dataQuality:HIGH",
-        "n": 195,
-        "wins": 103,
-        "losses": 92,
-        "hitRate": 0.5282051282051282,
-        "roi": 0.013179487179486998,
-        "profitUnits": 2.5699999999999648
+        "n": 198,
+        "wins": 104,
+        "losses": 94,
+        "hitRate": 0.5252525252525253,
+        "roi": 0.004191919191918968,
+        "profitUnits": 0.8299999999999557
       },
       {
         "factor": "market:1X2_H",
-        "n": 154,
-        "wins": 82,
-        "losses": 72,
-        "hitRate": 0.5324675324675324,
-        "roi": -0.034285714285714475,
-        "profitUnits": -5.28000000000003
+        "n": 157,
+        "wins": 83,
+        "losses": 74,
+        "hitRate": 0.5286624203821656,
+        "roi": -0.04471337579617859,
+        "profitUnits": -7.020000000000039
       },
       {
         "factor": "ev:<3%",
-        "n": 120,
-        "wins": 72,
+        "n": 121,
+        "wins": 73,
         "losses": 48,
-        "hitRate": 0.6,
-        "roi": -0.03508333333333316,
-        "profitUnits": -4.2099999999999795
+        "hitRate": 0.6033057851239669,
+        "roi": -0.032644628099173345,
+        "profitUnits": -3.9499999999999744
       },
       {
         "factor": "devilChallenge:HIGH",
-        "n": 116,
-        "wins": 59,
-        "losses": 57,
-        "hitRate": 0.5086206896551724,
-        "roi": 0.0321551724137935,
-        "profitUnits": 3.7300000000000466
+        "n": 119,
+        "wins": 60,
+        "losses": 59,
+        "hitRate": 0.5042016806722689,
+        "roi": 0.016722689075630688,
+        "profitUnits": 1.9900000000000517
       },
       {
         "factor": "ev:12%+",
-        "n": 94,
+        "n": 96,
         "wins": 35,
-        "losses": 59,
-        "hitRate": 0.3723404255319149,
-        "roi": -0.0920683594170895,
-        "profitUnits": -8.654425785206413
+        "losses": 61,
+        "hitRate": 0.3645833333333333,
+        "roi": -0.11098360192923347,
+        "profitUnits": -10.654425785206413
       },
       {
         "factor": "odds:<1.80",
-        "n": 92,
-        "wins": 65,
+        "n": 93,
+        "wins": 66,
         "losses": 27,
-        "hitRate": 0.7065217391304348,
-        "roi": 0.01695652173913077,
-        "profitUnits": 1.5600000000000307
+        "hitRate": 0.7096774193548387,
+        "roi": 0.019569892473118664,
+        "profitUnits": 1.8200000000000358
       },
       {
         "factor": "devilChallenge:VERY_HIGH",
@@ -1200,12 +1200,21 @@
       },
       {
         "factor": "tacticalConflict:LOW",
-        "n": 82,
-        "wins": 39,
-        "losses": 43,
-        "hitRate": 0.47560975609756095,
-        "roi": -0.03426829268292634,
-        "profitUnits": -2.8099999999999596
+        "n": 85,
+        "wins": 40,
+        "losses": 45,
+        "hitRate": 0.47058823529411764,
+        "roi": -0.05352941176470535,
+        "profitUnits": -4.5499999999999545
+      },
+      {
+        "factor": "prob:<42%",
+        "n": 79,
+        "wins": 30,
+        "losses": 49,
+        "hitRate": 0.379746835443038,
+        "roi": -0.10208133905324569,
+        "profitUnits": -8.06442578520641
       },
       {
         "factor": "prob:54%+",
@@ -1217,22 +1226,13 @@
         "profitUnits": 0.6100000000000136
       },
       {
-        "factor": "prob:<42%",
-        "n": 76,
-        "wins": 29,
-        "losses": 47,
-        "hitRate": 0.3815789473684211,
-        "roi": -0.08321612875271599,
-        "profitUnits": -6.324425785206415
-      },
-      {
         "factor": "modelDisagreement:HIGH",
-        "n": 74,
+        "n": 76,
         "wins": 33,
-        "losses": 41,
-        "hitRate": 0.44594594594594594,
-        "roi": -0.1686486486486485,
-        "profitUnits": -12.47999999999999
+        "losses": 43,
+        "hitRate": 0.4342105263157895,
+        "roi": -0.19052631578947354,
+        "profitUnits": -14.47999999999999
       },
       {
         "factor": "prob:42-47%",
@@ -1245,12 +1245,12 @@
       },
       {
         "factor": "modelDisagreement:VERY_HIGH",
-        "n": 62,
-        "wins": 40,
+        "n": 63,
+        "wins": 41,
         "losses": 22,
-        "hitRate": 0.6451612903225806,
-        "roi": 0.13677419354838738,
-        "profitUnits": 8.480000000000018
+        "hitRate": 0.6507936507936508,
+        "roi": 0.1387301587301591,
+        "profitUnits": 8.740000000000023
       },
       {
         "factor": "importance:HIGH",
@@ -1281,12 +1281,12 @@
       },
       {
         "factor": "league:SA",
-        "n": 45,
-        "wins": 22,
-        "losses": 23,
-        "hitRate": 0.4888888888888889,
-        "roi": -0.1033333333333333,
-        "profitUnits": -4.649999999999999
+        "n": 48,
+        "wins": 23,
+        "losses": 25,
+        "hitRate": 0.4791666666666667,
+        "roi": -0.13312500000000002,
+        "profitUnits": -6.390000000000001
       }
     ],
     "harmfulFactors": [
