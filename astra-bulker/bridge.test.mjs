@@ -53,3 +53,24 @@ test('FreeHotels nested native path is preserved in canonical by existing BULKER
  assert.equal(plan(m).briefs[0].path,'/news/en/holiday-policy-2026/');
  assert.equal(plan(m).briefs[0].canonical,'https://freehotels.info/news/en/holiday-policy-2026/');
 });
+test('Belgian legal publisher gets nine original sections plus introduction, but NEVER a forged approval',async()=>{
+ const legalBrief={...brief,canonical:'https://avocat-belgique.com/blog/registre-dossier-juridique/',path:'/blog/registre-dossier-juridique/',language:'fr'};
+ let calls=0;
+ const intro='Le lecteur vérifie auprès de l’institution belge les documents nécessaires avant la consultation juridique afin de distinguer une règle officielle d’une hypothèse. '.repeat(9);
+ const mock=async(_url,opt)=>{
+  calls++;
+  const payload=JSON.parse(opt.body);
+  assert.ok(payload.messages[1].content.includes('section '+calls+'/9'));
+  const claim='Donnée institutionnelle vérifiable numéro '+calls+' identifiée grâce aux trois sources publiques.';
+  const prose=claim+' Cette analyse décrit les pièces utiles, les limites et les vérifications spécifiques à effectuer en Belgique avec les références institutionnelles obtenues. '.repeat(6);
+  const json={heading:'Étape légale documentée spécifique '+calls,paragraphs:[prose,prose+' Vérification complémentaire '+calls+'.'],evidence:[{claim,sourceUrl:sources[0].url,sourceLocator:sources[0].locator}],...(calls===1?{introParagraphs:[intro]}:{})};
+  return {ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:JSON.stringify(json)}}]})};
+ };
+ const draft=await draftWithExistingModel(legalBrief,sources,{base:'http://localhost:8080/v1',fetchFn:mock});
+ assert.equal(calls,9);
+ assert.equal(draft.page.sections.length,9);
+ assert.equal(draft.page.introParagraphs.length,1);
+ assert.ok(draft.page.sources.every(s=>s.checkedAt==='2026-10-28'));
+ assert.equal(draft.page.review.approved,false);
+ assert.equal(draft.publicationCount,0);
+});
