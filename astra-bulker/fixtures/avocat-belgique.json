@@ -1,6 +1,6 @@
 {
   "schema": "astra-bulker/1",
-  "site": {"domain":"https://avocat-belgique.com/","language":"fr","pathPrefix":"guides"},
+  "site": {"domain":"https://avocat-belgique.com/","language":"fr","pathPrefix":"blog"},
   "existingPaths":[],
   "topics":[
     {"keyword":"avocat pro deo Belgique","title":"Avocat pro deo en Belgique : conditions et démarches","cluster":"acces-avocat","angle":"Différencier aide de première et deuxième ligne, démarches au BAJ et conditions actualisables","questions":["Qui peut solliciter l'aide juridique ?","À quel bureau d'aide juridique s'adresser ?","Quels frais restent possibles ?"],"sourceCandidates":["https://www.justice.belgium.be/fr/besoin_dun_avis_juridique","https://www.avocats.be/combien-ca-coute"]},
