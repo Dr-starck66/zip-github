@@ -22,7 +22,9 @@ export function plan(manifest){
  assert(manifest?.schema==='astra-bulker/1','MANIFEST_SCHEMA_INVALID');
  const origin=host(manifest.site||{}), topics=manifest.topics;
  assert(Array.isArray(topics) && topics.length>0 && topics.length<=1000,'TOPIC_COUNT_INVALID');
- const prefix=manifest.site.pathPrefix ? '/'+slugify(manifest.site.pathPrefix)+'/' : '/';
+ const rawPrefix=text(manifest.site.pathPrefix||'');
+ assert(!rawPrefix||(/^[a-z0-9-]+(?:\/[a-z0-9-]+)*$/i.test(rawPrefix) && rawPrefix.split('/').every(x=>x!=='..')),'PATH_PREFIX_INVALID');
+ const prefix=rawPrefix ? '/'+rawPrefix.split('/').map(slugify).join('/')+'/' : '/';
  const reserved=new Set(manifest.existingPaths||[]), seen=new Set();
  const briefs=topics.map((t,i)=>{
   const keyword=text(t.keyword),title=text(t.title), cluster=text(t.cluster);
