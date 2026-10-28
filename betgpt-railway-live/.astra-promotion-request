@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "0a493579765ba22cbd5db2bda8812d14933ab0c8",
-  "workflowRunId": 40650991104,
-  "requestedAt": "2026-10-28T08:23:00+01:00",
-  "reason": "Enable verified France bookmaker 1X2 odds with THE_ODDS_API_KEY already configured on existing Railway production service, replace reconstructed historical quote UI; preserve fail-closed and ASTRA immutable GREEN promotion."
+  "sourceSha": "cc008f9877d4681a821dca8a610c00508643f048",
+  "workflowRunId": 40664071372,
+  "requestedAt": "2026-10-28T09:28:00Z",
+  "reason": "User-requested: promote immutable GREEN editorial publisher-evidence + Qwen seven-section quality fix from merged PR #133; never weaken Gold Standard; require real Railway deployment and ASTRA_AUTO_PUBLISHED native receipt."
 }
