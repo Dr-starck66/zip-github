@@ -6,13 +6,13 @@ const fixture=JSON.parse(readFileSync(new URL('./fixtures/avocat-belgique.json',
 const clone=x=>JSON.parse(JSON.stringify(x));
 test('cinq briefs distincts et canoniques correctes',()=>{
  const p=plan(fixture);assert.equal(p.briefs.length,5);assert.equal(new Set(p.briefs.map(b=>b.path)).size,5);
- assert.ok(p.briefs.every(b=>b.canonical.startsWith('https://avocat-belgique.com/guides/')));
+ assert.ok(p.briefs.every(b=>b.canonical.startsWith('https://avocat-belgique.com/blog/')));
  assert.ok(p.briefs.every(b=>b.links.length===3));assert.equal(p.publicationCount,0);
  assert.equal(prompts(p).length,5);
  assert.ok(prompts(p)[0].prompt.includes('Ne fabrique jamais de citations'));
 });
 test('une URL historique est protégée',()=>{
- const m=clone(fixture);m.existingPaths=['/guides/avocat-pro-deo-belgique/'];assert.throws(()=>plan(m),/EXISTING_URL_PROTECTED/);
+ const m=clone(fixture);m.existingPaths=['/blog/avocat-pro-deo-belgique/'];assert.throws(()=>plan(m),/EXISTING_URL_PROTECTED/);
 });
 test('slug en double interdit',()=>{
  const m=clone(fixture);m.topics[1].slug=m.topics[0].keyword;assert.throws(()=>plan(m),/DUPLICATE_TARGET/);
