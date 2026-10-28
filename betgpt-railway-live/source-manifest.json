@@ -1,8 +1,8 @@
 {
   "schema": "astra-railway-singleflight/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "1f7dae7a06fd56c9e9be2fb2626dd91418ef69e9",
-  "promotionKey": "Dr-starck66/betgpt-railway@1f7dae7a06fd56c9e9be2fb2626dd91418ef69e9",
+  "sourceSha": "0a493579765ba22cbd5db2bda8812d14933ab0c8",
+  "promotionKey": "Dr-starck66/betgpt-railway@0a493579765ba22cbd5db2bda8812d14933ab0c8",
   "policy": {
     "immutableShaOnly": true,
     "envSourceOverrides": false,
@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-27T18:26:38.597Z",
+  "updatedAt": "2026-10-28T07:43:10.478Z",
   "reason": "Release Train: promote latest immutable GREEN ancestor of current main without rollback starvation"
 }
