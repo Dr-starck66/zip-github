@@ -1,0 +1,36 @@
+name: ASTRA BULKER Omega — tests sans publication
+on:
+  pull_request:
+    paths:
+      - "astra-bulker/**"
+      - ".github/workflows/astra-bulker-ci.yml"
+      - "astra-bricks/content-quality-guard/quality.mjs"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Vérification syntaxe et tests locaux avec vrai garde ASTRA
+        run: |
+          node --check astra-bulker/bulker.mjs
+          node --test astra-bulker/test.mjs
+      - name: Génération déterministe des briefs sans publication
+        run: |
+          node astra-bulker/bulker.mjs plan astra-bulker/fixtures/avocat-belgique.json /tmp/astra-bulker-plan
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const x=JSON.parse(fs.readFileSync('/tmp/astra-bulker-plan/plan.json','utf8'));
+          assert.equal(x.briefs.length,5);
+          assert.equal(x.prompts.length,5);
+          assert.equal(x.publicationCount,0);
+          assert.ok(x.briefs.every(b=>b.links.length===3));
+          console.log('ASTRA_BULKER_TEST PASS',JSON.stringify({briefs:5,prompts:5,published:0}));
+          JS
