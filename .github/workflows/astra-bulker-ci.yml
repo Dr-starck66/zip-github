@@ -20,7 +20,9 @@ jobs:
       - name: Vérification syntaxe et tests locaux avec vrai garde ASTRA
         run: |
           node --check astra-bulker/bulker.mjs
-          node --test astra-bulker/test.mjs
+          node --check astra-bulker/generator.mjs
+          node --check astra-bulker/native-handoff.mjs
+          node --test astra-bulker/test.mjs astra-bulker/bridge.test.mjs
       - name: Génération déterministe des briefs sans publication
         run: |
           node astra-bulker/bulker.mjs plan astra-bulker/fixtures/avocat-belgique.json /tmp/astra-bulker-plan
