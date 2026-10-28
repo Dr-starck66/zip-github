@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "1f7dae7a06fd56c9e9be2fb2626dd91418ef69e9",
-  "workflowRunId": 40559523530,
-  "requestedAt": "2026-10-27T18:26:23.303Z",
-  "reason": "27 Oct evening Fleetwood–Arsenal original agent scheduled run cc07a9ef-0784-8331-9a53-e49a51d8aca1; native Qwen evening run 0ac02b86 failed on TimeoutError section 1. Six PR checks GREEN including immutable editorial Candidate Gate 40559141413 on 7663378a; merged source main 1f7dae7a and ASTRA Never-Fail immutable Candidate Gate 40559523530 SUCCESS. Promote only through ASTRA_SAFE_BETGPT_PROMOTION; 2006 words, seven H2, three independent media, official EFL and licensed distinct Fleetwood photo. Require Railway SUCCESS and public HTTP 200, canonical, News sitemap; align publishedAt to first public proof."
+  "sourceSha": "0a493579765ba22cbd5db2bda8812d14933ab0c8",
+  "workflowRunId": 40650991104,
+  "requestedAt": "2026-10-28T08:23:00+01:00",
+  "reason": "Enable verified France bookmaker 1X2 odds with THE_ODDS_API_KEY already configured on existing Railway production service, replace reconstructed historical quote UI; preserve fail-closed and ASTRA immutable GREEN promotion."
 }
