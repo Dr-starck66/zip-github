@@ -22,7 +22,7 @@ jobs:
           from html.parser import HTMLParser
           from xml.etree import ElementTree as ET
           BASE="https://betgpt.live"
-          SHA="6a8f8f7a19ee412b44e19340b52100531fbe1ae2"
+          SHA="ed15c8fef486c777d1063c22e27003fecc25f73b"
           SLUG="genoa-juventus-2-0-baldanzi-ehizibue-analyse-29-octobre-2026"
           URL=BASE+"/actualites/"+SLUG
           PHOTOS=[
