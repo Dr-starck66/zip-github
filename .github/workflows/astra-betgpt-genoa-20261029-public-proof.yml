@@ -1,0 +1,95 @@
+name: ASTRA BetGPT Genoa Juventus Production Proof 2026-10-29
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/astra-betgpt-genoa-20261029-public-proof.yml"]
+  pull_request:
+    paths: [".github/workflows/astra-betgpt-genoa-20261029-public-proof.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Verify actual public article, inline images, canonical and both sitemaps
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          import json, re, time, urllib.request, urllib.error
+          from html.parser import HTMLParser
+          from xml.etree import ElementTree as ET
+          BASE="https://betgpt.live"
+          SHA="6a8f8f7a19ee412b44e19340b52100531fbe1ae2"
+          SLUG="genoa-juventus-2-0-baldanzi-ehizibue-analyse-29-octobre-2026"
+          URL=BASE+"/actualites/"+SLUG
+          PHOTOS=[
+            ("https://upload.wikimedia.org/wikipedia/commons/3/3d/Stadio_Luigi_Ferraris_di_Genova.jpg","Gabriel Rinaldi",3295,2197),
+            ("https://upload.wikimedia.org/wikipedia/commons/f/fc/Genoa_Lecce_2011.jpg","Andre86",3544,2656)
+          ]
+          def get(url,timeout=35):
+            req=urllib.request.Request(url,headers={"User-Agent":"ASTRA-BetGPT-Editorial-Proof/1.0","Cache-Control":"no-cache"})
+            with urllib.request.urlopen(req,timeout=timeout) as res:
+              return res.status,res.headers.get("Content-Type",""),res.read()
+          class Page(HTMLParser):
+            def __init__(self):
+              super().__init__()
+              self.article_depth=0;self.article_text=[];self.sections=[];self.stack=[];self.h2_active=False
+              self.canonicals=[];self.robots=[];self.images=[];self.article_imgs=[]
+            def handle_starttag(self,tag,attrs):
+              d=dict(attrs)
+              if tag=="link" and "canonical" in (d.get("rel") or "").split(): self.canonicals.append(d.get("href"))
+              if tag=="meta" and d.get("name")=="robots": self.robots.append(d.get("content",""))
+              if tag=="article": self.article_depth+=1
+              if self.article_depth:
+                if tag=="section": self.stack.append({"h2":"","imgs":[]})
+                if tag=="h2": self.h2_active=True
+                if tag=="img":
+                  self.article_imgs.append(d)
+                  if self.stack: self.stack[-1]["imgs"].append(d)
+              if tag=="img": self.images.append(d)
+            def handle_data(self,data):
+              if self.article_depth:
+                self.article_text.append(data)
+                if self.h2_active and self.stack: self.stack[-1]["h2"]+=data
+            def handle_endtag(self,tag):
+              if tag=="h2": self.h2_active=False
+              if tag=="section" and self.article_depth and self.stack: self.sections.append(self.stack.pop())
+              if tag=="article" and self.article_depth: self.article_depth-=1
+          status,ctype,body=get(BASE+"/astra-revision.json")
+          assert status==200 and json.loads(body)["sourceSha"]==SHA, "PUBLIC_REVISION_MISMATCH"
+          status,ctype,body=get(URL)
+          assert status==200 and "text/html" in ctype.lower(), ("ARTICLE_HTTP",status,ctype)
+          page=Page();page.feed(body.decode("utf-8","replace"))
+          assert page.canonicals==[URL], ("CANONICAL",page.canonicals)
+          assert page.robots and all("noindex" not in x.lower() for x in page.robots), ("NOINDEX",page.robots)
+          assert any("index" in x.lower() for x in page.robots), "MISSING_INDEX"
+          h2=[s for s in page.sections if s["h2"].strip()]
+          assert len(h2)>=7, ("H2",len(h2))
+          section_ids=[]
+          for src,author,w,h in PHOTOS:
+            matched=[i for i,s in enumerate(h2) if any(img.get("src")==src and int(img.get("width",0))>=1200 and img.get("alt") for img in s["imgs"])]
+            assert len(matched)==1, ("INLINE_PHOTO_NOT_IN_UNIQUE_H2",src,matched)
+            section_ids.append(matched[0])
+            assert author in " ".join(page.article_text), ("MISSING_PHOTO_CREDIT",author)
+          assert len(set(section_ids))==2, ("PHOTOS_NOT_IN_DISTINCT_H2",section_ids)
+          assert "CC BY-SA 4.0" in " ".join(page.article_text) and "CC0 1.0" in " ".join(page.article_text), "LICENSE_CREDITS_MISSING"
+          assert len(" ".join(page.article_text).split())>=1500, "ARTICLE_TEXT_UNDER_1500"
+          print("ASTRA_ARTICLE_PUBLIC_HTTP_200_PASS",URL)
+          print("ASTRA_ARTICLE_CANONICAL_INDEX_PASS",page.canonicals,page.robots)
+          print("ASTRA_ARTICLE_INLINE_IMAGES_PASS sections",section_ids,"authors",*[x[1] for x in PHOTOS])
+          for path,label in (("/sitemap.xml","CLASSIC"),("/news-sitemap.xml","NEWS")):
+            status,ctype,body=get(BASE+path)
+            assert status==200 and "xml" in ctype.lower(), (label,status,ctype)
+            root=ET.fromstring(body)
+            locs=[(x.text or "").strip() for x in root.iter() if x.tag.split("}")[-1]=="loc"]
+            assert URL in locs, (label,"ARTICLE_NOT_IN_SITEMAP",len(locs))
+            print("ASTRA_"+label+"_SITEMAP_MEMBERSHIP_PASS",URL,"count",len(locs))
+          for src,author,w,h in PHOTOS:
+            status,ctype,binary=get(src,timeout=50)
+            assert status==200 and "image/jpeg" in ctype.lower() and binary.startswith(bytes.fromhex("ffd8")) and len(binary)>100000, ("PHOTO_HTTP_OR_BYTES",src,status,ctype,len(binary))
+            print("ASTRA_PHOTO_ORIGINAL_BYTES_PASS",author,len(binary),w,h)
+          print("ASTRA_BETGPT_GENOA_JUVENTUS_PRODUCTION_PASS",SHA,URL)
+          PY
