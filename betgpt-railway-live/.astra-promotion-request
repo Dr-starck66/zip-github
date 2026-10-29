@@ -1,8 +1,8 @@
 {
   "schema": "astra-promotion-request/v1",
   "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "cc008f9877d4681a821dca8a610c00508643f048",
-  "workflowRunId": 40664071372,
-  "requestedAt": "2026-10-28T09:28:00Z",
-  "reason": "User-requested: promote immutable GREEN editorial publisher-evidence + Qwen seven-section quality fix from merged PR #133; never weaken Gold Standard; require real Railway deployment and ASTRA_AUTO_PUBLISHED native receipt."
+  "sourceSha": "ed15c8fef486c777d1063c22e27003fecc25f73b",
+  "workflowRunId": 40938203771,
+  "requestedAt": "2026-10-29T19:15:00Z",
+  "reason": "User-requested protected release: fix independently proven public noindex on Genoa Juventus 29 Oct via minimal editorial wording correction; immutable main Never-Fail 40938203771 SUCCESS; preserve all gates, 3/day, original URL, 2 licensed inline images, indexability and News sitemap; require Railway production postflight."
 }
