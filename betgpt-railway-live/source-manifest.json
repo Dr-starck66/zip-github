@@ -16,6 +16,6 @@
     "releaseTrain": true,
     "doubleLineageCheck": true
   },
-  "updatedAt": "2026-10-29T10:09:49.666Z",
-  "reason": "Release Train: promote immutable GREEN agent editorial candidate, no native Qwen attribution"
+  "updatedAt": "2026-10-29T10:11:34.412Z",
+  "reason": "Re-emit approved GREEN release because public production had not converged"
 }
