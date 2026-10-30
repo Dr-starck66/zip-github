@@ -1,0 +1,37 @@
+{
+  "lastChecked": "2026-10-30",
+  "domain": "https://carleasedeal.net",
+  "reason": "Legacy lease-intent URLs found in prior search index. URL preservation on staging only; activation requires DNS cutover.",
+  "entries": [
+    {
+      "path": "/hidden-lease-costs/",
+      "status": "preview_prepared",
+      "canonical_on_production": "https://carleasedeal.net/hidden-lease-costs/",
+      "future_action": "Preserve HTTP 200 and retain redirects only when exact 404/source destination validated"
+    },
+    {
+      "path": "/negotiating-car-lease-deal/",
+      "status": "preview_prepared",
+      "canonical_on_production": "https://carleasedeal.net/negotiating-car-lease-deal/",
+      "future_action": "Preserve HTTP 200 and retain redirects only when exact 404/source destination validated"
+    },
+    {
+      "path": "/business-car-lease/",
+      "status": "preview_prepared",
+      "canonical_on_production": "https://carleasedeal.net/business-car-lease/",
+      "future_action": "Preserve HTTP 200 and retain redirects only when exact 404/source destination validated"
+    },
+    {
+      "path": "/carleasedeal-net-electric-vs-hybrid-lease/",
+      "status": "preview_prepared",
+      "canonical_on_production": "https://carleasedeal.net/carleasedeal-net-electric-vs-hybrid-lease/",
+      "future_action": "Preserve HTTP 200 and retain redirects only when exact 404/source destination validated"
+    },
+    {
+      "path": "/top-10-best-cars-to-lease-in-2025/",
+      "status": "preview_prepared",
+      "canonical_on_production": "https://carleasedeal.net/top-10-best-cars-to-lease-in-2025/",
+      "future_action": "Preserve HTTP 200 and retain redirects only when exact 404/source destination validated"
+    }
+  ]
+}

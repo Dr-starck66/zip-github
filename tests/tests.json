@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Source correction: no misleading October prices",
+    "sanity": true,
+    "viewport": "desktop",
+    "covers": [
+      "archival price correction",
+      "unknown amounts withheld",
+      "honest publisher dates"
+    ],
+    "description": "40 references remain but only 18 monetary examples display, and 22 missing fields are explicitly suppressed.",
+    "steps": [
+      "Open /lease-offers/",
+      "Find Hyundai IONIQ 9 and read price $369 with August publisher date",
+      "Find unsupported records with dash instead of a fabricated price"
+    ],
+    "expected": "August offers are historic and expired, 22 entries display missing price as a dash, and none is called live."
+  },
+  {
+    "name": "Data audit manifest contains corrected totals",
+    "viewport": "desktop",
+    "covers": [
+      "dataset audit trail",
+      "machine-readable price suppression"
+    ],
+    "description": "The JSON public endpoint captures what was verified and what remains unknown.",
+    "steps": [
+      "Open /lease-offers/records.json",
+      "Read manifest records 40, price_displayed 18, price_withheld 22, verified_live 0",
+      "Check null amounts for an unverified entry"
+    ],
+    "expected": "All figures are explicit and publisher dates reflect the archived August sources."
+  },
+  {
+    "name": "Budget filter excludes missing-price models",
+    "viewport": "mobile",
+    "covers": [
+      "budget price guard",
+      "mobile table"
+    ],
+    "description": "Unknown-price rows cannot qualify as cheap offers.",
+    "steps": [
+      "Open /lease-offers/",
+      "Select $250 or less",
+      "Inspect visible rows"
+    ],
+    "expected": "Every visible model has a source-backed numeric advertised payment at or below $250."
+  },
+  {
+    "name": "Main site navigation unaffected",
+    "viewport": "mobile",
+    "covers": [
+      "home to catalog navigation",
+      "calculator non-regression",
+      "old SEO routes"
+    ],
+    "description": "The corrections do not break site functionality.",
+    "steps": [
+      "Open homepage",
+      "Open the full offer board",
+      "Return and view calculator"
+    ],
+    "expected": "Navigation and calculator remain available."
+  },
+  {
+    "name": "Preproduction remains noindex",
+    "viewport": "desktop",
+    "covers": [
+      "preview noindex guard",
+      "no premature indexation"
+    ],
+    "description": "Domain not yet moved off suspended hosting.",
+    "steps": [
+      "Inspect homepage meta robots",
+      "Inspect /lease-offers/ meta robots",
+      "Review source disclosure"
+    ],
+    "expected": "Both pages declare noindex,follow and catalog states no current dealer quotes verified."
+  }
+]
