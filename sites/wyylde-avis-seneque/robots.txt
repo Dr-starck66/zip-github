@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://wyylde-avis.seneque.info/sitemap.xml

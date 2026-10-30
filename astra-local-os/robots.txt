@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://dr-starck66.github.io/zip-github/astra-local-os/sitemap.xml
-Sitemap: https://dr-starck66.github.io/zip-github/astra-local-os/news-sitemap.xml
