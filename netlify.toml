@@ -1,0 +1,12 @@
+[build]
+  command = "node scripts/verify-data.mjs && npm run build && node scripts/postbuild.mjs"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[context.deploy-preview.environment]
+  SITE_INDEX_RELEASE = "0"
+
+[context.branch-deploy.environment]
+  SITE_INDEX_RELEASE = "0"
