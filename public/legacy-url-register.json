@@ -5,33 +5,65 @@
   "entries": [
     {
       "path": "/hidden-lease-costs/",
-      "status": "preview_prepared",
+      "status": "restored_in_git_branch_not_live",
       "canonical_on_production": "https://carleasedeal.net/hidden-lease-costs/",
-      "future_action": "Preserve HTTP 200 and retain redirects only when exact 404/source destination validated"
+      "primary_hub": "/lease-costs-and-fees/",
+      "indexing_status": "not_individually_verified",
+      "source_type": "search_engine_cached_result"
     },
     {
       "path": "/negotiating-car-lease-deal/",
-      "status": "preview_prepared",
+      "status": "restored_in_git_branch_not_live",
       "canonical_on_production": "https://carleasedeal.net/negotiating-car-lease-deal/",
-      "future_action": "Preserve HTTP 200 and retain redirects only when exact 404/source destination validated"
+      "primary_hub": "/lease-costs-and-fees/",
+      "indexing_status": "not_individually_verified",
+      "source_type": "search_engine_cached_result"
     },
     {
       "path": "/business-car-lease/",
-      "status": "preview_prepared",
+      "status": "restored_in_git_branch_not_live",
       "canonical_on_production": "https://carleasedeal.net/business-car-lease/",
-      "future_action": "Preserve HTTP 200 and retain redirects only when exact 404/source destination validated"
+      "primary_hub": "/car-lease-deal-types/",
+      "indexing_status": "not_individually_verified",
+      "source_type": "search_engine_cached_result"
     },
     {
       "path": "/carleasedeal-net-electric-vs-hybrid-lease/",
-      "status": "preview_prepared",
+      "status": "restored_in_git_branch_not_live",
       "canonical_on_production": "https://carleasedeal.net/carleasedeal-net-electric-vs-hybrid-lease/",
-      "future_action": "Preserve HTTP 200 and retain redirects only when exact 404/source destination validated"
+      "primary_hub": "/car-lease-deal-types/",
+      "indexing_status": "not_individually_verified",
+      "source_type": "search_engine_cached_result"
     },
     {
       "path": "/top-10-best-cars-to-lease-in-2025/",
-      "status": "preview_prepared",
+      "status": "restored_in_git_branch_not_live",
       "canonical_on_production": "https://carleasedeal.net/top-10-best-cars-to-lease-in-2025/",
-      "future_action": "Preserve HTTP 200 and retain redirects only when exact 404/source destination validated"
+      "primary_hub": "/car-lease-deal-types/",
+      "indexing_status": "not_individually_verified",
+      "source_type": "prior_discovery"
     }
-  ]
+  ],
+  "lastPrepared": "2026-10-31",
+  "deployment": "source_committed_only_NOT_PUBLIC",
+  "indexingVerification": "UNVERIFIED_GSC_WIZARD_CONNECTION_REQUIRES_PAID_SUBSCRIPTION",
+  "semanticSilos": [
+    {
+      "hub": "/car-lease-guides/",
+      "role": "topical index"
+    },
+    {
+      "hub": "/lease-costs-and-fees/",
+      "role": "fees, negotiation, cost math"
+    },
+    {
+      "hub": "/car-lease-deal-types/",
+      "role": "business, EV/hybrid, SUVs and historical vehicle research"
+    },
+    {
+      "hub": "/car-lease-deals-by-budget/",
+      "role": "offers, effective budget and under-$300 analysis"
+    }
+  ],
+  "priority": "Do not redirect preserved legacy URLs; serve same paths with HTTP 200 after domain cutover and HTTPS proof; then update sitemap/robots, inspect coverage."
 }
