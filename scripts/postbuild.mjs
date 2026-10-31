@@ -31,8 +31,8 @@ for(const file of crawl(target)) {
   routes.push(route);
 }
 if(activate) {
-  const stamp=new Date().toISOString().slice(0,10);
-  writeFileSync(join(target,"sitemap.xml"),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+[...new Set(routes)].sort().map(p=>'<url><loc>'+canonicalHost+p+'</loc><lastmod>'+stamp+'</lastmod></url>').join("\n")+"\n</urlset>\n");
+  // Do not fabricate <lastmod> from build time: omit it until content-specific edit dates exist.
+  writeFileSync(join(target,"sitemap.xml"),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+[...new Set(routes)].sort().map(p=>'<url><loc>'+canonicalHost+p+'</loc></url>').join("\n")+"\n</urlset>\n");
   writeFileSync(join(target,"robots.txt"),"User-agent: *\nAllow: /\nSitemap: "+canonicalHost+"/sitemap.xml\n");
 } else {
   writeFileSync(join(target,"_headers"),"/*\n  X-Robots-Tag: noindex, follow\n");
