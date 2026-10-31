@@ -1,25 +1,18 @@
 {
   "schemaVersion": 1,
   "purpose": "Source metadata only; no copied full article texts and no automatic indexability",
-  "checkedUTC": "2026-10-30T08:52:21.896580+00:00",
+  "checkedUTC": "2026-10-31T08:40:51.225071+00:00",
   "totalJune2018": 259,
   "records": [
     {
       "path": "/2018/06/20-anos-de-prision-productor-de-tv.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20180610103738id_/http://www.eldiariodelcibao.com:80/2018/06/20-anos-de-prision-productor-de-tv.html",
-      "archiveTimestamp": "20180610103738",
-      "originalTitle": "20 años de prisión a productor de TV. Miguel Angel Medrano a por alegada violación de una mujer",
-      "originalDate": "2018-06-05",
-      "sourceBodyWords": 45,
-      "sourceBodySha256": "fa71d86f1eaf7a6bf99292b9ccf50f029f78a03e945bd873055f1e562736b9c3",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 13,
-      "lastAttemptUTC": "2026-10-30T08:51:56.345103+00:00"
+      "attemptCount": 14,
+      "lastAttemptUTC": "2026-10-31T08:40:11.065975+00:00"
     },
     {
       "path": "/2018/06/aduanas-dispondra-de-inteligencia.html",
@@ -181,20 +174,13 @@
     },
     {
       "path": "/2018/06/angel-delgado-de-haina-para-la-nba.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20180626095722id_/http://www.eldiariodelcibao.com:80/2018/06/angel-delgado-de-haina-para-la-nba.html",
-      "archiveTimestamp": "20180626095722",
-      "originalTitle": "ANGEL DELGADO DE HAINA PARA LA NBA",
-      "originalDate": "2018-06-22",
-      "sourceBodyWords": 1,
-      "sourceBodySha256": "e1f57a34e70cf1a79e444e853ab784b9caccb1ccebc79f343ca0d39b47228ee3",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 13,
-      "lastAttemptUTC": "2026-10-30T08:51:55.931680+00:00"
+      "attemptCount": 14,
+      "lastAttemptUTC": "2026-10-31T08:39:57.329940+00:00"
     },
     {
       "path": "/2018/06/apresan-dos-ancianos-de-78-y-85-anos.html",
@@ -1155,8 +1141,8 @@
       "archiveUrl": "https://web.archive.org/web/20190227045356id_/http://www.eldiariodelcibao.com:80/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 13,
-      "lastAttemptUTC": "2026-10-30T08:52:21.896327+00:00"
+      "attemptCount": 14,
+      "lastAttemptUTC": "2026-10-31T08:40:51.224746+00:00"
     },
     {
       "path": "/2018/06/el-cantautor-manuel-jimenez-viajara-ny.html",
@@ -1718,20 +1704,13 @@
     },
     {
       "path": "/2018/06/felix-bautista-se-burla-de-estados.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20180617211752id_/http://www.eldiariodelcibao.com:80/2018/06/felix-bautista-se-burla-de-estados.html",
-      "archiveTimestamp": "20180617211752",
-      "originalTitle": "Félix Bautista se burla de Estados Unidos; no tengo cuentas ni bienes alla...",
-      "originalDate": "2018-06-13",
-      "sourceBodyWords": 29,
-      "sourceBodySha256": "1fd7e0a4a77d60f71dc547c432e045ffdca827a9bad1a98a5bc401eb63e70e6b",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 13,
-      "lastAttemptUTC": "2026-10-30T08:52:05.325172+00:00"
+      "attemptCount": 14,
+      "lastAttemptUTC": "2026-10-31T08:40:25.324378+00:00"
     },
     {
       "path": "/2018/06/felix-bautista-tiene-rd84-mil-600.html",
@@ -2455,8 +2434,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 13,
-      "lastAttemptUTC": "2026-10-30T08:51:49.744538+00:00"
+      "attemptCount": 14,
+      "lastAttemptUTC": "2026-10-31T08:39:28.638264+00:00"
     },
     {
       "path": "/2018/06/marcha-verde-convoca-para-el-12-de.html",
@@ -3214,8 +3193,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 13,
-      "lastAttemptUTC": "2026-10-30T08:51:49.833410+00:00"
+      "attemptCount": 14,
+      "lastAttemptUTC": "2026-10-31T08:39:42.680747+00:00"
     },
     {
       "path": "/2018/06/por-carolina-pichardolistin-diario.html",
@@ -3509,8 +3488,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 13,
-      "lastAttemptUTC": "2026-10-30T08:51:45.108357+00:00"
+      "attemptCount": 14,
+      "lastAttemptUTC": "2026-10-31T08:39:20.744902+00:00"
     },
     {
       "path": "/2018/06/roberto-rosario-sale-en-defensa-de.html",
@@ -3558,8 +3537,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 13,
-      "lastAttemptUTC": "2026-10-30T08:51:45.026412+00:00"
+      "attemptCount": 14,
+      "lastAttemptUTC": "2026-10-31T08:39:17.906108+00:00"
     },
     {
       "path": "/2018/06/sacerdote-critica-posicion-masalles.html",
@@ -3717,20 +3696,13 @@
     },
     {
       "path": "/2018/06/sepultan-restos-del-adolescente-de-15.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20180702014224id_/http://www.eldiariodelcibao.com:80/2018/06/sepultan-restos-del-adolescente-de-15.html",
-      "archiveTimestamp": "20180702014224",
-      "originalTitle": "Sepultan restos del adolescente de 15 años, Lesandro Guzmán Feliz (Junior) en El Bronx",
-      "originalDate": "2018-06-27",
-      "sourceBodyWords": 20,
-      "sourceBodySha256": "ccb0946c255870461fcdb2aa15e19f5f89ede00adc1e879598f0aa243446d23c",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 13,
-      "lastAttemptUTC": "2026-10-30T08:52:20.716274+00:00"
+      "attemptCount": 14,
+      "lastAttemptUTC": "2026-10-31T08:40:37.844876+00:00"
     },
     {
       "path": "/2018/06/servio-tulio-advierte-juez-designado.html",
