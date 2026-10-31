@@ -144,7 +144,16 @@ const isExpired = (offer: Offer): boolean =>
 const effective = (offer: Offer): number =>
   (offer.monthly * (offer.term - 1) + offer.due) / offer.term;
 
-function vehicleArt(kind: Vehicle): string {
+const actualVehiclePhotos: Record<string, {alt: string; src: string; credit: string; author: string; license: string}> = {
+  corolla: { alt: "2026 Toyota Corolla LE in Celestite", src: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/2026_Toyota_Corolla_LE_in_Celestite%2C_front_right%2C_2026-10-27.jpg/1280px-2026_Toyota_Corolla_LE_in_Celestite%2C_front_right%2C_2026-10-27.jpg", credit: "https://commons.wikimedia.org/wiki/File:2026_Toyota_Corolla_LE_in_Celestite,_front_right,_2026-10-27.jpg", author: "Elise240SX", license: "CC BY-SA 4.0" },
+  colorado: { alt: "2026 Chevrolet Colorado at Montreal Auto Show; photographed trim may differ", src: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/2026_Chevrolet_Colorado_au_SIAM_2026.jpg/1280px-2026_Chevrolet_Colorado_au_SIAM_2026.jpg", credit: "https://commons.wikimedia.org/wiki/File:2026_Chevrolet_Colorado_au_SIAM_2026.jpg", author: "Bull-Doser", license: "public domain" },
+  f150: { alt: "2026 Ford F-150 at Saint-Hyacinthe; photographed trim may differ", src: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/2026_Ford_F-150_au_grand_week-end_auto_Saint-Hyacinthe_2026.jpg/1280px-2026_Ford_F-150_au_grand_week-end_auto_Saint-Hyacinthe_2026.jpg", credit: "https://commons.wikimedia.org/wiki/File:2026_Ford_F-150_au_grand_week-end_auto_Saint-Hyacinthe_2026.jpg", author: "Bull-Doser", license: "public domain" }
+};
+
+function vehicleArt(kind: Vehicle, offerId: string): string {
+  const photo = actualVehiclePhotos[offerId];
+  if (photo) return '<img loading="lazy" decoding="async" width="340" height="180" src="' + photo.src + '" alt="' + photo.alt + '" style="width:100%;height:100%;object-fit:cover" />' + '<a href="' + photo.credit + '" target="_blank" rel="noopener noreferrer" style="position:absolute;bottom:4px;left:7px;background:#13382fdf;color:#f3ffe9;border-radius:4px;font-size:9px;padding:3px 6px;z-index:2">Photo: ' + photo.author + ' / ' + photo.license + '</a>';
+
   const bed =
     kind === 'truck'
       ? '<path d="M183 88h75v38H160V102h23z" fill="#a2b9ad"/>'
@@ -229,7 +238,7 @@ function renderOffers(): void {
               '"><span class="offer-category">' +
               kind +
               '</span>' +
-              vehicleArt(offer.vehicle) +
+              vehicleArt(offer.vehicle, offer.id) +
               '</div>' +
               '<div class="offer-body"><div class="offer-brand">' +
               offer.brand +
