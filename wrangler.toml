@@ -1,0 +1,5 @@
+# Cloudflare Pages FREE — static assets only; NO Workers, Functions, KV, R2 or paid bindings.
+name = "astra-carleasedeal-pages"
+pages_build_output_dir = "./dist"
+compatibility_date = "2026-11-01"
+send_metrics = false
