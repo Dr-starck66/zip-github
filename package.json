@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:pages": "node scripts/verify-data.mjs && vite build && node scripts/postbuild.mjs && node scripts/verify-pages-output.mjs"
   },
   "dependencies": {
     "lucide": "^0.469.0"
