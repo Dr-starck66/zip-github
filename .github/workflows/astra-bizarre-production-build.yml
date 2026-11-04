@@ -1,0 +1,40 @@
+name: ASTRA Bizarre production source build — 32 original pages
+on:
+  push:
+    branches:
+      - astra/three-domains-repair-audit-20261105
+    paths:
+      - 'bizarresexuality/scripts/build-free-static.mjs'
+      - '.github/workflows/astra-bizarre-production-build.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Restore source with production canons, preserved robots staging, and sitemap integrity
+        run: |
+          node --check bizarresexuality/scripts/build-free-static.mjs
+          node bizarresexuality/scripts/build-free-static.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const prod=fs.readFileSync('bizarresexuality/dist/index.html','utf8');
+          const backup=fs.readFileSync('bizarresexuality/index.html','utf8');
+          const report=JSON.parse(fs.readFileSync('bizarresexuality/dist/.well-known/astra-release.json','utf8'));
+          const sitemap=fs.readFileSync('bizarresexuality/dist/sitemap.xml','utf8');
+          if(report.snapshotOriginalHtml!==32||report.preservedFiles<90||(sitemap.match(/<loc>/g)||[]).length!==32)throw Error('UNVERIFIED_BIZARRE_RELEASE');
+          if(!prod.includes('index,follow')||prod.includes('/zip-github/bizarresexuality/')||!backup.includes('noindex,follow')||sitemap.includes('github.io'))throw Error('STAGING_CROSS_CONTAMINATION');
+          console.log('PASS_BIZARRE_PRODUCTION_SOURCE',JSON.stringify(report));
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: astra-bizarre-32-original-pages-production-candidate
+          path: bizarresexuality/dist/
+          if-no-files-found: warn
+          retention-days: 7
