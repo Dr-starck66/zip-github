@@ -1,0 +1,61 @@
+name: ASTRA archived-site preview reconstruction — read-only source
+on:
+  push:
+    branches:
+      - astra/three-domains-repair-audit-20261105
+    paths:
+      - 'scripts/astra-bizarre-shards-to-pages.mjs'
+      - '.github/workflows/astra-site-archive-preview.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  reconstruction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Validate archived Bun shard unpacker
+        run: |
+          node --check scripts/astra-bizarre-shards-to-pages.mjs
+          node scripts/astra-bizarre-shards-to-pages.mjs artifacts/bizarresexuality-preview/site
+      - name: Check pre-existing GAMIC and LOFT sitemaps against live Pages mirrors
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const schemes=[
+            {name:'GAMIC',sitemap:'gamicnews/sitemap.xml',origin:'https://gamicnews.com',mirror:'https://dr-starck66.github.io/zip-github/gamicnews'},
+            {name:'LOFT54',sitemap:'loft54/sitemap.xml',origin:'https://loft54.club',mirror:'https://dr-starck66.github.io/zip-github/loft54'}];
+          const results={schema:'astra-legacy-mirrors/1',createdAt:new Date().toISOString(),sites:[]};
+          for(const site of schemes){
+            const xml=fs.readFileSync(site.sitemap,'utf8');
+            const listed=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1].replace(/&amp;/g,'&'));
+            const endpoints=listed.map(x=>x.startsWith(site.mirror)?x:x.replace(site.origin,site.mirror));
+            const checks=[];let cursor=0;
+            async function run(){
+              while(cursor<endpoints.length){
+                const url=endpoints[cursor++];try{
+                  const r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(12000)});
+                  const body=await r.text();
+                  checks.push({url,code:r.status,finalUrl:r.url,html:/<html/i.test(body),noindex:/noindex/i.test((body.match(/<meta[^>]*name=["']robots["'][^>]*>/i)||[])[0]||'')});
+                }catch(e){checks.push({url,code:0,error:String(e).slice(0,180)})}
+              }
+            }
+            await Promise.all(Array.from({length:5},run));
+            const failed=checks.filter(c=>c.code!==200);
+            results.sites.push({name:site.name,listed:listed.length,checked:checks.length,http200:checks.filter(c=>c.code===200).length,non200:failed.slice(0,45),allChecks:checks});
+            console.log('ASTRA_MIRROR_VALIDATION',site.name,JSON.stringify({listed:listed.length,checked:checks.length,http200:checks.filter(c=>c.code===200).length,non200:failed.length,examples:failed.slice(0,8)}));
+          }
+          fs.mkdirSync('artifacts/bizarresexuality-preview',{recursive:true});
+          fs.writeFileSync('artifacts/bizarresexuality-preview/gamic-loft-checks.json',JSON.stringify(results,null,2)+'\n');
+          NODE
+      - name: Archive original static recovery report and page bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: astra-three-domains-archive-rebuild
+          path: artifacts/bizarresexuality-preview/
+          if-no-files-found: error
+          retention-days: 7
