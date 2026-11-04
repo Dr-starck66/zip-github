@@ -1,0 +1,19 @@
+# BizarreSexuality.com
+> Independent English-language buyer intelligence covering sex robots, AI companion dolls and human-centric robotics.
+
+## Core buyer pages
+- /sex-robots-for-sale
+- /sex-robot-price
+- /best-sex-robots
+- /harmony-sex-robot
+- /realbotix-robot-price
+- /lovense-ai-doll
+
+## Technical guides
+- /how-ai-sex-robots-work
+- /humanoid-sex-robots-guide
+- /ai-changing-sex-robots
+- /customize-ai-sex-robot-personality
+
+## Editorial policy
+We distinguish currently shipping products from prototypes and future releases, verify price/status claims against sources, and avoid unsupported specifications.

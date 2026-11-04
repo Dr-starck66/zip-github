@@ -1,0 +1,107 @@
+{
+  "schema": "astra-bizarre-shards-recovery/1",
+  "generatedAt": "2026-11-04T23:23:41.178Z",
+  "source": "ZIP_GITHUB_8_ORIGINAL_SHARDS",
+  "previewBase": "https://dr-starck66.github.io/zip-github/bizarresexuality/",
+  "productionDomain": "https://bizarresexuality.com/",
+  "productionStatus": "UNVERIFIED",
+  "previewStatus": "NOT_DEPLOYED",
+  "indexed": false,
+  "completeHistoricalInventory": false,
+  "sourceSha": "1066bec234ce06b41c50d31c2e7424e36d709e7a",
+  "shardCount": 8,
+  "shards": [
+    {
+      "n": 0,
+      "entries": 8,
+      "sourceBytes": 481165
+    },
+    {
+      "n": 1,
+      "entries": 8,
+      "sourceBytes": 481166
+    },
+    {
+      "n": 2,
+      "entries": 9,
+      "sourceBytes": 480984
+    },
+    {
+      "n": 3,
+      "entries": 9,
+      "sourceBytes": 480952
+    },
+    {
+      "n": 4,
+      "entries": 10,
+      "sourceBytes": 480962
+    },
+    {
+      "n": 5,
+      "entries": 12,
+      "sourceBytes": 481131
+    },
+    {
+      "n": 6,
+      "entries": 17,
+      "sourceBytes": 481064
+    },
+    {
+      "n": 7,
+      "entries": 21,
+      "sourceBytes": 330729
+    }
+  ],
+  "uniqueArchivedFiles": 94,
+  "publishedFiles": 96,
+  "htmlPages": 32,
+  "htmlUrls": [
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/about/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/ai-changing-sex-robots/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/ai-sex-dolls/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/author/editorial-desk/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/best-ai-sex-dolls/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/best-sex-robots/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/buy-sex-robot/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/choosing-humanoid-sex-robot-guide/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/contact/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/customize-ai-sex-robot-personality/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/editorial-policy/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/harmony-sex-robot/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/how-ai-sex-robots-work/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/how-much-do-humanoid-sex-robots-cost/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/humanoid-sex-robots-guide/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/lovense-ai-doll/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/news/harmony-buying-status-september-2026/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/news/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/news/lovense-ai-doll-2027-delivery/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/news/realbotix-robot-pricing-2026/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/privacy/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/realbotix-b-series/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/realbotix-f-series/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/realbotix-m-series/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/realbotix-robot-price/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/sex-robot-buying-guide/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/sex-robot-companies/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/sex-robot-cost/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/sex-robot-price/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/sex-robots-for-sale/",
+    "https://dr-starck66.github.io/zip-github/bizarresexuality/sources/"
+  ],
+  "missingInternalRoutes": [],
+  "missingInternalRouteCount": 0,
+  "integrity": {
+    "duplicatePaths": 0,
+    "unsafePaths": 0,
+    "missingCSS": false,
+    "missingJS": false,
+    "allHTMLNoindex": true
+  },
+  "caveats": [
+    "Stage is non-indexable and not a substitute for original domain",
+    "Production sitemap kept separately as a backup",
+    "Source pages absent from the shard archive remain missing until sourced",
+    "GitHub Pages URL paths need independent HTTP verification"
+  ]
+}

@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+# Non-indexable historical staging mirror. Production domain unchanged.

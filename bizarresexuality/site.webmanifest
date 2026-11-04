@@ -1,0 +1,8 @@
+{
+  "name": "BizarreSexuality.com",
+  "short_name": "BizarreSexuality",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070913",
+  "theme_color": "#070913"
+}
