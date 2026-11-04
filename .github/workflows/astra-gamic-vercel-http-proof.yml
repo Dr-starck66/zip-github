@@ -1,0 +1,69 @@
+name: ASTRA GAMIC Vercel public candidate — 38-route proof
+on:
+  push:
+    branches:
+      - astra/three-domains-repair-audit-20261105
+    paths:
+      - '.github/workflows/astra-gamic-vercel-http-proof.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe all 38 canonical pages on Vercel staging over public HTTPS
+        run: |
+          mkdir -p artifacts/gamic-vercel-http
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const canonicalOrigin='https://gamicnews.com';
+          const candidate='https://gamicnews-free-rescue-20261104-pnxknuo09-ced-starcks-projects.vercel.app';
+          const sitemap=fs.readFileSync('gamicnews/sitemap.xml','utf8');
+          const locs=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1].replace(/&amp;/g,'&'));
+          if(locs.length!==38)throw Error('BASELINE_SITEMAP_CHANGED');
+          const probes=[...locs.map(loc=>({kind:'html',url:candidate+new URL(loc).pathname,canonical:loc})),
+            {kind:'sitemap',url:candidate+'/sitemap.xml'},
+            {kind:'robots',url:candidate+'/robots.txt'},
+            {kind:'css',url:candidate+'/site.css'},
+            {kind:'receipt',url:candidate+'/.well-known/astra-release.json'}];
+          let cursor=0;const results=[];
+          async function worker(){
+            while(cursor<probes.length){
+              const p=probes[cursor++];try{
+                const r=await fetch(p.url,{redirect:'follow',signal:AbortSignal.timeout(13000)});
+                const body=await r.text();
+                const m=body.match(/<meta[^>]+name=["']robots["'][^>]*>/i)?.[0]||'';
+                const canonical=body.match(/rel=["']canonical["'][^>]*href=["']([^"']+)/i)?.[1]||null;
+                const noStagingLinks=!body.includes('/zip-github/gamicnews/');
+                const checked={...p,status:r.status,finalUrl:r.url,contentType:r.headers.get('content-type'),
+                  title:body.match(/<title[^>]*>([^<]+)/i)?.[1]||null,
+                  canonicalSeen:canonical,robotsIndex:/index,follow/.test(m)&&!/noindex/i.test(m),
+                  noStagingLinks,sitemapEntries:p.kind==='sitemap'?(body.match(/<loc>/g)||[]).length:null};
+                const good=r.status===200&&r.url.startsWith(candidate)&&
+                  (p.kind!=='html'||(checked.robotsIndex&&checked.noStagingLinks&&canonical===p.canonical))&&
+                  (p.kind!=='sitemap'||checked.sitemapEntries===38);
+                results.push({...checked,pass:good});
+              }catch(e){results.push({...p,status:0,pass:false,error:String(e).slice(0,220)})}
+            }
+          }
+          await Promise.all(Array.from({length:5},worker));
+          const failed=results.filter(x=>!x.pass);
+          const out={schema:'astra-gamic-vercel-public-proof/1',checkedAt:new Date().toISOString(),
+            candidate,source:'GITHUB_ACTIONS_INDEPENDENT_PUBLIC_HTTP',siteProduction:'UNCHANGED',
+            total:results.length,passed:results.length-failed.length,failed:failed.slice(0,100),
+            status:failed.length?'FAIL':'PASS_STAGING_PUBLIC_HTTP',results};
+          fs.writeFileSync('artifacts/gamic-vercel-http/report.json',JSON.stringify(out,null,2)+'\n');
+          console.log('ASTRA_GAMIC_VERCEL_HTTP',JSON.stringify({status:out.status,checks:out.total,passed:out.passed,failed:out.failed.slice(0,8)}));
+          if(failed.length)process.exitCode=1;
+          NODE
+      - name: Save negative and positive evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: astra-gamic-vercel-38-http-proof
+          path: artifacts/gamic-vercel-http/report.json
+          if-no-files-found: warn
+          retention-days: 7
