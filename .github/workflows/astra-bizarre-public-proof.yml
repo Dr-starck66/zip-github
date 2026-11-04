@@ -1,0 +1,65 @@
+name: ASTRA Bizarre public Pages proof — 32 original pages
+on:
+  push:
+    branches:
+      - astra/three-domains-repair-audit-20261105
+    paths:
+      - '.github/workflows/astra-bizarre-public-proof.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify every published original route on independent public HTTPS
+        run: |
+          mkdir -p artifacts/bizarre-public-proof
+          node scripts/astra-bizarre-shards-to-pages.mjs artifacts/bizarre-public-proof/build
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const report=JSON.parse(fs.readFileSync('artifacts/bizarre-public-proof/build/.well-known/astra-recovery-report.json','utf8'));
+          const files=[
+            ...report.htmlUrls.map(url=>({kind:'html',url})),
+            {kind:'css',url:report.previewBase+'assets/site.css'},
+            {kind:'js',url:report.previewBase+'assets/site.js'},
+            {kind:'sitemap',url:report.previewBase+'sitemap.xml'},
+            {kind:'robots',url:report.previewBase+'robots.txt'},
+            {kind:'recovery',url:report.previewBase+'.well-known/astra-recovery-report.json'}
+          ];
+          let i=0;const checks=[];
+          async function check(){
+            while(i<files.length){
+              const x=files[i++];
+              try{
+                const r=await fetch(x.url,{redirect:'follow',signal:AbortSignal.timeout(10000)});
+                const text=await r.text();
+                const correctHost=r.url.startsWith(report.previewBase);
+                const noindex=x.kind==='html'?/<meta\s+name=["']robots["']\s+content=["']noindex,follow["']/.test(text):null;
+                const count=x.kind==='sitemap'?(text.match(/<loc>/g)||[]).length:null;
+                checks.push({...x,status:r.status,correctHost,noindex,sitemapEntries:count,bodyBytes:text.length,title:(text.match(/<title[^>]*>([^<]+)/i)||[])[1]||null});
+              }catch(e){checks.push({...x,status:0,error:String(e).slice(0,180)})}
+            }
+          }
+          await Promise.all(Array.from({length:5},check));
+          const fail=checks.filter(x=>x.status!==200||!x.correctHost||(x.kind==='html'&&x.noindex!==true)||(x.kind==='sitemap'&&x.sitemapEntries!==report.htmlPages));
+          const result={schema:'astra-bizarre-public-pages-proof/1',generatedAt:new Date().toISOString(),
+            previewBase:report.previewBase,sourceSha:process.env.GITHUB_SHA,sourceArchive:report.uniqueArchivedFiles,
+            originalHtml:report.htmlPages,checks:checks.length,ok:checks.length-fail.length,failed:fail,
+            status:fail.length?'FAIL':'PASS_STAGING_HTTP_ONLY',siteProduction:'UNVERIFIED',allResults:checks};
+          fs.writeFileSync('artifacts/bizarre-public-proof/http-report.json',JSON.stringify(result,null,2)+'\n');
+          console.log('ASTRA_BIZARRE_PUBLIC_HTTP',JSON.stringify({status:result.status,checks:result.checks,ok:result.ok,failed:result.failed.slice(0,10)}));
+          if(fail.length)process.exitCode=1;
+          NODE
+      - name: Archive full independent HTTP evidence even after failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: astra-bizarre-public-http-verification
+          path: artifacts/bizarre-public-proof/http-report.json
+          if-no-files-found: warn
+          retention-days: 7
