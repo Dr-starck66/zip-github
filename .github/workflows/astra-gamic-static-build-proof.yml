@@ -1,0 +1,42 @@
+name: ASTRA GAMIC static restoration builder proof
+on:
+  push:
+    branches:
+      - astra/three-domains-repair-audit-20261105
+    paths:
+      - 'gamicnews/scripts/build-free-static.mjs'
+      - '.github/workflows/astra-gamic-static-build-proof.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Build without modifying existing GH Pages noindex
+        run: |
+          node --check gamicnews/scripts/build-free-static.mjs
+          node gamicnews/scripts/build-free-static.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const receipt=JSON.parse(fs.readFileSync('gamicnews/dist/.well-known/astra-release.json','utf8'));
+          const home=fs.readFileSync('gamicnews/dist/index.html','utf8');
+          const old=fs.readFileSync('gamicnews/index.html','utf8');
+          if(receipt.indexableRoutes!==38||!/<meta name="robots" content="index,follow,max-image-preview:large">/.test(home))
+            throw Error('INDEXABLE_38_URLS_NOT_CONFIRMED');
+          if(home.includes('/zip-github/gamicnews/')||!old.includes('/zip-github/gamicnews/')||!old.includes('noindex,follow'))
+            throw Error('STAGING_PRODUCTION_CONTENT_MIXUP');
+          const sitemap=fs.readFileSync('gamicnews/dist/sitemap.xml','utf8');
+          if((sitemap.match(/<loc>/g)||[]).length!==38)throw Error('SITEMAP_COUNT_DIFFERENCE');
+          console.log('PASS_GAMIC_FREE_STATIC_BUILD',JSON.stringify(receipt));
+          NODE
+      - name: Archive source build and verification receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: astra-gamic-38-pages-production-candidate
+          path: gamicnews/dist/
+          retention-days: 7
