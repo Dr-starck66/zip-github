@@ -1,0 +1,50 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/sex-robot-for-sale",
+      "destination": "/sex-robots-for-sale",
+      "permanent": true
+    },
+    {
+      "source": "/harmony-robot",
+      "destination": "/harmony-sex-robot",
+      "permanent": true
+    },
+    {
+      "source": "/realdoll-harmony",
+      "destination": "/harmony-sex-robot",
+      "permanent": true
+    },
+    {
+      "source": "/where-to-buy-sex-robot",
+      "destination": "/buy-sex-robot",
+      "permanent": true
+    },
+    {
+      "source": "/ai-sex-doll-best",
+      "destination": "/best-ai-sex-dolls",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
+    }
+  ]
+}
