@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://gamicnews.com/sitemap.xml
+Sitemap: https://gamicnews.com/news-sitemap.xml

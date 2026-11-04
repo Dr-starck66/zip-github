@@ -1,0 +1,13 @@
+{
+  "status": "PARTIAL",
+  "phase": "source-snapshot-staged",
+  "sourceArchive": "Dr-starck66/indexation/gamicnews-live/site-source.zip",
+  "sourceEntries": 84,
+  "sourceDistFiles": 45,
+  "htmlFiles": 38,
+  "historicalCandidates": 15617,
+  "restoredHistoryVerified": false,
+  "canonicalDNSChanged": false,
+  "host": "GitHub Pages branch source",
+  "httpVerified": false
+}
