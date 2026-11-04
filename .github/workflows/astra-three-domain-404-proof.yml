@@ -19,6 +19,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
+      # Post-Dynadot-cutover: recheck canonical production for all three legacy domains.
       - name: Verify production and GitHub Pages mirrors independently
         run: |
           mkdir -p artifacts/three-domains-recovery
