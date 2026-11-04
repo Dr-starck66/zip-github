@@ -1,0 +1,38 @@
+name: ASTRA LOFT54 production release build — 44 pages
+on:
+  push:
+    branches:
+      - astra/three-domains-repair-audit-20261105
+    paths:
+      - 'loft54/scripts/build-free-static.mjs'
+      - '.github/workflows/astra-loft54-production-build.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Build indexable LOFT production candidate while preserving GH Pages staging
+        run: |
+          node --check loft54/scripts/build-free-static.mjs
+          node loft54/scripts/build-free-static.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const r=JSON.parse(fs.readFileSync('loft54/dist/.well-known/astra-release.json','utf8'));
+          const sitemap=fs.readFileSync('loft54/dist/sitemap.xml','utf8');
+          const staging=fs.readFileSync('loft54/index.html','utf8');
+          const prod=fs.readFileSync('loft54/dist/index.html','utf8');
+          if(r.originalHTML!==44||r.originalSitemapEntries!==44||r.approvedLegacyRedirects<20||!staging.includes('noindex,nofollow')||prod.includes('/zip-github/loft54/')||!prod.includes('index,follow'))throw Error('LOFT_RELEASE_INTEGRITY_FAILED');
+          if(sitemap.includes('github.io')||(sitemap.match(/<loc>/g)||[]).length!==44)throw Error('LOFT_SITEMAP_FAIL');
+          console.log('PASS_LOFT54_SOURCE_RELEASE',JSON.stringify(r));
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: astra-loft54-44-pages-30-redirects-candidate
+          path: loft54/dist/
+          retention-days: 7
