@@ -1,0 +1,71 @@
+name: ASTRA LOFT54 Vercel 44-route and GAMIC DNS postflight
+on:
+  push:
+    branches:
+      - astra/three-domains-repair-audit-20261105
+    paths:
+      - '.github/workflows/astra-loft54-gamic-postflight.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify LOFT54 staging routes, sample historical redirects, and GAMIC post-DNS live
+        run: |
+          mkdir -p artifacts/recovery-postflight
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const orig='https://dr-starck66.github.io/zip-github/loft54/';
+          const live='https://loft54-free-rescue-20261105-p6xncyisp-ced-starcks-projects.vercel.app';
+          const expected='https://loft54.club/';
+          const listed=[...fs.readFileSync('loft54/sitemap.xml','utf8').matchAll(/<loc>([^<]+)<\/loc>/gi)].map(m=>m[1]);
+          if(listed.length!==44)throw Error('LISTED_44_REQUIRED');
+          const targets=[
+            ...listed.map(src=>({site:'loft',type:'html',url:live+'/'+src.slice(orig.length),expectedCanonical:expected+src.slice(orig.length)})),
+            ...['/sitemap.xml','/robots.txt','/style.css','/.well-known/astra-release.json','/Ambiente/','/Dresscode/','/health','/api/status'].map(p=>({site:'loft',type:p,url:live+p})),
+            ...['/','/sitemap.xml','/robots.txt','/category/ai','/news/on-device-ai-why-phones-are-doing-more-locally'].map(p=>({site:'gamic',type:p,url:'https://gamicnews.com'+p})),
+            ...['/','/sitemap.xml'].map(p=>({site:'gamic-www',type:p,url:'https://www.gamicnews.com'+p}))
+          ];
+          let cursor=0;const results=[];
+          async function worker(){
+            while(cursor<targets.length){
+              const t=targets[cursor++];
+              try{
+                const r=await fetch(t.url,{redirect:'manual',signal:AbortSignal.timeout(10000)});
+                const b=await r.text();
+                const canonical=(b.match(/rel=["']canonical["'][^>]*href=["']([^"']+)/i)||[])[1]||null;
+                const robots=(b.match(/<meta[^>]+name=["']robots["'][^>]*>/i)||[])[0]||null;
+                const item={...t,status:r.status,location:r.headers.get('location'),contentType:r.headers.get('content-type'),
+                  canonical,robots,bytes:b.length,sitemapEntries:/sitemap\.xml/.test(t.type)?(b.match(/<loc>/g)||[]).length:null,
+                  indexable:robots?/index,follow/.test(robots)&&!/noindex/.test(robots):null};
+                item.good=t.type==='html'?(r.status===200&&canonical===t.expectedCanonical&&item.indexable):
+                  t.type==='/sitemap.xml'&&t.site==='loft'?(r.status===200&&item.sitemapEntries===44):
+                  r.status===200;
+                results.push(item);
+              }catch(e){results.push({...t,status:0,error:String(e).slice(0,180),good:false})}
+            }
+          }
+          await Promise.all(Array.from({length:5},worker));
+          const loftPages=results.filter(x=>x.site==='loft'&&x.type==='html');
+          const siteResults={schema:'astra-three-domain-postflight/1',generatedAt:new Date().toISOString(),sourceSha:process.env.GITHUB_SHA,
+            loft:{pages:loftPages.length,htmlPass:loftPages.filter(x=>x.good).length,stagingUrl:live,
+              redirectSamples:results.filter(x=>x.site==='loft'&&['/Ambiente/','/Dresscode/','/health','/api/status'].includes(x.type))},
+            gamic:{apex:results.filter(x=>x.site==='gamic'),www:results.filter(x=>x.site==='gamic-www')},
+            results};
+          fs.writeFileSync('artifacts/recovery-postflight/loft-gamic.json',JSON.stringify(siteResults,null,2)+'\n');
+          console.log('ASTRA_LOFT_GAMIC_POSTFLIGHT',JSON.stringify({loft:siteResults.loft,gamic:siteResults.gamic}));
+          NODE
+      - name: Preserve positive and negative responses
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: astra-loft-gamic-postflight-http
+          path: artifacts/recovery-postflight/loft-gamic.json
+          if-no-files-found: warn
+          retention-days: 7
