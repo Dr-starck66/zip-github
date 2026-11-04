@@ -1,0 +1,63 @@
+name: ASTRA 404 Recovery Proof — three legacy domains
+on:
+  push:
+    branches:
+      - astra/three-domains-repair-audit-20261105
+    paths:
+      - '.github/workflows/astra-three-domain-404-proof.yml'
+      - 'bizarresexuality/**'
+      - 'gamicnews/**'
+      - 'loft54/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify production and GitHub Pages mirrors independently
+        run: |
+          mkdir -p artifacts/three-domains-recovery
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const targets=['gamicnews.com','loft54.club','bizarresexuality.com'];
+          const root='https://dr-starck66.github.io/zip-github';
+          const items=[];
+          for(const domain of targets){
+            const mirrorPath=domain.split('.')[0]==='gamicnews'?'gamicnews':domain.split('.')[0]==='loft54'?'loft54':'bizarresexuality';
+            for(const [kind,url] of [
+              ['production_home','https://'+domain+'/'],
+              ['production_www','https://www.'+domain+'/'],
+              ['production_robots','https://'+domain+'/robots.txt'],
+              ['production_sitemap','https://'+domain+'/sitemap.xml'],
+              ['mirror_home',root+'/'+mirrorPath+'/'],
+              ['mirror_robots',root+'/'+mirrorPath+'/robots.txt'],
+              ['mirror_sitemap',root+'/'+mirrorPath+'/sitemap.xml']
+            ]){
+              try{
+                const res=await fetch(url,{redirect:'manual',signal:AbortSignal.timeout(9000),headers:{'user-agent':'ASTRA-404-Recovery-Proof/1.0'}});
+                const body=await res.text();
+                items.push({domain,kind,url,status:res.status,location:res.headers.get('location'),contentType:res.headers.get('content-type'),htmlTitle:(body.match(/<title[^>]*>([^<]{1,200})/i)||[])[1]||null,
+                  noindex:/<meta[^>]+(?:name=["']robots["'][^>]+content=["'][^"']*noindex|content=["'][^"']*noindex[^"']*["'][^>]+name=["']robots)/i.test(body),
+                  sitemapUrls:kind.endsWith('sitemap')?(body.match(/<loc>/g)||[]).length:null,
+                  bodyPreview:body.slice(0,100).replace(/\s+/g,' ')});
+              }catch(e){items.push({domain,kind,url,status:0,error:String(e).slice(0,250)});}
+            }
+          }
+          const result={schema:'astra-404-recovery-proof/1',createdAt:new Date().toISOString(),sourceSha:process.env.GITHUB_SHA,
+            scope:'PRODUCTION_AND_PAGES_MIRROR',results:items,notes:['A GitHub Pages mirror is not equivalent to domain production.','A sitemap only confirms its listed paths, not full historical recovery.']};
+          fs.writeFileSync('artifacts/three-domains-recovery/http-evidence.json',JSON.stringify(result,null,2)+'\n');
+          for(const item of items)console.log('ASTRA_HTTP',JSON.stringify(item));
+          NODE
+      - name: Store proof including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: astra-three-domains-recovery-http-proof
+          path: artifacts/three-domains-recovery/http-evidence.json
+          if-no-files-found: warn
+          retention-days: 7
