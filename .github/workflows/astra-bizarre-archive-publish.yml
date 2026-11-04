@@ -1,0 +1,70 @@
+name: ASTRA Bizarre archive — isolated GitHub Pages rescue publication
+on:
+  push:
+    branches:
+      - astra/three-domains-repair-audit-20261105
+    paths:
+      - '.github/workflows/astra-bizarre-archive-publish.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: astra-bizarre-pages-archive-publish
+  cancel-in-progress: false
+jobs:
+  publish-isolated-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Rebuild from original shards and verify provenance
+        run: |
+          node --check scripts/astra-bizarre-shards-to-pages.mjs
+          node scripts/astra-bizarre-shards-to-pages.mjs artifacts/bizarresexuality-preview/site
+          test -f artifacts/bizarresexuality-preview/site/index.html
+          test -f artifacts/bizarresexuality-preview/site/sitemap.xml
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const r=JSON.parse(fs.readFileSync('artifacts/bizarresexuality-preview/site/.well-known/astra-recovery-report.json','utf8'));
+          if(r.shardCount!==8||r.htmlPages<30||r.uniqueArchivedFiles<90||!r.integrity.allHTMLNoindex||r.missingInternalRouteCount!==0)
+            throw Error('FAIL_CLOSED_PREVIEW_INTEGRITY');
+          console.log('PASS_PREVIEW_BUILD',JSON.stringify({files:r.uniqueArchivedFiles,html:r.htmlPages,missingInternal:r.missingInternalRouteCount,stagingNoindex:true}));
+          NODE
+      - name: Publish only bizarresexuality subtree to existing Pages repository
+        id: push
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main
+          tmp="$(mktemp -d)"
+          git worktree add --detach "$tmp" origin/main
+          mkdir -p "$tmp/bizarresexuality"
+          cp -a artifacts/bizarresexuality-preview/site/. "$tmp/bizarresexuality/"
+          cd "$tmp"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- bizarresexuality
+          if git diff --cached --quiet; then
+            echo "No changes to release"
+            echo "status=ALREADY_PUBLISHED" >> "$GITHUB_OUTPUT"
+          else
+            if git diff --cached --name-only | grep -v '^bizarresexuality/'; then
+              echo 'FAIL_UNSCOPED_FILES' >&2; exit 1
+            fi
+            git commit -m "fix(bizarre): restore 32 original static pages and assets as isolated noindex backup"
+            git push origin HEAD:main
+            echo "status=PUSHED_MAIN_NEEDS_PAGES_HTTP_PROOF" >> "$GITHUB_OUTPUT"
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Store source provenance regardless of push result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: astra-bizarre-recovery-push-receipt
+          path: artifacts/bizarresexuality-preview/site/.well-known/astra-recovery-report.json
+          if-no-files-found: warn
+          retention-days: 7
