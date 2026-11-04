@@ -22,7 +22,7 @@ jobs:
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           const orig='https://dr-starck66.github.io/zip-github/loft54/';
-          const live='https://loft54-free-rescue-20261105-e4gma49bm-ced-starcks-projects.vercel.app';
+          const live='https://loft54-free-rescue-20261105-qr88imlgb-ced-starcks-projects.vercel.app';
           const expected='https://loft54.club/';
           const listed=[...fs.readFileSync('loft54/sitemap.xml','utf8').matchAll(/<loc>([^<]+)<\/loc>/gi)].map(m=>m[1]);
           if(listed.length!==44)throw Error('LISTED_44_REQUIRED');
