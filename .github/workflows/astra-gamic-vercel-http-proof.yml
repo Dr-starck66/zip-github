@@ -1,4 +1,4 @@
-name: ASTRA GAMIC Vercel public candidate — 38-route proof
+name: ASTRA GAMIC Vercel public candidate — 38-route production candidate proof
 on:
   push:
     branches:
@@ -14,13 +14,13 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
-      - name: Probe all 38 canonical pages on Vercel staging over public HTTPS
+      - name: Probe all 38 canonical pages on Vercel production deployment over public HTTPS
         run: |
           mkdir -p artifacts/gamic-vercel-http
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           const canonicalOrigin='https://gamicnews.com';
-          const candidate='https://gamicnews-free-rescue-20261104-pnxknuo09-ced-starcks-projects.vercel.app';
+          const candidate='https://gamicnews-free-rescue-20261104-8byyu541c-ced-starcks-projects.vercel.app';
           const sitemap=fs.readFileSync('gamicnews/sitemap.xml','utf8');
           const locs=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1].replace(/&amp;/g,'&'));
           if(locs.length!==38)throw Error('BASELINE_SITEMAP_CHANGED');
