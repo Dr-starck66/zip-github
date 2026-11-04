@@ -1,0 +1,173 @@
+{
+  "version": 2,
+  "redirects": [
+    {
+      "source": "/Ambiente/",
+      "destination": "/ratgeber/loft54-rheinstetten-geschichte",
+      "permanent": true
+    },
+    {
+      "source": "/Ambiente/index.php/;focus=STRATP_com_cm4all_wdn_PhotoSlideshow_40643670&frame=STRATP_com_cm4all_wdn_PhotoSlideshow_40643670&path=lightbox",
+      "destination": "/ratgeber/loft54-rheinstetten-geschichte",
+      "permanent": true
+    },
+    {
+      "source": "/Ambiente/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
+      "destination": "/ratgeber/loft54-rheinstetten-geschichte",
+      "permanent": true
+    },
+    {
+      "source": "/Anfahrt/",
+      "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
+      "permanent": true
+    },
+    {
+      "source": "/Anfahrt-Parken/",
+      "destination": "/ratgeber/loft54-rheinstetten-geschichte",
+      "permanent": true
+    },
+    {
+      "source": "/Anfahrt-Parken/index.php/;focus=STRATP_com_cm4all_wch_maps_40644170&frame=STRATP_com_cm4all_wch_maps_40644170",
+      "destination": "/ratgeber/loft54-rheinstetten-geschichte",
+      "permanent": true
+    },
+    {
+      "source": "/Anfahrt-Parken/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
+      "destination": "/ratgeber/loft54-rheinstetten-geschichte",
+      "permanent": true
+    },
+    {
+      "source": "/Anfahrt/index.php/;focus=STRATP_com_cm4all_wch_maps_40644170&frame=STRATP_com_cm4all_wch_maps_40644170",
+      "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
+      "permanent": true
+    },
+    {
+      "source": "/Anfahrt/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
+      "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
+      "permanent": true
+    },
+    {
+      "source": "/Club-Jobs/",
+      "destination": "/ratgeber/loft54-rheinstetten-geschichte",
+      "permanent": true
+    },
+    {
+      "source": "/Club-Jobs/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
+      "destination": "/ratgeber/loft54-rheinstetten-geschichte",
+      "permanent": true
+    },
+    {
+      "source": "/Dresscode/",
+      "destination": "/ratgeber/dresscode-swingerclub",
+      "permanent": true
+    },
+    {
+      "source": "/Dresscode/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
+      "destination": "/ratgeber/dresscode-swingerclub",
+      "permanent": true
+    },
+    {
+      "source": "/Events/",
+      "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
+      "permanent": true
+    },
+    {
+      "source": "/Events/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
+      "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
+      "permanent": true
+    },
+    {
+      "source": "/Home/",
+      "destination": "/ratgeber/loft54-rheinstetten-geschichte",
+      "permanent": true
+    },
+    {
+      "source": "/Home/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
+      "destination": "/ratgeber/loft54-rheinstetten-geschichte",
+      "permanent": true
+    },
+    {
+      "source": "/Loft54/",
+      "destination": "/ratgeber/loft54-rheinstetten-geschichte",
+      "permanent": true
+    },
+    {
+      "source": "/Loft54-Impressionen/",
+      "destination": "/ratgeber/loft54-rheinstetten-geschichte",
+      "permanent": true
+    },
+    {
+      "source": "/Loft54/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
+      "destination": "/ratgeber/loft54-rheinstetten-geschichte",
+      "permanent": true
+    },
+    {
+      "source": "/Oeffnungszeiten/",
+      "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
+      "permanent": true
+    },
+    {
+      "source": "/Oeffnungszeiten/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
+      "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
+      "permanent": true
+    },
+    {
+      "source": "/Philosophie/",
+      "destination": "/ratgeber/loft54-neues-projekt",
+      "permanent": true
+    },
+    {
+      "source": "/Philosophie/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
+      "destination": "/ratgeber/loft54-neues-projekt",
+      "permanent": true
+    },
+    {
+      "source": "/Preise/",
+      "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
+      "permanent": true
+    },
+    {
+      "source": "/Preise/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
+      "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
+      "permanent": true
+    },
+    {
+      "source": "/Regeln/",
+      "destination": "/ratgeber/swingerclub-etikette",
+      "permanent": true
+    },
+    {
+      "source": "/Regeln/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
+      "destination": "/ratgeber/swingerclub-etikette",
+      "permanent": true
+    },
+    {
+      "source": "/Rookies/",
+      "destination": "/ratgeber/swingerclub-einsteiger",
+      "permanent": true
+    },
+    {
+      "source": "/Rookies/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
+      "destination": "/ratgeber/swingerclub-einsteiger",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/health",
+      "destination": "/health.json"
+    },
+    {
+      "source": "/api/status",
+      "destination": "/api/status.json"
+    },
+    {
+      "source": "/api/editorial-quality",
+      "destination": "/api/editorial-quality.json"
+    },
+    {
+      "source": "/api/legacy-audit",
+      "destination": "/api/legacy-audit.json"
+    }
+  ]
+}
