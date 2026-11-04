@@ -57,14 +57,15 @@ const prodMap=xml.replaceAll(preview,production);
 if((prodMap.match(/<loc>/g)||[]).length!==44||prodMap.includes('github.io'))throw Error('SITEMAP_BAD_CONVERSION');
 fs.writeFileSync(path.join(out,'sitemap.xml'),prodMap);
 const redirects=fs.readFileSync(path.join(root,'_redirects'),'utf8').split(/\r?\n/).map(x=>x.trim()).filter(x=>x&&!x.startsWith('#')).filter(x=>!x.startsWith('https://www.'));
-const parsed=[];
+const parsed=[],rewrites=[];
 for(const line of redirects){
- const m=line.match(/^(\/\S+)\s+(\/\S+)\s+301!?\s*$/);
+ const m=line.match(/^(\/\S+)\s+(\/\S+)\s+(301!?|200)\s*$/);
  if(!m)throw Error('UNSUPPORTED_REDIRECT:'+line);
  if(!m[1].startsWith('/')||!m[2].startsWith('/')||m[1].includes('?'))throw Error('UNSAFE_REDIRECT:'+line);
- parsed.push({source:m[1],destination:m[2],permanent:true});
+ if(m[3]==='200')rewrites.push({source:m[1],destination:m[2]});
+ else parsed.push({source:m[1],destination:m[2],permanent:true});
 }
-const config={version:2,cleanUrls:false,redirects:parsed};
+const config={version:2,cleanUrls:false,redirects:parsed,rewrites};
 fs.writeFileSync(path.join(out,'vercel.json'),JSON.stringify(config,null,2)+'\n');
 const receipt={schema:'astra-loft54-release/1',sourceSha:process.env.GITHUB_SHA||null,scope:'BUILD_ONLY',
  generatedAt:new Date().toISOString(),originalHTML:pages.length,originalSitemapEntries:listed.length,
