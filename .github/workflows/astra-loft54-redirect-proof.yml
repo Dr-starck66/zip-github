@@ -1,0 +1,49 @@
+name: ASTRA LOFT54 complete historical redirect proof
+on:
+  push:
+    branches:
+      - astra/three-domains-repair-audit-20261105
+    paths:
+      - '.github/workflows/astra-loft54-redirect-proof.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  redirects:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify all historically authorized 301 routes at Vercel candidate
+        run: |
+          mkdir -p artifacts/loft54-redirects
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const site='https://loft54-free-rescue-20261105-qr88imlgb-ced-starcks-projects.vercel.app';
+          const lines=fs.readFileSync('loft54/_redirects','utf8').split(/\r?\n/).map(s=>s.trim()).filter(s=>s&&!s.startsWith('#')&&!s.startsWith('https://www.'));
+          const redirects=lines.map(l=>l.match(/^(\/\S+)\s+(\/\S+)\s+301!?\s*$/)).filter(Boolean).map(m=>({source:m[1],target:m[2]}));
+          const checks=[];let index=0;
+          async function verify(){
+            while(index<redirects.length){
+              const entry=redirects[index++];
+              try{
+                const url=site+entry.source, r=await fetch(url,{redirect:'manual',signal:AbortSignal.timeout(8500)});
+                checks.push({...entry,url,http:r.status,location:r.headers.get('location'),pass:r.status===301&&r.headers.get('location')===entry.target});
+              }catch(e){checks.push({...entry,http:0,pass:false,error:String(e).slice(0,220)})}
+            }
+          }
+          await Promise.all(Array.from({length:5},verify));
+          const failed=checks.filter(x=>!x.pass);
+          const report={schema:'astra-loft54-legacy-301/1',createdAt:new Date().toISOString(),sourceSha:process.env.GITHUB_SHA,
+            site,status:failed.length?'FAIL':'PASS_301_STAGING',total:checks.length,passed:checks.length-failed.length,failed,checks};
+          fs.writeFileSync('artifacts/loft54-redirects/report.json',JSON.stringify(report,null,2)+'\n');
+          console.log('ASTRA_LOFT_301',JSON.stringify({status:report.status,total:report.total,passed:report.passed,failed:report.failed.slice(0,15)}));
+          if(redirects.length!==30||failed.length)process.exitCode=1;
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: astra-loft54-30-historical-301-proof
+          path: artifacts/loft54-redirects/report.json
+          if-no-files-found: warn
+          retention-days: 7
