@@ -1,0 +1,37 @@
+# LOFT54 recovery: verified, semantically related old paths only
+# The www host must also be attached to this Netlify project before this rule works.
+https://www.loft54.club/* https://loft54.club/:splat 301!
+/Ambiente/ /ratgeber/loft54-rheinstetten-geschichte 301!
+/Ambiente/index.php/;focus=STRATP_com_cm4all_wdn_PhotoSlideshow_40643670&frame=STRATP_com_cm4all_wdn_PhotoSlideshow_40643670&path=lightbox /ratgeber/loft54-rheinstetten-geschichte 301!
+/Ambiente/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940 /ratgeber/loft54-rheinstetten-geschichte 301!
+/Anfahrt/ /ratgeber/loft54-rheinstetten-preise-oeffnungszeiten 301!
+/Anfahrt-Parken/ /ratgeber/loft54-rheinstetten-geschichte 301!
+/Anfahrt-Parken/index.php/;focus=STRATP_com_cm4all_wch_maps_40644170&frame=STRATP_com_cm4all_wch_maps_40644170 /ratgeber/loft54-rheinstetten-geschichte 301!
+/Anfahrt-Parken/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940 /ratgeber/loft54-rheinstetten-geschichte 301!
+/Anfahrt/index.php/;focus=STRATP_com_cm4all_wch_maps_40644170&frame=STRATP_com_cm4all_wch_maps_40644170 /ratgeber/loft54-rheinstetten-preise-oeffnungszeiten 301!
+/Anfahrt/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940 /ratgeber/loft54-rheinstetten-preise-oeffnungszeiten 301!
+/Club-Jobs/ /ratgeber/loft54-rheinstetten-geschichte 301!
+/Club-Jobs/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940 /ratgeber/loft54-rheinstetten-geschichte 301!
+/Dresscode/ /ratgeber/dresscode-swingerclub 301!
+/Dresscode/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940 /ratgeber/dresscode-swingerclub 301!
+/Events/ /ratgeber/loft54-rheinstetten-preise-oeffnungszeiten 301!
+/Events/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940 /ratgeber/loft54-rheinstetten-preise-oeffnungszeiten 301!
+/Home/ /ratgeber/loft54-rheinstetten-geschichte 301!
+/Home/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940 /ratgeber/loft54-rheinstetten-geschichte 301!
+/Loft54/ /ratgeber/loft54-rheinstetten-geschichte 301!
+/Loft54-Impressionen/ /ratgeber/loft54-rheinstetten-geschichte 301!
+/Loft54/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940 /ratgeber/loft54-rheinstetten-geschichte 301!
+/Oeffnungszeiten/ /ratgeber/loft54-rheinstetten-preise-oeffnungszeiten 301!
+/Oeffnungszeiten/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940 /ratgeber/loft54-rheinstetten-preise-oeffnungszeiten 301!
+/Philosophie/ /ratgeber/loft54-neues-projekt 301!
+/Philosophie/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940 /ratgeber/loft54-neues-projekt 301!
+/Preise/ /ratgeber/loft54-rheinstetten-preise-oeffnungszeiten 301!
+/Preise/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940 /ratgeber/loft54-rheinstetten-preise-oeffnungszeiten 301!
+/Regeln/ /ratgeber/swingerclub-etikette 301!
+/Regeln/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940 /ratgeber/swingerclub-etikette 301!
+/Rookies/ /ratgeber/swingerclub-einsteiger 301!
+/Rookies/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940 /ratgeber/swingerclub-einsteiger 301!
+/health /health.json 200
+/api/status /api/status.json 200
+/api/editorial-quality /api/editorial-quality.json 200
+/api/legacy-audit /api/legacy-audit.json 200
