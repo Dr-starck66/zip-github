@@ -4,152 +4,152 @@
     {
       "source": "/Ambiente/",
       "destination": "/ratgeber/loft54-rheinstetten-geschichte",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Ambiente/index.php/;focus=STRATP_com_cm4all_wdn_PhotoSlideshow_40643670&frame=STRATP_com_cm4all_wdn_PhotoSlideshow_40643670&path=lightbox",
       "destination": "/ratgeber/loft54-rheinstetten-geschichte",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Ambiente/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
       "destination": "/ratgeber/loft54-rheinstetten-geschichte",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Anfahrt/",
       "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Anfahrt-Parken/",
       "destination": "/ratgeber/loft54-rheinstetten-geschichte",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Anfahrt-Parken/index.php/;focus=STRATP_com_cm4all_wch_maps_40644170&frame=STRATP_com_cm4all_wch_maps_40644170",
       "destination": "/ratgeber/loft54-rheinstetten-geschichte",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Anfahrt-Parken/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
       "destination": "/ratgeber/loft54-rheinstetten-geschichte",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Anfahrt/index.php/;focus=STRATP_com_cm4all_wch_maps_40644170&frame=STRATP_com_cm4all_wch_maps_40644170",
       "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Anfahrt/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
       "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Club-Jobs/",
       "destination": "/ratgeber/loft54-rheinstetten-geschichte",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Club-Jobs/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
       "destination": "/ratgeber/loft54-rheinstetten-geschichte",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Dresscode/",
       "destination": "/ratgeber/dresscode-swingerclub",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Dresscode/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
       "destination": "/ratgeber/dresscode-swingerclub",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Events/",
       "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Events/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
       "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Home/",
       "destination": "/ratgeber/loft54-rheinstetten-geschichte",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Home/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
       "destination": "/ratgeber/loft54-rheinstetten-geschichte",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Loft54/",
       "destination": "/ratgeber/loft54-rheinstetten-geschichte",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Loft54-Impressionen/",
       "destination": "/ratgeber/loft54-rheinstetten-geschichte",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Loft54/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
       "destination": "/ratgeber/loft54-rheinstetten-geschichte",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Oeffnungszeiten/",
       "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Oeffnungszeiten/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
       "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Philosophie/",
       "destination": "/ratgeber/loft54-neues-projekt",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Philosophie/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
       "destination": "/ratgeber/loft54-neues-projekt",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Preise/",
       "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Preise/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
       "destination": "/ratgeber/loft54-rheinstetten-preise-oeffnungszeiten",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Regeln/",
       "destination": "/ratgeber/swingerclub-etikette",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Regeln/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
       "destination": "/ratgeber/swingerclub-etikette",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Rookies/",
       "destination": "/ratgeber/swingerclub-einsteiger",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/Rookies/index.php/;focus=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940&frame=STRATP_com_cm4all_wdn_social_SocialBookmark_40644940",
       "destination": "/ratgeber/swingerclub-einsteiger",
-      "permanent": true
+      "statusCode": 301
     }
   ],
   "rewrites": [
