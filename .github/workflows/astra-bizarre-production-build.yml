@@ -2,7 +2,7 @@ name: ASTRA Bizarre production source build — 32 original pages
 on:
   push:
     branches:
-      - astra/three-domains-repair-audit-20261105
+      - astra/bizarre-production-ready-20261105
     paths:
       - 'bizarresexuality/scripts/build-free-static.mjs'
       - '.github/workflows/astra-bizarre-production-build.yml'
