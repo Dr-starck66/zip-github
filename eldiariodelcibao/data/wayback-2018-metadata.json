@@ -1,18 +1,25 @@
 {
   "schemaVersion": 1,
   "purpose": "Source metadata only; no copied full article texts and no automatic indexability",
-  "checkedUTC": "2026-11-04T09:40:25.979294+00:00",
+  "checkedUTC": "2026-11-05T09:45:01.022088+00:00",
   "totalJune2018": 259,
   "records": [
     {
       "path": "/2018/06/20-anos-de-prision-productor-de-tv.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "capture-incomplete",
       "archiveUrl": "https://web.archive.org/web/20180610103738id_/http://www.eldiariodelcibao.com:80/2018/06/20-anos-de-prision-productor-de-tv.html",
+      "archiveTimestamp": "20180610103738",
+      "originalTitle": "20 años de prisión a productor de TV. Miguel Angel Medrano a por alegada violación de una mujer",
+      "originalDate": "2018-06-05",
+      "sourceBodyWords": 45,
+      "sourceBodySha256": "fa71d86f1eaf7a6bf99292b9ccf50f029f78a03e945bd873055f1e562736b9c3",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
       "indexable": false,
+      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 18,
-      "lastAttemptUTC": "2026-11-04T09:39:44.231080+00:00"
+      "attemptCount": 19,
+      "lastAttemptUTC": "2026-11-05T09:44:12.060660+00:00"
     },
     {
       "path": "/2018/06/aduanas-dispondra-de-inteligencia.html",
@@ -186,8 +193,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 18,
-      "lastAttemptUTC": "2026-11-04T09:39:15.404158+00:00"
+      "attemptCount": 19,
+      "lastAttemptUTC": "2026-11-05T09:44:07.535860+00:00"
     },
     {
       "path": "/2018/06/apresan-dos-ancianos-de-78-y-85-anos.html",
@@ -1143,13 +1150,20 @@
     },
     {
       "path": "/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "capture-incomplete",
       "archiveUrl": "https://web.archive.org/web/20190227045356id_/http://www.eldiariodelcibao.com:80/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
+      "archiveTimestamp": "20190227045356",
+      "originalTitle": "El cambio no viene, hay que hacerlo",
+      "originalDate": null,
+      "sourceBodyWords": 291,
+      "sourceBodySha256": "2551f84266985b2f4d71b630b02f16518b694aecc490ff65ac059bcc2b6ff2c0",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
       "indexable": false,
+      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 18,
-      "lastAttemptUTC": "2026-11-04T09:40:16.354714+00:00"
+      "attemptCount": 19,
+      "lastAttemptUTC": "2026-11-05T09:44:35.125477+00:00"
     },
     {
       "path": "/2018/06/el-cantautor-manuel-jimenez-viajara-ny.html",
@@ -1716,8 +1730,8 @@
       "archiveUrl": "https://web.archive.org/web/20180617211752id_/http://www.eldiariodelcibao.com:80/2018/06/felix-bautista-se-burla-de-estados.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 18,
-      "lastAttemptUTC": "2026-11-04T09:39:47.959456+00:00"
+      "attemptCount": 19,
+      "lastAttemptUTC": "2026-11-05T09:44:37.737275+00:00"
     },
     {
       "path": "/2018/06/felix-bautista-tiene-rd84-mil-600.html",
@@ -2441,8 +2455,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 18,
-      "lastAttemptUTC": "2026-11-04T09:39:08.981026+00:00"
+      "attemptCount": 19,
+      "lastAttemptUTC": "2026-11-05T09:44:03.293350+00:00"
     },
     {
       "path": "/2018/06/marcha-verde-convoca-para-el-12-de.html",
@@ -3200,8 +3214,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 18,
-      "lastAttemptUTC": "2026-11-04T09:39:19.779717+00:00"
+      "attemptCount": 19,
+      "lastAttemptUTC": "2026-11-05T09:44:20.073482+00:00"
     },
     {
       "path": "/2018/06/por-carolina-pichardolistin-diario.html",
@@ -3495,8 +3509,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 18,
-      "lastAttemptUTC": "2026-11-04T09:39:11.663607+00:00"
+      "attemptCount": 19,
+      "lastAttemptUTC": "2026-11-05T09:44:05.666640+00:00"
     },
     {
       "path": "/2018/06/roberto-rosario-sale-en-defensa-de.html",
@@ -3544,8 +3558,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 18,
-      "lastAttemptUTC": "2026-11-04T09:39:09.245750+00:00"
+      "attemptCount": 19,
+      "lastAttemptUTC": "2026-11-05T09:44:04.757467+00:00"
     },
     {
       "path": "/2018/06/sacerdote-critica-posicion-masalles.html",
@@ -3708,8 +3722,8 @@
       "archiveUrl": "https://web.archive.org/web/20180702014224id_/http://www.eldiariodelcibao.com:80/2018/06/sepultan-restos-del-adolescente-de-15.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 18,
-      "lastAttemptUTC": "2026-11-04T09:40:25.978985+00:00"
+      "attemptCount": 19,
+      "lastAttemptUTC": "2026-11-05T09:45:01.021592+00:00"
     },
     {
       "path": "/2018/06/servio-tulio-advierte-juez-designado.html",
