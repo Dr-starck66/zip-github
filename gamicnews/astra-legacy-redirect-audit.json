@@ -1,0 +1,13 @@
+{
+  "schema": "astra-gamic-legacy-migration/1",
+  "status": "PARTIAL",
+  "source": "Dr-starck66/indexation/gamicnews-live/legacy-redirects.json",
+  "sourceBlob": "775413468981b31dcd63c69ca84b015c6aea549c",
+  "verifiedSourceMappings": 143,
+  "canonicalHostRedirect": true,
+  "restoredSitemapPages": 38,
+  "nonrestoredHistoricalCandidatesApprox": 15474,
+  "negativeControl": "/astra-negative-control-no-redirect",
+  "routingPlan": "vercel.json source redirects. Deploy staging, verify, then promote same SHA. No wildcard 200 and no homepage redirects.",
+  "domainDNSMutation": false
+}
