@@ -93,5 +93,8 @@
         "timeoutMs": 90000
       }
     ]
+  },
+  "scriptExemptions": {
+    "scripts/astra-bizarre-shards-to-pages.mjs": "One-time historical Bun shard extraction into a nonindexable GitHub Pages preview; not a continuously deployed ASTRA brick. Its output is audited separately against 32 URLs, and this exemption does not establish production or scientific proof."
   }
 }
