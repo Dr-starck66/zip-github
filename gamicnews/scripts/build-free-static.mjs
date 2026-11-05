@@ -2,7 +2,8 @@
 /**
  * ASTRA GAMIC production-safe static builder.
  * Source mirror stays noindex on GitHub Pages; dist is indexable ONLY for
- * URLs currently listed in the original GAMIC sitemap.
+ * editorial URLs listed in the original GAMIC sitemap; five author profiles
+ * intentionally remain noindex even when listed in the XML archive.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -19,6 +20,8 @@ for(const url of originals){
  paths.add((u.pathname.replace(/\/$/,'')||'/'));
 }
 if(paths.size<30)throw Error('INSUFFICIENT_SITEMAP_BASELINE');
+const authorPaths=new Set([...paths].filter(p=>p.startsWith('/authors/')));
+if(authorPaths.size!==5)throw Error('AUTHOR_NOINDEX_BASELINE_MISMATCH '+authorPaths.size);
 if(fs.existsSync(dist))fs.rmSync(dist,{recursive:true});
 const pages=[],files=[];
 function walk(dir,rel=''){
@@ -35,7 +38,7 @@ function walk(dir,rel=''){
   if(sub.endsWith('.html')){
    const urlPath='/'+sub.replace(/\/index\.html$/,'').replace(/^index\.html$/,'');
    const norm=urlPath.replace(/\/$/,'')||'/';
-   const indexable=paths.has(norm);
+   const indexable=paths.has(norm)&&!authorPaths.has(norm);
    let h=buf.toString('utf8');
    h=h.replace(/\/zip-github\/gamicnews\//g,'/');
    h=h.replace(/<meta\s+name=["']robots["'][^>]*>/gi,'');
@@ -52,14 +55,17 @@ function walk(dir,rel=''){
 }
 walk(root);
 const allowed=pages.filter(x=>x.indexable);
-if(allowed.length!==paths.size)
- throw Error('SITEMAP_HTML_MISMATCH '+allowed.length+' vs '+paths.size);
+if(allowed.length!==paths.size-authorPaths.size)
+ throw Error('SITEMAP_HTML_MISMATCH '+allowed.length+' vs '+(paths.size-authorPaths.size));
+const authors=pages.filter(x=>authorPaths.has(x.canonical));
+if(authors.length!==authorPaths.size||authors.some(x=>x.indexable))
+ throw Error('AUTHOR_NOINDEX_REGRESSION');
 const receipt={schema:'astra-gamic-static-build/1',generatedAt:new Date().toISOString(),
  sourceMirror:'Dr-starck66/zip-github:gamicnews',sourceSha:process.env.GITHUB_SHA||null,
  status:'PASS_BUILD_ONLY',publishedToPublicHost:false,productionHttp:'UNVERIFIED',
- indexableRoutes:allowed.length,stagingNoindexRoutes:pages.length-allowed.length,
+ indexableRoutes:allowed.length,authorNoindexRoutes:authors.length,stagingNoindexRoutes:pages.length-allowed.length,
  preservedFiles:files.length,legacyHistoricalComplete:false,
- notes:['This build preserves existing canonical URLs and stages indexable HTML only for 38 verified sitemap entries.',
+ notes:['This build preserves all 39 canonical sitemap URLs, with 34 editorial pages indexable and five author profiles noindex.',
         'Historical URL inventory is not proven complete; 15,617 archive candidates are not equivalent to recovered pages.']};
 fs.mkdirSync(path.join(dist,'.well-known'),{recursive:true});
 fs.writeFileSync(path.join(dist,'.well-known','astra-release.json'),JSON.stringify(receipt,null,2)+'\n');
