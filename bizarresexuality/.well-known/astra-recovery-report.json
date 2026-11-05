@@ -4,8 +4,8 @@
   "source": "ZIP_GITHUB_8_ORIGINAL_SHARDS",
   "previewBase": "https://dr-starck66.github.io/zip-github/bizarresexuality/",
   "productionDomain": "https://bizarresexuality.com/",
-  "productionStatus": "UNVERIFIED",
-  "previewStatus": "NOT_DEPLOYED",
+  "productionStatus": "FAIL_404_OBSERVED_2026-11-05",
+  "previewStatus": "PUBLIC_CONTENT_RETRIEVABLE_32_OF_32_2026-11-05",
   "indexed": false,
   "completeHistoricalInventory": false,
   "sourceSha": "1066bec234ce06b41c50d31c2e7424e36d709e7a",
@@ -102,6 +102,21 @@
     "Stage is non-indexable and not a substitute for original domain",
     "Production sitemap kept separately as a backup",
     "Source pages absent from the shard archive remain missing until sourced",
-    "GitHub Pages URL paths need independent HTTP verification"
-  ]
+    "GitHub Pages URL paths need independent HTTP verification",
+    "Public preview 32/32 verified 2026-11-05; the production domain remains 404, so no release PASS."
+  ],
+  "independentPublicAudit": {
+    "checkedOn": "2026-11-05",
+    "method": "TinyFish zero-cost public content fetch, fresh preference",
+    "previewPageUrlsChecked": 32,
+    "previewPagesWithContent": 32,
+    "previewPagesWithSelfDomainCanonical": 32,
+    "previewPagesNoindex": 32,
+    "productionRoot": "https://bizarresexuality.com/",
+    "productionRootStatus": "404 observed",
+    "productionSitemapStatus": "404 observed",
+    "http200NumericCodes": "UNVERIFIED",
+    "imagesAndFullHistoricalInventory": "UNVERIFIED",
+    "dnsChangedByThisAudit": false
+  }
 }
