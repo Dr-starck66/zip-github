@@ -14,13 +14,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
+      # The workflow branch contains only the recovery adapter; the immutable 32-page source lives on the verified snapshot.
       - uses: actions/checkout@v4
+        with:
+          ref: 8e28ff78331d4c17d995e2d45b154eb81c51a5b4
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - name: Restore source with production canons, preserved robots staging, and sitemap integrity
         run: |
           node --check bizarresexuality/scripts/build-free-static.mjs
-          node bizarresexuality/scripts/build-free-static.mjs
+          GITHUB_SHA=8e28ff78331d4c17d995e2d45b154eb81c51a5b4 node bizarresexuality/scripts/build-free-static.mjs
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           const prod=fs.readFileSync('bizarresexuality/dist/index.html','utf8');
