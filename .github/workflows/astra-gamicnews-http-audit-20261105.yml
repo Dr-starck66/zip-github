@@ -1,0 +1,21 @@
+name: ASTRA GamicNews One-Shot Public HTTP Audit
+on:
+  push:
+    branches:
+      - astra/gamicnews-one-shot-http-audit-20261105
+  pull_request:
+    branches:
+      - astra/gamicnews-indexable-editorial-20261105
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Fetch source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Verify five live pages and negative control
+        run: python3 tools/astra-gamicnews-http-audit-20261105.py
