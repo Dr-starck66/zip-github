@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">Steam game will not launch after an update — safe troubleshooting sequence</title>
+<desc id="desc">Original GAMIC News editorial decision diagram. Protect saved games and configurations before checking installed game files, testing overlays, inspecting launch options and repeating one controlled launch test.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07172d"/><stop offset=".55" stop-color="#10314b"/><stop offset="1" stop-color="#081727"/></linearGradient>
+<linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#18374e"/><stop offset="1" stop-color="#10283d"/></linearGradient>
+<linearGradient id="frame" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#69e5c0"/><stop offset="1" stop-color="#2d9ecc"/></linearGradient>
+<pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0V60" fill="none" stroke="#39627a" stroke-opacity=".13"/></pattern>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)"/>
+<path d="M0 135H1600M0 805H1600" stroke="#63dbc0" stroke-opacity=".26" stroke-width="2"/>
+<text x="88" y="74" font-family="DejaVu Sans,sans-serif" font-size="31" font-weight="800" fill="#a5f2df">GAMIC NEWS  /  PC GAME SUPPORT</text>
+<text x="88" y="196" font-family="DejaVu Sans,sans-serif" font-size="64" font-weight="800" fill="#fff">Game fails to launch</text>
+<text x="88" y="266" font-family="DejaVu Sans,sans-serif" font-size="61" font-weight="700" fill="#d7eff4">after a Steam update?</text>
+<text x="92" y="330" font-family="DejaVu Sans,sans-serif" font-size="27" fill="#aed1e0">Preserve your progress. Diagnose one change at a time.</text>
+<rect x="85" y="381" width="1430" height="354" rx="36" fill="#0a1b2d" stroke="#4bb8b5" stroke-width="2"/>
+<path d="M338 563H416M692 563H770M1047 563H1126" fill="none" stroke="#5fe0c5" stroke-width="11" stroke-linecap="round"/>
+<path d="M396 547l20 16-20 16M750 547l20 16-20 16M1106 547l20 16-20 16" fill="none" stroke="#5fe0c5" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<g font-family="DejaVu Sans,sans-serif" text-anchor="middle">
+<rect x="108" y="428" width="231" height="266" rx="25" fill="url(#card)" stroke="#62d9c1" stroke-width="3"/>
+<rect x="184" y="471" width="79" height="74" rx="11" stroke="#6ee1c8" stroke-width="7" fill="none"/><path d="M198 462v-17h51v17M211 496h26M211 517h26" fill="none" stroke="#6ee1c8" stroke-width="6" stroke-linecap="round"/>
+<text x="223" y="595" font-size="26" font-weight="800" fill="#f7fcff">1. BACK UP</text><text x="223" y="632" font-size="20" fill="#c6e2ec">Saves and mods</text>
+<rect x="417" y="428" width="274" height="266" rx="25" fill="url(#card)" stroke="#62d9c1" stroke-width="3"/>
+<path d="M509 473l40-24 41 24v47l-41 24-40-24zM549 449v48M509 473l40 24 41-24" fill="none" stroke="#6ee1c8" stroke-width="7" stroke-linejoin="round"/>
+<text x="554" y="595" font-size="25" font-weight="800" fill="#f7fcff">2. VERIFY</text><text x="554" y="632" font-size="20" fill="#c6e2ec">Installed game files</text>
+<rect x="771" y="428" width="275" height="266" rx="25" fill="url(#card)" stroke="#62d9c1" stroke-width="3"/>
+<rect x="859" y="466" width="98" height="73" rx="11" fill="none" stroke="#6ee1c8" stroke-width="7"/><path d="M884 502h48M907 478v49" fill="none" stroke="#6ee1c8" stroke-width="7" stroke-linecap="round"/>
+<text x="908" y="595" font-size="25" font-weight="800" fill="#f7fcff">3. ISOLATE</text><text x="908" y="632" font-size="20" fill="#c6e2ec">Overlays and hooks</text>
+<rect x="1127" y="428" width="364" height="266" rx="25" fill="url(#card)" stroke="#62d9c1" stroke-width="3"/>
+<circle cx="1299" cy="504" r="46" stroke="#6ee1c8" stroke-width="7" fill="none"/><path d="M1287 480l36 24-36 24z" fill="#6ee1c8"/>
+<text x="1309" y="595" font-size="25" font-weight="800" fill="#f7fcff">4. RETEST</text><text x="1309" y="632" font-size="20" fill="#c6e2ec">One controlled launch</text>
+</g>
+<text x="89" y="772" font-family="DejaVu Sans,sans-serif" font-size="24" fill="#aed1e0">No random DLL downloads • No save deletion • No simultaneous changes</text>
+<text x="90" y="854" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#9eecdf">ORIGINAL EXPLANATORY ARTWORK  •  GAMIC NEWS  •  1600 × 900</text>
+</svg>

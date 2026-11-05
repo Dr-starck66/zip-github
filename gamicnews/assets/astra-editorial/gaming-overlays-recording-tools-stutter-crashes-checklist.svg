@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Gaming overlays and recording tools diagnostic workflow</title>
+  <desc id="desc">Original GAMIC News diagram showing a game render passing through overlay and capture layers, with a controlled isolation checklist for diagnosing stutter and crashes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111a35"/>
+      <stop offset="1" stop-color="#243e63"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#48e0c2"/>
+      <stop offset="1" stop-color="#69a9ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1370" cy="140" r="230" fill="#6b5ee8" opacity=".14"/>
+  <circle cx="180" cy="790" r="300" fill="#24d6a5" opacity=".10"/>
+  <text x="110" y="105" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="48" font-weight="700">OVERLAY &amp; CAPTURE DIAGNOSTIC</text>
+  <text x="110" y="156" fill="#b8cbe6" font-family="DejaVu Sans, sans-serif" font-size="25">Change one layer at a time, then repeat the same scene</text>
+
+  <g font-family="DejaVu Sans, sans-serif">
+    <rect x="110" y="245" width="330" height="250" rx="30" fill="#18284a" stroke="#48e0c2" stroke-width="5"/>
+    <rect x="155" y="290" width="240" height="135" rx="18" fill="#0c1730" stroke="#7af0d7" stroke-width="4"/>
+    <path d="M245 458h65M277 425v33" stroke="#7af0d7" stroke-width="10" stroke-linecap="round"/>
+    <text x="275" y="350" text-anchor="middle" fill="#ffffff" font-size="32" font-weight="700">GAME</text>
+    <text x="275" y="389" text-anchor="middle" fill="#9fb6d6" font-size="21">repeatable test scene</text>
+
+    <path d="M455 370h115" stroke="url(#accent)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M550 344l35 26-35 26" fill="none" stroke="#69a9ff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="585" y="225" width="420" height="290" rx="32" fill="#19294c" stroke="#69a9ff" stroke-width="5"/>
+    <rect x="635" y="278" width="320" height="62" rx="16" fill="#2a3f69"/>
+    <rect x="635" y="360" width="320" height="62" rx="16" fill="#2a3f69"/>
+    <rect x="635" y="442" width="320" height="32" rx="16" fill="#2a3f69"/>
+    <circle cx="675" cy="309" r="12" fill="#48e0c2"/>
+    <circle cx="675" cy="391" r="12" fill="#ffbd69"/>
+    <circle cx="675" cy="458" r="12" fill="#ea6d91"/>
+    <text x="710" y="319" fill="#ffffff" font-size="25" font-weight="700">PLATFORM OVERLAY</text>
+    <text x="710" y="401" fill="#ffffff" font-size="25" font-weight="700">GPU METRICS OSD</text>
+    <text x="795" y="500" text-anchor="middle" fill="#9fb6d6" font-size="21">disable separately — never all at once</text>
+
+    <path d="M1020 370h105" stroke="url(#accent)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M1105 344l35 26-35 26" fill="none" stroke="#48e0c2" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="1140" y="245" width="350" height="250" rx="30" fill="#18284a" stroke="#48e0c2" stroke-width="5"/>
+    <rect x="1190" y="295" width="250" height="140" rx="20" fill="#0c1730" stroke="#7af0d7" stroke-width="4"/>
+    <circle cx="1255" cy="365" r="29" fill="#ea6d91"/>
+    <path d="M1330 330v70M1365 345v40M1400 320v90" stroke="#69a9ff" stroke-width="11" stroke-linecap="round"/>
+    <text x="1315" y="468" text-anchor="middle" fill="#ffffff" font-size="27" font-weight="700">CAPTURE / RECORD</text>
+
+    <rect x="110" y="605" width="1380" height="175" rx="30" fill="#0e1932" stroke="#344f79" stroke-width="3"/>
+    <text x="160" y="660" fill="#48e0c2" font-size="25" font-weight="700">CONTROLLED CHECK</text>
+    <g fill="#ffffff" font-size="24">
+      <text x="160" y="720">1  Record the baseline</text>
+      <text x="540" y="720">2  Disable one layer</text>
+      <text x="900" y="720">3  Repeat the same scene</text>
+      <text x="1270" y="720">4  Restore if unchanged</text>
+    </g>
+    <path d="M485 706h30M845 706h30M1215 706h30" stroke="#69a9ff" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <text x="1490" y="850" text-anchor="end" fill="#8198bb" font-family="DejaVu Sans, sans-serif" font-size="19">Original GAMIC News editorial artwork</text>
+</svg>
