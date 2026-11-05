@@ -9,5 +9,11 @@
   "nonrestoredHistoricalCandidatesApprox": 15474,
   "negativeControl": "/astra-negative-control-no-redirect",
   "routingPlan": "vercel.json source redirects. Deploy staging, verify, then promote same SHA. No wildcard 200 and no homepage redirects.",
-  "domainDNSMutation": false
+  "domainDNSMutation": false,
+  "normalizationVariants": 143,
+  "configuredPermanentHistorical301": 286,
+  "configuredTotalRedirects": 287,
+  "homepageH1": "Latest technology and gaming news",
+  "liveProof": "UNVERIFIED_AWAIT_TEST",
+  "redirectTest": "UNVERIFIED_AWAIT_TEST"
 }
