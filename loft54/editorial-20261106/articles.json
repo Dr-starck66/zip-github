@@ -1,0 +1,472 @@
+[
+  {
+    "slug": "dating-app-berechtigungen-standort-kontakte-pruefen",
+    "title": "Dating-App: Standort, Kontakte und Fotos getrennt prüfen",
+    "description": "Eine praktische Prüfung der App-Berechtigungen auf Android und iPhone: notwendige Funktion, Umfang und verbleibende Grenzen unterscheiden.",
+    "intro": "Eine Dating-App braucht nicht automatisch Zugriff auf alles, was auf deinem Smartphone gespeichert ist. Prüfe Standort, Kontakte und Fotos einzeln und entscheide nach der Funktion, die du tatsächlich verwenden möchtest. Eine geänderte Berechtigung begrenzt künftigen Gerätezugriff; bereits hochgeladene Inhalte werden dadurch nicht automatisch gelöscht.",
+    "sources": [
+      {
+        "url": "https://support.google.com/googleplay/answer/9431959?hl=de",
+        "name": "Google: App-Berechtigungen auf einem Android-Smartphone ändern"
+      },
+      {
+        "url": "https://support.apple.com/guide/iphone/control-access-to-information-in-apps-iph251e92810/ios",
+        "name": "Apple: Zugriff auf Informationen in Apps kontrollieren"
+      },
+      {
+        "url": "https://www.verbraucherzentrale.de/wissen/digitale-welt/mobilfunk-und-festnetz/apps-und-datenschutz-so-schuetzen-sie-ihre-persoenlichen-daten-6431",
+        "name": "Verbraucherzentrale: Apps und Datenschutz"
+      }
+    ],
+    "diagrams": [
+      {
+        "title": "Eine Funktion ist keine pauschale Freigabe",
+        "cards": [
+          [
+            "FUNKTION",
+            "Was möchtest du gerade tun?"
+          ],
+          [
+            "ZUGRIFF",
+            "Welche Daten werden verlangt?"
+          ],
+          [
+            "UMFANG",
+            "Ist eine kleinere Freigabe möglich?"
+          ]
+        ],
+        "foot": "Die verfügbaren Optionen hängen von Gerät, System und App ab."
+      },
+      {
+        "title": "Standort, Kontakte und Fotos einzeln betrachten",
+        "cards": [
+          [
+            "STANDORT",
+            "Wann darf die App zugreifen?"
+          ],
+          [
+            "KONTAKTE",
+            "Ist das Adressbuch nötig?"
+          ],
+          [
+            "FOTOS",
+            "Welche Bilder möchtest du teilen?"
+          ]
+        ],
+        "foot": "Diese Grafik zeigt keine echte App-Oberfläche."
+      },
+      {
+        "title": "Nach einer Änderung erneut prüfen",
+        "cards": [
+          [
+            "FUNKTION",
+            "Funktioniert der gewünschte Schritt?"
+          ],
+          [
+            "PROFIL",
+            "Was ist weiterhin sichtbar?"
+          ],
+          [
+            "KONTO",
+            "Was wurde bereits hochgeladen?"
+          ]
+        ],
+        "foot": "Gerätefreigaben ersetzen keine Prüfung des Kontos."
+      }
+    ],
+    "sections": [
+      [
+        "Mit einer konkreten Funktion beginnen",
+        "Öffne nicht sofort jede Einstellung gleichzeitig. Überlege zuerst, welche Handlung du durchführen möchtest: ein Profilbild auswählen, eine Nachricht sprechen oder Personen in einer größeren Umgebung finden. Notiere dann, welche Freigabe die App dafür anfordert. Diese kleine Zuordnung hilft, eine technische Nachfrage von einer pauschalen Zustimmung zu unterscheiden. Du musst eine Funktion, die du nicht nutzen möchtest, nicht allein deshalb aktivieren, weil sie beim Einstieg angeboten wird. Der folgende Ablauf beschreibt eine Prüfung auf deinem eigenen Gerät. Er behauptet weder, dass jede Dating-App dieselben Berechtigungen verlangt, noch dass eine bestimmte Plattform mit einer abgelehnten Freigabe identisch weiterarbeitet."
+      ],
+      [
+        "Auf Android die einzelne App überprüfen",
+        "Google beschreibt den Weg über Einstellungen, Apps, die betreffende Anwendung und Berechtigungen. Bezeichnungen und verfügbare Auswahlmöglichkeiten können je nach Hersteller und Android-Version abweichen. Sieh zuerst nach, was bereits erlaubt ist, bevor du eine neue Auswahl triffst. Für bestimmte Zugriffe gibt es zeitlich begrenzte Optionen, etwa während der Nutzung. Lies den Text auf deinem Gerät, statt eine Anleitung für ein anderes Modell blind zu übertragen. Unsere redaktionelle Empfehlung ist, immer nur eine Einstellung zu ändern und danach die gewünschte Funktion zu prüfen. So lässt sich nachvollziehen, welche Freigabe für den konkreten Schritt einen Unterschied gemacht hat."
+      ],
+      [
+        "Auf dem iPhone nach Datenarten unterscheiden",
+        "Apple beschreibt unter Datenschutz und Sicherheit eine Übersicht nach Informationskategorien. Dort kannst du nachvollziehen, welche Apps Zugriff angefragt haben, und bestehende Entscheidungen ändern. Prüfe bei jeder Kategorie, ob sie mit deiner geplanten Nutzung zusammenpasst. Ein Adressbuch enthält auch Angaben anderer Menschen; das macht die Entscheidung anders als die Auswahl eines eigenen öffentlichen Profiltextes. Verlasse dich nicht auf die Erinnerung an die erste Installation, besonders wenn du die App lange nutzt. Eine frühere Zustimmung kann weiterhin gelten, während sich deine Nutzungsweise geändert hat. Eine kurze eigene Notiz über erlaubte Datenarten schafft eine nachvollziehbare Ausgangslage für spätere Änderungen."
+      ],
+      [
+        "Standort nicht mit einer beliebigen Profilangabe verwechseln",
+        "Ein Ortsname, den du selbst ins Profil schreibst, und der technische Zugriff auf den Gerätestandort sind verschiedene Dinge. Auch eine sichtbare Entfernungsangabe kann Fragen aufwerfen, die sich nicht allein aus einer Berechtigungsliste beantworten lassen. Prüfe deshalb zusätzlich die Profilansicht und die Erläuterungen der jeweiligen App. Stelle dir vor der Veröffentlichung die Frage, wie genau dein Aufenthaltsbereich für andere erkennbar werden soll. Deine Wohnung, regelmäßige Arbeitswege und ein unmittelbar bevorstehender Treffpunkt müssen nicht dieselbe Sichtbarkeit erhalten. Wir behaupten hier keine bestimmte Standortlogik einer einzelnen Plattform und geben keine Garantie, dass eine ungenaue Freigabe jede Rückschlussmöglichkeit ausschließt."
+      ],
+      [
+        "Beim Fototeilen Auswahl und Hintergrund prüfen",
+        "Wähle ein Bild bewusst aus, statt eine ganze Sammlung gedankenlos freizugeben. Prüfe dabei auch sichtbare Nebendetails: Namensschilder, Dokumente, Hausnummern oder andere Personen im Hintergrund. Diese Sichtprüfung ist etwas anderes als die technische Zugriffsberechtigung. Ein Bild kann freiwillig hochgeladen werden und trotzdem mehr verraten, als du beabsichtigt hast. Bewahre das Original auf deinem eigenen Gerät auf und entscheide separat, welche Fassung öffentlich erscheinen soll. Falls dein System eine eingeschränkte Fotoauswahl anbietet, lies die dortige Beschreibung. Der verfügbare Umfang hängt von System und App ab; diese Seite verspricht keine bestimmte Auswahloberfläche auf jedem Smartphone."
+      ],
+      [
+        "Ein entzogenes Recht entfernt keine bereits versendete Nachricht",
+        "Die Berechtigungsliste beschreibt nicht den gesamten Datenbestand eines Kontos. Wenn du ein Foto schon hochgeladen oder Informationen verschickt hast, verschwinden diese nicht automatisch durch das Abschalten eines Gerätezugriffs. Prüfe vorhandene Inhalte deshalb direkt im Profil und in den Kontoeinstellungen. Frage bei Unklarheiten den offiziellen Support nach dem konkret betroffenen Inhalt. Notiere seine genaue Bezeichnung, damit die Anfrage nicht nur allgemein nach Datenschutz klingt. Für Daten, die eine andere Person bereits gesehen oder gespeichert hat, lässt sich hier keine vollständige Entfernung zusichern. Diese Grenze ist ein Grund, sensible Inhalte vor dem Teilen sorgfältig auszuwählen, ohne Betroffenen später die Verantwortung für Missbrauch zuzuschieben."
+      ],
+      [
+        "Benachrichtigungen gehören zur praktischen Sichtbarkeit",
+        "Auch wenn eine Berechtigung zur Kamera unverändert bleibt, können Benachrichtigungen auf einem gemeinsam sichtbaren Bildschirm unerwünschte Informationen zeigen. Prüfe deshalb gesondert, ob Vorschauen, Absendernamen oder Nachrichtentexte auf deinem Gerät erscheinen. Die passende Einstellung hängt davon ab, wie du dein Smartphone verwendest und wer den Bildschirm sehen kann. Teste sie mit einer unkritischen Nachricht, ohne private Inhalte anderer Menschen zu veröffentlichen. Ein solcher Test prüft nur die konkrete Darstellung auf deinem Gerät. Er ist kein Nachweis für die Sicherheit der App insgesamt. Notiere das Ergebnis und ändere bei Bedarf die Vorschau, statt aus einer einzigen Einstellung ein umfassendes Schutzversprechen abzuleiten."
+      ],
+      [
+        "Eine kurze Dokumentation macht spätere Änderungen verständlich",
+        "Halte das Datum, die App-Version soweit sichtbar und die wichtigsten Freigaben fest. Verwende dafür keine Liste mit Passwörtern oder intimen Gesprächsinhalten. Nach einem Update oder bei einer neuen Funktionsanfrage kannst du prüfen, ob sich etwas geändert hat. Wenn du eine Funktion nicht mehr benötigst, überprüfe die zugehörige Freigabe erneut. Diese Routine verlangt keine tägliche vollständige Kontrolle und keine kostenpflichtige Zusatzsoftware. Sie dient dazu, Entscheidungen bewusst zu treffen und ihre Wirkung nachvollziehbar zu halten. Falls du ein gemeinsam genutztes Gerät verwendest, bespreche die Zuständigkeiten, ohne Konten anderer Personen ohne deren Einverständnis zu öffnen oder deren private Kommunikation zu durchsuchen."
+      ],
+      [
+        "Wenn eine Funktion anschließend nicht mehr arbeitet",
+        "Beschreibe den fehlgeschlagenen Schritt möglichst genau: welche Aktion, welche Meldung und welche zuvor geänderte Berechtigung? Erteile nicht vorsorglich alle Rechte auf einmal. Prüfe die offizielle Hilfe oder frage den Support nach dem minimal erforderlichen Zugriff. Wenn die gewünschte Nutzung nur mit einem Umfang möglich ist, den du nicht akzeptieren möchtest, bleibt auch der Verzicht auf diese Funktion eine Entscheidung. Ergänzend erklärt unser <a href=\"/magazin/profilfoto-bildersuche-grenzen-kein-identitaetsbeweis\">Ratgeber zur Bildersuche</a>, warum ein Suchtreffer keine Identität bestätigt. Für einen konkreten Geldverdacht gibt es einen getrennten <a href=\"/magazin/love-scamming-geld-gesendet-beweise-sichern\">Ablauf zum Sichern von Zahlungsbelegen</a>. Diese Fragen verlangen unterschiedliche Prüfungen, auch wenn sie beim selben Onlinekontakt auftreten."
+      ]
+    ],
+    "publishedAt": "2026-11-06T21:18:07Z",
+    "checkedAt": "2026-11-06",
+    "canonical": "https://loft54.club/magazin/dating-app-berechtigungen-standort-kontakte-pruefen",
+    "images": [
+      {
+        "file": "dating-app-berechtigungen-standort-kontakte-pruefen-0.webp",
+        "url": "https://loft54.club/assets/editorial-20261106/dating-app-berechtigungen-standort-kontakte-pruefen-0.webp",
+        "width": 1600,
+        "height": 900,
+        "sha256": "3706ca225ebbd8d75bfa5dae654aeae564fac2b37132b2b3c517949dc13d4c3e",
+        "bytes": 55536,
+        "role": "hero",
+        "alt": "Eine Funktion ist keine pauschale Freigabe. FUNKTION: Was möchtest du gerade tun?. ZUGRIFF: Welche Daten werden verlangt?. UMFANG: Ist eine kleinere Freigabe möglich?",
+        "creator": "LOFT54 — Redaktion",
+        "licenseUrl": "https://loft54.club/assets/editorial-20261106/rights.json",
+        "provenanceUrl": "https://loft54.club/assets/editorial-20261106/rights.json"
+      },
+      {
+        "file": "dating-app-berechtigungen-standort-kontakte-pruefen-1.webp",
+        "url": "https://loft54.club/assets/editorial-20261106/dating-app-berechtigungen-standort-kontakte-pruefen-1.webp",
+        "width": 1600,
+        "height": 900,
+        "sha256": "6b6975c129e2f04a7d931cb7d90be59b15741a5b8d3f58f03ac472090f8c151a",
+        "bytes": 54800,
+        "role": "body",
+        "alt": "Standort, Kontakte und Fotos einzeln betrachten. STANDORT: Wann darf die App zugreifen?. KONTAKTE: Ist das Adressbuch nötig?. FOTOS: Welche Bilder möchtest du teilen?",
+        "creator": "LOFT54 — Redaktion",
+        "licenseUrl": "https://loft54.club/assets/editorial-20261106/rights.json",
+        "provenanceUrl": "https://loft54.club/assets/editorial-20261106/rights.json"
+      },
+      {
+        "file": "dating-app-berechtigungen-standort-kontakte-pruefen-2.webp",
+        "url": "https://loft54.club/assets/editorial-20261106/dating-app-berechtigungen-standort-kontakte-pruefen-2.webp",
+        "width": 1600,
+        "height": 900,
+        "sha256": "e439395a0bc74d2aa7036a407c3d96062e5cd743452c74512aa1e3d99aa19838",
+        "bytes": 52056,
+        "role": "body",
+        "alt": "Nach einer Änderung erneut prüfen. FUNKTION: Funktioniert der gewünschte Schritt?. PROFIL: Was ist weiterhin sichtbar?. KONTO: Was wurde bereits hochgeladen?",
+        "creator": "LOFT54 — Redaktion",
+        "licenseUrl": "https://loft54.club/assets/editorial-20261106/rights.json",
+        "provenanceUrl": "https://loft54.club/assets/editorial-20261106/rights.json"
+      }
+    ]
+  },
+  {
+    "slug": "profilfoto-bildersuche-grenzen-kein-identitaetsbeweis",
+    "title": "Profilfoto prüfen: Was eine Bildersuche zeigen kann und was sie nicht beweist",
+    "description": "Bildähnlichkeit, wiederverwendete Fotos und fehlende Treffer richtig einordnen, ohne fremde Personen zu identifizieren oder private Bilder weiterzugeben.",
+    "intro": "Eine Bildersuche kann öffentliche Seiten mit einem Bild oder ähnlichen Motiven finden. Sie bestätigt weder den Namen eines Datingkontakts noch seine Absichten. Nutze sie zur vorsichtigen Prüfung einer Bildherkunft, nicht zur Suche nach einer Privatadresse oder zur öffentlichen Beschuldigung einer möglicherweise unbeteiligten Person.",
+    "sources": [
+      {
+        "url": "https://support.google.com/websearch/answer/1325808?hl=de",
+        "name": "Google: Mit einem Bild suchen, mögliche Ergebnisse und Suchwege"
+      },
+      {
+        "url": "https://www.verbraucherzentrale.de/wissen/digitale-welt/onlinedienste/love-scamming-so-schuetzen-sie-sich-vor-liebesbetrug-93503",
+        "name": "Verbraucherzentrale: Hinweise zu Love Scamming und gestohlenen Bildern"
+      }
+    ],
+    "diagrams": [
+      {
+        "title": "Ein Bildtreffer beantwortet nicht jede Frage",
+        "cards": [
+          [
+            "BILD",
+            "Ist das Motiv ähnlich oder gleich?"
+          ],
+          [
+            "SEITE",
+            "Wo ist es öffentlich erschienen?"
+          ],
+          [
+            "IDENTITÄT",
+            "Wer das Konto führt, bleibt offen"
+          ]
+        ],
+        "foot": "Keine Personensuche, Gesichtserkennung oder echte Profilaufnahme."
+      },
+      {
+        "title": "Auch kein Treffer ist kein Sicherheitsnachweis",
+        "cards": [
+          [
+            "AUSSCHNITT",
+            "Die Fassung kann verändert sein"
+          ],
+          [
+            "SUCHE",
+            "Nicht jede Seite wird erfasst"
+          ],
+          [
+            "KONTEXT",
+            "Das Verhalten bleibt entscheidend"
+          ]
+        ],
+        "foot": "Die Grafik erklärt Grenzen; sie bewertet kein konkretes Profil."
+      },
+      {
+        "title": "Bei einem Widerspruch sachlich bleiben",
+        "cards": [
+          [
+            "NOTIEREN",
+            "URL, Datum und Beobachtung"
+          ],
+          [
+            "BEGRENZEN",
+            "Keine privaten Daten veröffentlichen"
+          ],
+          [
+            "MELDEN",
+            "Den offiziellen Plattformweg nutzen"
+          ]
+        ],
+        "foot": "Ein fremdes gestohlenes Foto macht dessen abgebildete Person nicht zum Täter."
+      }
+    ],
+    "sections": [
+      [
+        "Zuerst klären, welche Frage du überhaupt prüfen möchtest",
+        "Eine sinnvolle Frage lautet, ob ein öffentlich verwendetes Foto an anderer Stelle mit einem anderen Zusammenhang erscheint. Eine andere Frage wäre, wer hinter einem Konto steckt. Die Bildersuche kann die erste Frage unterstützen, beantwortet die zweite aber nicht zuverlässig. Schreibe dir vor der Suche auf, welche Beobachtung du überprüfen möchtest. So vermeidest du, aus jeder Ähnlichkeit eine neue persönliche Vermutung abzuleiten. Diese Anleitung setzt keine Recherche nach Wohnorten, Arbeitgebern oder Angehörigen voraus. Solche privaten Verknüpfungen sind für eine vorsichtige Entscheidung über den eigenen Kontakt nicht erforderlich und können unbeteiligte Menschen gefährden."
+      ],
+      [
+        "Nur geeignetes Bildmaterial verwenden",
+        "Lade keine intimen Bilder, Ausweiskopien oder vertraulich zugesandten Aufnahmen in einen zusätzlichen Dienst. Bei einem öffentlichen Profilbild prüfe zunächst, ob du einen bestehenden öffentlichen Bildlink verwenden kannst und welche Daten der Suchdienst dabei verarbeitet. Google beschreibt sowohl die Suche per Datei als auch per Bildadresse und weist auf eine mögliche Speicherung gesuchter URLs hin. Entscheide bewusst, ob dieser zusätzliche Verarbeitungsschritt für dein Anliegen passend ist. Ein Sicherheitsverdacht ist kein Grund, private Inhalte anderer Menschen breit zu verteilen. Wenn die Herkunft eines Bildes unklar ist, kannst du auch auf die Suche verzichten und deine Kontaktentscheidung an anderen überprüfbaren Umständen ausrichten."
+      ],
+      [
+        "Ähnliche Bilder und identische Fassungen unterscheiden",
+        "Sieh dir nicht nur die kleine Ergebnisvorschau an. Vergleiche das Motiv, den Ausschnitt und den Zusammenhang auf einer öffentlich zugänglichen Ursprungsseite, sofern du diese sicher öffnen kannst. Ein ähnliches Gesicht oder eine ähnliche Kleidung beweist keine Übereinstimmung. Selbst ein offensichtlich gleiches Foto beantwortet zunächst nur eine Frage zur Verwendung des Bildes. Notiere möglichst nüchtern, was du tatsächlich siehst, etwa dieselbe Aufnahme in einem älteren öffentlichen Beitrag. Verwandle diese Beobachtung nicht in die Behauptung, dass der dort genannte Mensch auch den neuen Account betreibt. Gerade bei gestohlenen Bildern kann die abgebildete Person selbst betroffen sein."
+      ],
+      [
+        "Datumsangaben und Seitentitel nicht überbewerten",
+        "Ein Datum im Suchergebnis ist nicht automatisch das Aufnahmedatum eines Fotos oder der Zeitpunkt seiner ersten Veröffentlichung. Auch ein Seitentitel kann einen anderen Kontext beschreiben als den Bildinhalt. Öffne die öffentlich erreichbare Seite, lies den umgebenden Text und halte Unklarheiten fest. Wenn sich die ursprüngliche Quelle nicht feststellen lässt, bleibt das Ergebnis unvollständig. Es gibt keinen Anlass, die Lücke mit einem selbst ausgedachten Lebenslauf zu füllen. Für die eigene Entscheidung reicht manchmal bereits ein sachlicher Widerspruch zwischen einer behaupteten exklusiven Aufnahme und einer nachweisbaren öffentlichen Verwendung. Dieser Widerspruch verdient eine vorsichtige Reaktion, keine Veröffentlichung persönlicher Vermutungen."
+      ],
+      [
+        "Warum eine erfolglose Suche keine Echtheit bestätigt",
+        "Eine Suche erfasst nicht jede Internetseite und nicht jede mögliche Bildfassung. Ein Motiv kann zugeschnitten, gespiegelt, neu erstellt oder zuvor nur privat verwendet worden sein. Das sind mögliche Erklärungen für einen fehlenden Treffer, keine Feststellung über das konkrete Foto. Deshalb solltest du aus einer leeren Ergebnisliste weder eine Bestätigung der Identität noch eine Entwarnung bei einer Geldforderung ableiten. Bewahre die verschiedenen Fragen getrennt auf: Bildherkunft, Kontoverhalten und konkrete Forderung. Wenn eine Geschichte widersprüchlich bleibt, muss eine erfolglose Suche dich nicht zu einem finanziellen oder persönlichen Risiko überreden. Ungewissheit darf als Ungewissheit bestehen bleiben."
+      ],
+      [
+        "Einen Fund dokumentieren, ohne ein öffentliches Dossier anzulegen",
+        "Für eine Meldung kann eine kurze private Notiz genügen: Profilname, öffentlich sichtbare URL, Datum der Beobachtung und die genaue Bildüberschneidung. Füge keine Vermutungen zu Familienangehörigen, Wohnanschriften oder anderen privaten Konten hinzu. Sichere nur das Material, das für deine konkrete Meldung erforderlich ist, und halte es von öffentlichen Kommentaren fern. Wenn du Screenshots machst, achte auf versehentlich mitaufgenommene Nachrichten und Namen unbeteiligter Personen. Die Dokumentation soll nachvollziehbar machen, was du gesehen hast. Sie soll weder andere Nutzer zur Suche nach einer Person aufrufen noch einen Verdacht als abschließend geklärten Sachverhalt verbreiten."
+      ],
+      [
+        "Eine Rückfrage ist keine Pflicht zur Fortsetzung des Kontakts",
+        "Du kannst einen sichtbaren Widerspruch ansprechen, wenn du das möchtest und dich dabei sicher fühlst. Es ist aber nicht notwendig, eine Person mit immer neuen Tests zu einer Reaktion zu bringen. Schicke selbst keine Ausweiskopie, kein intimes Foto und kein Geld, um eine vermeintlich gegenseitige Verifikation zu erreichen. Auch eine angebotene Erklärung bleibt eine Erklärung, die du prüfen kannst; sie ersetzt keine nachvollziehbare Quelle. Wenn Druck, Drohungen oder ständig neue Forderungen folgen, darfst du den Kontakt beenden und die Plattform informieren. Der eigene Schutz verlangt keine vollständige Aufklärung aller Hintergründe und keinen gewonnenen Streit im Chat."
+      ],
+      [
+        "Den offiziellen Meldeweg gezielt nutzen",
+        "Suche die Meldefunktion in der echten App oder auf ihrer offiziellen Website, statt einen vom fraglichen Kontakt zugesandten Supportlink zu öffnen. Beschreibe die Beobachtung mit klaren Grenzen: dass dasselbe Foto anderswo erscheint, nicht dass du die Identität eines Täters festgestellt hättest. Die Plattform kann möglicherweise Kontoinformationen prüfen, die dir nicht zugänglich sind. Diese Seite verspricht weder eine bestimmte Reaktionszeit noch eine Sperrung nach jeder Meldung. Behalte eine Bestätigung, falls eine ausgegeben wird. Veröffentliche den Vorgang nicht mit privaten Daten, nur weil eine Antwort ausbleibt. Bei einem entstandenen Schaden kommt ein gesonderter Kontakt zu zuständigen Stellen hinzu."
+      ],
+      [
+        "Bildprüfung in eine begrenzte Sicherheitsentscheidung einordnen",
+        "Die wichtigste Grenze bleibt die zwischen einem Hinweis und einem Beweis für eine Person. Ein Bildtreffer kann Anlass geben, vorsichtiger zu werden; er verpflichtet dich nicht zu weiteren Nachforschungen. Prüfe zusätzlich, welche Informationen du selbst freigibst. Dazu erklärt unser <a href=\"/magazin/dating-app-berechtigungen-standort-kontakte-pruefen\">Ratgeber zu App-Berechtigungen</a> den Unterschied zwischen Gerätezugriff und hochgeladenen Inhalten. Wenn bereits Geld geflossen ist, hilft der <a href=\"/magazin/love-scamming-geld-gesendet-beweise-sichern\">Ablauf für Zahlungsbelege und Kontaktwege</a> bei der Vorbereitung. Eine sorgfältige Entscheidung kann auch lauten, den Kontakt ohne öffentliche Anschuldigung zu beenden. Für diesen Schritt brauchst du keinen privaten Aufenthaltsort und kein umfassendes Personenprofil."
+      ]
+    ],
+    "publishedAt": "2026-11-06T21:18:07Z",
+    "checkedAt": "2026-11-06",
+    "canonical": "https://loft54.club/magazin/profilfoto-bildersuche-grenzen-kein-identitaetsbeweis",
+    "images": [
+      {
+        "file": "profilfoto-bildersuche-grenzen-kein-identitaetsbeweis-0.webp",
+        "url": "https://loft54.club/assets/editorial-20261106/profilfoto-bildersuche-grenzen-kein-identitaetsbeweis-0.webp",
+        "width": 1600,
+        "height": 900,
+        "sha256": "1afc9fc2581abc45703e425af80ae978b35ab45f7dd018b6928ad70557f093c7",
+        "bytes": 55194,
+        "role": "hero",
+        "alt": "Ein Bildtreffer beantwortet nicht jede Frage. BILD: Ist das Motiv ähnlich oder gleich?. SEITE: Wo ist es öffentlich erschienen?. IDENTITÄT: Wer das Konto führt, bleibt offen",
+        "creator": "LOFT54 — Redaktion",
+        "licenseUrl": "https://loft54.club/assets/editorial-20261106/rights.json",
+        "provenanceUrl": "https://loft54.club/assets/editorial-20261106/rights.json"
+      },
+      {
+        "file": "profilfoto-bildersuche-grenzen-kein-identitaetsbeweis-1.webp",
+        "url": "https://loft54.club/assets/editorial-20261106/profilfoto-bildersuche-grenzen-kein-identitaetsbeweis-1.webp",
+        "width": 1600,
+        "height": 900,
+        "sha256": "2152c74836552a925dcdc7bfbf2a7df0f650c2dc919c9c387337a564c30b2983",
+        "bytes": 56406,
+        "role": "body",
+        "alt": "Auch kein Treffer ist kein Sicherheitsnachweis. AUSSCHNITT: Die Fassung kann verändert sein. SUCHE: Nicht jede Seite wird erfasst. KONTEXT: Das Verhalten bleibt entscheidend",
+        "creator": "LOFT54 — Redaktion",
+        "licenseUrl": "https://loft54.club/assets/editorial-20261106/rights.json",
+        "provenanceUrl": "https://loft54.club/assets/editorial-20261106/rights.json"
+      },
+      {
+        "file": "profilfoto-bildersuche-grenzen-kein-identitaetsbeweis-2.webp",
+        "url": "https://loft54.club/assets/editorial-20261106/profilfoto-bildersuche-grenzen-kein-identitaetsbeweis-2.webp",
+        "width": 1600,
+        "height": 900,
+        "sha256": "8f96e669601ccf3701c1d88fc7341f956212490bbafe571f5f36f9a4f4387062",
+        "bytes": 57698,
+        "role": "body",
+        "alt": "Bei einem Widerspruch sachlich bleiben. NOTIEREN: URL, Datum und Beobachtung. BEGRENZEN: Keine privaten Daten veröffentlichen. MELDEN: Den offiziellen Plattformweg nutzen",
+        "creator": "LOFT54 — Redaktion",
+        "licenseUrl": "https://loft54.club/assets/editorial-20261106/rights.json",
+        "provenanceUrl": "https://loft54.club/assets/editorial-20261106/rights.json"
+      }
+    ]
+  },
+  {
+    "slug": "love-scamming-geld-gesendet-beweise-sichern",
+    "title": "Love Scamming: Nach einer Geldsendung Belege sichern und die richtigen Stellen erreichen",
+    "description": "Ein sachlicher Ablauf für Zahlungsdaten, Chatbelege, Bankkontakt und Plattformmeldung, ohne falsche Hoffnung auf eine garantierte Rückzahlung.",
+    "intro": "Wenn du einem Onlinekontakt Geld geschickt hast und nun Betrug vermutest, zählt eine nachvollziehbare Dokumentation mehr als eine weitere Diskussion im Chat. Schicke kein zusätzliches Geld, sichere die vorhandenen Nachrichten und kontaktiere den Zahlungsanbieter über einen unabhängig aufgerufenen offiziellen Weg. Eine Rückholung hängt vom konkreten Zahlungsvorgang ab und ist nicht garantiert.",
+    "sources": [
+      {
+        "url": "https://www.polizei-beratung.de/themen-und-tipps/sicher-handeln/onlinebetrug-maschen/romance-scamming-liebesbetrug/",
+        "name": "Polizeiliche Kriminalprävention: Romance Scamming"
+      },
+      {
+        "url": "https://www.polizei-beratung.de/themen-und-tipps/sicherer-autokauf/hilfe-und-kontaktadressen/geld-ueberwiesen/",
+        "name": "Polizeiliche Kriminalprävention: bereits überwiesenes Geld, Hinweise im Kontext Onlinekauf"
+      },
+      {
+        "url": "https://www.verbraucherzentrale.de/wissen/digitale-welt/onlinedienste/love-scamming-so-schuetzen-sie-sich-vor-liebesbetrug-93503",
+        "name": "Verbraucherzentrale: Love Scamming"
+      }
+    ],
+    "diagrams": [
+      {
+        "title": "Nach einer Geldsendung drei Dinge trennen",
+        "cards": [
+          [
+            "ZAHLUNG",
+            "Betrag, Datum und Referenz"
+          ],
+          [
+            "BELEGE",
+            "Nachrichten und Profilangaben"
+          ],
+          [
+            "KONTAKT",
+            "Bank, Plattform und Polizei"
+          ]
+        ],
+        "foot": "Keine Rückzahlungszusage und keine Einzelfallprüfung."
+      },
+      {
+        "title": "Eine kurze Chronologie statt verstreuter Screenshots",
+        "cards": [
+          [
+            "KONTAKT",
+            "Wann begann der Austausch?"
+          ],
+          [
+            "FORDERUNG",
+            "Was wurde wofür verlangt?"
+          ],
+          [
+            "ZAHLUNG",
+            "Was wurde tatsächlich gesendet?"
+          ]
+        ],
+        "foot": "Originale aufbewahren und Vermutungen gesondert kennzeichnen."
+      },
+      {
+        "title": "Kein weiteres Geld für eine angebliche Rettung",
+        "cards": [
+          [
+            "STOPP",
+            "Keine neue Freigabe oder Zahlung"
+          ],
+          [
+            "PRÜFEN",
+            "Offizielle Kontaktwege selbst öffnen"
+          ],
+          [
+            "SICHERN",
+            "Bestätigungen und Vorgangsnummern"
+          ]
+        ],
+        "foot": "Diese Schritte ersetzen keine Entscheidung des Zahlungsanbieters."
+      }
+    ],
+    "sections": [
+      [
+        "Die weitere Zahlung von der bisherigen Beziehung trennen",
+        "Eine dramatische Geschichte kann den Eindruck erzeugen, dass eine zusätzliche Zahlung den bisherigen Verlust oder die Beziehung retten müsse. Behandle die neue Forderung trotzdem als eigenständige Entscheidung. Gib keine weiteren Zahlungsfreigaben, Gutscheincodes oder Zugangsdaten heraus. Die Polizeiliche Kriminalprävention rät bei solchen Forderungen zum Kontaktabbruch und zur Sicherung der Nachrichten. Diese Hinweise bedeuten nicht, dass du den gesamten Vorgang allein aufklären musst. Eine vertraute Person kann beim Ordnen helfen, ohne dass intime Einzelheiten öffentlich werden. Entscheidend ist zunächst, weiteren Druck zu unterbrechen und die vorhandenen Informationen zugänglich zu halten, statt im Chat eine vollständige Erklärung zu erzwingen."
+      ],
+      [
+        "Den Zahlungsbeleg im Original bereithalten",
+        "Suche den Beleg direkt in deinem eigenen Bankkonto oder beim verwendeten Zahlungsdienst. Notiere Betrag, Währung, Ausführungsdatum und die angezeigte Transaktionsreferenz. Trenne eine tatsächlich ausgeführte Zahlung von einer bloßen Zahlungsanforderung oder einer vom Kontakt geschickten angeblichen Bestätigung. Behalte die Originaldatei und erstelle für deine Übersicht eine Kopie. Schreibe keine Zugangsdaten oder vollständigen Kartensicherheitsmerkmale in eine frei geteilte Notiz. Wenn mehrere Zahlungen betroffen sind, führe sie einzeln auf. Eine Gesamtsumme kann später ergänzt werden, sollte aber nicht die Einzelvorgänge ersetzen, die der Zahlungsanbieter für seine Prüfung möglicherweise benötigt. Rechne unterschiedliche Währungen nicht stillschweigend zu einem erfundenen einheitlichen Betrag zusammen."
+      ],
+      [
+        "Die Bank oder den Zahlungsdienst selbst aufrufen",
+        "Nutze die bekannte App, eine selbst eingegebene offizielle Internetadresse oder die auf deinen eigenen Unterlagen angegebene Kontaktmöglichkeit. Verwende keine neue Telefonnummer, die dir der verdächtige Kontakt als angeblichen Hilfsdienst nennt. Beschreibe die Zahlung und den Betrugsverdacht und frage nach den für diesen Vorgang noch verfügbaren Möglichkeiten. Die Polizei empfiehlt bei bereits überwiesenem Geld einen schnellen Kontakt zur Bank; ihre hier verlinkte Seite behandelt Onlinekauf, nicht speziell Dating. Ob ein Stopp oder eine Rückholung möglich ist, muss der Anbieter im konkreten Fall klären. Notiere Uhrzeit, Auskunft und Vorgangsnummer, ohne eine unverbindliche erste Antwort als bestätigte Erstattung darzustellen."
+      ],
+      [
+        "Nachrichten in ihrem Zusammenhang erhalten",
+        "Ein einzelner Screenshot mit einer Geldforderung kann wichtig sein, erklärt aber nicht immer die Abfolge. Sichere den Zusammenhang, soweit du ihn selbst rechtmäßig einsehen kannst: Profilname, Nachrichten zur Forderung, Zahlungsangaben und spätere Änderungen der Geschichte. Bewahre Originale auf und markiere in einer Kopie nur die Stellen, die du erläutern möchtest. Lösche nicht vorschnell den gesamten Austausch, bevor relevante Belege gesichert sind. Veröffentliche die Unterlagen nicht in einem offenen Forum. Darin können auch Informationen unbeteiligter Personen oder selbst gestohlene Identitäten stehen. Ziel ist eine nachvollziehbare Meldung an zuständige Stellen, nicht eine öffentliche Suche nach einer Person hinter einem Foto."
+      ],
+      [
+        "Eine Chronologie mit Fakten und offenen Fragen erstellen",
+        "Erstelle eine kurze Liste mit Datum, Kanal und beobachtetem Vorgang. Schreibe beispielsweise, wann eine Reise angekündigt wurde, wann eine Forderung kam und wann du gezahlt hast. Kennzeichne Annahmen ausdrücklich, statt sie wie Tatsachen zu formulieren. Du kannst notieren, dass ein Name angegeben wurde; daraus folgt nicht, dass dieser Name überprüft ist. Wenn Daten fehlen, schreibe unbekannt und ergänze sie nur aus vorhandenen Belegen. Diese Trennung erleichtert spätere Nachfragen. Sie verhindert auch, dass sich im wiederholten Erzählen versehentlich neue Gewissheiten bilden. Für eine erste Kontaktaufnahme ist eine klare kurze Übersicht meist hilfreicher als eine unsortierte Sammlung persönlicher Vermutungen."
+      ],
+      [
+        "Die Plattform mit dem konkreten Konto und Vorgang informieren",
+        "Melde das betreffende Profil über die offizielle Funktion und beschreibe die Zahlungsforderung beziehungsweise den Schaden. Nenne nur Angaben, die du tatsächlich beobachtet hast. Bewahre eine Meldebestätigung auf, wenn die Plattform eine ausgibt. Eine Meldung und eine Strafanzeige erfüllen unterschiedliche Aufgaben; die eine ersetzt die andere nicht automatisch. Diese Redaktion hat keine Prüfung eines bestimmten Kontos durchgeführt und kann keine Sperrung oder Antwortfrist zusagen. Du musst den Kontakt auch nicht weiterführen, um der Plattform neue Beweise zu liefern. Wenn du blockierst, achte vorher darauf, die für deine Meldung notwendigen und bereits zugänglichen Informationen sicher aufzubewahren, ohne fremde Zugangssperren zu umgehen."
+      ],
+      [
+        "Eine Anzeige vorbereiten, ohne die Identität selbst zu beweisen",
+        "Die Polizei nennt die Möglichkeit einer Anzeige. Für die Vorbereitung kannst du deine Chronologie, Zahlungsbelege und vorhandenen Nachrichten zusammenstellen. Du brauchst keine private Adresse zu ermitteln und keine fremden Konten zu öffnen, um den Verdacht zu schildern. Sage klar, welche Person sich wie genannt hat und welche Angaben ungeprüft sind. Bei Drohungen oder einer akuten Gefahr suche unmittelbar die dafür zuständige Hilfe vor Ort. Dieser Artikel entscheidet weder über eine rechtliche Einordnung im Einzelfall noch über Zuständigkeiten in einem grenzüberschreitenden Fall. Die Unterlagen dienen dazu, dass zuständige Stellen konkrete Fragen stellen können, statt dass du eine vollständige Ermittlung allein übernehmen sollst."
+      ],
+      [
+        "Bei angeblicher Geldrettung keine neuen Geheimnisse herausgeben",
+        "Nach einem Verlust kann jede Nachricht willkommen wirken, die schnelle Rückzahlung verspricht. Prüfe deshalb auch vermeintliche Helfer unabhängig. Eine neue Vorauszahlung, eine Fernzugriffsfreigabe oder die Weitergabe eines Bestätigungscodes sollte nicht als selbstverständlicher Rettungsschritt behandelt werden. Frage den echten Zahlungsanbieter über den bereits unabhängig geöffneten Kontaktweg, ob eine solche Aufforderung zu seinem Vorgang gehört. Diese Vorsicht ist eine praktische Empfehlung der Redaktion und keine Aussage über eine bestimmte eingegangene Nachricht. Bewahre auch neue Zahlungsforderungen auf. Es ist möglich, eine Hilfe abzulehnen, solange ihre Herkunft unklar ist, ohne dadurch einen hier garantierten Rückzahlungsanspruch zu verlieren; ein solcher Anspruch wird hier gerade nicht festgestellt."
+      ],
+      [
+        "Nach dem ersten Kontakt Ordnung halten und Unterstützung zulassen",
+        "Führe Antworten, Vorgangsnummern und noch benötigte Unterlagen an einem geschützten Ort zusammen. Teile sie gezielt mit der jeweiligen Stelle und schwärze unbeteiligte Angaben in Kopien, soweit sie für die Anfrage nicht gebraucht werden. Lass dich nicht durch Scham zu weiterer Geheimhaltung gegenüber einer vertrauenswürdigen Unterstützung drängen. Ergänzend beschreibt der <a href=\"/magazin/profilfoto-bildersuche-grenzen-kein-identitaetsbeweis\">Ratgeber zur Bildersuche</a>, warum ein Foto nicht die Identität des Kontobetreibers beweist. Die <a href=\"/magazin/dating-app-berechtigungen-standort-kontakte-pruefen\">Prüfung der App-Berechtigungen</a> betrifft einen anderen Bereich: deinen künftigen Gerätezugriff und sichtbare Inhalte. Beides kann nützlich sein, ersetzt aber weder den Zahlungsanbieter noch eine konkrete Prüfung der bereits ausgeführten Transaktion."
+      ]
+    ],
+    "publishedAt": "2026-11-06T21:18:07Z",
+    "checkedAt": "2026-11-06",
+    "canonical": "https://loft54.club/magazin/love-scamming-geld-gesendet-beweise-sichern",
+    "images": [
+      {
+        "file": "love-scamming-geld-gesendet-beweise-sichern-0.webp",
+        "url": "https://loft54.club/assets/editorial-20261106/love-scamming-geld-gesendet-beweise-sichern-0.webp",
+        "width": 1600,
+        "height": 900,
+        "sha256": "fabd7fc395d49994ed2ad5f01691375102cf2e3fe0f246df185559a4c63ceaba",
+        "bytes": 52310,
+        "role": "hero",
+        "alt": "Nach einer Geldsendung drei Dinge trennen. ZAHLUNG: Betrag, Datum und Referenz. BELEGE: Nachrichten und Profilangaben. KONTAKT: Bank, Plattform und Polizei",
+        "creator": "LOFT54 — Redaktion",
+        "licenseUrl": "https://loft54.club/assets/editorial-20261106/rights.json",
+        "provenanceUrl": "https://loft54.club/assets/editorial-20261106/rights.json"
+      },
+      {
+        "file": "love-scamming-geld-gesendet-beweise-sichern-1.webp",
+        "url": "https://loft54.club/assets/editorial-20261106/love-scamming-geld-gesendet-beweise-sichern-1.webp",
+        "width": 1600,
+        "height": 900,
+        "sha256": "64e885fa4cb928ae33747b8f3e369e29dc5e4efd99e951d2071a6e6772071dfd",
+        "bytes": 59814,
+        "role": "body",
+        "alt": "Eine kurze Chronologie statt verstreuter Screenshots. KONTAKT: Wann begann der Austausch?. FORDERUNG: Was wurde wofür verlangt?. ZAHLUNG: Was wurde tatsächlich gesendet?",
+        "creator": "LOFT54 — Redaktion",
+        "licenseUrl": "https://loft54.club/assets/editorial-20261106/rights.json",
+        "provenanceUrl": "https://loft54.club/assets/editorial-20261106/rights.json"
+      },
+      {
+        "file": "love-scamming-geld-gesendet-beweise-sichern-2.webp",
+        "url": "https://loft54.club/assets/editorial-20261106/love-scamming-geld-gesendet-beweise-sichern-2.webp",
+        "width": 1600,
+        "height": 900,
+        "sha256": "032febcaddb5cf7062a0a912be103f62f34758ebb58e2541c97882b3e069129c",
+        "bytes": 59810,
+        "role": "body",
+        "alt": "Kein weiteres Geld für eine angebliche Rettung. STOPP: Keine neue Freigabe oder Zahlung. PRÜFEN: Offizielle Kontaktwege selbst öffnen. SICHERN: Bestätigungen und Vorgangsnummern",
+        "creator": "LOFT54 — Redaktion",
+        "licenseUrl": "https://loft54.club/assets/editorial-20261106/rights.json",
+        "provenanceUrl": "https://loft54.club/assets/editorial-20261106/rights.json"
+      }
+    ]
+  }
+]

@@ -1,0 +1,39 @@
+# Love Scamming: Nach einer Geldsendung Belege sichern und die richtigen Stellen erreichen
+
+Wenn du einem Onlinekontakt Geld geschickt hast und nun Betrug vermutest, zählt eine nachvollziehbare Dokumentation mehr als eine weitere Diskussion im Chat. Schicke kein zusätzliches Geld, sichere die vorhandenen Nachrichten und kontaktiere den Zahlungsanbieter über einen unabhängig aufgerufenen offiziellen Weg. Eine Rückholung hängt vom konkreten Zahlungsvorgang ab und ist nicht garantiert.
+
+## Die weitere Zahlung von der bisherigen Beziehung trennen
+
+Eine dramatische Geschichte kann den Eindruck erzeugen, dass eine zusätzliche Zahlung den bisherigen Verlust oder die Beziehung retten müsse. Behandle die neue Forderung trotzdem als eigenständige Entscheidung. Gib keine weiteren Zahlungsfreigaben, Gutscheincodes oder Zugangsdaten heraus. Die Polizeiliche Kriminalprävention rät bei solchen Forderungen zum Kontaktabbruch und zur Sicherung der Nachrichten. Diese Hinweise bedeuten nicht, dass du den gesamten Vorgang allein aufklären musst. Eine vertraute Person kann beim Ordnen helfen, ohne dass intime Einzelheiten öffentlich werden. Entscheidend ist zunächst, weiteren Druck zu unterbrechen und die vorhandenen Informationen zugänglich zu halten, statt im Chat eine vollständige Erklärung zu erzwingen.
+
+## Den Zahlungsbeleg im Original bereithalten
+
+Suche den Beleg direkt in deinem eigenen Bankkonto oder beim verwendeten Zahlungsdienst. Notiere Betrag, Währung, Ausführungsdatum und die angezeigte Transaktionsreferenz. Trenne eine tatsächlich ausgeführte Zahlung von einer bloßen Zahlungsanforderung oder einer vom Kontakt geschickten angeblichen Bestätigung. Behalte die Originaldatei und erstelle für deine Übersicht eine Kopie. Schreibe keine Zugangsdaten oder vollständigen Kartensicherheitsmerkmale in eine frei geteilte Notiz. Wenn mehrere Zahlungen betroffen sind, führe sie einzeln auf. Eine Gesamtsumme kann später ergänzt werden, sollte aber nicht die Einzelvorgänge ersetzen, die der Zahlungsanbieter für seine Prüfung möglicherweise benötigt. Rechne unterschiedliche Währungen nicht stillschweigend zu einem erfundenen einheitlichen Betrag zusammen.
+
+## Die Bank oder den Zahlungsdienst selbst aufrufen
+
+Nutze die bekannte App, eine selbst eingegebene offizielle Internetadresse oder die auf deinen eigenen Unterlagen angegebene Kontaktmöglichkeit. Verwende keine neue Telefonnummer, die dir der verdächtige Kontakt als angeblichen Hilfsdienst nennt. Beschreibe die Zahlung und den Betrugsverdacht und frage nach den für diesen Vorgang noch verfügbaren Möglichkeiten. Die Polizei empfiehlt bei bereits überwiesenem Geld einen schnellen Kontakt zur Bank; ihre hier verlinkte Seite behandelt Onlinekauf, nicht speziell Dating. Ob ein Stopp oder eine Rückholung möglich ist, muss der Anbieter im konkreten Fall klären. Notiere Uhrzeit, Auskunft und Vorgangsnummer, ohne eine unverbindliche erste Antwort als bestätigte Erstattung darzustellen.
+
+## Nachrichten in ihrem Zusammenhang erhalten
+
+Ein einzelner Screenshot mit einer Geldforderung kann wichtig sein, erklärt aber nicht immer die Abfolge. Sichere den Zusammenhang, soweit du ihn selbst rechtmäßig einsehen kannst: Profilname, Nachrichten zur Forderung, Zahlungsangaben und spätere Änderungen der Geschichte. Bewahre Originale auf und markiere in einer Kopie nur die Stellen, die du erläutern möchtest. Lösche nicht vorschnell den gesamten Austausch, bevor relevante Belege gesichert sind. Veröffentliche die Unterlagen nicht in einem offenen Forum. Darin können auch Informationen unbeteiligter Personen oder selbst gestohlene Identitäten stehen. Ziel ist eine nachvollziehbare Meldung an zuständige Stellen, nicht eine öffentliche Suche nach einer Person hinter einem Foto.
+
+## Eine Chronologie mit Fakten und offenen Fragen erstellen
+
+Erstelle eine kurze Liste mit Datum, Kanal und beobachtetem Vorgang. Schreibe beispielsweise, wann eine Reise angekündigt wurde, wann eine Forderung kam und wann du gezahlt hast. Kennzeichne Annahmen ausdrücklich, statt sie wie Tatsachen zu formulieren. Du kannst notieren, dass ein Name angegeben wurde; daraus folgt nicht, dass dieser Name überprüft ist. Wenn Daten fehlen, schreibe unbekannt und ergänze sie nur aus vorhandenen Belegen. Diese Trennung erleichtert spätere Nachfragen. Sie verhindert auch, dass sich im wiederholten Erzählen versehentlich neue Gewissheiten bilden. Für eine erste Kontaktaufnahme ist eine klare kurze Übersicht meist hilfreicher als eine unsortierte Sammlung persönlicher Vermutungen.
+
+## Die Plattform mit dem konkreten Konto und Vorgang informieren
+
+Melde das betreffende Profil über die offizielle Funktion und beschreibe die Zahlungsforderung beziehungsweise den Schaden. Nenne nur Angaben, die du tatsächlich beobachtet hast. Bewahre eine Meldebestätigung auf, wenn die Plattform eine ausgibt. Eine Meldung und eine Strafanzeige erfüllen unterschiedliche Aufgaben; die eine ersetzt die andere nicht automatisch. Diese Redaktion hat keine Prüfung eines bestimmten Kontos durchgeführt und kann keine Sperrung oder Antwortfrist zusagen. Du musst den Kontakt auch nicht weiterführen, um der Plattform neue Beweise zu liefern. Wenn du blockierst, achte vorher darauf, die für deine Meldung notwendigen und bereits zugänglichen Informationen sicher aufzubewahren, ohne fremde Zugangssperren zu umgehen.
+
+## Eine Anzeige vorbereiten, ohne die Identität selbst zu beweisen
+
+Die Polizei nennt die Möglichkeit einer Anzeige. Für die Vorbereitung kannst du deine Chronologie, Zahlungsbelege und vorhandenen Nachrichten zusammenstellen. Du brauchst keine private Adresse zu ermitteln und keine fremden Konten zu öffnen, um den Verdacht zu schildern. Sage klar, welche Person sich wie genannt hat und welche Angaben ungeprüft sind. Bei Drohungen oder einer akuten Gefahr suche unmittelbar die dafür zuständige Hilfe vor Ort. Dieser Artikel entscheidet weder über eine rechtliche Einordnung im Einzelfall noch über Zuständigkeiten in einem grenzüberschreitenden Fall. Die Unterlagen dienen dazu, dass zuständige Stellen konkrete Fragen stellen können, statt dass du eine vollständige Ermittlung allein übernehmen sollst.
+
+## Bei angeblicher Geldrettung keine neuen Geheimnisse herausgeben
+
+Nach einem Verlust kann jede Nachricht willkommen wirken, die schnelle Rückzahlung verspricht. Prüfe deshalb auch vermeintliche Helfer unabhängig. Eine neue Vorauszahlung, eine Fernzugriffsfreigabe oder die Weitergabe eines Bestätigungscodes sollte nicht als selbstverständlicher Rettungsschritt behandelt werden. Frage den echten Zahlungsanbieter über den bereits unabhängig geöffneten Kontaktweg, ob eine solche Aufforderung zu seinem Vorgang gehört. Diese Vorsicht ist eine praktische Empfehlung der Redaktion und keine Aussage über eine bestimmte eingegangene Nachricht. Bewahre auch neue Zahlungsforderungen auf. Es ist möglich, eine Hilfe abzulehnen, solange ihre Herkunft unklar ist, ohne dadurch einen hier garantierten Rückzahlungsanspruch zu verlieren; ein solcher Anspruch wird hier gerade nicht festgestellt.
+
+## Nach dem ersten Kontakt Ordnung halten und Unterstützung zulassen
+
+Führe Antworten, Vorgangsnummern und noch benötigte Unterlagen an einem geschützten Ort zusammen. Teile sie gezielt mit der jeweiligen Stelle und schwärze unbeteiligte Angaben in Kopien, soweit sie für die Anfrage nicht gebraucht werden. Lass dich nicht durch Scham zu weiterer Geheimhaltung gegenüber einer vertrauenswürdigen Unterstützung drängen. Ergänzend beschreibt der  Ratgeber zur Bildersuche , warum ein Foto nicht die Identität des Kontobetreibers beweist. Die  Prüfung der App-Berechtigungen  betrifft einen anderen Bereich: deinen künftigen Gerätezugriff und sichtbare Inhalte. Beides kann nützlich sein, ersetzt aber weder den Zahlungsanbieter noch eine konkrete Prüfung der bereits ausgeführten Transaktion.
