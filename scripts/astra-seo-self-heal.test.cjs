@@ -45,7 +45,12 @@ test("repairs semantic SEO signals and is idempotent",()=>{
     assert.match(home,/application\/ld\+json/);
     assert.match(home,/<img[^>]+width="1200"[^>]+height="630"/);
     assert.match(home,/data-astra-seo="related"/);
-    assert.match(home,/https:\/\/pantomime\.org\/guide/);
+    assert.match(home,/https:\/\/pantomime\.org\/(?:site-pronostics-football-fiable-2026|comparatif-meilleur-site-pronostics-foot)\.html/);
+    for(const article of require('./astra-pantomime-editorial.cjs').DATA){
+      assert.ok(files['/'+article.slug], 'restored article missing '+article.slug);
+      const document=Buffer.from(files['/'+article.slug],'base64').toString();
+      assert.ok(document.includes('rel="canonical" href="https://pantomime.org/'+article.slug+'"'),'article canonical '+article.slug);
+    }
     assert.match(Buffer.from(files["/sitemap.xml"],"base64").toString(),/https:\/\/pantomime\.org\/methodologie/);
     assert.match(Buffer.from(files["/robots.txt"],"base64").toString(),/Sitemap: https:\/\/pantomime\.org\/sitemap\.xml/);
     assert.ok(Object.keys(files).some(k=>/^\/media\/astra-.*\.svg$/.test(k)));
