@@ -97,3 +97,11 @@ test('fallback repairs only blank known canonical-home shells, never meaningful 
  assert.ok(!proposeRestorations(files).some(p=>p.file==='/'+DATA[0].slug));
  assert.ok(!proposeRestorations(files).some(p=>p.file==='/'+DATA[1].slug));
 });
+
+test('GREEN publication token covers the actual Pantomime editorial renderer',()=>{
+ const workflow=fs.readFileSync(path.resolve('.github/workflows/astra-pantomime-self-heal.yml'),'utf8');
+ const tokenLine=workflow.split('\n').find(x=>x.includes('for f in server.cjs'))||'';
+ assert.match(tokenLine,/scripts\/astra-pantomime-editorial\.cjs/);
+ const manifest=fs.readFileSync(path.resolve('.astra-green-release.blobsha'),'utf8');
+ assert.match(manifest,/^[a-f0-9]{40}\s+scripts\/astra-pantomime-editorial\.cjs$/m);
+});
