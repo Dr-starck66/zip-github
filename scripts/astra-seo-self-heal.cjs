@@ -108,6 +108,13 @@ const primaryXml=text(primaryKey);
 const actions=[];
 const blocked=[];
 const indexable=[];
+const {proposeRestorations}=require("./astra-pantomime-editorial.cjs");
+// Restore only the four identified blank SPA shells, never an existing substantial page.
+const proposals=cfg.site==="pantomime.org"?proposeRestorations(files):[];
+for(const p of proposals){
+ actions.push({type:"restore-indexable-html",file:p.file,canonical:p.canonical,sourceWords:p.sourceWords,renderedWords:p.renderedWords});
+ if(apply)files[p.file]=Buffer.from(p.html,"utf8").toString("base64");
+}
 
 if(!primaryKey||primaryXml==null) blocked.push({reason:"missing-primary-sitemap",file:cfg.primarySitemap});
 
