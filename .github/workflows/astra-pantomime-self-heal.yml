@@ -63,7 +63,7 @@ jobs:
         run: |
           set -euo pipefail
           : > .astra-green-release.blobsha
-          for f in server.cjs package.json config/astra-seo-self-heal.json scripts/astra-seo-self-heal.cjs scripts/astra-verify-green-token.cjs bundle.part*; do
+          for f in server.cjs package.json config/astra-seo-self-heal.json scripts/astra-seo-self-heal.cjs scripts/astra-pantomime-editorial.cjs scripts/astra-verify-green-token.cjs bundle.part*; do
             printf "%s  %s\n" "$(git hash-object "$f")" "$f" >> .astra-green-release.blobsha
           done
           node <<'NODE'
