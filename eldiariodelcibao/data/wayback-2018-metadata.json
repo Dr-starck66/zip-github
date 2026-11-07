@@ -1,25 +1,18 @@
 {
   "schemaVersion": 1,
   "purpose": "Source metadata only; no copied full article texts and no automatic indexability",
-  "checkedUTC": "2026-11-06T09:44:39.269033+00:00",
+  "checkedUTC": "2026-11-07T09:03:52.426962+00:00",
   "totalJune2018": 259,
   "records": [
     {
       "path": "/2018/06/20-anos-de-prision-productor-de-tv.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20180610103738id_/http://www.eldiariodelcibao.com:80/2018/06/20-anos-de-prision-productor-de-tv.html",
-      "archiveTimestamp": "20180610103738",
-      "originalTitle": "20 años de prisión a productor de TV. Miguel Angel Medrano a por alegada violación de una mujer",
-      "originalDate": "2018-06-05",
-      "sourceBodyWords": 45,
-      "sourceBodySha256": "fa71d86f1eaf7a6bf99292b9ccf50f029f78a03e945bd873055f1e562736b9c3",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 21,
-      "lastAttemptUTC": "2026-11-06T09:44:09.690455+00:00"
+      "attemptCount": 22,
+      "lastAttemptUTC": "2026-11-07T09:02:51.509914+00:00"
     },
     {
       "path": "/2018/06/aduanas-dispondra-de-inteligencia.html",
@@ -181,20 +174,13 @@
     },
     {
       "path": "/2018/06/angel-delgado-de-haina-para-la-nba.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20180626095722id_/http://www.eldiariodelcibao.com:80/2018/06/angel-delgado-de-haina-para-la-nba.html",
-      "archiveTimestamp": "20180626095722",
-      "originalTitle": "ANGEL DELGADO DE HAINA PARA LA NBA",
-      "originalDate": "2018-06-22",
-      "sourceBodyWords": 1,
-      "sourceBodySha256": "e1f57a34e70cf1a79e444e853ab784b9caccb1ccebc79f343ca0d39b47228ee3",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 21,
-      "lastAttemptUTC": "2026-11-06T09:44:07.348820+00:00"
+      "attemptCount": 22,
+      "lastAttemptUTC": "2026-11-07T09:02:53.750411+00:00"
     },
     {
       "path": "/2018/06/apresan-dos-ancianos-de-78-y-85-anos.html",
@@ -1150,13 +1136,20 @@
     },
     {
       "path": "/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "capture-incomplete",
       "archiveUrl": "https://web.archive.org/web/20190227045356id_/http://www.eldiariodelcibao.com:80/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
+      "archiveTimestamp": "20190227045356",
+      "originalTitle": "El cambio no viene, hay que hacerlo",
+      "originalDate": null,
+      "sourceBodyWords": 291,
+      "sourceBodySha256": "2551f84266985b2f4d71b630b02f16518b694aecc490ff65ac059bcc2b6ff2c0",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
       "indexable": false,
+      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 21,
-      "lastAttemptUTC": "2026-11-06T09:44:34.392260+00:00"
+      "attemptCount": 22,
+      "lastAttemptUTC": "2026-11-07T09:03:45.625116+00:00"
     },
     {
       "path": "/2018/06/el-cantautor-manuel-jimenez-viajara-ny.html",
@@ -1718,20 +1711,13 @@
     },
     {
       "path": "/2018/06/felix-bautista-se-burla-de-estados.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20180617211752id_/http://www.eldiariodelcibao.com:80/2018/06/felix-bautista-se-burla-de-estados.html",
-      "archiveTimestamp": "20180617211752",
-      "originalTitle": "Félix Bautista se burla de Estados Unidos; no tengo cuentas ni bienes alla...",
-      "originalDate": "2018-06-13",
-      "sourceBodyWords": 29,
-      "sourceBodySha256": "1fd7e0a4a77d60f71dc547c432e045ffdca827a9bad1a98a5bc401eb63e70e6b",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 21,
-      "lastAttemptUTC": "2026-11-06T09:44:14.622315+00:00"
+      "attemptCount": 22,
+      "lastAttemptUTC": "2026-11-07T09:03:24.240886+00:00"
     },
     {
       "path": "/2018/06/felix-bautista-tiene-rd84-mil-600.html",
@@ -2455,8 +2441,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 21,
-      "lastAttemptUTC": "2026-11-06T09:44:05.161897+00:00"
+      "attemptCount": 22,
+      "lastAttemptUTC": "2026-11-07T09:02:09.920737+00:00"
     },
     {
       "path": "/2018/06/marcha-verde-convoca-para-el-12-de.html",
@@ -3202,20 +3188,13 @@
     },
     {
       "path": "/2018/06/polito-vega-rey-abandonado.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20180702062801id_/http://www.eldiariodelcibao.com:80/2018/06/polito-vega-rey-abandonado.html",
-      "archiveTimestamp": "20180702062801",
-      "originalTitle": "POLITO VEGA.... REY ABANDONADO",
-      "originalDate": "2018-06-28",
-      "sourceBodyWords": 48,
-      "sourceBodySha256": "8a87a26bfdea4c24d61ab6f36354c13498cf8110319e264165601823c24398db",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 21,
-      "lastAttemptUTC": "2026-11-06T09:44:10.040066+00:00"
+      "attemptCount": 22,
+      "lastAttemptUTC": "2026-11-07T09:03:22.580264+00:00"
     },
     {
       "path": "/2018/06/por-carolina-pichardolistin-diario.html",
@@ -3509,8 +3488,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 21,
-      "lastAttemptUTC": "2026-11-06T09:44:06.717684+00:00"
+      "attemptCount": 22,
+      "lastAttemptUTC": "2026-11-07T09:02:22.070047+00:00"
     },
     {
       "path": "/2018/06/roberto-rosario-sale-en-defensa-de.html",
@@ -3558,8 +3537,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 21,
-      "lastAttemptUTC": "2026-11-06T09:44:04.986240+00:00"
+      "attemptCount": 22,
+      "lastAttemptUTC": "2026-11-07T09:02:21.532483+00:00"
     },
     {
       "path": "/2018/06/sacerdote-critica-posicion-masalles.html",
@@ -3722,8 +3701,8 @@
       "archiveUrl": "https://web.archive.org/web/20180702014224id_/http://www.eldiariodelcibao.com:80/2018/06/sepultan-restos-del-adolescente-de-15.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 21,
-      "lastAttemptUTC": "2026-11-06T09:44:39.268530+00:00"
+      "attemptCount": 22,
+      "lastAttemptUTC": "2026-11-07T09:03:52.426600+00:00"
     },
     {
       "path": "/2018/06/servio-tulio-advierte-juez-designado.html",
