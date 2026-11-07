@@ -1,0 +1,37 @@
+name: ELDIARIO Dynadot credential preflight (read-only)
+on:
+  push:
+    branches: [eldiariodelcibao-metadata-integration]
+    paths:
+      - ".github/workflows/eldiario-dynadot-key-probe.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  registrar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      DYNADOT_API_KEY: ${{ secrets.DYNADOT_API_KEY }}
+    steps:
+      - name: Read-only DNS integration check — never mutate registrar records
+        run: |
+          node - <<'JS'
+          (async()=>{
+           const key=process.env.DYNADOT_API_KEY||"";
+           if(!key){console.log("ELDIARIO_DYNADOT_GATE NO_CONNECTED_KEY; NO_DNS_CHANGE");return}
+           const u=new URL("https://api.dynadot.com/api3.json");
+           u.searchParams.set("key",key);
+           u.searchParams.set("command","get_dns");
+           u.searchParams.set("domain","eldiariodelcibao.com");
+           try{
+            const r=await fetch(u,{signal:AbortSignal.timeout(10000)});
+            const j=await r.json();
+            const o=j.GetDnsResponse||{};
+            const h=o.GetDnsHeader||{};
+            const setting=o.GetDnsContent?.NameServerSettings||{};
+            console.log("ELDIARIO_DYNADOT_GATE",{http:r.status,apiStatus:h.Status||o.Status||"unknown",type:setting.Type||"unknown",reachable:r.ok});
+            console.log("NO_DNS_CHANGE read-only preflight");
+           }catch(err){console.log("ELDIARIO_DYNADOT_GATE CONNECTION_FAILURE",String(err?.name||"error"));process.exitCode=1}
+          })()
+          JS

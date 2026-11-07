@@ -1,0 +1,25 @@
+name: ASTRA Keyword Evidence - zero cost
+on:
+  pull_request:
+    paths:
+      - "eldiariodelcibao/seo-evidence/**"
+      - ".github/workflows/astra-keyword-evidence.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  proof-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Unit tests (no fabricated metrics)
+        run: node eldiariodelcibao/seo-evidence/tests.mjs
+      - name: Build deterministic unverified report
+        run: node eldiariodelcibao/seo-evidence/run.mjs
+      - name: Verify generated evidence report
+        run: |
+          node -e "const x=require('./eldiariodelcibao/seo-evidence/reports/keyword-evidence.json');if(x.totalKeywords!==10||x.summary.pass!==0)process.exit(1);console.log('PASS evidence gate '+x.totalKeywords+' terms')"
