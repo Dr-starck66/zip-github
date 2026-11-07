@@ -1,7 +1,7 @@
 3aca8b373c72dfd6e3c5743f87371fb90e3cf8bc  server.cjs
 f9539a607407adb92b56fba74f99362d0b80ff32  package.json
 a17a632545d658db45e26c12bd99fcb390be3dcb  config/astra-seo-self-heal.json
-f100acd45fdd3292cfb03b49cab7fb175f5d7cb5  scripts/astra-seo-self-heal.cjs
+b7a9c14e7b2c3d030bbf03f2673bb335922391d7  scripts/astra-seo-self-heal.cjs
 43039037a7c1326ffc3f31c74633f9d8429c9603  scripts/astra-verify-green-token.cjs
 d97d829e6b9546cc4f8ed3aca6684d7b09ae8294  bundle.part00
 b7c61077fb30cde339fe3b2e1425bfb4586ab9b9  bundle.part01
@@ -12,3 +12,4 @@ a621c7121c4902a722a242037d1e076154e2a208  bundle.part04
 bd8eab68259c052ed267722f483fe50e9231b442  bundle.part06
 a9c4b9b196010195bca9145507832b941e7db896  bundle.part07
 0ad414b60914afe3867475c5a4198a2870ab4f42  bundle.part08
+444e0f3548242fc2935fd74c8b8bf2cc6b6c42f2  scripts/astra-pantomime-editorial.cjs
