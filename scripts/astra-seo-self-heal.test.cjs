@@ -58,3 +58,37 @@ test("blocks ambiguous multiple H1",()=>{
     assert.equal(r.status,78,r.stderr||r.stdout);
   }finally{fs.rmSync(root,{recursive:true,force:true});}
 });
+
+const {DATA,HOST,render,cleanWords,proposeRestorations}=require('./astra-pantomime-editorial.cjs');
+test('four indexable guides are original, complete, self canonical and linked',()=>{
+ assert.equal(DATA.length,4);
+ const titles=new Set(),canonicals=new Set(),documents=new Set();
+ for(const page of DATA){
+  const html=render(page),words=cleanWords(html),canonical=HOST+'/'+page.slug;
+  assert.ok(words>=400,page.slug+' only '+words+' words');
+  assert.match(html,/<meta name="robots" content="index,follow/);
+  assert.ok(html.includes('<link rel="canonical" href="'+canonical+'">'));
+  assert.equal((html.match(/<h1\b/g)||[]).length,1);
+  assert.equal((html.match(/<h2\b/g)||[]).length,7,'6 unique sections plus related');
+  for(const other of DATA.filter(x=>x.slug!==page.slug))assert.ok(html.includes(HOST+'/'+other.slug));
+  titles.add(page.title);canonicals.add(canonical);documents.add(html);
+ }
+ assert.equal(titles.size,4);assert.equal(canonicals.size,4);assert.equal(documents.size,4);
+});
+test('fallback repairs only blank known canonical-home shells, never meaningful or noindex pages',()=>{
+ const encoded=s=>Buffer.from(s).toString('base64');
+ const blank='<html><head><title>Ancienne page</title><link rel="canonical" href="'+HOST+'/"></head><body><div id="app"></div></body></html>';
+ const files=Object.fromEntries(DATA.map(d=>['/'+d.slug,encoded(blank)]));
+ const proposals=proposeRestorations(files);
+ assert.equal(proposals.length,4);
+ for(const proposal of proposals){
+  assert.ok(proposal.renderedWords>=400);
+  assert.ok(proposal.sourceWords<80);
+  files[proposal.file]=encoded(proposal.html);
+ }
+ assert.equal(proposeRestorations(files).length,0,'idempotent after restoration');
+ files['/'+DATA[0].slug]=encoded('<meta name="robots" content="noindex"><link rel="canonical" href="'+HOST+'/">'+blank);
+ files['/'+DATA[1].slug]=encoded(render(DATA[1]));
+ assert.ok(!proposeRestorations(files).some(p=>p.file==='/'+DATA[0].slug));
+ assert.ok(!proposeRestorations(files).some(p=>p.file==='/'+DATA[1].slug));
+});
