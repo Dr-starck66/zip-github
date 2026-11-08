@@ -81,14 +81,21 @@ const allowed=pages.filter(x=>x.indexable);
 const newPublicNews=allowed.filter(x=>!paths.has(x.canonical));
 if(allowed.length!==paths.size-authorPaths.size+newPublicNews.length)
  throw Error('SITEMAP_HTML_MISMATCH '+allowed.length+' vs '+(paths.size-authorPaths.size+newPublicNews.length));
-if(newPublicNews.length){
- let generated=fs.readFileSync(path.join(dist,'sitemap.xml'),'utf8');
- for(const p of newPublicNews){
-  const loc='https://gamicnews.com'+p.canonical;
-  generated=generated.replace('</urlset>','<url><loc>'+loc+'</loc></url></urlset>');
- }
- fs.writeFileSync(path.join(dist,'sitemap.xml'),generated);
+let generated=fs.readFileSync(path.join(dist,'sitemap.xml'),'utf8');
+generated=generated.replace(/<url>[\s\S]*?<\/url>/g,entry=>{
+ const loc=entry.match(/<loc>([^<]+)<\/loc>/)?.[1];
+ if(!loc)return entry;
+ const u=new URL(loc);
+ return authorPaths.has((u.pathname.replace(/\/$/,'')||'/'))?'':entry;
+});
+for(const p of newPublicNews){
+ const loc='https://gamicnews.com'+p.canonical;
+ generated=generated.replace('</urlset>','<url><loc>'+loc+'</loc></url></urlset>');
 }
+const generatedPaths=[...generated.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>x[1]);
+if(generatedPaths.length!==allowed.length)throw Error('OUTPUT_SITEMAP_INDEXABLE_COUNT '+generatedPaths.length+' vs '+allowed.length);
+if(generatedPaths.some(x=>new URL(x).pathname.startsWith('/authors/')))throw Error('OUTPUT_SITEMAP_NOINDEX_AUTHOR');
+fs.writeFileSync(path.join(dist,'sitemap.xml'),generated);
 const authors=pages.filter(x=>authorPaths.has(x.canonical));
 if(authors.length!==authorPaths.size||authors.some(x=>x.indexable))
  throw Error('AUTHOR_NOINDEX_REGRESSION');
