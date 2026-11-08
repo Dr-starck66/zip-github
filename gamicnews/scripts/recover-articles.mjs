@@ -94,6 +94,7 @@ function articleHTML(a,canonical){
 export function renderRecoveredArticles({root,dist,pages,files}){
  const existing=new Set(pages.map(p=>p.canonical));
  const seen=new Set();
+ const library=[];
  let added=0;
  for(let n=1;n<=3;n++){
   const src=path.join(root,'data','astra-recovered-0'+n+'.json');
@@ -111,9 +112,35 @@ export function renderRecoveredArticles({root,dist,pages,files}){
    fs.writeFileSync(dst,html);
    pages.push({path:sub,canonical,indexable:true,bytes:Buffer.byteLength(html)});
    files.push(sub);
+   library.push({slug:a.slug,title:a.title,dek:a.dek,category:a.category});
    added++;
   }
  }
  if(added!==33)throw Error('ARCHIVE_COUNT_REGRESSION '+added+' expected 33');
+ if(existing.has('/guides')||fs.existsSync(path.join(root,'guides','index.html')))
+  throw Error('ARCHIVE_GUIDES_CANONICAL_COLLISION');
+ const categories=['Gaming','Tech','AI','Cybersecurity','Mobile','Startups'];
+ const sections=categories.map(cat=>{
+  const items=library.filter(a=>a.category===cat);
+  if(!items.length)return '';
+  return '<section aria-labelledby="guides-'+cat.toLowerCase()+'"><h2 id="guides-'+cat.toLowerCase()+'">'+esc(cat)+' practical guides</h2><div class="latestGrid">'+
+   items.map(a=>'<article class="card"><div class="cardBody"><h3><a href="/news/'+esc(a.slug)+'">'+esc(a.title)+'</a></h3><p>'+esc(a.dek)+'</p></div></article>').join('')+'</div></section>';
+ }).join('');
+ const hub='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'+
+  '<title>Practical Gaming & Technology Guides | GAMIC News</title><meta name="description" content="Original gaming and technology troubleshooting guides from the GAMIC News archive, with links to primary sources and free interactive tools.">'+
+  '<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://gamicnews.com/guides">'+
+  '<link rel="stylesheet" href="/site.css"></head><body><a href="#main-content" class="skipLink">Skip to content</a>'+
+  '<header style="background:#111827;padding:20px"><a href="/" style="color:white">GAMIC NEWS</a></header>'+
+  '<main id="main-content" style="max-width:1150px;padding:30px 18px;margin:auto"><h1>Gaming and technology guides</h1>'+
+  '<p>Browse '+library.length+' first-party troubleshooting and practical guides from the ASTRA editorial archive. Each guide includes a step-by-step explanation and source references.</p>'+
+  '<section><h2>Free interactive tools</h2><p><a href="/tools/game-download-time-calculator">Game download time calculator</a> · '+
+  '<a href="/tools/steam-deck-offline-checker">Steam Deck offline readiness checker</a></p></section>'+
+  sections+'<p><a href="/news/">More news and guides</a> · <a href="/">GAMIC News homepage</a></p></main>'+
+  '<footer><a href="/editorial-policy">Editorial policy</a> · <a href="/corrections">Corrections</a></footer></body></html>';
+ const hubPath=path.join(dist,'guides','index.html');
+ fs.mkdirSync(path.dirname(hubPath),{recursive:true});
+ fs.writeFileSync(hubPath,hub);
+ pages.push({path:'guides/index.html',canonical:'/guides',indexable:true,bytes:Buffer.byteLength(hub)});
+ files.push('guides/index.html');
  return added;
 }
