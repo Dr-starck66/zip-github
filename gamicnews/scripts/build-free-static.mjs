@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
  * ASTRA GAMIC production-safe static builder.
- * Source mirror stays noindex on GitHub Pages; dist is indexable ONLY for
- * editorial URLs listed in the original GAMIC sitemap; five author profiles
- * intentionally remain noindex even when listed in the XML archive.
+ * Preserve source robots directives for production-canonical public URLs,
+ * including new /news/ articles absent from the source sitemap. Only known
+ * staging/duplicate copies and the five author profiles remain noindex.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -38,14 +38,37 @@ function walk(dir,rel=''){
   if(sub.endsWith('.html')){
    const urlPath='/'+sub.replace(/\/index\.html$/,'').replace(/^index\.html$/,'');
    const norm=urlPath.replace(/\/$/,'')||'/';
-   const indexable=paths.has(norm)&&!authorPaths.has(norm);
    let h=buf.toString('utf8');
    h=h.replace(/\/zip-github\/gamicnews\//g,'/');
-   h=h.replace(/<meta\s+name=["']robots["'][^>]*>/gi,'');
-   const content=indexable?'index,follow,max-image-preview:large':'noindex,follow';
-   h=h.replace(/<head([^>]*)>/i,'<head$1><meta name="robots" content="'+content+'">');
-   if(indexable&&!/<link\s+rel=["']canonical["'][^>]+href=["']https:\/\/gamicnews\.com/i.test(h))
-     throw Error('MISSING_PRODUCTION_CANONICAL: '+sub);
+   // The source robots tag is authoritative for a canonical public page.
+   // In particular, never turn a new /news/ article into noindex merely
+   // because a manual sitemap update has not yet been committed.
+   const tags=[...h.matchAll(/<meta\s+name=["']robots["'][^>]*>/gi)];
+   if(tags.length!==1)throw Error('SOURCE_ROBOTS_TAG_COUNT: '+sub+' '+tags.length);
+   const directive=tags[0][0].match(/\bcontent=["']([^"']+)["']/i)?.[1];
+   if(!directive)throw Error('SOURCE_ROBOTS_CONTENT_MISSING: '+sub);
+   const tokens=directive.toLowerCase().split(',').map(x=>x.trim());
+   const sourceIndex=tokens.includes('index')&&!tokens.includes('noindex');
+   const sourceNoindex=tokens.includes('noindex');
+   if(!sourceIndex&&!sourceNoindex)throw Error('SOURCE_ROBOTS_POLICY_INVALID: '+sub);
+   const canonicalHref=h.match(/<link\s+rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i)?.[1];
+   const canonicalUrl=canonicalHref?new URL(canonicalHref):null;
+   const canonicalMatches=Boolean(canonicalUrl&&canonicalUrl.origin==='https://gamicnews.com'&&
+     (canonicalUrl.pathname.replace(/\/$/,'')||'/')===norm&&!canonicalUrl.search&&!canonicalUrl.hash);
+   const newCanonicalNews=norm.startsWith('/news/')&&sub.endsWith('/index.html')&&canonicalMatches&&sourceIndex;
+   const indexable=!authorPaths.has(norm)&&(paths.has(norm)||newCanonicalNews);
+   if(indexable){
+     // A public canonical must retain the original index directive, without
+     // a build-time replacement and without accidental noindex.
+     if(!sourceIndex)throw Error('PUBLIC_SOURCE_NOINDEX: '+sub);
+     if(!canonicalMatches)throw Error('PUBLIC_CANONICAL_MISMATCH: '+sub);
+   }else if(sourceIndex){
+     // Only known staging/duplicate copies are intentionally noindex.
+     // Unknown pages abort the build instead of silently losing indexability.
+     if(!(sub.startsWith('editorial-20261106/')||sub==='news/index.html'))
+       throw Error('UNCLASSIFIED_SOURCE_INDEXABLE: '+sub);
+     h=h.replace(tags[0][0],'<meta name="robots" content="noindex,follow">');
+   }
    buf=Buffer.from(h,'utf8');
    pages.push({path:sub,canonical:norm,indexable,bytes:buf.length});
   }
@@ -55,8 +78,17 @@ function walk(dir,rel=''){
 }
 walk(root);
 const allowed=pages.filter(x=>x.indexable);
-if(allowed.length!==paths.size-authorPaths.size)
- throw Error('SITEMAP_HTML_MISMATCH '+allowed.length+' vs '+(paths.size-authorPaths.size));
+const newPublicNews=allowed.filter(x=>!paths.has(x.canonical));
+if(allowed.length!==paths.size-authorPaths.size+newPublicNews.length)
+ throw Error('SITEMAP_HTML_MISMATCH '+allowed.length+' vs '+(paths.size-authorPaths.size+newPublicNews.length));
+if(newPublicNews.length){
+ let generated=fs.readFileSync(path.join(dist,'sitemap.xml'),'utf8');
+ for(const p of newPublicNews){
+  const loc='https://gamicnews.com'+p.canonical;
+  generated=generated.replace('</urlset>','<url><loc>'+loc+'</loc></url></urlset>');
+ }
+ fs.writeFileSync(path.join(dist,'sitemap.xml'),generated);
+}
 const authors=pages.filter(x=>authorPaths.has(x.canonical));
 if(authors.length!==authorPaths.size||authors.some(x=>x.indexable))
  throw Error('AUTHOR_NOINDEX_REGRESSION');
@@ -65,7 +97,8 @@ const receipt={schema:'astra-gamic-static-build/1',generatedAt:new Date().toISOS
  status:'PASS_BUILD_ONLY',publishedToPublicHost:false,productionHttp:'UNVERIFIED',
  indexableRoutes:allowed.length,authorNoindexRoutes:authors.length,stagingNoindexRoutes:pages.length-allowed.length,
  preservedFiles:files.length,legacyHistoricalComplete:false,
- notes:['This build preserves all 39 canonical sitemap URLs, with 34 editorial pages indexable and five author profiles noindex.',
+ notes:['Canonical public HTML preserves its source index directive; no blanket robots rewriting.',
+        'Unlisted canonical /news/ articles are added to output sitemap automatically.',
         'Historical URL inventory is not proven complete; 15,617 archive candidates are not equivalent to recovered pages.']};
 fs.mkdirSync(path.join(dist,'.well-known'),{recursive:true});
 fs.writeFileSync(path.join(dist,'.well-known','astra-release.json'),JSON.stringify(receipt,null,2)+'\n');
