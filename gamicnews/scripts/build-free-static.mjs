@@ -86,11 +86,13 @@ const analyticsScript='<script defer src="/_vercel/insights/script.js"></script>
 for(const page of pages){
  const file=path.join(dist,page.path);
  let html=fs.readFileSync(file,'utf8');
- const count=(html.match(/<script\\b[^>]*src=["']\\/_vercel\\/insights\\/script\\.js["'][^>]*><\\/script>/gi)||[]).length;
+ const count=html.split(analyticsScript).length-1;
  if(count>1)throw Error('DUPLICATE_ANALYTICS_SNIPPET: '+page.path);
  if(count===0){
-  if(!/<\\/head>/i.test(html))throw Error('MISSING_HTML_HEAD_FOR_ANALYTICS: '+page.path);
-  html=html.replace(/<\\/head>/i,analyticsScript+'</head>');
+  if(html.includes('/_vercel/insights/script.js'))throw Error('ANALYTICS_VARIANT_UNVERIFIED: '+page.path);
+  const close=html.toLowerCase().indexOf('</head>');
+  if(close<0)throw Error('MISSING_HTML_HEAD_FOR_ANALYTICS: '+page.path);
+  html=html.slice(0,close)+analyticsScript+html.slice(close);
   fs.writeFileSync(file,html);
  }
  page.bytes=Buffer.byteLength(html);
