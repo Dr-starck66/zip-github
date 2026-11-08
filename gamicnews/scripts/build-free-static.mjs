@@ -6,6 +6,7 @@
  * staging/duplicate copies and the five author profiles remain noindex.
  */
 import fs from 'node:fs';
+import {renderRecoveredArticles} from './recover-articles.mjs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
@@ -26,7 +27,7 @@ if(fs.existsSync(dist))fs.rmSync(dist,{recursive:true});
 const pages=[],files=[];
 function walk(dir,rel=''){
  for(const item of fs.readdirSync(dir,{withFileTypes:true})){
-  if(rel===''&&['scripts','dist','.git','node_modules'].includes(item.name))continue;
+  if(rel===''&&['scripts','dist','.git','node_modules','data'].includes(item.name))continue;
   const sub=path.join(rel,item.name),full=path.join(dir,item.name);
   if(item.isSymbolicLink())throw Error('UNSAFE_SYMLINK');
   if(item.isDirectory()){walk(full,sub);continue}
@@ -77,6 +78,7 @@ function walk(dir,rel=''){
  }
 }
 walk(root);
+const recoveredGuides=renderRecoveredArticles({root,dist,pages,files});
 const allowed=pages.filter(x=>x.indexable);
 const newPublicNews=allowed.filter(x=>!paths.has(x.canonical));
 if(allowed.length!==paths.size-authorPaths.size+newPublicNews.length)
@@ -103,10 +105,10 @@ const receipt={schema:'astra-gamic-static-build/1',generatedAt:new Date().toISOS
  sourceMirror:'Dr-starck66/zip-github:gamicnews',sourceSha:process.env.GITHUB_SHA||null,
  status:'PASS_BUILD_ONLY',publishedToPublicHost:false,productionHttp:'UNVERIFIED',
  indexableRoutes:allowed.length,authorNoindexRoutes:authors.length,stagingNoindexRoutes:pages.length-allowed.length,
- preservedFiles:files.length,legacyHistoricalComplete:false,
+ preservedFiles:files.length,recoveredGuides,legacyHistoricalComplete:false,
  notes:['Canonical public HTML preserves its source index directive; no blanket robots rewriting.',
         'Unlisted canonical /news/ articles are added to output sitemap automatically.',
         'Historical URL inventory is not proven complete; 15,617 archive candidates are not equivalent to recovered pages.']};
 fs.mkdirSync(path.join(dist,'.well-known'),{recursive:true});
 fs.writeFileSync(path.join(dist,'.well-known','astra-release.json'),JSON.stringify(receipt,null,2)+'\n');
-console.log('ASTRA_GAMIC_BUILD',JSON.stringify({status:receipt.status,indexable:allowed.length,stagingNoindex:receipt.stagingNoindexRoutes,files:files.length}));
+console.log('ASTRA_GAMIC_BUILD',JSON.stringify({status:receipt.status,indexable:allowed.length,stagingNoindex:receipt.stagingNoindexRoutes,recoveredGuides,files:files.length}));
