@@ -1442,5 +1442,15 @@
       "destination": "https://gamicnews.com/:path*",
       "statusCode": 301
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/news",
+      "destination": "/category/gaming"
+    },
+    {
+      "source": "/news/",
+      "destination": "/category/gaming"
+    }
   ]
 }
