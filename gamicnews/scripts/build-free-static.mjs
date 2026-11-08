@@ -79,6 +79,23 @@ function walk(dir,rel=''){
 }
 walk(root);
 const recoveredGuides=renderRecoveredArticles({root,dist,pages,files});
+// First-party Vercel Web Analytics: privacy-friendly page views and referrers.
+// This adds no dependency, cookie, new cron or paid service. Collection begins
+// only after Web Analytics is enabled for the existing Vercel project.
+const analyticsScript='<script defer src="/_vercel/insights/script.js"></script>';
+for(const page of pages){
+ const file=path.join(dist,page.path);
+ let html=fs.readFileSync(file,'utf8');
+ const count=(html.match(/<script\\b[^>]*src=["']\\/_vercel\\/insights\\/script\\.js["'][^>]*><\\/script>/gi)||[]).length;
+ if(count>1)throw Error('DUPLICATE_ANALYTICS_SNIPPET: '+page.path);
+ if(count===0){
+  if(!/<\\/head>/i.test(html))throw Error('MISSING_HTML_HEAD_FOR_ANALYTICS: '+page.path);
+  html=html.replace(/<\\/head>/i,analyticsScript+'</head>');
+  fs.writeFileSync(file,html);
+ }
+ page.bytes=Buffer.byteLength(html);
+}
+const analyticsInstrumentedRoutes=pages.length;
 const allowed=pages.filter(x=>x.indexable);
 const newPublicNews=allowed.filter(x=>!paths.has(x.canonical));
 if(allowed.length!==paths.size-authorPaths.size+newPublicNews.length)
@@ -105,10 +122,10 @@ const receipt={schema:'astra-gamic-static-build/1',generatedAt:new Date().toISOS
  sourceMirror:'Dr-starck66/zip-github:gamicnews',sourceSha:process.env.GITHUB_SHA||null,
  status:'PASS_BUILD_ONLY',publishedToPublicHost:false,productionHttp:'UNVERIFIED',
  indexableRoutes:allowed.length,authorNoindexRoutes:authors.length,stagingNoindexRoutes:pages.length-allowed.length,
- preservedFiles:files.length,recoveredGuides,legacyHistoricalComplete:false,
+ preservedFiles:files.length,recoveredGuides,analyticsInstrumentedRoutes,legacyHistoricalComplete:false,
  notes:['Canonical public HTML preserves its source index directive; no blanket robots rewriting.',
         'Unlisted canonical /news/ articles are added to output sitemap automatically.',
         'Historical URL inventory is not proven complete; 15,617 archive candidates are not equivalent to recovered pages.']};
 fs.mkdirSync(path.join(dist,'.well-known'),{recursive:true});
 fs.writeFileSync(path.join(dist,'.well-known','astra-release.json'),JSON.stringify(receipt,null,2)+'\n');
-console.log('ASTRA_GAMIC_BUILD',JSON.stringify({status:receipt.status,indexable:allowed.length,stagingNoindex:receipt.stagingNoindexRoutes,recoveredGuides,files:files.length}));
+console.log('ASTRA_GAMIC_BUILD',JSON.stringify({status:receipt.status,indexable:allowed.length,stagingNoindex:receipt.stagingNoindexRoutes,recoveredGuides,analyticsInstrumentedRoutes,files:files.length}));
