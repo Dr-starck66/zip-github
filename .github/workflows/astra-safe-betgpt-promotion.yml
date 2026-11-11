@@ -106,14 +106,17 @@ jobs:
             fi
           fi
 
-          if [ "$CURRENT" = "$SHA" ] && [ "$MARKER" = "$SHA" ] && [ "$PUBLIC_SHA" = "$SHA" ]; then
-            echo "Production already serves latest GREEN release-train candidate $SHA"
+          # Once this exact GREEN candidate has been submitted for deployment,
+          # do not enqueue it again solely because the public route is missing.
+          # A missing revision is an incident, not proof a re-deploy can repair DNS.
+          if [ "$CURRENT" = "$SHA" ] && [ "$MARKER" = "$SHA" ]; then
             echo "promote=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          if [ "$CURRENT" = "$SHA" ] && [ "$PUBLIC_SHA" != "$SHA" ]; then
-            echo "ASTRA_RELEASE_TRAIN_REEMIT_REQUIRED manifest=$SHA public=$PUBLIC_SHA"
+            if [ "$PUBLIC_SHA" = "$SHA" ]; then
+              echo "Production already serves latest GREEN release-train candidate $SHA"
+              exit 0
+            fi
+            echo "::error::ASTRA_RELEASE_TRAIN_PUBLIC_REVISION_UNVERIFIED candidate=$SHA public=$PUBLIC_SHA; no automatic redeploy loop; inspect hosting and DNS" >&2
+            exit 1
           fi
 
           echo "ASTRA_RELEASE_TRAIN_READY candidate=$SHA sourceHead=$SOURCE_HEAD current=$CURRENT"
