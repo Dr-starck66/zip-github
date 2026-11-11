@@ -248,7 +248,14 @@ jobs:
 
           echo "Waiting for public BetGPT revision $CANDIDATE_SHA"
           for i in $(seq 1 60); do
-            body="$(curl -fsS --connect-timeout 6 --max-time 10 https://betgpt.live/astra-revision.json || true)"
+            http_code="$(curl -sS --connect-timeout 6 --max-time 10 -w '%{http_code}' -o /tmp/astra-postflight-revision.json https://betgpt.live/astra-revision.json || true)"
+            case "$http_code" in
+              401|403|404)
+                echo "::error::ASTRA_POSTDEPLOY_REVISION_HTTP_$http_code; non-transient auth/routing failure, no blind retries" >&2
+                exit 1
+                ;;
+            esac
+            body="$(cat /tmp/astra-postflight-revision.json 2>/dev/null || true)"
             got="$(printf '%s' "$body" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("sourceSha",""))' 2>/dev/null || true)"
             echo "postflight revision attempt=$i got=$got"
             if [ "$got" = "$CANDIDATE_SHA" ]; then
