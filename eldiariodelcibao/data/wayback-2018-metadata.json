@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Source metadata only; no copied full article texts and no automatic indexability",
-  "checkedUTC": "2026-11-11T09:46:00.559994+00:00",
+  "checkedUTC": "2026-11-12T10:05:15.493353+00:00",
   "totalJune2018": 259,
   "records": [
     {
@@ -11,8 +11,8 @@
       "archiveUrl": "https://web.archive.org/web/20180610103738id_/http://www.eldiariodelcibao.com:80/2018/06/20-anos-de-prision-productor-de-tv.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 26,
-      "lastAttemptUTC": "2026-11-11T09:44:29.821939+00:00"
+      "attemptCount": 27,
+      "lastAttemptUTC": "2026-11-12T10:04:19.860538+00:00"
     },
     {
       "path": "/2018/06/aduanas-dispondra-de-inteligencia.html",
@@ -174,20 +174,13 @@
     },
     {
       "path": "/2018/06/angel-delgado-de-haina-para-la-nba.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20180626095722id_/http://www.eldiariodelcibao.com:80/2018/06/angel-delgado-de-haina-para-la-nba.html",
-      "archiveTimestamp": "20180626095722",
-      "originalTitle": "ANGEL DELGADO DE HAINA PARA LA NBA",
-      "originalDate": "2018-06-22",
-      "sourceBodyWords": 1,
-      "sourceBodySha256": "e1f57a34e70cf1a79e444e853ab784b9caccb1ccebc79f343ca0d39b47228ee3",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 26,
-      "lastAttemptUTC": "2026-11-11T09:44:58.406041+00:00"
+      "attemptCount": 27,
+      "lastAttemptUTC": "2026-11-12T10:04:46.911361+00:00"
     },
     {
       "path": "/2018/06/apresan-dos-ancianos-de-78-y-85-anos.html",
@@ -1148,8 +1141,8 @@
       "archiveUrl": "https://web.archive.org/web/20190227045356id_/http://www.eldiariodelcibao.com:80/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 26,
-      "lastAttemptUTC": "2026-11-11T09:45:30.435535+00:00"
+      "attemptCount": 27,
+      "lastAttemptUTC": "2026-11-12T10:05:14.407401+00:00"
     },
     {
       "path": "/2018/06/el-cantautor-manuel-jimenez-viajara-ny.html",
@@ -1716,8 +1709,8 @@
       "archiveUrl": "https://web.archive.org/web/20180617211752id_/http://www.eldiariodelcibao.com:80/2018/06/felix-bautista-se-burla-de-estados.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 26,
-      "lastAttemptUTC": "2026-11-11T09:45:26.302581+00:00"
+      "attemptCount": 27,
+      "lastAttemptUTC": "2026-11-12T10:04:58.567162+00:00"
     },
     {
       "path": "/2018/06/felix-bautista-tiene-rd84-mil-600.html",
@@ -2429,13 +2422,20 @@
     },
     {
       "path": "/2018/06/los-yankees-otorgan-un-minuto-de.html",
-      "status": "fetch-failed",
-      "error": "HTTPError",
+      "status": "capture-incomplete",
       "archiveUrl": "https://web.archive.org/web/20180703072450id_/http://www.eldiariodelcibao.com:80/2018/06/los-yankees-otorgan-un-minuto-de.html",
+      "archiveTimestamp": "20180703072450",
+      "originalTitle": "Los Yankees otorgan un minuto de silencio en honor al joven dominicano Lesandro Guzmán.",
+      "originalDate": "2018-06-29",
+      "sourceBodyWords": 14,
+      "sourceBodySha256": "cfd6fcf18548ca3ee7b9e6fbcb338304626e3930279fb5adaebfb4598bd0c2b6",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
       "indexable": false,
+      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 26,
-      "lastAttemptUTC": "2026-11-11T09:43:53.693333+00:00"
+      "attemptCount": 27,
+      "lastAttemptUTC": "2026-11-12T10:03:48.268119+00:00"
     },
     {
       "path": "/2018/06/marcha-verde-convoca-para-el-12-de.html",
@@ -3186,8 +3186,8 @@
       "archiveUrl": "https://web.archive.org/web/20180702062801id_/http://www.eldiariodelcibao.com:80/2018/06/polito-vega-rey-abandonado.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 26,
-      "lastAttemptUTC": "2026-11-11T09:44:55.110022+00:00"
+      "attemptCount": 27,
+      "lastAttemptUTC": "2026-11-12T10:04:32.437576+00:00"
     },
     {
       "path": "/2018/06/por-carolina-pichardolistin-diario.html",
@@ -3469,13 +3469,20 @@
     },
     {
       "path": "/2018/06/roban-en-la-habitacion-de-hotel-de.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "capture-incomplete",
       "archiveUrl": "https://web.archive.org/web/20180623142436id_/http://www.eldiariodelcibao.com:80/2018/06/roban-en-la-habitacion-de-hotel-de.html",
+      "archiveTimestamp": "20180623142436",
+      "originalTitle": "Roban en la habitación de hotel de Maluma en Moscú y se llevan un botín de casi 800.000 dólares",
+      "originalDate": "2018-06-19",
+      "sourceBodyWords": 46,
+      "sourceBodySha256": "19f8dceeef12e5bbe8cceb591be700dbad90c3fc207e6cff5a2a1c48deccb003",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
       "indexable": false,
+      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 26,
-      "lastAttemptUTC": "2026-11-11T09:44:20.375518+00:00"
+      "attemptCount": 27,
+      "lastAttemptUTC": "2026-11-12T10:04:00.297608+00:00"
     },
     {
       "path": "/2018/06/roberto-rosario-sale-en-defensa-de.html",
@@ -3523,8 +3530,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 26,
-      "lastAttemptUTC": "2026-11-11T09:43:44.157819+00:00"
+      "attemptCount": 27,
+      "lastAttemptUTC": "2026-11-12T10:03:51.669315+00:00"
     },
     {
       "path": "/2018/06/sacerdote-critica-posicion-masalles.html",
@@ -3682,13 +3689,20 @@
     },
     {
       "path": "/2018/06/sepultan-restos-del-adolescente-de-15.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "capture-incomplete",
       "archiveUrl": "https://web.archive.org/web/20180702014224id_/http://www.eldiariodelcibao.com:80/2018/06/sepultan-restos-del-adolescente-de-15.html",
+      "archiveTimestamp": "20180702014224",
+      "originalTitle": "Sepultan restos del adolescente de 15 años, Lesandro Guzmán Feliz (Junior) en El Bronx",
+      "originalDate": "2018-06-27",
+      "sourceBodyWords": 20,
+      "sourceBodySha256": "ccb0946c255870461fcdb2aa15e19f5f89ede00adc1e879598f0aa243446d23c",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
       "indexable": false,
+      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 26,
-      "lastAttemptUTC": "2026-11-11T09:46:00.559600+00:00"
+      "attemptCount": 27,
+      "lastAttemptUTC": "2026-11-12T10:05:15.492898+00:00"
     },
     {
       "path": "/2018/06/servio-tulio-advierte-juez-designado.html",
