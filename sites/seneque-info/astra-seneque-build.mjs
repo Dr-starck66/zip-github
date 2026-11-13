@@ -95,6 +95,8 @@ const unionSitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http:
 await save('sitemap.xml',unionSitemap);
 const feed='<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>Seneque.info — Guides pratiques</title><link>'+SITE+'/</link><description>Guides de sécurité, vie privée et lecture critique.</description><language>fr</language><lastBuildDate>Tue, 27 Oct 2026 07:00:00 GMT</lastBuildDate>'+daily.articles.map(a=>'<item><title>'+esc(a.title)+'</title><link>'+SITE+'/'+a.slug+'/</link><guid isPermaLink="true">'+SITE+'/'+a.slug+'/</guid><pubDate>Tue, 27 Oct 2026 07:00:00 GMT</pubDate><description>'+esc(a.description)+'</description></item>').join('')+'</channel></rss>\n';
 await save('feed.xml',feed);
+// Temporary MGL site ownership proof only. No editorial or SEO modifications.
+await save('mgl.txt','MGL\n');
 console.log(JSON.stringify({component:'ASTRA_SENEQUE_BUILD',status:'PASS_BUILD',legacyPages:count,wyyldePages:wyyldeSlugs.length,dailyPages:dailyPaths.length,totalPages:allPaths.length,enhanced:modified,minimumArticleWords:minimum,images:24,videoEmbeds:3,sourceOrigin:SITE}));
 
 
