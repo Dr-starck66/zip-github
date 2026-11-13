@@ -39,7 +39,6 @@ for(const route of routes){
    const oldHref='href="/wyylde-avis/"', newHref='href="'+pillar+'"';
    if(!html.includes(oldHref)&&!html.includes(newHref))throw Error('WYYLDE_INBOUND_LINK_MISSING');
    html=html.replace(oldHref,newHref).replace('href="https://wyylde-avis.seneque.info/"',newHref);
-   if(!html.includes('data-mgl-verification="2026-11-09"')) html=html.replace('</main>','<p data-mgl-verification="2026-11-09" style="font-size:.75rem">MGL</p></main>');
    if(!html.includes('data-astra-enriched="2026-10-18"')){
    const block='<section class="astra-home-media" data-astra-enriched="2026-10-18"><div class="wrap"><h2>Rome antique : une histoire en images et en sources</h2><p>Les fêtes romaines, les banquets et les textes de Sénèque ne forment pas une histoire uniforme. Un auteur satirique peut grossir l’excès ; une fresque présente une scène construite ; une inscription aide parfois à recouper les récits. Nous confrontons ces documents sans transformer des représentations en statistiques.</p><p>La société romaine connaissait de fortes inégalités de statut. Comprendre ses plaisirs exige donc de regarder les conditions des femmes, des personnes asservies et des citoyens, et de préciser la date de chaque témoignage. Nos dossiers conservent les doutes lorsqu’une filiation ou une anecdote ne sont pas prouvées.</p><div class="astra-media-grid">'+artF+artS+'</div>'+video('KArMbrAUa50','Pompéi : exposition du Grand Palais')+'<p><a href="/lupanar-pompei/">Le lupanar de Pompéi</a> · <a href="/banquets-plaisirs-rome/">Les banquets antiques</a> · <a href="/sources-historiques/">Sources et méthode</a></p></div></section>';
    html=html.replace('</main>',block+'</main>');modified++;
@@ -96,7 +95,7 @@ const unionSitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http:
 await save('sitemap.xml',unionSitemap);
 const feed='<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>Seneque.info — Guides pratiques</title><link>'+SITE+'/</link><description>Guides de sécurité, vie privée et lecture critique.</description><language>fr</language><lastBuildDate>Tue, 27 Oct 2026 07:00:00 GMT</lastBuildDate>'+daily.articles.map(a=>'<item><title>'+esc(a.title)+'</title><link>'+SITE+'/'+a.slug+'/</link><guid isPermaLink="true">'+SITE+'/'+a.slug+'/</guid><pubDate>Tue, 27 Oct 2026 07:00:00 GMT</pubDate><description>'+esc(a.description)+'</description></item>').join('')+'</channel></rss>\n';
 await save('feed.xml',feed);
-// Temporary MisterGoodLink ownership proof, independent of editorial pages.
+// Temporary MGL site ownership proof only. No editorial or SEO modifications.
 await save('mgl.txt','MGL\n');
 console.log(JSON.stringify({component:'ASTRA_SENEQUE_BUILD',status:'PASS_BUILD',legacyPages:count,wyyldePages:wyyldeSlugs.length,dailyPages:dailyPaths.length,totalPages:allPaths.length,enhanced:modified,minimumArticleWords:minimum,images:24,videoEmbeds:3,sourceOrigin:SITE}));
 
