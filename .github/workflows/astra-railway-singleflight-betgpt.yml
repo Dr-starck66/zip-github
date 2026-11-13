@@ -2,8 +2,8 @@ name: ASTRA Railway Single-Flight · BetGPT
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "*/5 * * * *"
+  # Railway polling suspended: avoid redundant 5-minute jobs while Actions runner is blocked.
+  # Manual dispatch and targeted push triggers remain available.
   push:
     branches: [main]
     paths:
