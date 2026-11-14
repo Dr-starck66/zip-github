@@ -15,6 +15,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
+from urllib.parse import urlencode
 
 from bs4 import BeautifulSoup
 
@@ -43,9 +44,9 @@ def historical_date(s):
     except ValueError:
         return None
 
-def process(row):
+def _process_capture(row, forced_timestamp=None):
     path = row["path"]
-    timestamp = row.get("timestamp", "")
+    timestamp = forced_timestamp or row.get("timestamp", "")
     original = row.get("original", "")
     if not re.fullmatch(r"20\d{12}", timestamp) or not re.match(
             r"^https?://(?:www\.)?eldiariodelcibao\.com(?::80)?/", original, re.I):
@@ -53,7 +54,7 @@ def process(row):
     archive_url = f"https://web.archive.org/web/{timestamp}id_/{original}"
     try:
         req = Request(archive_url, headers={"User-Agent":AGENT,"Accept":"text/html"})
-        with urlopen(req, timeout=30) as response:
+        with urlopen(req, timeout=12) as response:
             code = response.status
             final_url = response.url
             html = response.read(1_200_001)
@@ -86,6 +87,20 @@ def process(row):
             paragraphs = [ws(remain[:stop.start() if stop else 3500])]
     body = ws(" ".join(paragraphs))
     date = historical_date(page_text[:min(len(page_text),6000)])
+    if not date:
+        # Read source-authored dates only; never invent a missing historical date.
+        for selector in ('meta[property="article:published_time"]',
+                         'meta[itemprop="datePublished"]', 'time[datetime]'):
+            tag = soup.select_one(selector)
+            raw = (tag.get("content") or tag.get("datetime") or "") if tag else ""
+            if re.fullmatch(r"2018-06-\d{2}(?:[T ].*)?", raw):
+                try:
+                    day = raw[:10]
+                    if datetime.fromisoformat(day).month == 6:
+                        date = day
+                        break
+                except ValueError:
+                    pass
     words = len(body.split())
     verified = (code == 200 and len(html) > 2000 and
         "eldiariodelcibao" in final_url.lower() and date and
@@ -99,6 +114,100 @@ def process(row):
         "httpStatus":code,"indexable":False,
         "provenance":"html-original-capture" if verified else "capture-requires-human-review"}
 
+def _availability_snapshots(row):
+    """Fallback to Internet Archive availability API when CDX yields no candidates.
+    Confirm exact original hostname and article path; never count a nearby page.
+    """
+    from urllib.parse import urlparse
+    original = row.get("original", "")
+    parsed = urlparse(original)
+    if parsed.hostname not in {"eldiariodelcibao.com", "www.eldiariodelcibao.com"}:
+        return []
+    seen = {row.get("timestamp", "")}
+    found = []
+    variants = list(dict.fromkeys([original, original.replace(":80", "")]))
+    anchors = list(dict.fromkeys(["20180615", str(row.get("timestamp", ""))[:8]]))
+    for candidate_url in variants:
+        for anchor in anchors:
+            req = Request("https://archive.org/wayback/available?" +
+                          urlencode({"url": candidate_url, "timestamp": anchor}),
+                          headers={"User-Agent": AGENT, "Accept": "application/json"})
+            try:
+                with urlopen(req, timeout=7) as response:
+                    doc = json.loads(response.read(16000))
+            except (HTTPError, URLError, TimeoutError, OSError, ValueError):
+                continue
+            closest = (doc.get("archived_snapshots") or {}).get("closest") or {}
+            if closest.get("available") is not True or str(closest.get("status")) != "200":
+                continue
+            stamp = str(closest.get("timestamp", ""))
+            if not re.fullmatch(r"20\d{12}", stamp) or not 2018 <= int(stamp[:4]) <= 2020 or stamp in seen:
+                continue
+            playback = re.search(r"/web/20\d{12}/(https?://[^\s]+)", str(closest.get("url", "")))
+            if not playback:
+                continue
+            saved = urlparse(playback.group(1))
+            if saved.hostname not in {"eldiariodelcibao.com", "www.eldiariodelcibao.com"} or saved.path != parsed.path:
+                continue
+            seen.add(stamp)
+            found.append(stamp)
+            if len(found) >= 3:
+                return found
+    return found
+
+
+def _alternative_snapshots(row):
+    """CDX alternative snapshots: strictly source-linked, never fabricated."""
+    original = row.get("original", "")
+    if not re.match(r"^https?://(?:www\.)?eldiariodelcibao\.com(?::80)?/", original, re.I):
+        return []
+    query = urlencode({"url": original, "output": "json", "from": "2018",
+                       "to": "2020", "filter": "statuscode:200",
+                       "collapse": "digest", "limit": "25"})
+    req = Request("https://web.archive.org/cdx/search/cdx?" + query,
+                  headers={"User-Agent": AGENT, "Accept": "application/json"})
+    try:
+        with urlopen(req, timeout=12) as response:
+            records = json.loads(response.read(60000))
+    except (HTTPError, URLError, TimeoutError, OSError, ValueError):
+        records = []
+    if not isinstance(records, list) or not records or not isinstance(records[0], list):
+        return _availability_snapshots(row)
+    if "timestamp" not in records[0]:
+        return []
+    column = records[0].index("timestamp")
+    seen = {row.get("timestamp", "")}
+    stamps = []
+    for item in records[1:]:
+        if not isinstance(item, list) or len(item) <= column:
+            continue
+        stamp = str(item[column])
+        if not re.fullmatch(r"20\d{12}", stamp) or stamp in seen:
+            continue
+        seen.add(stamp)
+        stamps.append(stamp)
+    return (stamps + [s for s in _availability_snapshots(row) if s not in seen])[:3]
+
+
+def process(row):
+    first = _process_capture(row)
+    if first.get("status") == "evidence-metadata":
+        return first
+    if first.get("status") not in {"capture-incomplete", "fetch-failed"}:
+        return first
+    attempts = 0
+    for timestamp in _alternative_snapshots(row):
+        attempts += 1
+        candidate = _process_capture(row, forced_timestamp=timestamp)
+        if candidate.get("status") == "evidence-metadata":
+            candidate["originalInventoryTimestamp"] = row.get("timestamp")
+            candidate["alternateCaptureVerified"] = True
+            candidate["alternatesExamined"] = attempts
+            return candidate
+    first["alternatesExamined"] = attempts
+    return first
+
+
 def main():
     cli = argparse.ArgumentParser()
     cli.add_argument("--limit",type=int,default=259)
@@ -107,14 +216,35 @@ def main():
     source = json.loads(SOURCE.read_text(encoding="utf-8"))
     old = json.loads(DEST.read_text(encoding="utf-8")) if DEST.exists() else {"records":[]}
     by_path = {x["path"]:x for x in old.get("records",[])}
-    candidates = [x for x in source if x["path"].startswith("/2018/06/")
-                  and x["path"] not in by_path]
-    candidates = candidates[:max(0,args.limit)]
+    eligible = [x for x in source if x["path"].startswith("/2018/06/")]
+    def editorial_priority(record):
+        name = record["path"].lower()
+        towns = ("esperanza", "boca-de-mao", "valverde", "santiago",
+                 "laguna-salada", "mao", "cibao", "monte-cristi",
+                 "puerto-plata", "la-vega", "dajabon", "noroeste")
+        themes = ("carretera", "calle", "obra", "hospital", "educa", "escuela",
+                  "cultura", "feria", "agric", "municip", "vecinos", "paro",
+                  "agua", "econom", "comercio", "puente", "patrimonio")
+        sensitive = ("apresan", "asesin", "asalt", "violac", "abus", "suicid",
+                     "muerte", "muere", "atracan", "sexual", "denuncia")
+        score = 8 * sum(t in name for t in towns) + 3 * sum(t in name for t in themes)
+        score -= 12 * sum(t in name for t in sensitive)
+        return (-score, name)
+    unseen = sorted((x for x in eligible if x["path"] not in by_path),
+                    key=editorial_priority)
+    failed = [x for x in eligible if x["path"] in by_path
+              and by_path[x["path"]].get("status") in {"fetch-failed", "capture-incomplete"}]
+    failed.sort(key=lambda x: (by_path[x["path"]].get("attemptCount", 1),
+                               by_path[x["path"]].get("lastAttemptUTC", "")))
+    candidates = (unseen + failed)[:max(0, args.limit)]
     print(json.dumps({"attempting":len(candidates),"existing":len(by_path)}),flush=True)
     with concurrent.futures.ThreadPoolExecutor(max_workers=max(1,min(args.workers,5))) as executor:
         futures = {executor.submit(process,x):x for x in candidates}
         for i, fut in enumerate(concurrent.futures.as_completed(futures),1):
             item = fut.result()
+            prior = by_path.get(item["path"], {})
+            item["attemptCount"] = int(prior.get("attemptCount", 1)) + 1 if prior else 1
+            item["lastAttemptUTC"] = datetime.now(timezone.utc).isoformat()
             by_path[item["path"]] = item
             if i%20==0 or i==len(candidates):
                 good = sum(x.get("status")=="evidence-metadata" for x in by_path.values())

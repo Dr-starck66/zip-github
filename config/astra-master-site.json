@@ -1,0 +1,62 @@
+{
+  "schema": "astra-master-site/1",
+  "siteId": "eldiariodelcibao.com-prodbranch",
+  "capabilities": [
+    "seo",
+    "editorial",
+    "news",
+    "runtime",
+    "restoration"
+  ],
+  "checks": {
+    "ASTRA_MASTER_GATE": [
+      {
+        "type": "command",
+        "run": "node --check scripts/astra-master-gate.mjs"
+      }
+    ],
+    "ASTRA_BRICK_PROOF_GATE": [
+      {
+        "type": "command",
+        "run": "node --test scripts/astra-master-gate.test.mjs"
+      }
+    ],
+    "ASTRA_AUTOMATION_EVIDENCE": [
+      {
+        "type": "command",
+        "run": "node --test scripts/astra-master-gate.test.mjs"
+      }
+    ],
+    "ASTRA_NO_REPEAT": [
+      {
+        "type": "command",
+        "run": "node --test eldiariodelcibao/tests/astra-historical-redirects.test.mjs eldiariodelcibao/tests/astra-indexing-policy.test.mjs eldiariodelcibao/tests/astra-wayback-nine-audit.test.mjs"
+      }
+    ],
+    "ASTRA_ZERO_COST": [
+      {
+        "type": "command",
+        "run": "node --test eldiariodelcibao/tests/astra-zero-cost-contract.test.mjs"
+      }
+    ],
+    "ASTRA_TARDIGRADE": [
+      {
+        "type": "command",
+        "run": "node --test eldiariodelcibao/tests/astra-runtime-resilience.test.mjs",
+        "timeoutMs": 60000
+      }
+    ],
+    "ASTRA_OPTIMIZER_OMEGA": [
+      {
+        "type": "command",
+        "run": "node eldiariodelcibao/seo-evidence/tests.mjs"
+      }
+    ],
+    "ASTRA_NEWS_ELIGIBILITY": [
+      {
+        "type": "command",
+        "run": "node --test eldiariodelcibao/tests/astra-news-eligibility.test.mjs"
+      }
+    ]
+  }
+}

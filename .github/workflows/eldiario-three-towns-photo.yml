@@ -1,0 +1,57 @@
+name: ELDIARIO Jarabacoa Constanza Monte Cristi real photo proof
+on:
+  push:
+    branches: [eldiariodelcibao-metadata-integration]
+    paths: [".github/workflows/eldiario-three-towns-photo.yml"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: eldiariodelcibao-metadata-integration
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --disable-pip-version-check "Pillow==11.3.0"
+      - name: Retrieve 1280px Commons renditions and verify source licenses
+        run: python eldiariodelcibao/scripts/astra_three_towns.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify actual WebP, image hashes, relevance, and credits
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          import {createHash} from 'node:crypto';
+          import {assessImage} from './eldiariodelcibao/lib/image-seo-rights-guard.mjs';
+          const m=JSON.parse(fs.readFileSync('eldiariodelcibao/data/image-manifest.json','utf8'));
+          const paths=['/jarabacoa/','/constanza/','/monte-cristi/'];
+          const ready=paths.filter(x=>m[x]?.source?.filePage?.includes('commons.wikimedia.org'));
+          assert.ok(ready.length>=1,'need at least one newly verified image');
+          for(const route of ready){
+            const img=m[route],r=assessImage({path:route,title:img.pageTitle},img);
+            assert.equal(r.status,'PASS',JSON.stringify(r));
+            const b=fs.readFileSync('eldiariodelcibao/public'+img.path);
+            assert.equal(b.length,img.bytes);
+            assert.equal(b.subarray(0,4).toString('ascii'),'RIFF');
+            assert.equal(b.subarray(8,12).toString('ascii'),'WEBP');
+            assert.equal(createHash('sha256').update(b).digest('hex'),img.sha256);
+            console.log('ASTRA_PLACE_FILE_PASS',route,img.path,img.bytes);
+          }
+          JS
+      - name: Commit only validated photographs
+        run: |
+          git config user.name "astra-archive-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add eldiariodelcibao/data/image-manifest.json eldiariodelcibao/public/images/
+          if ! git diff --cached --quiet; then
+            git commit -m "media(eldiario): Jarabacoa Constanza and Monte Cristi real city photos [skip ci]"
+            git pull --rebase origin eldiariodelcibao-metadata-integration
+            git push origin HEAD:eldiariodelcibao-metadata-integration
+          fi
