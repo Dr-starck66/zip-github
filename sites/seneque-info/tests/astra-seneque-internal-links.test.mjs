@@ -10,8 +10,8 @@ test('20 suggestions, chemins sources et destinations sûrs',()=>{
 test('ajoute des liens seulement sur la page concernée',()=>{
   const original=page();const r=addContextLinks(original,'/stoicisme-amour/');
   assert.equal(r.applicable,2); assert.equal(r.inserted,2);
-  assert.match(r.html,/href="\\/venus-deesse-amour\\/"/);
-  assert.match(r.html,/href="\\/amor-fati-signification\\/"/);
+  assert.match(r.html,/href="\/venus-deesse-amour\/"/);
+  assert.match(r.html,/href="\/amor-fati-signification\/"/);
   assert.ok(r.html.includes('<h1>Article original</h1>'));
   assert.ok(r.html.includes('<link rel="canonical" href="https://seneque.info/stoicisme-amour/">'));
   assert.equal(addContextLinks(page(),'/non-listed/').inserted,0);
@@ -21,7 +21,7 @@ test('anti-doublons pour href absolus, relatifs et deuxième passage',()=>{
   const r=addContextLinks(html,'/stoicisme-amour/');
   assert.equal(r.inserted,1); assert.equal(r.existing,1);
   assert.equal(addContextLinks(r.html,'/stoicisme-amour/').inserted,0);
-  assert.equal((r.html.match(/href="https:\\/\\/seneque.info\\/venus-deesse-amour\\/"/g)||[]).length,1);
+  assert.equal((r.html.match(/href="https:\/\/seneque.info\/venus-deesse-amour\/"/g)||[]).length,1);
 });
 test('fail closed si absence article',()=>{
   assert.throws(()=>addContextLinks('<main>sans article</main>','/stoicisme-amour/'),/ARTICLE_MISSING/);
