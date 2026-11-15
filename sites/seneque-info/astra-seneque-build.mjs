@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { addContextLinks, LINK_PLAN } from './astra-seneque-internal-links.mjs';
 const SITE='https://seneque.info',OUT=path.resolve('dist'),input=JSON.parse(await fs.readFile('enrichment-2026-10-18.json','utf8')),daily=JSON.parse(await fs.readFile('daily-editorial-2026-10-27.json','utf8'));
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const get=async(p)=>{const r=await fetch(SITE+p,{headers:{'User-Agent':'ASTRA-Seneque-Rebuild/1.0 (+editorial restoration)'}});if(!r.ok)throw Error('FETCH_FAIL '+p+' '+r.status);return await r.text();};
@@ -30,7 +31,7 @@ await fs.rm(OUT,{recursive:true,force:true});await fs.mkdir(OUT,{recursive:true}
 const sitemap=await get('/sitemap.xml');const allRoutes=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>new URL(m[1]).pathname);const routes=allRoutes.filter(p=>!p.startsWith('/wyylde-')&&!p.startsWith('/guides/')&&!p.startsWith('/actualites/'));
 if(routes.length!==22||new Set(routes).size!==22)throw Error('SITEMAP_22_REQUIRED');
 if(input.articles.length!==21)throw Error('EDITORIAL_21_REQUIRED');
-const map=new Map(input.articles.map(x=>['/'+x.slug+'/',x]));let count=0,modified=0,minimum=999;
+const map=new Map(input.articles.map(x=>['/'+x.slug+'/',x]));let count=0,modified=0,minimum=999;const linkStats={inserted:0,existing:0,applicable:0};
 for(const route of routes){
  let html=await get(route);if(!html.includes('<!doctype html>'))throw Error('NON_HTML '+route);
  if(route==='/'){
@@ -58,11 +59,15 @@ for(const route of routes){
   await save('media/'+item.slug+'.svg',svg(item.title));
   const raw=html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)?.[1]||html;const n=wc(raw);minimum=Math.min(minimum,n);if(n<565)throw Error('DEPTH_FAIL '+route+' '+n);
  }
+ const linked=addContextLinks(html,route);html=linked.html;
+ for(const key of Object.keys(linkStats))linkStats[key]+=linked[key];
  await save((route==='/'?'':route.slice(1))+'index.html',html);count++;
 }
 await save('style.css',(await get('/style.css'))+'\n'+css);
 await save('favicon.svg',await get('/favicon.svg'));
 await save('robots.txt',await get('/robots.txt'));
+if(linkStats.applicable!==LINK_PLAN.length)throw Error('ASTRA_SENEQUE_LINK_PLAN_ROUTE_COVERAGE '+linkStats.applicable+'/'+LINK_PLAN.length);
+console.log(JSON.stringify({component:'ASTRA_SENEQUE_CONTEXT_LINKS',status:'PASS_BUILD',...linkStats}));
 // Bundle the eight Wyylde articles as real files of the apex domain; no cross-project rewrite.
 const wyyldeSlugs=['wyylde-avis','wyylde-tarifs','wyylde-gratuit','wyylde-resiliation','wyylde-fiabilite','wyylde-avis-utilisateurs','wyylde-avis-homme-seul','wyylde-avis-couple'];
 const baseDir=path.resolve('cocon-wyylde');
