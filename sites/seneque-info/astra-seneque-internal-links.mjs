@@ -116,15 +116,15 @@ export function addContextLinks(html, route) {
   const links = LINK_PLAN.filter(([from]) => canonicalPath('/' + from + '/') === source);
   if (!links.length) return { html, applicable: 0, inserted: 0, existing: 0 };
   const present = new Set();
-  for (const m of html.matchAll(/<a\\b[^>]*\\bhref\\s*=\\s*(["'])(.*?)\\1/gi)) {
+  for (const m of html.matchAll(/<a\b[^>]*\bhref\s*=\s*(["'])(.*?)\1/gi)) {
     const dest = canonicalPath(m[2]);
     if (dest) present.add(dest);
   }
   const missing = links.filter(([,to]) => !present.has(canonicalPath('/' + to + '/')));
   if (!missing.length) return { html, applicable: links.length, inserted: 0, existing: links.length };
-  if (!/<\\/article\\s*>/i.test(html)) throw new Error('ASTRA_SENEQUE_LINKER_ARTICLE_MISSING ' + route);
+  if (!/<\/article\s*>/i.test(html)) throw new Error('ASTRA_SENEQUE_LINKER_ARTICLE_MISSING ' + route);
   const list = missing.map(([,to,anchor]) => '<li><a href="/' + to + '/">' + escapeHtml(anchor) + '</a></li>').join('');
   const aside = '<aside class="astra-related-reading" data-astra-seneque-linker="v1" aria-label="Lectures complémentaires"><h2>Pour approfondir</h2><ul>' + list + '</ul></aside>';
-  const output = html.replace(/<\\/article\\s*>/i, aside + '</article>');
+  const output = html.replace(/<\/article\s*>/i, aside + '</article>');
   return { html: output, applicable: links.length, inserted: missing.length, existing: links.length - missing.length };
 }
