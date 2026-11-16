@@ -1,0 +1,24 @@
+{
+  "schema": "astra-editorial-connector-binding/v1",
+  "kind": "connector-write-contract",
+  "repo": "Dr-starck66/zip-github",
+  "branch": "astra/seneque-editorial-20261106",
+  "sites": [
+    {
+      "host": "seneque.info",
+      "contentRoot": "sites/seneque-info/editorial-20261106",
+      "urlRoot": "https://seneque.info/",
+      "projectId": "prj_wbSOG3AYC4iNetIYOyNnk6KHK8Hp"
+    }
+  ],
+  "vercelTeam": "team_60CqvoYOQADnfTKgIkLWrLDW",
+  "deployMode": "NEW_PREVIEW_THEN_INDEPENDENT_GATE_THEN_EXPLICIT_PROMOTE",
+  "writeAuth": "GITHUB_CONNECTED_APP",
+  "deployAuth": "VERCEL_CONNECTED_APP",
+  "guard": "NO_BUILD_WITHOUT_CURRENT_PROVIDER_QUOTA_PROOF",
+  "sourceRegistry": "Dr-starck66/indexation/tools/astra-zero-rich/native-routes.json",
+  "scheduleId": "6ae5fe6216e0819197eddcfe2786a44e",
+  "status": "SOURCE_ROUTE_IDENTIFIED_AND_GITHUB_WRITE_PROBE",
+  "proofScope": "CONFIG_PERSISTENCE_ONLY_NOT_ARTICLE_OR_DEPLOYMENT",
+  "dated": "2026-11-16"
+}
