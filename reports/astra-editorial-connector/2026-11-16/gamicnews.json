@@ -1,0 +1,21 @@
+{
+  "schema": "astra-editorial-connector-binding/v1",
+  "kind": "connector-write-contract",
+  "host": "gamicnews.com",
+  "repo": "Dr-starck66/zip-github",
+  "branch": "astra/gamicnews-indexable-editorial-20261105",
+  "contentRoot": "gamicnews/editorial-20261106",
+  "urlRoot": "https://gamicnews.com/news/",
+  "vercelTeam": "team_60CqvoYOQADnfTKgIkLWrLDW",
+  "vercelProject": "prj_ghKN1kjf5dKNIOXNUEGRWjV0lXFP",
+  "deployMode": "NEW_PREVIEW_THEN_INDEPENDENT_GATE_THEN_EXPLICIT_PROMOTE",
+  "sourceAuth": "GITHUB_CONNECTED_APP",
+  "deployAuth": "VERCEL_CONNECTED_APP",
+  "guard": "NO_BUILD_WITHOUT_CURRENT_PROVIDER_QUOTA_PROOF",
+  "status": "SOURCE_ROUTE_IDENTIFIED_AND_GITHUB_WRITE_PROBE",
+  "publishedArticleCount": 0,
+  "proofScope": "CONFIG_PERSISTENCE_ONLY_NOT_ARTICLE_OR_DEPLOYMENT",
+  "sourceRegistry": "Dr-starck66/indexation/tools/astra-zero-rich/native-routes.json",
+  "scheduleId": "6ae5fe6216e0819197eddcfe2786a44e",
+  "discoveryDate": "2026-11-16"
+}
