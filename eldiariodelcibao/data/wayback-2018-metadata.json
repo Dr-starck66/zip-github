@@ -1,25 +1,18 @@
 {
   "schemaVersion": 1,
   "purpose": "Source metadata only; no copied full article texts and no automatic indexability",
-  "checkedUTC": "2026-11-16T10:01:15.510044+00:00",
+  "checkedUTC": "2026-11-17T10:59:22.768801+00:00",
   "totalJune2018": 259,
   "records": [
     {
       "path": "/2018/06/20-anos-de-prision-productor-de-tv.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20180610103738id_/http://www.eldiariodelcibao.com:80/2018/06/20-anos-de-prision-productor-de-tv.html",
-      "archiveTimestamp": "20180610103738",
-      "originalTitle": "20 años de prisión a productor de TV. Miguel Angel Medrano a por alegada violación de una mujer",
-      "originalDate": "2018-06-05",
-      "sourceBodyWords": 45,
-      "sourceBodySha256": "fa71d86f1eaf7a6bf99292b9ccf50f029f78a03e945bd873055f1e562736b9c3",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 31,
-      "lastAttemptUTC": "2026-11-16T10:00:37.295794+00:00"
+      "attemptCount": 32,
+      "lastAttemptUTC": "2026-11-17T10:58:21.008225+00:00"
     },
     {
       "path": "/2018/06/aduanas-dispondra-de-inteligencia.html",
@@ -181,20 +174,13 @@
     },
     {
       "path": "/2018/06/angel-delgado-de-haina-para-la-nba.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20180626095722id_/http://www.eldiariodelcibao.com:80/2018/06/angel-delgado-de-haina-para-la-nba.html",
-      "archiveTimestamp": "20180626095722",
-      "originalTitle": "ANGEL DELGADO DE HAINA PARA LA NBA",
-      "originalDate": "2018-06-22",
-      "sourceBodyWords": 1,
-      "sourceBodySha256": "e1f57a34e70cf1a79e444e853ab784b9caccb1ccebc79f343ca0d39b47228ee3",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 31,
-      "lastAttemptUTC": "2026-11-16T10:00:39.033982+00:00"
+      "attemptCount": 32,
+      "lastAttemptUTC": "2026-11-17T10:58:33.345395+00:00"
     },
     {
       "path": "/2018/06/apresan-dos-ancianos-de-78-y-85-anos.html",
@@ -1155,8 +1141,8 @@
       "archiveUrl": "https://web.archive.org/web/20190227045356id_/http://www.eldiariodelcibao.com:80/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 31,
-      "lastAttemptUTC": "2026-11-16T10:01:03.974722+00:00"
+      "attemptCount": 32,
+      "lastAttemptUTC": "2026-11-17T10:59:06.686682+00:00"
     },
     {
       "path": "/2018/06/el-cantautor-manuel-jimenez-viajara-ny.html",
@@ -1718,20 +1704,13 @@
     },
     {
       "path": "/2018/06/felix-bautista-se-burla-de-estados.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "URLError",
       "archiveUrl": "https://web.archive.org/web/20180617211752id_/http://www.eldiariodelcibao.com:80/2018/06/felix-bautista-se-burla-de-estados.html",
-      "archiveTimestamp": "20180617211752",
-      "originalTitle": "Félix Bautista se burla de Estados Unidos; no tengo cuentas ni bienes alla...",
-      "originalDate": "2018-06-13",
-      "sourceBodyWords": 29,
-      "sourceBodySha256": "1fd7e0a4a77d60f71dc547c432e045ffdca827a9bad1a98a5bc401eb63e70e6b",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 31,
-      "lastAttemptUTC": "2026-11-16T10:00:45.380059+00:00"
+      "attemptCount": 32,
+      "lastAttemptUTC": "2026-11-17T10:58:51.235389+00:00"
     },
     {
       "path": "/2018/06/felix-bautista-tiene-rd84-mil-600.html",
@@ -2443,20 +2422,13 @@
     },
     {
       "path": "/2018/06/los-yankees-otorgan-un-minuto-de.html",
-      "status": "capture-incomplete",
+      "status": "fetch-failed",
+      "error": "HTTPError",
       "archiveUrl": "https://web.archive.org/web/20180703072450id_/http://www.eldiariodelcibao.com:80/2018/06/los-yankees-otorgan-un-minuto-de.html",
-      "archiveTimestamp": "20180703072450",
-      "originalTitle": "Los Yankees otorgan un minuto de silencio en honor al joven dominicano Lesandro Guzmán.",
-      "originalDate": "2018-06-29",
-      "sourceBodyWords": 14,
-      "sourceBodySha256": "cfd6fcf18548ca3ee7b9e6fbcb338304626e3930279fb5adaebfb4598bd0c2b6",
-      "sourceExcerpt": "",
-      "httpStatus": 200,
       "indexable": false,
-      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 31,
-      "lastAttemptUTC": "2026-11-16T10:00:23.890616+00:00"
+      "attemptCount": 32,
+      "lastAttemptUTC": "2026-11-17T10:57:46.523275+00:00"
     },
     {
       "path": "/2018/06/marcha-verde-convoca-para-el-12-de.html",
@@ -3214,8 +3186,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 31,
-      "lastAttemptUTC": "2026-11-16T10:00:28.937689+00:00"
+      "attemptCount": 32,
+      "lastAttemptUTC": "2026-11-17T10:57:54.755421+00:00"
     },
     {
       "path": "/2018/06/por-carolina-pichardolistin-diario.html",
@@ -3509,8 +3481,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 31,
-      "lastAttemptUTC": "2026-11-16T10:00:29.380002+00:00"
+      "attemptCount": 32,
+      "lastAttemptUTC": "2026-11-17T10:58:01.133389+00:00"
     },
     {
       "path": "/2018/06/roberto-rosario-sale-en-defensa-de.html",
@@ -3558,8 +3530,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 31,
-      "lastAttemptUTC": "2026-11-16T10:00:23.021102+00:00"
+      "attemptCount": 32,
+      "lastAttemptUTC": "2026-11-17T10:57:48.299266+00:00"
     },
     {
       "path": "/2018/06/sacerdote-critica-posicion-masalles.html",
@@ -3722,8 +3694,8 @@
       "archiveUrl": "https://web.archive.org/web/20180702014224id_/http://www.eldiariodelcibao.com:80/2018/06/sepultan-restos-del-adolescente-de-15.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 31,
-      "lastAttemptUTC": "2026-11-16T10:01:15.509646+00:00"
+      "attemptCount": 32,
+      "lastAttemptUTC": "2026-11-17T10:59:22.768406+00:00"
     },
     {
       "path": "/2018/06/servio-tulio-advierte-juez-designado.html",
