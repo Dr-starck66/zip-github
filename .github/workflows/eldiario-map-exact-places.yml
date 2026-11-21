@@ -1,0 +1,57 @@
+name: ELDIARIO verified Valverde locality map
+on:
+  push:
+    branches: [eldiariodelcibao-metadata-integration]
+    paths:
+      - ".github/workflows/eldiario-map-exact-places.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build-locations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: eldiariodelcibao-metadata-integration
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check "Pillow==11.3.0"
+      - name: Render actual georeferenced localities, no fictional roads
+        run: python eldiariodelcibao/scripts/astra_valverde_location_map.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify audited map and binary
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          import {createHash} from 'node:crypto';
+          import {assessImage} from './eldiariodelcibao/lib/image-seo-rights-guard.mjs';
+          const m=JSON.parse(fs.readFileSync('./eldiariodelcibao/data/image-manifest.json'));
+          const a=m['/archivo/2018/esperanza-boca-de-mao-obras-protestas/#map'];
+          assert.ok(a);
+          assert.deepEqual(a.coordinates['El Puente San Rafael'],[19.59178,-71.0588]);
+          assert.deepEqual(a.coordinates['Boca de Mao'],[19.58813,-71.04454]);
+          assert.deepEqual(a.coordinates['Esperanza'],[19.5784,-70.991]);
+          assert.equal(assessImage({path:'/archivo/2018/esperanza-boca-de-mao-obras-protestas/',title:a.pageTitle},a).status,'PASS');
+          const img=fs.readFileSync('./eldiariodelcibao/public'+a.path);
+          assert.equal(img.length,a.bytes);
+          assert.equal(createHash('sha256').update(img).digest('hex'),a.sha256);
+          assert.equal(img.toString('ascii',0,4),'RIFF');
+          assert.equal(img.toString('ascii',8,12),'WEBP');
+          console.log('ASTRA_REAL_VALVERDE_MAP_PASS',a.path,a.bytes);
+          JS
+      - name: Save real map and source metadata
+        run: |
+          git config user.name 'astra-archive-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add eldiariodelcibao/public/images/mapa-esperanza-boca-mao-puente-san-rafael-valverde.webp eldiariodelcibao/data/image-manifest.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'media(eldiario): georeferenced localities infographic from OSM coordinates [skip ci]'
+            git pull --rebase origin eldiariodelcibao-metadata-integration
+            git push origin HEAD:eldiariodelcibao-metadata-integration
+          fi

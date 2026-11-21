@@ -1,0 +1,65 @@
+name: ELDIARIO ASTRA exact city photos batch
+on:
+  push:
+    branches: [eldiariodelcibao-metadata-integration]
+    paths:
+      - ".github/workflows/eldiario-astra-places-batch.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: eldiario-astra-places-batch
+  cancel-in-progress: false
+jobs:
+  photos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: eldiariodelcibao-metadata-integration
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Free local image encoder
+        run: python -m pip install --disable-pip-version-check "Pillow==11.3.0"
+      - name: Source/licence-gated Wikimedia imagery
+        run: python eldiariodelcibao/scripts/astra_batch_real_places.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Real binary and rights proof on every candidate
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          import {createHash} from 'node:crypto';
+          import {assessImage} from './eldiariodelcibao/lib/image-seo-rights-guard.mjs';
+          const images=JSON.parse(fs.readFileSync('eldiariodelcibao/data/image-manifest.json','utf8'));
+          const batch=['/santiago/','/mao-valverde/','/monumento-heroes-restauracion-santiago/','/puerto-plata/','/carnaval-de-la-vega/'];
+          const recovered=batch.filter(path=>images[path]);
+          assert.ok(recovered.length>=2,'at least two genuinely sourced photos required');
+          for(const path of recovered){
+             const m=images[path],result=assessImage({path,title:m.pageTitle},m);
+             assert.equal(result.status,'PASS',JSON.stringify({path,result}));
+             const binary=fs.readFileSync('eldiariodelcibao/public'+m.path);
+             assert.equal(binary.length,m.bytes);
+             assert.equal(binary.subarray(0,4).toString('ascii'),'RIFF');
+             assert.equal(binary.subarray(8,12).toString('ascii'),'WEBP');
+             assert.equal(createHash('sha256').update(binary).digest('hex'),m.sha256);
+             assert.ok(m.source.filePage.includes('commons.wikimedia.org/wiki/File:'));
+             assert.ok(m.source.author&&m.source.license);
+             console.log('ASTRA_CITY_IMAGE_BINARY_PASS',path,m.path,m.bytes,m.source.license);
+          }
+          console.log('ASTRA_IMAGE_BATCH_PROOF',{pass:recovered.length,fail:batch.length-recovered.length});
+          JS
+      - name: Commit ONLY scoped verified photo files and manifest
+        run: |
+          git config user.name 'astra-archive-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add eldiariodelcibao/public/images/ eldiariodelcibao/data/image-manifest.json
+          if ! git diff --cached --quiet; then
+             git commit -m "media(eldiario): verified exact Cibao city photographs and SEO WebP [skip ci]"
+             git pull --rebase origin eldiariodelcibao-metadata-integration
+             git push origin HEAD:eldiariodelcibao-metadata-integration
+          fi

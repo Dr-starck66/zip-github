@@ -1,0 +1,63 @@
+name: ELDIARIO real Esperanza documentary photo
+on:
+  push:
+    branches: [eldiariodelcibao-metadata-integration]
+    paths:
+      - ".github/workflows/eldiario-real-esperanza-photo.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: eldiario-real-esperanza-photo
+  cancel-in-progress: false
+jobs:
+  replace-invented-with-real:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: eldiariodelcibao-metadata-integration
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check "Pillow==11.3.0"
+      - name: Download genuine 2014 Esperanza photo under checked CC BY-SA 4.0
+        run: python eldiariodelcibao/scripts/astra_esperanza_real_photo.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate image is real local photo, linked to exact source with truthful caption
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          import {createHash} from 'node:crypto';
+          import {assessImage} from './eldiariodelcibao/lib/image-seo-rights-guard.mjs';
+          const path='/archivo/2018/esperanza-boca-de-mao-obras-protestas/';
+          const m=JSON.parse(fs.readFileSync('./eldiariodelcibao/data/image-manifest.json'));
+          const a=m[path];
+          assert.equal(a.source.license,'CC BY-SA 4.0');
+          assert.equal(a.source.author,'Valvedero99');
+          assert.equal(a.source.upstreamSHA1,'c8aadb4ee23fc2556c9c9bf023af6d6f69ef72a2');
+          assert.ok(a.caption.includes('2014')&&a.caption.includes('NO muestra'));
+          assert.ok(a.alt.includes('Esperanza'));
+          assert.equal(assessImage({path,title:a.pageTitle},a).status,'PASS');
+          const binary=fs.readFileSync('./eldiariodelcibao/public'+a.path);
+          assert.equal(binary.byteLength,a.bytes);
+          assert.equal(createHash('sha256').update(binary).digest('hex'),a.sha256);
+          assert.equal(binary.toString('ascii',0,4),'RIFF');
+          assert.equal(binary.toString('ascii',8,12),'WEBP');
+          assert.ok(binary.length>20000);
+          console.log('ASTRA_ESPERANZA_REAL_PHOTO_PASS',a.path,a.bytes);
+          JS
+      - name: Commit only documentary image and proof of real location
+        run: |
+          git config user.name 'astra-archive-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add eldiariodelcibao/public/images/esperanza-valverde-calle-desfile-comunitario-2014.webp eldiariodelcibao/data/image-manifest.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'media(eldiario): genuine Esperanza 2014 street photo with CC BY-SA proof [skip ci]'
+            git pull --rebase origin eldiariodelcibao-metadata-integration
+            git push origin HEAD:eldiariodelcibao-metadata-integration
+          fi
