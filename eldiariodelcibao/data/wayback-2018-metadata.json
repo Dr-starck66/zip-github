@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Source metadata only; no copied full article texts and no automatic indexability",
-  "checkedUTC": "2026-11-20T10:19:32.864453+00:00",
+  "checkedUTC": "2026-11-21T10:04:14.957657+00:00",
   "totalJune2018": 259,
   "records": [
     {
@@ -11,8 +11,8 @@
       "archiveUrl": "https://web.archive.org/web/20180610103738id_/http://www.eldiariodelcibao.com:80/2018/06/20-anos-de-prision-productor-de-tv.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 35,
-      "lastAttemptUTC": "2026-11-20T10:18:22.500174+00:00"
+      "attemptCount": 36,
+      "lastAttemptUTC": "2026-11-21T10:02:48.309790+00:00"
     },
     {
       "path": "/2018/06/aduanas-dispondra-de-inteligencia.html",
@@ -179,8 +179,8 @@
       "archiveUrl": "https://web.archive.org/web/20180626095722id_/http://www.eldiariodelcibao.com:80/2018/06/angel-delgado-de-haina-para-la-nba.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 35,
-      "lastAttemptUTC": "2026-11-20T10:18:49.314857+00:00"
+      "attemptCount": 36,
+      "lastAttemptUTC": "2026-11-21T10:03:14.763807+00:00"
     },
     {
       "path": "/2018/06/apresan-dos-ancianos-de-78-y-85-anos.html",
@@ -1141,8 +1141,8 @@
       "archiveUrl": "https://web.archive.org/web/20190227045356id_/http://www.eldiariodelcibao.com:80/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 35,
-      "lastAttemptUTC": "2026-11-20T10:19:02.828005+00:00"
+      "attemptCount": 36,
+      "lastAttemptUTC": "2026-11-21T10:03:44.291389+00:00"
     },
     {
       "path": "/2018/06/el-cantautor-manuel-jimenez-viajara-ny.html",
@@ -1709,8 +1709,8 @@
       "archiveUrl": "https://web.archive.org/web/20180617211752id_/http://www.eldiariodelcibao.com:80/2018/06/felix-bautista-se-burla-de-estados.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 35,
-      "lastAttemptUTC": "2026-11-20T10:19:23.888781+00:00"
+      "attemptCount": 36,
+      "lastAttemptUTC": "2026-11-21T10:03:46.392964+00:00"
     },
     {
       "path": "/2018/06/felix-bautista-tiene-rd84-mil-600.html",
@@ -2434,8 +2434,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 35,
-      "lastAttemptUTC": "2026-11-20T10:17:46.528537+00:00"
+      "attemptCount": 36,
+      "lastAttemptUTC": "2026-11-21T10:02:22.697561+00:00"
     },
     {
       "path": "/2018/06/marcha-verde-convoca-para-el-12-de.html",
@@ -3193,8 +3193,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 35,
-      "lastAttemptUTC": "2026-11-20T10:18:08.822899+00:00"
+      "attemptCount": 36,
+      "lastAttemptUTC": "2026-11-21T10:02:48.394458+00:00"
     },
     {
       "path": "/2018/06/por-carolina-pichardolistin-diario.html",
@@ -3481,8 +3481,8 @@
       "archiveUrl": "https://web.archive.org/web/20180623142436id_/http://www.eldiariodelcibao.com:80/2018/06/roban-en-la-habitacion-de-hotel-de.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 35,
-      "lastAttemptUTC": "2026-11-20T10:18:36.572242+00:00"
+      "attemptCount": 36,
+      "lastAttemptUTC": "2026-11-21T10:03:15.334278+00:00"
     },
     {
       "path": "/2018/06/roberto-rosario-sale-en-defensa-de.html",
@@ -3530,8 +3530,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 35,
-      "lastAttemptUTC": "2026-11-20T10:17:45.618810+00:00"
+      "attemptCount": 36,
+      "lastAttemptUTC": "2026-11-21T10:02:19.751488+00:00"
     },
     {
       "path": "/2018/06/sacerdote-critica-posicion-masalles.html",
@@ -3694,8 +3694,8 @@
       "archiveUrl": "https://web.archive.org/web/20180702014224id_/http://www.eldiariodelcibao.com:80/2018/06/sepultan-restos-del-adolescente-de-15.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 35,
-      "lastAttemptUTC": "2026-11-20T10:19:32.864037+00:00"
+      "attemptCount": 36,
+      "lastAttemptUTC": "2026-11-21T10:04:14.957206+00:00"
     },
     {
       "path": "/2018/06/servio-tulio-advierte-juez-designado.html",
