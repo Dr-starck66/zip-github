@@ -1,18 +1,25 @@
 {
   "schemaVersion": 1,
   "purpose": "Source metadata only; no copied full article texts and no automatic indexability",
-  "checkedUTC": "2026-11-21T10:04:14.957657+00:00",
+  "checkedUTC": "2026-11-22T10:05:09.208356+00:00",
   "totalJune2018": 259,
   "records": [
     {
       "path": "/2018/06/20-anos-de-prision-productor-de-tv.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "capture-incomplete",
       "archiveUrl": "https://web.archive.org/web/20180610103738id_/http://www.eldiariodelcibao.com:80/2018/06/20-anos-de-prision-productor-de-tv.html",
+      "archiveTimestamp": "20180610103738",
+      "originalTitle": "20 años de prisión a productor de TV. Miguel Angel Medrano a por alegada violación de una mujer",
+      "originalDate": "2018-06-05",
+      "sourceBodyWords": 45,
+      "sourceBodySha256": "fa71d86f1eaf7a6bf99292b9ccf50f029f78a03e945bd873055f1e562736b9c3",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
       "indexable": false,
+      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 36,
-      "lastAttemptUTC": "2026-11-21T10:02:48.309790+00:00"
+      "attemptCount": 37,
+      "lastAttemptUTC": "2026-11-22T10:04:11.344746+00:00"
     },
     {
       "path": "/2018/06/aduanas-dispondra-de-inteligencia.html",
@@ -179,8 +186,8 @@
       "archiveUrl": "https://web.archive.org/web/20180626095722id_/http://www.eldiariodelcibao.com:80/2018/06/angel-delgado-de-haina-para-la-nba.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 36,
-      "lastAttemptUTC": "2026-11-21T10:03:14.763807+00:00"
+      "attemptCount": 37,
+      "lastAttemptUTC": "2026-11-22T10:04:36.189888+00:00"
     },
     {
       "path": "/2018/06/apresan-dos-ancianos-de-78-y-85-anos.html",
@@ -1141,8 +1148,8 @@
       "archiveUrl": "https://web.archive.org/web/20190227045356id_/http://www.eldiariodelcibao.com:80/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 36,
-      "lastAttemptUTC": "2026-11-21T10:03:44.291389+00:00"
+      "attemptCount": 37,
+      "lastAttemptUTC": "2026-11-22T10:04:41.231764+00:00"
     },
     {
       "path": "/2018/06/el-cantautor-manuel-jimenez-viajara-ny.html",
@@ -1709,8 +1716,8 @@
       "archiveUrl": "https://web.archive.org/web/20180617211752id_/http://www.eldiariodelcibao.com:80/2018/06/felix-bautista-se-burla-de-estados.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 36,
-      "lastAttemptUTC": "2026-11-21T10:03:46.392964+00:00"
+      "attemptCount": 37,
+      "lastAttemptUTC": "2026-11-22T10:05:06.801238+00:00"
     },
     {
       "path": "/2018/06/felix-bautista-tiene-rd84-mil-600.html",
@@ -2434,8 +2441,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 36,
-      "lastAttemptUTC": "2026-11-21T10:02:22.697561+00:00"
+      "attemptCount": 37,
+      "lastAttemptUTC": "2026-11-22T10:03:58.412914+00:00"
     },
     {
       "path": "/2018/06/marcha-verde-convoca-para-el-12-de.html",
@@ -3193,8 +3200,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 36,
-      "lastAttemptUTC": "2026-11-21T10:02:48.394458+00:00"
+      "attemptCount": 37,
+      "lastAttemptUTC": "2026-11-22T10:04:05.977869+00:00"
     },
     {
       "path": "/2018/06/por-carolina-pichardolistin-diario.html",
@@ -3476,13 +3483,20 @@
     },
     {
       "path": "/2018/06/roban-en-la-habitacion-de-hotel-de.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "capture-incomplete",
       "archiveUrl": "https://web.archive.org/web/20180623142436id_/http://www.eldiariodelcibao.com:80/2018/06/roban-en-la-habitacion-de-hotel-de.html",
+      "archiveTimestamp": "20180623142436",
+      "originalTitle": "Roban en la habitación de hotel de Maluma en Moscú y se llevan un botín de casi 800.000 dólares",
+      "originalDate": "2018-06-19",
+      "sourceBodyWords": 46,
+      "sourceBodySha256": "19f8dceeef12e5bbe8cceb591be700dbad90c3fc207e6cff5a2a1c48deccb003",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
       "indexable": false,
+      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 36,
-      "lastAttemptUTC": "2026-11-21T10:03:15.334278+00:00"
+      "attemptCount": 37,
+      "lastAttemptUTC": "2026-11-22T10:04:17.110981+00:00"
     },
     {
       "path": "/2018/06/roberto-rosario-sale-en-defensa-de.html",
@@ -3530,8 +3544,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 36,
-      "lastAttemptUTC": "2026-11-21T10:02:19.751488+00:00"
+      "attemptCount": 37,
+      "lastAttemptUTC": "2026-11-22T10:03:58.743164+00:00"
     },
     {
       "path": "/2018/06/sacerdote-critica-posicion-masalles.html",
@@ -3694,8 +3708,8 @@
       "archiveUrl": "https://web.archive.org/web/20180702014224id_/http://www.eldiariodelcibao.com:80/2018/06/sepultan-restos-del-adolescente-de-15.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 36,
-      "lastAttemptUTC": "2026-11-21T10:04:14.957206+00:00"
+      "attemptCount": 37,
+      "lastAttemptUTC": "2026-11-22T10:05:09.208011+00:00"
     },
     {
       "path": "/2018/06/servio-tulio-advierte-juez-designado.html",
