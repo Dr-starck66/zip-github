@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Source metadata only; no copied full article texts and no automatic indexability",
-  "checkedUTC": "2026-11-22T10:05:09.208356+00:00",
+  "checkedUTC": "2026-11-23T11:01:08.255035+00:00",
   "totalJune2018": 259,
   "records": [
     {
@@ -18,8 +18,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 37,
-      "lastAttemptUTC": "2026-11-22T10:04:11.344746+00:00"
+      "attemptCount": 38,
+      "lastAttemptUTC": "2026-11-23T11:00:48.107602+00:00"
     },
     {
       "path": "/2018/06/aduanas-dispondra-de-inteligencia.html",
@@ -181,13 +181,20 @@
     },
     {
       "path": "/2018/06/angel-delgado-de-haina-para-la-nba.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "capture-incomplete",
       "archiveUrl": "https://web.archive.org/web/20180626095722id_/http://www.eldiariodelcibao.com:80/2018/06/angel-delgado-de-haina-para-la-nba.html",
+      "archiveTimestamp": "20180626095722",
+      "originalTitle": "ANGEL DELGADO DE HAINA PARA LA NBA",
+      "originalDate": "2018-06-22",
+      "sourceBodyWords": 1,
+      "sourceBodySha256": "e1f57a34e70cf1a79e444e853ab784b9caccb1ccebc79f343ca0d39b47228ee3",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
       "indexable": false,
+      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 37,
-      "lastAttemptUTC": "2026-11-22T10:04:36.189888+00:00"
+      "attemptCount": 38,
+      "lastAttemptUTC": "2026-11-23T11:00:59.397318+00:00"
     },
     {
       "path": "/2018/06/apresan-dos-ancianos-de-78-y-85-anos.html",
@@ -1143,13 +1150,20 @@
     },
     {
       "path": "/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "capture-incomplete",
       "archiveUrl": "https://web.archive.org/web/20190227045356id_/http://www.eldiariodelcibao.com:80/2018/06/el-cambio-no-viene-hay-que-hacerlo.html",
+      "archiveTimestamp": "20190227045356",
+      "originalTitle": "El cambio no viene, hay que hacerlo",
+      "originalDate": null,
+      "sourceBodyWords": 291,
+      "sourceBodySha256": "2551f84266985b2f4d71b630b02f16518b694aecc490ff65ac059bcc2b6ff2c0",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
       "indexable": false,
+      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 37,
-      "lastAttemptUTC": "2026-11-22T10:04:41.231764+00:00"
+      "attemptCount": 38,
+      "lastAttemptUTC": "2026-11-23T11:01:02.501900+00:00"
     },
     {
       "path": "/2018/06/el-cantautor-manuel-jimenez-viajara-ny.html",
@@ -1711,13 +1725,20 @@
     },
     {
       "path": "/2018/06/felix-bautista-se-burla-de-estados.html",
-      "status": "fetch-failed",
-      "error": "URLError",
+      "status": "capture-incomplete",
       "archiveUrl": "https://web.archive.org/web/20180617211752id_/http://www.eldiariodelcibao.com:80/2018/06/felix-bautista-se-burla-de-estados.html",
+      "archiveTimestamp": "20180617211752",
+      "originalTitle": "Félix Bautista se burla de Estados Unidos; no tengo cuentas ni bienes alla...",
+      "originalDate": "2018-06-13",
+      "sourceBodyWords": 29,
+      "sourceBodySha256": "1fd7e0a4a77d60f71dc547c432e045ffdca827a9bad1a98a5bc401eb63e70e6b",
+      "sourceExcerpt": "",
+      "httpStatus": 200,
       "indexable": false,
+      "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 37,
-      "lastAttemptUTC": "2026-11-22T10:05:06.801238+00:00"
+      "attemptCount": 38,
+      "lastAttemptUTC": "2026-11-23T11:01:08.254696+00:00"
     },
     {
       "path": "/2018/06/felix-bautista-tiene-rd84-mil-600.html",
@@ -2441,8 +2462,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 37,
-      "lastAttemptUTC": "2026-11-22T10:03:58.412914+00:00"
+      "attemptCount": 38,
+      "lastAttemptUTC": "2026-11-23T11:00:34.593720+00:00"
     },
     {
       "path": "/2018/06/marcha-verde-convoca-para-el-12-de.html",
@@ -3200,8 +3221,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 37,
-      "lastAttemptUTC": "2026-11-22T10:04:05.977869+00:00"
+      "attemptCount": 38,
+      "lastAttemptUTC": "2026-11-23T11:00:44.197422+00:00"
     },
     {
       "path": "/2018/06/por-carolina-pichardolistin-diario.html",
@@ -3495,8 +3516,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 37,
-      "lastAttemptUTC": "2026-11-22T10:04:17.110981+00:00"
+      "attemptCount": 38,
+      "lastAttemptUTC": "2026-11-23T11:01:00.181544+00:00"
     },
     {
       "path": "/2018/06/roberto-rosario-sale-en-defensa-de.html",
@@ -3544,8 +3565,8 @@
       "indexable": false,
       "provenance": "capture-requires-human-review",
       "alternatesExamined": 0,
-      "attemptCount": 37,
-      "lastAttemptUTC": "2026-11-22T10:03:58.743164+00:00"
+      "attemptCount": 38,
+      "lastAttemptUTC": "2026-11-23T11:00:48.025956+00:00"
     },
     {
       "path": "/2018/06/sacerdote-critica-posicion-masalles.html",
@@ -3708,8 +3729,8 @@
       "archiveUrl": "https://web.archive.org/web/20180702014224id_/http://www.eldiariodelcibao.com:80/2018/06/sepultan-restos-del-adolescente-de-15.html",
       "indexable": false,
       "alternatesExamined": 0,
-      "attemptCount": 37,
-      "lastAttemptUTC": "2026-11-22T10:05:09.208011+00:00"
+      "attemptCount": 38,
+      "lastAttemptUTC": "2026-11-23T11:01:07.750339+00:00"
     },
     {
       "path": "/2018/06/servio-tulio-advierte-juez-designado.html",
