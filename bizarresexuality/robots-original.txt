@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://bizarresexuality.com/sitemap.xml
-Sitemap: https://bizarresexuality.com/news-sitemap.xml

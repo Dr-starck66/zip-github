@@ -1,8 +1,0 @@
-{
-  "schema": "astra-promotion-request/v1",
-  "sourceRepo": "Dr-starck66/betgpt-railway",
-  "sourceSha": "ed15c8fef486c777d1063c22e27003fecc25f73b",
-  "workflowRunId": 40938203771,
-  "requestedAt": "2026-10-29T19:15:00Z",
-  "reason": "User-requested protected release: fix independently proven public noindex on Genoa Juventus 29 Oct via minimal editorial wording correction; immutable main Never-Fail 40938203771 SUCCESS; preserve all gates, 3/day, original URL, 2 licensed inline images, indexability and News sitemap; require Railway production postflight."
-}

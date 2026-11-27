@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://dr-starck66.github.io/zip-github/brulafine-avis-2026/sitemap.xml

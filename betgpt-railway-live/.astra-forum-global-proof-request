@@ -1,6 +1,0 @@
-{
-  "schema": "astra-forum-global-proof/v1",
-  "target": "067a9134772f233821e785baaaa518a3491557c7",
-  "requestedAt": "2026-10-02T21:43:25.000Z",
-  "reason": "Final public retest after diverse frames, match-specific filler and v3 cache invalidation"
-}
