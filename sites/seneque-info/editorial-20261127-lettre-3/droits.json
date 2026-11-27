@@ -1,0 +1,32 @@
+{
+  "article": "https://seneque.info/seneque-lettre-3-amitie-confiance/",
+  "date": "2026-11-27",
+  "creator": "Sénèque & les Plaisirs — rédaction",
+  "basis": "Illustrations originales produites pour cet article, sans image externe. Réutilisation sur ce site autorisée.",
+  "assets": [
+    {
+      "file": "couverture.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Une lettre scellée et son enveloppe sur fond bleu, illustration du courrier de Lucilius",
+      "caption": "Le messager est au point de départ de la lettre 3.",
+      "sha256": "a9b01c6fd1e0ebcf06005d1f1ef1f91026982805474ef60b1336346b4700db70"
+    },
+    {
+      "file": "jugement.webp",
+      "width": 1440,
+      "height": 810,
+      "alt": "Deux temps de l’amitié chez Sénèque, observer avant l’engagement puis faire confiance dans la relation",
+      "caption": "L’ordre des deux gestes donne sa cohérence au conseil de Sénèque.",
+      "sha256": "275d3b84557cf6c9e3355ba4a2369960e9444c1f77126d6205494da97d858495"
+    },
+    {
+      "file": "confidences.webp",
+      "width": 1440,
+      "height": 810,
+      "alt": "Deux excès selon la lettre 3, tout raconter sans choisir son confident et tout retenir même devant ses proches",
+      "caption": "Sénèque discute les avantages et les coûts des deux excès.",
+      "sha256": "13f3c41838d42d5aa1d878c93bbf5bcb46e50289ad23794431acf6eba8b9a747"
+    }
+  ]
+}
