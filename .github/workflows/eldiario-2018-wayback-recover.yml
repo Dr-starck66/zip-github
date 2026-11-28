@@ -1,7 +1,7 @@
 name: ELDIARIO June 2018 evidence recovery
 on:
   push:
-    branches: [eldiariodelcibao-restauration-2018]
+    branches: [eldiariodelcibao-restauration-2018, eldiariodelcibao-metadata-integration]
     paths:
       - "eldiariodelcibao/scripts/recover-wayback-2018.py"
       - ".github/workflows/eldiario-2018-wayback-recover.yml"
@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: eldiariodelcibao-restauration-2018
+          ref: ${{ github.ref_name }}
           persist-credentials: true
       - uses: actions/setup-python@v5
         with:
@@ -45,5 +45,5 @@ jobs:
           git add eldiariodelcibao/data/wayback-2018-metadata.json
           if ! git diff --cached --quiet; then
             git commit -m "data(eldiario): evidence manifest for 259 archived June 2018 routes [skip ci]"
-            git push origin HEAD:eldiariodelcibao-restauration-2018
+            git push origin "HEAD:${GITHUB_REF_NAME}"
           fi

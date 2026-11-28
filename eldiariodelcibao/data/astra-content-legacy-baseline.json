@@ -1,0 +1,289 @@
+{
+  "schema": "astra-content-legacy-baseline/v1",
+  "policy": "no-blind-grandfathering-on-change",
+  "createdAt": "2026-10-12",
+  "sourceBranch": "eldiariodelcibao-metadata-integration",
+  "comment": "Legacy pages are preserved for SEO/availability but NOT quality approved. Any bytewise object change removes this exemption, requiring content quality gate. New URLs always fail closed until quality approved.",
+  "entries": [
+    {
+      "path": "/cibao/",
+      "type": "page",
+      "hash": "39700186b0f4afc5"
+    },
+    {
+      "path": "/santiago/",
+      "type": "page",
+      "hash": "57702da78087e369"
+    },
+    {
+      "path": "/republica-dominicana/",
+      "type": "page",
+      "hash": "35f6fbcf15ce4c8a"
+    },
+    {
+      "path": "/2012/09/avioneta-se-precipita-en-constanza-y.html",
+      "type": "page",
+      "hash": "e0fb567feaad9d40"
+    },
+    {
+      "path": "/2013/07/comerciantes-marchan-contra-las.html",
+      "type": "page",
+      "hash": "5e64007648b49ad3"
+    },
+    {
+      "path": "/2017/01/fallece-en-accidente-de-transito-el.html",
+      "type": "page",
+      "hash": "4ce0a08629d353cb"
+    },
+    {
+      "path": "/2017/01/anthony-santos-mostro-su-dolor-ante-el.html",
+      "type": "page",
+      "hash": "77463332261e794e"
+    },
+    {
+      "path": "/2017/04/esposa-de-joao-santana-asegura.html",
+      "type": "page",
+      "hash": "542f10aa2c317a5e"
+    },
+    {
+      "path": "/2017/10/fotos-de-la-boda-del-pueblo.html",
+      "type": "page",
+      "hash": "46de1c67161635e2"
+    },
+    {
+      "path": "/2018/05/ni-jesucristo-que-resucitara-me-ganaba.html",
+      "type": "page",
+      "hash": "c016d4ea7f1b9ddc"
+    },
+    {
+      "path": "/provincias-del-cibao/",
+      "type": "page",
+      "hash": "bc2a28ff699a15ab"
+    },
+    {
+      "path": "/economia-del-cibao/",
+      "type": "page",
+      "hash": "ad84d82beba844ea"
+    },
+    {
+      "path": "/turismo-en-el-cibao/",
+      "type": "page",
+      "hash": "f2cd94ff2ed77994"
+    },
+    {
+      "path": "/cultura-del-cibao/",
+      "type": "page",
+      "hash": "3dd0259159f5fc2b"
+    },
+    {
+      "path": "/aeropuerto-internacional-del-cibao/",
+      "type": "page",
+      "hash": "9b43e87a6304daf8"
+    },
+    {
+      "path": "/santiago-de-los-caballeros/",
+      "type": "page",
+      "hash": "dca76b227c7f0ad5"
+    },
+    {
+      "path": "/2011/08/un-jornalero-del-municipio-de-esperanza.html",
+      "type": "page",
+      "hash": "a382429bd3f97555"
+    },
+    {
+      "path": "/2012/02/descubren-cuenta-bancaria-de-43.html",
+      "type": "page",
+      "hash": "29cc97a66cf0224f"
+    },
+    {
+      "path": "/2013/02/corrupcion-del-pld-y-leonel-fernandez.html",
+      "type": "page",
+      "hash": "20f60eab17bed9a4"
+    },
+    {
+      "path": "/2017/06/fwd_7.html",
+      "type": "page",
+      "hash": "1780f2662048b6c7"
+    },
+    {
+      "path": "/puerto-plata/",
+      "type": "page",
+      "hash": "ee302ee0d68a9362"
+    },
+    {
+      "path": "/la-vega/",
+      "type": "page",
+      "hash": "3f9572799400b42c"
+    },
+    {
+      "path": "/moca-espaillat/",
+      "type": "page",
+      "hash": "7ebe88602918ea3f"
+    },
+    {
+      "path": "/san-francisco-de-macoris/",
+      "type": "page",
+      "hash": "5d9205a477df972a"
+    },
+    {
+      "path": "/jarabacoa/",
+      "type": "page",
+      "hash": "ec927d09fc561d54"
+    },
+    {
+      "path": "/constanza/",
+      "type": "page",
+      "hash": "713a90b14e0ebe2a"
+    },
+    {
+      "path": "/monte-cristi/",
+      "type": "page",
+      "hash": "79221c002d76c0f2"
+    },
+    {
+      "path": "/dajabon/",
+      "type": "page",
+      "hash": "07ad8c497e1e12c9"
+    },
+    {
+      "path": "/mao-valverde/",
+      "type": "page",
+      "hash": "eb92dc995f88df73"
+    },
+    {
+      "path": "/samana/",
+      "type": "page",
+      "hash": "5ce41528a5875e59"
+    },
+    {
+      "path": "/aguilas-cibaenas/",
+      "type": "page",
+      "hash": "b02d39ea3476d824"
+    },
+    {
+      "path": "/cibao-fc/",
+      "type": "page",
+      "hash": "2967bffe92d70dd0"
+    },
+    {
+      "path": "/carnaval-de-la-vega/",
+      "type": "page",
+      "hash": "923c3ebda29153cc"
+    },
+    {
+      "path": "/monumento-heroes-restauracion-santiago/",
+      "type": "page",
+      "hash": "ffe1c6b5d38f671b"
+    },
+    {
+      "path": "/zonas-francas-del-cibao/",
+      "type": "page",
+      "hash": "3e35d05bac5b2ed7"
+    },
+    {
+      "path": "/carreteras-del-cibao/",
+      "type": "page",
+      "hash": "101d92439d0cf2c2"
+    },
+    {
+      "path": "/economia/expo-cibao-2026-negocios-santiago/",
+      "type": "news",
+      "hash": "d69ca89e76ca79e3"
+    },
+    {
+      "path": "/economia/cepal-santiago-7-9-octubre-2026/",
+      "type": "news",
+      "hash": "64c4db7326d7d862"
+    },
+    {
+      "path": "/turismo/punta-bergantin-inversion-region-norte/",
+      "type": "news",
+      "hash": "0d9a226f980ae589"
+    },
+    {
+      "path": "/turismo/modernizacion-teleferico-puerto-plata-2026/",
+      "type": "news",
+      "hash": "6f25e119ba0e1612"
+    },
+    {
+      "path": "/clima/aguaceros-cibao-alertas-octubre-2026/",
+      "type": "news",
+      "hash": "34218ab502c0fafd"
+    },
+    {
+      "path": "/archivo/2018/esperanza-boca-de-mao-obras-protestas/",
+      "type": "editorial",
+      "hash": "656bb3647808232b"
+    },
+    {
+      "path": "/2018/06/alcaldesa-de-esperanza-anuncia.html",
+      "type": "restored",
+      "hash": "fae815d6e142a508"
+    },
+    {
+      "path": "/2018/06/convocan-paro-por-48-horas-en-esperanza.html",
+      "type": "restored",
+      "hash": "10630d879e144bcf"
+    },
+    {
+      "path": "/2018/06/director-junta-de-boca-de-mao-se-reune.html",
+      "type": "restored",
+      "hash": "f8c6c817c39906ea"
+    },
+    {
+      "path": "/2018/06/autoridades-monumento-de-santiago-dicen.html",
+      "type": "restored",
+      "hash": "0165929d4b4167ea"
+    },
+    {
+      "path": "/guias/calcular-prestaciones-laborales-republica-dominicana/",
+      "type": "evergreen",
+      "hash": "6d5d7c5048b678f6"
+    },
+    {
+      "path": "/guias/papel-buena-conducta-republica-dominicana/",
+      "type": "evergreen",
+      "hash": "686853a786914a10"
+    },
+    {
+      "path": "/guias/cursos-infotep-gratis-santiago-cibao/",
+      "type": "evergreen",
+      "hash": "023b1fc8e10d69d0"
+    },
+    {
+      "path": "/guias/consultar-certificado-infotep-cedula/",
+      "type": "evergreen",
+      "hash": "25b761259920ed0d"
+    },
+    {
+      "path": "/guias/afiliarse-senasa-subsidiado-requisitos/",
+      "type": "evergreen",
+      "hash": "90911e5471f5f93d"
+    },
+    {
+      "path": "/guias/acta-nacimiento-jce-republica-dominicana/",
+      "type": "evergreen",
+      "hash": "b4eeeca86a8c29f6"
+    },
+    {
+      "path": "/guias/renovar-licencia-conducir-intrant-rd/",
+      "type": "evergreen",
+      "hash": "f1c0c40c4bc2ebf0"
+    },
+    {
+      "path": "/guias/consultar-multas-transito-republica-dominicana/",
+      "type": "evergreen",
+      "hash": "dbb77c678e14b285"
+    },
+    {
+      "path": "/guias/consultar-afp-sipen-cedula-republica-dominicana/",
+      "type": "evergreen",
+      "hash": "7760282b5441cb83"
+    },
+    {
+      "path": "/guias/certificado-bachiller-record-notas-minerd/",
+      "type": "evergreen",
+      "hash": "f0ae9a9f1ea82f09"
+    }
+  ]
+}

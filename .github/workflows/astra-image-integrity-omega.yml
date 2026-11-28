@@ -1,0 +1,26 @@
+name: ASTRA IMAGE INTEGRITY OMEGA
+on:
+  pull_request:
+    branches: [eldiariodelcibao-metadata-integration]
+    paths: ["eldiariodelcibao/**", ".github/workflows/astra-image-integrity-omega.yml"]
+  push:
+    branches: [eldiariodelcibao-metadata-integration]
+    paths: ["eldiariodelcibao/**", ".github/workflows/astra-image-integrity-omega.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  stop-broken-images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: eldiariodelcibao
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install --no-audit --no-fund
+      - name: Validate all ten covers and links over live localhost HTTP
+        run: npm run test:images

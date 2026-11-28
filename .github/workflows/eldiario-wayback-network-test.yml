@@ -1,0 +1,27 @@
+name: ELDIARIO Wayback network preflight
+on:
+  push:
+    branches: [eldiariodelcibao-metadata-integration]
+    paths: [".github/workflows/eldiario-wayback-network-test.yml"]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Probe one exact original capture
+        run: |
+          python - <<'PY'
+          from urllib.request import Request,urlopen
+          import time
+          url='https://web.archive.org/web/20180629223335id_/http://www.eldiariodelcibao.com:80/2018/06/alcaldesa-de-esperanza-anuncia.html'
+          t=time.monotonic()
+          try:
+            with urlopen(Request(url,headers={'User-Agent':'ASTRA-Cibao-Archive-Research/1.0'}),timeout=10) as r:
+              data=r.read(2000)
+              print('ELDIARIO_WAYBACK_CONNECTIVITY',r.status,len(data),'elapsed_sec',round(time.monotonic()-t,2))
+          except Exception as e:
+            print('ELDIARIO_WAYBACK_CONNECTIVITY_FAILED',type(e).__name__,str(e)[:150],'elapsed_sec',round(time.monotonic()-t,2))
+            raise
+          PY
